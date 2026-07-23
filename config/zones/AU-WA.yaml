@@ -70,6 +70,7 @@ contributors:
   - jarek
   - corradio
   - MariusKroon
+  - sankalpsthakur
 country: AU
 country_name: Australia
 currency: AUD
@@ -287,6 +288,7 @@ isRenewable:
     - datetime: '2025-01-01'
       value: 0.5174
 parsers:
+  consumption: OPENNEM.fetch_consumption
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity

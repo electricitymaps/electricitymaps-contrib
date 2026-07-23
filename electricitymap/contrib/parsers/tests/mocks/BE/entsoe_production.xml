@@ -113,11 +113,38 @@
       <resolution>PT60M</resolution>
       <Point>
         <position>1</position>
-        <quantity>-200</quantity>
+        <quantity>200</quantity>
       </Point>
       <Point>
         <position>2</position>
-        <quantity>-180</quantity>
+        <quantity>0</quantity>
+      </Point>
+    </Period>
+  </TimeSeries>
+  <!-- B10: Hydro Pumped Storage (consumption/pumping side) -->
+  <TimeSeries>
+    <mRID>13</mRID>
+    <businessType>A01</businessType>
+    <objectAggregation>A08</objectAggregation>
+    <outBiddingZone_Domain.mRID codingScheme="A01">10YBE----------2</outBiddingZone_Domain.mRID>
+    <quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name>
+    <curveType>A01</curveType>
+    <MktPSRType>
+      <psrType>B10</psrType>
+    </MktPSRType>
+    <Period>
+      <timeInterval>
+        <start>2024-01-01T00:00Z</start>
+        <end>2024-01-01T02:00Z</end>
+      </timeInterval>
+      <resolution>PT60M</resolution>
+      <Point>
+        <position>1</position>
+        <quantity>50</quantity>
+      </Point>
+      <Point>
+        <position>2</position>
+        <quantity>715</quantity>
       </Point>
     </Period>
   </TimeSeries>
@@ -329,11 +356,11 @@
       <resolution>PT60M</resolution>
       <Point>
         <position>1</position>
-        <quantity>-30</quantity>
+        <quantity>30</quantity>
       </Point>
       <Point>
         <position>2</position>
-        <quantity>-25</quantity>
+        <quantity>25</quantity>
       </Point>
     </Period>
   </TimeSeries>

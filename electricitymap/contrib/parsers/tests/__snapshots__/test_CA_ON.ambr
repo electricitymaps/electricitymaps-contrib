@@ -1539,6 +1539,27 @@
     }),
   ])
 # ---
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 150.0,
+        'hydro': 400.0,
+        'nuclear': 826.0,
+      }),
+      'source': 'ieso.ca',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -160.0,
+      }),
+      'zoneKey': 'CA-ON',
+    }),
+  ])
+# ---
 # name: test_fetch_wind_solar_forecasts
   list([
     dict({
