@@ -22,6 +22,7 @@ contributors:
   - systemcatch
   - gopikrishna1793
   - unitrium
+  - sankalpsthakur
 country: IN
 country_name: India
 currency: INR
@@ -144,6 +145,7 @@ fallbackZoneMixes:
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 parsers:
+  price: IEX.fetch_price
   production: IN.fetch_production
 region: Asia
 subZoneNames:
