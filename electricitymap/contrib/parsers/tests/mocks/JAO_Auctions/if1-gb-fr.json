@@ -1,0 +1,16 @@
+[
+  {
+    "marketPeriodStart": "2026-06-01T00:00:00+00:00",
+    "results": [
+      {"productHour": "00-01", "offeredCapacity": 600},
+      {"productHour": "01-02", "offeredCapacity": 500}
+    ]
+  },
+  {
+    "marketPeriodStart": "2026-06-02T00:00:00+00:00",
+    "results": [
+      {"productHour": "00-01", "offeredCapacity": 650},
+      {"productHour": "01-02", "offeredCapacity": 550}
+    ]
+  }
+]
