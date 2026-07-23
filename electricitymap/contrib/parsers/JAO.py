@@ -39,7 +39,6 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeAtcList,
     ExchangeCapacityList,
-    ExchangeList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -276,19 +275,22 @@ def _extract_border_atc(
     return capacities
 
 
-def _extract_border_net_flow(
+def _extract_border_scheduled_exchanges(
     rows: list[dict],
     sorted_zone_keys: ZoneKey,
     source: str,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
     field_prefix: str = "border",
-) -> ExchangeList:
-    """Turn per-border rows into an ExchangeList of scheduled netFlow events.
+) -> list[ScheduledExchange]:
+    """Turn per-border rows into scheduled exchange events keeping both directions.
 
-    For a sorted zone key `"A->B"`, netFlow = `{prefix}_A_B` − `{prefix}_B_A`
-    (positive when A exports to B). JAO publishes both directional fields; day-
-    ahead market coupling clears a netted schedule so typically only one side
-    is non-zero per MTU, but subtracting handles both cases uniformly.
+    For a sorted zone key `"A->B"`, JAO publishes both directional fields:
+      - `scheduledExport` = `{prefix}_A_B` (flow A -> B)
+      - `scheduledImport` = `{prefix}_B_A` (flow B -> A)
+    Both are kept so hourly-aggregated schedules that clear in both directions
+    within a bucket stay lossless; `netFlow` (= scheduledExport - scheduledImport) is
+    derived by `ScheduledExchange.create`. Per MTU only one side is non-zero.
 
     Emitted with sourceType=published since the values are TSO-published
     ex-ante schedules, not statistical forecasts.
@@ -299,21 +301,26 @@ def _extract_border_net_flow(
     export_field = f"{field_prefix}_{jao_a}_{jao_b}"
     import_field = f"{field_prefix}_{jao_b}_{jao_a}"
 
-    flows = ExchangeList(logger)
+    exchanges: list[ScheduledExchange] = []
     for row in rows:
         export_value = row.get(export_field)
         import_value = row.get(import_field)
         if export_value is None and import_value is None:
             continue
-        net_flow = (export_value or 0) - (import_value or 0)
-        flows.append(
+        event = ScheduledExchange.create(
+            logger=logger,
             zoneKey=sorted_zone_keys,
             datetime=_parse_utc(row["dateTimeUtc"]),
+            end_datetime=None,
             source=source,
-            netFlow=net_flow,
+            scheduledExport=export_value or 0,
+            scheduledImport=import_value or 0,
+            marketAgreementType=market_agreement_type,
             sourceType=EventSourceType.published,
         )
-    return flows
+        if event is not None:
+            exchanges.append(event)
+    return exchanges
 
 
 def _fetch_jao_rows(
@@ -448,10 +455,10 @@ def fetch_core_scheduled_exchanges_day_ahead(
 ) -> list[dict]:
     """Day-ahead scheduled commercial exchanges for a Core border.
 
-    The cleared net commercial flow from Core day-ahead market coupling, per
-    MTU (15 min). Covers Core internal borders and Core-external ones (e.g.
-    FR↔ES, DK1↔DE). Emitted as signed netFlow events (Exchange shape), not
-    capacity pairs, since market coupling publishes a netted schedule.
+    The cleared commercial flow from Core day-ahead market coupling, per MTU
+    (15 min). Covers Core internal borders and Core-external ones (e.g. FR↔ES,
+    DK1↔DE). Emitted as ScheduledExchange events carrying both directional
+    flows (export/import) plus a derived signed netFlow.
     """
     sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
@@ -462,18 +469,10 @@ def fetch_core_scheduled_exchanges_day_ahead(
         target_datetime,
         logger,
     )
-    exchange_list = _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger)
-    return [
-        ScheduledExchange(
-            zoneKey=evt.zoneKey,
-            datetime=evt.datetime,
-            source=evt.source,
-            netFlow=evt.netFlow,
-            sourceType=evt.sourceType,
-            marketAgreementType=MarketAgreementType.DAY_AHEAD,
-        ).to_dict()
-        for evt in exchange_list.events
-    ]
+    exchanges = _extract_border_scheduled_exchanges(
+        rows, sorted_zone_keys, SOURCE, MarketAgreementType.DAY_AHEAD, logger
+    )
+    return [event.to_dict() for event in exchanges]
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))

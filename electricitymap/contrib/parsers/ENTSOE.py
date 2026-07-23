@@ -968,6 +968,27 @@ def parse_exchange_forecast(
     return exchange_list
 
 
+def _parse_scheduled_exchange_points(
+    xml_text: str,
+    market_type: EntsoeTypeEnum,
+) -> Generator[tuple[datetime, datetime, float], None, None]:
+    """Yield raw (datetime, end_datetime, quantity) points from a single-direction
+    A09 document, filtered to `market_type`.
+
+    Unlike `parse_exchange_forecast`, this keeps the gross published quantity
+    unsigned (no import negation) so callers can retain both directional flows
+    separately instead of netting them into a single value.
+    """
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+    for timeseries in soup.find_all("timeseries"):
+        marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
+            0
+        ]
+        if marketAgreementType and marketAgreementType != market_type:
+            continue
+        yield from _get_datetime_value_from_timeseries(timeseries, "quantity")
+
+
 def _merge_exchange_capacity_forecasts(
     export_list: ExchangeCapacityList,
     import_list: ExchangeCapacityList,
@@ -1346,8 +1367,13 @@ def _get_scheduled_exchanges(
     total), and emits events tagged `sourceType=published` per the
     `EXCHANGE_PUBLICATION_DATA_TYPES` contract.
 
-    Per-direction lists are concatenated with `merge_exchanges` — the two
-    contract types are never silently merged across each other.
+    ENTSO-E publishes each direction as its own A09 document. Rather than
+    netting the two into a single number, we keep both gross directional
+    flows on each `ScheduledExchange` (scheduledExport = zone1 -> zone2,
+    scheduledImport = zone2 -> zone1) and let the model derive the signed netFlow.
+    This is lossless when a provider aggregates the native 15-minute schedules
+    into hourly buckets that cleared in both directions. Quantities are summed
+    across domain pairs within each direction (for aggregate borders).
     """
     if not session:
         session = Session()
@@ -1356,36 +1382,41 @@ def _get_scheduled_exchanges(
     xml_pairs = _fetch_a09_xml_for_pairs(
         domain_pairs, sorted_zone_keys, session, target_datetime
     )
-    parsed_lists = [
-        parse_exchange_forecast(
-            xml,
-            is_import=is_import,
-            sorted_zone_keys=sorted_zone_keys,
-            logger=logger,
-            market_type=market_type,
-            source_type=EventSourceType.published,
-        )
-        for is_import, xml in xml_pairs
-    ]
-    merged = ExchangeList.merge_exchanges(parsed_lists, logger)
+    # Accumulate gross quantities per datetime for each direction. The
+    # is_import=False document is the export direction (zone1 -> zone2, the
+    # positive contributor to netFlow); is_import=True is the import
+    # direction (zone2 -> zone1). Both are published as non-negative volumes.
+    export_by_dt: dict[datetime, float] = {}
+    import_by_dt: dict[datetime, float] = {}
+    end_by_dt: dict[datetime, datetime | None] = {}
+    for is_import, xml in xml_pairs:
+        accumulator = import_by_dt if is_import else export_by_dt
+        for dt, dt_end, quantity in _parse_scheduled_exchange_points(xml, market_type):
+            accumulator[dt] = accumulator.get(dt, 0.0) + quantity
+            end_by_dt.setdefault(dt, dt_end)
+
     # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A05) used in URL
     # params; `MarketAgreementType` values are the DB-friendly discriminator
     # names. Convert by matching enum names (DAY_AHEAD ↔ DAY_AHEAD,
     # TOTAL ↔ TOTAL). Raises KeyError loudly if an unsupported market_type
     # ever reaches this path.
     market_agreement_type = MarketAgreementType[market_type.name]
-    return [
-        ScheduledExchange(
-            zoneKey=evt.zoneKey,
-            datetime=evt.datetime,
-            end_datetime=evt.end_datetime,
-            source=evt.source,
-            netFlow=evt.netFlow,
-            sourceType=evt.sourceType,
+    events: list[dict] = []
+    for dt in sorted(set(export_by_dt) | set(import_by_dt)):
+        event = ScheduledExchange.create(
+            logger=logger,
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            end_datetime=end_by_dt.get(dt),
+            source=SOURCE,
+            scheduledExport=export_by_dt.get(dt, 0.0),
+            scheduledImport=import_by_dt.get(dt, 0.0),
             marketAgreementType=market_agreement_type,
-        ).to_dict()
-        for evt in merged.events
-    ]
+            sourceType=EventSourceType.published,
+        )
+        if event is not None:
+            events.append(event.to_dict())
+    return events
 
 
 @refetch_frequency(timedelta(days=1))
