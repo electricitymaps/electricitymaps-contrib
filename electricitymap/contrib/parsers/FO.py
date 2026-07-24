@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -38,6 +38,16 @@ MAP_ZONE_KEY_TO_REALTIME_API_DATA_KEY = {
     "FO-MI": "H_E",
     "FO-SI": "S_E",
 }
+
+REALTIME_STORAGE_KEYS = [
+    "Vatnid",
+    "Lomundaroyri",
+    "Heygadalur",
+    "Eidisvatn",
+    "Strandadalur",
+    "Ryskisvatn",
+    "Vatnsnesvatn",
+]
 
 VALID_ZONE_KEYS = [ZoneKey("FO"), ZoneKey("FO-MI"), ZoneKey("FO-SI")]
 
@@ -174,6 +184,15 @@ def _fetch_production_live(
         else:
             continue
 
+    # Extract hydro storage data from reservoir keys.
+    # All pumped storage infrastructure is on Main Island (FO-MI area).
+    # Positive values = pumping/charging, negative values = discharging/generating.
+    storage_mix = StorageMix()
+    if zone_key != ZoneKey("FO-SI"):
+        for key in REALTIME_STORAGE_KEYS:
+            if key in obj:
+                storage_mix.add_value("hydro", float(obj[key].replace(",", ".")))
+
     dt = (
         datetime.fromisoformat(obj["tiden"])
         # floor to hourly granularity to match historical API entries
@@ -187,6 +206,7 @@ def _fetch_production_live(
         datetime=dt,
         source="sev.fo",
         production=production_mix,
+        storage=storage_mix,
     )
 
     return production_breakdown_list
