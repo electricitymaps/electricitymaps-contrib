@@ -74,14 +74,14 @@ EXCHANGE_MAPPING = {
     "ERCOTN": "US-TEX-ERCO",
     "LAMAR": "US-NW-PSCO",
     "MEC": "US-MIDW-MISO",
-    "SCSE": "US-NW-WACM",
+    # "SCSE": "US-NW-WACM",  # WACM retired 2026-03-31, absorbed into SWPP
     "SOUC": "US-SE-SOCO",
     "SPA": "US-CENT-SPA",
     "TVA": "US-TEN-TVA",
-    "RCEAST": "US-NW-WAUW",
+    # "RCEAST": "US-NW-WAUW",  # WAUW retired 2026-03-31, absorbed into SWPP
     "SPC": "CA-SK",
-    "MCWEST": "US-NW-WAUW",
-    "SGE": "US-NW-WACM",
+    # "MCWEST": "US-NW-WAUW",  # WAUW retired 2026-03-31, absorbed into SWPP
+    # "SGE": "US-NW-WACM",  # WACM retired 2026-03-31, absorbed into SWPP
     "ALTW": "US-MIDW-MISO",
     "DPC": "US-MIDW-MISO",
     "GRE": "US-MIDW-MISO",
