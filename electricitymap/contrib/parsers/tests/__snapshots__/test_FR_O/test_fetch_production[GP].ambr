@@ -1,0 +1,68 @@
+# serializer version: 1
+# name: test_fetch_production[GP]
+  list([
+    dict({
+      'correctedModes': list([
+        'geothermal',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 21, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 21.762,
+        'coal': 21.792,
+        'gas': 0,
+        'geothermal': 0,
+        'hydro': 3.2298,
+        'oil': 78.548,
+        'solar': 0,
+        'wind': 18.03,
+      }),
+      'source': 'opendata-guadeloupe.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GP',
+    }),
+    dict({
+      'correctedModes': list([
+        'geothermal',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 36, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 22.716,
+        'coal': 22.092,
+        'gas': 0,
+        'geothermal': 0,
+        'hydro': 3.2298,
+        'oil': 76.63,
+        'solar': 0,
+        'wind': 17.684,
+      }),
+      'source': 'opendata-guadeloupe.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GP',
+    }),
+    dict({
+      'correctedModes': list([
+        'geothermal',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 51, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 22.576,
+        'coal': 21.996,
+        'gas': 0,
+        'geothermal': 0,
+        'hydro': 3.2298,
+        'oil': 76.4518,
+        'solar': 0.03,
+        'wind': 18.2,
+      }),
+      'source': 'opendata-guadeloupe.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GP',
+    }),
+  ])
+# ---
