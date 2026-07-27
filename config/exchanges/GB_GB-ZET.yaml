@@ -1,0 +1,8 @@
+_comment: 600MW Shetland HVDC Link (SSEN Transmission) https://www.ofgem.gov.uk/sites/default/files/2021-11/Shetland%20Link%20Project%20Assessment%20Decision%20FINAL.pdf
+capacity:
+  - -600
+  - 600
+lonlat:
+  - -2.2
+  - 59.35
+rotation: 45
