@@ -8,18 +8,20 @@ from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityList
+from electricitymap.contrib.lib.models.event_lists import (
+    ForecastTransferCapacityList,
+)
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
     DateTimePoint,
     _get_datetime_value_from_timeseries,
-    _merge_exchange_capacity_forecasts,
+    _merge_forecast_transfer_capacities,
     fetch_production,
-    parse_exchange_capacity_forecast,
+    parse_forecast_transfer_capacity,
     zulu_to_utc,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
 
@@ -641,17 +643,21 @@ def test_a03_curve_decompression(fixture, snapshot):
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == results
 
 
-# ─── parse_exchange_capacity_forecast ────────────────────────────────────────
+# ─── parse_forecast_transfer_capacity ────────────────────────────────────────
 
 
-def test_parse_exchange_capacity_forecast_week_ahead_export_direction():
+def test_parse_forecast_transfer_capacity_week_ahead_export_direction():
     """export direction populates capacityExport, leaves capacityImport None."""
     xml = (
         base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
     ).read_text()
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("DK-DK1->DK-DK2"), logger, direction="export"
+    result = parse_forecast_transfer_capacity(
+        xml,
+        ZoneKey("DK-DK1->DK-DK2"),
+        MarketAgreementType.WEEK_AHEAD,
+        logger,
+        direction="export",
     )
     events = result.events
     assert len(events) == 40
@@ -663,16 +669,21 @@ def test_parse_exchange_capacity_forecast_week_ahead_export_direction():
     assert events[1].capacityExport == 600.0
     assert events[1].capacityImport is None
     assert events[0].sourceType == EventSourceType.published
+    assert all(e.marketAgreementType == MarketAgreementType.WEEK_AHEAD for e in events)
 
 
-def test_parse_exchange_capacity_forecast_week_ahead_import_direction():
+def test_parse_forecast_transfer_capacity_week_ahead_import_direction():
     """Import direction populates capacityImport, leaves capacityExport None."""
     xml = (
         base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
     ).read_text()
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("DK-DK1->DK-DK2"), logger, direction="import"
+    result = parse_forecast_transfer_capacity(
+        xml,
+        ZoneKey("DK-DK1->DK-DK2"),
+        MarketAgreementType.WEEK_AHEAD,
+        logger,
+        direction="import",
     )
     events = result.events
     assert len(events) == 40
@@ -682,12 +693,16 @@ def test_parse_exchange_capacity_forecast_week_ahead_import_direction():
     assert events[1].capacityExport is None
 
 
-def test_parse_exchange_capacity_forecast_day_ahead_export_direction():
+def test_parse_forecast_transfer_capacity_day_ahead_export_direction():
     """export direction populates capacityExport, leaves capacityImport None."""
     xml = (base_path_to_mock / "ES_FR_capacity_day_ahead_export.xml").read_text()
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("ES->FR"), logger, direction="export"
+    result = parse_forecast_transfer_capacity(
+        xml,
+        ZoneKey("ES->FR"),
+        MarketAgreementType.DAY_AHEAD,
+        logger,
+        direction="export",
     )
     events = result.events
     assert len(events) == 41
@@ -703,12 +718,16 @@ def test_parse_exchange_capacity_forecast_day_ahead_export_direction():
     assert events[0].sourceType == EventSourceType.published
 
 
-def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
+def test_parse_forecast_transfer_capacity_month_ahead_import_direction():
     """import direction populates capacityImport, leaves capacityExport None."""
     xml = (base_path_to_mock / "ES_FR_capacity_month_ahead_import.xml").read_text()
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("ES->FR"), logger, direction="import"
+    result = parse_forecast_transfer_capacity(
+        xml,
+        ZoneKey("ES->FR"),
+        MarketAgreementType.MONTH_AHEAD,
+        logger,
+        direction="import",
     )
     events = result.events
     assert len(events) == 62
@@ -723,16 +742,20 @@ def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
     assert events[0].sourceType == EventSourceType.published
 
 
-def test_parse_exchange_capacity_forecast_empty_xml():
+def test_parse_forecast_transfer_capacity_empty_xml():
     """Empty XML (no TimeSeries) returns an empty list."""
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        "<root></root>", ZoneKey("AT->DE"), logger, direction="export"
+    result = parse_forecast_transfer_capacity(
+        "<root></root>",
+        ZoneKey("AT->DE"),
+        MarketAgreementType.DAY_AHEAD,
+        logger,
+        direction="export",
     )
     assert result.events == []
 
 
-def test_parse_exchange_capacity_forecast_multiple_timeseries():
+def test_parse_forecast_transfer_capacity_multiple_timeseries():
     """Multiple TimeSeries blocks are all parsed."""
     xml = """
     <root>
@@ -757,15 +780,19 @@ def test_parse_exchange_capacity_forecast_multiple_timeseries():
     </root>
     """
     logger = logging.getLogger("test")
-    result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="export"
+    result = parse_forecast_transfer_capacity(
+        xml,
+        ZoneKey("AT->DE"),
+        MarketAgreementType.DAY_AHEAD,
+        logger,
+        direction="export",
     )
     assert len(result.events) == 2
     assert result.events[0].capacityExport == 100.0
     assert result.events[1].capacityExport == 200.0
 
 
-# ─── _merge_exchange_capacity_forecasts ──────────────────────────────────────
+# ─── _merge_forecast_transfer_capacities ──────────────────────────────────────
 
 
 def _make_capacity_list(
@@ -773,9 +800,10 @@ def _make_capacity_list(
     datetimes: list[datetime],
     forward: list[float | None],
     reverse: list[float | None],
-) -> ExchangeCapacityList:
+    market_agreement_type: MarketAgreementType = MarketAgreementType.DAY_AHEAD,
+) -> ForecastTransferCapacityList:
     logger = logging.getLogger("test")
-    lst = ExchangeCapacityList(logger)
+    lst = ForecastTransferCapacityList(logger)
     for dt, fwd, rev in zip(datetimes, forward, reverse, strict=True):
         lst.append(
             zoneKey=zone_key,
@@ -783,11 +811,34 @@ def _make_capacity_list(
             source="entsoe.eu",
             capacityExport=fwd,
             capacityImport=rev,
+            marketAgreementType=market_agreement_type,
         )
     return lst
 
 
-def test_merge_exchange_capacity_forecasts_both_directions():
+def test_merge_forecast_transfer_capacities_carries_market_agreement_type():
+    """The contract type travels onto every merged event, not just the inputs."""
+    logger = logging.getLogger("test")
+    dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    zone = ZoneKey("AT->DE")
+    forward = _make_capacity_list(
+        zone, [dt], [100.0], [None], MarketAgreementType.MONTH_AHEAD
+    )
+    reverse = _make_capacity_list(
+        zone, [dt], [None], [200.0], MarketAgreementType.MONTH_AHEAD
+    )
+
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.MONTH_AHEAD, logger
+    )
+
+    assert len(merged.events) == 1
+    assert merged.events[0].marketAgreementType == MarketAgreementType.MONTH_AHEAD
+    assert merged.events[0].capacityExport == 100.0
+    assert merged.events[0].capacityImport == 200.0
+
+
+def test_merge_forecast_transfer_capacities_both_directions():
     """Both directions present for same datetimes → merged event has both capacities."""
     logger = logging.getLogger("test")
     dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -797,7 +848,9 @@ def test_merge_exchange_capacity_forecasts_both_directions():
     forward = _make_capacity_list(zone_key, [dt1, dt2], [600.0, 500.0], [None, None])
     reverse = _make_capacity_list(zone_key, [dt1, dt2], [None, None], [400.0, 350.0])
 
-    merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.DAY_AHEAD, logger
+    )
     events = merged.events
 
     assert len(events) == 2
@@ -809,16 +862,18 @@ def test_merge_exchange_capacity_forecasts_both_directions():
     assert events[1].capacityImport == 350.0
 
 
-def test_merge_exchange_capacity_forecasts_only_forward():
+def test_merge_forecast_transfer_capacities_only_forward():
     """Only forward data → merged events have capacityImport=None."""
     logger = logging.getLogger("test")
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])
-    reverse = ExchangeCapacityList(logger)
+    reverse = ForecastTransferCapacityList(logger)
 
-    merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.DAY_AHEAD, logger
+    )
     events = merged.events
 
     assert len(events) == 1
@@ -826,16 +881,18 @@ def test_merge_exchange_capacity_forecasts_only_forward():
     assert events[0].capacityImport is None
 
 
-def test_merge_exchange_capacity_forecasts_only_reverse():
+def test_merge_forecast_transfer_capacities_only_reverse():
     """Only reverse data → merged events have capacityExport=None."""
     logger = logging.getLogger("test")
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
 
-    forward = ExchangeCapacityList(logger)
+    forward = ForecastTransferCapacityList(logger)
     reverse = _make_capacity_list(zone_key, [dt], [None], [400.0])
 
-    merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.DAY_AHEAD, logger
+    )
     events = merged.events
 
     assert len(events) == 1
@@ -843,7 +900,7 @@ def test_merge_exchange_capacity_forecasts_only_reverse():
     assert events[0].capacityImport == 400.0
 
 
-def test_merge_exchange_capacity_forecasts_non_overlapping_datetimes():
+def test_merge_forecast_transfer_capacities_non_overlapping_datetimes():
     """Non-overlapping datetime sets → all datetimes present in merged result."""
     logger = logging.getLogger("test")
     dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -853,7 +910,9 @@ def test_merge_exchange_capacity_forecasts_non_overlapping_datetimes():
     forward = _make_capacity_list(zone_key, [dt1], [600.0], [None])
     reverse = _make_capacity_list(zone_key, [dt2], [None], [400.0])
 
-    merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.DAY_AHEAD, logger
+    )
     events = merged.events
 
     assert len(events) == 2
@@ -865,7 +924,7 @@ def test_merge_exchange_capacity_forecasts_non_overlapping_datetimes():
     assert events[1].capacityImport == 400.0
 
 
-def test_merge_exchange_capacity_forecasts_prefers_forward_zone_key():
+def test_merge_forecast_transfer_capacities_prefers_forward_zone_key():
     """When both directions exist, zone key and source are taken from the forward event."""
     logger = logging.getLogger("test")
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -874,7 +933,9 @@ def test_merge_exchange_capacity_forecasts_prefers_forward_zone_key():
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])
     reverse = _make_capacity_list(zone_key, [dt], [None], [400.0])
 
-    merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
+    merged = _merge_forecast_transfer_capacities(
+        forward, reverse, MarketAgreementType.DAY_AHEAD, logger
+    )
     assert merged.events[0].zoneKey == zone_key
     assert merged.events[0].source == "entsoe.eu"
 

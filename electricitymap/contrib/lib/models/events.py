@@ -18,7 +18,11 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import (
+    AtcType,
+    MarketAgreementType,
+    ZoneKey,
+)
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -1412,8 +1416,9 @@ class IntradayContractStatistics(Event):
 class ExchangeCapacity(Event):
     """
     An event representing a bilateral exchange capacity between two zones in
-    both directions. Used for NTC forecasts (ENTSOE A61), MaxBeX, MaxBflow.
-    ATC values use the dedicated `ExchangeAtc` class instead.
+    both directions. Used for MaxBeX and MaxBflow. ATC values use the dedicated
+    `ExchangeAtc` class, and NTC forecasts `ForecastTransferCapacity` — both
+    carry a discriminator this class has no field for.
 
     capacityExport: Capacity for zone1→zone2 direction (may be None).
     capacityImport: Capacity for zone2→zone1 direction (may be None).
@@ -1571,6 +1576,96 @@ class ExchangeAtc(Event):
             "capacityExport": self.capacityExport,
             "capacityImport": self.capacityImport,
             "atcType": self.atcType,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
+
+
+class ForecastTransferCapacity(Event):
+    """
+    An exchange-side event (keyed by a sorted `"A->B"` zone pair) representing a
+    forecast transfer capacity (NTC) value between two zones in both directions,
+    at a given market-agreement type. Distinct from ATC (see `ExchangeAtc`), from
+    the flow limits in `ExchangeCapacity` (MaxBeX, MaxBflow) and from cleared
+    schedules (see `ScheduledExchange`).
+
+    capacityExport: Capacity for zone1→zone2 direction (may be None).
+    capacityImport: Capacity for zone2→zone1 direction (may be None).
+    marketAgreementType: ENTSOE Contract_MarketAgreement.Type this value was
+        published under — day-, week- or month-ahead. All three share one
+        storage table, and each has its own cadence, so it travels with the
+        value rather than being inferred from which parser produced it.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    capacityExport: float | None
+    capacityImport: float | None
+    marketAgreementType: MarketAgreementType
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        if (
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
+        ):
+            raise ValueError(
+                "At least one of capacityExport or capacityImport must be set"
+            )
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ForecastTransferCapacity | None":
+        try:
+            return ForecastTransferCapacity(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
+                sourceType=sourceType,
+                marketAgreementType=marketAgreementType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ForecastTransferCapacity Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange transfer capacity",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
+            "marketAgreementType": self.marketAgreementType,
             "source": self.source,
             "sourceType": self.sourceType,
         }
