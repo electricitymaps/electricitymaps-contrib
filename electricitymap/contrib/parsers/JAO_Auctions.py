@@ -72,12 +72,35 @@ class JaoHorizon(str, Enum):
 # EM exchange zone key → the corridor prefixes making up that border. A single
 # empty prefix means the border is served by one unprefixed corridor per direction.
 # Borders absent from this mapping are not available on the Auction API.
+#
+# This is every border where JAO runs a *daily* explicit auction, i.e. where day-ahead
+# capacity is not implicitly allocated by market coupling: GB (post-Brexit), CH (never
+# coupled), and the non-SDAC Balkan and Ukrainian borders. Borders inside SDAC have
+# corridors registered here too, but only for long-term products — their day-ahead ATC
+# comes from the Publication Tool (JAO.py) instead, so the two parsers never overlap.
+# `GET /OWSMP/getcorridors` lists all corridors; probe `horizon=Daily` to see which
+# actually carry day-ahead auctions.
 EM_ZONE_TO_JAO_PREFIX: dict[str, list[str]] = {
+    # GB borders are the only ones where several cables share a border, so each
+    # physical interconnector has its own prefixed corridor.
     "BE->GB": ["NLL-"],  # Nemo Link
-    "CH->DE": [""],
-    "CH->FR": [""],
     "DK-DK1->GB": ["VKL-"],  # Viking Link
     "FR->GB": ["IF1-", "IF2-", "EL1-"],  # IFA1, IFA2, ElecLink
+    # Everything else is a single unprefixed corridor per direction.
+    "AT->CH": [""],
+    "BG->MK": [""],
+    "BG->RS": [""],
+    "CH->DE": [""],
+    "CH->FR": [""],
+    "CH->IT-NO": [""],
+    "HR->RS": [""],
+    "HU->RS": [""],
+    "HU->UA": [""],
+    "IT->ME": [""],
+    "ME->RS": [""],
+    "MK->RS": [""],
+    "PL->UA": [""],
+    "SK->UA": [""],
 }
 
 # EM zone key → JAO zone code used in corridor names (only where they differ).
@@ -86,6 +109,10 @@ EM_ZONE_TO_JAO_PREFIX: dict[str, list[str]] = {
 # don't "fix" the discrepancy.
 EM_TO_JAO_ZONE: dict[str, str] = {
     "DK-DK1": "D1",
+    # JAO publishes one "IT" code for the Swiss border, which physically lands in the
+    # Italy North bidding zone. (The IT->ME border keeps EM's plain "IT" zone, so it
+    # needs no remap.)
+    "IT-NO": "IT",
 }
 
 

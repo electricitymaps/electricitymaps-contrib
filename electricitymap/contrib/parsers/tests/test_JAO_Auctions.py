@@ -13,6 +13,8 @@ from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.JAO_Auctions import (
+    EM_TO_JAO_ZONE,
+    EM_ZONE_TO_JAO_PREFIX,
     JAO_AUCTION_MAX_WINDOW_DAYS,
     fetch_auction_atc_day_ahead,
 )
@@ -192,6 +194,48 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
             "sourceType": EventSourceType.published,
         }
     ]
+
+
+def test_fetch_auction_atc_day_ahead_it_no_zone_remap(requests_mock, session):
+    """The Swiss-Italian border is published under JAO's plain "IT" code even though it
+    lands in the Italy North bidding zone, so CH->IT-NO must request CH-IT / IT-CH and
+    not the nonexistent CH-IT-NO. Note IT->ME keeps EM's plain "IT" and is unaffected."""
+    requests_mock.register_uri(GET, ATC_DAY_AHEAD_AUCTION_URL_REGEX, **NO_DATA_RESPONSE)
+
+    fetch_auction_atc_day_ahead(
+        ZoneKey("CH"),
+        ZoneKey("IT-NO"),
+        session=session,
+        target_datetime=TARGET_DATETIME,
+    )
+
+    corridors = [r.qs["corridor"][0] for r in requests_mock.request_history]
+    assert corridors == ["ch-it", "it-ch"]
+
+
+def test_fetch_auction_atc_day_ahead_unprefixed_borders_are_configured(
+    requests_mock, session
+):
+    """Every unprefixed border must resolve to a corridor pair the API actually serves,
+    which for these is simply "{FROM}-{TO}" after zone remapping."""
+    requests_mock.register_uri(GET, ATC_DAY_AHEAD_AUCTION_URL_REGEX, **NO_DATA_RESPONSE)
+
+    unprefixed = [b for b, p in EM_ZONE_TO_JAO_PREFIX.items() if p == [""]]
+    assert len(unprefixed) == 14
+
+    for border in unprefixed:
+        requests_mock.reset()
+        zone_a, zone_b = border.split("->")
+        fetch_auction_atc_day_ahead(
+            ZoneKey(zone_a),
+            ZoneKey(zone_b),
+            session=session,
+            target_datetime=TARGET_DATETIME,
+        )
+        jao_a = EM_TO_JAO_ZONE.get(zone_a, zone_a).lower()
+        jao_b = EM_TO_JAO_ZONE.get(zone_b, zone_b).lower()
+        corridors = [r.qs["corridor"][0] for r in requests_mock.request_history]
+        assert corridors == [f"{jao_a}-{jao_b}", f"{jao_b}-{jao_a}"], border
 
 
 def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
