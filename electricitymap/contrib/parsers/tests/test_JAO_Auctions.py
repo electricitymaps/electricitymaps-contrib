@@ -10,7 +10,7 @@ import pytest
 from requests_mock import GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZoneKey
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.JAO_Auctions import (
     EM_TO_JAO_ZONE,
@@ -196,21 +196,42 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
     ]
 
 
-def test_fetch_auction_atc_day_ahead_it_no_zone_remap(requests_mock, session):
-    """The Swiss-Italian border is published under JAO's plain "IT" code even though it
-    lands in the Italy North bidding zone, so CH->IT-NO must request CH-IT / IT-CH and
-    not the nonexistent CH-IT-NO. Note IT->ME keeps EM's plain "IT" and is unaffected."""
+def test_wired_borders_match_configured_corridors():
+    """The parser's border list and the `atcDayAhead` wiring must stay in step.
+
+    A border wired in config but missing from EM_ZONE_TO_JAO_PREFIX raises at runtime
+    on every run; a border in the mapping with no config is dead code. Neither is
+    visible without cross-checking, so pin it here.
+    """
+    wired = {
+        key
+        for key, config in EXCHANGES_CONFIG.items()
+        if "JAO_Auctions" in str((config.get("parsers") or {}).get("atcDayAhead", ""))
+    }
+    assert wired == set(EM_ZONE_TO_JAO_PREFIX)
+
+
+def test_fetch_auction_atc_day_ahead_italian_zone_remaps(requests_mock, session):
+    """JAO reuses one "IT" code for every Italian border and lets the counterparty
+    disambiguate the bidding zone, so both Italian borders must collapse to it: the
+    Swiss interconnector lands in Italy North, MONITA to Montenegro in Italy
+    Centre-South. Without the remap these would request the nonexistent corridors
+    CH-IT-NO and IT-CSO-ME."""
     requests_mock.register_uri(GET, ATC_DAY_AHEAD_AUCTION_URL_REGEX, **NO_DATA_RESPONSE)
 
-    fetch_auction_atc_day_ahead(
-        ZoneKey("CH"),
-        ZoneKey("IT-NO"),
-        session=session,
-        target_datetime=TARGET_DATETIME,
-    )
-
-    corridors = [r.qs["corridor"][0] for r in requests_mock.request_history]
-    assert corridors == ["ch-it", "it-ch"]
+    for zone_a, zone_b, expected in [
+        ("CH", "IT-NO", ["ch-it", "it-ch"]),
+        ("IT-CSO", "ME", ["it-me", "me-it"]),
+    ]:
+        requests_mock.reset()
+        fetch_auction_atc_day_ahead(
+            ZoneKey(zone_a),
+            ZoneKey(zone_b),
+            session=session,
+            target_datetime=TARGET_DATETIME,
+        )
+        corridors = [r.qs["corridor"][0] for r in requests_mock.request_history]
+        assert corridors == expected, f"{zone_a}->{zone_b}"
 
 
 def test_fetch_auction_atc_day_ahead_unprefixed_borders_are_configured(
