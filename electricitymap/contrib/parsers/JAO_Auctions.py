@@ -96,7 +96,7 @@ EM_ZONE_TO_JAO_PREFIX: dict[str, list[str]] = {
     "HR->RS": [""],
     "HU->RS": [""],
     "HU->UA": [""],
-    "IT->ME": [""],
+    "IT-CSO->ME": [""],
     "ME->RS": [""],
     "MK->RS": [""],
     "PL->UA": [""],
@@ -109,10 +109,12 @@ EM_ZONE_TO_JAO_PREFIX: dict[str, list[str]] = {
 # don't "fix" the discrepancy.
 EM_TO_JAO_ZONE: dict[str, str] = {
     "DK-DK1": "D1",
-    # JAO publishes one "IT" code for the Swiss border, which physically lands in the
-    # Italy North bidding zone. (The IT->ME border keeps EM's plain "IT" zone, so it
-    # needs no remap.)
+    # JAO uses a single "IT" code for every Italian border and lets the counterparty
+    # disambiguate which bidding zone is meant: the Swiss interconnector lands in Italy
+    # North, the Montenegrin one (MONITA) in Italy Centre-South. The EM→JAO direction is
+    # many-to-one so a flat mapping is fine, but it cannot be inverted.
     "IT-NO": "IT",
+    "IT-CSO": "IT",
 }
 
 
