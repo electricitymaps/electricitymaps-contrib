@@ -31,8 +31,8 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeCapacityList,
     ExchangeList,
+    ForecastTransferCapacityList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -422,7 +422,7 @@ def query_scheduled_exchanges(
     )
 
 
-def query_exchange_capacity_forecast(
+def query_forecast_transfer_capacity(
     in_domain: str,
     out_domain: str,
     session: Session,
@@ -989,16 +989,17 @@ def _parse_scheduled_exchange_points(
         yield from _get_datetime_value_from_timeseries(timeseries, "quantity")
 
 
-def _merge_exchange_capacity_forecasts(
-    export_list: ExchangeCapacityList,
-    import_list: ExchangeCapacityList,
+def _merge_forecast_transfer_capacities(
+    export_list: ForecastTransferCapacityList,
+    import_list: ForecastTransferCapacityList,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
-) -> ExchangeCapacityList:
+) -> ForecastTransferCapacityList:
     """
     Merges export and import direction capacity forecasts into a single list.
     For each datetime, combines capacities from both directions into one event.
     """
-    merged = ExchangeCapacityList(logger)
+    merged = ForecastTransferCapacityList(logger)
 
     # Create a dict of export capacities by datetime
     export_by_dt = {event.datetime: event for event in export_list.events}
@@ -1026,32 +1027,36 @@ def _merge_exchange_capacity_forecasts(
             source=source,
             capacityExport=export_cap,
             capacityImport=import_cap,
+            marketAgreementType=market_agreement_type,
         )
 
     return merged
 
 
-def parse_exchange_capacity_forecast(
+def parse_forecast_transfer_capacity(
     xml_text: str,
     sorted_zone_keys: ZoneKey,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
     direction: Literal["export", "import"] = "export",
-) -> ExchangeCapacityList:
+) -> ForecastTransferCapacityList:
     """
     Parses NTC (A61) exchange capacity forecast XML for a given direction.
 
     Args:
         xml_text: The XML response from ENTSOE
         sorted_zone_keys: The exchange pair (sorted, format "A->B")
+        market_agreement_type: The contract type this document was requested at
         logger: Logger instance
         direction: "export" for A→B, "import" for B→A
 
     Returns:
-        ExchangeCapacityList with capacity populated for the specified direction
+        ForecastTransferCapacityList with capacity populated for the specified
+        direction
     """
     try:
         soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-        forecasts = ExchangeCapacityList(logger)
+        forecasts = ForecastTransferCapacityList(logger)
         for timeseries in soup.find_all("timeseries"):
             for dt, dt_end, quantity in _get_datetime_value_from_timeseries(
                 timeseries, "quantity"
@@ -1064,6 +1069,7 @@ def parse_exchange_capacity_forecast(
                         source=SOURCE,
                         capacityExport=quantity,
                         capacityImport=None,
+                        marketAgreementType=market_agreement_type,
                     )
                 else:
                     forecasts.append(
@@ -1073,6 +1079,7 @@ def parse_exchange_capacity_forecast(
                         source=SOURCE,
                         capacityExport=None,
                         capacityImport=quantity,
+                        marketAgreementType=market_agreement_type,
                     )
         return forecasts
     except Exception as e:
@@ -1803,7 +1810,7 @@ def fetch_wind_solar_forecasts_current(
     ).to_list()
 
 
-def _fetch_exchange_capacity_forecasts(
+def _fetch_forecast_transfer_capacity(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     forecast_type: EntsoeTypeEnum,
@@ -1822,7 +1829,7 @@ def _fetch_exchange_capacity_forecasts(
 
     for attempt in range(1, max_retries + 1):
         if raw_export is None:
-            raw_export = query_exchange_capacity_forecast(
+            raw_export = query_forecast_transfer_capacity(
                 domain_2,
                 domain_1,
                 session,
@@ -1831,7 +1838,7 @@ def _fetch_exchange_capacity_forecasts(
                 logger=logger,
             )
         if raw_import is None:
-            raw_import = query_exchange_capacity_forecast(
+            raw_import = query_forecast_transfer_capacity(
                 domain_1,
                 domain_2,
                 session,
@@ -1862,21 +1869,29 @@ def _fetch_exchange_capacity_forecasts(
             zone_key=sorted_zone_keys,
         )
 
-    export_list = parse_exchange_capacity_forecast(
+    # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A02) used in URL
+    # params; `MarketAgreementType` values are the DB-friendly discriminator
+    # names. Convert by matching enum names, as the scheduled-exchange path
+    # does. Raises KeyError loudly if an unsupported forecast_type ever reaches
+    # here (e.g. INTRADAY, which is not a transfer-capacity contract type).
+    market_agreement_type = MarketAgreementType[forecast_type.name]
+    export_list = parse_forecast_transfer_capacity(
         raw_export,
         sorted_zone_keys=sorted_zone_keys,
+        market_agreement_type=market_agreement_type,
         logger=logger,
         direction="export",
     )
-    import_list = parse_exchange_capacity_forecast(
+    import_list = parse_forecast_transfer_capacity(
         raw_import,
         sorted_zone_keys=sorted_zone_keys,
+        market_agreement_type=market_agreement_type,
         logger=logger,
         direction="import",
     )
 
-    return _merge_exchange_capacity_forecasts(
-        export_list, import_list, logger
+    return _merge_forecast_transfer_capacities(
+        export_list, import_list, market_agreement_type, logger
     ).to_list()
 
 
@@ -1889,7 +1904,7 @@ def fetch_exchange_capacity_forecasts_day_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets day-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.DAY_AHEAD,
@@ -1908,7 +1923,7 @@ def fetch_exchange_capacity_forecasts_week_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets week-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.WEEK_AHEAD,
@@ -1927,7 +1942,7 @@ def fetch_exchange_capacity_forecasts_month_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets month-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.MONTH_AHEAD,
