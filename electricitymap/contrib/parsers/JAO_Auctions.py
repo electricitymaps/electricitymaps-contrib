@@ -15,9 +15,12 @@ with it beyond the vendor name:
    values are summed per datetime.
 2. `getauctions` answers HTTP 400 `{"status":400,"message":"No Data found"}` rather
    than an empty 200 when a corridor has nothing in the window.
-3. Timestamps are not UTC. `marketPeriodStart` is the start of the *local* (CET/CEST)
-   market day, and `productHour` is a local wall-clock label — see
-   `_auction_hourly_atc` for why that matters.
+3. Timestamps are not UTC. `marketPeriodStart` is midnight in JAO's own CET/CEST
+   reference zone, and `productHour` is a wall-clock label in that same zone — see
+   `_auction_hourly_atc` for why that matters. Note this is *not* the local time of
+   either bidding zone: every corridor is stamped CET/CEST regardless, so a GB market
+   day starts at 23:00 the previous evening London time in winter, and Bulgarian and
+   Ukrainian borders are stamped CET/CEST despite being EET locally.
 4. A window may span 31 days (the Publication Tool caps at 2).
 
 Corridor naming is `{PREFIX}{FROM}-{TO}`, where `PREFIX` identifies the physical
@@ -152,11 +155,11 @@ def _target_window(
 ) -> tuple[datetime, datetime]:
     """Return the UTC window to request for `target_datetime`.
 
-    The API filters on `marketPeriodStart`, which is the start of the *local* market
-    day and therefore falls at 22:00/23:00 UTC on the preceding calendar day. A lower
-    bound of UTC midnight would exclude the target day's own auction, so the window
-    starts a day early. The extra day overlaps harmlessly on refetch, and keeps the
-    total span within the API's 31-day limit.
+    The API filters on `marketPeriodStart`, which is CET/CEST midnight and therefore
+    falls at 23:00 UTC (winter) or 22:00 UTC (summer) on the preceding calendar day. A
+    lower bound of UTC midnight would exclude the target day's own auction, so the
+    window starts a day early. The extra day overlaps harmlessly on refetch, and keeps
+    the total span within the API's 31-day limit.
     """
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
@@ -221,7 +224,7 @@ def _query_jao_auction(
 def _product_hour_sort_key(product_hour: str) -> tuple[str, bool]:
     """Chronological sort key for the hourly product labels of one market day.
 
-    Labels are zero-padded local wall-clock ranges ("00:00-01:00"), so plain string
+    Labels are zero-padded CET/CEST wall-clock ranges ("00:00-01:00"), so plain string
     ordering is chronological. On the long DST day the repeated hour is suffixed with
     "*" and must sort immediately after its unsuffixed twin, being the second
     (post-transition) occurrence.
@@ -232,16 +235,24 @@ def _product_hour_sort_key(product_hour: str) -> tuple[str, bool]:
 def _auction_hourly_atc(auction: dict, logger: Logger) -> dict[datetime, float]:
     """Map each hourly product of one auction to its UTC start and ATC value.
 
-    `marketPeriodStart` is the start of the local market day expressed in UTC, and the
-    products tile it one hour at a time, so the Nth product in chronological order
-    starts N hours after it.
+    `marketPeriodStart` is CET/CEST midnight expressed in UTC, and the products tile the
+    market period one hour at a time, so the Nth product in chronological order starts N
+    hours after it.
 
-    We deliberately do not derive the offset from the `productHour` label. Labels are
-    local wall-clock times, which breaks on both DST transitions: on the short day they
-    skip an hour ("00", "01", "03", ...) so every later hour would land an hour late and
-    the last would spill into the next market day, and on the long day "02:00-03:00" and
-    "02:00-03:00*" would collapse onto a single timestamp and have their capacities
-    summed. Products also arrive unsorted, so raw list position is not usable either.
+    We deliberately do not derive the offset from the `productHour` label, and equally
+    deliberately never construct a timezone. Labels are CET/CEST wall-clock times, which
+    breaks on both DST transitions: on the short day they skip an hour ("00", "01",
+    "03", ...) so every later hour would land an hour late and the last would spill into
+    the next market day, and on the long day "02:00-03:00" and "02:00-03:00*" would
+    collapse onto a single timestamp and have their capacities summed. Products also
+    arrive unsorted, so raw list position is not usable either.
+
+    Counting positions from `marketPeriodStart` and validating the count against
+    `marketPeriodStop` sidesteps all of it: the arithmetic is pure UTC and stays correct
+    for 23-, 24- and 25-hour market periods without naming a zone. Resist any change
+    that localises these labels — CET/CEST is JAO's own reference, not the local time of
+    either bidding zone, so "the border's timezone" is the wrong answer everywhere and a
+    visibly wrong one on the GB, Bulgarian and Ukrainian borders.
 
     `offeredCapacity` is the ATC; JAO exposes the identical value as `products[].atc`.
     """

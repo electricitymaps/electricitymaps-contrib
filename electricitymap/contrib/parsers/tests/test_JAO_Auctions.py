@@ -26,7 +26,7 @@ os.environ["JAO_AUCTION_API_KEY"] = "dummy"
 BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO_Auctions")
 ATC_DAY_AHEAD_AUCTION_URL_REGEX = re.compile(r"https://api.jao.eu/OWSMP/getauctions")
 
-# The FR->GB mocks are a real capture covering the 2026-07-28 and 2026-07-29 local
+# The FR->GB mocks are a real capture covering the 2026-07-28 and 2026-07-29 CET
 # market days, so the window has to contain them.
 TARGET_DATETIME = datetime.fromisoformat("2026-07-28T00:00:00+00:00")
 
@@ -75,12 +75,12 @@ def test_fetch_auction_atc_day_ahead_fr_gb(requests_mock, session, snapshot):
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_auction_atc_day_ahead_window_covers_target_local_day(
+def test_fetch_auction_atc_day_ahead_window_covers_target_market_day(
     requests_mock, session
 ):
-    """Auctions are stamped at the start of the local market day, which is 22:00/23:00
-    UTC the day before, and the API filters on that field. The requested window must
-    therefore start before UTC midnight of the target day or it would miss it."""
+    """Auctions are stamped at CET/CEST midnight, which is 23:00 UTC (winter) or 22:00
+    UTC (summer) the day before, and the API filters on that field. The requested window
+    must therefore start before UTC midnight of the target day or it would miss it."""
     requests_mock.register_uri(GET, ATC_DAY_AHEAD_AUCTION_URL_REGEX, **NO_DATA_RESPONSE)
 
     fetch_auction_atc_day_ahead(
@@ -352,8 +352,50 @@ def test_fetch_auction_atc_day_ahead_import_only_and_zone_key_ordering(
     ]
 
 
+def test_market_period_is_cet_not_border_local_time(requests_mock, session):
+    """JAO stamps every corridor at CET/CEST midnight, not the local midnight of either
+    bidding zone. Verified live across all 17 borders: Bulgarian and Ukrainian borders
+    (EET locally) and GB borders (UTC/BST) are all stamped CET/CEST.
+
+    This matters because the parser must never localise `productHour`. The two real
+    captures below are the proof, and the assertion is that we read them positionally:
+    the first product of each market day lands exactly on `marketPeriodStart`, whatever
+    UTC offset that happens to be.
+    """
+    # October capture: CEST midnight = 22:00 UTC the previous day.
+    requests_mock.register_uri(
+        GET,
+        ATC_DAY_AHEAD_AUCTION_URL_REGEX,
+        response_list=[_mock("dst-long-if1-fr-gb.json"), NO_DATA_RESPONSE],
+    )
+    result = fetch_auction_atc_day_ahead(
+        ZoneKey("FR"),
+        ZoneKey("GB"),
+        session=session,
+        target_datetime=datetime.fromisoformat("2025-10-26T00:00:00+00:00"),
+    )
+    assert result[0]["datetime"] == datetime(2025, 10, 25, 22, tzinfo=timezone.utc)
+
+    # March capture: CET midnight = 23:00 UTC the previous day. A GB border stamped
+    # like this starts at 23:00 the previous evening in London — the clearest sign
+    # the reference zone is JAO's, not the border's.
+    requests_mock.reset()
+    requests_mock.register_uri(
+        GET,
+        ATC_DAY_AHEAD_AUCTION_URL_REGEX,
+        response_list=[_mock("dst-short-if1-fr-gb.json"), NO_DATA_RESPONSE],
+    )
+    result = fetch_auction_atc_day_ahead(
+        ZoneKey("FR"),
+        ZoneKey("GB"),
+        session=session,
+        target_datetime=datetime.fromisoformat("2026-03-29T00:00:00+00:00"),
+    )
+    assert result[0]["datetime"] == datetime(2026, 3, 28, 23, tzinfo=timezone.utc)
+
+
 def test_fetch_auction_atc_day_ahead_long_dst_day(requests_mock, session):
-    """Real 2025-10-26 capture: the local day has 25 hours and the repeated hour is
+    """Real 2025-10-26 capture: the CET market day has 25 hours and the repeated hour is
     labelled "02:00-03:00*". Deriving the offset from the label would collapse it onto
     its twin and sum both capacities, losing an hour and doubling a value."""
     requests_mock.register_uri(
@@ -386,7 +428,7 @@ def test_fetch_auction_atc_day_ahead_long_dst_day(requests_mock, session):
 
 
 def test_fetch_auction_atc_day_ahead_short_dst_day(requests_mock, session):
-    """Real 2026-03-28→31 capture spanning the 23-hour local day. Label-derived offsets
+    """Real 2026-03-28→31 capture spanning the 23-hour CET market day. Label-derived offsets
     would shift every post-transition hour and make 03-28's last product collide with
     03-29's first, summing two unrelated hours into one fabricated value."""
     requests_mock.register_uri(
