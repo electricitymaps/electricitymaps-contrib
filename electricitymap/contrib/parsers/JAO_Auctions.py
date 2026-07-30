@@ -346,9 +346,13 @@ def fetch_auction_atc_day_ahead(
     Sums ATC across all configured corridors for the given border and returns
     an ExchangeAtcList-shaped list with capacityExport and capacityImport.
 
-    Tagged AtcType.COORDINATED_NTC: these borders are NTC-based and their capacity is
-    coordinated bilaterally by the two TSOs. The explicit auction is how that capacity
-    is *allocated*, which is a separate axis from how it was *calculated*.
+    Tagged AtcType.EXPLICIT_AUCTION. Neither direction is a bound on physical flow
+    here: capacity is sold as directional rights that buyers nominate, so flow is the
+    *net* of both directions, and under cross-netting (`xnRule=1/1`, which every
+    corridor we fetch reports) each value is `capability -/+ the position already
+    committed the other way`. Measured on IT-CSO->ME, flow exceeds the published
+    directional value in 91% of hours while never exceeding `(export + import) / 2`.
+    Consumers must use the half-sum as the envelope — see DAT-477.
     """
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     from_utc, to_utc = _target_window(target_datetime)
@@ -362,7 +366,7 @@ def fetch_auction_atc_day_ahead(
         session,
         SOURCE,
         logger,
-        AtcType.COORDINATED_NTC,
+        AtcType.EXPLICIT_AUCTION,
     ).to_list()
 
 

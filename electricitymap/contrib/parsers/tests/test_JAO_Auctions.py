@@ -189,7 +189,7 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": 2500.0,
             "capacityImport": 2200.0,
-            "atcType": AtcType.COORDINATED_NTC,
+            "atcType": AtcType.EXPLICIT_AUCTION,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
@@ -298,7 +298,7 @@ def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
             "sortedZoneKeys": "CH->DE",
             "capacityExport": 3620.0,
             "capacityImport": None,
-            "atcType": AtcType.COORDINATED_NTC,
+            "atcType": AtcType.EXPLICIT_AUCTION,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
@@ -345,7 +345,7 @@ def test_fetch_auction_atc_day_ahead_import_only_and_zone_key_ordering(
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": None,
             "capacityImport": 1800.0,
-            "atcType": AtcType.COORDINATED_NTC,
+            "atcType": AtcType.EXPLICIT_AUCTION,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
