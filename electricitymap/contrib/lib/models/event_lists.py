@@ -14,6 +14,7 @@ from electricitymap.contrib.lib.models.events import (
     Exchange,
     ExchangeAtc,
     ExchangeCapacity,
+    ForecastTransferCapacity,
     GridAlert,
     GridAlertType,
     IntradayContractStatistics,
@@ -25,7 +26,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import AtcType, ZoneKey
+from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
 
 EventType = TypeVar("EventType", bound="Event")
 
@@ -356,6 +357,34 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
             capacityExport,
             capacityImport,
             atcType,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ForecastTransferCapacityList(EventList[ForecastTransferCapacity]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        *,
+        end_datetime: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ForecastTransferCapacity.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            marketAgreementType,
             sourceType,
         )
         if event:

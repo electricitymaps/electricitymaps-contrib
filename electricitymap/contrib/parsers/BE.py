@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -82,37 +82,32 @@ def fetch_elia(
     for dt_key, events in groupby(sorted_results, key=lambda x: x.get("datetime")):
         events = list(events)
         production_mix = ProductionMix()
-        storage_mix = StorageMix()
 
         for event in events:
             fuel_type = FUEL_TYPE_MAPPING_ELIA.get(
                 event.get("fueltypeentsoe"), "unknown"
             )
-            power = event.get("generatedpower")
 
+            # Storage comes from ENTSO-E instead: ods201 only reports the
+            # discharge side of pumped storage (never negative), while
+            # ENTSO-E carries both generation and pumping.
             if "storage" in fuel_type:
-                storage_mix.add_value(
-                    fuel_type.removeprefix("storage_"),
-                    -power if power is not None else None,
-                )
-            else:
-                production_mix.add_value(
-                    fuel_type,
-                    power,
-                )
+                continue
+
+            production_mix.add_value(
+                fuel_type,
+                event.get("generatedpower"),
+            )
 
         dt = datetime.fromisoformat(dt_key).astimezone(timezone.utc)
-        # Carry Elia's native resolution as the interval end so the finer (15-min)
-        # data doesn't inherit ENTSO-E's coarser hourly end_datetime when merged,
-        # which would make a 15-min point claim to span a full hour and overlap
-        # the following intervals.
+        # Carry Elia's native resolution as the interval end so each 15-min
+        # point spans exactly its own slot.
         resolution = _elia_resolution_to_timedelta(events[0].get("resolutioncode"))
         production_breakdown_list.append(
             zoneKey=zone_key,
             datetime=dt,
             end_datetime=dt + resolution if resolution else None,
             production=production_mix,
-            storage=storage_mix,
             source=SOURCE_ELIA,
         )
 
@@ -150,6 +145,10 @@ def fetch_entsoe(
     return ENTSOE.parse_production(raw_production, logger, zone_key)
 
 
+def _floor_to_hour(dt: datetime) -> datetime:
+    return dt.replace(minute=0, second=0, microsecond=0)
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("BE"),
@@ -157,29 +156,69 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    """
+    Combines Elia's 15-min production with ENTSO-E's hourly storage.
+
+    Both feeds carry the same underlying data (Elia is the submitting TSO),
+    but each signal has one best source: Elia has 15-min granularity for
+    production, and ENTSO-E is the only feed with pumped-storage consumption
+    (Elia ods201 only reports discharge). Each hourly ENTSO-E storage value is
+    step-held onto the four 15-min slots of its hour: the hourly value is the
+    average power over the hour, so repeating it preserves hourly energy and
+    avoids fabricating a 15-min shape.
+    """
     session = session or Session()
 
     entsoe_data = fetch_entsoe(zone_key, session, target_datetime, logger)
-    # Determine the time range covered by ENTSOE data and fetch Elia in 2-hour chunks.
-    entsoe_datetimes = [event.datetime for event in entsoe_data.events]
+
+    # Fetch Elia over the same window as ENTSOE, in 2-hour chunks (API limit).
+    reference_datetime = target_datetime or datetime.now(timezone.utc)
+    range_end = reference_datetime + ENTSOE_SPAN[1]
+    chunk_start = reference_datetime + ENTSOE_SPAN[0]
     elia_data = ProductionBreakdownList(logger)
+    while chunk_start < range_end:
+        chunk_end = chunk_start + timedelta(hours=ELIA_WINDOW_HOURS)
+        chunk = fetch_elia(zone_key, session, chunk_start, chunk_end, logger)
+        elia_data = ProductionBreakdownList.update_production_breakdowns(
+            elia_data, chunk, logger
+        )
+        chunk_start = chunk_end
 
-    if entsoe_datetimes:
-        range_start = min(entsoe_datetimes)
-        range_end = max(entsoe_datetimes)
-        chunk_start = range_start
-        while chunk_start <= range_end:
-            chunk_end = chunk_start + timedelta(hours=ELIA_WINDOW_HOURS)
-            chunk = fetch_elia(zone_key, session, chunk_start, chunk_end, logger)
-            elia_data = ProductionBreakdownList.update_production_breakdowns(
-                elia_data, chunk, logger
+    entsoe_events_by_hour = {
+        _floor_to_hour(event.datetime): event for event in entsoe_data.events
+    }
+    elia_hours = {_floor_to_hour(event.datetime) for event in elia_data.events}
+
+    production_breakdowns = ProductionBreakdownList(logger)
+    for event in elia_data.events:
+        entsoe_event = entsoe_events_by_hour.get(_floor_to_hour(event.datetime))
+        storage = (
+            entsoe_event.storage.copy()
+            if entsoe_event is not None and entsoe_event.storage is not None
+            else None
+        )
+        production_breakdowns.append(
+            zoneKey=event.zoneKey,
+            datetime=event.datetime,
+            end_datetime=event.end_datetime,
+            production=event.production,
+            storage=storage,
+            source=f"{ENTSOE.SOURCE}, {SOURCE_ELIA}" if storage else SOURCE_ELIA,
+        )
+
+    # Hours where Elia has no data at all: fall back to the full ENTSOE event.
+    for hour, entsoe_event in entsoe_events_by_hour.items():
+        if hour not in elia_hours:
+            production_breakdowns.append(
+                zoneKey=entsoe_event.zoneKey,
+                datetime=entsoe_event.datetime,
+                end_datetime=entsoe_event.end_datetime,
+                production=entsoe_event.production,
+                storage=entsoe_event.storage,
+                source=entsoe_event.source,
             )
-            chunk_start = chunk_end
 
-    # Prefer Elia data where available; fall back to ENTSOE for other datetimes.
-    return ProductionBreakdownList.update_production_breakdowns(
-        entsoe_data, elia_data, logger
-    ).to_list()
+    return production_breakdowns.to_list()
 
 
 if __name__ == "__main__":
