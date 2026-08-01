@@ -118,7 +118,9 @@ def _find_dam_table(soup: BeautifulSoup):
             if time_block_index is not None and mcp_index is not None:
                 return table, time_block_index, mcp_index
 
-    raise ParserException(PARSER, "Missing DAM price table with Time Block and MCP columns")
+    raise ParserException(
+        PARSER, "Missing DAM price table with Time Block and MCP columns"
+    )
 
 
 def _parse_dam_html(
