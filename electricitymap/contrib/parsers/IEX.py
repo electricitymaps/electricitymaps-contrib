@@ -48,6 +48,7 @@ _TIME_BLOCK_RE = re.compile(
     r"^(?P<sh>\d{1,2}):(?P<sm>\d{2})\s*-\s*(?P<eh>\d{1,2}):(?P<em>\d{2})$"
 )
 _DATE_RE = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
+_MISSING_PRICE_MARKERS = {"", "-", "NA", "N/A"}
 
 
 def _parse_delivery_date(text: str) -> date:
@@ -97,31 +98,99 @@ def _block_bounds(delivery_date: date, time_block: str) -> tuple[datetime, datet
     return start, end
 
 
+def _find_dam_table(soup: BeautifulSoup):
+    """Find the DAM table and return it with the Time Block and MCP indexes."""
+    for table in soup.find_all("table"):
+        for tr in table.find_all("tr"):
+            header_cells = tr.find_all(["th", "td"])
+            if not header_cells:
+                continue
+            headers = [
+                cell.get_text(" ", strip=True).casefold() for cell in header_cells
+            ]
+            time_block_index = next(
+                (i for i, header in enumerate(headers) if "time block" in header),
+                None,
+            )
+            mcp_index = next(
+                (i for i, header in enumerate(headers) if "mcp" in header), None
+            )
+            if time_block_index is not None and mcp_index is not None:
+                return table, time_block_index, mcp_index
+
+    raise ParserException(PARSER, "Missing DAM price table with Time Block and MCP columns")
+
+
 def _parse_dam_html(
     html: str, logger: Logger
 ) -> tuple[date, list[tuple[datetime, datetime, float]]]:
-    """Parse provisional DAM HTML into (delivery_date, [(start, end, price), ...])."""
+    """Parse provisional DAM HTML into (delivery_date, [(start, end, price), ...]).
+
+    IEX pages have used both a dated heading and row-spanned delivery-date cells.
+    The parser supports both layouts and derives the MCP position relative to the
+    Time Block column, so date and hour row spans before the time block do not
+    shift the price lookup.
+    """
     soup = BeautifulSoup(html, "html.parser")
 
+    delivery_date: date | None = None
     heading = soup.find("h1")
-    if heading is None:
-        raise ParserException(PARSER, "Missing <h1> with delivery date on DAM page")
-    delivery_date = _parse_delivery_date(heading.get_text(" ", strip=True))
+    if heading is not None:
+        heading_text = heading.get_text(" ", strip=True)
+        if _DATE_RE.search(heading_text):
+            delivery_date = _parse_delivery_date(heading_text)
 
-    table = soup.find("table")
-    if table is None:
-        raise ParserException(PARSER, "Missing DAM price table")
+    table, time_block_column, mcp_column = _find_dam_table(soup)
+    mcp_offset = mcp_column - time_block_column
 
     rows: list[tuple[datetime, datetime, float]] = []
     for tr in table.find_all("tr"):
-        cells = [c.get_text(strip=True) for c in tr.find_all("td")]
-        if len(cells) < 2:
+        cells = [c.get_text(" ", strip=True) for c in tr.find_all("td")]
+        if not cells:
             continue
-        time_block, mcp_raw = cells[0], cells[1]
-        if not _TIME_BLOCK_RE.match(time_block):
+
+        date_cell = next(
+            (cell for cell in cells if _DATE_RE.fullmatch(cell.strip())), None
+        )
+        if date_cell is not None:
+            row_delivery_date = _parse_delivery_date(date_cell)
+            if delivery_date is not None and row_delivery_date != delivery_date:
+                raise ParserException(
+                    PARSER,
+                    (
+                        "DAM table contains multiple delivery dates: "
+                        f"{delivery_date.isoformat()} and {row_delivery_date.isoformat()}"
+                    ),
+                )
+            delivery_date = row_delivery_date
+
+        time_block_index = next(
+            (
+                i
+                for i, cell in enumerate(cells)
+                if _TIME_BLOCK_RE.fullmatch(cell.strip())
+            ),
+            None,
+        )
+        if time_block_index is None:
             # Skip header leftovers / Max / Average / Sum summary rows.
             continue
-        if not mcp_raw or mcp_raw in {"-", "NA", "N/A"}:
+        if delivery_date is None:
+            raise ParserException(
+                PARSER,
+                "DAM time-block row appeared before a delivery date",
+            )
+
+        mcp_index = time_block_index + mcp_offset
+        if mcp_index < 0 or mcp_index >= len(cells):
+            raise ParserException(
+                PARSER,
+                f"DAM row for {cells[time_block_index]!r} is missing its MCP cell",
+            )
+
+        time_block = cells[time_block_index].strip()
+        mcp_raw = cells[mcp_index].strip()
+        if mcp_raw.upper() in _MISSING_PRICE_MARKERS:
             logger.warning("Skipping DAM block %s with empty MCP", time_block)
             continue
         try:
@@ -134,6 +203,8 @@ def _parse_dam_html(
         start, end = _block_bounds(delivery_date, time_block)
         rows.append((start, end, price))
 
+    if delivery_date is None:
+        raise ParserException(PARSER, "No delivery date found in DAM heading or rows")
     if not rows:
         raise ParserException(PARSER, "No DAM time-block rows found in HTML")
 
