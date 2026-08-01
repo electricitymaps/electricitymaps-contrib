@@ -66,6 +66,50 @@ def test_parse_dam_html_yields_96_blocks():
     assert rows[-1][2] == 10000.0
 
 
+def test_parse_dam_html_handles_rowspans_header_offsets_and_commas():
+    html = """
+    <html><body>
+      <h1>Day Ahead Market</h1>
+      <table><tr><th>Summary</th></tr></table>
+      <table>
+        <thead><tr>
+          <th>Date</th><th>Hour</th><th>Time Block</th>
+          <th>Purchase Bid (MW)</th><th>Sell Bid (MW)</th><th>MCV (MW)</th>
+          <th>Final Scheduled Volume (MW)</th><th>MCP (Rs/MWh) *</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td rowspan="4">01-08-2026</td><td rowspan="4">1</td>
+            <td>00:00 - 00:15</td><td>28629.50</td><td>2349.80</td>
+            <td>2285.00</td><td>2285.00</td><td>10000.00</td>
+          </tr>
+          <tr>
+            <td>00:15 - 00:30</td><td>28575.50</td><td>2532.60</td>
+            <td>2467.78</td><td>2467.78</td><td>3850.97</td>
+          </tr>
+          <tr>
+            <td>00:30 - 00:45</td><td>27891.30</td><td>2854.80</td>
+            <td>2789.99</td><td>2789.99</td><td>-</td>
+          </tr>
+          <tr>
+            <td>00:45 - 01:00</td><td>26900.20</td><td>2956.50</td>
+            <td>2891.70</td><td>2891.70</td><td>3,339.60</td>
+          </tr>
+        </tbody>
+      </table>
+    </body></html>
+    """
+
+    delivery_date, rows = _parse_dam_html(
+        html, logger=__import__("logging").getLogger()
+    )
+
+    assert delivery_date == datetime(2026, 8, 1, tzinfo=TZ).date()
+    assert [row[2] for row in rows] == [10000.0, 3850.97, 3339.6]
+    assert rows[0][0] == datetime(2026, 8, 1, 0, 0, tzinfo=TZ)
+    assert rows[-1][0] == datetime(2026, 8, 1, 0, 45, tzinfo=TZ)
+
+
 # --- fetch_price -----------------------------------------------------------
 
 
@@ -122,14 +166,14 @@ def test_fetch_price_http_error(session, requests_mock):
 def test_fetch_price_empty_response(session, requests_mock):
     """Empty HTML body must fail loudly rather than yield zero prices."""
     requests_mock.register_uri(GET, DAM_PROVISIONAL_URL, text="")
-    with pytest.raises(ParserException, match="Missing <h1>"):
+    with pytest.raises(ParserException, match="Missing DAM price table"):
         fetch_price(zone_key=ZoneKey("IN"), session=session)
 
 
 def test_parse_dam_html_empty_table_raises():
     html = (
         "<html><body><h1>Unconstrained DAM Data for 23-07-2026</h1>"
-        "<table></table></body></html>"
+        "<table><tr><th>Time Block</th><th>MCP</th></tr></table></body></html>"
     )
     with pytest.raises(ParserException, match="No DAM time-block rows"):
         _parse_dam_html(html, logger=__import__("logging").getLogger())
