@@ -43,46 +43,59 @@ DELTA_15 = timedelta(minutes=15)
 TZ = ZoneInfo("Europe/Paris")
 SOURCE = "opendata.reseaux-energies.fr"
 
+# Fetch one extra quarter-hour on each side of the requested window so the 30-min
+# reindex buckets at the window edges always contain both of their quarter-hour
+# points. Without this a boundary bucket gets averaged from a single point on
+# some refetches and from two points on others, making the stored value flip
+# back and forth (data churn). The padding is trimmed off after reindexing.
+WINDOW_PADDING = DELTA_15
+# 24h + padding at 1/4h granularity is ~98 points; keep headroom so the response
+# is never truncated (a truncated edge would itself cause churn).
+API_ROWS = 200
 
-def get_data(session: Session, target_datetime: datetime) -> pd.DataFrame:
+
+def _window_bounds(target_datetime: datetime | None) -> tuple[datetime, datetime]:
+    """Return the requested window (start, end) in Europe/Paris time.
+
+    ``target_datetime`` is *converted* to Europe/Paris (not relabelled), so a
+    UTC-aware datetime from the pipeline maps to the correct local window.
+    """
+    end = (
+        datetime.now(tz=TZ)
+        if target_datetime is None
+        else target_datetime.astimezone(TZ)
+    )
+    return end - timedelta(days=1), end
+
+
+def get_data(
+    dt_from: datetime, dt_to: datetime, session: Session | None = None
+) -> pd.DataFrame:
     """Returns data from the consolidated data endpoint if it is available, otherwise returns data from the real-time data endpoint."""
-    df_consolidated = request_data(DATASET_CONSOLIDATED, session, target_datetime)
+    df_consolidated = request_data(DATASET_CONSOLIDATED, dt_from, dt_to, session)
     if df_consolidated.empty:
-        df_real_time = request_data(DATASET_REAL_TIME, session, target_datetime)
-        if df_real_time.empty:
-            return pd.DataFrame()
-        else:
-            return df_real_time
-    else:
-        return df_consolidated
+        return request_data(DATASET_REAL_TIME, dt_from, dt_to, session)
+    return df_consolidated
 
 
 def request_data(
     dataset: str,
+    dt_from: datetime,
+    dt_to: datetime,
     session: Session | None = None,
-    target_datetime: datetime | None = None,
 ) -> pd.DataFrame:
-    """Returns a DataFrame with the data from the API."""
-    if target_datetime:
-        target_datetime_localised = target_datetime.replace(tzinfo=TZ)
-    else:
-        target_datetime_localised = datetime.now(tz=TZ)
-
-    # setup request
+    """Returns a DataFrame with the data from the API for the [dt_from, dt_to] window."""
     r = session or Session()
-    formatted_from = (target_datetime_localised - timedelta(days=1)).strftime(
-        "%Y-%m-%dT%H:%M"
-    )
-    formatted_to = target_datetime_localised.strftime("%Y-%m-%dT%H:%M")
-
     params = {
         "dataset": dataset,
-        "q": f"date_heure >= {formatted_from} AND date_heure <= {formatted_to}",
+        "q": (
+            f"date_heure >= {dt_from.strftime('%Y-%m-%dT%H:%M')} "
+            f"AND date_heure <= {dt_to.strftime('%Y-%m-%dT%H:%M')}"
+        ),
         "timezone": "Europe/Paris",
-        "rows": 100,
+        "rows": API_ROWS,
+        "apikey": get_token("RESEAUX_ENERGIES_TOKEN"),
     }
-
-    params["apikey"] = get_token("RESEAUX_ENERGIES_TOKEN")
     # make request and create dataframe with response
     response = r.get(API_ENDPOINT, params=params)
     if not response.ok:
@@ -91,8 +104,7 @@ def request_data(
         )
     data = response.json()
     data = [d["fields"] for d in data["records"]]
-    df = pd.DataFrame(data)
-    return df
+    return pd.DataFrame(data)
 
 
 def reindex_data(df_to_reindex: pd.DataFrame) -> pd.DataFrame:
@@ -121,7 +133,10 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    df_production = get_data(session, target_datetime)
+    window_start, window_end = _window_bounds(target_datetime)
+    df_production = get_data(
+        window_start - WINDOW_PADDING, window_end + WINDOW_PADDING, session
+    )
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys())
     missing_fuels = [v for v in value_columns if v not in df_production.columns]
@@ -139,6 +154,14 @@ def fetch_production(
     # reindex df_production to get 1/2 hourly values
     df_production_reindexed = reindex_data(df_production)
     df_production_reindexed = df_production_reindexed.dropna(how="any", axis=0)
+    # Trim the padding: keep only buckets inside the originally requested window.
+    # The padding above guaranteed these boundary buckets were averaged from both
+    # of their quarter-hour points, so the value no longer depends on where the
+    # fetch window edge happened to fall.
+    df_production_reindexed = df_production_reindexed[
+        (df_production_reindexed.index >= window_start)
+        & (df_production_reindexed.index <= window_end)
+    ]
     df_production_reindexed = df_production_reindexed.rename(columns=MAP_GENERATION)
     df_production_reindexed = df_production_reindexed.groupby(
         df_production_reindexed.columns, axis=1
@@ -172,11 +195,19 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    df_consumption = get_data(session, target_datetime)
+    window_start, window_end = _window_bounds(target_datetime)
+    df_consumption = get_data(
+        window_start - WINDOW_PADDING, window_end + WINDOW_PADDING, session
+    )
     df_consumption = df_consumption[["date_heure", "consommation"]].dropna()
 
     # reindex df_consumption to get 1/2 hourly values
     df_consumption_reindexed = reindex_data(df_consumption)
+    # Trim the padding back to the originally requested window (see fetch_production).
+    df_consumption_reindexed = df_consumption_reindexed[
+        (df_consumption_reindexed.index >= window_start)
+        & (df_consumption_reindexed.index <= window_end)
+    ]
     consumption_list = TotalConsumptionList(logger)
     for row in df_consumption_reindexed.itertuples():
         consumption_list.append(
