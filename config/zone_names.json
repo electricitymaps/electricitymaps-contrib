@@ -1302,16 +1302,6 @@
       "countryName": "USA",
       "zoneName": "City of Tacoma"
     },
-    "US-NW-WACM": {
-      "countryName": "USA",
-      "displayName": "WAPA Rocky Mountains",
-      "zoneName": "Western Area Power Administration - Rocky Mountain Region"
-    },
-    "US-NW-WAUW": {
-      "countryName": "USA",
-      "displayName": "WAPA Upper Great Plains",
-      "zoneName": "Western Area Power Administration - Upper Great Plains West"
-    },
     "US-NY-NYIS": {
       "countryName": "USA",
       "zoneName": "New York ISO"
