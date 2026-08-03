@@ -1894,7 +1894,10 @@ def _sum_forecast_transfer_capacities(
                 event.datetime, (event.end_datetime, event.source, None, None)
             )
             totals[event.datetime] = (
-                end_datetime,
+                # Keep the earliest end when links disagree on resolution, as
+                # `ExchangeList.merge_exchanges` does: it is deterministic and
+                # the finest resolution cannot overlap the next merged point.
+                _min_optional(end_datetime, event.end_datetime),
                 source,
                 _add_optional(export_cap, event.capacityExport),
                 _add_optional(import_cap, event.capacityImport),
@@ -1922,6 +1925,15 @@ def _add_optional(a: float | None, b: float | None) -> float | None:
     if b is None:
         return a
     return a + b
+
+
+def _min_optional(a: datetime | None, b: datetime | None) -> datetime | None:
+    """Earliest of two end datetimes, ignoring missing values."""
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return min(a, b)
 
 
 def _fetch_forecast_transfer_capacity(
