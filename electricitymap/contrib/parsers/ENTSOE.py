@@ -1810,19 +1810,20 @@ def fetch_wind_solar_forecasts_current(
     ).to_list()
 
 
-def _fetch_forecast_transfer_capacity(
-    zone_key1: ZoneKey,
-    zone_key2: ZoneKey,
+def _query_forecast_transfer_capacity_both_directions(
+    domain_a: str,
+    domain_b: str,
     forecast_type: EntsoeTypeEnum,
     session: Session,
     target_datetime: datetime | None,
+    sorted_zone_keys: ZoneKey,
     logger: Logger,
-) -> list[dict]:
-    """Shared logic for all 3 type-specific fetch functions."""
-    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-    domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+) -> tuple[str, str]:
+    """Query A61 for both directions of one domain pair, retrying on failure.
 
+    Returns `(raw_export, raw_import)` where "export" is the `domain_a` →
+    `domain_b` flow, i.e. the first-to-second direction of `sorted_zone_keys`.
+    """
     raw_export: str | None = None
     raw_import: str | None = None
     max_retries = 5
@@ -1830,8 +1831,8 @@ def _fetch_forecast_transfer_capacity(
     for attempt in range(1, max_retries + 1):
         if raw_export is None:
             raw_export = query_forecast_transfer_capacity(
-                domain_2,
-                domain_1,
+                domain_b,
+                domain_a,
                 session,
                 forecast_type,
                 target_datetime=target_datetime,
@@ -1839,8 +1840,8 @@ def _fetch_forecast_transfer_capacity(
             )
         if raw_import is None:
             raw_import = query_forecast_transfer_capacity(
-                domain_1,
-                domain_2,
+                domain_a,
+                domain_b,
                 session,
                 forecast_type,
                 target_datetime=target_datetime,
@@ -1862,12 +1863,98 @@ def _fetch_forecast_transfer_capacity(
             parser="ENTSOE.py",
             message=(
                 f"Failed to get both export and import exchange capacity forecast "
-                f"data for {sorted_zone_keys} after {max_retries} attempts. "
+                f"data for {sorted_zone_keys} ({domain_a} <-> {domain_b}) after "
+                f"{max_retries} attempts. "
                 f"export={'OK' if raw_export else 'MISSING'}, "
                 f"import={'OK' if raw_import else 'MISSING'}"
             ),
             zone_key=sorted_zone_keys,
         )
+
+    return raw_export, raw_import
+
+
+def _sum_forecast_transfer_capacities(
+    per_pair: list[ForecastTransferCapacityList],
+    sorted_zone_keys: ZoneKey,
+    market_agreement_type: MarketAgreementType,
+    logger: Logger,
+) -> ForecastTransferCapacityList:
+    """Sum capacities across the domain pairs of an aggregated border.
+
+    Borders served by several interconnectors (e.g. FR-COR↔IT-SAR via the
+    SACOAC and SACODC links) are published as one A61 document per link; the
+    border's capacity is their total. Mirrors `ExchangeList.merge_exchanges`,
+    which sums net flows for the same aggregated borders.
+    """
+    totals: dict[datetime, tuple[datetime | None, str, float | None, float | None]] = {}
+    for capacities in per_pair:
+        for event in capacities.events:
+            end_datetime, source, export_cap, import_cap = totals.get(
+                event.datetime, (event.end_datetime, event.source, None, None)
+            )
+            totals[event.datetime] = (
+                # Keep the earliest end when links disagree on resolution, as
+                # `ExchangeList.merge_exchanges` does: it is deterministic and
+                # the finest resolution cannot overlap the next merged point.
+                _min_optional(end_datetime, event.end_datetime),
+                source,
+                _add_optional(export_cap, event.capacityExport),
+                _add_optional(import_cap, event.capacityImport),
+            )
+
+    summed = ForecastTransferCapacityList(logger)
+    for dt in sorted(totals):
+        end_datetime, source, export_cap, import_cap = totals[dt]
+        summed.append(
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            end_datetime=end_datetime,
+            source=source,
+            capacityExport=export_cap,
+            capacityImport=import_cap,
+            marketAgreementType=market_agreement_type,
+        )
+    return summed
+
+
+def _add_optional(a: float | None, b: float | None) -> float | None:
+    """Sum two capacities, treating a missing value as absent rather than zero."""
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return a + b
+
+
+def _min_optional(a: datetime | None, b: datetime | None) -> datetime | None:
+    """Earliest of two end datetimes, ignoring missing values."""
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return min(a, b)
+
+
+def _fetch_forecast_transfer_capacity(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    forecast_type: EntsoeTypeEnum,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list[dict]:
+    """Shared logic for all 3 type-specific fetch functions."""
+    zone_a, zone_b = sorted([zone_key1, zone_key2])
+    sorted_zone_keys = ZoneKey(f"{zone_a}->{zone_b}")
+    # A61 is published per bidding zone, so a number of borders are only
+    # available under a domain that differs from the zone's own EIC code — e.g.
+    # DE->DK-DK1 is published on DE-LU (10Y1001A1001A82H), not on the DE
+    # country domain (10Y1001A1001A83F). Resolve through the shared lookup
+    # chain instead of indexing ENTSOE_DOMAIN_MAPPINGS directly. Passing the
+    # sorted zones keeps the returned pairs ordered (zone_a, zone_b), which the
+    # export/import direction below depends on.
+    domain_pairs = _resolve_exchange_domain_pairs(zone_a, zone_b)
 
     # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A02) used in URL
     # params; `MarketAgreementType` values are the DB-friendly discriminator
@@ -1875,23 +1962,42 @@ def _fetch_forecast_transfer_capacity(
     # does. Raises KeyError loudly if an unsupported forecast_type ever reaches
     # here (e.g. INTRADAY, which is not a transfer-capacity contract type).
     market_agreement_type = MarketAgreementType[forecast_type.name]
-    export_list = parse_forecast_transfer_capacity(
-        raw_export,
-        sorted_zone_keys=sorted_zone_keys,
-        market_agreement_type=market_agreement_type,
-        logger=logger,
-        direction="export",
-    )
-    import_list = parse_forecast_transfer_capacity(
-        raw_import,
-        sorted_zone_keys=sorted_zone_keys,
-        market_agreement_type=market_agreement_type,
-        logger=logger,
-        direction="import",
-    )
 
-    return _merge_forecast_transfer_capacities(
-        export_list, import_list, market_agreement_type, logger
+    per_pair: list[ForecastTransferCapacityList] = []
+    for domain_a, domain_b in domain_pairs:
+        raw_export, raw_import = _query_forecast_transfer_capacity_both_directions(
+            domain_a,
+            domain_b,
+            forecast_type,
+            session,
+            target_datetime,
+            sorted_zone_keys,
+            logger,
+        )
+        export_list = parse_forecast_transfer_capacity(
+            raw_export,
+            sorted_zone_keys=sorted_zone_keys,
+            market_agreement_type=market_agreement_type,
+            logger=logger,
+            direction="export",
+        )
+        import_list = parse_forecast_transfer_capacity(
+            raw_import,
+            sorted_zone_keys=sorted_zone_keys,
+            market_agreement_type=market_agreement_type,
+            logger=logger,
+            direction="import",
+        )
+        per_pair.append(
+            _merge_forecast_transfer_capacities(
+                export_list, import_list, market_agreement_type, logger
+            )
+        )
+
+    if len(per_pair) == 1:
+        return per_pair[0].to_list()
+    return _sum_forecast_transfer_capacities(
+        per_pair, sorted_zone_keys, market_agreement_type, logger
     ).to_list()
 
 
