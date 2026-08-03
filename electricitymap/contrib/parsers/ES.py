@@ -204,6 +204,11 @@ EXCHANGE_MAPPING = {
         "codes": ["efl"],
         "coef": 1,
     },
+    ZoneKey("ES-CN-IG->ES-CN-TE"): {
+        "zone_ref": ZoneKey("ES-CN-IG"),
+        "codes": ["etlg"],
+        "coef": 1,
+    },
 }
 
 EXCHANGE_MAPPING_CODES = [m for v in EXCHANGE_MAPPING.values() for m in v["codes"]]
