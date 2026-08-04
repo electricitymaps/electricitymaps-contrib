@@ -99,9 +99,13 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 4940.0
+    - datetime: '2026-03-31'
+      source: EirGrid, Installed Wind Capacities
+      value: 5120.1
 contributors:
   - corradio
   - nessie2013
+  - pnook
 country: IE
 country_name: Ireland
 currency: EUR
@@ -387,6 +391,8 @@ sources:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   EU-ETS, ENTSO-E 2024:
     link: https://transparency.entsoe.eu/
+  EirGrid, Wind Installed Capacities:
+    link: https://cms.eirgrid.ie/sites/default/files/publications/Wind-Installed-Capacities-v4.png
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
