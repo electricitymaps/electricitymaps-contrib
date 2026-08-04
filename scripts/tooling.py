@@ -1,10 +1,4 @@
-"""
-Utility Python scripts runnable using 'uv run'.
-
-For example:
-    uv run lint
-    uv run format
-"""
+"""Utility Python scripts for local development tasks."""
 
 import subprocess
 import sys

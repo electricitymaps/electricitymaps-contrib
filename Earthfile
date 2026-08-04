@@ -50,7 +50,9 @@ test:
   FROM +build
   COPY tests ./tests
   COPY geo/world.geojson ./geo/world.geojson
-  RUN uv run check
+  RUN uv run ruff format . --check \
+    && uv run ruff check . \
+    && uv run pytest
 
 # includes both test target and build target here to make sure both can work
 # we can split into two later if required
