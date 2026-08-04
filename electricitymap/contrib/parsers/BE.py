@@ -203,7 +203,10 @@ def fetch_production(
             end_datetime=event.end_datetime,
             production=event.production,
             storage=storage,
-            source=f"{ENTSOE.SOURCE}, {SOURCE_ELIA}" if storage else SOURCE_ELIA,
+            # No space after comma so source names stay clean when split on ","
+            # (avoids a leading-space " opendata.elia.be" / https://%20… link;
+            # same class of bug as #8779 / #8800 / #8801).
+            source=f"{ENTSOE.SOURCE},{SOURCE_ELIA}" if storage else SOURCE_ELIA,
         )
 
     # Hours where Elia has no data at all: fall back to the full ENTSOE event.
