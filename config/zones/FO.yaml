@@ -12,6 +12,7 @@ centroid:
 capacity:
   biomass: 1.3
   hydro: 40.6
+  hydro storage: 49
   oil: 99.7
   solar: 0.24
   unknown: 0.1
