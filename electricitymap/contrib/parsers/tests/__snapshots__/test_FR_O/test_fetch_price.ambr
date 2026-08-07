@@ -1,0 +1,21 @@
+# serializer version: 1
+# name: test_fetch_price
+  list([
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2018, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'price': 193.7,
+      'source': 'opendata.edf.fr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'RE',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2018, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'price': 195.8,
+      'source': 'opendata.edf.fr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'RE',
+    }),
+  ])
+# ---
