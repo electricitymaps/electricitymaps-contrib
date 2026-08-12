@@ -24,10 +24,7 @@ capacity:
     - datetime: '2026-01-01'
       source: entsoe.eu
       value: 3120.16
-  wind:
-    - datetime: '2026-01-01'
-      source: entsoe.eu
-      value: 5638.93
+  # the 2026 wind value was too low, so we will not use it
 center_point:
   - 9.326908056142866
   - 56.054311974045376
