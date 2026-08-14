@@ -3,12 +3,6 @@ bounding_box:
     - 17.92736346055132
   - - -65.630456304563
     - 18.522693919061993
-center_point:
-  - -66.4494644946449
-  - 18.225028689806656
-centroid:
-  - -66.55326553265529
-  - 18.218231046350105
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -82,6 +76,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 130.0
+center_point:
+  - -66.4494644946449
+  - 18.225028689806656
+centroid:
+  - -66.55326553265529
+  - 18.218231046350105
 contributors:
   - q--
   - systemcatch
@@ -110,26 +110,26 @@ emissionFactors:
         value: 995.611869962089
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 1014.2941036716782
+        value: 1013.7853474096828
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 1036.401437700579
+        value: 1035.881592697574
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1026.7228249260704
+        value: 1026.2078345848827
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
         value: 480.12220481693174
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 527.7229942577874
+        value: 527.4582955111854
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 546.0634245928852
+        value: 545.789526533434
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 544.6086048281159
+        value: 544.3354364866656
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -138,28 +138,28 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 78.28737905336972
+        value: 78.24811115840274
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 29.707905036391203
+        value: 29.693003951327892
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 28.739435464835893
+        value: 28.72502015106643
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020
         value: 786.0859157554912
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 769.7242211326042
+        value: 769.3381378298488
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 807.9594211794373
+        value: 807.554159615286
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 755.5503294336717
+        value: 755.1713555641002
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
@@ -174,41 +174,41 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 280.6015234636058
+        value: 280.46077751854835
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 274.05045073430733
+        value: 273.9129907191017
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 282.7016835752059
+        value: 282.5598842181211
     coal:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
         value: 1055.611869962089
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 1074.2941036716782
+        value: 1073.7853474096828
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1096.401437700579
+        value: 1095.881592697574
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1086.7228249260704
+        value: 1086.2078345848827
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
         value: 600.1222048169318
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 647.7229942577874
+        value: 647.4582955111854
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 666.0634245928852
+        value: 665.789526533434
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 664.6086048281159
+        value: 664.3354364866656
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -217,28 +217,28 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 116.28737905336972
+        value: 116.24811115840274
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 67.7079050363912
+        value: 67.6930039513279
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 66.73943546483589
+        value: 66.72502015106643
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
         value: 1030.0859157554912
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 1013.7242211326042
+        value: 1013.3381378298488
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1051.9594211794374
+        value: 1051.5541596152862
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 999.5503294336717
+        value: 999.1713555641002
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation

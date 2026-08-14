@@ -3,12 +3,6 @@ bounding_box:
     - 37.949643376471315
   - - 18.516785167851708
     - 42.0783173495561
-center_point:
-  - 16.250831022744418
-  - 40.32108235881455
-centroid:
-  - 16.202396506723712
-  - 40.22962974163535
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -78,6 +72,12 @@ capacity:
     - datetime: '2024-01-01'
       source: dati.terna.it
       value: 6400
+center_point:
+  - 16.250831022744418
+  - 40.32108235881455
+centroid:
+  - 16.202396506723712
+  - 40.22962974163535
 contributors:
   - corradio
   - nessie2013
@@ -91,77 +91,150 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 1176.69
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 970.2
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 1012.04
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 996.19
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 997.0022828
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 1016.47
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 1017.96
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 910.8
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
+        source: EU-ETS 2025, ENTSO-E 2023
         value: 997.84
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
+        source: EU-ETS 2025, ENTSO-E 2024
         value: 1015.41
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 1046.14
     gas:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 455.72
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 414.48
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 409.0
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 404.13
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 427.8711931
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 397.23
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 428.62
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 400.45
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 403.76
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 404.11
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
-        value: 397.71
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 399.91
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 390.35
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 940.48
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 989.48
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 993.52
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 998.84
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 921.1256533
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 921.13
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 858.74
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 862.76
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
+        source: EU-ETS 2025, ENTSO-E 2023
         value: 860.73
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
+        source: EU-ETS 2025, ENTSO-E 2024
         value: 905.42
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 950.79
   lifecycle:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1236.69
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1030.2
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1072.04
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1056.19
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1082.9825388
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1076.47
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1103.940256
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 970.8
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
         value: 1057.84
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
         value: 1075.41
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1106.14
     gas:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 575.72
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 534.48
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 529.0
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 524.13
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 547.8711931
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 517.23
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 548.62
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 520.45
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 523.76
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 524.11
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
-        value: 517.71
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 519.91
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 510.35
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -171,18 +244,33 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1184.48
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1233.48
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1237.52
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1242.84
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1165.1256533
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1165.13
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1102.74
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 1106.76
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
         value: 1104.73
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
         value: 1149.42
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1194.79
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -374,8 +462,7 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
     for 2022-2026" Wind Europe Proceedings (2021)
-  : link:
-      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+  : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Rome
 zone_name: South Italy
