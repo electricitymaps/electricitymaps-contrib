@@ -1149,10 +1149,10 @@ emissionFactors:
         value: 404.4721980786223
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 388.6150400047077
+        value: 389.029857471214
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 388.29122216549155
+        value: 388.9071613403447
       - datetime: '2023-01-01'
         source: eGrid 2023
         value: 396.1640383047817
@@ -1293,10 +1293,10 @@ emissionFactors:
         value: 524.4721980786223
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 508.6150400047077
+        value: 509.029857471214
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 508.29122216549155
+        value: 508.9071613403447
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
         value: 516.1640383047817

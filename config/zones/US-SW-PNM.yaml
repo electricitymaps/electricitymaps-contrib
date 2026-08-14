@@ -331,7 +331,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1019.1256423959394
+        value: 1019.1917639728352
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -383,7 +383,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 754.1531262193735
+        value: 756.3071727514417
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
@@ -391,7 +391,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 691.8893633680078
+        value: 749.4999605391181
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -444,7 +444,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1079.1256423959394
+        value: 1079.1917639728354
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -496,7 +496,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 998.1531262193735
+        value: 1000.3071727514417
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
@@ -504,7 +504,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 935.8893633680078
+        value: 993.4999605391181
     solar:
       datetime: '2021-01-01'
       source: INCER ACV

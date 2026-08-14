@@ -39,7 +39,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1019.1256423959394
+        value: 1019.1917639728352
     gas:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -48,15 +48,15 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 402.2717191944494
+        value: 402.83772423916236
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 408.8116586085416
+        value: 409.1164623118262
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 406.7448803524349
+        value: 406.7464095963612
     geothermal:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -114,7 +114,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1079.1256423959394
+        value: 1079.1917639728354
     gas:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -123,15 +123,15 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 522.2717191944494
+        value: 522.8377242391623
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 528.8116586085416
+        value: 529.1164623118261
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 526.7448803524348
+        value: 526.7464095963612
     geothermal:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014

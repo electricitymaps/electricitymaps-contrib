@@ -353,7 +353,7 @@ emissionFactors:
         value: 393.73104440922407
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 396.90293006415334
+        value: 399.6813863852428
       - datetime: '2022-01-01'
         source: eGrid 2022
         value: 392.0418249058293
@@ -421,7 +421,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 754.1531262193735
+        value: 756.3071727514417
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
@@ -429,7 +429,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 691.8893633680078
+        value: 749.4999605391181
   lifecycle:
     battery discharge:
       - _comment: used non-null storage values
@@ -484,7 +484,7 @@ emissionFactors:
         value: 513.7310444092241
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 516.9029300641533
+        value: 519.6813863852428
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
         value: 512.0418249058293
@@ -552,7 +552,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 998.1531262193735
+        value: 1000.3071727514417
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
@@ -560,7 +560,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 935.8893633680078
+        value: 993.4999605391181
     solar:
       datetime: '2021-01-01'
       source: INCER ACV

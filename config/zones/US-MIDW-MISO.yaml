@@ -1340,13 +1340,13 @@ emissionFactors:
         value: 1014.3422552181058
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 1003.1995555839404
+        value: 1003.3311395888327
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 1000.3725255617043
+        value: 1000.4754284710415
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1005.6792021342234
+        value: 1005.9118503726042
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -1383,13 +1383,13 @@ emissionFactors:
         value: 922.7890877685242
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 613.2704531456523
+        value: 624.5504227146122
       - datetime: '2022-01-01'
         source: eGrid 2022
         value: 501.4418780719653
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 78.94004662121876
+        value: 417.1048732149741
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -1427,13 +1427,13 @@ emissionFactors:
         value: 1074.342255218106
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 1063.1995555839403
+        value: 1063.3311395888327
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1060.3725255617042
+        value: 1060.4754284710416
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1065.6792021342235
+        value: 1065.9118503726042
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -1470,13 +1470,13 @@ emissionFactors:
         value: 1166.789087768524
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 857.2704531456523
+        value: 868.5504227146122
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
         value: 745.4418780719652
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 322.94004662121876
+        value: 661.1048732149741
     solar:
       datetime: '2021-01-01'
       source: INCER ACV

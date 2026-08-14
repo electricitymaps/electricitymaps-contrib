@@ -490,6 +490,24 @@ parsers:
   productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
+  EU-ETS 2025, ENTSO-E 2017:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2018:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2019:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2020:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2021:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2022:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2023:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2025:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/eu-action/carbon-markets/union-registry_en
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
