@@ -8,8 +8,8 @@ from electricitymap.contrib.parsers.PA import fetch_production
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
-    adapter.register_uri(
+def mock_response(requests_mock):
+    requests_mock.register_uri(
         GET,
         ANY,
         text=resources.files("electricitymap.contrib.parsers.tests.mocks")

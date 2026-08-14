@@ -9,8 +9,8 @@ from electricitymap.contrib.parsers import DK
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
-    adapter.register_uri(
+def mock_response(requests_mock):
+    requests_mock.register_uri(
         GET,
         DK.EXCHANGE_URL,
         json=loads(
@@ -20,7 +20,7 @@ def mock_response(adapter):
         ),
     )
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         DK.FORECAST_URL,
         json=loads(

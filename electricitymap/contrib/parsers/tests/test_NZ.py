@@ -11,13 +11,13 @@ from electricitymap.contrib.parsers.NZ import (
 )
 
 
-def test_snapshot_production_data(adapter, session, snapshot):
+def test_snapshot_production_data(requests_mock, session, snapshot):
     with open(
         resources.files("electricitymap.contrib.parsers.tests.mocks.NZ").joinpath(
             "response_2024_04_24_17_30.html"
         )
     ) as f:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             PRODUCTION_URL,
             text=f.read(),
@@ -27,7 +27,7 @@ def test_snapshot_production_data(adapter, session, snapshot):
             "response_2024_04_24_18_00.html"
         )
     ) as f:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             PRODUCTION_URL,
             text=f.read(),
@@ -40,8 +40,8 @@ def test_snapshot_production_data(adapter, session, snapshot):
     assert snapshot == production
 
 
-def test_snapshot_price_data(adapter, session, snapshot):
-    adapter.register_uri(
+def test_snapshot_price_data(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         PRICE_URL,
         json=loads(
@@ -50,7 +50,7 @@ def test_snapshot_price_data(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         PRICE_URL,
         json=loads(

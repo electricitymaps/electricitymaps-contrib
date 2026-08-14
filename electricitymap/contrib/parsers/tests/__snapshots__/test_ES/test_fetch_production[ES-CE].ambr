@@ -1,0 +1,56 @@
+# serializer version: 1
+# name: test_fetch_production[ES-CE]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 4, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 0.0,
+        'gas': 0.07,
+        'oil': 25.15,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'ES-CE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 4, 20, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 0.0,
+        'gas': 0.07,
+        'oil': 26.8,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'ES-CE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 4, 20, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 0.0,
+        'gas': 0.07,
+        'oil': 28.37,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'ES-CE',
+    }),
+  ])
+# ---

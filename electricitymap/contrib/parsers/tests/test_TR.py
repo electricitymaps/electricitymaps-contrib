@@ -26,9 +26,9 @@ def tr_credentials_env():
         datetime(2025, 7, 28, 10, 0),
     ],
 )
-def test_fetch_production(adapter, session, snapshot, target_datetime):
+def test_fetch_production(requests_mock, session, snapshot, target_datetime):
     # Mock the TGT ticket fetch - return a simple ticket string without newlines
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         "https://giris.epias.com.tr/cas/v1/tickets",
         text="TGT-1234567890-abcdefghijklmnop-cas",
@@ -40,7 +40,7 @@ def test_fetch_production(adapter, session, snapshot, target_datetime):
     )
 
     # Mock the production data API response with empty items to end pagination
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         "https://seffaflik.epias.com.tr/electricity-service/v1/generation/data/realtime-generation",
         [

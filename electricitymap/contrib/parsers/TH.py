@@ -28,14 +28,17 @@ MEA_URL = "www.mea.or.th"
 TZ = ZoneInfo("Asia/Bangkok")
 
 
-def _as_localtime(dt: datetime) -> datetime:
-    """
-    If there is no datetime given, returns the current datetime with timezone.
-    Otherwise, it interprets the datetime as the representation of local time
-    since the API server supposes the local timezone instead of UTC.
+def _as_localtime(dt: datetime | None) -> datetime:
+    """Return a tz-aware datetime in Bangkok local time.
+
+    Rejects naive datetimes explicitly — `astimezone` would otherwise silently
+    interpret them as host local time, making the result depend on where the
+    parser runs.
     """
     if dt is None:
         return datetime.now(tz=TZ)
+    if dt.tzinfo is None:
+        raise ValueError("target_datetime must be timezone-aware")
     return dt.astimezone(TZ)
 
 
@@ -51,8 +54,6 @@ def _fetch_data(
 ) -> list[dict]:
     """Fetch actual or planning generation data from the EGAT API endpoint."""
     url = f"{EGAT_GENERATION_URL}/{data_type}"
-    if target_datetime is None:
-        target_datetime = _as_localtime(datetime.now())
 
     if data_type == "actual":
         params = {"name": "SYSTEM_GEN(MW)", "day": target_datetime.strftime("%d-%m-%Y")}
@@ -101,8 +102,8 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    session = session or Session()
     """Request the last known production mix (in MW) of a given country."""
+    session = session or Session()
     data = _fetch_data(session, _as_localtime(target_datetime), "actual")
 
     production_breakdowns = ProductionBreakdownList(logger)
@@ -220,7 +221,8 @@ def fetch_price(
         )
 
     ft_rate_table = soup_ft.find_all("table")[0]
-    curr_ft_month = _as_localtime(datetime.now()).month
+    now_local = datetime.now(tz=TZ)
+    curr_ft_month = now_local.month
     price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
 
     if price_ft == "\xa0":
@@ -231,13 +233,7 @@ def fetch_price(
     prices.append(
         zoneKey=zone_key,
         currency="THB",
-        datetime=_as_localtime(
-            datetime.now().replace(
-                minute=0,
-                second=0,
-                microsecond=0,
-            )
-        ),
+        datetime=now_local.replace(minute=0, second=0, microsecond=0),
         price=float(price_base) * 1000 + float(price_ft) * 10,
         source=MEA_URL,
     )

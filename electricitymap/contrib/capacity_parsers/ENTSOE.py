@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import getLogger
 from typing import Any
 
@@ -53,8 +53,7 @@ def query_capacity(
         session,
         params,
         target_datetime=target_datetime,
-        span=(0, 72),  # DO NOT USE A NEGATIVE LOOKBACK
-        function_name=query_capacity.__name__,
+        span=(timedelta(0), timedelta(hours=72)),  # DO NOT USE A NEGATIVE LOOKBACK
     )
 
 
@@ -71,13 +70,14 @@ def fetch_production_capacity(
         )
         point = timeseries.find_all("point")
         value = float(point[0].find_all("quantity")[0].contents[0])
-        if ENTSOE_CODE_TO_EM_MAPPING[fuel_code] not in capacity_dict:
-            capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]] = {
+        em_mode = str(ENTSOE_CODE_TO_EM_MAPPING[fuel_code])
+        if em_mode not in capacity_dict:
+            capacity_dict[em_mode] = {
                 "value": 0,
                 "datetime": f"{target_datetime.year}-01-01",
                 "source": SOURCE,
             }
-        capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]]["value"] += value
+        capacity_dict[em_mode]["value"] += value
     if capacity_dict:
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"

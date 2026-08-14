@@ -190,10 +190,10 @@ capacity:
       value: 580.7
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 760.0
-    - datetime: '2025-12-01'
-      source: EIA.gov
       value: 763.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 1016.5
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -234,6 +234,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 1245.9
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1234.5
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -247,6 +250,9 @@ capacity:
     - datetime: '2021-06-01'
       source: EIA.gov
       value: 459.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 113.6
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -359,6 +365,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 16699.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 16326.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 16223.1
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -409,9 +421,15 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 1897.3
-    - datetime: '2025-12-01'
+    - datetime: '2025-11-01'
       source: EIA.gov
       value: 1891.8
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1893.7
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 1899.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -499,6 +517,12 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 6011.7
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 5578.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 5737.3
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -793,10 +817,13 @@ capacity:
       value: 3501.9
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 3552.0
+      value: 3573.4
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 3585.8
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 3727.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -856,6 +883,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 1723.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 2521.2
 center_point:
   - -70.39016096719396
   - 44.260793161078574

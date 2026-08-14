@@ -11,9 +11,9 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 
 @freeze_time("2024-01-01 12:00:00")
-def test_fetch_production_live(adapter, session, snapshot):
+def test_fetch_production_live(requests_mock, session, snapshot):
     """That we can fetch the production mix at the current time."""
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -26,9 +26,9 @@ def test_fetch_production_live(adapter, session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(adapter, session, snapshot):
+def test_fetch_production_historical(requests_mock, session, snapshot):
     """That we can fetch historical energy production values."""
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -46,9 +46,9 @@ def test_fetch_production_historical(adapter, session, snapshot):
 
 
 @freeze_time("2024-01-01 12:00:00")
-def test_fetch_exchange_live(adapter, session, snapshot):
+def test_fetch_exchange_live(requests_mock, session, snapshot):
     """That we can fetch the last known power exchanges."""
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -61,9 +61,11 @@ def test_fetch_exchange_live(adapter, session, snapshot):
     assert snapshot == fetch_exchange(session=session)
 
 
-def test_fetch_exchange_raises_parser_exception_on_historical_data(adapter, session):
+def test_fetch_exchange_raises_parser_exception_on_historical_data(
+    requests_mock, session
+):
     """That a ParserException is raised if requesting historical data (not supported yet)."""
-    adapter.register_uri(GET, ANY, json=[])
+    requests_mock.register_uri(GET, ANY, json=[])
 
     with pytest.raises(
         ParserException, match="This parser is not yet able to parse historical data"

@@ -16,7 +16,9 @@ BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/AEMO")
 @pytest.mark.parametrize("zone_key", ["AU-NSW", "AU-VIC", "AU-QLD", "AU-SA", "AU-TAS"])
 # "AU-WA" is not implemented in the zones here
 
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_key):
+def test_snapshot_fetch_consumption_forecast(
+    requests_mock, session, snapshot, zone_key
+):
     base_url = "http://nemweb.com.au/Reports/CURRENT/Operational_Demand/FORECAST_HH/"
 
     # Mock the base URL request with HTML that contains the expected link
@@ -27,7 +29,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
     </body>
     </html>
     """
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         base_url,
         text=html_content,
@@ -44,7 +46,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
 
     with open(data_zip_file, "rb") as zip_file:
         zip_content = zip_file.read()
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(rf"{base_url}PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d+_\d+\.zip"),
         content=zip_content,

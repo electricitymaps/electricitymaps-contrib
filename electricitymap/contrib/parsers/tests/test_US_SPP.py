@@ -54,7 +54,7 @@ def test_SPP_logging():
         )
 
 
-def test_fetch_realtime_locational_marginal_price(adapter, session, snapshot):
+def test_fetch_realtime_locational_marginal_price(requests_mock, session, snapshot):
     # Mock 8 consecutive 5-minute intervals of LMP data
     base_url = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app/file-browser-api/download/rtbm-lmp-by-location?host=https://portal.spp.org&path=/2025/03/By_Interval/31/RTBM-LMP-SL-{}.csv"
     times = [
@@ -71,7 +71,9 @@ def test_fetch_realtime_locational_marginal_price(adapter, session, snapshot):
         mock_csv = Path(
             f"electricitymap/contrib/parsers/tests/mocks/US_SPP/RTBM-LMP-SL-{time}.csv"
         )
-        adapter.register_uri(GET, base_url.format(time), text=mock_csv.read_text())
+        requests_mock.register_uri(
+            GET, base_url.format(time), text=mock_csv.read_text()
+        )
 
     realtime_LMP = US_SPP.fetch_realtime_locational_marginal_price(
         zone_key=ZoneKey("US-CENT-SWPP"),
@@ -84,13 +86,13 @@ def test_fetch_realtime_locational_marginal_price(adapter, session, snapshot):
     assert snapshot == realtime_LMP
 
 
-def test_fetch_dayahead_locational_marginal_price(adapter, session, snapshot):
+def test_fetch_dayahead_locational_marginal_price(requests_mock, session, snapshot):
     mock_csv = Path(
         "electricitymap/contrib/parsers/tests/mocks/US_SPP/DA-LMP-SL-202503190100.csv"
     )
     base_url = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app/file-browser-api/download/da-lmp-by-location?host=https://portal.spp.org&path=/2025/03/By_Day/DA-LMP-SL-202503190100.csv"
 
-    adapter.register_uri(GET, base_url, text=mock_csv.read_text())
+    requests_mock.register_uri(GET, base_url, text=mock_csv.read_text())
 
     dayahead_LMP = US_SPP.fetch_dayahead_locational_marginal_price(
         zone_key=ZoneKey("US-CENT-SWPP"),

@@ -17,10 +17,20 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 13.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 120.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 108.0
+  oil:
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 149.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -28,6 +38,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 60.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 57.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99

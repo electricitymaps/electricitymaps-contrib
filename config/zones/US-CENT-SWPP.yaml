@@ -41,6 +41,9 @@ capacity:
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 450.5
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 486.5
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -75,6 +78,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 317.8
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 321.8
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -238,10 +244,13 @@ capacity:
       value: 36704.1
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 36861.9
-    - datetime: '2025-12-01'
-      source: EIA.gov
       value: 36869.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 36770.9
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 36912.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -259,6 +268,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 3103.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3063.0
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -369,10 +381,13 @@ capacity:
       value: 2233.7
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 2233.9
-    - datetime: '2025-12-01'
-      source: EIA.gov
       value: 2223.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2225.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 2256.4
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -527,6 +542,12 @@ capacity:
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 1428.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1441.8
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 2158.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -685,6 +706,9 @@ capacity:
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 35463.4
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 35453.4
 center_point:
   - -99.25192402528673
   - 40.10576311189023

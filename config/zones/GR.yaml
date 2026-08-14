@@ -26,6 +26,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 146.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 150.0
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -45,6 +48,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1800.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1500.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -58,6 +64,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 6030.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 6680.0
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -81,6 +90,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2708.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2715.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -111,6 +123,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 9000.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 9800.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -133,6 +148,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 132.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 165.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -161,6 +179,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 5225.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 5460.0
 center_point:
   - 22.383812358539977
   - 39.24364164233488

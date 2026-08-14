@@ -4,6 +4,10 @@ bounding_box:
   - - 19.391593915939183
     - 46.5017943862303
 capacity:
+  battery storage:
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 66.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -55,6 +59,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 798.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 948.0
   geothermal:
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -126,6 +133,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 450.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 620.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -182,6 +192,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1240.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1309.0
 center_point:
   - 16.780691453932263
   - 45.77659997090309

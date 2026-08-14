@@ -15,8 +15,8 @@ from electricitymap.contrib.parsers.SMARTGRIDDASHBOARD import (
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_fetch_consumption(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         URL,
         json=json.loads(
@@ -33,8 +33,8 @@ def test_fetch_consumption(adapter, session, snapshot):
     )
 
 
-def test_fetch_consumption_forecast(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_forecast(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         URL,
         json=json.loads(
@@ -51,8 +51,8 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
 
-def test_fetch_exchange(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_exchange(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         URL,
         json=json.loads(
@@ -70,8 +70,8 @@ def test_fetch_exchange(adapter, session, snapshot):
     )
 
 
-def test_fetch_generation(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_generation(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         URL,
         json=json.loads(
@@ -89,8 +89,8 @@ def test_fetch_generation(adapter, session, snapshot):
     )
 
 
-def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         f"{URL}?areas=windforecast",
         json=json.loads(
@@ -101,7 +101,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         f"{URL}?areas=solarforecast",
         json=json.loads(
@@ -119,8 +119,8 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
 
-def test_fetch_production(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         f"{URL}?areas=solaractual",
         json=json.loads(
@@ -131,7 +131,7 @@ def test_fetch_production(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         f"{URL}?areas=windactual",
         json=json.loads(
@@ -142,7 +142,7 @@ def test_fetch_production(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         f"{URL}?areas=generationactual",
         json=json.loads(

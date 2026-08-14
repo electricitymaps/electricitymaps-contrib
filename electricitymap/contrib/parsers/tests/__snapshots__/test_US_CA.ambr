@@ -4,6 +4,7 @@
     dict({
       'consumption': 21213.16,
       'datetime': datetime.datetime(2025, 2, 19, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 20663.34,
       'datetime': datetime.datetime(2025, 2, 19, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 20138.61,
       'datetime': datetime.datetime(2025, 2, 19, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 20079.09,
       'datetime': datetime.datetime(2025, 2, 19, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 20556.03,
       'datetime': datetime.datetime(2025, 2, 19, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 21961.85,
       'datetime': datetime.datetime(2025, 2, 19, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 23967.14,
       'datetime': datetime.datetime(2025, 2, 19, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 24693.13,
       'datetime': datetime.datetime(2025, 2, 19, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 23366.31,
       'datetime': datetime.datetime(2025, 2, 19, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 21464.76,
       'datetime': datetime.datetime(2025, 2, 19, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 19656.13,
       'datetime': datetime.datetime(2025, 2, 19, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 18540.3,
       'datetime': datetime.datetime(2025, 2, 19, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 18150.62,
       'datetime': datetime.datetime(2025, 2, 19, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 18428.91,
       'datetime': datetime.datetime(2025, 2, 19, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 19257.95,
       'datetime': datetime.datetime(2025, 2, 19, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 20632.21,
       'datetime': datetime.datetime(2025, 2, 19, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 22549.41,
       'datetime': datetime.datetime(2025, 2, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 24906.53,
       'datetime': datetime.datetime(2025, 2, 20, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 26191.41,
       'datetime': datetime.datetime(2025, 2, 20, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 25852.37,
       'datetime': datetime.datetime(2025, 2, 20, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 25262.46,
       'datetime': datetime.datetime(2025, 2, 20, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 24510.65,
       'datetime': datetime.datetime(2025, 2, 20, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 23123.04,
       'datetime': datetime.datetime(2025, 2, 20, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 21708.38,
       'datetime': datetime.datetime(2025, 2, 20, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 21382.89,
       'datetime': datetime.datetime(2025, 2, 20, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -179,6 +204,7 @@
     dict({
       'consumption': 20731.98,
       'datetime': datetime.datetime(2025, 2, 20, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -186,6 +212,7 @@
     dict({
       'consumption': 20174.13,
       'datetime': datetime.datetime(2025, 2, 20, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -193,6 +220,7 @@
     dict({
       'consumption': 20025.92,
       'datetime': datetime.datetime(2025, 2, 20, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -200,6 +228,7 @@
     dict({
       'consumption': 20526.13,
       'datetime': datetime.datetime(2025, 2, 20, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -207,6 +236,7 @@
     dict({
       'consumption': 22041.72,
       'datetime': datetime.datetime(2025, 2, 20, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -214,6 +244,7 @@
     dict({
       'consumption': 24076.63,
       'datetime': datetime.datetime(2025, 2, 20, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -221,6 +252,7 @@
     dict({
       'consumption': 24981.01,
       'datetime': datetime.datetime(2025, 2, 20, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -228,6 +260,7 @@
     dict({
       'consumption': 23771.25,
       'datetime': datetime.datetime(2025, 2, 20, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -235,6 +268,7 @@
     dict({
       'consumption': 21942.57,
       'datetime': datetime.datetime(2025, 2, 20, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -242,6 +276,7 @@
     dict({
       'consumption': 20112.77,
       'datetime': datetime.datetime(2025, 2, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -249,6 +284,7 @@
     dict({
       'consumption': 18919.5,
       'datetime': datetime.datetime(2025, 2, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -256,6 +292,7 @@
     dict({
       'consumption': 18460.87,
       'datetime': datetime.datetime(2025, 2, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -263,6 +300,7 @@
     dict({
       'consumption': 18624.22,
       'datetime': datetime.datetime(2025, 2, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -270,6 +308,7 @@
     dict({
       'consumption': 19541.83,
       'datetime': datetime.datetime(2025, 2, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -277,6 +316,7 @@
     dict({
       'consumption': 21101.48,
       'datetime': datetime.datetime(2025, 2, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -284,6 +324,7 @@
     dict({
       'consumption': 23045.71,
       'datetime': datetime.datetime(2025, 2, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -291,6 +332,7 @@
     dict({
       'consumption': 25347.4,
       'datetime': datetime.datetime(2025, 2, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -298,6 +340,7 @@
     dict({
       'consumption': 26557.09,
       'datetime': datetime.datetime(2025, 2, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -305,6 +348,7 @@
     dict({
       'consumption': 26171.69,
       'datetime': datetime.datetime(2025, 2, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -312,6 +356,7 @@
     dict({
       'consumption': 25587.89,
       'datetime': datetime.datetime(2025, 2, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -319,6 +364,7 @@
     dict({
       'consumption': 24827.2,
       'datetime': datetime.datetime(2025, 2, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -326,6 +372,7 @@
     dict({
       'consumption': 23461.32,
       'datetime': datetime.datetime(2025, 2, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -333,6 +380,7 @@
     dict({
       'consumption': 22060.18,
       'datetime': datetime.datetime(2025, 2, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -340,6 +388,7 @@
     dict({
       'consumption': 21374.2,
       'datetime': datetime.datetime(2025, 2, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -347,6 +396,7 @@
     dict({
       'consumption': 20742.17,
       'datetime': datetime.datetime(2025, 2, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -354,6 +404,7 @@
     dict({
       'consumption': 20188.27,
       'datetime': datetime.datetime(2025, 2, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -361,6 +412,7 @@
     dict({
       'consumption': 20038.82,
       'datetime': datetime.datetime(2025, 2, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -368,6 +420,7 @@
     dict({
       'consumption': 20621.26,
       'datetime': datetime.datetime(2025, 2, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -375,6 +428,7 @@
     dict({
       'consumption': 21926.21,
       'datetime': datetime.datetime(2025, 2, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -382,6 +436,7 @@
     dict({
       'consumption': 23895.14,
       'datetime': datetime.datetime(2025, 2, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -389,6 +444,7 @@
     dict({
       'consumption': 24664.26,
       'datetime': datetime.datetime(2025, 2, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -396,6 +452,7 @@
     dict({
       'consumption': 23564.4,
       'datetime': datetime.datetime(2025, 2, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -403,6 +460,7 @@
     dict({
       'consumption': 21612.77,
       'datetime': datetime.datetime(2025, 2, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -410,6 +468,7 @@
     dict({
       'consumption': 19842.83,
       'datetime': datetime.datetime(2025, 2, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -417,6 +476,7 @@
     dict({
       'consumption': 18684.28,
       'datetime': datetime.datetime(2025, 2, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -424,6 +484,7 @@
     dict({
       'consumption': 18206.24,
       'datetime': datetime.datetime(2025, 2, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -431,6 +492,7 @@
     dict({
       'consumption': 18310.7,
       'datetime': datetime.datetime(2025, 2, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -438,6 +500,7 @@
     dict({
       'consumption': 19074.62,
       'datetime': datetime.datetime(2025, 2, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -445,6 +508,7 @@
     dict({
       'consumption': 20664.06,
       'datetime': datetime.datetime(2025, 2, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -452,6 +516,7 @@
     dict({
       'consumption': 22668.84,
       'datetime': datetime.datetime(2025, 2, 22, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -459,6 +524,7 @@
     dict({
       'consumption': 24923.98,
       'datetime': datetime.datetime(2025, 2, 22, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -466,6 +532,7 @@
     dict({
       'consumption': 25845.56,
       'datetime': datetime.datetime(2025, 2, 22, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -473,6 +540,7 @@
     dict({
       'consumption': 25401.27,
       'datetime': datetime.datetime(2025, 2, 22, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -480,6 +548,7 @@
     dict({
       'consumption': 24801.28,
       'datetime': datetime.datetime(2025, 2, 22, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -487,6 +556,7 @@
     dict({
       'consumption': 24175.14,
       'datetime': datetime.datetime(2025, 2, 22, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -494,6 +564,7 @@
     dict({
       'consumption': 23022.49,
       'datetime': datetime.datetime(2025, 2, 22, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -501,6 +572,7 @@
     dict({
       'consumption': 21885.44,
       'datetime': datetime.datetime(2025, 2, 22, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -508,6 +580,7 @@
     dict({
       'consumption': 21073.54,
       'datetime': datetime.datetime(2025, 2, 22, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -515,6 +588,7 @@
     dict({
       'consumption': 20367.53,
       'datetime': datetime.datetime(2025, 2, 22, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -522,6 +596,7 @@
     dict({
       'consumption': 19715.29,
       'datetime': datetime.datetime(2025, 2, 22, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -529,6 +604,7 @@
     dict({
       'consumption': 19405.35,
       'datetime': datetime.datetime(2025, 2, 22, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -536,6 +612,7 @@
     dict({
       'consumption': 19522.0,
       'datetime': datetime.datetime(2025, 2, 22, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -543,6 +620,7 @@
     dict({
       'consumption': 20093.54,
       'datetime': datetime.datetime(2025, 2, 22, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -550,6 +628,7 @@
     dict({
       'consumption': 20895.47,
       'datetime': datetime.datetime(2025, 2, 22, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -557,6 +636,7 @@
     dict({
       'consumption': 20849.71,
       'datetime': datetime.datetime(2025, 2, 22, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -564,6 +644,7 @@
     dict({
       'consumption': 19777.45,
       'datetime': datetime.datetime(2025, 2, 22, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -571,6 +652,7 @@
     dict({
       'consumption': 17866.79,
       'datetime': datetime.datetime(2025, 2, 22, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -578,6 +660,7 @@
     dict({
       'consumption': 16293.64,
       'datetime': datetime.datetime(2025, 2, 22, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -585,6 +668,7 @@
     dict({
       'consumption': 15226.74,
       'datetime': datetime.datetime(2025, 2, 22, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -592,6 +676,7 @@
     dict({
       'consumption': 14818.93,
       'datetime': datetime.datetime(2025, 2, 22, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -599,6 +684,7 @@
     dict({
       'consumption': 15000.6,
       'datetime': datetime.datetime(2025, 2, 22, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -606,6 +692,7 @@
     dict({
       'consumption': 15990.15,
       'datetime': datetime.datetime(2025, 2, 22, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -613,6 +700,7 @@
     dict({
       'consumption': 17749.57,
       'datetime': datetime.datetime(2025, 2, 22, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -620,6 +708,7 @@
     dict({
       'consumption': 20174.77,
       'datetime': datetime.datetime(2025, 2, 23, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -627,6 +716,7 @@
     dict({
       'consumption': 22820.9,
       'datetime': datetime.datetime(2025, 2, 23, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -634,6 +724,7 @@
     dict({
       'consumption': 24078.8,
       'datetime': datetime.datetime(2025, 2, 23, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -641,6 +732,7 @@
     dict({
       'consumption': 23794.44,
       'datetime': datetime.datetime(2025, 2, 23, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -648,6 +740,7 @@
     dict({
       'consumption': 23309.35,
       'datetime': datetime.datetime(2025, 2, 23, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -655,6 +748,7 @@
     dict({
       'consumption': 22769.59,
       'datetime': datetime.datetime(2025, 2, 23, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -662,6 +756,7 @@
     dict({
       'consumption': 21834.38,
       'datetime': datetime.datetime(2025, 2, 23, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -669,6 +764,7 @@
     dict({
       'consumption': 20810.69,
       'datetime': datetime.datetime(2025, 2, 23, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -676,6 +772,7 @@
     dict({
       'consumption': 20334.89,
       'datetime': datetime.datetime(2025, 2, 23, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -683,6 +780,7 @@
     dict({
       'consumption': 19714.32,
       'datetime': datetime.datetime(2025, 2, 23, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -690,6 +788,7 @@
     dict({
       'consumption': 19098.89,
       'datetime': datetime.datetime(2025, 2, 23, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -697,6 +796,7 @@
     dict({
       'consumption': 18787.73,
       'datetime': datetime.datetime(2025, 2, 23, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -704,6 +804,7 @@
     dict({
       'consumption': 18816.98,
       'datetime': datetime.datetime(2025, 2, 23, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -711,6 +812,7 @@
     dict({
       'consumption': 19191.84,
       'datetime': datetime.datetime(2025, 2, 23, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -718,6 +820,7 @@
     dict({
       'consumption': 19775.2,
       'datetime': datetime.datetime(2025, 2, 23, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -725,6 +828,7 @@
     dict({
       'consumption': 19443.53,
       'datetime': datetime.datetime(2025, 2, 23, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -732,6 +836,7 @@
     dict({
       'consumption': 17953.72,
       'datetime': datetime.datetime(2025, 2, 23, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -739,6 +844,7 @@
     dict({
       'consumption': 16057.35,
       'datetime': datetime.datetime(2025, 2, 23, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -746,6 +852,7 @@
     dict({
       'consumption': 14606.97,
       'datetime': datetime.datetime(2025, 2, 23, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -753,6 +860,7 @@
     dict({
       'consumption': 13775.34,
       'datetime': datetime.datetime(2025, 2, 23, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -760,6 +868,7 @@
     dict({
       'consumption': 13665.41,
       'datetime': datetime.datetime(2025, 2, 23, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -767,6 +876,7 @@
     dict({
       'consumption': 14031.37,
       'datetime': datetime.datetime(2025, 2, 23, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -774,6 +884,7 @@
     dict({
       'consumption': 15132.83,
       'datetime': datetime.datetime(2025, 2, 23, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -781,6 +892,7 @@
     dict({
       'consumption': 17062.52,
       'datetime': datetime.datetime(2025, 2, 23, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -788,6 +900,7 @@
     dict({
       'consumption': 19902.16,
       'datetime': datetime.datetime(2025, 2, 24, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -795,6 +908,7 @@
     dict({
       'consumption': 22495.53,
       'datetime': datetime.datetime(2025, 2, 24, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -802,6 +916,7 @@
     dict({
       'consumption': 24066.14,
       'datetime': datetime.datetime(2025, 2, 24, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -809,6 +924,7 @@
     dict({
       'consumption': 23812.41,
       'datetime': datetime.datetime(2025, 2, 24, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -816,6 +932,7 @@
     dict({
       'consumption': 23300.29,
       'datetime': datetime.datetime(2025, 2, 24, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -823,6 +940,7 @@
     dict({
       'consumption': 22613.76,
       'datetime': datetime.datetime(2025, 2, 24, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -830,6 +948,7 @@
     dict({
       'consumption': 21412.12,
       'datetime': datetime.datetime(2025, 2, 24, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -837,6 +956,7 @@
     dict({
       'consumption': 20285.8,
       'datetime': datetime.datetime(2025, 2, 24, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -844,6 +964,7 @@
     dict({
       'consumption': 19746.28,
       'datetime': datetime.datetime(2025, 2, 24, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -851,6 +972,7 @@
     dict({
       'consumption': 19124.88,
       'datetime': datetime.datetime(2025, 2, 24, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -858,6 +980,7 @@
     dict({
       'consumption': 18650.86,
       'datetime': datetime.datetime(2025, 2, 24, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -865,6 +988,7 @@
     dict({
       'consumption': 18558.46,
       'datetime': datetime.datetime(2025, 2, 24, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -872,6 +996,7 @@
     dict({
       'consumption': 19059.28,
       'datetime': datetime.datetime(2025, 2, 24, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -879,6 +1004,7 @@
     dict({
       'consumption': 20428.72,
       'datetime': datetime.datetime(2025, 2, 24, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -886,6 +1012,7 @@
     dict({
       'consumption': 22322.32,
       'datetime': datetime.datetime(2025, 2, 24, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -893,6 +1020,7 @@
     dict({
       'consumption': 23345.28,
       'datetime': datetime.datetime(2025, 2, 24, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -900,6 +1028,7 @@
     dict({
       'consumption': 22289.73,
       'datetime': datetime.datetime(2025, 2, 24, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -907,6 +1036,7 @@
     dict({
       'consumption': 20660.81,
       'datetime': datetime.datetime(2025, 2, 24, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -914,6 +1044,7 @@
     dict({
       'consumption': 19319.09,
       'datetime': datetime.datetime(2025, 2, 24, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -921,6 +1052,7 @@
     dict({
       'consumption': 18544.9,
       'datetime': datetime.datetime(2025, 2, 24, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -928,6 +1060,7 @@
     dict({
       'consumption': 18301.22,
       'datetime': datetime.datetime(2025, 2, 24, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -935,6 +1068,7 @@
     dict({
       'consumption': 18699.81,
       'datetime': datetime.datetime(2025, 2, 24, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -942,6 +1076,7 @@
     dict({
       'consumption': 19636.67,
       'datetime': datetime.datetime(2025, 2, 24, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -949,6 +1084,7 @@
     dict({
       'consumption': 21348.69,
       'datetime': datetime.datetime(2025, 2, 24, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -956,6 +1092,7 @@
     dict({
       'consumption': 23504.7,
       'datetime': datetime.datetime(2025, 2, 25, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -963,6 +1100,7 @@
     dict({
       'consumption': 25775.43,
       'datetime': datetime.datetime(2025, 2, 25, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -970,6 +1108,7 @@
     dict({
       'consumption': 26854.75,
       'datetime': datetime.datetime(2025, 2, 25, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -977,6 +1116,7 @@
     dict({
       'consumption': 26230.64,
       'datetime': datetime.datetime(2025, 2, 25, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -984,6 +1124,7 @@
     dict({
       'consumption': 25419.54,
       'datetime': datetime.datetime(2025, 2, 25, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -991,6 +1132,7 @@
     dict({
       'consumption': 24476.64,
       'datetime': datetime.datetime(2025, 2, 25, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -998,6 +1140,7 @@
     dict({
       'consumption': 22928.22,
       'datetime': datetime.datetime(2025, 2, 25, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1005,6 +1148,7 @@
     dict({
       'consumption': 21482.71,
       'datetime': datetime.datetime(2025, 2, 25, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1012,6 +1156,7 @@
     dict({
       'consumption': 20876.39,
       'datetime': datetime.datetime(2025, 2, 25, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1019,6 +1164,7 @@
     dict({
       'consumption': 20377.57,
       'datetime': datetime.datetime(2025, 2, 25, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1026,6 +1172,7 @@
     dict({
       'consumption': 19801.02,
       'datetime': datetime.datetime(2025, 2, 25, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1033,6 +1180,7 @@
     dict({
       'consumption': 19571.6,
       'datetime': datetime.datetime(2025, 2, 25, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1040,6 +1188,7 @@
     dict({
       'consumption': 19961.2,
       'datetime': datetime.datetime(2025, 2, 25, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1047,6 +1196,7 @@
     dict({
       'consumption': 21112.13,
       'datetime': datetime.datetime(2025, 2, 25, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1054,6 +1204,7 @@
     dict({
       'consumption': 22702.79,
       'datetime': datetime.datetime(2025, 2, 25, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1061,6 +1212,7 @@
     dict({
       'consumption': 23309.95,
       'datetime': datetime.datetime(2025, 2, 25, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1068,6 +1220,7 @@
     dict({
       'consumption': 22566.16,
       'datetime': datetime.datetime(2025, 2, 25, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1075,6 +1228,7 @@
     dict({
       'consumption': 21157.91,
       'datetime': datetime.datetime(2025, 2, 25, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1082,6 +1236,7 @@
     dict({
       'consumption': 19749.62,
       'datetime': datetime.datetime(2025, 2, 25, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1089,6 +1244,7 @@
     dict({
       'consumption': 18885.25,
       'datetime': datetime.datetime(2025, 2, 25, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1096,6 +1252,7 @@
     dict({
       'consumption': 18592.16,
       'datetime': datetime.datetime(2025, 2, 25, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1103,6 +1260,7 @@
     dict({
       'consumption': 18774.9,
       'datetime': datetime.datetime(2025, 2, 25, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1110,6 +1268,7 @@
     dict({
       'consumption': 19564.52,
       'datetime': datetime.datetime(2025, 2, 25, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1117,6 +1276,7 @@
     dict({
       'consumption': 21340.85,
       'datetime': datetime.datetime(2025, 2, 25, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1124,6 +1284,7 @@
     dict({
       'consumption': 23559.35,
       'datetime': datetime.datetime(2025, 2, 26, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1131,6 +1292,7 @@
     dict({
       'consumption': 25908.95,
       'datetime': datetime.datetime(2025, 2, 26, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1138,6 +1300,7 @@
     dict({
       'consumption': 27085.62,
       'datetime': datetime.datetime(2025, 2, 26, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1145,6 +1308,7 @@
     dict({
       'consumption': 26513.45,
       'datetime': datetime.datetime(2025, 2, 26, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1152,6 +1316,7 @@
     dict({
       'consumption': 25725.82,
       'datetime': datetime.datetime(2025, 2, 26, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1159,6 +1324,7 @@
     dict({
       'consumption': 24759.64,
       'datetime': datetime.datetime(2025, 2, 26, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1166,6 +1332,7 @@
     dict({
       'consumption': 23277.29,
       'datetime': datetime.datetime(2025, 2, 26, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1173,6 +1340,7 @@
     dict({
       'consumption': 21807.51,
       'datetime': datetime.datetime(2025, 2, 26, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1180,6 +1348,7 @@
     dict({
       'consumption': 21157.86,
       'datetime': datetime.datetime(2025, 2, 26, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1187,6 +1356,7 @@
     dict({
       'consumption': 20378.64,
       'datetime': datetime.datetime(2025, 2, 26, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1194,6 +1364,7 @@
     dict({
       'consumption': 19694.86,
       'datetime': datetime.datetime(2025, 2, 26, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1201,6 +1372,7 @@
     dict({
       'consumption': 19288.13,
       'datetime': datetime.datetime(2025, 2, 26, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1208,6 +1380,7 @@
     dict({
       'consumption': 19727.61,
       'datetime': datetime.datetime(2025, 2, 26, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1215,6 +1388,7 @@
     dict({
       'consumption': 21006.95,
       'datetime': datetime.datetime(2025, 2, 26, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1222,6 +1396,7 @@
     dict({
       'consumption': 22888.88,
       'datetime': datetime.datetime(2025, 2, 26, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1229,6 +1404,7 @@
     dict({
       'consumption': 23393.9,
       'datetime': datetime.datetime(2025, 2, 26, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1236,6 +1412,7 @@
     dict({
       'consumption': 22083.35,
       'datetime': datetime.datetime(2025, 2, 26, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1243,6 +1420,7 @@
     dict({
       'consumption': 20518.1,
       'datetime': datetime.datetime(2025, 2, 26, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1250,6 +1428,7 @@
     dict({
       'consumption': 19140.9,
       'datetime': datetime.datetime(2025, 2, 26, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1257,6 +1436,7 @@
     dict({
       'consumption': 18390.88,
       'datetime': datetime.datetime(2025, 2, 26, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1264,6 +1444,7 @@
     dict({
       'consumption': 18276.37,
       'datetime': datetime.datetime(2025, 2, 26, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1271,6 +1452,7 @@
     dict({
       'consumption': 18668.42,
       'datetime': datetime.datetime(2025, 2, 26, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1278,6 +1460,7 @@
     dict({
       'consumption': 19691.99,
       'datetime': datetime.datetime(2025, 2, 26, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1285,6 +1468,7 @@
     dict({
       'consumption': 21643.39,
       'datetime': datetime.datetime(2025, 2, 26, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1292,6 +1476,7 @@
     dict({
       'consumption': 23948.52,
       'datetime': datetime.datetime(2025, 2, 27, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1299,6 +1484,7 @@
     dict({
       'consumption': 26125.08,
       'datetime': datetime.datetime(2025, 2, 27, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1306,6 +1492,7 @@
     dict({
       'consumption': 27079.34,
       'datetime': datetime.datetime(2025, 2, 27, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1313,6 +1500,7 @@
     dict({
       'consumption': 26352.94,
       'datetime': datetime.datetime(2025, 2, 27, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1320,6 +1508,7 @@
     dict({
       'consumption': 25576.0,
       'datetime': datetime.datetime(2025, 2, 27, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1327,6 +1516,7 @@
     dict({
       'consumption': 24800.72,
       'datetime': datetime.datetime(2025, 2, 27, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1334,6 +1524,7 @@
     dict({
       'consumption': 23287.91,
       'datetime': datetime.datetime(2025, 2, 27, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1341,6 +1532,7 @@
     dict({
       'consumption': 21901.0,
       'datetime': datetime.datetime(2025, 2, 27, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'source': 'oasis.caiso.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-CAL-CISO',
@@ -1353,6 +1545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1441.49),
@@ -1367,6 +1560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1511.57),
@@ -1381,6 +1575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1597.35),
@@ -1395,6 +1590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1661.9),
@@ -1409,6 +1605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1698.41),
@@ -1423,6 +1620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1759.98),
@@ -1437,6 +1635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(176.29),
         'wind': np.float64(1805.18),
@@ -1451,6 +1650,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3587.88),
         'wind': np.float64(1823.96),
@@ -1465,6 +1665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(9548.31),
         'wind': np.float64(1856.04),
@@ -1479,6 +1680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12510.99),
         'wind': np.float64(1941.97),
@@ -1493,6 +1695,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13077.41),
         'wind': np.float64(2070.87),
@@ -1507,6 +1710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13176.7),
         'wind': np.float64(2226.03),
@@ -1521,6 +1725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13021.82),
         'wind': np.float64(2392.23),
@@ -1535,6 +1740,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12739.9),
         'wind': np.float64(2497.63),
@@ -1549,6 +1755,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12055.46),
         'wind': np.float64(2512.61),
@@ -1563,6 +1770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 4, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(9058.1),
         'wind': np.float64(2417.22),
@@ -1577,6 +1785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3352.77),
         'wind': np.float64(2279.12),
@@ -1591,6 +1800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(139.82),
         'wind': np.float64(2186.31),
@@ -1605,6 +1815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2137.07),
@@ -1619,6 +1830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2172.01),
@@ -1633,6 +1845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2272.45),
@@ -1647,6 +1860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2365.42),
@@ -1661,6 +1875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2391.46),
@@ -1675,6 +1890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2348.55),
@@ -1689,6 +1905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2282.19),
@@ -1703,6 +1920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2016.47),
@@ -1717,6 +1935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1769.79),
@@ -1731,6 +1950,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1557.87),
@@ -1745,6 +1965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1370.14),
@@ -1759,6 +1980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1256.38),
@@ -1773,6 +1995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(250.5),
         'wind': np.float64(1212.42),
@@ -1787,6 +2010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3329.73),
         'wind': np.float64(1176.35),
@@ -1801,6 +2025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(8457.56),
         'wind': np.float64(1140.48),
@@ -1815,6 +2040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11312.82),
         'wind': np.float64(1141.03),
@@ -1829,6 +2055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12326.96),
         'wind': np.float64(1152.42),
@@ -1843,6 +2070,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12897.99),
         'wind': np.float64(1187.54),
@@ -1857,6 +2085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13239.03),
         'wind': np.float64(1265.07),
@@ -1871,6 +2100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13495.39),
         'wind': np.float64(1332.4),
@@ -1885,6 +2115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13478.47),
         'wind': np.float64(1350.91),
@@ -1899,6 +2130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(10984.17),
         'wind': np.float64(1324.47),
@@ -1913,6 +2145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(4575.01),
         'wind': np.float64(1272.57),
@@ -1927,6 +2160,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(323.68),
         'wind': np.float64(1207.01),
@@ -1941,6 +2175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1138.57),
@@ -1955,6 +2190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1059.24),
@@ -1969,6 +2205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(992.6),
@@ -1983,6 +2220,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(961.93),
@@ -1997,6 +2235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(920.79),
@@ -2011,6 +2250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(872.13),
@@ -2025,6 +2265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(912.0),
@@ -2039,6 +2280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(960.23),
@@ -2053,6 +2295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1011.53),
@@ -2067,6 +2310,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1049.57),
@@ -2081,6 +2325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1051.39),
@@ -2095,6 +2340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1026.2),
@@ -2109,6 +2355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(270.44),
         'wind': np.float64(1047.76),
@@ -2123,6 +2370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3658.64),
         'wind': np.float64(1133.33),
@@ -2137,6 +2385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(9196.12),
         'wind': np.float64(1256.3),
@@ -2151,6 +2400,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11864.97),
         'wind': np.float64(1388.49),
@@ -2165,6 +2415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12272.21),
         'wind': np.float64(1535.81),
@@ -2179,6 +2430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12210.42),
         'wind': np.float64(1704.51),
@@ -2193,6 +2445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11951.22),
         'wind': np.float64(1858.77),
@@ -2207,6 +2460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11560.7),
         'wind': np.float64(1971.76),
@@ -2221,6 +2475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(10828.85),
         'wind': np.float64(2057.23),
@@ -2235,6 +2490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 6, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(8148.44),
         'wind': np.float64(2063.23),
@@ -2249,6 +2505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3065.89),
         'wind': np.float64(2023.43),
@@ -2263,6 +2520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(135.02),
         'wind': np.float64(2013.51),
@@ -2277,6 +2535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1990.0),
@@ -2291,6 +2550,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1951.41),
@@ -2305,6 +2565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1952.21),
@@ -2319,6 +2580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1968.45),
@@ -2333,6 +2595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1959.09),
@@ -2347,6 +2610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1978.39),
@@ -2361,6 +2625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1985.16),
@@ -2375,6 +2640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1799.53),
@@ -2389,6 +2655,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1614.06),
@@ -2403,6 +2670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1468.88),
@@ -2417,6 +2685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1336.87),
@@ -2431,6 +2700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1259.27),
@@ -2445,6 +2715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(192.79),
         'wind': np.float64(1245.53),
@@ -2459,6 +2730,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3223.06),
         'wind': np.float64(1280.01),
@@ -2473,6 +2745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(8484.11),
         'wind': np.float64(1408.27),
@@ -2487,6 +2760,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11466.11),
         'wind': np.float64(1619.73),
@@ -2501,6 +2775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12374.91),
         'wind': np.float64(1889.97),
@@ -2515,6 +2790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12600.19),
         'wind': np.float64(2153.83),
@@ -2529,6 +2805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12465.04),
         'wind': np.float64(2416.71),
@@ -2543,6 +2820,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12022.63),
         'wind': np.float64(2677.01),
@@ -2557,6 +2835,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11086.98),
         'wind': np.float64(2872.58),
@@ -2571,6 +2850,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(8363.76),
         'wind': np.float64(2992.15),
@@ -2585,6 +2865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3390.19),
         'wind': np.float64(3114.2),
@@ -2599,6 +2880,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(255.59),
         'wind': np.float64(3211.0),
@@ -2613,6 +2895,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3237.27),
@@ -2627,6 +2910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3271.86),
@@ -2641,6 +2925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3321.28),
@@ -2655,6 +2940,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3344.3),
@@ -2669,6 +2955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3315.9),
@@ -2683,6 +2970,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3283.19),
@@ -2697,6 +2985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3188.98),
@@ -2711,6 +3000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3113.94),
@@ -2725,6 +3015,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3002.26),
@@ -2739,6 +3030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2869.48),
@@ -2753,6 +3045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2757.56),
@@ -2767,6 +3060,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2645.24),
@@ -2781,6 +3075,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(219.7),
         'wind': np.float64(2509.77),
@@ -2795,6 +3090,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(4084.05),
         'wind': np.float64(2380.91),
@@ -2809,6 +3105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(10775.51),
         'wind': np.float64(2227.4),
@@ -2823,6 +3120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14151.67),
         'wind': np.float64(2093.44),
@@ -2837,6 +3135,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14821.76),
         'wind': np.float64(2053.03),
@@ -2851,6 +3150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14891.45),
         'wind': np.float64(2132.88),
@@ -2865,6 +3165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14773.4),
         'wind': np.float64(2349.5),
@@ -2879,6 +3180,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14591.23),
         'wind': np.float64(2592.38),
@@ -2893,6 +3195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14026.0),
         'wind': np.float64(2752.43),
@@ -2907,6 +3210,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11148.07),
         'wind': np.float64(2841.66),
@@ -2921,6 +3225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(4813.87),
         'wind': np.float64(2844.74),
@@ -2935,6 +3240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(453.04),
         'wind': np.float64(2801.72),
@@ -2949,6 +3255,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2755.03),
@@ -2963,6 +3270,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2672.92),
@@ -2977,6 +3285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2486.79),
@@ -2991,6 +3300,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2211.93),
@@ -3005,6 +3315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1890.3),
@@ -3019,6 +3330,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1519.28),
@@ -3033,6 +3345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1001.12),
@@ -3047,6 +3360,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(725.33),
@@ -3061,6 +3375,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(541.33),
@@ -3075,6 +3390,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(457.79),
@@ -3089,6 +3405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(421.17),
@@ -3103,6 +3420,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(398.96),
@@ -3117,6 +3435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(192.75),
         'wind': np.float64(368.51),
@@ -3131,6 +3450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(3807.61),
         'wind': np.float64(342.97),
@@ -3145,6 +3465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(10127.12),
         'wind': np.float64(315.87),
@@ -3159,6 +3480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13370.71),
         'wind': np.float64(314.34),
@@ -3173,6 +3495,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14044.48),
         'wind': np.float64(360.11),
@@ -3187,6 +3510,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(14085.54),
         'wind': np.float64(396.91),
@@ -3201,6 +3525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13915.28),
         'wind': np.float64(385.65),
@@ -3215,6 +3540,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(13581.42),
         'wind': np.float64(354.21),
@@ -3229,6 +3555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12749.85),
         'wind': np.float64(327.31),
@@ -3243,6 +3570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(9921.97),
         'wind': np.float64(300.01),
@@ -3257,6 +3585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(4316.28),
         'wind': np.float64(275.9),
@@ -3271,6 +3600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(443.97),
         'wind': np.float64(284.4),
@@ -3285,6 +3615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(319.79),
@@ -3299,6 +3630,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(371.53),
@@ -3313,6 +3645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(438.86),
@@ -3327,6 +3660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(511.36),
@@ -3341,6 +3675,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(591.81),
@@ -3355,6 +3690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(672.48),
@@ -3369,6 +3705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(742.27),
@@ -3383,6 +3720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(871.01),
@@ -3397,6 +3735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(998.42),
@@ -3411,6 +3750,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1097.05),
@@ -3425,6 +3765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1136.26),
@@ -3439,6 +3780,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(1077.99),
@@ -3453,6 +3795,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(332.87),
         'wind': np.float64(963.83),
@@ -3467,6 +3810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(4820.38),
         'wind': np.float64(832.83),
@@ -3481,6 +3825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(11902.0),
         'wind': np.float64(707.31),
@@ -3495,6 +3840,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15023.44),
         'wind': np.float64(623.77),
@@ -3509,6 +3855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15483.63),
         'wind': np.float64(627.52),
@@ -3523,6 +3870,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15499.21),
         'wind': np.float64(759.96),
@@ -3537,6 +3885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15477.63),
         'wind': np.float64(969.88),
@@ -3551,6 +3900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15502.2),
         'wind': np.float64(1241.26),
@@ -3565,6 +3915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(15319.94),
         'wind': np.float64(1585.51),
@@ -3579,6 +3930,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 10, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(12784.98),
         'wind': np.float64(1939.56),
@@ -3593,6 +3945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(5877.83),
         'wind': np.float64(2257.58),
@@ -3607,6 +3960,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(635.05),
         'wind': np.float64(2588.07),
@@ -3621,6 +3975,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2823.56),
@@ -3635,6 +3990,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2908.95),
@@ -3649,6 +4005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2915.41),
@@ -3663,6 +4020,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2905.07),
@@ -3677,6 +4035,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(2954.77),
@@ -3691,6 +4050,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 11, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'solar': np.float64(0.0),
         'wind': np.float64(3073.82),

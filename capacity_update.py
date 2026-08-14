@@ -56,4 +56,6 @@ def capacity_update(
         update_zone(zone, parsed_target_datetime, session, update_aggregate)
 
     print("Running prettier...")
-    run_shell_command("pnpx prettier@2 --write config/zones --cache", cwd=ROOT_PATH)
+    run_shell_command(
+        "npx --yes prettier@2 --write config/zones --cache", cwd=ROOT_PATH
+    )

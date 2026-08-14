@@ -19,7 +19,7 @@ NETFLOWS = {
 
 
 @pytest.mark.parametrize("neighbour_zone_key", ZONE_NEIGHBOURS[ZoneKey("IN-EA")])
-def test_exchanges(adapter, session, neighbour_zone_key: ZoneKey):
+def test_exchanges(requests_mock, session, neighbour_zone_key: ZoneKey):
     target_date = datetime(2023, 6, 25, 0, 0, tzinfo=ZoneInfo("Asia/Kolkata"))
     sorted_zone_keys = ZoneKey("->".join(sorted([neighbour_zone_key, "IN-EA"])))
     url, _ = IN_EA.get_fetch_function(sorted_zone_keys)
@@ -31,7 +31,7 @@ def test_exchanges(adapter, session, neighbour_zone_key: ZoneKey):
     with open(
         f"electricitymap/contrib/parsers/tests/mocks/IN_EA/{filename}.json", "rb"
     ) as data:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             url.format(
                 proxy=IN_EA.IN_WE_PROXY,

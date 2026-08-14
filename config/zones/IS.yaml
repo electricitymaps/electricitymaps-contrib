@@ -207,6 +207,7 @@ has_day_ahead_price_license: False
 hide_day_ahead_price: False
 parsers:
   production: amper_landsnet.fetch_production
+  consumption: ENTSOE.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 sources:

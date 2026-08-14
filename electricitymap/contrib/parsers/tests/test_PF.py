@@ -10,8 +10,8 @@ from electricitymap.contrib.parsers.PF import fetch_production
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
-    adapter.register_uri(
+def mock_response(requests_mock):
+    requests_mock.register_uri(
         GET,
         ANY,
         text=resources.files("electricitymap.contrib.parsers.tests.mocks.PF")
@@ -26,9 +26,11 @@ def test_fetch_production_live(session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_raises_parser_exception_on_historical_data(adapter, session):
+def test_fetch_production_raises_parser_exception_on_historical_data(
+    requests_mock, session
+):
     """That a ParserException is raised if requesting historical data (not supported yet)."""
-    adapter.register_uri(GET, ANY, json=[])
+    requests_mock.register_uri(GET, ANY, json=[])
 
     with pytest.raises(
         ParserException, match="This parser is not yet able to parse historical data"

@@ -7,8 +7,8 @@ from electricitymap.contrib.parsers.amper_landsnet import SOURCE_URL, fetch_prod
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_fetch_production(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         SOURCE_URL,
         json=json.loads(

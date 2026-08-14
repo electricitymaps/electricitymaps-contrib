@@ -42,6 +42,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 8440.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 7640.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -49,6 +52,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 1620.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1820.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -71,6 +77,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1107.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1113.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -111,6 +120,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4415.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 5331.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -140,6 +152,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 366.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 384.0
 center_point:
   - 15.463725623630856
   - 49.74484366663795

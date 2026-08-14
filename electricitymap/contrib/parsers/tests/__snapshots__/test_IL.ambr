@@ -1,0 +1,8 @@
+# serializer version: 1
+# name: test_snapshot_fetch_all
+  list([
+    '10500',
+    '1234',
+    '42',
+  ])
+# ---

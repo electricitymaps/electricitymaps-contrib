@@ -1,0 +1,52 @@
+[
+  {
+    "market": "DayAhead",
+    "status": "Available",
+    "deliveryArea": "GER",
+    "unit": "MW",
+    "dailyTotalUnit": "MWh",
+    "dailyTotalImport": 4332.0,
+    "dailyTotalExport": 3500.0,
+    "capacities": [
+      {
+        "importsByConnection": [
+          {"area": "NO2_NK", "capacity": 1444.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "exportsByConnection": [
+          {"area": "NO2_NK", "capacity": 1100.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "totalImport": 1444.0,
+        "totalExport": 1100.0,
+        "deliveryStart": "2025-05-09T22:00:00Z",
+        "deliveryEnd": "2025-05-09T23:00:00Z"
+      },
+      {
+        "importsByConnection": [
+          {"area": "NO2_NK", "capacity": 1444.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "exportsByConnection": [
+          {"area": "NO2_NK", "capacity": 1200.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "totalImport": 1444.0,
+        "totalExport": 1200.0,
+        "deliveryStart": "2025-05-09T23:00:00Z",
+        "deliveryEnd": "2025-05-10T00:00:00Z"
+      },
+      {
+        "importsByConnection": [
+          {"area": "NO2_NK", "capacity": 1444.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "exportsByConnection": [
+          {"area": "NO2_NK", "capacity": 1200.0, "lossFactor": 0.031, "rampingRestriction": 619.0}
+        ],
+        "totalImport": 1444.0,
+        "totalExport": 1200.0,
+        "deliveryStart": "2025-05-10T00:00:00Z",
+        "deliveryEnd": "2025-05-10T01:00:00Z"
+      }
+    ],
+    "maxNtcValues": [],
+    "deliveryDateCET": "2025-05-10",
+    "updatedAt": "2025-05-09T08:04:36.5048807Z"
+  }
+]

@@ -8,8 +8,8 @@ from electricitymap.contrib.parsers import ESIOS
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_fetch_exchange(adapter, session):
-    adapter.register_uri(
+def test_fetch_exchange(requests_mock, session):
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(
@@ -28,8 +28,8 @@ def test_fetch_exchange(adapter, session):
         assert data["netFlow"] is not None
 
 
-def test_exchange_with_snapshot(session, adapter, snapshot):
-    adapter.register_uri(
+def test_exchange_with_snapshot(session, requests_mock, snapshot):
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(

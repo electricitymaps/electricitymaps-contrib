@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 from collections import defaultdict
 from datetime import date, datetime, time, timedelta, timezone
 from logging import Logger, getLogger
@@ -19,6 +20,7 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     GridAlertType,
     ProductionMix,
+    StorageMix,
 )
 from electricitymap.contrib.types import ZoneKey
 
@@ -73,6 +75,11 @@ MODES = {
     "SOLAR": "solar",
     "WIND": "wind",
 }
+# IESO has no dedicated fuel category for battery storage; it reports the
+# battery units under FuelType "OTHER". Match the known battery units by name so
+# only they are moved into storage and any other "OTHER" plant keeps the
+# existing warn-and-skip path.
+BATTERY_NAME_PATTERN = re.compile(r"BESS|BATTERY|STORAGE", re.IGNORECASE)
 NAMESPACE = "{http://www.theIMO.com/schema}"
 PRICE_URL = (
     "http://reports.ieso.ca/public/DispUnconsHOEP/PUB_DispUnconsHOEP_{YYYYMMDD}.xml"
@@ -151,15 +158,22 @@ def fetch_production(
         if xml is None:
             continue
 
-        # Collect the source data into a dictionary keying ProductionMix objects by
-        # the time of day at which they occurred.
+        # Collect the source data into dictionaries keying ProductionMix and
+        # StorageMix objects by the time of day at which they occurred.
         mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
+        storages: defaultdict[time, StorageMix] = defaultdict(StorageMix)
         for generator in xml.iter(NAMESPACE + "Generator"):
-            try:
-                mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
-            except KeyError as error:
-                logger.warning(error)
-                continue
+            fuel_type = generator.findtext(NAMESPACE + "FuelType")
+            name = generator.findtext(NAMESPACE + "GeneratorName") or ""
+            is_battery = fuel_type == "OTHER" and bool(
+                BATTERY_NAME_PATTERN.search(name)
+            )
+            if not is_battery:
+                try:
+                    mode = MODES[fuel_type]
+                except KeyError as error:
+                    logger.warning(error)
+                    continue
             for output in generator.iter(NAMESPACE + "Output"):
                 try:
                     hour = _parse_hour(output)
@@ -170,14 +184,22 @@ def fetch_production(
                 # for a given plant at a given hour. In the browser, this is
                 # displayed as an "N/A" entry in the table.
                 generation = output.findtext(NAMESPACE + "EnergyMW")
-                mixes[time(hour=hour)].add_value(
-                    mode, None if generation is None else float(generation)
-                )
+                value = None if generation is None else float(generation)
+                if is_battery:
+                    # IESO only publishes battery discharge (positive MW); store
+                    # it as negative to match the storage convention, where
+                    # discharging is negative and charging is positive.
+                    storages[time(hour=hour)].add_value(
+                        "battery", None if value is None else -value
+                    )
+                else:
+                    mixes[time(hour=hour)].add_value(mode, value)
 
-        for time_, mix in mixes.items():
+        for time_ in sorted(mixes.keys() | storages.keys()):
             production_breakdowns.append(
                 datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
-                production=mix,
+                production=mixes.get(time_),
+                storage=storages.get(time_),
                 source=SOURCE,
                 zoneKey=ZONE_KEY,
             )
@@ -269,20 +291,13 @@ def fetch_exchange(
                 except (TypeError, ValueError) as error:
                     logger.warning(error)
                     continue
-                # The IESO IntertieZone reports flows from the neighboring
-                # zone's perspective: positive = neighboring zone exporting
-                # to Ontario (i.e., flow INTO Ontario).
-                # For EM convention, positive netFlow = flow in the direction
-                # of the sorted_zone_keys arrow (zone1 -> zone2).
-                # - CA-ON->CA-QC: positive = QC exporting to ON = flow QC->ON
-                #   = opposite of arrow, so flip.
-                # - CA-MB->CA-ON: positive = MB exporting to ON = flow MB->ON
-                #   = same as arrow direction (MB is zone1), so no flip needed,
-                #   but the current sign is already handled by the else branch.
-                if (
-                    not sorted_zone_keys.startswith("CA-ON->")
-                    or sorted_zone_keys == "CA-ON->CA-QC"
-                ):
+                # In the source data, flows out of Ontario (i.e., exports) are
+                # positive. For us, positive flow follows the direction of the
+                # arrow in sorted_zone_keys, so change the sign of the flow if
+                # necessary.
+                # Note that this flow is inverted to the rest in the source data.
+                # Check linear GMM-1534 for more info.
+                if not sorted_zone_keys.startswith("CA-ON->"):
                     flow *= -1
                 flows[time(hour=hour, minute=minute)] += flow
 

@@ -4,6 +4,10 @@ bounding_box:
   - - 26.800468004680056
     - 56.43923357829294
 capacity:
+  battery storage:
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 426.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -29,6 +33,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 266.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 239.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -54,6 +61,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 1503.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1597.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -61,6 +71,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 129.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 130.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -109,6 +122,9 @@ capacity:
     - datetime: '2025-10-13'
       source: litgrid.eu
       value: 2936
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 3018.0
     - datetime: '2026-01-22'
       source: litgrid.eu
       value: 3040
@@ -128,6 +144,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 37.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 23.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -168,9 +187,9 @@ capacity:
     - datetime: '2025-10-13'
       source: litgrid.eu
       value: 2467
-    - datetime: '2026-01-22'
-      source: litgrid.eu
-      value: 2507
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2507.0
 center_point:
   - 23.779440339287618
   - 55.17010626832506

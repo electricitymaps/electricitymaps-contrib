@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'end_datetime': None,
       'production': dict({
         'hydro': 2081.71338,
         'nuclear': 0.0,

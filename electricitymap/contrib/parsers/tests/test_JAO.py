@@ -40,13 +40,13 @@ CORE_EXTERNAL_TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:0
 APRIL_2026_TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
 
 
-def _register_shadow_auction_atc(adapter) -> None:
+def _register_shadow_auction_atc(requests_mock) -> None:
     payload = json.loads((BASE_MOCK_PATH / "shadow_auction_atc.json").read_text())
-    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=payload)
 
 
-def test_fetch_shadow_auction_atc_day_ahead_de_fr(adapter, session, snapshot):
-    _register_shadow_auction_atc(adapter)
+def test_fetch_shadow_auction_atc_day_ahead_de_fr(requests_mock, session, snapshot):
+    _register_shadow_auction_atc(requests_mock)
 
     result = fetch_shadow_auction_atc_day_ahead(
         ZoneKey("DE"),
@@ -58,9 +58,9 @@ def test_fetch_shadow_auction_atc_day_ahead_de_fr(adapter, session, snapshot):
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_shadow_auction_atc_day_ahead_pair_not_in_core(adapter, session):
+def test_fetch_shadow_auction_atc_day_ahead_pair_not_in_core(requests_mock, session):
     """Pairs without JAO border fields should return [] without raising."""
-    _register_shadow_auction_atc(adapter)
+    _register_shadow_auction_atc(requests_mock)
 
     result = fetch_shadow_auction_atc_day_ahead(
         ZoneKey("DE"),
@@ -72,7 +72,9 @@ def test_fetch_shadow_auction_atc_day_ahead_pair_not_in_core(adapter, session):
     assert result == []
 
 
-def test_fetch_shadow_auction_atc_day_ahead_em_to_jao_zone_remap(adapter, session):
+def test_fetch_shadow_auction_atc_day_ahead_em_to_jao_zone_remap(
+    requests_mock, session
+):
     """EM zone keys that don't match JAO's codes (e.g. IT-NO -> IT, DK-DK1 -> DK1)
     should be translated before looking up `border_XX_YY` fields."""
     remapped = {
@@ -87,7 +89,7 @@ def test_fetch_shadow_auction_atc_day_ahead_em_to_jao_zone_remap(adapter, sessio
         "rejected": False,
         "messages": None,
     }
-    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=remapped)
+    requests_mock.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=remapped)
 
     result = fetch_shadow_auction_atc_day_ahead(
         ZoneKey("FR"),
@@ -102,7 +104,7 @@ def test_fetch_shadow_auction_atc_day_ahead_em_to_jao_zone_remap(adapter, sessio
     assert result[0]["capacityImport"] == 2200
 
 
-def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
+def test_fetch_shadow_auction_atc_day_ahead_one_sided(requests_mock, session):
     """When only one direction is present in the JAO row, the event should
     still be emitted with a single populated capacity direction."""
     one_sided = {
@@ -116,7 +118,7 @@ def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
         "rejected": False,
         "messages": None,
     }
-    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=one_sided)
+    requests_mock.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=one_sided)
 
     result = fetch_shadow_auction_atc_day_ahead(
         ZoneKey("AT"),
@@ -131,11 +133,11 @@ def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
     assert result[0]["sortedZoneKeys"] == "AT->DE"
 
 
-def test_fetch_core_external_atc_day_ahead_de_dk_dk1(adapter, session, snapshot):
+def test_fetch_core_external_atc_day_ahead_de_dk_dk1(requests_mock, session, snapshot):
     """Happy path for a Core-external border that also exercises the
     DK-DK1 → DK1 zone remap. Fixture is a real 2-day, 15-min response."""
     payload = json.loads((BASE_MOCK_PATH / "core_external_atc.json").read_text())
-    adapter.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
 
     result = fetch_core_external_atc_day_ahead(
         ZoneKey("DE"),
@@ -147,11 +149,13 @@ def test_fetch_core_external_atc_day_ahead_de_dk_dk1(adapter, session, snapshot)
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_core_external_atc_day_ahead_border_not_in_dataset(adapter, session):
+def test_fetch_core_external_atc_day_ahead_border_not_in_dataset(
+    requests_mock, session
+):
     """Core-external endpoint only lists a handful of neighbors; a pair
     that isn't in the response should return [] without raising."""
     payload = json.loads((BASE_MOCK_PATH / "core_external_atc.json").read_text())
-    adapter.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
 
     result = fetch_core_external_atc_day_ahead(
         ZoneKey("DE"),
@@ -163,10 +167,10 @@ def test_fetch_core_external_atc_day_ahead_border_not_in_dataset(adapter, sessio
     assert result == []
 
 
-def test_fetch_core_max_bex_day_ahead_de_fr(adapter, session, snapshot):
+def test_fetch_core_max_bex_day_ahead_de_fr(requests_mock, session, snapshot):
     """Core maxExchanges happy path (hourly, 48 rows over 2 days)."""
     payload = json.loads((BASE_MOCK_PATH / "core_max_bex.json").read_text())
-    adapter.register_uri(GET, CORE_MAX_BEX_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, CORE_MAX_BEX_URL_REGEX, json=payload)
 
     result = fetch_core_max_bex_day_ahead(
         ZoneKey("DE"),
@@ -178,11 +182,11 @@ def test_fetch_core_max_bex_day_ahead_de_fr(adapter, session, snapshot):
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_nordic_max_bex_day_ahead_no1_se3(adapter, session, snapshot):
+def test_fetch_nordic_max_bex_day_ahead_no1_se3(requests_mock, session, snapshot):
     """Nordic maxExchanges happy path — exercises the NO-NO2 → NO2,
     SE-SE3 → SE3 zone remap on a real 15-min fixture."""
     payload = json.loads((BASE_MOCK_PATH / "nordic_max_bex.json").read_text())
-    adapter.register_uri(GET, NORDIC_MAX_BEX_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, NORDIC_MAX_BEX_URL_REGEX, json=payload)
 
     result = fetch_nordic_max_bex_day_ahead(
         ZoneKey("NO-NO1"),
@@ -194,10 +198,12 @@ def test_fetch_nordic_max_bex_day_ahead_no1_se3(adapter, session, snapshot):
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(adapter, session, snapshot):
+def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(
+    requests_mock, session, snapshot
+):
     """Core scheduledExchanges happy path (cleared commercial flow, 15-min)."""
     payload = json.loads((BASE_MOCK_PATH / "core_scheduled_exchanges.json").read_text())
-    adapter.register_uri(GET, CORE_SCHEDULED_EXCHANGES_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, CORE_SCHEDULED_EXCHANGES_URL_REGEX, json=payload)
 
     result = fetch_core_scheduled_exchanges_day_ahead(
         ZoneKey("DE"),
@@ -209,10 +215,10 @@ def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(adapter, session, snapsh
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_nordic_max_bflow_day_ahead_no1_se3(adapter, session, snapshot):
+def test_fetch_nordic_max_bflow_day_ahead_no1_se3(requests_mock, session, snapshot):
     """Nordic maxBorderFlow happy path (physical capability ceiling, 15-min)."""
     payload = json.loads((BASE_MOCK_PATH / "nordic_max_bflow.json").read_text())
-    adapter.register_uri(GET, NORDIC_MAX_BFLOW_URL_REGEX, json=payload)
+    requests_mock.register_uri(GET, NORDIC_MAX_BFLOW_URL_REGEX, json=payload)
 
     result = fetch_nordic_max_bflow_day_ahead(
         ZoneKey("NO-NO1"),

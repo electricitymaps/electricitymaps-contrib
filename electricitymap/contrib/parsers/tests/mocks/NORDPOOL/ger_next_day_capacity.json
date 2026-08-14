@@ -1,0 +1,15 @@
+[
+  {
+    "market": "DayAhead",
+    "status": "Missing",
+    "deliveryArea": "GER",
+    "unit": "MW",
+    "dailyTotalUnit": "MWh",
+    "dailyTotalImport": null,
+    "dailyTotalExport": null,
+    "capacities": [],
+    "maxNtcValues": [],
+    "deliveryDateCET": "2025-05-11",
+    "updatedAt": "2025-05-10T08:04:36.5048807Z"
+  }
+]

@@ -6,13 +6,13 @@ from electricitymap.contrib.parsers import ENERCAL
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_production_with_snapshot(adapter, session, snapshot):
+def test_production_with_snapshot(requests_mock, session, snapshot):
     raw_data = (
         resources.files("electricitymap.contrib.parsers.tests.mocks.ENERCAL")
         .joinpath("production.json")
         .read_bytes()
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=raw_data,

@@ -69,6 +69,12 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 686.3
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 693.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 681.3
   hydro:
     - datetime: '2017-01-01'
       source: EIA.gov

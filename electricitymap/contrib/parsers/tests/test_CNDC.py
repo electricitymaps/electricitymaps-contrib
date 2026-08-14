@@ -21,8 +21,8 @@ def target_datetime():
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter, target_datetime):
-    adapter.register_uri(
+def mock_response(requests_mock, target_datetime):
+    requests_mock.register_uri(
         GET,
         INDEX_URL,
         text=resources.files("electricitymap.contrib.parsers.tests.mocks.CNDC")
@@ -30,7 +30,7 @@ def mock_response(adapter, target_datetime):
         .read_text(),
     )
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         DATA_URL.format(target_datetime.strftime("%Y-%m-%d")),
         json=json.loads(

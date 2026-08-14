@@ -251,7 +251,7 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
   price: JP.fetch_price
-  production: JP_KN.fetch_production
+  production: JP.fetch_production
 region: Asia
 sources:
   IPCC 2014:

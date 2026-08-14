@@ -748,11 +748,11 @@ def fetch_production(
         for mode in [m for m in row.index if "storage." in m]:
             storage_mix.add_value(mode.replace("storage.", ""), row[mode])
         production_breakdown.append(
-            zone_key,
-            tstamp.to_pydatetime(),
-            SOURCE,
-            production_mix,
-            storage_mix,
+            zoneKey=zone_key,
+            datetime=tstamp.to_pydatetime(),
+            source=SOURCE,
+            production=production_mix,
+            storage=storage_mix,
             sourceType=EventSourceType.measured,
         )
 

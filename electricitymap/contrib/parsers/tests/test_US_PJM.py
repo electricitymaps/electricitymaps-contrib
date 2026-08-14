@@ -14,16 +14,16 @@ from electricitymap.contrib.types import ZoneKey
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/US_PJM")
 
 
-def test_production(adapter, session, snapshot):
+def test_production(requests_mock, session, snapshot):
     settings = Path(base_path_to_mock, "settings.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://dataminer2.pjm.com/config/settings.json",
         json=loads(settings.read_text()),
     )
 
     data = Path(base_path_to_mock, "gen_by_fuel.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://us-ca-proxy-jfnx5klx2a-uw\.a\.run\.app/api/v1/gen_by_fuel.*"
@@ -37,10 +37,10 @@ def test_production(adapter, session, snapshot):
     )
 
 
-def test_fetch_consumption_forecast(adapter, session, snapshot):
+def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Mock the settings.json request
     settings = Path(base_path_to_mock, "settings.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://dataminer2.pjm.com/config/settings.json",
         json=loads(settings.read_text()),
@@ -48,7 +48,7 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
 
     # Mock load forecast request
     data = Path(base_path_to_mock, "compressed_pjm_load_forecast_2025-03-19.gz")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://us-ca-proxy-jfnx5klx2a-uw\.a\.run\.app/api/v1/load_frcstd_7_day.*"
@@ -63,10 +63,10 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
 
-def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
+def test_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     # Mock the settings.json request
     settings = Path(base_path_to_mock, "settings.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://dataminer2.pjm.com/config/settings.json",
         json=loads(settings.read_text()),
@@ -74,7 +74,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Mock wind forecast request
     data_wind = Path(base_path_to_mock, "pjm_wind_forecast_2025-02-24.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://us-ca-proxy-jfnx5klx2a-uw\.a\.run\.app/api/v1/hourly_wind_power_forecast.*"
@@ -84,7 +84,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Mock solar forecast request
     data_solar = Path(base_path_to_mock, "pjm_solar_forecast_2025-02-24.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://us-ca-proxy-jfnx5klx2a-uw\.a\.run\.app/api/v1/hourly_solar_power_forecast.*"

@@ -1049,6 +1049,16 @@
     "operationalSince": null,
     "status": "operational"
   },
+  "ovh-ie-dublin": {
+    "provider": "ovh",
+    "displayName": "Dublin",
+    "zoneKey": "IE",
+    "lonlat": [-6.2603, 53.3498],
+    "region": "ie-dublin",
+    "source": "https://www.ovhcloud.com/en/datacenter/europe/ireland/dublin/",
+    "operationalSince": "2025",
+    "status": "operational"
+  },
   "ovh-sg-singapore": {
     "provider": "ovh",
     "displayName": "Singapore",

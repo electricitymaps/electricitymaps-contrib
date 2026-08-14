@@ -10,8 +10,8 @@ from electricitymap.contrib.parsers.ESTADISTICO_UT import (
 )
 
 
-def test_fetch_production_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         DAILY_OPERATION_URL,
         text=resources.files(
@@ -20,7 +20,7 @@ def test_fetch_production_live(adapter, session, snapshot):
         .joinpath("get_live.html")
         .read_text(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         DAILY_OPERATION_URL,
         text=resources.files(
@@ -32,10 +32,10 @@ def test_fetch_production_live(adapter, session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(adapter, session, snapshot):
+def test_fetch_production_historical(requests_mock, session, snapshot):
     dt = datetime.fromisoformat("2025-01-01").replace(tzinfo=ZONE_INFO)
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         DAILY_OPERATION_URL,
         text=resources.files(
@@ -44,7 +44,7 @@ def test_fetch_production_historical(adapter, session, snapshot):
         .joinpath("get_historical.html")
         .read_text(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         DAILY_OPERATION_URL,
         text=resources.files(

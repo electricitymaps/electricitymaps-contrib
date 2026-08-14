@@ -8,10 +8,10 @@ from electricitymap.contrib.types import ZoneKey
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/CA_AB")
 
 
-def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
+def test_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     # Mock wind forecast data request
     data_wind = Path(base_path_to_mock, "wind_rpt_longterm.csv")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/wind_rpt_longterm.csv",
         text=data_wind.read_text(),
@@ -19,7 +19,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Moch solar forecast data request
     data_solar = Path(base_path_to_mock, "solar_rpt_longterm.csv")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/solar_rpt_longterm.csv",
         text=data_solar.read_text(),

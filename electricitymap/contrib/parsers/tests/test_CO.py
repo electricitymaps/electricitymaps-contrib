@@ -16,8 +16,8 @@ from electricitymap.contrib.parsers.CO import (
 mock_files = resources.files("electricitymap.contrib.parsers.tests.mocks.CO")
 
 
-def test_fetch_consumption_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         ANY,
         CO_DEMAND_URL,
         json=loads(mock_files.joinpath("cons_live.json").read_text()),

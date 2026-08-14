@@ -3,6 +3,9 @@
 from enum import Enum
 from typing import NewType
 
+from electricitymap.contrib.types.atc_type import AtcType
+from electricitymap.contrib.types.market_agreement_type import MarketAgreementType
+
 ZoneKey = NewType("ZoneKey", str)
 """
 ZoneKey is used throughout the code to identify zones.
@@ -32,6 +35,7 @@ class ParserDataType(Enum):
     EXCHANGE_FORECAST = "exchangeForecast"
     EXCHANGE = "exchange"
     GENERATION_FORECAST = "generationForecast"
+    INTRADAY_CONTRACT_STATISTICS = "intradayContractStatistics"
     PRICE = "price"
     PRICE_INTRADAY = "priceIntraday"
     PRODUCTION = "production"
@@ -43,10 +47,10 @@ class ParserDataType(Enum):
     EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD = "exchangeCapacityForecastDayAhead"
     EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD = "exchangeCapacityForecastWeekAhead"
     EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD = "exchangeCapacityForecastMonthAhead"
-    SHADOW_AUCTION_ATC_DAY_AHEAD = "shadowAuctionAtcDayAhead"
-    CORE_EXTERNAL_ATC_DAY_AHEAD = "coreExternalAtcDayAhead"
+    ATC_DAY_AHEAD = "atcDayAhead"
     MAX_BEX_DAY_AHEAD = "maxBexDayAhead"
     SCHEDULED_EXCHANGES_DAY_AHEAD = "scheduledExchangesDayAhead"
+    SCHEDULED_EXCHANGES_TOTAL = "scheduledExchangesTotal"
     MAX_BFLOW_DAY_AHEAD = "maxBflowDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
@@ -67,10 +71,10 @@ EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
 # capacities, cleared market-coupling schedules, physical flow limits. All carry
 # the two-zone-key call convention.
 EXCHANGE_PUBLICATION_DATA_TYPES = [
-    ParserDataType.SHADOW_AUCTION_ATC_DAY_AHEAD,
-    ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
+    ParserDataType.ATC_DAY_AHEAD,
     ParserDataType.MAX_BEX_DAY_AHEAD,
     ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_TOTAL,
     ParserDataType.MAX_BFLOW_DAY_AHEAD,
 ]
 # Every ParserDataType registered on the exchange side (two-zone-key call
@@ -94,6 +98,8 @@ __all__: list[str] = [
     "Point",
     "BoundingBox",
     "ParserDataType",
+    "AtcType",
+    "MarketAgreementType",
     "ALL_DATA_TYPES",
     "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
     "EXCHANGE_DATA_TYPES",

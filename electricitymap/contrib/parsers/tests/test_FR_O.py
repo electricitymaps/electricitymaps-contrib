@@ -8,8 +8,8 @@ from electricitymap.contrib.parsers import FR_O
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_fetch_exchange(adapter, session):
-    adapter.register_uri(
+def test_fetch_exchange(requests_mock, session):
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(
@@ -58,8 +58,8 @@ def test_fetch_exchange(adapter, session):
             assert production, expected_data[index]["production"][production_type]
 
 
-def test_fetch_price(adapter, session):
-    adapter.register_uri(
+def test_fetch_price(requests_mock, session):
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(
@@ -95,8 +95,8 @@ def test_fetch_price(adapter, session):
         assert actual["price"] == expected_data[index]["price"]
 
 
-def test_fetch_production(adapter, session):
-    adapter.register_uri(
+def test_fetch_production(requests_mock, session):
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(
