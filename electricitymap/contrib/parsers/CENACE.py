@@ -323,10 +323,9 @@ def fetch_consumption(
 
 
 def fetch_generation_forecast_data(
-    session: Session | None = None,
+    session: Session,
 ) -> list[dict]:
     """Fetches the raw hourly rows backing the national demand dashboard."""
-    session = session or Session()
     response: Response = session.post(
         MX_GENERATION_FORECAST_URL,
         json={"gerencia": NATIONAL_GERENCIA},
@@ -419,7 +418,9 @@ def fetch_generation_forecast(
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    raw_data = fetch_generation_forecast_data(session=session)
+    s = session or Session()
+
+    raw_data = fetch_generation_forecast_data(session=s)
     forecast = parse_generation_forecast(
         zone_key, datetime.now(tz=TIMEZONE), raw_data, logger
     )

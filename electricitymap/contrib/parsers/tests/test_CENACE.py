@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from importlib import resources
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import freezegun
@@ -17,7 +17,7 @@ from electricitymap.contrib.parsers.CENACE import (
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
-MOCKS = resources.files("electricitymap.contrib.parsers.tests.mocks.CENACE")
+MOCKS = Path(__file__).parent / "mocks" / "CENACE"
 TIMEZONE = ZoneInfo("America/Mexico_City")
 
 
@@ -31,9 +31,10 @@ def mock_response(requests_mock):
 
 @pytest.fixture
 def mock_generation_forecast(requests_mock):
-    """Registers a forecast payload; defaults to the 24-row window."""
+    """Registers a forecast payload. The filename is always explicit, since the
+    two windows this parser has to handle differ only by which mock is used."""
 
-    def _register(filename: str = "GraficaDemanda.json"):
+    def _register(filename: str):
         requests_mock.register_uri(
             POST,
             MX_GENERATION_FORECAST_URL,
@@ -69,7 +70,7 @@ def test_fetch_consumption_BCS(session):
 # 08:00 in Mexico City, partway through the day the mocks were captured on.
 @freezegun.freeze_time("2026-08-12 14:00:00")
 def test_fetch_generation_forecast(session, mock_generation_forecast):
-    mock_generation_forecast()
+    mock_generation_forecast("GraficaDemanda.json")
 
     data = fetch_generation_forecast(ZoneKey("MX"), session)
 
