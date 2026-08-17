@@ -200,6 +200,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 8682.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 8981.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

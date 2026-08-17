@@ -95,6 +95,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 397.9
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 639.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -231,6 +234,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1986.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 1985.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -557,6 +563,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 103814.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 104639.2
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -745,6 +754,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 5585.6
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 5373.6
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1061,6 +1073,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 17916.6
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 18570.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1174,6 +1189,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 11711.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 11727.9
 center_point:
   - -82.09830495576169
   - 39.25470269209093
