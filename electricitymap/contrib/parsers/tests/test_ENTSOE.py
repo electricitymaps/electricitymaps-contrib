@@ -862,6 +862,132 @@ def test_merge_forecast_transfer_capacities_both_directions():
     assert events[1].capacityImport == 350.0
 
 
+# ─── _fetch_forecast_transfer_capacity domain resolution ─────────────────────
+
+DE_LU_DOMAIN = "10Y1001A1001A82H"
+DE_COUNTRY_DOMAIN = "10Y1001A1001A83F"
+DK_DK1_DOMAIN = "10YDK-1--------W"
+
+
+def _register_de_dk1_week_ahead(requests_mock):
+    """Serve A61 week-ahead only on the DE-LU domain, as ENTSO-E does."""
+    export = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
+    imprt = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
+    requests_mock.register_uri(
+        GET,
+        f"?documentType=A61&Contract_MarketAgreement.Type=A02"
+        f"&in_Domain={DK_DK1_DOMAIN}&out_Domain={DE_LU_DOMAIN}",
+        content=export.read_bytes(),
+    )
+    requests_mock.register_uri(
+        GET,
+        f"?documentType=A61&Contract_MarketAgreement.Type=A02"
+        f"&in_Domain={DE_LU_DOMAIN}&out_Domain={DK_DK1_DOMAIN}",
+        content=imprt.read_bytes(),
+    )
+
+
+def test_fetch_forecast_transfer_capacity_uses_domain_override(requests_mock, session):
+    """DE->DK-DK1 must be queried on the DE-LU bidding zone, not the DE country
+    domain. ENTSO-E publishes A61 per bidding zone, so resolving `DE` straight
+    through ENTSOE_DOMAIN_MAPPINGS yields "No matching data found" and the
+    border silently reports nothing.
+    """
+    _register_de_dk1_week_ahead(requests_mock)
+
+    result = ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("DE"),
+        zone_key2=ZoneKey("DK-DK1"),
+        session=session,
+    )
+
+    assert result, "expected capacity forecasts for DE->DK-DK1"
+    assert all(e["sortedZoneKeys"] == "DE->DK-DK1" for e in result)
+    queried = [r.qs for r in requests_mock.request_history]
+    assert queried, "no request was made"
+    for qs in queried:
+        domains = set(qs["in_domain"]) | set(qs["out_domain"])
+        assert DE_COUNTRY_DOMAIN.lower() not in domains
+        assert DE_LU_DOMAIN.lower() in domains
+
+
+def test_fetch_forecast_transfer_capacity_is_argument_order_independent(
+    requests_mock, session
+):
+    """Swapping the two zones must not flip export/import.
+
+    The domain pair is resolved from the *sorted* zones, so ("DK-DK1", "DE")
+    has to produce byte-identical events to ("DE", "DK-DK1").
+    """
+    _register_de_dk1_week_ahead(requests_mock)
+
+    forward = ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("DE"), zone_key2=ZoneKey("DK-DK1"), session=session
+    )
+    reversed_args = ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("DE"), session=session
+    )
+
+    assert forward == reversed_args
+
+
+def test_fetch_forecast_transfer_capacity_sums_aggregated_border(
+    requests_mock, session
+):
+    """FR-COR->IT-SAR is served by two links (SACOAC + SACODC), each published
+    as its own A61 document. The border's capacity is their sum.
+    """
+    export = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
+    imprt = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
+    # Same payload on both links, so the summed result must be exactly doubled.
+    # FR-COR is the first sorted zone and is represented by the converter
+    # domains, so `in_Domain=IT-SAR` is the FR-COR->IT-SAR (export) direction.
+    for ac_dc in ("10Y1001A1001A885", "10Y1001A1001A893"):
+        requests_mock.register_uri(
+            GET,
+            f"?documentType=A61&Contract_MarketAgreement.Type=A02"
+            f"&in_Domain=10Y1001A1001A74G&out_Domain={ac_dc}",
+            content=export.read_bytes(),
+        )
+        requests_mock.register_uri(
+            GET,
+            f"?documentType=A61&Contract_MarketAgreement.Type=A02"
+            f"&in_Domain={ac_dc}&out_Domain=10Y1001A1001A74G",
+            content=imprt.read_bytes(),
+        )
+
+    # DE->DK-DK1 resolves to a single domain pair fed the same payload, giving
+    # the un-summed baseline to compare against.
+    _register_de_dk1_week_ahead(requests_mock)
+
+    single = ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("DE"), zone_key2=ZoneKey("DK-DK1"), session=session
+    )
+    aggregated = ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("FR-COR"), zone_key2=ZoneKey("IT-SAR"), session=session
+    )
+
+    assert len(aggregated) == len(single)
+    for agg, one in zip(aggregated, single, strict=True):
+        assert agg["capacityExport"] == pytest.approx(one["capacityExport"] * 2)
+        assert agg["capacityImport"] == pytest.approx(one["capacityImport"] * 2)
+
+
+def test_fetch_forecast_transfer_capacity_resolves_zones_absent_from_mappings(
+    requests_mock, session
+):
+    """Zones that only exist in the override table (RU-1, FR-COR) must resolve.
+
+    Indexing ENTSOE_DOMAIN_MAPPINGS directly raised KeyError for these.
+    """
+    requests_mock.register_uri(GET, ANY, content=b"<empty/>")
+
+    for zone_1, zone_2 in (("EE", "RU-1"), ("FR-COR", "IT-CNO")):
+        ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+            zone_key1=ZoneKey(zone_1), zone_key2=ZoneKey(zone_2), session=session
+        )
+
+
 def test_merge_forecast_transfer_capacities_only_forward():
     """Only forward data → merged events have capacityImport=None."""
     logger = logging.getLogger("test")

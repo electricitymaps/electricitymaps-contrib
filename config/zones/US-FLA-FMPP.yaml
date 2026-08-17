@@ -73,6 +73,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 220.3
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 214.3
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -83,6 +86,9 @@ capacity:
     - datetime: '2020-06-01'
       source: EIA.gov
       value: 166.9
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 170.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
