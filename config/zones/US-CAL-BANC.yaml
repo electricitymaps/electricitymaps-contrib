@@ -15,6 +15,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 15.2
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 21.4
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
