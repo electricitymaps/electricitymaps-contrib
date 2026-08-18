@@ -127,6 +127,12 @@ capacity:
     - datetime: '2025-01-01'
       source: energimyndigheten.se
       value: 4493.88
+center_point:
+  - 15.211910518135229
+  - 59.44008750997199
+centroid:
+  - 14.868951874699498
+  - 58.967141148938694
 country: SE
 country_name: Sweden
 currency: EUR
