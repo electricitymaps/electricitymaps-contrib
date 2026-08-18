@@ -52,6 +52,7 @@ PRODUCTION_PARSE_MAPPING = {
     "car": "coal",  # Coal
     "resid": "biomass",  # Wastes
     "termRenov": "unknown",  # Thermal renewable
+    "bio": "biomass",  # Biomass (Peninsula; replaces "termRenov" in that system)
     "cogenResto": "unknown",  # Cogeneration and waste
     "tnr": "unknown",  # Other special regime
     "trn": "unknown",  # Thermal renewable
