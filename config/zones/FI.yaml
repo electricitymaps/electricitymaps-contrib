@@ -109,6 +109,12 @@ capacity:
     - datetime: '2026-04-03'
       source: fingrid.fi
       value: 9426
+center_point:
+  - 26.323970083708076
+  - 64.96030393692205
+centroid:
+  - 25.28410780108274
+  - 65.08244089552896
 contributors:
   - corradio
   - nessie2013
