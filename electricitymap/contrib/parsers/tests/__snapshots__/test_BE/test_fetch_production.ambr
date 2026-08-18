@@ -39,7 +39,7 @@
         'unknown': 607.0,
         'wind': 4217.0,
       }),
-      'source': 'entsoe.eu, opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -25.0,
@@ -62,7 +62,7 @@
         'unknown': 600.66,
         'wind': 4251.79,
       }),
-      'source': 'entsoe.eu, opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -25.0,
@@ -85,7 +85,7 @@
         'unknown': 591.49,
         'wind': 4266.5,
       }),
-      'source': 'entsoe.eu, opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -25.0,
