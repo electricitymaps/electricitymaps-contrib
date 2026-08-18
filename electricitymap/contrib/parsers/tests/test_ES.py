@@ -29,13 +29,14 @@ def mock_response(requests_mock):
                 ES.get_url(zone_key, target_date),
                 content=data.read(),
             )
-            
+
     with open(f"{MOCKS_DIR}/demandaGeneracionCanariasLaGomera.json", "rb") as data:
         requests_mock.register_uri(
             GET,
             ES.get_url(ZoneKey("ES-CN-IG"), "2026-08-01"),
             content=data.read(),
         )
+
 
 @pytest.mark.parametrize(
     "zone_key,target_date",
