@@ -207,7 +207,7 @@ EXCHANGE_MAPPING = {
     ZoneKey("ES-CN-IG->ES-CN-TE"): {
         "zone_ref": ZoneKey("ES-CN-IG"),
         "codes": ["etlg"],
-        "coef": 1,
+        "coef": -1,
     },
 }
 

@@ -4,7 +4,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.4,
+      'netFlow': -10.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -12,7 +12,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -20,7 +20,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -28,7 +28,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -36,7 +36,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -44,7 +44,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -52,7 +52,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -60,7 +60,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -68,7 +68,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -76,7 +76,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -84,7 +84,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -92,7 +92,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -100,7 +100,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -108,7 +108,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -116,7 +116,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -124,7 +124,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -132,7 +132,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -140,7 +140,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -148,7 +148,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -156,7 +156,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -164,7 +164,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -172,7 +172,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -180,7 +180,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -188,7 +188,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -196,7 +196,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -204,7 +204,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.8,
+      'netFlow': -9.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -212,7 +212,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -220,7 +220,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -228,7 +228,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -236,7 +236,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -244,7 +244,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -252,7 +252,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -260,7 +260,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -268,7 +268,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -276,7 +276,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -284,7 +284,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -292,7 +292,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -300,7 +300,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -308,7 +308,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -316,7 +316,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -324,7 +324,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.5,
+      'netFlow': -10.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -332,7 +332,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.1,
+      'netFlow': -11.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -340,7 +340,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.1,
+      'netFlow': -11.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -348,7 +348,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.0,
+      'netFlow': -11.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -356,7 +356,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.0,
+      'netFlow': -11.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -364,7 +364,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -372,7 +372,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -380,7 +380,7 @@
     dict({
       'datetime': datetime.datetime(2026, 7, 31, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.3,
+      'netFlow': -10.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -388,7 +388,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -396,7 +396,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.4,
+      'netFlow': -10.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -404,7 +404,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -412,7 +412,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -420,7 +420,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.8,
+      'netFlow': -10.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -428,7 +428,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -436,7 +436,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -444,7 +444,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.4,
+      'netFlow': -10.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -452,7 +452,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.5,
+      'netFlow': -10.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -460,7 +460,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -468,7 +468,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -476,7 +476,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -484,7 +484,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -492,7 +492,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -500,7 +500,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -508,7 +508,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -516,7 +516,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -524,7 +524,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -532,7 +532,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -540,7 +540,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -548,7 +548,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -556,7 +556,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -564,7 +564,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -572,7 +572,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -580,7 +580,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -588,7 +588,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -596,7 +596,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -604,7 +604,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -612,7 +612,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -620,7 +620,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -628,7 +628,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -636,7 +636,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -644,7 +644,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -652,7 +652,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -660,7 +660,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -668,7 +668,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -676,7 +676,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -684,7 +684,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -692,7 +692,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.8,
+      'netFlow': -6.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -700,7 +700,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -708,7 +708,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -716,7 +716,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.9,
+      'netFlow': -6.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -724,7 +724,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -732,7 +732,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -740,7 +740,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -748,7 +748,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -756,7 +756,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -764,7 +764,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -772,7 +772,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -780,7 +780,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -788,7 +788,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -796,7 +796,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -804,7 +804,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -812,7 +812,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -820,7 +820,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -828,7 +828,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -836,7 +836,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -844,7 +844,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -852,7 +852,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -860,7 +860,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -868,7 +868,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -876,7 +876,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -884,7 +884,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -892,7 +892,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -900,7 +900,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -908,7 +908,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -916,7 +916,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -924,7 +924,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -932,7 +932,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -940,7 +940,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -948,7 +948,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -956,7 +956,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -964,7 +964,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -972,7 +972,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -980,7 +980,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -988,7 +988,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.3,
+      'netFlow': -9.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -996,7 +996,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1004,7 +1004,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1012,7 +1012,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1020,7 +1020,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1028,7 +1028,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1036,7 +1036,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1044,7 +1044,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1052,7 +1052,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1060,7 +1060,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1068,7 +1068,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1076,7 +1076,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1084,7 +1084,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1092,7 +1092,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1100,7 +1100,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1108,7 +1108,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1116,7 +1116,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1124,7 +1124,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1132,7 +1132,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1140,7 +1140,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.6,
+      'netFlow': -9.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1148,7 +1148,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.8,
+      'netFlow': -9.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1156,7 +1156,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.7,
+      'netFlow': -9.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1164,7 +1164,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.1,
+      'netFlow': -10.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1172,7 +1172,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1180,7 +1180,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.3,
+      'netFlow': -10.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1188,7 +1188,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1196,7 +1196,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.2,
+      'netFlow': -11.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1204,7 +1204,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.2,
+      'netFlow': -11.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1212,7 +1212,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.9,
+      'netFlow': -10.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1220,7 +1220,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.0,
+      'netFlow': -11.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1228,7 +1228,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.9,
+      'netFlow': -10.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1236,7 +1236,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.0,
+      'netFlow': -11.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1244,7 +1244,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.1,
+      'netFlow': -11.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1252,7 +1252,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.1,
+      'netFlow': -11.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1260,7 +1260,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.1,
+      'netFlow': -11.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1268,7 +1268,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.4,
+      'netFlow': -11.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1276,7 +1276,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.4,
+      'netFlow': -11.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1284,7 +1284,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1292,7 +1292,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.4,
+      'netFlow': -9.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1300,7 +1300,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1308,7 +1308,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1316,7 +1316,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1324,7 +1324,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1332,7 +1332,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1340,7 +1340,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1348,7 +1348,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1356,7 +1356,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1364,7 +1364,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1372,7 +1372,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1380,7 +1380,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1388,7 +1388,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1396,7 +1396,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1404,7 +1404,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1412,7 +1412,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1420,7 +1420,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.0,
+      'netFlow': -9.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1428,7 +1428,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1436,7 +1436,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1444,7 +1444,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1452,7 +1452,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1460,7 +1460,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1468,7 +1468,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1476,7 +1476,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1484,7 +1484,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1492,7 +1492,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1500,7 +1500,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1508,7 +1508,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1516,7 +1516,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1524,7 +1524,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1532,7 +1532,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1540,7 +1540,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1548,7 +1548,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1556,7 +1556,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1564,7 +1564,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1572,7 +1572,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1580,7 +1580,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1588,7 +1588,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1596,7 +1596,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.8,
+      'netFlow': -7.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1604,7 +1604,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1612,7 +1612,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1620,7 +1620,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1628,7 +1628,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.8,
+      'netFlow': -7.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1636,7 +1636,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.8,
+      'netFlow': -7.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1644,7 +1644,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.8,
+      'netFlow': -7.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1652,7 +1652,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.0,
+      'netFlow': -8.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1660,7 +1660,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.0,
+      'netFlow': -8.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1668,7 +1668,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1676,7 +1676,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1684,7 +1684,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1692,7 +1692,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1700,7 +1700,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1708,7 +1708,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1716,7 +1716,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1724,7 +1724,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1732,7 +1732,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1740,7 +1740,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1748,7 +1748,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1756,7 +1756,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1764,7 +1764,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1772,7 +1772,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1780,7 +1780,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1788,7 +1788,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1796,7 +1796,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1804,7 +1804,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1812,7 +1812,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1820,7 +1820,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.3,
+      'netFlow': -8.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1828,7 +1828,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1836,7 +1836,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1844,7 +1844,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1852,7 +1852,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1860,7 +1860,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.4,
+      'netFlow': -10.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1868,7 +1868,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.4,
+      'netFlow': -10.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1876,7 +1876,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1884,7 +1884,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.5,
+      'netFlow': -10.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1892,7 +1892,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.0,
+      'netFlow': -10.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1900,7 +1900,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.9,
+      'netFlow': -9.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1908,7 +1908,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.1,
+      'netFlow': -10.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1916,7 +1916,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1924,7 +1924,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.8,
+      'netFlow': -9.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1932,7 +1932,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1940,7 +1940,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.6,
+      'netFlow': -10.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1948,7 +1948,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 11.0,
+      'netFlow': -11.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1956,7 +1956,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.7,
+      'netFlow': -10.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1964,7 +1964,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.5,
+      'netFlow': -10.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1972,7 +1972,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.5,
+      'netFlow': -10.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1980,7 +1980,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1988,7 +1988,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.0,
+      'netFlow': -10.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -1996,7 +1996,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.0,
+      'netFlow': -10.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2004,7 +2004,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.0,
+      'netFlow': -10.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2012,7 +2012,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.8,
+      'netFlow': -9.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2020,7 +2020,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.9,
+      'netFlow': -9.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2028,7 +2028,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2036,7 +2036,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2044,7 +2044,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.2,
+      'netFlow': -9.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2052,7 +2052,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.5,
+      'netFlow': -9.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2060,7 +2060,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 10.2,
+      'netFlow': -10.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2068,7 +2068,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2076,7 +2076,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.4,
+      'netFlow': -8.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2084,7 +2084,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2092,7 +2092,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2100,7 +2100,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2108,7 +2108,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2116,7 +2116,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.7,
+      'netFlow': -8.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2124,7 +2124,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2132,7 +2132,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.9,
+      'netFlow': -8.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2140,7 +2140,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.4,
+      'netFlow': -7.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2148,7 +2148,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 9.1,
+      'netFlow': -9.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2156,7 +2156,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2164,7 +2164,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.5,
+      'netFlow': -8.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2172,7 +2172,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.8,
+      'netFlow': -8.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2180,7 +2180,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.0,
+      'netFlow': -8.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2188,7 +2188,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.6,
+      'netFlow': -7.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2196,7 +2196,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2204,7 +2204,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.7,
+      'netFlow': -7.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2212,7 +2212,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2220,7 +2220,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.7,
+      'netFlow': -6.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2228,7 +2228,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.6,
+      'netFlow': -7.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2236,7 +2236,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.0,
+      'netFlow': -8.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2244,7 +2244,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.7,
+      'netFlow': -7.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2252,7 +2252,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.1,
+      'netFlow': -7.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2260,7 +2260,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.7,
+      'netFlow': -6.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2268,7 +2268,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.3,
+      'netFlow': -7.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2276,7 +2276,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.6,
+      'netFlow': -8.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2284,7 +2284,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.1,
+      'netFlow': -7.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2292,7 +2292,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.8,
+      'netFlow': -6.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2300,7 +2300,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.1,
+      'netFlow': -7.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2308,7 +2308,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.4,
+      'netFlow': -6.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2316,7 +2316,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.2,
+      'netFlow': -8.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2324,7 +2324,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.8,
+      'netFlow': -6.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2332,7 +2332,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 8.1,
+      'netFlow': -8.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2340,7 +2340,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.9,
+      'netFlow': -6.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2348,7 +2348,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.7,
+      'netFlow': -7.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2356,7 +2356,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.1,
+      'netFlow': -7.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2364,7 +2364,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.5,
+      'netFlow': -6.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2372,7 +2372,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.9,
+      'netFlow': -7.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2380,7 +2380,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.0,
+      'netFlow': -6.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2388,7 +2388,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.3,
+      'netFlow': -6.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2396,7 +2396,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 7.6,
+      'netFlow': -7.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2404,7 +2404,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.3,
+      'netFlow': -6.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2412,7 +2412,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 5.3,
+      'netFlow': -5.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2420,7 +2420,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 6.8,
+      'netFlow': -6.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2428,7 +2428,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 5.3,
+      'netFlow': -5.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2436,7 +2436,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 5.3,
+      'netFlow': -5.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2444,7 +2444,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.4,
+      'netFlow': -4.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2452,7 +2452,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.2,
+      'netFlow': -4.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2460,7 +2460,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.4,
+      'netFlow': -4.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2468,7 +2468,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 5.0,
+      'netFlow': -5.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2476,7 +2476,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.0,
+      'netFlow': -4.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2484,7 +2484,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.3,
+      'netFlow': -3.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2492,7 +2492,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.8,
+      'netFlow': -3.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2500,7 +2500,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.9,
+      'netFlow': -2.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2508,7 +2508,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.5,
+      'netFlow': -3.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2516,7 +2516,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.0,
+      'netFlow': -4.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2524,7 +2524,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.4,
+      'netFlow': -3.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2532,7 +2532,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.9,
+      'netFlow': -2.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2540,7 +2540,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 4.1,
+      'netFlow': -4.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2548,7 +2548,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.0,
+      'netFlow': -3.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2556,7 +2556,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.1,
+      'netFlow': -3.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2564,7 +2564,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.7,
+      'netFlow': -1.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2572,7 +2572,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.9,
+      'netFlow': -2.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2580,7 +2580,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.6,
+      'netFlow': -3.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2588,7 +2588,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.6,
+      'netFlow': -1.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2596,7 +2596,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.0,
+      'netFlow': -2.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2604,7 +2604,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.3,
+      'netFlow': -3.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2612,7 +2612,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.8,
+      'netFlow': -3.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2620,7 +2620,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.3,
+      'netFlow': -1.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2628,7 +2628,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.8,
+      'netFlow': -1.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2636,7 +2636,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 3.1,
+      'netFlow': -3.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2644,7 +2644,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.0,
+      'netFlow': -2.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2652,7 +2652,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.0,
+      'netFlow': -1.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2660,7 +2660,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.4,
+      'netFlow': -0.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2668,7 +2668,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.7,
+      'netFlow': -0.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2676,7 +2676,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.6,
+      'netFlow': -0.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2684,7 +2684,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 1, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.2,
+      'netFlow': -1.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2692,7 +2692,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 2.1,
+      'netFlow': -2.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2700,7 +2700,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.9,
+      'netFlow': -0.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2708,7 +2708,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.5,
+      'netFlow': -0.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2716,7 +2716,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.0,
+      'netFlow': -1.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2724,7 +2724,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.6,
+      'netFlow': -0.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2740,7 +2740,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.2,
+      'netFlow': -1.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2748,7 +2748,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.5,
+      'netFlow': -1.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2756,7 +2756,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.0,
+      'netFlow': -1.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2764,7 +2764,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.0,
+      'netFlow': -1.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2772,7 +2772,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.8,
+      'netFlow': -1.8,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2780,7 +2780,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.2,
+      'netFlow': -1.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2788,7 +2788,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.7,
+      'netFlow': -1.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2796,7 +2796,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.7,
+      'netFlow': -0.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2804,7 +2804,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.4,
+      'netFlow': -0.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2812,7 +2812,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.3,
+      'netFlow': -0.3,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2820,7 +2820,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.0,
+      'netFlow': -1.0,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2828,7 +2828,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.6,
+      'netFlow': -0.6,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2836,7 +2836,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.1,
+      'netFlow': -1.1,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2844,7 +2844,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.9,
+      'netFlow': -0.9,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2852,7 +2852,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.2,
+      'netFlow': -0.2,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2860,7 +2860,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.7,
+      'netFlow': -0.7,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2876,7 +2876,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 1.4,
+      'netFlow': -1.4,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2884,7 +2884,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 2, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
       'end_datetime': None,
-      'netFlow': 0.5,
+      'netFlow': -0.5,
       'sortedZoneKeys': 'ES-CN-IG->ES-CN-TE',
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
