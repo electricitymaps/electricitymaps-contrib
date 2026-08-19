@@ -335,46 +335,46 @@ emissionFactors:
     coal:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 1107.615308189345
+        value: 1107.06
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 1076.4273735741049
+        value: 1075.89
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 1094.927576530494
+        value: 1094.38
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1107.2657286711817
+        value: 1106.71
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 451.71503142731837
+        value: 451.49
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 521.1324027607403
+        value: 520.87
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 471.6847263350428
+        value: 471.45
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 455.87998325889254
+        value: 455.65
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
         source: eGrid 2020
-        value: 70.87985131255388
+        value: 70.84
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 78.28737905336972
+        value: 78.25
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 29.707905036391203
+        value: 29.69
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 28.739435464835893
+        value: 28.73
     hydro discharge:
       - _comment: used storage values greater than zero.
         datetime: '2017-01-01'
@@ -395,77 +395,77 @@ emissionFactors:
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 953.0188557505772
+        value: 952.54
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 938.8752567850639
+        value: 938.4
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 927.2427781942617
+        value: 926.78
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 914.8824271853546
+        value: 914.42
   lifecycle:
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
         source: eGrid 2020
-        value: 281.38853074481284
+        value: 281.25
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 280.6015234636058
+        value: 280.46
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 274.05045073430733
+        value: 273.91
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 282.7016835752059
+        value: 282.56
     coal:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 1167.615308189345
+        value: 1167.06
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 1136.4273735741049
+        value: 1135.89
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1154.927576530494
+        value: 1154.38
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1167.2657286711817
+        value: 1166.71
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 571.7150314273183
+        value: 571.49
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 641.1324027607403
+        value: 640.87
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 591.6847263350428
+        value: 591.45
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 575.8799832588925
+        value: 575.65
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 108.87985131255388
+        value: 108.84
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 116.28737905336972
+        value: 116.25
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 67.7079050363912
+        value: 67.69
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 66.73943546483589
+        value: 66.73
     hydro discharge:
       - _comment: used storage values greater than zero.
         datetime: '2017-01-01'
@@ -486,16 +486,16 @@ emissionFactors:
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 1197.0188557505771
+        value: 1196.54
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 1182.8752567850638
+        value: 1182.4
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1171.2427781942617
+        value: 1170.78
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1158.8824271853546
+        value: 1158.42
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
