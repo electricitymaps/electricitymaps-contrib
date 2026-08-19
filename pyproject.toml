@@ -1,6 +1,6 @@
 [project]
 name = "electricitymap-contrib"
-version = "2.7.1"
+version = "2.8.1"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.10, < 3.14"
@@ -61,7 +61,7 @@ parsers = [
 
 [dependency-groups]
 dev = [
-    "ruff==0.15.4",
+    "ruff==0.16.3",
     "pytest>=9,<10",
     "syrupy>=5,<6",
     "requests-mock>=1.12,<2",
