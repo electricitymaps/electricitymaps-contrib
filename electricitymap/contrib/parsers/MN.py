@@ -12,7 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 NDC_API = "https://disnews.energy.mn/convertt.php"
@@ -36,9 +36,11 @@ TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 # Notes:
 # - dts is assumed to be coal, as coal is reported as the main source of
 #   electricity for mongolia.
-# - Songino is ignored for now, but it seems to be a specific area of Mongolia.
-#   Ideally we'd figure out if we should make use of this value.
+# - Songino is a battery energy storage system (BESS). Positive values indicate
+#   charging (consuming power), negative values indicate discharging (generating
+#   power). See https://github.com/electricitymaps/electricitymaps-contrib/issues/8355
 # - t is temperature, and ignored.
+# - Taishir is temperature at Taishir location, and ignored.
 #
 JSON_API_MAPPING = {
     "date": "datetime",
@@ -47,6 +49,7 @@ JSON_API_MAPPING = {
     "dts": "coal",
     "sumnar": "solar",
     "sumsalhit": "wind",
+    "Songino": "battery_storage",
 }
 
 
@@ -108,12 +111,15 @@ def fetch_production(
     prod_mix.add_value("solar", data["solar"])
     prod_mix.add_value("wind", data["wind"])
 
+    storage_mix = StorageMix(battery=data["battery_storage"])
+
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
         datetime=data["datetime"],
         zoneKey=zone_key,
         source="https://ndc.energy.mn/",
         production=prod_mix,
+        storage=storage_mix,
     )
 
     return prod_breakdown_list.to_list()
