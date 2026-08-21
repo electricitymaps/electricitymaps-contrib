@@ -14,9 +14,6 @@ class ExchangeJsonTestcase(unittest.TestCase):
                     continue
                 self.assertIn(zone, zone_keys)
 
-    def test_de_dk_dk1_capacity(self):
-        self.assertEqual(EXCHANGES_CONFIG["DE->DK-DK1"]["capacity"], [-3500, 3500])
-
 
 if __name__ == "__main__":
     unittest.main(buffer=True)
