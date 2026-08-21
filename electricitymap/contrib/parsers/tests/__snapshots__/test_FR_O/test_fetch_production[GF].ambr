@@ -1,0 +1,53 @@
+# serializer version: 1
+# name: test_fetch_production[GF]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 10, 1, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.91,
+        'hydro': 131.962333,
+        'oil': 170.52,
+        'solar': 0.0593,
+      }),
+      'source': 'opendata-guyane.edf.fr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GF',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 10, 16, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.817,
+        'hydro': 135.6173,
+        'oil': 174.027667,
+        'solar': 0.250633,
+      }),
+      'source': 'opendata-guyane.edf.fr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GF',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 10, 31, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.5813,
+        'hydro': 134.420667,
+        'oil': 215.396967,
+        'solar': 0.498333,
+      }),
+      'source': 'opendata-guyane.edf.fr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GF',
+    }),
+  ])
+# ---

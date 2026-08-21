@@ -1,0 +1,41 @@
+[
+  {
+    "date": "2026-05-26T09:21:00+00:00",
+    "diesel": 78.548,
+    "bioenergies": 21.762,
+    "turbines_combustion": 0,
+    "total": 143.033,
+    "charbon": 21.792,
+    "hydraulique": 3.2298,
+    "eolien": 18.03,
+    "geothermie": -0.328,
+    "photovoltaique": 0,
+    "statut": "Estimé"
+  },
+  {
+    "date": "2026-05-26T09:36:00+00:00",
+    "diesel": 76.63,
+    "bioenergies": 22.716,
+    "turbines_combustion": 0,
+    "total": 142.048,
+    "charbon": 22.092,
+    "hydraulique": 3.2298,
+    "eolien": 17.684,
+    "geothermie": -0.3038,
+    "photovoltaique": 0,
+    "statut": "Estimé"
+  },
+  {
+    "date": "2026-05-26T09:51:00+00:00",
+    "diesel": 76.4518,
+    "bioenergies": 22.576,
+    "turbines_combustion": 0,
+    "total": 142.179,
+    "charbon": 21.996,
+    "hydraulique": 3.2298,
+    "eolien": 18.2,
+    "geothermie": -0.3038,
+    "photovoltaique": 0.03,
+    "statut": "Estimé"
+  }
+]
