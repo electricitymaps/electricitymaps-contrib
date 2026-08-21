@@ -1,0 +1,42 @@
+from datetime import datetime, timezone
+
+import pytest
+from requests_mock import GET, POST
+
+from electricitymap.contrib.parsers.KPX import (
+    HISTORICAL_PRODUCTION_URL,
+    REAL_TIME_URL,
+    fetch_consumption,
+    fetch_production,
+)
+from electricitymap.contrib.types import ZoneKey
+
+
+@pytest.fixture()
+def mock_response_as_realtime(requests_mock):
+    with open(
+        "electricitymap/contrib/parsers/tests/mocks/KPX/realtime.html", "rb"
+    ) as mock:
+        requests_mock.register_uri(GET, REAL_TIME_URL, content=mock.read())
+
+
+@pytest.fixture()
+def mock_response_as_historical(requests_mock):
+    with open(
+        "electricitymap/contrib/parsers/tests/mocks/KPX/historical.html", "rb"
+    ) as mock:
+        requests_mock.register_uri(POST, HISTORICAL_PRODUCTION_URL, content=mock.read())
+        requests_mock.register_uri(GET, HISTORICAL_PRODUCTION_URL, content=None)
+
+
+def test_fetch_consumption_realtime(session, snapshot, mock_response_as_realtime):
+    assert snapshot == fetch_consumption(ZoneKey("KR"), session)
+
+
+def test_fetch_production_realtime(session, snapshot, mock_response_as_realtime):
+    assert snapshot == fetch_production(ZoneKey("KR"), session)
+
+
+def test_production_historical(session, snapshot, mock_response_as_historical):
+    dt = datetime(2023, 9, 1, 0, 0, 0, tzinfo=timezone.utc)
+    assert snapshot == fetch_production(ZoneKey("KR"), session, dt)

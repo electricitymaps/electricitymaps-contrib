@@ -1,8 +1,47 @@
 bounding_box:
-  - - 113.50054000540004
-    - 3.521531572695231
-  - - 115.86135361353612
-    - 5.554773378091141
+  - - 114.00054000540004
+    - 4.021531572695231
+  - - 115.36135361353612
+    - 5.054773378091141
+center_point:
+  - 114.68094680946808
+  - 4.538152475393186
+centroid:
+  - 114.71434714347144
+  - 4.535608328134595
+capacity:
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 980.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 990.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: BN
+country_name: Brunei
+currency: BND
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Brunei
+zone_name: Brunei

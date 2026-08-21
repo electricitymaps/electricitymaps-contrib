@@ -1,19 +1,18 @@
 """
-Usage: poetry run update_capacity --zone FR --target_datetime "2022-01-01"
+Usage: uv run update_capacity --zone FR --target_datetime "2022-01-01"
 """
 
+import logging
 from datetime import datetime
-from logging import DEBUG, basicConfig, getLogger
 
 import click
 from requests import Session
 
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 from scripts.update_capacity_configuration import update_source, update_zone
 from scripts.utils import ROOT_PATH, run_shell_command
 
-logger = getLogger(__name__)
-basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
+logger = logging.getLogger(__name__)
 
 
 @click.command()
@@ -34,9 +33,14 @@ def capacity_update(
     \n
     Examples
     -------
-    >>> poetry run capacity_update --zone FR --target_datetime "2022-01-01"
-    >>> poetry run capacity_update --source ENTSOE --target_datetime "2022-01-01"
+    >>> uv run capacity_update --zone FR --target_datetime "2022-01-01"
+    >>> uv run capacity_update --source ENTSOE --target_datetime "2022-01-01"
     """
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s",
+    )
+
     assert zone is not None or source is not None, "Either zone or source must be set"
     assert not (zone is None and source is None), "Zone and source cannot be both set"
 
@@ -52,4 +56,6 @@ def capacity_update(
         update_zone(zone, parsed_target_datetime, session, update_aggregate)
 
     print("Running prettier...")
-    run_shell_command("pnpx prettier@2 --write config/zones --cache", cwd=ROOT_PATH)
+    run_shell_command(
+        "npx --yes prettier@2 --write config/zones --cache", cwd=ROOT_PATH
+    )

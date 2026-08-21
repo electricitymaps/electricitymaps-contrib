@@ -1,8 +1,14 @@
 bounding_box:
-  - - 11.217621290000068
-    - -29.45936818399987
-  - - 25.759780721000112
-    - -16.451057230999922
+  - - 11.716317163171652
+    - -28.95920339566244
+  - - 25.259652596525996
+    - -16.95098734430909
+center_point:
+  - 16.36232295834883
+  - -22.92689159227441
+centroid:
+  - 17.33432452315824
+  - -22.13859552069178
 capacity:
   coal: 120
   hydro: 347
@@ -14,37 +20,8 @@ contributors:
   - jarek
   - alixunderplatz
 country: NA
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
+country_name: Namibia
+currency: NAD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -77,5 +54,8 @@ fallbackZoneMixes:
         solar: 0.17650734047230604
         unknown: 0.0
         wind: 0.018079403291716912
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Africa
 timezone: Africa/Windhoek
+zone_name: Namibia

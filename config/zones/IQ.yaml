@@ -1,76 +1,101 @@
 bounding_box:
-  - - 38.27451135200005
-    - 28.56313669900004
-  - - 49.059255405000044
-    - 37.562000619000116
-capacity: {}
+  - - 38.788648606335684
+    - 29.062618983800093
+  - - 48.53028530285303
+    - 37.36862374629024
+center_point:
+  - 43.44345558532116
+  - 33.21746235405574
+centroid:
+  - 44.54713255817012
+  - 34.003316815933665
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20080.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20330.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 21670.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 25970.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 27510.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 32560.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 34030.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1560.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10930.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10990.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11290.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 12120.0
 contributors:
   - alixunderplatz
   - systemcatch
   - byronwilliams
 country: IQ
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.8163447132109
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 360.451540676338
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.8163447132109
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 360.451540676338
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 528.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 502.52
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 528.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 502.52
+country_name: Iraq
+currency: IQD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.000632379385101418
-        coal: 0.013724692632043557
-        gas: 0.6551530822699803
-        geothermal: 0.00011127896830107662
-        hydro: 0.02385218117754443
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6710121204328401
+        geothermal: 0.0
+        hydro: 0.01882576318584281
         hydro discharge: 0.0
-        nuclear: 0.0036839914732314594
-        oil: 0.30004654058285
-        solar: 0.0007933539655522171
-        unknown: 0.0002791083313942357
-        wind: 0.001723379238611332
+        nuclear: 0.0
+        oil: 0.31016211133910787
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0010745055523894366
-        coal: 0.02332009424400773
-        gas: 0.6556850694074223
-        geothermal: 0.00018908375761886916
-        hydro: 0.06279133007310729
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6833794239764248
+        geothermal: 0.0
+        hydro: 0.05656541075842008
         hydro discharge: 0.0
-        nuclear: 0.006259604959470525
-        oil: 0.2459297521240526
-        solar: 0.0013480262596849257
-        unknown: 0.0004742634865740443
-        wind: 0.002928268234124621
+        nuclear: 0.0
+        oil: 0.2600551558085288
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baghdad
+zone_name: Iraq

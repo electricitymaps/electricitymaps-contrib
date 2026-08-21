@@ -1,0 +1,22 @@
+<TimeSeries>
+  <mRID>1</mRID>
+  <businessType>A01</businessType>
+  <objectAggregation>A08</objectAggregation>
+  <inBiddingZone_Domain.mRID codingScheme="A01">10Y1001A1001A47J</inBiddingZone_Domain.mRID>
+  <quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name>
+  <curveType>A03</curveType>
+  <MktPSRType>
+    <psrType>B04</psrType>
+  </MktPSRType>
+  <Period>
+    <timeInterval>
+      <start>2025-10-20T11:00Z</start>
+      <end>2025-10-23T10:00Z</end>
+    </timeInterval>
+    <resolution>PT60M</resolution>
+    <Point>
+      <position>1</position>
+      <quantity>0</quantity>
+    </Point>
+  </Period>
+</TimeSeries>

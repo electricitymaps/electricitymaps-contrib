@@ -1,0 +1,3940 @@
+{
+  "GraficoTipoCombustible": {
+    "Series": [
+      {
+        "Name": "BAGAZO",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 58,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 60,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 58.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 59.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 58.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 60.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 60.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 60.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 59.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 58.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 59.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 60.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 61.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 61.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 58.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 60.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 60.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 61.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 61.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 59.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 60.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 59.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 61.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 60.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 61.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 59.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 56.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 59.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 60.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 60.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 60.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 60.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 61.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 61.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 60.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 58.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 59.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 61.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 58.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 59.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 60.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 59.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 60.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "BIOG\u00c1S",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 9.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 7.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 9.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 9.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 9.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 9.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 9.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 9.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 9.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 9.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "CARB\u00d3N",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "DIESEL",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "E\u00d3LICA",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 646.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 594,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 600.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 588.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 538.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 468.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 459.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 511.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 547,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 563.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 578.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 687.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 751.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 762.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 769.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 758.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 771.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 777.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 790.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 802.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 814,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 819.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 821.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 833.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 814,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 805.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 791.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 783.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 772.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 776.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 789.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 796.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 814.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 833.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 818.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 813.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 802,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 810,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 810.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 778.8,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 726.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 684.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 629.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 603,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 576.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 477.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 495.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 586.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "GAS",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 2670.56,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 2669.26,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 2671.77,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 2679.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 2657.71,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 2654.28,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 2662.98,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 2673.53,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 2679.82,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 2684.58,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 2672.58,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 2684.68,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 2675.58,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 2578.63,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 2538.69,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 2452.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 2655.24,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 2653.51,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 2621,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 2608.77,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 2611.65,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 2597.83,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 2608.22,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 2616.86,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 2569.59,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 2588.21,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 2586.35,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 2561.61,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 2579.68,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 2590,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 2584.26,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 2472.79,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 2474.19,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 2608.84,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 2637.81,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 2647.85,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 2673.63,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 2673.53,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 2675.05,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 2671.28,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 2664.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 2674.22,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 2678.84,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 2677.01,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 2656.47,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 2625.7,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 2629.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 2629.3,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "H\u00cdDRICO",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 2378.36283,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 2359.60994,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 2310.08169,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 2204.90675,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 2334.14447,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 2465.33184,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 2389.0597,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 2230.46354,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 2368.83039,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 2321.96826,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 2406.30903,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 2508.26754,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 2346.88848,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 2262.67341,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 2185.56919,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 2310.06397,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 2440.90285,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 2547.50999,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 2463.83706,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 2335.95179,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 2552.77706,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 2656.74776,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 2487.84383,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 2523.75705,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 2689.93279,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 2438.57097,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 2371.61629,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 2425.15655,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 2549.87939,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 2480.16985,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 2454.60187,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 2666.16598,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 2832.3449,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 2966.62992,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 3028.57252,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 2981.94386,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 3214.25808,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 3249.18184,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 3249.83932,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 3288.64984,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 3328.95449,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 3334.19632,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 3260.0971,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 3225.61949,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 3191.70329,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 3173.034,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 2894.72861,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 2713.82591,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "RESIDUAL",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      },
+      {
+        "Name": "SOLAR",
+        "Data": [
+          {
+            "Nombre": "2025/09/10 00:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 01:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 02:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 03:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 04:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 05:30:00",
+            "Valor": 0.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:00:00",
+            "Valor": 20.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 06:30:00",
+            "Valor": 206.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:00:00",
+            "Valor": 474.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 07:30:00",
+            "Valor": 747,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:00:00",
+            "Valor": 822.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 08:30:00",
+            "Valor": 665.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:00:00",
+            "Valor": 681.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 09:30:00",
+            "Valor": 699.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:00:00",
+            "Valor": 834.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 10:30:00",
+            "Valor": 791.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:00:00",
+            "Valor": 795.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 11:30:00",
+            "Valor": 839.5,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:00:00",
+            "Valor": 897,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 12:30:00",
+            "Valor": 751.4,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:00:00",
+            "Valor": 785.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 13:30:00",
+            "Valor": 908,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:00:00",
+            "Valor": 903,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 14:30:00",
+            "Valor": 894.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:00:00",
+            "Valor": 876.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 15:30:00",
+            "Valor": 842.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:00:00",
+            "Valor": 772.2,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 16:30:00",
+            "Valor": 546.6,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:00:00",
+            "Valor": 230.1,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 17:30:00",
+            "Valor": 21.9,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 18:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 19:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 20:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 21:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 22:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/10 23:30:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          },
+          {
+            "Nombre": "2025/09/11 00:00:00",
+            "Valor": 0,
+            "CodColor": null,
+            "Valores": null,
+            "Valores_": null,
+            "Codigo": 0,
+            "RER": null
+          }
+        ]
+      }
+    ]
+  },
+  "Indicador": 0
+}

@@ -1,107 +1,73 @@
-aggregates_displayed:
-  - none
 bounding_box:
-  - - 46.155
-    - 28.3985
-  - - 48.7948
-    - 30.4747
+  - - 46.532265322653245
+    - 28.533118335605508
+  - - 48.433084330843315
+    - 30.098722954861913
+center_point:
+  - 47.36852773144945
+  - 29.570845645234716
+centroid:
+  - 47.789870743385976
+  - 29.50014299753782
 capacity:
-  biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10220.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 11100.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11650.0
     - datetime: '2021-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 11680.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  hydro:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11720.0
   oil:
-    - datetime: '2021-01-01'
-      source: IRENA.org
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
       value: 8500.0
   solar:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 85.0
-  unknown:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
   wind:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 12.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 contributors:
   - alixunderplatz
   - nessie2013
   - consideRatio
 country: KW
+country_name: Kuwait
+currency: KWD
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 575.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 575.0
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 575.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 575.0
-  lifecycle:
-    battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 550.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 550.0
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 550.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 550.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2019; assumes 62.3% gas, 37.7% oil
-      value: 550
+      value: 383.572
+  lifecycle:
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2019; assumes 62.3% gas, 37.7% oil
+      value: 550.3199999999999
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2020 average
@@ -147,7 +113,7 @@ fallbackZoneMixes:
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 0.9999999991671333
+        unknown: 0.9999999990496002
         wind: 0.0
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
@@ -164,8 +130,24 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.9999999920933934
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: KW.fetch_consumption
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Kuwait
+zone_name: Kuwait
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: IEA 2019; assumes 62.3% gas, 37.7% oil
+    value: 0
+isLowCarbon:
+  unknown:
+    source: IEA 2019; assumes 62.3% gas, 37.7% oil
+    value: 0

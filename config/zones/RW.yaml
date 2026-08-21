@@ -1,3 +1,58 @@
+bounding_box:
+  - - 28.859688596885974
+    - -2.826199783010381
+  - - 30.886508865088672
+    - -1.0602435671398
+center_point:
+  - 29.97222616568311
+  - -1.9592036155313746
+centroid:
+  - 29.916232495658303
+  - -2.0213481971410356
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
 country: RW
+country_name: Rwanda
+currency: RWF
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kigali
+zone_name: Rwanda

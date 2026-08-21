@@ -1,33 +1,30 @@
 """Global config variables with data read from the config directory."""
 
-import os
-from copy import deepcopy
+from operator import itemgetter
 from pathlib import Path
+from typing import Any
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.reading import (
+    read_data_centers_config,
     read_defaults,
     read_exchanges_config,
     read_zones_config,
 )
-from electricitymap.contrib.config.types import BoundingBox
 from electricitymap.contrib.config.zones import (
     generate_all_neighbours,
     generate_zone_neighbours,
     zone_bounding_boxes,
     zone_parents,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import BoundingBox, ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
-
-# Note: Needed to deploy contrib as a packaged module to Ray. The config/ folder is built into the electricitymap package.
-if os.environ.get("RUNNING_IN_RAY") == "true":
-    CONFIG_DIR = Path(__file__).parent.joinpath("config").resolve()
 
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
+DATA_CENTERS_CONFIG = read_data_centers_config(CONFIG_DIR)
 
 EU_ZONES = [
     "AT",
@@ -38,14 +35,14 @@ EU_ZONES = [
     "DE",
     "DK-DK1",
     "DK-DK2",
-    "DK-BHM",
     "EE",
     "ES",
     "ES-IB-ME",
     "ES-IB-MA",
     "ES-IB-IZ",
     "ES-IB-FO",
-    "ES-CN-FVLZ",
+    "ES-CN-FV",
+    "ES-CN-LZ",
     "ES-CN-GC",
     "ES-CN-TE",
     "ES-CN-LP",
@@ -118,25 +115,21 @@ ZONE_NEIGHBOURS: dict[ZoneKey, list[ZoneKey]] = generate_zone_neighbours(
 ALL_NEIGHBOURS: dict[ZoneKey, list[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
 
 
+def _get_most_recent_value(emission_factors: dict) -> dict[dict, Any]:
+    return {
+        k: max(v, key=itemgetter("datetime")) if isinstance(v, list) else v
+        for k, v in emission_factors.items()
+    }
+
+
 def emission_factors(zone_key: ZoneKey) -> dict[str, float]:
     """Looks up the emission factors for a given zone."""
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]
 
-    def get_most_recent_value(emission_factors: dict) -> dict:
-        _emission_factors = deepcopy(emission_factors)
-        keys_with_yearly = [
-            k for (k, v) in _emission_factors.items() if isinstance(v, list)
-        ]
-        for k in keys_with_yearly:
-            _emission_factors[k] = max(
-                _emission_factors[k], key=lambda x: x["datetime"]
-            )
-        return _emission_factors
-
     # Only use most recent yearly numbers from defaults & overrides
-    defaults = get_most_recent_value(defaults)
-    override = get_most_recent_value(override)
+    defaults = _get_most_recent_value(defaults)
+    override = _get_most_recent_value(override)
 
     merged = {**defaults, **override}
     return {k: (v or {}).get("value") for (k, v) in merged.items()}

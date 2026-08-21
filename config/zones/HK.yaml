@@ -1,10 +1,14 @@
-aggregates_displayed:
-  - yearly
 bounding_box:
-  - - 113.337331576
-    - 21.677069403000075
-  - - 114.90129642000011
-    - 23.06394603200009
+  - - 113.82621505018244
+    - 22.19333445248411
+  - - 114.3893438934389
+    - 22.555485342338557
+center_point:
+  - 114.10777947181067
+  - 22.374409897411333
+centroid:
+  - 114.14769207474426
+  - 22.39112447222077
 capacity:
   coal: 2875
   gas: 3225
@@ -12,112 +16,9 @@ capacity:
 contributors:
   - nessie2013
 country: HK
-disclaimer: Real-time consumption and generation mix data is not available and is
-  fully estimated.
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 360.0
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 360.00000000000006
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 360.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 360.0
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 359.99999999999994
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 360.00000000000006
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.99999999999994
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 360.0
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 360.00000000000006
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 360.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 360.0
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 359.99999999999994
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 360.00000000000006
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.99999999999994
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 435.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 435.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 435.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 435.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 435.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 435.36
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 435.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 435.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 435.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 435.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 435.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 435.36
-estimation_method: CONSTRUCT_BREAKDOWN
+country_name: Hong Kong
+currency: HKD
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -185,12 +86,12 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.24000008346442137
-        gas: 0.4800001507535672
+        coal: 0.2400000834279275
+        gas: 0.480000150905341
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.2799997657820114
+        nuclear: 0.2799997656667316
         oil: 0.0
         solar: 0.0
         unknown: 0.0
@@ -255,5 +156,23 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000003301249048
+        gas: 0.47999989763692297
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.28000024359358405
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Hong_Kong
+zone_name: Hong Kong

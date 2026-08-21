@@ -1,3 +1,53 @@
+bounding_box:
+  - - 0.153001530015331
+    - 11.696428805850758
+  - - 15.993037117916646
+    - 23.517173006086566
+center_point:
+  - 8.056598587736607
+  - 17.815544783954977
+centroid:
+  - 7.178354807547548
+  - 15.189819495990177
+capacity:
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 280.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 390.0
 country: NE
+country_name: Niger
+currency: XOF
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Niamey
+zone_name: Niger

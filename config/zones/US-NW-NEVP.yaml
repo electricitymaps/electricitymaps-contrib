@@ -1,11 +1,23 @@
 bounding_box:
-  - - -121.98446
-    - 34.50232
-  - - -111.0849
-    - 42.5017700000001
+  - - -120.00540005400048
+    - 35.1203926157127
+  - - -111.71451714517138
+    - 41.9933830361321
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 25.0
+    - datetime: '2021-07-01'
+      source: EIA.gov
+      value: 35.0
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 110.0
+    - datetime: '2023-07-01'
       source: EIA.gov
       value: 175.0
     - datetime: '2023-12-01'
@@ -17,252 +29,472 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 1035.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1135.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 15.2
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 35.2
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 15.2
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1103.8
+    - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 531.8
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 242.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7606.2
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
-  geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2025-12-01'
       source: EIA.gov
-      value: 859.7
-    - datetime: '2023-12-01'
+      value: 8339.0
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 8628.8
+  geothermal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 633.4
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 670.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 678.4
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 667.0
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 734.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 735.7
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 761.7
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 740.7
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 718.9
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 750.5
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 775.3
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 800.8
+    - datetime: '2022-08-01'
+      source: EIA.gov
+      value: 822.7
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 819.7
+    - datetime: '2023-04-01'
       source: EIA.gov
       value: 856.7
-    - datetime: '2024-01-01'
+    - datetime: '2023-08-01'
       source: EIA.gov
-      value: 872.7
-    - datetime: '2024-04-01'
+      value: 844.7
+    - datetime: '2023-09-01'
       source: EIA.gov
       value: 860.7
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
-      value: 889.9
+      value: 889.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 918.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 863.9
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 853.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 858.7
+    - datetime: '2026-05-01'
+      source: EIA.gov
+      value: 839.8
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 12.8
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 16.4
-    - datetime: '2024-06-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 16.9
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 15.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
-      value: 2795.8
+      value: 837.7
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 887.7
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 898.3
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 998.3
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 1077.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1092.3
+    - datetime: '2018-05-01'
+      source: EIA.gov
+      value: 1095.4
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 1115.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1115.6
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 1215.6
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 1222.9
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 1422.9
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 1432.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1433.7
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 1483.7
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 1593.7
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1592.5
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 1844.5
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 2045.5
+    - datetime: '2021-11-01'
+      source: EIA.gov
+      value: 2046.4
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 2347.5
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 2349.3
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 2356.3
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 2355.8
+    - datetime: '2023-05-01'
+      source: EIA.gov
+      value: 2663.8
+    - datetime: '2023-07-01'
+      source: EIA.gov
+      value: 2794.8
+    - datetime: '2023-11-01'
+      source: EIA.gov
+      value: 2806.8
     - datetime: '2023-12-01'
       source: EIA.gov
-      value: 2996.8
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 3020.8
+      value: 3006.8
     - datetime: '2024-03-01'
       source: EIA.gov
-      value: 3710.8
-    - datetime: '2024-05-01'
+      value: 3700.4
+    - datetime: '2024-04-01'
       source: EIA.gov
-      value: 4020.8
-    - datetime: '2024-06-01'
+      value: 3805.9
+    - datetime: '2024-05-01'
       source: EIA.gov
       value: 4015.9
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 4080.9
-    - datetime: '2024-10-01'
+    - datetime: '2024-09-01'
       source: EIA.gov
       value: 4180.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 4186.7
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 4259.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 4375.7
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7.5
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 150.0
+center_point:
+  - -115.85771214718278
+  - 38.79209090856581
+centroid:
+  - -114.98185638409322
+  - 38.83583418075562
 comment: Nevada Power Company
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+country_name: USA
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 386.73580020126684
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 441.5515692755957
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.996581036122
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 471.4179316570823
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 445.45003554687963
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 414.56
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 481.41
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 368.88
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 411.83
+    biomass:
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 408.9744981605319
+        source: BEIS 2021
+        value: 0.0
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 419.24523870046954
+        source: BEIS 2021
+        value: 0.0
+      - datetime: '2022-01-01'
+        source: BEIS 2021
+        value: 0.0
+      - datetime: '2023-01-01'
+        source: BEIS 2021
+        value: 0.0
     coal:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 1092.399419
+        value: 1091.85
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 1092.63
+        value: 1092.09
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 1049.17
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 1123.68
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 405.9274374
+        value: 405.72
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 399.5
+        value: 399.3
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 400.05
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 403.26
     geothermal:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 14.37975781
+        value: 14.37
       - datetime: '2021-01-01'
         source: eGrid 2021
         value: 3.43
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 1.13
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 1.18
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 386.73580020126684
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 441.5515692755957
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.996581036122
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 471.4179316570823
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 445.45003554687963
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 408.9744981605319
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 419.24523870046954
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 0.0
+    oil:
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 803.5
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 756.31
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 740.15
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 749.5
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 493.40407829706544
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 548.7472906956419
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 520.15
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 565.91
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 539.76
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 499.81
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 497.14
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 468.89
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 456.18
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 447.56
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 514.41
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 401.88
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 444.83
+    biomass:
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 281.25
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 280.46
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 273.91
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 282.56
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
-        value: 1179.761649
+        source: eGrid 2020; IPCC 2014
+        value: 1151.85
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
-        value: 1179.99223
+        source: eGrid 2021; IPCC 2014
+        value: 1152.09
+      - datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 1109.17
+      - datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 1183.68
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 525.9274373999999
+        value: 525.72
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 519.5
+        value: 519.3
+      - datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 520.05
+      - datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 523.26
     geothermal:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 52.37975781
+        value: 52.37
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
         value: 41.43
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 493.40407829706544
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 548.7472906956419
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 520.15
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 565.91
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 539.76
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 499.81
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 497.14
       - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 468.89
+        source: eGrid 2022; IPCC 2014
+        value: 39.13
       - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 456.18
+        source: eGrid 2023; IPCC 2014
+        value: 39.18
+    hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; IPCC 2014
+        value: 24.0
     oil:
-      datetime: '2014-01-01'
-      source: IPCC 2014; EIA 2020/BEIS 2021
-      value: 650.0
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1047.5
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1000.31
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 984.15
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 993.5
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -404,6 +636,42 @@ fallbackZoneMixes:
         solar: 0.14888842263053334
         unknown: 0.09266477904536434
         wind: 0.030996482747352047
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2215
+    - datetime: '2018-01-01'
+      value: 0.1313
+    - datetime: '2024-01-01'
+      value: 0.3196
+    - datetime: '2025-01-01'
+      value: 0.2046
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2174
+    - datetime: '2018-01-01'
+      value: 0.1261
+    - datetime: '2024-01-01'
+      value: 0.2996
+    - datetime: '2025-01-01'
+      value: 0.1923
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -415,8 +683,15 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+  eGrid 2022:
+    link: https://www.epa.gov/egrid/historical-egrid-data
+  eGrid 2023:
+    link: https://www.epa.gov/egrid/detailed-data
 timezone: US/Pacific
+zone_name: Nevada Power Company

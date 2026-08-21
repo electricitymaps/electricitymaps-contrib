@@ -1,9 +1,0 @@
-capacity:
-  - -60
-  - 60
-lonlat:
-  - 14.509682
-  - 55.363057
-parsers:
-  exchange: DK.fetch_exchange
-rotation: -45

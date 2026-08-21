@@ -1,28 +1,23 @@
 bounding_box:
-  - - -18.502186652999853
-    - 27.955389716000084
-  - - -17.22104415999985
-    - 29.355619032000007
+  - - -18.001980019800158
+    - 28.45583986262575
+  - - -17.721177211772073
+    - 28.84080114469154
+center_point:
+  - -17.861578615786115
+  - 28.648320503658645
+centroid:
+  - -17.8543785437854
+  - 28.694115154313316
 contributors:
   - hectorespert
   - systemcatch
   - silimotion
 country: ES
+country_name: Spain
+currency: EUR
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 780.1271286076975
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 781.8790206019834
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 789.6581754489239
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 792.6858455518973
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -42,18 +37,42 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 426.61
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 780.1271286076975
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 781.8790206019834
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 789.6581754489239
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 792.6858455518973
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 0.0
     oil:
       - datetime: '2017-01-01'
         source: EU-ETS, REE
@@ -76,26 +95,10 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE
         value: 677.072
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE
+        value: 669.797
   lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 998.1
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 1001.32
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 1010.11
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 1013.71
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 1078.9
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 1088.16
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -121,24 +124,42 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 998.1
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 1001.32
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 1010.11
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 1013.71
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 1078.9
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 1088.16
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; UNECE 2022
+        value: 10.7
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -165,6 +186,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE; IPCC 2014
         value: 921.072
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 913.797
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -266,6 +290,63 @@ fallbackZoneMixes:
         solar: 0.017697072042023216
         unknown: 0.0
         wind: 0.053184358408431054
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.9132256887989368
+        solar: 0.018142231715055784
+        unknown: 0.0
+        wind: 0.0686308771428057
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
@@ -289,3 +370,4 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Canary
+zone_name: La Palma

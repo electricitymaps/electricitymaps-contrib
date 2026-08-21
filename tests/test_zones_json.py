@@ -22,16 +22,16 @@ class ZonesJsonTestcase(unittest.TestCase):
                 self.assertIn(sub_zone, zone_keys)
 
     def test_zones_from_geometries_exist(self):
-        with open("web/geo/world.geojson") as file:
+        with open("geo/world.geojson") as file:
             world_geometries = json.load(file)
         world_geometries_zone_keys = set()
         for ft in world_geometries["features"]:
             world_geometries_zone_keys.add(ft["properties"]["zoneName"])
         all_zone_keys = set(ZONES_CONFIG.keys())
         non_existing_zone_keys = sorted(world_geometries_zone_keys - all_zone_keys)
-        assert (
-            len(non_existing_zone_keys) == 0
-        ), f"{non_existing_zone_keys} are defined in world.geojson but not in zones/*.yaml"
+        assert len(non_existing_zone_keys) == 0, (
+            f"{non_existing_zone_keys} are defined in world.geojson but not in zones/*.yaml"
+        )
 
 
 if __name__ == "__main__":

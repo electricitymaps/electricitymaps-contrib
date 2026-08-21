@@ -1,8 +1,56 @@
 bounding_box:
-  - - 32.1757267572676
-    - -17.629872698428883
-  - - 36.4049590495905
-    - -8.907749731785735
+  - - 32.6757267572676
+    - -17.129872698428883
+  - - 35.9049590495905
+    - -9.407749731785735
+center_point:
+  - 34.17551417350189
+  - -13.353425614705001
+centroid:
+  - 34.171465658318574
+  - -12.993116130752323
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 370.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 390.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
 country: MW
+country_name: Malawi
+currency: MWK
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre
+zone_name: Malawi

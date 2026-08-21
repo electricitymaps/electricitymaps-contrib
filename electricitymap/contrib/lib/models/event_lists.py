@@ -1,18 +1,24 @@
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
+from itertools import pairwise
 from logging import Logger
 from operator import itemgetter
-from typing import Any
+from typing import Any, Generic, TypeVar
 
 import pandas as pd
 
-from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
+    ExchangeAtc,
+    ExchangeCapacity,
+    ForecastTransferCapacity,
+    GridAlert,
+    GridAlertType,
+    IntradayContractStatistics,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -20,20 +26,19 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
 
-CAPACITY_STRICT_THRESHOLD = 0
-CAPACITY_LOOSE_THRESHOLD = 0.02
+EventType = TypeVar("EventType", bound="Event")
 
 
-class EventList(ABC):
+class EventList(ABC, Generic[EventType]):
     """
     A wrapper around Events lists.
     Events are indexed by datetimes.
     """
 
     logger: Logger
-    events: list[Event]
+    events: list[EventType]
 
     def __init__(self, logger: Logger):
         self.events = []
@@ -45,7 +50,7 @@ class EventList(ABC):
     def __contains__(self, datetime) -> bool:
         return any(event.datetime == datetime for event in self.events)
 
-    def __setitem__(self, datetime, event: Event):
+    def __setitem__(self, datetime, event: EventType):
         self.events[self.events.index(self[datetime])] = event
 
     def __add__(self, other: "EventList") -> "EventList":
@@ -53,10 +58,11 @@ class EventList(ABC):
         new_list.events = self.events + other.events
         return new_list
 
-    # Abstract method to be implemented by subclasses so that the typing is correct.
-    @abstractmethod
-    def __getitem__(self, datetime) -> Event:
-        pass
+    def __getitem__(self, datetime) -> EventType:
+        return next(event for event in self.events if event.datetime == datetime)
+
+    def __iter__(self):
+        return iter(self.events)
 
     @abstractmethod
     def append(self, **kwargs):
@@ -87,7 +93,7 @@ class EventList(ABC):
         ).set_index("datetime")
 
 
-class AggregatableEventList(EventList, ABC):
+class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
     """An abstract class to supercharge event lists with aggregation capabilities."""
 
     @classmethod
@@ -159,22 +165,66 @@ class AggregatableEventList(EventList, ABC):
         return source_types[0]
 
 
-class ExchangeList(AggregatableEventList):
-    events: list[Exchange]
+class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
+    """An EventList representing a single time series, where at most one event
+    should cover any given instant.
 
-    def __getitem__(self, datetime) -> Exchange:
-        return next(event for event in self.events if event.datetime == datetime)
+    Mixed into list types whose events must not overlap (exchanges, production,
+    consumption, prices, exchange capacity). `to_list()` resolves events whose
+    `[datetime, end_datetime)` intervals intersect by clamping the earlier
+    event's end to the later event's start. Events sharing the exact same
+    `datetime` cannot be clamped, so they are kept as-is; both cases log a
+    warning — a data imperfection should degrade the output, not crash the
+    whole fetch. Lists that legitimately hold several events per datetime —
+    e.g. locational marginal prices keyed by node, or grid alerts — do NOT use
+    this mixin.
+    """
 
+    def to_list(self) -> list[dict[str, Any]]:
+        return self._resolve_overlaps(super().to_list())
+
+    def _resolve_overlaps(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Clamps overlapping `[datetime, end_datetime)` intervals in place.
+
+        `events` is sorted by start (`datetime`); a pair overlaps when the
+        earlier event's `end_datetime` is strictly after the later event's
+        `datetime`. Events without an `end_datetime` are treated as
+        instantaneous points at `datetime`. Because the events are
+        start-sorted, checking consecutive pairs is enough to catch any
+        overlap. Clamping always leaves a positive duration, as the earlier
+        event starts strictly before the later one.
+        """
+        for previous, current in pairwise(events):
+            if previous["datetime"] == current["datetime"]:
+                self.logger.warning(
+                    f"{type(self).__name__} has two events sharing datetime "
+                    f"{current['datetime']}; keeping both."
+                )
+                continue
+            previous_end = previous["end_datetime"]
+            if previous_end is not None and previous_end > current["datetime"]:
+                self.logger.warning(
+                    f"{type(self).__name__} interval ending {previous_end} "
+                    f"overlaps the event starting {current['datetime']}; "
+                    f"clamping its end to {current['datetime']}."
+                )
+                previous["end_datetime"] = current["datetime"]
+        return events
+
+
+class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exchange]):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         netFlow: float | None,
+        *,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, source, netFlow, sourceType
+            self.logger, zoneKey, datetime, end_datetime, source, netFlow, sourceType
         )
         if event:
             self.events.append(event)
@@ -202,13 +252,32 @@ class ExchangeList(AggregatableEventList):
         exchange_df = pd.concat(exchange_dfs)
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
         zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
+
+        end_datetimes = None
+        if "end_datetime" in exchange_df.columns:
+            # When sources disagree (e.g. one reports 15-minute and another
+            # hourly intervals), keep the earliest end: it is deterministic and
+            # the finest resolution cannot overlap the next merged point.
+            end_datetimes = exchange_df.groupby(level="datetime")["end_datetime"].min()
+
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True
+            numeric_only=True,
         )
         for dt, row in exchange_df.iterrows():
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
+                if not pd.isna(val):
+                    end_datetime = val.to_pydatetime()
+
             exchanges.append(
-                zone_key, dt.to_pydatetime(), sources, row["netFlow"], source_type
-            )  # type: ignore
+                zoneKey=zone_key,
+                datetime=dt.to_pydatetime(),
+                source=sources,
+                netFlow=row["netFlow"],
+                end_datetime=end_datetime,
+                sourceType=source_type,
+            )
 
         return exchanges
 
@@ -233,29 +302,119 @@ class ExchangeList(AggregatableEventList):
                     new_event.datetime,
                     new_event.source,
                     new_event.netFlow,
-                    new_event.sourceType,
+                    end_datetime=new_event.end_datetime,
+                    sourceType=new_event.sourceType,
                 )
 
         return exchanges
 
 
-class ProductionBreakdownList(AggregatableEventList):
-    events: list[ProductionBreakdown]
-
-    def __getitem__(self, datetime) -> ProductionBreakdown:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class ExchangeCapacityList(NonOverlappingEventList[ExchangeCapacity]):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        *,
+        end_datetime: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ExchangeCapacity.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ExchangeAtcList(EventList[ExchangeAtc]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        atcType: AtcType,
+        *,
+        end_datetime: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ExchangeAtc.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            atcType,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ForecastTransferCapacityList(EventList[ForecastTransferCapacity]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        *,
+        end_datetime: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ForecastTransferCapacity.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            marketAgreementType,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ProductionBreakdownList(
+    NonOverlappingEventList[ProductionBreakdown],
+    AggregatableEventList[ProductionBreakdown],
+):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        *,
+        end_datetime: datetime | None = None,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = ProductionBreakdown.create(
-            self.logger, zoneKey, datetime, source, production, storage, sourceType
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            production,
+            storage,
+            sourceType,
         )
         if event:
             self.events.append(event)
@@ -341,18 +500,20 @@ class ProductionBreakdownList(AggregatableEventList):
                     updated_event.zoneKey,
                     updated_event.datetime,
                     updated_event.source,
-                    updated_event.production,
-                    updated_event.storage,
-                    updated_event.sourceType,
+                    end_datetime=updated_event.end_datetime,
+                    production=updated_event.production,
+                    storage=updated_event.storage,
+                    sourceType=updated_event.sourceType,
                 )
             elif matching_timestamps_only is False:
                 updated_production_breakdowns.append(
                     new_event.zoneKey,
                     new_event.datetime,
                     new_event.source,
-                    new_event.production,
-                    new_event.storage,
-                    new_event.sourceType,
+                    end_datetime=new_event.end_datetime,
+                    production=new_event.production,
+                    storage=new_event.storage,
+                    sourceType=new_event.sourceType,
                 )
 
         if matching_timestamps_only is False:
@@ -362,122 +523,174 @@ class ProductionBreakdownList(AggregatableEventList):
                         existing_event.zoneKey,
                         existing_event.datetime,
                         existing_event.source,
-                        existing_event.production,
-                        existing_event.storage,
-                        existing_event.sourceType,
+                        end_datetime=existing_event.end_datetime,
+                        production=existing_event.production,
+                        storage=existing_event.storage,
+                        sourceType=existing_event.sourceType,
                     )
 
         return updated_production_breakdowns
 
-    @staticmethod
-    def filter_expected_modes(
-        breakdowns: "ProductionBreakdownList",
-        strict_storage: bool = False,
-        strict_capacity: bool = False,
-        by_passed_modes: list[str] | None = None,
-    ) -> "ProductionBreakdownList":
-        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
-        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
-        TODO: Remove this method once the outlier detection is able to handle it.
-        """
 
-        if by_passed_modes is None:
-            by_passed_modes = []
-
-        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
-            if strict_capacity:
-                return capacity_value > CAPACITY_STRICT_THRESHOLD
-            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
-
-        events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
-            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
-            capacity = get_capacity_data(capacity_config, event.datetime)
-            total_capacity = sum(capacity.values())
-            valid = True
-            required_modes = [
-                mode
-                for mode, capacity_value in capacity.items()
-                if select_capacity(capacity_value, total_capacity)
-            ]
-            required_modes = list(set(required_modes))
-            if not strict_storage:
-                required_modes = [
-                    mode for mode in required_modes if "storage" not in mode
-                ]
-            required_modes = [
-                mode for mode in required_modes if mode not in by_passed_modes
-            ]
-            for mode in required_modes:
-                value = event.get_value(mode)
-                if (
-                    value is None
-                    and mode not in event.production.corrected_negative_modes
-                ):
-                    valid = False
-                    events.logger.warning(
-                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
-                    )
-                    break
-            if valid:
-                events.append(
-                    zoneKey=event.zoneKey,
-                    datetime=event.datetime,
-                    production=event.production,
-                    storage=event.storage,
-                    source=event.source,
-                )
-        return events
-
-
-class TotalProductionList(EventList):
-    events: list[TotalProduction]
-
-    def __getitem__(self, datetime) -> TotalProduction:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class TotalProductionList(
+    NonOverlappingEventList[TotalProduction], AggregatableEventList[TotalProduction]
+):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         value: float | None,
+        *,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
-            self.logger, zoneKey, datetime, source, value, sourceType
+            self.logger, zoneKey, datetime, end_datetime, source, value, sourceType
         )
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_total_production_lists(
+        ungrouped_production_lists: list["TotalProductionList"],
+        logger: Logger,
+    ) -> "TotalProductionList":
+        """
+        Given multiple parser outputs, sum the production of corresponding datetimes
+        to create a unique production list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        production_list = TotalProductionList(logger)
+        if TotalProductionList.is_completely_empty(ungrouped_production_lists, logger):
+            return production_list
 
-class TotalConsumptionList(EventList):
-    events: list[TotalConsumption]
+        # Create a dataframe for each parser output, then flatten the production.
+        production_dfs = [
+            pd.json_normalize(production.to_list()).set_index("datetime")
+            for production in ungrouped_production_lists
+            if len(production.events) > 0
+        ]
 
-    def __getitem__(self, datetime) -> TotalConsumption:
-        return next(event for event in self.events if event.datetime == datetime)
+        production_df = pd.concat(production_dfs)
 
+        zone_key, sources, source_type = TotalProductionList.get_zone_source_type(
+            production_df
+        )
+
+        end_datetimes = None
+        if "end_datetime" in production_df.columns:
+            # When sources disagree, keep the earliest end (see merge_exchanges).
+            end_datetimes = production_df.groupby(level="datetime")[
+                "end_datetime"
+            ].min()
+
+        production_df = production_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in production_df.iterrows():
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
+                if not pd.isna(val):
+                    end_datetime = val.to_pydatetime()
+
+            production_list.append(
+                zoneKey=zone_key,
+                datetime=dt.to_pydatetime(),
+                source=sources,
+                value=row["value"],
+                end_datetime=end_datetime,
+                sourceType=source_type,
+            )
+
+        return production_list
+
+
+class TotalConsumptionList(
+    NonOverlappingEventList[TotalConsumption], AggregatableEventList[TotalConsumption]
+):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         consumption: float | None,
+        *,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
-            self.logger, zoneKey, datetime, source, consumption, sourceType
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            consumption,
+            sourceType,
         )
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_consumption_lists(
+        ungrouped_consumption_lists: list["TotalConsumptionList"],
+        logger: Logger,
+    ) -> "TotalConsumptionList":
+        """
+        Given multiple parser outputs, sum the consumption of corresponding datetimes
+        to create a unique consumption list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        consumption_list = TotalConsumptionList(logger)
+        if TotalConsumptionList.is_completely_empty(
+            ungrouped_consumption_lists, logger
+        ):
+            return consumption_list
 
-class PriceList(EventList):
-    events: list[Price]
+        # Create a dataframe for each parser output, then flatten the consumption.
+        consumption_dfs = [
+            pd.json_normalize(consumption.to_list()).set_index("datetime")
+            for consumption in ungrouped_consumption_lists
+            if len(consumption.events) > 0
+        ]
 
-    def __getitem__(self, datetime) -> Price:
-        return next(event for event in self.events if event.datetime == datetime)
+        consumption_df = pd.concat(consumption_dfs)
 
+        zone_key, sources, source_type = TotalConsumptionList.get_zone_source_type(
+            consumption_df
+        )
+
+        end_datetimes = None
+        if "end_datetime" in consumption_df.columns:
+            # When sources disagree, keep the earliest end (see merge_exchanges).
+            end_datetimes = consumption_df.groupby(level="datetime")[
+                "end_datetime"
+            ].min()
+
+        consumption_df = consumption_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in consumption_df.iterrows():
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
+                if not pd.isna(val):
+                    end_datetime = val.to_pydatetime()
+
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt.to_pydatetime(),
+                source=sources,
+                consumption=row["consumption"],
+                end_datetime=end_datetime,
+                sourceType=source_type,
+            )
+
+        return consumption_list
+
+
+class PriceList(NonOverlappingEventList[Price]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -485,10 +698,144 @@ class PriceList(EventList):
         source: str,
         price: float | None,
         currency: str,
+        *,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Price.create(
-            self.logger, zoneKey, datetime, source, price, currency, sourceType
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            price,
+            currency,
+            sourceType,
         )
         if event:
             self.events.append(event)
+
+
+class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        node: str,
+        *,
+        end_datetime: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.measured,
+    ):
+        event = LocationalMarginalPrice.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            price,
+            currency,
+            node,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class GridAlertList(EventList[GridAlert]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        locationRegion: str | None,
+        source: str,
+        alertType: GridAlertType,
+        message: str,
+        issuedTime: datetime,
+        startTime: datetime | None,
+        endTime: datetime | None,
+    ):
+        event = GridAlert.create(
+            self.logger,
+            zoneKey,
+            locationRegion,
+            source,
+            alertType,
+            message,
+            issuedTime,
+            startTime,
+            endTime,
+        )
+        if event:
+            self.events.append(event)
+
+
+class IntradayContractStatisticsList(EventList[IntradayContractStatistics]):
+    def append(  # type: ignore[override]
+        self,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = IntradayContractStatistics.create(
+            logger=self.logger,
+            zoneKey=zoneKey,
+            area=area,
+            apiUpdatedAt=apiUpdatedAt,
+            currency=currency,
+            priceUnitRaw=priceUnitRaw,
+            deliveryStart=deliveryStart,
+            deliveryEnd=deliveryEnd,
+            contractId=contractId,
+            contractName=contractName,
+            contractOpenTime=contractOpenTime,
+            contractCloseTime=contractCloseTime,
+            isLocalContract=isLocalContract,
+            vwap=vwap,
+            vwap1hBeforeClose=vwap1hBeforeClose,
+            vwap3hBeforeClose=vwap3hBeforeClose,
+            openPrice=openPrice,
+            closePrice=closePrice,
+            highPrice=highPrice,
+            lowPrice=lowPrice,
+            openTradeTime=openTradeTime,
+            closeTradeTime=closeTradeTime,
+            volume=volume,
+            buyVolume=buyVolume,
+            sellVolume=sellVolume,
+            source=source,
+            sourceType=sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        """Sort by (deliveryStart, area, contractId) instead of 'datetime' key."""
+        return sorted(
+            [event.to_dict() for event in self.events],
+            key=lambda d: (d["deliveryStart"], d["area"], d["contractId"]),
+        )

@@ -1,0 +1,108 @@
+"""Electricity Maps type definitions."""
+
+from enum import Enum
+from typing import NewType
+
+from electricitymap.contrib.types.atc_type import AtcType
+from electricitymap.contrib.types.market_agreement_type import MarketAgreementType
+
+ZoneKey = NewType("ZoneKey", str)
+"""
+ZoneKey is used throughout the code to identify zones.
+These are uppercase with 1-3 parts separated by dashes,
+where the first part is a two-letter country code,
+e.g. "AU", "AU-TAS", "AU-TAS-CBI".
+"""
+
+Point = NewType("Point", tuple[float, float])
+"""
+Point represents a geographic coordinate as (longitude, latitude).
+For example, the point (150.47, -33.48) represents 150.47°E, 33.48°S.
+"""
+
+BoundingBox = NewType("BoundingBox", list[Point])
+"""
+BoundingBox indicate a geographic area of a zone.
+An example bounding box looks like: [[140.46, -39.64], [150.47, -33.48]],
+representing a box with corners at 140.46°E, 39.64°S and 150.47°E, 33.48°S.
+"""
+
+
+class ParserDataType(Enum):
+    CONSUMPTION = "consumption"
+    CONSUMPTION_FORECAST = "consumptionForecast"
+    DAYAHEAD_LOCATIONAL_MARGINAL_PRICE = "dayaheadLocationalMarginalPrice"
+    EXCHANGE_FORECAST = "exchangeForecast"
+    EXCHANGE = "exchange"
+    GENERATION_FORECAST = "generationForecast"
+    INTRADAY_CONTRACT_STATISTICS = "intradayContractStatistics"
+    PRICE = "price"
+    PRICE_INTRADAY = "priceIntraday"
+    PRODUCTION = "production"
+    PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
+    PRODUCTION_PER_MODE_FORECAST_DAY_AHEAD = "productionPerModeForecastDayAhead"
+    PRODUCTION_PER_MODE_FORECAST_INTRADAY = "productionPerModeForecastIntraday"
+    PRODUCTION_PER_MODE_FORECAST_LATEST = "productionPerModeForecastLatest"
+    REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
+    EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD = "exchangeCapacityForecastDayAhead"
+    EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD = "exchangeCapacityForecastWeekAhead"
+    EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD = "exchangeCapacityForecastMonthAhead"
+    ATC_DAY_AHEAD = "atcDayAhead"
+    MAX_BEX_DAY_AHEAD = "maxBexDayAhead"
+    SCHEDULED_EXCHANGES_DAY_AHEAD = "scheduledExchangesDayAhead"
+    SCHEDULED_EXCHANGES_TOTAL = "scheduledExchangesTotal"
+    MAX_BFLOW_DAY_AHEAD = "maxBflowDayAhead"
+    # TODO: Double check if we should keep them here?
+    PRODUCTION_CAPACITY = "productionCapacity"
+    GRID_ALERTS = "gridAlerts"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+ALL_DATA_TYPES = [dt.value for dt in ParserDataType]
+# TODO rename and move this one in the EXCHANGE_PUBLICATION_DATA_TYPES
+EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD,
+]
+# TSO-published ex-ante values on a cross-border exchange (sourceType=published):
+# capacities, cleared market-coupling schedules, physical flow limits. All carry
+# the two-zone-key call convention.
+EXCHANGE_PUBLICATION_DATA_TYPES = [
+    ParserDataType.ATC_DAY_AHEAD,
+    ParserDataType.MAX_BEX_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_TOTAL,
+    ParserDataType.MAX_BFLOW_DAY_AHEAD,
+]
+# Every ParserDataType registered on the exchange side (two-zone-key call
+# convention). Consumers asking "is this an exchange-side data type?" should
+# use this list directly — no need to recombine the sub-groupings. The
+# sub-groupings above are kept for consumers that want a specific semantic
+# family (e.g. only NTC forecasts, or only TSO-published values).
+EXCHANGE_DATA_TYPES = [
+    ParserDataType.EXCHANGE,
+    ParserDataType.EXCHANGE_FORECAST,
+    *EXCHANGE_CAPACITY_FORECAST_DATA_TYPES,
+    *EXCHANGE_PUBLICATION_DATA_TYPES,
+]
+LMP_DATA_TYPES = [
+    ParserDataType.REALTIME_LOCATIONAL_MARGINAL_PRICE,
+    ParserDataType.DAYAHEAD_LOCATIONAL_MARGINAL_PRICE,
+]
+
+__all__: list[str] = [
+    "ZoneKey",
+    "Point",
+    "BoundingBox",
+    "ParserDataType",
+    "AtcType",
+    "MarketAgreementType",
+    "ALL_DATA_TYPES",
+    "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
+    "EXCHANGE_DATA_TYPES",
+    "EXCHANGE_PUBLICATION_DATA_TYPES",
+    "LMP_DATA_TYPES",
+]

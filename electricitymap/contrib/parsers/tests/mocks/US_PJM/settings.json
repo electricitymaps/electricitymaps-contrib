@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://api.pjm.com/api/v1",
+  "baseAdminUrl": "http://localhost:44346/admin",
+  "baseSyndicationUrl": "https://api.pjm.com/syndication/v1",
+  "subscriptionKey": "aca459ab4b064b9ca31ca87ceaa23254",
+  "registerUrl": "https://apiportal.pjm.com/",
+  "connextUrl": "https://pjmconnext.com",
+  "feedbackUri": "https://www.pjm.com/AjaxService/FeedbackService.asmx/PostFeedback",
+  "feedbackKey": "SV_eJuz6ckkcfxzwJ7",
+  "tool": "Data Miner 2"
+}

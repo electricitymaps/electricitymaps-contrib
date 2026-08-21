@@ -1,13 +1,12 @@
+import logging
 from datetime import datetime
-from logging import INFO, basicConfig, getLogger
 from typing import Any
 
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-logger = getLogger(__name__)
-basicConfig(level=INFO)
+logger = logging.getLogger(__name__)
 
 MODE_MAPPING = {
     "Nuclear": "nuclear",
@@ -16,13 +15,13 @@ MODE_MAPPING = {
     "Fossil gas": "gas",
     "Fossil oil": "oil",
     "Other, non-renewable": "unknown",
-    "Hydro Run-of-River": "hydro",
+    "Hydro": "hydro",
     "Hydro pumped storage": "hydro storage",
-    "Battery Storage (Power)": "battery storage",
+    "Battery storage (power)": "battery storage",
     "Biomass": "biomass",
     "Wind onshore": "wind",
     "Wind offshore": "wind",
-    "Solar": "solar",
+    "Solar DC": "solar",
 }
 
 SOURCE = "Fraunhofer ISE"
@@ -90,4 +89,5 @@ def update_capacity_breakdown(
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     fetch_production_capacity(ZoneKey("DE"), datetime(2023, 1, 1), Session())

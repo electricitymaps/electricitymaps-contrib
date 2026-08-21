@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Publication_MarketDocument xmlns="urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0">
+  <mRID>74caf66da0314807b7a5836d0fd5f45b</mRID>
+  <revisionNumber>1</revisionNumber>
+  <type>A61</type>
+  <sender_MarketParticipant.mRID codingScheme="A01">10X1001A1001A450</sender_MarketParticipant.mRID>
+  <sender_MarketParticipant.marketRole.type>A32</sender_MarketParticipant.marketRole.type>
+  <receiver_MarketParticipant.mRID codingScheme="A01">10X1001A1001A450</receiver_MarketParticipant.mRID>
+  <receiver_MarketParticipant.marketRole.type>A33</receiver_MarketParticipant.marketRole.type>
+  <createdDateTime>2026-03-19T08:44:33Z</createdDateTime>
+  <period.timeInterval>
+    <start>2026-03-19T06:00Z</start>
+    <end>2026-03-20T23:00Z</end>
+  </period.timeInterval>
+      <TimeSeries>
+        <mRID>1</mRID>
+        <businessType>A27</businessType>
+        <in_Domain.mRID codingScheme="A01">10YES-REE------0</in_Domain.mRID>
+        <out_Domain.mRID codingScheme="A01">10YFR-RTE------C</out_Domain.mRID>
+        <quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name>
+        <curveType>A03</curveType>
+            <Period>
+              <timeInterval>
+                <start>2026-03-19T06:00Z</start>
+                <end>2026-03-20T23:00Z</end>
+              </timeInterval>
+              <resolution>PT60M</resolution>
+                  <Point>
+                    <position>1</position>
+                    <quantity>3006</quantity>
+                  </Point>
+                  <Point>
+                    <position>5</position>
+                    <quantity>2914</quantity>
+                  </Point>
+                  <Point>
+                    <position>9</position>
+                    <quantity>2960</quantity>
+                  </Point>
+                  <Point>
+                    <position>12</position>
+                    <quantity>3607</quantity>
+                  </Point>
+                  <Point>
+                    <position>18</position>
+                    <quantity>3422</quantity>
+                  </Point>
+                  <Point>
+                    <position>22</position>
+                    <quantity>3515</quantity>
+                  </Point>
+                  <Point>
+                    <position>24</position>
+                    <quantity>3469</quantity>
+                  </Point>
+                  <Point>
+                    <position>29</position>
+                    <quantity>3099</quantity>
+                  </Point>
+                  <Point>
+                    <position>36</position>
+                    <quantity>3607</quantity>
+                  </Point>
+            </Period>
+      </TimeSeries>
+</Publication_MarketDocument>

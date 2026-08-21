@@ -1,8 +1,14 @@
 bounding_box:
-  - - 51.47861495000012
-    - 16.142401434000078
-  - - 60.34457441500007
-    - 26.885972398000035
+  - - 51.97911979119792
+    - 16.642251076554743
+  - - 59.8019980199802
+    - 26.386494086168014
+center_point:
+  - 55.936697643349724
+  - 20.629164171585437
+centroid:
+  - 56.60999049685969
+  - 21.551494014600596
 capacity:
   gas:
     - datetime: '2020-01-01'
@@ -43,22 +49,10 @@ contributors:
   - nessie2013
   - florianscheidl
 country: OM
+country_name: Oman
+currency: OMR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 471.25
-    hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 471.25
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -67,14 +61,14 @@ fallbackZoneMixes:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.0
-        gas: 0.0
+        gas: 0.46536307433008217
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.9999999975198319
+        oil: 0.010270280212057826
+        solar: 0.02343339011432368
+        unknown: 0.5009331896190804
         wind: 0.0
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
@@ -91,6 +85,53 @@ fallbackZoneMixes:
         solar: 0.05139963425427532
         unknown: 0.004078967295063173
         wind: 0.0
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.9999937203899146
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.9999933095505461
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.917233551645257
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.020242781393878737
+        solar: 0.05847499902621566
+        unknown: 0.004048538876343689
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
 region: Asia
@@ -98,3 +139,4 @@ sources:
   Climatescope:
     link: https://www.global-climatescope.org/markets/om/
 timezone: Asia/Muscat
+zone_name: Oman

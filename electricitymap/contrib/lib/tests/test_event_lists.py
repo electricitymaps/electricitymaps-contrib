@@ -1,12 +1,15 @@
 import logging
-from datetime import datetime, timezone
+import math
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
-import numpy as np
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeCapacityList,
     ExchangeList,
+    GridAlertList,
+    LocationalMarginalPriceList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -14,10 +17,11 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_exchange_list():
@@ -50,17 +54,18 @@ def test_append_to_list_logs_error():
 
 
 def test_merge_exchanges():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
     exchange_list_1 = ExchangeList(logging.Logger("test"))
     exchange_list_1.append(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=dt,
         netFlow=1,
         source="trust.me",
     )
     exchange_list_2 = ExchangeList(logging.Logger("test"))
     exchange_list_2.append(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=dt,
         netFlow=2,
         source="trust.me",
     )
@@ -68,8 +73,8 @@ def test_merge_exchanges():
         [exchange_list_1, exchange_list_2], logging.Logger("test")
     )
     assert len(exchanges) == 1
-    assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-    assert exchanges.events[0].netFlow == 3
+    assert exchanges[dt].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert exchanges[dt].netFlow == 3
 
 
 def test_merge_exchanges_with_none():
@@ -84,7 +89,7 @@ def test_merge_exchanges_with_none():
     exchange_list_2.append(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        netFlow=np.nan,
+        netFlow=math.nan,
         source="trust.me",
     )
     exchanges = ExchangeList.merge_exchanges(
@@ -255,6 +260,64 @@ def test_append_to_price_list_logs_error():
             price=1,
             source="trust.me",
             currency="EURO",
+        )
+        mock_error.assert_called_once()
+
+
+def test_locational_marginal_price_list():
+    lmp_list = LocationalMarginalPriceList(logging.Logger("test"))
+    lmp_list.append(
+        zoneKey=ZoneKey("US-CENT-SWPP"),
+        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="USD",
+        node="SPPNORTH_HUB",
+    )
+    assert len(lmp_list.events) == 1
+
+
+def test_append_to_locational_marginal_price_list_logs_error():
+    lmp_list = LocationalMarginalPriceList(logging.Logger("test"))
+    with patch.object(lmp_list.logger, "error") as mock_error:
+        lmp_list.append(
+            zoneKey=ZoneKey("US-CENT-SWPP"),
+            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EUR",
+            node="",
+        )
+        mock_error.assert_called_once()
+
+
+def test_grid_alert_list():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    grid_alert_list.append(
+        zoneKey=ZoneKey("US-MIDA-PJM"),
+        locationRegion="Test Region",
+        source="trust.me",
+        alertType=GridAlertType.action,
+        message="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
+    )
+    assert len(grid_alert_list.events) == 1
+
+
+def test_append_to_grid_alert_list_logs_error():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    with patch.object(grid_alert_list.logger, "error") as mock_error:
+        grid_alert_list.append(
+            zoneKey=ZoneKey("US-MIDA-PJM"),
+            locationRegion="",
+            source="trust.me",
+            alertType=GridAlertType.action,
+            message="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
         mock_error.assert_called_once()
 
@@ -836,7 +899,7 @@ def test_update_production_with_different_source():
     assert updated_list.events[0].production.wind == 20
     assert updated_list.events[0].production.coal == 20
     assert updated_list.events[0].source == ", ".join(
-        set("trust.me, trust.me.too".split(", "))
+        sorted({"trust.me", "trust.me.too"})
     )
 
 
@@ -940,135 +1003,6 @@ def test_update_stroage_with_empty_new_list():
     assert updated_list.events[0].source == "trust.me"
 
 
-def test_filter_expected_modes():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 4, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output.events) == 1
-    assert output.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-
-
-def test_filter_expected_modes_none():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=None,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output.events) == 0
-
-
-def test_filter_corrected_negatives():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=-10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output) == 1
-    assert output.events[0].production.corrected_negative_modes == {"solar"}
-
-
-def test_not_strict_mode():
-    production_list = ProductionBreakdownList(logging.Logger("test"))
-    production_list.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list)
-    assert len(output) == 1
-
-
-def test_filter_by_passed_modes():
-    production_list = ProductionBreakdownList(logging.Logger("test"))
-    production_list.append(
-        zoneKey=ZoneKey("US-NW-PGE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(
-        production_list, by_passed_modes=["biomass"]
-    )
-    assert len(output) == 1
-
-
 def test_total_production_list():
     total_production = TotalProductionList(logging.Logger("test"))
     total_production.append(
@@ -1078,6 +1012,104 @@ def test_total_production_list():
         source="trust.me",
     )
     assert len(total_production.events) == 1
+
+
+def test_merge_total_production_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalProductionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=100,
+        source="entsoe",
+    )
+
+    second = TotalProductionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=50,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        value=25,
+        source="entsoe",
+    )
+
+    merged = TotalProductionList.merge_total_production_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "end_datetime": None,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 150,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "end_datetime": None,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 25,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
+
+
+def test_merge_consumption_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalConsumptionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=80,
+        source="entsoe",
+    )
+
+    second = TotalConsumptionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=20,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        consumption=30,
+        source="entsoe",
+    )
+
+    merged = TotalConsumptionList.merge_consumption_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "end_datetime": None,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 100,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "end_datetime": None,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 30,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
 
 
 def test_df_representation():
@@ -1099,3 +1131,192 @@ def test_df_representation():
         storage=StorageMix(hydro=1),
         source="trust.me",
     )
+
+
+def test_exchange_capacity_forecast_list():
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    assert len(forecast_list.events) == 2
+
+
+def test_append_to_exchange_capacity_forecast_list_logs_error():
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    with patch.object(forecast_list.logger, "error") as mock_error:
+        # Unsorted zone key should log error and not append
+        forecast_list.append(
+            zoneKey=ZoneKey("DE->AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+        mock_error.assert_called_once()
+    assert len(forecast_list.events) == 0
+
+
+def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
+    dt1 = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt2 = datetime(2023, 1, 2, tzinfo=timezone.utc)
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt2,
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt1,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    result = forecast_list.to_list()
+    assert len(result) == 2
+    assert result[0]["datetime"] == dt1
+    assert result[1]["datetime"] == dt2
+    assert result[0]["capacityExport"] == 1000.0
+    assert result[0]["capacityImport"] == 900.0
+    assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
+    assert result[0]["source"] == "trust.me"
+    assert result[0]["sourceType"] == EventSourceType.published
+
+
+def test_non_overlapping_list_clamps_overlapping_intervals():
+    logger = logging.Logger("test")
+    exchange_list = ExchangeList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=3),
+        netFlow=2,
+        source="trust.me",
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = exchange_list.to_list()
+    # The earlier event's end is clamped to the later event's start; nothing is
+    # dropped and a warning is emitted.
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(hours=1)
+    assert result[1]["end_datetime"] == dt + timedelta(hours=3)
+    mock_warning.assert_called_once()
+
+
+def test_non_overlapping_list_keeps_and_warns_on_duplicate_datetimes():
+    logger = logging.Logger("test")
+    production_list = ProductionBreakdownList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for _ in range(2):
+        production_list.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            production=ProductionMix(wind=10),
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = production_list.to_list()
+    # Duplicate starts cannot be clamped: both events are kept and a warning is
+    # emitted so the parser can be fixed upstream.
+    assert len(result) == 2
+    mock_warning.assert_called_once()
+
+
+def test_non_overlapping_list_allows_adjacent_intervals():
+    logger = logging.Logger("test")
+    exchange_list = ExchangeList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=1),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=2,
+        source="trust.me",
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = exchange_list.to_list()
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(hours=1)
+    mock_warning.assert_not_called()
+
+
+def test_non_overlapping_list_clamps_merged_mixed_resolution_gap():
+    # An hourly source merged with a 15-minute source that has a gap: the hourly
+    # 00:00 event would span the 15-minute event starting at 00:15. The overlap
+    # is clamped instead of failing the whole fetch.
+    logger = logging.Logger("test")
+    hourly = ProductionBreakdownList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    hourly.append(
+        zoneKey=ZoneKey("BE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=1),
+        production=ProductionMix(wind=10),
+        source="entsoe.eu",
+    )
+    quarter_hourly = ProductionBreakdownList(logger)
+    quarter_hourly.append(
+        zoneKey=ZoneKey("BE"),
+        datetime=dt + timedelta(minutes=15),
+        end_datetime=dt + timedelta(minutes=30),
+        production=ProductionMix(wind=12),
+        source="elia.be",
+    )
+    merged = ProductionBreakdownList.update_production_breakdowns(
+        hourly, quarter_hourly, logger
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = merged.to_list()
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(minutes=15)
+    assert result[1]["end_datetime"] == dt + timedelta(minutes=30)
+    mock_warning.assert_called_once()
+
+
+def test_price_list_keeps_and_warns_on_duplicate_datetimes():
+    # PriceList represents a single series with one price per MTU. Duplicates
+    # (the ENTSO-E intraday parser collapses auction sessions upstream) are kept
+    # with a warning rather than failing the fetch.
+    logger = logging.Logger("test")
+    price_list = PriceList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for price in (75.0, 77.77):
+        price_list.append(
+            zoneKey=ZoneKey("ES"),
+            datetime=dt,
+            price=price,
+            currency="EUR",
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = price_list.to_list()
+    assert len(result) == 2
+    mock_warning.assert_called_once()

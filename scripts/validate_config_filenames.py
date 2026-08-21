@@ -5,7 +5,7 @@ This is run as a part of the CI but can be run locally to ensure all filenames
 are valid before you commit the changes.
 
 Usage:
-    poetry run python scripts/validate_config_filenames.py
+    uv run python scripts/validate_config_filenames.py
 """
 
 import os

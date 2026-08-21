@@ -1,10 +1,46 @@
 bounding_box:
-  - - -69.65514614798195
-    - 11.537431473445437
-  - - -68.23200926588031
-    - 12.889546858796207
+  - - -69.15514614798195
+    - 12.037431473445437
+  - - -68.73200926588031
+    - 12.389546858796207
+center_point:
+  - -68.97807654009556
+  - 12.196062083734544
+centroid:
+  - -68.99348330137373
+  - 12.201245365436082
+capacity:
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 165.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 204.2
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 11.13
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 11.93
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 13.23
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 13.36
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 46.5
 contributors:
   - VIKTORVAV99
 country: CW
+country_name: Curaçao
+currency: ANG
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Curacao
+zone_name: Curaçao

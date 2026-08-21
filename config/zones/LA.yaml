@@ -1,7 +1,66 @@
+bounding_box:
+  - - 100.10080100801005
+    - 13.917469362602077
+  - - 107.65727657276571
+    - 22.44672304703373
+center_point:
+  - 103.89189363748629
+  - 18.66296979024183
+centroid:
+  - 103.97856593950556
+  - 18.164945227481375
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1880.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 5110.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 5390.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 6230.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 8020.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 8960.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 9650.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 9780.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: LA
+country_name: Laos
+currency: LAK
 fallbackZoneMixes:
-  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
-    generation not broken down by type). Biomass includes waste.
+  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.
   _url: https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
   powerOriginRatios:
     value:
@@ -9,5 +68,10 @@ fallbackZoneMixes:
       coal: 0.28410228182546
       hydro: 0.713395716573259
       solar: 0.0010758606885508
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Vientiane
+zone_name: Laos

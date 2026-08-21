@@ -1,9 +1,0 @@
-capacity:
-  - -40
-  - 40
-lonlat:
-  - -3.329
-  - 58.723
-parsers:
-  exchange: GB_ORK.fetch_exchange
-rotation: 10

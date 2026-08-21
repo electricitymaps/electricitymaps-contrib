@@ -1,167 +1,159 @@
 bounding_box:
-  - - 140.46708580936263
-    - -39.64495208099984
-  - - 150.47207507627593
-    - -33.486452325214685
+  - - 140.96421396698537
+    - -39.13706450366208
+  - - 149.9720997209972
+    - -33.98181386823853
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 707.0
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 500.0
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 120.0
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 500.0
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 707.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1231.0
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 50.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 51.23
   coal:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 4850.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 4690.0
   gas:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2427.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 2471.46
   hydro:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2040.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 2322.8
   solar:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 5611.58
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 5485.58
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 5268.58
-  wind:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 3014.77
-    - datetime: '2022-01-01'
-      source: opennem.org.au
-      value: 2905.77
     - datetime: '2021-01-01'
       source: opennem.org.au
-      value: 2744.77
+      value: 5485.58
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 5611.58
+  wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2564.17
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 2744.77
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 2905.77
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 3014.77
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 5487.17
+center_point:
+  - 145.10552901241175
+  - -36.45834748983445
+centroid:
+  - 144.78153006632593
+  - -37.08382639593836
 contributors:
   - jarek
   - corradio
+  - alejandranavcas
+  - sankalpsthakur
 country: AU
-delays:
-  production: 5
+country_name: Australia
+currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 645.3016635352112
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 645.3016368008209
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 615.4896042682316
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 636.4549709563559
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 641.8421185182266
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 648.2995942030998
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 545.064460776869
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 645.3016635352112
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 645.3016368008209
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 615.4896042682316
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 636.4549709563559
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 641.8421185182266
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 648.2995942030998
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 545.064460776869
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 574.88
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 577.03
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 557.82
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 506.09
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 458.83
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 422.59
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 419.01
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 379.71
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 645.3016635352112
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 645.3016368008209
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 696.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 666.81
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 666.43
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 650.34
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 566.61
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 534.04
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 450.21
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 645.3016635352112
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 645.3016368008209
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 696.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 666.81
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 666.43
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 650.34
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 566.61
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 534.04
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 450.21
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 607.88
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 610.03
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 590.82
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 539.09
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 491.83
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 455.59
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 452.01
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 412.71
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -288,20 +280,81 @@ fallbackZoneMixes:
       datetime: '2023-01-01'
       value:
         battery discharge: 0.0025032427419419347
-        biomass: 1.3240170192640382e-05
-        coal: 0.5861441655312157
-        gas: 0.014219271158156068
+        biomass: 1.2902042762008032e-05
+        coal: 0.5861443398518874
+        gas: 0.014219285457077265
         geothermal: 0.0
-        hydro: 0.06274458386188403
+        hydro: 0.06274460341776156
         hydro discharge: 8.453185765808675e-08
         nuclear: 0.0
         oil: 4.249513212468347e-06
-        solar: 0.12697172886819139
+        solar: 0.1269718373717699
         unknown: 0.0
-        wind: 0.20739942016554005
+        wind: 0.20739944203447835
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0027778404488412816
+        biomass: 3.789937368769627e-05
+        coal: 0.5745729428668062
+        gas: 0.0284031362684534
+        geothermal: 0.0
+        hydro: 0.05743032415203594
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 4.662311159509748e-06
+        solar: 0.1470457660916572
+        unknown: 0.0
+        wind: 0.18972740562986398
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2018-01-01'
+      value: 0.2183
+    - datetime: '2019-01-01'
+      value: 0.2179
+    - datetime: '2020-01-01'
+      value: 0.2554
+    - datetime: '2021-01-01'
+      value: 0.3289
+    - datetime: '2022-01-01'
+      value: 0.3865
+    - datetime: '2023-01-01'
+      value: 0.4408
+    - datetime: '2024-01-01'
+      value: 0.4402
+    - datetime: '2025-01-01'
+      value: 0.494
+isRenewable:
+  battery discharge:
+    - datetime: '2018-01-01'
+      value: 0.2183
+    - datetime: '2019-01-01'
+      value: 0.2179
+    - datetime: '2020-01-01'
+      value: 0.2554
+    - datetime: '2021-01-01'
+      value: 0.3289
+    - datetime: '2022-01-01'
+      value: 0.3865
+    - datetime: '2023-01-01'
+      value: 0.4408
+    - datetime: '2024-01-01'
+      value: 0.4402
+    - datetime: '2025-01-01'
+      value: 0.494
 parsers:
+  consumption: OPENNEM.fetch_consumption
+  consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-  productionCapacity: OPENNEM.fetch_production_capacity
+  productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Australia/Melbourne
+zone_name: Victoria

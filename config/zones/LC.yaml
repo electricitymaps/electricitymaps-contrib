@@ -1,3 +1,34 @@
+bounding_box:
+  - - -61.07641076410759
+    - 13.72141101448679
+  - - -60.88560885608851
+    - 14.10207904805371
+center_point:
+  - -60.98100981009805
+  - 13.91174503127025
+centroid:
+  - -60.96210962109616
+  - 13.90995617772905
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
 country: LC
+country_name: Saint Lucia
+currency: XCD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/St_Lucia
+zone_name: Saint Lucia

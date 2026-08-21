@@ -1,33 +1,50 @@
-aggregates_displayed:
-  - none
 bounding_box:
-  - - 49.94890384200005
-    - 25.289536851000037
-  - - 51.14565981318161
-    - 26.742580471000053
+  - - 50.45990459904601
+    - 25.78973254482439
+  - - 50.61830618306183
+    - 26.194728986551596
+center_point:
+  - 50.53910539105392
+  - 25.992230765687992
+centroid:
+  - 50.54810548105482
+  - 26.039098728467376
 capacity:
-  solar: 11
-  wind: 1
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 5310.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 7100.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 8600.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - q--
   - nessie2013
 country: BH
+country_name: Bahrain
+currency: BHD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 700.0
-    hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 700.0
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -60,7 +77,31 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.9999999979281821
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 1.0
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Bahrain
+zone_name: Bahrain
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

@@ -1,8 +1,48 @@
 bounding_box:
-  - - -63.15035721899994
-    - -28.08684214299994
-  - - -53.74528885899994
-    - -18.78672861699995
+  - - -62.649626496264915
+    - -27.581070627523566
+  - - -54.24354243542432
+    - -19.286514527697086
+center_point:
+  - -58.43454198060172
+  - -23.382062451230716
+centroid:
+  - -57.36531365313649
+  - -24.127653089170177
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 8800.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 8820.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: PY
+country_name: Paraguay
+currency: PYG
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Asuncion
+zone_name: Paraguay

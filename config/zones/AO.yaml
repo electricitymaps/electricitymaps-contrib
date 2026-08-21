@@ -1,8 +1,60 @@
 bounding_box:
-  - - 11.252317523175265
-    - -18.53145488319263
-  - - 24.560840608406096
-    - -3.9032530649304604
+  - - 11.752317523175265
+    - -18.03145488319263
+  - - 24.060840608406096
+    - -4.40325306493046
+center_point:
+  - 17.907600443601794
+  - -11.939312306534951
+centroid:
+  - 16.848673894821456
+  - -11.02809286786516
 country: AO
+country_name: Angola
+currency: AOA
+emissionFactors:
+  lifecycle: {}
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.10893289709207192
+        geothermal: 0.0
+        hydro: 0.70428882343253
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.1622255605690663
+        solar: 0.02455261358974591
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.10893206031944175
+        geothermal: 0.0
+        hydro: 0.7042911878765116
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.16222413992273907
+        solar: 0.024552889130142887
+        unknown: 0.0
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Luanda
+zone_name: Angola
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

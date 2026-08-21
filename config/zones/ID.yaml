@@ -1,10 +1,14 @@
-aggregates_displayed:
-  - yearly
 bounding_box:
-  - - 94.51270592500003
-    - -11.422621351999908
-  - - 141.47762699400005
-    - 6.410101630000042
+  - - 95.19755197551976
+    - -10.920404286222691
+  - - 140.97560975609755
+    - 5.650103836601815
+center_point:
+  - 119.23989912755863
+  - -2.839451042984239
+centroid:
+  - 118.96890483770892
+  - -2.8660618025422737
 capacity:
   biomass: 3005
   coal: 36668
@@ -18,112 +22,9 @@ capacity:
 contributors:
   - nessie2013
 country: ID
-disclaimer: Real-time consumption and generation mix data is not available and is
-  fully estimated.
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 580.1799999999998
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 580.1800000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 580.18
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 580.18
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 580.1799999999998
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 580.18
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 580.1800000000001
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 580.1799999999998
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 580.1800000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 580.18
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 580.18
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 580.1799999999998
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 580.18
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 580.1800000000001
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 652.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 652.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 652.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 652.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 652.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 652.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 652.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 652.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 652.36
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 652.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 652.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 652.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 652.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 652.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 652.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 652.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 652.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 652.36
-estimation_method: CONSTRUCT_BREAKDOWN
+country_name: Indonesia
+currency: IDR
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -190,14 +91,14 @@ fallbackZoneMixes:
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0009998888663551998
-        coal: 0.6589999102140611
-        gas: 0.18699993784050375
-        geothermal: 0.05699994411924077
-        hydro: 0.07099995793246212
+        biomass: 0.0009998888878791576
+        coal: 0.6589999102116081
+        gas: 0.18699993784707583
+        geothermal: 0.056999944122977
+        hydro: 0.070999957922792
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.02500004709052746
+        oil: 0.025000047069258766
         solar: 0.0
         unknown: 0.0
         wind: 0.0
@@ -261,5 +162,23 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0009998883746002566
+        coal: 0.6589999105288689
+        gas: 0.18700000748291276
+        geothermal: 0.05700008225333488
+        hydro: 0.07100006625639553
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.02500004510388751
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Jakarta
+zone_name: Indonesia

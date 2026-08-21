@@ -1,206 +1,247 @@
 bounding_box:
-  - - 32.2566671079
-    - 34.5718694118
-  - - 34.0048808123
-    - 35.1731247015
+  - - 32.27053022035746
+    - 34.5630798273339
+  - - 34.09197768705732
+    - 35.201370959568614
 capacity:
   biomass:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
   oil:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 1850.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1790.0
   solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 310.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 430.0
+      value: 420.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 610.0
+      value: 580.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 720.0
   wind:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 160.0
+center_point:
+  - 33.18125395370739
+  - 34.88222539345126
+centroid:
+  - 33.244805194765405
+  - 34.98821550367324
 contributors:
   - ultibo
   - veqtrus
   - q--
   - nessie2013
 country: CY
-delays:
-  production: 5
+country_name: Cyprus
+currency: EUR
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 810.5724022852503
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 806.1744467919108
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 795.7985563395267
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 781.334836269716
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 752.432349872631
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
       value: 0.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 1061.07
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 1027.14
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 1044.66
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 1033.67
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 1057.262766
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 1032.94
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 1075.5
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 1039.0
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 1037.31
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 1041.95
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 1048.95
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 1035.2
     gas:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 419.8221756
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 412.38
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 410.39
-    hydro discharge:
       - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 810.5724022852503
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 391.05
       - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 806.1744467919108
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 395.08
       - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 795.7985563395267
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 382.65
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 781.334836269716
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 387.04
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 752.432349872631
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 386.78
+      - datetime: '2022-01-01'
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 394.63
+      - datetime: '2023-01-01'
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 399.0
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 396.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 389.72
     oil:
-      - datetime: '2018-01-01'
-        source: EU-ETS, CERA 2018 Report
-        value: 730.57
-      - datetime: '2019-01-01'
-        source: EU-ETS, CERA 2019 Report
-        value: 710.54
-      - datetime: '2020-01-01'
-        source: EU-ETS, CERA 2020 Report
-        value: 707.44
-      - datetime: '2021-01-01'
-        source: EU-ETS, TSOC 2021 Report
-        value: 709.61
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 641.08
-  lifecycle:
-    battery discharge:
       - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 897.04
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 910.01
       - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 890.59
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 957.57
       - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 864.85
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 972.1
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 835.6
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 967.1
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 820.07
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 903.53
       - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 805.63
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 873.76
       - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 765.76
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 850.74
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 869.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 826.11
+  lifecycle:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1121.07
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1087.14
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1104.66
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1093.67
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1117.262766
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1092.94
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1135.5
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 1099.0
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1097.31
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 1101.95
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 1108.95
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1095.2
     gas:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 511.05
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 515.08
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 502.65
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 507.04
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 539.8221756
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 506.78
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 532.38
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 514.63
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 530.39
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 519.0
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 516.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 509.72
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 897.04
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 890.59
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 864.85
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 835.6
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 820.07
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 805.63
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 765.76
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1154.01
       - datetime: '2018-01-01'
-        source: EU-ETS, CERA 2018 Report; IPCC 2014
-        value: 974.57
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1201.57
       - datetime: '2019-01-01'
-        source: EU-ETS, CERA 2019 Report; IPCC 2014
-        value: 954.54
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1216.1
       - datetime: '2020-01-01'
-        source: EU-ETS, CERA 2020 Report; IPCC 2014
-        value: 951.44
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1211.1
       - datetime: '2021-01-01'
-        source: EU-ETS, TSOC 2021 Report; IPCC 2014
-        value: 953.61
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1147.53
+      - datetime: '2022-01-01'
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 1117.76
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 885.08
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 1094.74
+      - datetime: '2024-01-01'
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 1113.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1070.11
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -317,9 +358,33 @@ fallbackZoneMixes:
         solar: 0.15239095798362642
         unknown: 0.0
         wind: 0.039379560686909114
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.015283654072033765
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7659703419425117
+        solar: 0.18294657859249813
+        unknown: 0.0
+        wind: 0.035798118790591575
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Asia
 sources:
   EU-ETS, CERA 2018 Report:
@@ -328,14 +393,36 @@ sources:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2019_gr.pdf#page=143
   EU-ETS, CERA 2020 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2020_gr.pdf#page=164
+  EU-ETS 2025, ENTSO-E 2017:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2018:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2019:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2020:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2021:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2022:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2023:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2025:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  EU-ETS, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/
   EU-ETS, TSOC 2021 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
+  EU-ETS, TSOC 2022 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2022.pdf#page=32
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
@@ -348,3 +435,4 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Asia/Nicosia
+zone_name: Cyprus

@@ -1,8 +1,55 @@
 bounding_box:
-  - - -78.87458374583741
-    - 17.21699428410645
-  - - -75.68936189361888
-    - 19.01840067056311
+  - - -78.37458374583741
+    - 17.71699428410645
+  - - -76.18936189361888
+    - 18.51840067056311
+center_point:
+  - -77.28197281972814
+  - 18.11769747733478
+centroid:
+  - -77.17757177571771
+  - 18.077358829980767
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 310.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 460.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 890.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
 country: JM
+country_name: Jamaica
+currency: JMD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Jamaica
+zone_name: Jamaica

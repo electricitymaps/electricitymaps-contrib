@@ -1,3 +1,34 @@
+bounding_box:
+  - - -61.12321123211227
+    - -52.310181981043506
+  - - -57.78237782377819
+    - -51.278371258480554
+center_point:
+  - -59.470794707947036
+  - -51.83792464616726
+centroid:
+  - -59.36009360093596
+  - -51.74448144209703
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: FK
+country_name: Falkland Islands
+currency: FKP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Stanley
+zone_name: Falkland Islands

@@ -3,5 +3,12 @@ lonlat:
   - 45.583
 parsers:
   exchange: ENTSOE.fetch_exchange
+  exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
+  exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
+  exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
+  atcDayAhead: JAO.fetch_shadow_auction_atc_day_ahead
+  maxBexDayAhead: JAO.fetch_core_max_bex_day_ahead
+  scheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead
+  scheduledExchangesTotal: ENTSOE.fetch_scheduled_exchanges_total
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: -90

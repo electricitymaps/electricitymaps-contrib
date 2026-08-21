@@ -1,16 +1,22 @@
 bounding_box:
-  - - 0.9064563390001013
-    - 41.92867747000005
-  - - 2.2650907800001505
-    - 43.14936167400003
-capacity:
-  biomass: 5
-  gas: 1.7
-  hydro: 46
-  solar: 0.231
+  - - 1.431014310143127
+    - 42.42893264363089
+  - - 1.722617226172275
+    - 42.60924908058364
+center_point:
+  - 1.5768157681577009
+  - 42.51909086210726
+centroid:
+  - 1.593015930159325
+  - 42.53411723185333
 contributors:
   - Manu1400
   - autipial
 country: AD
+country_name: Andorra
+currency: EUR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Andorra
+zone_name: Andorra

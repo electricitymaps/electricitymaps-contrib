@@ -1,8 +1,14 @@
 bounding_box:
-  - - 128.50011587536375
-    - -26.499911390797962
-  - - 138.50018768629417
-    - -10.468357028999876
+  - - 129.00189001890018
+    - -25.99972409710461
+  - - 138.0019800198002
+    - -10.981940848039898
+center_point:
+  - 133.50005390545402
+  - -18.846486859209598
+centroid:
+  - 133.39210622875467
+  - -12.992381053427186
 capacity:
   biomass: 1.1
   gas: 471.4
@@ -10,71 +16,13 @@ capacity:
 contributors:
   - unitrium
   - amv213
+  - alejandranavcas
 country: AU
-delays:
-  consumption: 30
-  price: 30
-  production: 55
-disclaimer: The Northern Territory power grid is not connected to the (Australian)
-  National Electricity Market or Western Australia's grid.
+country_name: Australia
+currency: AUD
+disclaimer: The Northern Territory power grid is not connected to the (Australian) National Electricity Market or Western Australia's grid.
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 488.95
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 488.76
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 488.88
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 488.63
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 488.54
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 488.54
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 489.08
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 489.17
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 490.21
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 488.95
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 488.76
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 488.88
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 488.63
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 488.54
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 488.54
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 489.08
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 489.17
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 490.21
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -126,46 +74,46 @@ fallbackZoneMixes:
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.005314864046810599
+        biomass: 0.005315187638489253
         coal: 0.0
-        gas: 0.9946145393149421
+        gas: 0.9946750893723232
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 6.0829904335664726e-05
+        unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0056254617538473006
+        biomass: 0.005625550562775195
         coal: 0.0
-        gas: 0.9943495130978143
+        gas: 0.9943652042902233
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 1.57539017201535e-05
+        unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.005647456995903851
+        biomass: 0.005647638619022797
         coal: 0.0
-        gas: 0.9943096820177285
+        gas: 0.9943416591759038
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 3.2139046929480496e-05
+        unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
@@ -212,9 +160,33 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.008444016543152163
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0056937251530382975
+        coal: 0.0
+        gas: 0.965386606333278
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.028919092948344192
+        wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: NTESMO.fetch_consumption
+  consumptionForecast: NTESMO.fetch_consumption_forecast
   price: NTESMO.fetch_price
   production: NTESMO.fetch_production
 region: Oceania
 timezone: Australia/Darwin
+zone_name: Northern Territory
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

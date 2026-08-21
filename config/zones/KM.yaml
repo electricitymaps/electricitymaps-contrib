@@ -1,8 +1,34 @@
 bounding_box:
-  - - 42.763432634326364
-    - -12.880108775840185
-  - - 45.03064530645307
-    - -10.879781875602312
+  - - 43.263432634326364
+    - -12.380108775840185
+  - - 44.53064530645307
+    - -11.379781875602312
+center_point:
+  - 44.20664206642067
+  - -12.161153102397563
+centroid:
+  - 43.79551795517956
+  - -11.883379924520352
+capacity:
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
 country: KM
+country_name: Comoros
+currency: KMF
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Comoro
+zone_name: Comoros

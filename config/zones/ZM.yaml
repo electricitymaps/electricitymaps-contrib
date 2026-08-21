@@ -1,9 +1,56 @@
 bounding_box:
-  - - 21.47987756300006
-    - -18.569231871999946
-  - - 34.17420251500005
-    - -7.694124042999917
+  - - 21.980019800198022
+    - -18.065800871183633
+  - - 33.67293672936731
+    - -8.194191489437074
+center_point:
+  - 27.793429278161966
+  - -13.134822739245156
+centroid:
+  - 28.652614526145285
+  - -12.804842711999566
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 330.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2400.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 2710.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3170.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
 country: ZM
+country_name: Zambia
+currency: ZMW
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB
@@ -12,5 +59,10 @@ fallbackZoneMixes:
       coal: 0.11
       hydro: 0.83
       oil: 0.06
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo
+zone_name: Zambia

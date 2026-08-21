@@ -1,3 +1,48 @@
+bounding_box:
+  - - -172.7819278192781
+    - -14.051613524735515
+  - - -171.43911439114382
+    - -13.463438480389641
+center_point:
+  - -172.21312213122124
+  - -13.801174028967807
+centroid:
+  - -172.0957609576095
+  - -13.782713060422646
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: WS
+country_name: Samoa
+currency: WST
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Apia
+zone_name: Samoa

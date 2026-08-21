@@ -4,7 +4,7 @@
 This script helps to remove a zone (including the zone config and exchanges).
 
 Example usage:
-  poetry run python scripts/remove_zone.py DK-DK1
+  uv run python scripts/remove_zone.py DK-DK1
 """
 
 import argparse
@@ -13,17 +13,15 @@ import re
 from glob import glob
 
 from utils import (
-    LOCALE_FILE_PATHS,
     ROOT_PATH,
-    JsonFilePatcher,
     YamlFilePatcher,
     run_shell_command,
 )
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
-PRETTIER_CONFIG_PATH = ROOT_PATH / "web/.prettierrc.json"
+PRETTIER_CONFIG_PATH = ROOT_PATH / ".prettierrc.js"
 
 
 def remove_config(zone_key: ZoneKey):
@@ -66,51 +64,6 @@ def remove_exchanges(zone_key: ZoneKey):
             pass
 
 
-def remove_translations(zone_key: ZoneKey):
-    for locale_file in LOCALE_FILE_PATHS:
-        with JsonFilePatcher(locale_file, indent=2) as f:
-            zone_short_name = f.content["zoneShortName"]
-            if zone_key in zone_short_name:
-                del zone_short_name[zone_key]
-
-
-def remove_mockserver_data(zone_key: ZoneKey):
-    for API_version in ["v7", "v8"]:
-        for state_level in ["daily", "hourly", "monthly", "yearly"]:
-            try:
-                with JsonFilePatcher(
-                    ROOT_PATH
-                    / f"mockserver/public/{API_version}/state/{state_level}.json"
-                ) as f:
-                    data = f.content["data"]
-                    if zone_key in data["zones"]:
-                        del data["zones"][zone_key]
-
-                    for k in list(data["exchanges"].keys()):
-                        if k.startswith(f"{zone_key}->") or k.endswith(f"->{zone_key}"):
-                            del data["exchanges"][k]
-            except FileNotFoundError:
-                pass
-
-
-def remove_geojson_entry(zone_key: ZoneKey):
-    geo_json_path = ROOT_PATH / "web/geo/world.geojson"
-    with JsonFilePatcher(geo_json_path, indent=None) as f:
-        new_features = [
-            f for f in f.content["features"] if f["properties"]["zoneName"] != zone_key
-        ]
-        f.content["features"] = new_features
-
-    run_shell_command(
-        f"npx prettier@2 --config {PRETTIER_CONFIG_PATH} --write {geo_json_path}",
-        cwd=ROOT_PATH,
-    )
-    run_shell_command(
-        "pnpm generate-world",
-        cwd=ROOT_PATH / "web",
-    )
-
-
 def move_parser_to_archived(zone_key: ZoneKey):
     parser_path = ROOT_PATH / f"parsers/{zone_key}.py"
     if parser_path.exists():
@@ -123,8 +76,6 @@ def move_parser_to_archived(zone_key: ZoneKey):
 def find_files_mentioning_zone(text):
     """Search for the zone_key across all files in contrib."""
     IGNORED_PATHS = [
-        "mobileapp/ios",
-        "mobileapp/android",
         "node_modules",
         "dist",
         "archived",
@@ -182,9 +133,6 @@ def main():
     remove_config(zone_key)
     remove_from_parent_config(zone_key)
     remove_exchanges(zone_key)
-    remove_translations(zone_key)
-    remove_mockserver_data(zone_key)
-    remove_geojson_entry(zone_key)
     move_parser_to_archived(zone_key)
     # For legacy reasons, a subzone parser can both use dash and underscore
     # in the file name so we need to search for both

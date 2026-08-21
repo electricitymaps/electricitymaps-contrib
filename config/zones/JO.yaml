@@ -1,8 +1,82 @@
 bounding_box:
-  - - 34.4509495094951
-    - 28.689985355933374
-  - - 39.79992274590594
-    - 33.87779736975472
+  - - 34.9509495094951
+    - 29.189985355933374
+  - - 39.29992274590594
+    - 33.37779736975472
+center_point:
+  - 36.650141036611664
+  - 31.27194964593257
+centroid:
+  - 36.8660244675459
+  - 31.46873567339284
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3310.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 4000.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 420.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 760.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 970.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1540.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1810.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1970.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 520.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 380.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 530.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 630.0
 country: JO
+country_name: Jordan
+currency: JOD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Amman
+zone_name: Jordan

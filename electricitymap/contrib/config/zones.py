@@ -3,8 +3,7 @@
 from collections import defaultdict
 from typing import Any
 
-from electricitymap.contrib.config.types import BoundingBox
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import BoundingBox, ZoneKey
 
 
 def zone_bounding_boxes(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, BoundingBox]:
@@ -27,7 +26,7 @@ def zone_parents(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, ZoneKey]:
 
 
 def generate_zone_neighbours(
-    zones_config: dict[ZoneKey, Any], exchanges_config: dict[str, Any]
+    zones_config: dict[ZoneKey, Any], exchanges_config: dict[ZoneKey, Any]
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """Returns a dict mapping each zone to its neighbours.
 
@@ -40,23 +39,26 @@ def generate_zone_neighbours(
             # Interconnector config has no parser, and will therefore not be part
             # of the flowtracing graph.
             continue
-        zone_1, zone_2 = k.split("->")
-        zone_1 = ZoneKey(zone_1)
-        zone_2 = ZoneKey(zone_2)
-        if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
-            "subZoneNames"
-        ):
-            # Both zones must not have subzones.
+        try:
+            zone_1, zone_2 = k.split("->")
+            zone_1 = ZoneKey(zone_1)
+            zone_2 = ZoneKey(zone_2)
+            if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
+                "subZoneNames"
+            ):
+                # Both zones must not have subzones.
+                continue
+            pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+            for zone_name_1, zone_name_2 in pairs:
+                zone_neighbours[zone_name_1].add(zone_name_2)
+        except Exception:
             continue
-        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
-        for zone_name_1, zone_name_2 in pairs:
-            zone_neighbours[zone_name_1].add(zone_name_2)
     # Sort the lists of neighbours for each zone.
     return {k: sorted(v) for k, v in zone_neighbours.items()}
 
 
 def generate_all_neighbours(
-    exchanges_config: dict[str, Any],
+    exchanges_config: dict[ZoneKey, Any],
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)

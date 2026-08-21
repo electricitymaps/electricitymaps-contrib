@@ -1,3 +1,50 @@
+bounding_box:
+  - - -13.300333003329996
+    - 6.919474309435856
+  - - -10.283502835028315
+    - 9.996302400296258
+center_point:
+  - -11.883841963883732
+  - 8.52907881316037
+centroid:
+  - -11.947349473494711
+  - 8.52006890395809
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
 country: SL
+country_name: Sierra Leone
+currency: SLE
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Freetown
+zone_name: Sierra Leone

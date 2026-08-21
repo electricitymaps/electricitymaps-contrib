@@ -1,6 +1,6 @@
 import logging
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
@@ -12,14 +12,19 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
+    ExchangeCapacity,
+    GridAlert,
+    GridAlertType,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
+    ScheduledExchange,
     StorageMix,
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 
 def test_create_exchange():
@@ -121,6 +126,7 @@ def test_exchange_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DER->FR"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             netFlow=-1,
             source="trust.me",
         )
@@ -146,6 +152,114 @@ def test_update_exchange():
     assert final_exchange.zoneKey == ZoneKey("AT->DE")
     assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert final_exchange.source == "trust.me"
+
+
+def test_create_scheduled_exchange_derives_net_flow():
+    # At native 15-min resolution only one direction clears, so the other
+    # column is 0 and netFlow equals the single directional value.
+    exchange = ScheduledExchange.create(
+        logger=logging.getLogger(),
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
+        source="trust.me",
+        scheduledExport=250.0,
+        scheduledImport=0.0,
+        marketAgreementType=MarketAgreementType.DAY_AHEAD,
+    )
+    assert exchange is not None
+    assert exchange.scheduledExport == 250.0
+    assert exchange.scheduledImport == 0.0
+    # netFlow is derived from scheduledExport - scheduledImport, positive when zone1 exports.
+    assert exchange.netFlow == 250.0
+    assert exchange.marketAgreementType == MarketAgreementType.DAY_AHEAD
+    # sourceType defaults to published for TSO ex-ante schedules.
+    assert exchange.sourceType == EventSourceType.published
+
+
+def test_scheduled_exchange_preserves_both_directions_when_hourly_aggregated():
+    # An hourly bucket can contain 15-min MTUs that cleared in opposite
+    # directions, leaving both gross totals positive. Both must survive; the
+    # signed netFlow alone would lose the gross flows.
+    exchange = ScheduledExchange.create(
+        logger=logging.getLogger(),
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=datetime(2023, 1, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        scheduledExport=100.0,
+        scheduledImport=80.0,
+        marketAgreementType=MarketAgreementType.TOTAL,
+    )
+    assert exchange is not None
+    assert exchange.scheduledExport == 100.0
+    assert exchange.scheduledImport == 80.0
+    assert exchange.netFlow == 20.0
+
+    as_dict = exchange.to_dict()
+    # to_dict exposes both gross directions and keeps netFlow (= scheduledExport -
+    # scheduledImport) for backward compatibility.
+    assert as_dict["scheduledExport"] == 100.0
+    assert as_dict["scheduledImport"] == 80.0
+    assert as_dict["netFlow"] == 20.0
+    assert as_dict["marketAgreementType"] == MarketAgreementType.TOTAL
+
+
+def test_scheduled_exchange_static_create_logs_error():
+    logger = logging.getLogger()
+    with patch.object(logger, "error") as mock_error:
+        # A None direction is invalid and must be caught, returning None.
+        exchange = ScheduledExchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            scheduledExport=None,
+            scheduledImport=None,
+            marketAgreementType=MarketAgreementType.DAY_AHEAD,
+        )
+        assert exchange is None
+        mock_error.assert_called_once()
+
+
+def test_update_total_production():
+    production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=100,
+        source="entsoe",
+    )
+    new_production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=150,
+        source="entsoe",
+    )
+
+    updated = TotalProduction._update(production, new_production)
+
+    assert updated.value == 150
+    assert updated.zoneKey == ZoneKey("IT-SO")
+    assert updated.sourceType == EventSourceType.measured
+
+
+def test_update_total_consumption_raises_on_mismatched_zone():
+    consumption = TotalConsumption(
+        zoneKey=ZoneKey("DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=100,
+        source="entsoe",
+    )
+    new_consumption = TotalConsumption(
+        zoneKey=ZoneKey("AT"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=120,
+        source="entsoe",
+    )
+
+    with pytest.raises(ValueError):
+        TotalConsumption._update(consumption, new_consumption)
 
 
 def test_create_consumption():
@@ -185,7 +299,7 @@ def test_raises_if_invalid_consumption():
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            consumption=np.nan,
+            consumption=math.nan,
             source="trust.me",
         )
 
@@ -219,6 +333,7 @@ def test_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             consumption=-1,
             source="trust.me",
         )
@@ -266,7 +381,7 @@ def test_invalid_price_raises():
         Price(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            price=np.nan,
+            price=math.nan,
             source="trust.me",
             currency="EUR",
         )
@@ -306,6 +421,89 @@ def test_prices_can_be_in_future():
         source="trust.me",
         currency="EUR",
     )
+
+
+def test_create_locational_marginal_price():
+    lmp = LocationalMarginalPrice(
+        zoneKey=ZoneKey("US-CENT-SWPP"),
+        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="USD",
+        node="SPPNORTH_HUB",
+    )
+    assert lmp.zoneKey == ZoneKey("US-CENT-SWPP")
+    assert lmp.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert lmp.price == 1
+    assert lmp.source == "trust.me"
+    assert lmp.currency == "USD"
+    assert lmp.node == "SPPNORTH_HUB"
+
+
+@pytest.mark.parametrize(
+    "node",
+    [
+        "",  # Empty string
+        None,  # None value
+        " ",  # Space only
+        "\t",  # Tab only
+        "\n",  # Newline only
+        "   ",  # Multiple spaces
+        " \t\n ",  # Mixed whitespace
+        "\tSPPNORTH_HUB",  # Leading whitespace
+        "SPPNORTH_HUB\t",  # Trailing whitespace
+    ],
+)
+def test_invalid_locational_marginal_price_node_raises(node):
+    # This should raise a ValueError because the node is a empty string.
+    with pytest.raises(ValueError):
+        LocationalMarginalPrice(
+            zoneKey=ZoneKey("US-CENT-SWPP"),
+            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="USD",
+            node=node,
+        )
+
+
+def test_create_grid_alerts():
+    grid_alert = GridAlert.create(
+        logger=logging.Logger("test"),
+        zoneKey=ZoneKey("US-MIDA-PJM"),
+        locationRegion="Test Region",
+        source="trust.me",
+        alertType=GridAlertType.action,
+        message="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
+    )
+    assert grid_alert is not None
+    assert grid_alert.zoneKey == ZoneKey("US-MIDA-PJM")
+    assert grid_alert.locationRegion == "Test Region"
+    assert grid_alert.source == "trust.me"
+    assert grid_alert.alertType == GridAlertType.action
+    assert grid_alert.message == "This is a test message"
+    assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert grid_alert.startTime == grid_alert.issuedTime  # because of the default
+    assert grid_alert.endTime is None
+
+
+def test_invalid_message_raises():
+    # This should raise a ValueError because empty message
+    with pytest.raises(ValueError):
+        GridAlert(
+            logger=logging.Logger("test"),
+            zoneKey=ZoneKey("US-MIDA-PJM"),
+            locationRegion=None,
+            source="trust.me",
+            alertType=GridAlertType.action,
+            message="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
+        )
 
 
 def test_create_production_breakdown():
@@ -388,6 +586,7 @@ def test_negative_production_gets_corrected():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -414,6 +613,7 @@ def test_self_report_negative_value():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -480,6 +680,88 @@ def test_non_forecasted_point_with_timezone_forward():
     assert breakdown.datetime == datetime(2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo"))
 
 
+def test_end_datetime_must_be_after_datetime():
+    start = datetime(2023, 1, 1, 12, 0, tzinfo=timezone.utc)
+
+    # Strictly after start is accepted and truncated to whole minutes.
+    exchange = Exchange(
+        zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+        datetime=start,
+        end_datetime=datetime(2023, 1, 1, 13, 0, 45, tzinfo=timezone.utc),
+        netFlow=1,
+        source="trust.me",
+    )
+    assert exchange.end_datetime == datetime(2023, 1, 1, 13, 0, tzinfo=timezone.utc)
+
+    # None is allowed.
+    assert (
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            netFlow=1,
+            source="trust.me",
+        ).end_datetime
+        is None
+    )
+
+    # Equal to start is rejected (interval must have positive duration).
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=start,
+            netFlow=1,
+            source="trust.me",
+        )
+
+    # Before start is rejected.
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=datetime(2023, 1, 1, 11, 0, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+
+    # Naive end_datetime is rejected.
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=datetime(2023, 1, 1, 13, 0),
+            netFlow=1,
+            source="trust.me",
+        )
+
+
+def test_aggregate_takes_earliest_known_end_datetime():
+    # Sub-zones can report at different resolutions or without an end_datetime;
+    # aggregation keeps the earliest known end instead of failing.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+
+    def breakdown(source: str, end_datetime: datetime | None) -> ProductionBreakdown:
+        return ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            end_datetime=end_datetime,
+            production=ProductionMix(wind=10),
+            source=source,
+        )
+
+    quarter_hourly = breakdown("a", dt + timedelta(minutes=15))
+    hourly = breakdown("b", dt + timedelta(hours=1))
+    unknown = breakdown("c", None)
+
+    assert ProductionBreakdown.aggregate(
+        [quarter_hourly, hourly]
+    ).end_datetime == dt + timedelta(minutes=15)
+    assert ProductionBreakdown.aggregate(
+        [hourly, unknown]
+    ).end_datetime == dt + timedelta(hours=1)
+    assert ProductionBreakdown.aggregate([unknown, unknown]).end_datetime is None
+
+
 def test_static_create_logs_error_with_none():
     logger = logging.Logger("test")
     with patch.object(logger, "error") as mock_error:
@@ -487,6 +769,7 @@ def test_static_create_logs_error_with_none():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=None),
             source="trust.me",
         )
@@ -500,6 +783,7 @@ def test_static_create_logs_with_nan():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=math.nan),
             source="trust.me",
         )
@@ -513,6 +797,7 @@ def test_static_create_logs_with_nan_using_numpy():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=np.nan),
             source="trust.me",
         )
@@ -567,6 +852,7 @@ def test_total_production_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             value=-1,
             source="trust.me",
         )
@@ -793,7 +1079,7 @@ def test_production_with_nan_using_numpy():
     mix = ProductionMix()
     mix.add_value("wind", 10)
     assert mix.wind == 10
-    mix.add_value("wind", np.nan)
+    mix.add_value("wind", math.nan)
     assert mix.wind == 10
     assert mix.corrected_negative_modes == set()
 
@@ -804,7 +1090,7 @@ def test_production_with_nan_init():
 
 
 def test_production_with_nan_using_numpy_init():
-    mix = ProductionMix(wind=np.nan)
+    mix = ProductionMix(wind=math.nan)
     assert mix.wind is None
 
 
@@ -846,11 +1132,11 @@ def test_storage_with_nan():
 
 def test_storage_with_nan_using_numpy():
     mix = StorageMix()
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro is None
     mix.add_value("hydro", -5)
     assert mix.hydro == -5
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro == -5
 
 
@@ -860,7 +1146,7 @@ def test_storage_with_nan_init():
 
 
 def test_storage_with_nan_using_numpy_init():
-    mix = StorageMix(hydro=np.nan)
+    mix = StorageMix(hydro=math.nan)
     assert mix.hydro is None
 
 
@@ -970,3 +1256,156 @@ def test_update_storage_with_empty_and_new_empty():
     assert final_mix is not None
     assert final_mix.hydro is None
     assert final_mix.battery is None
+
+
+def test_create_exchange_capacity_forecast():
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    assert forecast.zoneKey == ZoneKey("AT->DE")
+    assert forecast.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert forecast.source == "trust.me"
+    assert forecast.capacityExport == 1000.0
+    assert forecast.capacityImport == 900.0
+    assert forecast.sourceType == EventSourceType.published
+
+
+def test_exchange_capacity_forecast_create_defaults_to_published():
+    logger = logging.Logger("test")
+    forecast = ExchangeCapacity.create(
+        logger=logger,
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    assert forecast is not None
+    assert forecast.sourceType == EventSourceType.published
+
+
+def test_exchange_capacity_forecast_allows_one_none_capacity():
+    # One direction may be None as long as the other is set
+    forward_only = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=None,
+    )
+    assert forward_only.capacityExport == 1000.0
+    assert forward_only.capacityImport is None
+
+    reverse_only = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=None,
+        capacityImport=900.0,
+    )
+    assert reverse_only.capacityExport is None
+    assert reverse_only.capacityImport == 900.0
+
+
+def test_raises_if_invalid_exchange_capacity_forecast():
+    # Missing timezone
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Unsorted zone key
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("DE->AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Not an exchange key (no "->")
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Both capacities None
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=None,
+            capacityImport=None,
+        )
+
+    # Unknown zone key not in EXCHANGES_CONFIG
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("UNKNOWN->ZONE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+
+def test_exchange_capacity_forecast_static_create_logs_error():
+    logger = logging.Logger("test")
+    with patch.object(logger, "error") as mock_error:
+        ExchangeCapacity.create(
+            logger=logger,
+            zoneKey=ZoneKey("DE->AT"),  # unsorted
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+        mock_error.assert_called_once()
+
+
+@freezegun.freeze_time("2023-01-01")
+def test_exchange_capacity_forecast_allows_future_datetime():
+    # Forecasted events can be in the future
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+        sourceType=EventSourceType.forecasted,
+    )
+    assert forecast.datetime == datetime(2023, 3, 1, tzinfo=timezone.utc)
+
+
+def test_exchange_capacity_forecast_to_dict():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    d = forecast.to_dict()
+    assert d["datetime"] == dt
+    assert d["sortedZoneKeys"] == ZoneKey("AT->DE")
+    assert d["capacityExport"] == 1000.0
+    assert d["capacityImport"] == 900.0
+    assert d["source"] == "trust.me"
+    assert d["sourceType"] == EventSourceType.published

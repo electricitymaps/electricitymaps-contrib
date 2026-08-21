@@ -1,3 +1,40 @@
+bounding_box:
+  - - -64.87804878048776
+    - 17.689803710280245
+  - - -64.55764557645571
+    - 17.775668680257738
+center_point:
+  - -64.71784717847174
+  - 17.73273619526899
+centroid:
+  - -64.77124771247708
+  - 17.738937554211812
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 330.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: VI
+country_name: USA
+currency: USD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/St_Thomas
+zone_name: Virgin Islands

@@ -1,9 +1,9 @@
 """
-Poetry scripts, runnable using 'poetry run'.
+Utility Python scripts runnable using 'uv run'.
 
 For example:
-    poetry run lint
-    poetry run format
+    uv run lint
+    uv run format
 """
 
 import subprocess

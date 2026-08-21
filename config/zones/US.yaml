@@ -1,25 +1,219 @@
 bounding_box:
-  - - -230.800781
-    - -23.885838
-  - - -32.34375
-    - 74.019543
+  - - -178.21438214382135
+    - 18.906224118294816
+  - - 179.780397803978
+    - 71.35397886338464
 bypassedSubZones:
   - US-FLA-HST
   - US-SE-SEPA
   - US-CAR-YAD
 capacity:
-  battery storage: 10593.7
-  biomass: 13926.4
-  coal: 212232.6
-  gas: 566059.9
-  geothermal: 3910.8
-  hydro: 79458.5
-  hydro storage: 22008.1
-  nuclear: 101376.5
-  oil: 29667.3
-  solar: 78322.4
-  unknown: 1690.2
-  wind: 146015.7
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 11720.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 11500.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10990.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10830.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 10280.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 10080.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 9960.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 9980.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 277700.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 260860.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 244610.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 232950.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 224240.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 209080.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 198880.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 194130.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 483380.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 507760.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 517900.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 522280.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 529010.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 534630.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 543810.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 542200.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 83790.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 83880.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 83790.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 83960.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 84390.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 84530.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 84320.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 84170.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 99630.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 99430.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 98120.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 96500.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 95550.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 94660.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 95770.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 96890.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 43770.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 51990.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 61590.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 76440.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 95390.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 114360.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 139210.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 177470.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40210.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 38340.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 37630.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 33780.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 34440.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 36850.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 35860.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 35580.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 87830.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 94670.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 103840.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 118660.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 133020.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 141670.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 148020.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 153150.0
+center_point:
+  - -117.09340068022681
+  - 45.024183836233846
+centroid:
+  - -124.71143136720069
+  - 49.97276787769272
 contributors:
   - kepiej
   - KabelWlan
@@ -30,15 +224,47 @@ contributors:
   - VIKTORVAV99
   - MisterClean
 country: US
+country_name: United States
+currency: USD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 441.964248935829
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 454.8664414713558
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 397.4
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 429.51
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 389.22
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 359.39
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 378.0
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 361.18
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 340.32
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 328.47
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 330.68
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -56,36 +282,84 @@ emissionFactors:
       source: eGrid 2020
       value: 70.87985131
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 441.964248935829
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 454.8664414713558
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 400.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 430.13
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 386.81
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 353.35
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 374.76
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 359.26
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 339.4
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 327.87
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 334.84
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 803.8986689
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 500.64
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 462.98
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 439.96
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 441.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 418.81
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 400.6
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 430.4
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 462.51
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 422.22
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 392.39
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 411.0
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 394.18
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 373.32
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 361.47
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 363.68
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -103,24 +377,42 @@ emissionFactors:
       source: eGrid 2020; IPCC 2014
       value: 108.87985131
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 500.64
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 462.98
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 439.96
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 441.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 418.81
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 400.6
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 424.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 454.13
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 410.81
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 377.35
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
+        value: 398.76
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; IPCC 2014
+        value: 383.26
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; IPCC 2014
+        value: 363.4
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; IPCC 2014
+        value: 351.87
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; IPCC 2014
+        value: 358.84
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
@@ -129,7 +421,6 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 26.22100877
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -222,15 +513,107 @@ fallbackZoneMixes:
         solar: 0.036972927459937105
         unknown: 0.017414508337906885
         wind: 0.10517083862296002
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3867
+    - datetime: '2018-01-01'
+      value: 0.3566
+    - datetime: '2019-01-01'
+      value: 0.3867
+    - datetime: '2020-01-01'
+      value: 0.4048
+    - datetime: '2021-01-01'
+      value: 0.3988
+    - datetime: '2022-01-01'
+      value: 0.4114
+    - datetime: '2023-01-01'
+      value: 0.4112
+    - datetime: '2024-01-01'
+      value: 0.4255
+    - datetime: '2025-01-01'
+      value: 0.4392
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3819
+    - datetime: '2018-01-01'
+      value: 0.3587
+    - datetime: '2019-01-01'
+      value: 0.3924
+    - datetime: '2020-01-01'
+      value: 0.4174
+    - datetime: '2021-01-01'
+      value: 0.411
+    - datetime: '2022-01-01'
+      value: 0.4195
+    - datetime: '2023-01-01'
+      value: 0.4139
+    - datetime: '2024-01-01'
+      value: 0.4261
+    - datetime: '2025-01-01'
+      value: 0.4348
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1865
+    - datetime: '2018-01-01'
+      value: 0.161
+    - datetime: '2019-01-01'
+      value: 0.181
+    - datetime: '2020-01-01'
+      value: 0.1972
+    - datetime: '2021-01-01'
+      value: 0.2024
+    - datetime: '2022-01-01'
+      value: 0.2217
+    - datetime: '2023-01-01'
+      value: 0.22
+    - datetime: '2024-01-01'
+      value: 0.2411
+    - datetime: '2025-01-01'
+      value: 0.2585
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1795
+    - datetime: '2018-01-01'
+      value: 0.1606
+    - datetime: '2019-01-01'
+      value: 0.1773
+    - datetime: '2020-01-01'
+      value: 0.1971
+    - datetime: '2021-01-01'
+      value: 0.2035
+    - datetime: '2022-01-01'
+      value: 0.2182
+    - datetime: '2023-01-01'
+      value: 0.2102
+    - datetime: '2024-01-01'
+      value: 0.2238
+    - datetime: '2025-01-01'
+      value: 0.2371
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+  eGrid 2022:
+    link: https://www.epa.gov/egrid/historical-egrid-data
+  eGrid 2023:
+    link: https://www.epa.gov/egrid/detailed-data
 subZoneNames:
+  - US-AK
+  - US-AK-SEAPA
   - US-CAL-BANC
   - US-CAL-CISO
   - US-CAL-IID
@@ -253,6 +636,7 @@ subZoneNames:
   - US-FLA-SEC
   - US-FLA-TAL
   - US-FLA-TEC
+  - US-HI
   - US-MIDA-PJM
   - US-MIDW-AECI
   - US-MIDW-LGEE
@@ -288,3 +672,4 @@ subZoneNames:
   - US-TEN-TVA
   - US-TEX-ERCO
 timezone: US/Central
+zone_name: United States

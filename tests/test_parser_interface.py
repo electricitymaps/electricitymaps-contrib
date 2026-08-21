@@ -23,13 +23,27 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "consumption": _PARSER_FUNCTION_ARGS,
     "consumptionForecast": _PARSER_FUNCTION_ARGS,
     "exchange": _EXCHANGE_FUNCTION_ARGS,
+    "exchangeCapacityForecastDayAhead": _EXCHANGE_FUNCTION_ARGS,
+    "exchangeCapacityForecastWeekAhead": _EXCHANGE_FUNCTION_ARGS,
+    "exchangeCapacityForecastMonthAhead": _EXCHANGE_FUNCTION_ARGS,
+    "atcDayAhead": _EXCHANGE_FUNCTION_ARGS,
+    "maxBexDayAhead": _EXCHANGE_FUNCTION_ARGS,
+    "scheduledExchangesDayAhead": _EXCHANGE_FUNCTION_ARGS,
+    "scheduledExchangesTotal": _EXCHANGE_FUNCTION_ARGS,
+    "maxBflowDayAhead": _EXCHANGE_FUNCTION_ARGS,
     "exchangeForecast": _EXCHANGE_FUNCTION_ARGS,
     "generationForecast": _PARSER_FUNCTION_ARGS,
+    "dayaheadLocationalMarginalPrice": _PARSER_FUNCTION_ARGS,
+    "realtimeLocationalMarginalPrice": _PARSER_FUNCTION_ARGS,
     "price": _PARSER_FUNCTION_ARGS,
     "production": _PARSER_FUNCTION_ARGS,
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
-    "productionPerUnit": _PARSER_FUNCTION_ARGS,
+    "productionPerModeForecastDayAhead": _PARSER_FUNCTION_ARGS,
+    "productionPerModeForecastIntraday": _PARSER_FUNCTION_ARGS,
+    "productionPerModeForecastLatest": _PARSER_FUNCTION_ARGS,
     "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
+    "gridAlerts": _PARSER_FUNCTION_ARGS,
+    "intradayContractStatistics": _PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
@@ -46,13 +60,27 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
     "consumptionForecast": _RETURN_PARSER_TYPE,
     "exchange": _RETURN_PARSER_TYPE,
+    "exchangeCapacityForecastDayAhead": _RETURN_PARSER_TYPE,
+    "exchangeCapacityForecastWeekAhead": _RETURN_PARSER_TYPE,
+    "exchangeCapacityForecastMonthAhead": _RETURN_PARSER_TYPE,
+    "atcDayAhead": _RETURN_PARSER_TYPE,
+    "maxBexDayAhead": _RETURN_PARSER_TYPE,
+    "scheduledExchangesDayAhead": _RETURN_PARSER_TYPE,
+    "scheduledExchangesTotal": _RETURN_PARSER_TYPE,
+    "maxBflowDayAhead": _RETURN_PARSER_TYPE,
     "exchangeForecast": _RETURN_PARSER_TYPE,
     "generationForecast": _RETURN_PARSER_TYPE,
+    "dayaheadLocationalMarginalPrice": _RETURN_PARSER_TYPE,
+    "realtimeLocationalMarginalPrice": _RETURN_PARSER_TYPE,
     "price": _RETURN_PARSER_TYPE,
     "production": _RETURN_PARSER_TYPE,
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
-    "productionPerUnit": _RETURN_PARSER_TYPE,
+    "productionPerModeForecastDayAhead": _RETURN_PARSER_TYPE,
+    "productionPerModeForecastIntraday": _RETURN_PARSER_TYPE,
+    "productionPerModeForecastLatest": _RETURN_PARSER_TYPE,
     "productionCapacity": _RETURN_PARSER_TYPE,
+    "gridAlerts": _RETURN_PARSER_TYPE,
+    "intradayContractStatistics": _RETURN_PARSER_TYPE,
 }
 
 
@@ -154,7 +182,7 @@ class ParserInterfaceTestcase(unittest.TestCase):
 
     def test_unused_files(self):
         parser_files_used = {
-            f'{f.function_name.rsplit(".", 1)[0]}.py'
+            f"{f.function_name.rsplit('.', 1)[0]}.py"
             for f in self.zone_parser_functions
         }
 

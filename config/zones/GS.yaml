@@ -1,3 +1,35 @@
+bounding_box:
+  - - -38.01458014580143
+    - -54.88756216320146
+  - - -35.78255782557821
+    - -53.98884214410363
+center_point:
+  - -36.642966429664256
+  - -54.51118737813342
+centroid:
+  - -36.85303911862644
+  - -54.32514660984883
+capacity:
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.18
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 0.19
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.13
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.01
 country: GS
+country_name: South Georgia and the South Sandwich Islands
+currency: GBP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: Atlantic/South_Georgia
+zone_name: South Georgia and the South Sandwich Islands

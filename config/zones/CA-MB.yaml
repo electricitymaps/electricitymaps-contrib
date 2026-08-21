@@ -1,10 +1,15 @@
-_comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not
-  reflected in latest report from March 2021)
+_comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)
 bounding_box:
-  - - -102.50159786704786
-    - 48.492669576869844
-  - - -88.44699962056833
-    - 60.500059011375754
+  - - -102.0016200162001
+    - 48.99852661272915
+  - - -88.94788947889474
+    - 59.99976766669326
+center_point:
+  - -95.7667821709945
+  - 54.50824290829774
+centroid:
+  - -96.60629810723367
+  - 53.658709771078414
 capacity:
   coal: 0
   gas: 237
@@ -14,6 +19,8 @@ capacity:
 contributors:
   - felixvanoost
 country: CA
+country_name: Canada
+currency: CAD
 fallbackZoneMixes:
   _source: Statistics Canada - average production in 2020
   _url: https://docs.google.com/spreadsheets/d/1gobOiDRBsxKEKQPG2x5o2Qx17bQLXTSJLtF1JeasKWI/edit?usp=sharing
@@ -22,5 +29,8 @@ fallbackZoneMixes:
       gas: 0.003
       hydro: 0.9715
       wind: 0.0254
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Winnipeg
+zone_name: Manitoba

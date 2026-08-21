@@ -1,0 +1,3334 @@
+{
+  "lastUpdated": "2025-10-09 06:41:00-0500",
+  "previousDay": {
+    "dayDate": "2025-10-08 03:00:00-0500",
+    "data": [
+      {
+        "tagCLastTime": "2025-10-08 00:00:00",
+        "dstFlag": "N",
+        "totalCharging": -439.009,
+        "totalDischarging": 58.723,
+        "netOutput": -380.286,
+        "timestamp": "2025-10-08 00:00:00-0500",
+        "epoch": 1759899600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:05:00",
+        "dstFlag": "N",
+        "totalCharging": -480.247,
+        "totalDischarging": 303.192,
+        "netOutput": -177.056,
+        "timestamp": "2025-10-08 00:05:00-0500",
+        "epoch": 1759899900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:10:00",
+        "dstFlag": "N",
+        "totalCharging": -487.695,
+        "totalDischarging": 211.947,
+        "netOutput": -275.748,
+        "timestamp": "2025-10-08 00:10:00-0500",
+        "epoch": 1759900200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:15:00",
+        "dstFlag": "N",
+        "totalCharging": -433.952,
+        "totalDischarging": 42.158,
+        "netOutput": -391.794,
+        "timestamp": "2025-10-08 00:15:00-0500",
+        "epoch": 1759900500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:20:00",
+        "dstFlag": "N",
+        "totalCharging": -335.022,
+        "totalDischarging": 117.911,
+        "netOutput": -217.111,
+        "timestamp": "2025-10-08 00:20:00-0500",
+        "epoch": 1759900800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:25:00",
+        "dstFlag": "N",
+        "totalCharging": -297.234,
+        "totalDischarging": 210.87,
+        "netOutput": -86.364,
+        "timestamp": "2025-10-08 00:25:00-0500",
+        "epoch": 1759901100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:30:00",
+        "dstFlag": "N",
+        "totalCharging": -321.565,
+        "totalDischarging": 157.21,
+        "netOutput": -164.355,
+        "timestamp": "2025-10-08 00:30:00-0500",
+        "epoch": 1759901400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:35:00",
+        "dstFlag": "N",
+        "totalCharging": -431.355,
+        "totalDischarging": 79.86,
+        "netOutput": -351.495,
+        "timestamp": "2025-10-08 00:35:00-0500",
+        "epoch": 1759901700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:40:00",
+        "dstFlag": "N",
+        "totalCharging": -508.752,
+        "totalDischarging": 112.069,
+        "netOutput": -396.683,
+        "timestamp": "2025-10-08 00:40:00-0500",
+        "epoch": 1759902000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:45:00",
+        "dstFlag": "N",
+        "totalCharging": -564.105,
+        "totalDischarging": 275.26,
+        "netOutput": -288.845,
+        "timestamp": "2025-10-08 00:45:00-0500",
+        "epoch": 1759902300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:50:00",
+        "dstFlag": "N",
+        "totalCharging": -606.878,
+        "totalDischarging": 231.923,
+        "netOutput": -374.955,
+        "timestamp": "2025-10-08 00:50:00-0500",
+        "epoch": 1759902600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 00:55:00",
+        "dstFlag": "N",
+        "totalCharging": -549.938,
+        "totalDischarging": 191.366,
+        "netOutput": -358.572,
+        "timestamp": "2025-10-08 00:55:00-0500",
+        "epoch": 1759902900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:00:00",
+        "dstFlag": "N",
+        "totalCharging": -511.373,
+        "totalDischarging": 206.577,
+        "netOutput": -304.795,
+        "timestamp": "2025-10-08 01:00:00-0500",
+        "epoch": 1759903200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:05:00",
+        "dstFlag": "N",
+        "totalCharging": -473.062,
+        "totalDischarging": 149.248,
+        "netOutput": -323.814,
+        "timestamp": "2025-10-08 01:05:00-0500",
+        "epoch": 1759903500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:10:00",
+        "dstFlag": "N",
+        "totalCharging": -339.057,
+        "totalDischarging": 131.696,
+        "netOutput": -207.361,
+        "timestamp": "2025-10-08 01:10:00-0500",
+        "epoch": 1759903800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:15:00",
+        "dstFlag": "N",
+        "totalCharging": -351.074,
+        "totalDischarging": 253.237,
+        "netOutput": -97.837,
+        "timestamp": "2025-10-08 01:15:00-0500",
+        "epoch": 1759904100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:20:00",
+        "dstFlag": "N",
+        "totalCharging": -347.72,
+        "totalDischarging": 169.201,
+        "netOutput": -178.519,
+        "timestamp": "2025-10-08 01:20:00-0500",
+        "epoch": 1759904400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:25:00",
+        "dstFlag": "N",
+        "totalCharging": -280.898,
+        "totalDischarging": 126.654,
+        "netOutput": -154.244,
+        "timestamp": "2025-10-08 01:25:00-0500",
+        "epoch": 1759904700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:30:00",
+        "dstFlag": "N",
+        "totalCharging": -352.526,
+        "totalDischarging": 251.804,
+        "netOutput": -100.722,
+        "timestamp": "2025-10-08 01:30:00-0500",
+        "epoch": 1759905000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:35:00",
+        "dstFlag": "N",
+        "totalCharging": -435.157,
+        "totalDischarging": 196.782,
+        "netOutput": -238.375,
+        "timestamp": "2025-10-08 01:35:00-0500",
+        "epoch": 1759905300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:40:00",
+        "dstFlag": "N",
+        "totalCharging": -568.835,
+        "totalDischarging": 95.068,
+        "netOutput": -473.767,
+        "timestamp": "2025-10-08 01:40:00-0500",
+        "epoch": 1759905600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:45:00",
+        "dstFlag": "N",
+        "totalCharging": -649.678,
+        "totalDischarging": 69.021,
+        "netOutput": -580.656,
+        "timestamp": "2025-10-08 01:45:00-0500",
+        "epoch": 1759905900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:50:00",
+        "dstFlag": "N",
+        "totalCharging": -585.841,
+        "totalDischarging": 103.751,
+        "netOutput": -482.09,
+        "timestamp": "2025-10-08 01:50:00-0500",
+        "epoch": 1759906200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 01:55:00",
+        "dstFlag": "N",
+        "totalCharging": -696.273,
+        "totalDischarging": 62.493,
+        "netOutput": -633.78,
+        "timestamp": "2025-10-08 01:55:00-0500",
+        "epoch": 1759906500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:00:00",
+        "dstFlag": "N",
+        "totalCharging": -747.1,
+        "totalDischarging": 164.591,
+        "netOutput": -582.508,
+        "timestamp": "2025-10-08 02:00:00-0500",
+        "epoch": 1759906800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:05:00",
+        "dstFlag": "N",
+        "totalCharging": -759.403,
+        "totalDischarging": 307.081,
+        "netOutput": -452.322,
+        "timestamp": "2025-10-08 02:05:00-0500",
+        "epoch": 1759907100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:10:00",
+        "dstFlag": "N",
+        "totalCharging": -643.738,
+        "totalDischarging": 211.32,
+        "netOutput": -432.419,
+        "timestamp": "2025-10-08 02:10:00-0500",
+        "epoch": 1759907400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:15:00",
+        "dstFlag": "N",
+        "totalCharging": -649.315,
+        "totalDischarging": 72.309,
+        "netOutput": -577.006,
+        "timestamp": "2025-10-08 02:15:00-0500",
+        "epoch": 1759907700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:20:00",
+        "dstFlag": "N",
+        "totalCharging": -667.601,
+        "totalDischarging": 58.154,
+        "netOutput": -609.447,
+        "timestamp": "2025-10-08 02:20:00-0500",
+        "epoch": 1759908000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:25:00",
+        "dstFlag": "N",
+        "totalCharging": -594.954,
+        "totalDischarging": 43.418,
+        "netOutput": -551.536,
+        "timestamp": "2025-10-08 02:25:00-0500",
+        "epoch": 1759908300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:30:00",
+        "dstFlag": "N",
+        "totalCharging": -525.078,
+        "totalDischarging": 41.746,
+        "netOutput": -483.332,
+        "timestamp": "2025-10-08 02:30:00-0500",
+        "epoch": 1759908600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:35:00",
+        "dstFlag": "N",
+        "totalCharging": -639.703,
+        "totalDischarging": 30.568,
+        "netOutput": -609.136,
+        "timestamp": "2025-10-08 02:35:00-0500",
+        "epoch": 1759908900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:40:00",
+        "dstFlag": "N",
+        "totalCharging": -727.779,
+        "totalDischarging": 78.48,
+        "netOutput": -649.299,
+        "timestamp": "2025-10-08 02:40:00-0500",
+        "epoch": 1759909200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:45:00",
+        "dstFlag": "N",
+        "totalCharging": -783.553,
+        "totalDischarging": 138.824,
+        "netOutput": -644.73,
+        "timestamp": "2025-10-08 02:45:00-0500",
+        "epoch": 1759909500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:50:00",
+        "dstFlag": "N",
+        "totalCharging": -846.073,
+        "totalDischarging": 142.682,
+        "netOutput": -703.391,
+        "timestamp": "2025-10-08 02:50:00-0500",
+        "epoch": 1759909800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 02:55:00",
+        "dstFlag": "N",
+        "totalCharging": -834.792,
+        "totalDischarging": 102.555,
+        "netOutput": -732.237,
+        "timestamp": "2025-10-08 02:55:00-0500",
+        "epoch": 1759910100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:00:00",
+        "dstFlag": "N",
+        "totalCharging": -803.418,
+        "totalDischarging": 81.383,
+        "netOutput": -722.035,
+        "timestamp": "2025-10-08 03:00:00-0500",
+        "epoch": 1759910400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:05:00",
+        "dstFlag": "N",
+        "totalCharging": -853.114,
+        "totalDischarging": 137.667,
+        "netOutput": -715.447,
+        "timestamp": "2025-10-08 03:05:00-0500",
+        "epoch": 1759910700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:10:00",
+        "dstFlag": "N",
+        "totalCharging": -890.204,
+        "totalDischarging": 81.516,
+        "netOutput": -808.688,
+        "timestamp": "2025-10-08 03:10:00-0500",
+        "epoch": 1759911000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:15:00",
+        "dstFlag": "N",
+        "totalCharging": -873.573,
+        "totalDischarging": 133.002,
+        "netOutput": -740.571,
+        "timestamp": "2025-10-08 03:15:00-0500",
+        "epoch": 1759911300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:20:00",
+        "dstFlag": "N",
+        "totalCharging": -905.63,
+        "totalDischarging": 118.99,
+        "netOutput": -786.64,
+        "timestamp": "2025-10-08 03:20:00-0500",
+        "epoch": 1759911600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:25:00",
+        "dstFlag": "N",
+        "totalCharging": -1093.446,
+        "totalDischarging": 66.346,
+        "netOutput": -1027.099,
+        "timestamp": "2025-10-08 03:25:00-0500",
+        "epoch": 1759911900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:30:00",
+        "dstFlag": "N",
+        "totalCharging": -1187.158,
+        "totalDischarging": 70.231,
+        "netOutput": -1116.927,
+        "timestamp": "2025-10-08 03:30:00-0500",
+        "epoch": 1759912200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:35:00",
+        "dstFlag": "N",
+        "totalCharging": -1299.295,
+        "totalDischarging": 42.071,
+        "netOutput": -1257.224,
+        "timestamp": "2025-10-08 03:35:00-0500",
+        "epoch": 1759912500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:40:00",
+        "dstFlag": "N",
+        "totalCharging": -1377.442,
+        "totalDischarging": 20.717,
+        "netOutput": -1356.725,
+        "timestamp": "2025-10-08 03:40:00-0500",
+        "epoch": 1759912800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:45:00",
+        "dstFlag": "N",
+        "totalCharging": -1304.753,
+        "totalDischarging": 177.743,
+        "netOutput": -1127.01,
+        "timestamp": "2025-10-08 03:45:00-0500",
+        "epoch": 1759913100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:50:00",
+        "dstFlag": "N",
+        "totalCharging": -1343.204,
+        "totalDischarging": 99.896,
+        "netOutput": -1243.308,
+        "timestamp": "2025-10-08 03:50:00-0500",
+        "epoch": 1759913400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 03:55:00",
+        "dstFlag": "N",
+        "totalCharging": -1515.708,
+        "totalDischarging": 110.38,
+        "netOutput": -1405.329,
+        "timestamp": "2025-10-08 03:55:00-0500",
+        "epoch": 1759913700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:00:00",
+        "dstFlag": "N",
+        "totalCharging": -1438.096,
+        "totalDischarging": 197.913,
+        "netOutput": -1240.183,
+        "timestamp": "2025-10-08 04:00:00-0500",
+        "epoch": 1759914000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:05:00",
+        "dstFlag": "N",
+        "totalCharging": -1262.853,
+        "totalDischarging": 282.14,
+        "netOutput": -980.713,
+        "timestamp": "2025-10-08 04:05:00-0500",
+        "epoch": 1759914300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:10:00",
+        "dstFlag": "N",
+        "totalCharging": -996.832,
+        "totalDischarging": 335.245,
+        "netOutput": -661.587,
+        "timestamp": "2025-10-08 04:10:00-0500",
+        "epoch": 1759914600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:15:00",
+        "dstFlag": "N",
+        "totalCharging": -844.206,
+        "totalDischarging": 193.13,
+        "netOutput": -651.075,
+        "timestamp": "2025-10-08 04:15:00-0500",
+        "epoch": 1759914900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:20:00",
+        "dstFlag": "N",
+        "totalCharging": -651.576,
+        "totalDischarging": 126.072,
+        "netOutput": -525.504,
+        "timestamp": "2025-10-08 04:20:00-0500",
+        "epoch": 1759915200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:25:00",
+        "dstFlag": "N",
+        "totalCharging": -557.429,
+        "totalDischarging": 141.648,
+        "netOutput": -415.781,
+        "timestamp": "2025-10-08 04:25:00-0500",
+        "epoch": 1759915500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:30:00",
+        "dstFlag": "N",
+        "totalCharging": -497.448,
+        "totalDischarging": 137.277,
+        "netOutput": -360.17,
+        "timestamp": "2025-10-08 04:30:00-0500",
+        "epoch": 1759915800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:35:00",
+        "dstFlag": "N",
+        "totalCharging": -436.38,
+        "totalDischarging": 117.48,
+        "netOutput": -318.9,
+        "timestamp": "2025-10-08 04:35:00-0500",
+        "epoch": 1759916100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:40:00",
+        "dstFlag": "N",
+        "totalCharging": -385.187,
+        "totalDischarging": 96.196,
+        "netOutput": -288.991,
+        "timestamp": "2025-10-08 04:40:00-0500",
+        "epoch": 1759916400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:45:00",
+        "dstFlag": "N",
+        "totalCharging": -406.364,
+        "totalDischarging": 81.1,
+        "netOutput": -325.264,
+        "timestamp": "2025-10-08 04:45:00-0500",
+        "epoch": 1759916700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:50:00",
+        "dstFlag": "N",
+        "totalCharging": -497.992,
+        "totalDischarging": 76.662,
+        "netOutput": -421.331,
+        "timestamp": "2025-10-08 04:50:00-0500",
+        "epoch": 1759917000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 04:55:00",
+        "dstFlag": "N",
+        "totalCharging": -430.512,
+        "totalDischarging": 160.465,
+        "netOutput": -270.047,
+        "timestamp": "2025-10-08 04:55:00-0500",
+        "epoch": 1759917300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:00:00",
+        "dstFlag": "N",
+        "totalCharging": -498.757,
+        "totalDischarging": 251.376,
+        "netOutput": -247.382,
+        "timestamp": "2025-10-08 05:00:00-0500",
+        "epoch": 1759917600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:05:00",
+        "dstFlag": "N",
+        "totalCharging": -514.643,
+        "totalDischarging": 319.753,
+        "netOutput": -194.89,
+        "timestamp": "2025-10-08 05:05:00-0500",
+        "epoch": 1759917900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:10:00",
+        "dstFlag": "N",
+        "totalCharging": -389.708,
+        "totalDischarging": 366.441,
+        "netOutput": -23.267,
+        "timestamp": "2025-10-08 05:10:00-0500",
+        "epoch": 1759918200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:15:00",
+        "dstFlag": "N",
+        "totalCharging": -341.06,
+        "totalDischarging": 198.857,
+        "netOutput": -142.202,
+        "timestamp": "2025-10-08 05:15:00-0500",
+        "epoch": 1759918500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:20:00",
+        "dstFlag": "N",
+        "totalCharging": -353.316,
+        "totalDischarging": 174.532,
+        "netOutput": -178.784,
+        "timestamp": "2025-10-08 05:20:00-0500",
+        "epoch": 1759918800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:25:00",
+        "dstFlag": "N",
+        "totalCharging": -576.446,
+        "totalDischarging": 147.381,
+        "netOutput": -429.065,
+        "timestamp": "2025-10-08 05:25:00-0500",
+        "epoch": 1759919100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:30:00",
+        "dstFlag": "N",
+        "totalCharging": -794.126,
+        "totalDischarging": 145.289,
+        "netOutput": -648.837,
+        "timestamp": "2025-10-08 05:30:00-0500",
+        "epoch": 1759919400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:35:00",
+        "dstFlag": "N",
+        "totalCharging": -744.289,
+        "totalDischarging": 163.907,
+        "netOutput": -580.382,
+        "timestamp": "2025-10-08 05:35:00-0500",
+        "epoch": 1759919700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:40:00",
+        "dstFlag": "N",
+        "totalCharging": -730.36,
+        "totalDischarging": 205.593,
+        "netOutput": -524.767,
+        "timestamp": "2025-10-08 05:40:00-0500",
+        "epoch": 1759920000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:45:00",
+        "dstFlag": "N",
+        "totalCharging": -762.977,
+        "totalDischarging": 244.589,
+        "netOutput": -518.388,
+        "timestamp": "2025-10-08 05:45:00-0500",
+        "epoch": 1759920300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:50:00",
+        "dstFlag": "N",
+        "totalCharging": -747.081,
+        "totalDischarging": 253.632,
+        "netOutput": -493.449,
+        "timestamp": "2025-10-08 05:50:00-0500",
+        "epoch": 1759920600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 05:55:00",
+        "dstFlag": "N",
+        "totalCharging": -795.384,
+        "totalDischarging": 240.727,
+        "netOutput": -554.658,
+        "timestamp": "2025-10-08 05:55:00-0500",
+        "epoch": 1759920900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:00:00",
+        "dstFlag": "N",
+        "totalCharging": -760.875,
+        "totalDischarging": 333.732,
+        "netOutput": -427.143,
+        "timestamp": "2025-10-08 06:00:00-0500",
+        "epoch": 1759921200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:05:00",
+        "dstFlag": "N",
+        "totalCharging": -479.443,
+        "totalDischarging": 483.413,
+        "netOutput": 3.97,
+        "timestamp": "2025-10-08 06:05:00-0500",
+        "epoch": 1759921500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:10:00",
+        "dstFlag": "N",
+        "totalCharging": -282.513,
+        "totalDischarging": 566.094,
+        "netOutput": 283.581,
+        "timestamp": "2025-10-08 06:10:00-0500",
+        "epoch": 1759921800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:15:00",
+        "dstFlag": "N",
+        "totalCharging": -284.395,
+        "totalDischarging": 515.647,
+        "netOutput": 231.252,
+        "timestamp": "2025-10-08 06:15:00-0500",
+        "epoch": 1759922100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:20:00",
+        "dstFlag": "N",
+        "totalCharging": -205.023,
+        "totalDischarging": 520.744,
+        "netOutput": 315.721,
+        "timestamp": "2025-10-08 06:20:00-0500",
+        "epoch": 1759922400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:25:00",
+        "dstFlag": "N",
+        "totalCharging": -172.129,
+        "totalDischarging": 560.29,
+        "netOutput": 388.161,
+        "timestamp": "2025-10-08 06:25:00-0500",
+        "epoch": 1759922700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:30:00",
+        "dstFlag": "N",
+        "totalCharging": -240.04,
+        "totalDischarging": 605.952,
+        "netOutput": 365.912,
+        "timestamp": "2025-10-08 06:30:00-0500",
+        "epoch": 1759923000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:35:00",
+        "dstFlag": "N",
+        "totalCharging": -143.472,
+        "totalDischarging": 829.893,
+        "netOutput": 686.421,
+        "timestamp": "2025-10-08 06:35:00-0500",
+        "epoch": 1759923300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:40:00",
+        "dstFlag": "N",
+        "totalCharging": -131.803,
+        "totalDischarging": 1043.83,
+        "netOutput": 912.027,
+        "timestamp": "2025-10-08 06:40:00-0500",
+        "epoch": 1759923600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:45:00",
+        "dstFlag": "N",
+        "totalCharging": -216.862,
+        "totalDischarging": 1022.911,
+        "netOutput": 806.049,
+        "timestamp": "2025-10-08 06:45:00-0500",
+        "epoch": 1759923900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:50:00",
+        "dstFlag": "N",
+        "totalCharging": -192.065,
+        "totalDischarging": 1011.592,
+        "netOutput": 819.527,
+        "timestamp": "2025-10-08 06:50:00-0500",
+        "epoch": 1759924200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 06:55:00",
+        "dstFlag": "N",
+        "totalCharging": -110.934,
+        "totalDischarging": 1156.555,
+        "netOutput": 1045.622,
+        "timestamp": "2025-10-08 06:55:00-0500",
+        "epoch": 1759924500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:00:00",
+        "dstFlag": "N",
+        "totalCharging": -154.745,
+        "totalDischarging": 1239.491,
+        "netOutput": 1084.746,
+        "timestamp": "2025-10-08 07:00:00-0500",
+        "epoch": 1759924800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:05:00",
+        "dstFlag": "N",
+        "totalCharging": -208.434,
+        "totalDischarging": 1467.251,
+        "netOutput": 1258.816,
+        "timestamp": "2025-10-08 07:05:00-0500",
+        "epoch": 1759925100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:10:00",
+        "dstFlag": "N",
+        "totalCharging": -258.138,
+        "totalDischarging": 1638.358,
+        "netOutput": 1380.22,
+        "timestamp": "2025-10-08 07:10:00-0500",
+        "epoch": 1759925400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:15:00",
+        "dstFlag": "N",
+        "totalCharging": -315.255,
+        "totalDischarging": 1560.796,
+        "netOutput": 1245.541,
+        "timestamp": "2025-10-08 07:15:00-0500",
+        "epoch": 1759925700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:20:00",
+        "dstFlag": "N",
+        "totalCharging": -326.156,
+        "totalDischarging": 1379.67,
+        "netOutput": 1053.515,
+        "timestamp": "2025-10-08 07:20:00-0500",
+        "epoch": 1759926000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:25:00",
+        "dstFlag": "N",
+        "totalCharging": -202.494,
+        "totalDischarging": 1347.206,
+        "netOutput": 1144.712,
+        "timestamp": "2025-10-08 07:25:00-0500",
+        "epoch": 1759926300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:30:00",
+        "dstFlag": "N",
+        "totalCharging": -185.415,
+        "totalDischarging": 1278.849,
+        "netOutput": 1093.434,
+        "timestamp": "2025-10-08 07:30:00-0500",
+        "epoch": 1759926600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:35:00",
+        "dstFlag": "N",
+        "totalCharging": -266.258,
+        "totalDischarging": 1112.471,
+        "netOutput": 846.213,
+        "timestamp": "2025-10-08 07:35:00-0500",
+        "epoch": 1759926900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:40:00",
+        "dstFlag": "N",
+        "totalCharging": -252.826,
+        "totalDischarging": 931.863,
+        "netOutput": 679.037,
+        "timestamp": "2025-10-08 07:40:00-0500",
+        "epoch": 1759927200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:45:00",
+        "dstFlag": "N",
+        "totalCharging": -276.177,
+        "totalDischarging": 858.935,
+        "netOutput": 582.758,
+        "timestamp": "2025-10-08 07:45:00-0500",
+        "epoch": 1759927500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:50:00",
+        "dstFlag": "N",
+        "totalCharging": -364.723,
+        "totalDischarging": 732.537,
+        "netOutput": 367.815,
+        "timestamp": "2025-10-08 07:50:00-0500",
+        "epoch": 1759927800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 07:55:00",
+        "dstFlag": "N",
+        "totalCharging": -377.993,
+        "totalDischarging": 458.346,
+        "netOutput": 80.352,
+        "timestamp": "2025-10-08 07:55:00-0500",
+        "epoch": 1759928100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:00:00",
+        "dstFlag": "N",
+        "totalCharging": -289.615,
+        "totalDischarging": 222.039,
+        "netOutput": -67.575,
+        "timestamp": "2025-10-08 08:00:00-0500",
+        "epoch": 1759928400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:05:00",
+        "dstFlag": "N",
+        "totalCharging": -412.198,
+        "totalDischarging": 168.388,
+        "netOutput": -243.81,
+        "timestamp": "2025-10-08 08:05:00-0500",
+        "epoch": 1759928700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:10:00",
+        "dstFlag": "N",
+        "totalCharging": -732.128,
+        "totalDischarging": 160.396,
+        "netOutput": -571.732,
+        "timestamp": "2025-10-08 08:10:00-0500",
+        "epoch": 1759929000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:15:00",
+        "dstFlag": "N",
+        "totalCharging": -984.028,
+        "totalDischarging": 151.435,
+        "netOutput": -832.593,
+        "timestamp": "2025-10-08 08:15:00-0500",
+        "epoch": 1759929300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:20:00",
+        "dstFlag": "N",
+        "totalCharging": -1070.302,
+        "totalDischarging": 147.121,
+        "netOutput": -923.18,
+        "timestamp": "2025-10-08 08:20:00-0500",
+        "epoch": 1759929600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:25:00",
+        "dstFlag": "N",
+        "totalCharging": -1046.979,
+        "totalDischarging": 114.109,
+        "netOutput": -932.87,
+        "timestamp": "2025-10-08 08:25:00-0500",
+        "epoch": 1759929900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:30:00",
+        "dstFlag": "N",
+        "totalCharging": -1110.22,
+        "totalDischarging": 44.353,
+        "netOutput": -1065.866,
+        "timestamp": "2025-10-08 08:30:00-0500",
+        "epoch": 1759930200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:35:00",
+        "dstFlag": "N",
+        "totalCharging": -1016.206,
+        "totalDischarging": 49.237,
+        "netOutput": -966.969,
+        "timestamp": "2025-10-08 08:35:00-0500",
+        "epoch": 1759930500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:40:00",
+        "dstFlag": "N",
+        "totalCharging": -972.42,
+        "totalDischarging": 50.955,
+        "netOutput": -921.465,
+        "timestamp": "2025-10-08 08:40:00-0500",
+        "epoch": 1759930800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:45:00",
+        "dstFlag": "N",
+        "totalCharging": -941.227,
+        "totalDischarging": 61.066,
+        "netOutput": -880.162,
+        "timestamp": "2025-10-08 08:45:00-0500",
+        "epoch": 1759931100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:50:00",
+        "dstFlag": "N",
+        "totalCharging": -1887.005,
+        "totalDischarging": 333.032,
+        "netOutput": -1553.973,
+        "timestamp": "2025-10-08 08:50:00-0500",
+        "epoch": 1759931400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 08:55:00",
+        "dstFlag": "N",
+        "totalCharging": -3689.397,
+        "totalDischarging": 454.463,
+        "netOutput": -3234.934,
+        "timestamp": "2025-10-08 08:55:00-0500",
+        "epoch": 1759931700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:00:00",
+        "dstFlag": "N",
+        "totalCharging": -3845.867,
+        "totalDischarging": 158.01,
+        "netOutput": -3687.857,
+        "timestamp": "2025-10-08 09:00:00-0500",
+        "epoch": 1759932000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:05:00",
+        "dstFlag": "N",
+        "totalCharging": -4176.744,
+        "totalDischarging": 116.628,
+        "netOutput": -4060.116,
+        "timestamp": "2025-10-08 09:05:00-0500",
+        "epoch": 1759932300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:10:00",
+        "dstFlag": "N",
+        "totalCharging": -4599.9,
+        "totalDischarging": 88.195,
+        "netOutput": -4511.705,
+        "timestamp": "2025-10-08 09:10:00-0500",
+        "epoch": 1759932600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:15:00",
+        "dstFlag": "N",
+        "totalCharging": -4586.09,
+        "totalDischarging": 152.669,
+        "netOutput": -4433.421,
+        "timestamp": "2025-10-08 09:15:00-0500",
+        "epoch": 1759932900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:20:00",
+        "dstFlag": "N",
+        "totalCharging": -4903.262,
+        "totalDischarging": 165.025,
+        "netOutput": -4738.237,
+        "timestamp": "2025-10-08 09:20:00-0500",
+        "epoch": 1759933200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:25:00",
+        "dstFlag": "N",
+        "totalCharging": -5366.399,
+        "totalDischarging": 19.352,
+        "netOutput": -5347.047,
+        "timestamp": "2025-10-08 09:25:00-0500",
+        "epoch": 1759933500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:30:00",
+        "dstFlag": "N",
+        "totalCharging": -5617.568,
+        "totalDischarging": 21.45,
+        "netOutput": -5596.117,
+        "timestamp": "2025-10-08 09:30:00-0500",
+        "epoch": 1759933800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:35:00",
+        "dstFlag": "N",
+        "totalCharging": -5504.698,
+        "totalDischarging": 26.087,
+        "netOutput": -5478.611,
+        "timestamp": "2025-10-08 09:35:00-0500",
+        "epoch": 1759934100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:40:00",
+        "dstFlag": "N",
+        "totalCharging": -5260.02,
+        "totalDischarging": 90.077,
+        "netOutput": -5169.943,
+        "timestamp": "2025-10-08 09:40:00-0500",
+        "epoch": 1759934400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:45:00",
+        "dstFlag": "N",
+        "totalCharging": -5009.266,
+        "totalDischarging": 267.656,
+        "netOutput": -4741.61,
+        "timestamp": "2025-10-08 09:45:00-0500",
+        "epoch": 1759934700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:50:00",
+        "dstFlag": "N",
+        "totalCharging": -4937.918,
+        "totalDischarging": 291.943,
+        "netOutput": -4645.974,
+        "timestamp": "2025-10-08 09:50:00-0500",
+        "epoch": 1759935000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 09:55:00",
+        "dstFlag": "N",
+        "totalCharging": -4957.148,
+        "totalDischarging": 115.708,
+        "netOutput": -4841.44,
+        "timestamp": "2025-10-08 09:55:00-0500",
+        "epoch": 1759935300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:00:00",
+        "dstFlag": "N",
+        "totalCharging": -5027.931,
+        "totalDischarging": 51.874,
+        "netOutput": -4976.057,
+        "timestamp": "2025-10-08 10:00:00-0500",
+        "epoch": 1759935600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:05:00",
+        "dstFlag": "N",
+        "totalCharging": -4970.421,
+        "totalDischarging": 134.466,
+        "netOutput": -4835.955,
+        "timestamp": "2025-10-08 10:05:00-0500",
+        "epoch": 1759935900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:10:00",
+        "dstFlag": "N",
+        "totalCharging": -4974.131,
+        "totalDischarging": 35.918,
+        "netOutput": -4938.213,
+        "timestamp": "2025-10-08 10:10:00-0500",
+        "epoch": 1759936200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:15:00",
+        "dstFlag": "N",
+        "totalCharging": -5061.162,
+        "totalDischarging": 3.375,
+        "netOutput": -5057.787,
+        "timestamp": "2025-10-08 10:15:00-0500",
+        "epoch": 1759936500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:20:00",
+        "dstFlag": "N",
+        "totalCharging": -5093.405,
+        "totalDischarging": 4.938,
+        "netOutput": -5088.467,
+        "timestamp": "2025-10-08 10:20:00-0500",
+        "epoch": 1759936800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:25:00",
+        "dstFlag": "N",
+        "totalCharging": -4935.205,
+        "totalDischarging": 26.94,
+        "netOutput": -4908.265,
+        "timestamp": "2025-10-08 10:25:00-0500",
+        "epoch": 1759937100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:30:00",
+        "dstFlag": "N",
+        "totalCharging": -4770.727,
+        "totalDischarging": 73.688,
+        "netOutput": -4697.039,
+        "timestamp": "2025-10-08 10:30:00-0500",
+        "epoch": 1759937400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:35:00",
+        "dstFlag": "N",
+        "totalCharging": -4408.766,
+        "totalDischarging": 14.2,
+        "netOutput": -4394.566,
+        "timestamp": "2025-10-08 10:35:00-0500",
+        "epoch": 1759937700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:40:00",
+        "dstFlag": "N",
+        "totalCharging": -4363.922,
+        "totalDischarging": 41.544,
+        "netOutput": -4322.378,
+        "timestamp": "2025-10-08 10:40:00-0500",
+        "epoch": 1759938000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:45:00",
+        "dstFlag": "N",
+        "totalCharging": -4447.195,
+        "totalDischarging": 18.806,
+        "netOutput": -4428.389,
+        "timestamp": "2025-10-08 10:45:00-0500",
+        "epoch": 1759938300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:50:00",
+        "dstFlag": "N",
+        "totalCharging": -4772.419,
+        "totalDischarging": 125.61,
+        "netOutput": -4646.81,
+        "timestamp": "2025-10-08 10:50:00-0500",
+        "epoch": 1759938600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 10:55:00",
+        "dstFlag": "N",
+        "totalCharging": -4830.266,
+        "totalDischarging": 166.07,
+        "netOutput": -4664.196,
+        "timestamp": "2025-10-08 10:55:00-0500",
+        "epoch": 1759938900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:00:00",
+        "dstFlag": "N",
+        "totalCharging": -4580.306,
+        "totalDischarging": 151.591,
+        "netOutput": -4428.715,
+        "timestamp": "2025-10-08 11:00:00-0500",
+        "epoch": 1759939200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:05:00",
+        "dstFlag": "N",
+        "totalCharging": -4327.33,
+        "totalDischarging": 185.775,
+        "netOutput": -4141.555,
+        "timestamp": "2025-10-08 11:05:00-0500",
+        "epoch": 1759939500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:10:00",
+        "dstFlag": "N",
+        "totalCharging": -4220.246,
+        "totalDischarging": 221.736,
+        "netOutput": -3998.51,
+        "timestamp": "2025-10-08 11:10:00-0500",
+        "epoch": 1759939800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:15:00",
+        "dstFlag": "N",
+        "totalCharging": -4192.44,
+        "totalDischarging": 179.811,
+        "netOutput": -4012.629,
+        "timestamp": "2025-10-08 11:15:00-0500",
+        "epoch": 1759940100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:20:00",
+        "dstFlag": "N",
+        "totalCharging": -3746.36,
+        "totalDischarging": 171.354,
+        "netOutput": -3575.007,
+        "timestamp": "2025-10-08 11:20:00-0500",
+        "epoch": 1759940400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:25:00",
+        "dstFlag": "N",
+        "totalCharging": -3367.97,
+        "totalDischarging": 424.043,
+        "netOutput": -2943.927,
+        "timestamp": "2025-10-08 11:25:00-0500",
+        "epoch": 1759940700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:30:00",
+        "dstFlag": "N",
+        "totalCharging": -3274.133,
+        "totalDischarging": 365.567,
+        "netOutput": -2908.566,
+        "timestamp": "2025-10-08 11:30:00-0500",
+        "epoch": 1759941000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:35:00",
+        "dstFlag": "N",
+        "totalCharging": -2951.788,
+        "totalDischarging": 265.943,
+        "netOutput": -2685.845,
+        "timestamp": "2025-10-08 11:35:00-0500",
+        "epoch": 1759941300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:40:00",
+        "dstFlag": "N",
+        "totalCharging": -2632.566,
+        "totalDischarging": 239.548,
+        "netOutput": -2393.018,
+        "timestamp": "2025-10-08 11:40:00-0500",
+        "epoch": 1759941600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:45:00",
+        "dstFlag": "N",
+        "totalCharging": -2457.834,
+        "totalDischarging": 81.554,
+        "netOutput": -2376.28,
+        "timestamp": "2025-10-08 11:45:00-0500",
+        "epoch": 1759941900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:50:00",
+        "dstFlag": "N",
+        "totalCharging": -2355.727,
+        "totalDischarging": 3.813,
+        "netOutput": -2351.914,
+        "timestamp": "2025-10-08 11:50:00-0500",
+        "epoch": 1759942200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 11:55:00",
+        "dstFlag": "N",
+        "totalCharging": -2241.641,
+        "totalDischarging": 27.736,
+        "netOutput": -2213.905,
+        "timestamp": "2025-10-08 11:55:00-0500",
+        "epoch": 1759942500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:00:00",
+        "dstFlag": "N",
+        "totalCharging": -2019.534,
+        "totalDischarging": 214.632,
+        "netOutput": -1804.902,
+        "timestamp": "2025-10-08 12:00:00-0500",
+        "epoch": 1759942800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:05:00",
+        "dstFlag": "N",
+        "totalCharging": -1884.994,
+        "totalDischarging": 223.025,
+        "netOutput": -1661.97,
+        "timestamp": "2025-10-08 12:05:00-0500",
+        "epoch": 1759943100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:10:00",
+        "dstFlag": "N",
+        "totalCharging": -1390.095,
+        "totalDischarging": 204.212,
+        "netOutput": -1185.884,
+        "timestamp": "2025-10-08 12:10:00-0500",
+        "epoch": 1759943400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:15:00",
+        "dstFlag": "N",
+        "totalCharging": -1117.81,
+        "totalDischarging": 258.695,
+        "netOutput": -859.114,
+        "timestamp": "2025-10-08 12:15:00-0500",
+        "epoch": 1759943700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:20:00",
+        "dstFlag": "N",
+        "totalCharging": -857.291,
+        "totalDischarging": 223.199,
+        "netOutput": -634.092,
+        "timestamp": "2025-10-08 12:20:00-0500",
+        "epoch": 1759944000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:25:00",
+        "dstFlag": "N",
+        "totalCharging": -1061.904,
+        "totalDischarging": 44.84,
+        "netOutput": -1017.064,
+        "timestamp": "2025-10-08 12:25:00-0500",
+        "epoch": 1759944300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:30:00",
+        "dstFlag": "N",
+        "totalCharging": -1077.65,
+        "totalDischarging": 74.41,
+        "netOutput": -1003.239,
+        "timestamp": "2025-10-08 12:30:00-0500",
+        "epoch": 1759944600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:35:00",
+        "dstFlag": "N",
+        "totalCharging": -886.924,
+        "totalDischarging": 96.582,
+        "netOutput": -790.342,
+        "timestamp": "2025-10-08 12:35:00-0500",
+        "epoch": 1759944900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:40:00",
+        "dstFlag": "N",
+        "totalCharging": -860.356,
+        "totalDischarging": 201.49,
+        "netOutput": -658.866,
+        "timestamp": "2025-10-08 12:40:00-0500",
+        "epoch": 1759945200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:45:00",
+        "dstFlag": "N",
+        "totalCharging": -621.178,
+        "totalDischarging": 547.155,
+        "netOutput": -74.023,
+        "timestamp": "2025-10-08 12:45:00-0500",
+        "epoch": 1759945500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:50:00",
+        "dstFlag": "N",
+        "totalCharging": -451.72,
+        "totalDischarging": 926.196,
+        "netOutput": 474.475,
+        "timestamp": "2025-10-08 12:50:00-0500",
+        "epoch": 1759945800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 12:55:00",
+        "dstFlag": "N",
+        "totalCharging": -419.447,
+        "totalDischarging": 396.392,
+        "netOutput": -23.055,
+        "timestamp": "2025-10-08 12:55:00-0500",
+        "epoch": 1759946100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:00:00",
+        "dstFlag": "N",
+        "totalCharging": -436.563,
+        "totalDischarging": 648.252,
+        "netOutput": 211.689,
+        "timestamp": "2025-10-08 13:00:00-0500",
+        "epoch": 1759946400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:05:00",
+        "dstFlag": "N",
+        "totalCharging": -465.736,
+        "totalDischarging": 422.738,
+        "netOutput": -42.998,
+        "timestamp": "2025-10-08 13:05:00-0500",
+        "epoch": 1759946700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:10:00",
+        "dstFlag": "N",
+        "totalCharging": -425.845,
+        "totalDischarging": 189.087,
+        "netOutput": -236.759,
+        "timestamp": "2025-10-08 13:10:00-0500",
+        "epoch": 1759947000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:15:00",
+        "dstFlag": "N",
+        "totalCharging": -457.462,
+        "totalDischarging": 161.049,
+        "netOutput": -296.413,
+        "timestamp": "2025-10-08 13:15:00-0500",
+        "epoch": 1759947300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:20:00",
+        "dstFlag": "N",
+        "totalCharging": -705.31,
+        "totalDischarging": 118.956,
+        "netOutput": -586.354,
+        "timestamp": "2025-10-08 13:20:00-0500",
+        "epoch": 1759947600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:25:00",
+        "dstFlag": "N",
+        "totalCharging": -689.324,
+        "totalDischarging": 163.842,
+        "netOutput": -525.482,
+        "timestamp": "2025-10-08 13:25:00-0500",
+        "epoch": 1759947900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:30:00",
+        "dstFlag": "N",
+        "totalCharging": -772.519,
+        "totalDischarging": 83.205,
+        "netOutput": -689.314,
+        "timestamp": "2025-10-08 13:30:00-0500",
+        "epoch": 1759948200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:35:00",
+        "dstFlag": "N",
+        "totalCharging": -1149.386,
+        "totalDischarging": 45.939,
+        "netOutput": -1103.448,
+        "timestamp": "2025-10-08 13:35:00-0500",
+        "epoch": 1759948500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:40:00",
+        "dstFlag": "N",
+        "totalCharging": -703.519,
+        "totalDischarging": 245.584,
+        "netOutput": -457.935,
+        "timestamp": "2025-10-08 13:40:00-0500",
+        "epoch": 1759948800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:45:00",
+        "dstFlag": "N",
+        "totalCharging": -496.976,
+        "totalDischarging": 636.416,
+        "netOutput": 139.44,
+        "timestamp": "2025-10-08 13:45:00-0500",
+        "epoch": 1759949100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:50:00",
+        "dstFlag": "N",
+        "totalCharging": -510.341,
+        "totalDischarging": 326.033,
+        "netOutput": -184.308,
+        "timestamp": "2025-10-08 13:50:00-0500",
+        "epoch": 1759949400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 13:55:00",
+        "dstFlag": "N",
+        "totalCharging": -854.868,
+        "totalDischarging": 106.475,
+        "netOutput": -748.393,
+        "timestamp": "2025-10-08 13:55:00-0500",
+        "epoch": 1759949700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:00:00",
+        "dstFlag": "N",
+        "totalCharging": -1070.51,
+        "totalDischarging": 59.317,
+        "netOutput": -1011.192,
+        "timestamp": "2025-10-08 14:00:00-0500",
+        "epoch": 1759950000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:05:00",
+        "dstFlag": "N",
+        "totalCharging": -996.284,
+        "totalDischarging": 19.747,
+        "netOutput": -976.538,
+        "timestamp": "2025-10-08 14:05:00-0500",
+        "epoch": 1759950300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:10:00",
+        "dstFlag": "N",
+        "totalCharging": -490.607,
+        "totalDischarging": 481.576,
+        "netOutput": -9.031,
+        "timestamp": "2025-10-08 14:10:00-0500",
+        "epoch": 1759950600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:15:00",
+        "dstFlag": "N",
+        "totalCharging": -257.05,
+        "totalDischarging": 989.172,
+        "netOutput": 732.123,
+        "timestamp": "2025-10-08 14:15:00-0500",
+        "epoch": 1759950900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:20:00",
+        "dstFlag": "N",
+        "totalCharging": -171.992,
+        "totalDischarging": 818.318,
+        "netOutput": 646.326,
+        "timestamp": "2025-10-08 14:20:00-0500",
+        "epoch": 1759951200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:25:00",
+        "dstFlag": "N",
+        "totalCharging": -292.421,
+        "totalDischarging": 686.481,
+        "netOutput": 394.06,
+        "timestamp": "2025-10-08 14:25:00-0500",
+        "epoch": 1759951500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:30:00",
+        "dstFlag": "N",
+        "totalCharging": -599.052,
+        "totalDischarging": 646.82,
+        "netOutput": 47.768,
+        "timestamp": "2025-10-08 14:30:00-0500",
+        "epoch": 1759951800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:35:00",
+        "dstFlag": "N",
+        "totalCharging": -620.849,
+        "totalDischarging": 431.551,
+        "netOutput": -189.298,
+        "timestamp": "2025-10-08 14:35:00-0500",
+        "epoch": 1759952100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:40:00",
+        "dstFlag": "N",
+        "totalCharging": -427.14,
+        "totalDischarging": 696.206,
+        "netOutput": 269.066,
+        "timestamp": "2025-10-08 14:40:00-0500",
+        "epoch": 1759952400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:45:00",
+        "dstFlag": "N",
+        "totalCharging": -377.386,
+        "totalDischarging": 740.622,
+        "netOutput": 363.235,
+        "timestamp": "2025-10-08 14:45:00-0500",
+        "epoch": 1759952700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:50:00",
+        "dstFlag": "N",
+        "totalCharging": -618.433,
+        "totalDischarging": 575.693,
+        "netOutput": -42.74,
+        "timestamp": "2025-10-08 14:50:00-0500",
+        "epoch": 1759953000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 14:55:00",
+        "dstFlag": "N",
+        "totalCharging": -791.258,
+        "totalDischarging": 465.71,
+        "netOutput": -325.548,
+        "timestamp": "2025-10-08 14:55:00-0500",
+        "epoch": 1759953300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:00:00",
+        "dstFlag": "N",
+        "totalCharging": -505.273,
+        "totalDischarging": 500.981,
+        "netOutput": -4.293,
+        "timestamp": "2025-10-08 15:00:00-0500",
+        "epoch": 1759953600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:05:00",
+        "dstFlag": "N",
+        "totalCharging": -447.12,
+        "totalDischarging": 368.357,
+        "netOutput": -78.763,
+        "timestamp": "2025-10-08 15:05:00-0500",
+        "epoch": 1759953900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:10:00",
+        "dstFlag": "N",
+        "totalCharging": -955.416,
+        "totalDischarging": 195.164,
+        "netOutput": -760.253,
+        "timestamp": "2025-10-08 15:10:00-0500",
+        "epoch": 1759954200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:15:00",
+        "dstFlag": "N",
+        "totalCharging": -968.593,
+        "totalDischarging": 251.968,
+        "netOutput": -716.625,
+        "timestamp": "2025-10-08 15:15:00-0500",
+        "epoch": 1759954500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:20:00",
+        "dstFlag": "N",
+        "totalCharging": -772.517,
+        "totalDischarging": 485.378,
+        "netOutput": -287.139,
+        "timestamp": "2025-10-08 15:20:00-0500",
+        "epoch": 1759954800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:25:00",
+        "dstFlag": "N",
+        "totalCharging": -848.871,
+        "totalDischarging": 110.122,
+        "netOutput": -738.75,
+        "timestamp": "2025-10-08 15:25:00-0500",
+        "epoch": 1759955100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:30:00",
+        "dstFlag": "N",
+        "totalCharging": -1065.624,
+        "totalDischarging": 60.078,
+        "netOutput": -1005.546,
+        "timestamp": "2025-10-08 15:30:00-0500",
+        "epoch": 1759955400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:35:00",
+        "dstFlag": "N",
+        "totalCharging": -506.091,
+        "totalDischarging": 390.399,
+        "netOutput": -115.692,
+        "timestamp": "2025-10-08 15:35:00-0500",
+        "epoch": 1759955700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:40:00",
+        "dstFlag": "N",
+        "totalCharging": -369.989,
+        "totalDischarging": 783.577,
+        "netOutput": 413.587,
+        "timestamp": "2025-10-08 15:40:00-0500",
+        "epoch": 1759956000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:45:00",
+        "dstFlag": "N",
+        "totalCharging": -486.385,
+        "totalDischarging": 519.824,
+        "netOutput": 33.439,
+        "timestamp": "2025-10-08 15:45:00-0500",
+        "epoch": 1759956300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:50:00",
+        "dstFlag": "N",
+        "totalCharging": -660.821,
+        "totalDischarging": 329.708,
+        "netOutput": -331.112,
+        "timestamp": "2025-10-08 15:50:00-0500",
+        "epoch": 1759956600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 15:55:00",
+        "dstFlag": "N",
+        "totalCharging": -740.976,
+        "totalDischarging": 229.307,
+        "netOutput": -511.669,
+        "timestamp": "2025-10-08 15:55:00-0500",
+        "epoch": 1759956900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:00:00",
+        "dstFlag": "N",
+        "totalCharging": -548.762,
+        "totalDischarging": 219.988,
+        "netOutput": -328.774,
+        "timestamp": "2025-10-08 16:00:00-0500",
+        "epoch": 1759957200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:05:00",
+        "dstFlag": "N",
+        "totalCharging": -406.528,
+        "totalDischarging": 580.927,
+        "netOutput": 174.399,
+        "timestamp": "2025-10-08 16:05:00-0500",
+        "epoch": 1759957500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:10:00",
+        "dstFlag": "N",
+        "totalCharging": -285.301,
+        "totalDischarging": 740.618,
+        "netOutput": 455.317,
+        "timestamp": "2025-10-08 16:10:00-0500",
+        "epoch": 1759957800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:15:00",
+        "dstFlag": "N",
+        "totalCharging": -432.788,
+        "totalDischarging": 389.612,
+        "netOutput": -43.176,
+        "timestamp": "2025-10-08 16:15:00-0500",
+        "epoch": 1759958100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:20:00",
+        "dstFlag": "N",
+        "totalCharging": -851.331,
+        "totalDischarging": 228.277,
+        "netOutput": -623.054,
+        "timestamp": "2025-10-08 16:20:00-0500",
+        "epoch": 1759958400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:25:00",
+        "dstFlag": "N",
+        "totalCharging": -718.236,
+        "totalDischarging": 149.38,
+        "netOutput": -568.855,
+        "timestamp": "2025-10-08 16:25:00-0500",
+        "epoch": 1759958700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:30:00",
+        "dstFlag": "N",
+        "totalCharging": -426.76,
+        "totalDischarging": 372.319,
+        "netOutput": -54.442,
+        "timestamp": "2025-10-08 16:30:00-0500",
+        "epoch": 1759959000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:35:00",
+        "dstFlag": "N",
+        "totalCharging": -469.853,
+        "totalDischarging": 449.542,
+        "netOutput": -20.311,
+        "timestamp": "2025-10-08 16:35:00-0500",
+        "epoch": 1759959300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:40:00",
+        "dstFlag": "N",
+        "totalCharging": -353.958,
+        "totalDischarging": 763.815,
+        "netOutput": 409.856,
+        "timestamp": "2025-10-08 16:40:00-0500",
+        "epoch": 1759959600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:45:00",
+        "dstFlag": "N",
+        "totalCharging": -507.55,
+        "totalDischarging": 469.023,
+        "netOutput": -38.528,
+        "timestamp": "2025-10-08 16:45:00-0500",
+        "epoch": 1759959900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:50:00",
+        "dstFlag": "N",
+        "totalCharging": -392.044,
+        "totalDischarging": 448.151,
+        "netOutput": 56.107,
+        "timestamp": "2025-10-08 16:50:00-0500",
+        "epoch": 1759960200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 16:55:00",
+        "dstFlag": "N",
+        "totalCharging": -289.626,
+        "totalDischarging": 361.676,
+        "netOutput": 72.05,
+        "timestamp": "2025-10-08 16:55:00-0500",
+        "epoch": 1759960500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:00:00",
+        "dstFlag": "N",
+        "totalCharging": -344.583,
+        "totalDischarging": 353.103,
+        "netOutput": 8.52,
+        "timestamp": "2025-10-08 17:00:00-0500",
+        "epoch": 1759960800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:05:00",
+        "dstFlag": "N",
+        "totalCharging": -99.271,
+        "totalDischarging": 483.592,
+        "netOutput": 384.321,
+        "timestamp": "2025-10-08 17:05:00-0500",
+        "epoch": 1759961100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:10:00",
+        "dstFlag": "N",
+        "totalCharging": -296.957,
+        "totalDischarging": 343.116,
+        "netOutput": 46.159,
+        "timestamp": "2025-10-08 17:10:00-0500",
+        "epoch": 1759961400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:15:00",
+        "dstFlag": "N",
+        "totalCharging": -168.051,
+        "totalDischarging": 385.464,
+        "netOutput": 217.413,
+        "timestamp": "2025-10-08 17:15:00-0500",
+        "epoch": 1759961700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:20:00",
+        "dstFlag": "N",
+        "totalCharging": -178,
+        "totalDischarging": 341.308,
+        "netOutput": 163.309,
+        "timestamp": "2025-10-08 17:20:00-0500",
+        "epoch": 1759962000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:25:00",
+        "dstFlag": "N",
+        "totalCharging": -223.738,
+        "totalDischarging": 345.104,
+        "netOutput": 121.366,
+        "timestamp": "2025-10-08 17:25:00-0500",
+        "epoch": 1759962300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:30:00",
+        "dstFlag": "N",
+        "totalCharging": -36.589,
+        "totalDischarging": 1159.868,
+        "netOutput": 1123.279,
+        "timestamp": "2025-10-08 17:30:00-0500",
+        "epoch": 1759962600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:35:00",
+        "dstFlag": "N",
+        "totalCharging": -54.408,
+        "totalDischarging": 1557.51,
+        "netOutput": 1503.102,
+        "timestamp": "2025-10-08 17:35:00-0500",
+        "epoch": 1759962900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:40:00",
+        "dstFlag": "N",
+        "totalCharging": -25.719,
+        "totalDischarging": 1713.136,
+        "netOutput": 1687.417,
+        "timestamp": "2025-10-08 17:40:00-0500",
+        "epoch": 1759963200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:45:00",
+        "dstFlag": "N",
+        "totalCharging": -11.018,
+        "totalDischarging": 2432.446,
+        "netOutput": 2421.428,
+        "timestamp": "2025-10-08 17:45:00-0500",
+        "epoch": 1759963500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:50:00",
+        "dstFlag": "N",
+        "totalCharging": -32.623,
+        "totalDischarging": 2895.798,
+        "netOutput": 2863.175,
+        "timestamp": "2025-10-08 17:50:00-0500",
+        "epoch": 1759963800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 17:55:00",
+        "dstFlag": "N",
+        "totalCharging": -84.62,
+        "totalDischarging": 2842.496,
+        "netOutput": 2757.876,
+        "timestamp": "2025-10-08 17:55:00-0500",
+        "epoch": 1759964100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:00:00",
+        "dstFlag": "N",
+        "totalCharging": -174.861,
+        "totalDischarging": 3035.081,
+        "netOutput": 2860.22,
+        "timestamp": "2025-10-08 18:00:00-0500",
+        "epoch": 1759964400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:05:00",
+        "dstFlag": "N",
+        "totalCharging": -310.958,
+        "totalDischarging": 3082.916,
+        "netOutput": 2771.958,
+        "timestamp": "2025-10-08 18:05:00-0500",
+        "epoch": 1759964700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:10:00",
+        "dstFlag": "N",
+        "totalCharging": -176.602,
+        "totalDischarging": 3388.98,
+        "netOutput": 3212.378,
+        "timestamp": "2025-10-08 18:10:00-0500",
+        "epoch": 1759965000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:15:00",
+        "dstFlag": "N",
+        "totalCharging": -93.775,
+        "totalDischarging": 3893.53,
+        "netOutput": 3799.755,
+        "timestamp": "2025-10-08 18:15:00-0500",
+        "epoch": 1759965300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:20:00",
+        "dstFlag": "N",
+        "totalCharging": -62.574,
+        "totalDischarging": 4617.978,
+        "netOutput": 4555.405,
+        "timestamp": "2025-10-08 18:20:00-0500",
+        "epoch": 1759965600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:25:00",
+        "dstFlag": "N",
+        "totalCharging": -33.978,
+        "totalDischarging": 5231.333,
+        "netOutput": 5197.355,
+        "timestamp": "2025-10-08 18:25:00-0500",
+        "epoch": 1759965900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:30:00",
+        "dstFlag": "N",
+        "totalCharging": -102.075,
+        "totalDischarging": 5390.688,
+        "netOutput": 5288.614,
+        "timestamp": "2025-10-08 18:30:00-0500",
+        "epoch": 1759966200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:35:00",
+        "dstFlag": "N",
+        "totalCharging": -85.397,
+        "totalDischarging": 5790.457,
+        "netOutput": 5705.06,
+        "timestamp": "2025-10-08 18:35:00-0500",
+        "epoch": 1759966500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:40:00",
+        "dstFlag": "N",
+        "totalCharging": -26.556,
+        "totalDischarging": 5988.836,
+        "netOutput": 5962.28,
+        "timestamp": "2025-10-08 18:40:00-0500",
+        "epoch": 1759966800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:45:00",
+        "dstFlag": "N",
+        "totalCharging": -15.37,
+        "totalDischarging": 6244.84,
+        "netOutput": 6229.47,
+        "timestamp": "2025-10-08 18:45:00-0500",
+        "epoch": 1759967100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:50:00",
+        "dstFlag": "N",
+        "totalCharging": -19.774,
+        "totalDischarging": 6418.386,
+        "netOutput": 6398.612,
+        "timestamp": "2025-10-08 18:50:00-0500",
+        "epoch": 1759967400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 18:55:00",
+        "dstFlag": "N",
+        "totalCharging": -40.433,
+        "totalDischarging": 6451.942,
+        "netOutput": 6411.51,
+        "timestamp": "2025-10-08 18:55:00-0500",
+        "epoch": 1759967700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:00:00",
+        "dstFlag": "N",
+        "totalCharging": -46.327,
+        "totalDischarging": 6410.095,
+        "netOutput": 6363.768,
+        "timestamp": "2025-10-08 19:00:00-0500",
+        "epoch": 1759968000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:05:00",
+        "dstFlag": "N",
+        "totalCharging": -37.89,
+        "totalDischarging": 6445.119,
+        "netOutput": 6407.23,
+        "timestamp": "2025-10-08 19:05:00-0500",
+        "epoch": 1759968300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:10:00",
+        "dstFlag": "N",
+        "totalCharging": -46.214,
+        "totalDischarging": 6467.806,
+        "netOutput": 6421.592,
+        "timestamp": "2025-10-08 19:10:00-0500",
+        "epoch": 1759968600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:15:00",
+        "dstFlag": "N",
+        "totalCharging": -67.691,
+        "totalDischarging": 6243.503,
+        "netOutput": 6175.812,
+        "timestamp": "2025-10-08 19:15:00-0500",
+        "epoch": 1759968900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:20:00",
+        "dstFlag": "N",
+        "totalCharging": -39.595,
+        "totalDischarging": 6108.459,
+        "netOutput": 6068.864,
+        "timestamp": "2025-10-08 19:20:00-0500",
+        "epoch": 1759969200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:25:00",
+        "dstFlag": "N",
+        "totalCharging": -48.223,
+        "totalDischarging": 5808.556,
+        "netOutput": 5760.333,
+        "timestamp": "2025-10-08 19:25:00-0500",
+        "epoch": 1759969500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:30:00",
+        "dstFlag": "N",
+        "totalCharging": -59.459,
+        "totalDischarging": 5467.161,
+        "netOutput": 5407.701,
+        "timestamp": "2025-10-08 19:30:00-0500",
+        "epoch": 1759969800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:35:00",
+        "dstFlag": "N",
+        "totalCharging": -91.612,
+        "totalDischarging": 5076.822,
+        "netOutput": 4985.21,
+        "timestamp": "2025-10-08 19:35:00-0500",
+        "epoch": 1759970100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:40:00",
+        "dstFlag": "N",
+        "totalCharging": -93.966,
+        "totalDischarging": 4811.242,
+        "netOutput": 4717.276,
+        "timestamp": "2025-10-08 19:40:00-0500",
+        "epoch": 1759970400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:45:00",
+        "dstFlag": "N",
+        "totalCharging": -77.023,
+        "totalDischarging": 4597.294,
+        "netOutput": 4520.271,
+        "timestamp": "2025-10-08 19:45:00-0500",
+        "epoch": 1759970700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:50:00",
+        "dstFlag": "N",
+        "totalCharging": -79.505,
+        "totalDischarging": 4344.947,
+        "netOutput": 4265.442,
+        "timestamp": "2025-10-08 19:50:00-0500",
+        "epoch": 1759971000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 19:55:00",
+        "dstFlag": "N",
+        "totalCharging": -126.599,
+        "totalDischarging": 4064.127,
+        "netOutput": 3937.529,
+        "timestamp": "2025-10-08 19:55:00-0500",
+        "epoch": 1759971300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:00:00",
+        "dstFlag": "N",
+        "totalCharging": -187.283,
+        "totalDischarging": 3761.797,
+        "netOutput": 3574.513,
+        "timestamp": "2025-10-08 20:00:00-0500",
+        "epoch": 1759971600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:05:00",
+        "dstFlag": "N",
+        "totalCharging": -130.731,
+        "totalDischarging": 3492.525,
+        "netOutput": 3361.794,
+        "timestamp": "2025-10-08 20:05:00-0500",
+        "epoch": 1759971900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:10:00",
+        "dstFlag": "N",
+        "totalCharging": -38.619,
+        "totalDischarging": 3223.132,
+        "netOutput": 3184.513,
+        "timestamp": "2025-10-08 20:10:00-0500",
+        "epoch": 1759972200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:15:00",
+        "dstFlag": "N",
+        "totalCharging": -49.384,
+        "totalDischarging": 2960.505,
+        "netOutput": 2911.121,
+        "timestamp": "2025-10-08 20:15:00-0500",
+        "epoch": 1759972500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:20:00",
+        "dstFlag": "N",
+        "totalCharging": -36.465,
+        "totalDischarging": 3008.453,
+        "netOutput": 2971.988,
+        "timestamp": "2025-10-08 20:20:00-0500",
+        "epoch": 1759972800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:25:00",
+        "dstFlag": "N",
+        "totalCharging": -57.15,
+        "totalDischarging": 2892.005,
+        "netOutput": 2834.854,
+        "timestamp": "2025-10-08 20:25:00-0500",
+        "epoch": 1759973100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:30:00",
+        "dstFlag": "N",
+        "totalCharging": -55.156,
+        "totalDischarging": 2656.787,
+        "netOutput": 2601.63,
+        "timestamp": "2025-10-08 20:30:00-0500",
+        "epoch": 1759973400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:35:00",
+        "dstFlag": "N",
+        "totalCharging": -69.244,
+        "totalDischarging": 2620.557,
+        "netOutput": 2551.313,
+        "timestamp": "2025-10-08 20:35:00-0500",
+        "epoch": 1759973700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:40:00",
+        "dstFlag": "N",
+        "totalCharging": -82.71,
+        "totalDischarging": 2490.173,
+        "netOutput": 2407.463,
+        "timestamp": "2025-10-08 20:40:00-0500",
+        "epoch": 1759974000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:45:00",
+        "dstFlag": "N",
+        "totalCharging": -58.454,
+        "totalDischarging": 2406.657,
+        "netOutput": 2348.203,
+        "timestamp": "2025-10-08 20:45:00-0500",
+        "epoch": 1759974300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:50:00",
+        "dstFlag": "N",
+        "totalCharging": -132.793,
+        "totalDischarging": 2515.153,
+        "netOutput": 2382.36,
+        "timestamp": "2025-10-08 20:50:00-0500",
+        "epoch": 1759974600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 20:55:00",
+        "dstFlag": "N",
+        "totalCharging": -133.42,
+        "totalDischarging": 2364.844,
+        "netOutput": 2231.424,
+        "timestamp": "2025-10-08 20:55:00-0500",
+        "epoch": 1759974900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:00:00",
+        "dstFlag": "N",
+        "totalCharging": -52.431,
+        "totalDischarging": 2097.864,
+        "netOutput": 2045.433,
+        "timestamp": "2025-10-08 21:00:00-0500",
+        "epoch": 1759975200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:05:00",
+        "dstFlag": "N",
+        "totalCharging": -339.161,
+        "totalDischarging": 2042.872,
+        "netOutput": 1703.711,
+        "timestamp": "2025-10-08 21:05:00-0500",
+        "epoch": 1759975500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:10:00",
+        "dstFlag": "N",
+        "totalCharging": -708.701,
+        "totalDischarging": 1718.682,
+        "netOutput": 1009.98,
+        "timestamp": "2025-10-08 21:10:00-0500",
+        "epoch": 1759975800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:15:00",
+        "dstFlag": "N",
+        "totalCharging": -551.739,
+        "totalDischarging": 1346.019,
+        "netOutput": 794.28,
+        "timestamp": "2025-10-08 21:15:00-0500",
+        "epoch": 1759976100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:20:00",
+        "dstFlag": "N",
+        "totalCharging": -579.241,
+        "totalDischarging": 929.83,
+        "netOutput": 350.589,
+        "timestamp": "2025-10-08 21:20:00-0500",
+        "epoch": 1759976400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:25:00",
+        "dstFlag": "N",
+        "totalCharging": -482.063,
+        "totalDischarging": 643.776,
+        "netOutput": 161.713,
+        "timestamp": "2025-10-08 21:25:00-0500",
+        "epoch": 1759976700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:30:00",
+        "dstFlag": "N",
+        "totalCharging": -441.329,
+        "totalDischarging": 696.627,
+        "netOutput": 255.298,
+        "timestamp": "2025-10-08 21:30:00-0500",
+        "epoch": 1759977000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:35:00",
+        "dstFlag": "N",
+        "totalCharging": -337.375,
+        "totalDischarging": 464.363,
+        "netOutput": 126.988,
+        "timestamp": "2025-10-08 21:35:00-0500",
+        "epoch": 1759977300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:40:00",
+        "dstFlag": "N",
+        "totalCharging": -308.186,
+        "totalDischarging": 305.816,
+        "netOutput": -2.37,
+        "timestamp": "2025-10-08 21:40:00-0500",
+        "epoch": 1759977600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:45:00",
+        "dstFlag": "N",
+        "totalCharging": -284.489,
+        "totalDischarging": 430.833,
+        "netOutput": 146.344,
+        "timestamp": "2025-10-08 21:45:00-0500",
+        "epoch": 1759977900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:50:00",
+        "dstFlag": "N",
+        "totalCharging": -298.967,
+        "totalDischarging": 357.144,
+        "netOutput": 58.177,
+        "timestamp": "2025-10-08 21:50:00-0500",
+        "epoch": 1759978200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 21:55:00",
+        "dstFlag": "N",
+        "totalCharging": -478.263,
+        "totalDischarging": 319.167,
+        "netOutput": -159.096,
+        "timestamp": "2025-10-08 21:55:00-0500",
+        "epoch": 1759978500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:00:00",
+        "dstFlag": "N",
+        "totalCharging": -571.648,
+        "totalDischarging": 302.165,
+        "netOutput": -269.483,
+        "timestamp": "2025-10-08 22:00:00-0500",
+        "epoch": 1759978800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:05:00",
+        "dstFlag": "N",
+        "totalCharging": -677.398,
+        "totalDischarging": 443.557,
+        "netOutput": -233.841,
+        "timestamp": "2025-10-08 22:05:00-0500",
+        "epoch": 1759979100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:10:00",
+        "dstFlag": "N",
+        "totalCharging": -543.746,
+        "totalDischarging": 511.086,
+        "netOutput": -32.659,
+        "timestamp": "2025-10-08 22:10:00-0500",
+        "epoch": 1759979400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:15:00",
+        "dstFlag": "N",
+        "totalCharging": -449.562,
+        "totalDischarging": 457.241,
+        "netOutput": 7.679,
+        "timestamp": "2025-10-08 22:15:00-0500",
+        "epoch": 1759979700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:20:00",
+        "dstFlag": "N",
+        "totalCharging": -431.78,
+        "totalDischarging": 280.459,
+        "netOutput": -151.32,
+        "timestamp": "2025-10-08 22:20:00-0500",
+        "epoch": 1759980000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:25:00",
+        "dstFlag": "N",
+        "totalCharging": -377.723,
+        "totalDischarging": 148.576,
+        "netOutput": -229.147,
+        "timestamp": "2025-10-08 22:25:00-0500",
+        "epoch": 1759980300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:30:00",
+        "dstFlag": "N",
+        "totalCharging": -330.93,
+        "totalDischarging": 185.535,
+        "netOutput": -145.394,
+        "timestamp": "2025-10-08 22:30:00-0500",
+        "epoch": 1759980600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:35:00",
+        "dstFlag": "N",
+        "totalCharging": -520.13,
+        "totalDischarging": 144.793,
+        "netOutput": -375.337,
+        "timestamp": "2025-10-08 22:35:00-0500",
+        "epoch": 1759980900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:40:00",
+        "dstFlag": "N",
+        "totalCharging": -807.702,
+        "totalDischarging": 142.614,
+        "netOutput": -665.088,
+        "timestamp": "2025-10-08 22:40:00-0500",
+        "epoch": 1759981200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:45:00",
+        "dstFlag": "N",
+        "totalCharging": -911.506,
+        "totalDischarging": 107.649,
+        "netOutput": -803.857,
+        "timestamp": "2025-10-08 22:45:00-0500",
+        "epoch": 1759981500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:50:00",
+        "dstFlag": "N",
+        "totalCharging": -1081.039,
+        "totalDischarging": 99.102,
+        "netOutput": -981.937,
+        "timestamp": "2025-10-08 22:50:00-0500",
+        "epoch": 1759981800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 22:55:00",
+        "dstFlag": "N",
+        "totalCharging": -1103.097,
+        "totalDischarging": 97.564,
+        "netOutput": -1005.532,
+        "timestamp": "2025-10-08 22:55:00-0500",
+        "epoch": 1759982100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:00:00",
+        "dstFlag": "N",
+        "totalCharging": -919.172,
+        "totalDischarging": 100.105,
+        "netOutput": -819.067,
+        "timestamp": "2025-10-08 23:00:00-0500",
+        "epoch": 1759982400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:05:00",
+        "dstFlag": "N",
+        "totalCharging": -824.137,
+        "totalDischarging": 87.112,
+        "netOutput": -737.025,
+        "timestamp": "2025-10-08 23:05:00-0500",
+        "epoch": 1759982700000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:10:00",
+        "dstFlag": "N",
+        "totalCharging": -730.69,
+        "totalDischarging": 165.562,
+        "netOutput": -565.128,
+        "timestamp": "2025-10-08 23:10:00-0500",
+        "epoch": 1759983000000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:15:00",
+        "dstFlag": "N",
+        "totalCharging": -796.825,
+        "totalDischarging": 104.047,
+        "netOutput": -692.778,
+        "timestamp": "2025-10-08 23:15:00-0500",
+        "epoch": 1759983300000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:20:00",
+        "dstFlag": "N",
+        "totalCharging": -763.741,
+        "totalDischarging": 140.183,
+        "netOutput": -623.558,
+        "timestamp": "2025-10-08 23:20:00-0500",
+        "epoch": 1759983600000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:25:00",
+        "dstFlag": "N",
+        "totalCharging": -646.633,
+        "totalDischarging": 319.665,
+        "netOutput": -326.968,
+        "timestamp": "2025-10-08 23:25:00-0500",
+        "epoch": 1759983900000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:30:00",
+        "dstFlag": "N",
+        "totalCharging": -483.114,
+        "totalDischarging": 299.776,
+        "netOutput": -183.338,
+        "timestamp": "2025-10-08 23:30:00-0500",
+        "epoch": 1759984200000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:35:00",
+        "dstFlag": "N",
+        "totalCharging": -486.04,
+        "totalDischarging": 168.189,
+        "netOutput": -317.851,
+        "timestamp": "2025-10-08 23:35:00-0500",
+        "epoch": 1759984500000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:40:00",
+        "dstFlag": "N",
+        "totalCharging": -603.663,
+        "totalDischarging": 160.062,
+        "netOutput": -443.601,
+        "timestamp": "2025-10-08 23:40:00-0500",
+        "epoch": 1759984800000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:45:00",
+        "dstFlag": "N",
+        "totalCharging": -720.659,
+        "totalDischarging": 116.487,
+        "netOutput": -604.172,
+        "timestamp": "2025-10-08 23:45:00-0500",
+        "epoch": 1759985100000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:50:00",
+        "dstFlag": "N",
+        "totalCharging": -700.497,
+        "totalDischarging": 95.858,
+        "netOutput": -604.638,
+        "timestamp": "2025-10-08 23:50:00-0500",
+        "epoch": 1759985400000
+      },
+      {
+        "tagCLastTime": "2025-10-08 23:55:00",
+        "dstFlag": "N",
+        "totalCharging": -619.621,
+        "totalDischarging": 86.127,
+        "netOutput": -533.494,
+        "timestamp": "2025-10-08 23:55:00-0500",
+        "epoch": 1759985700000
+      }
+    ]
+  },
+  "currentDay": {
+    "dayDate": "2025-10-09 03:00:00-0500",
+    "data": [
+      {
+        "tagCLastTime": "2025-10-09 00:00:00",
+        "dstFlag": "N",
+        "totalCharging": -532.295,
+        "totalDischarging": 94.632,
+        "netOutput": -437.663,
+        "timestamp": "2025-10-09 00:00:00-0500",
+        "epoch": 1759986000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:05:00",
+        "dstFlag": "N",
+        "totalCharging": -429.362,
+        "totalDischarging": 162.005,
+        "netOutput": -267.356,
+        "timestamp": "2025-10-09 00:05:00-0500",
+        "epoch": 1759986300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:10:00",
+        "dstFlag": "N",
+        "totalCharging": -372.67,
+        "totalDischarging": 237.17,
+        "netOutput": -135.5,
+        "timestamp": "2025-10-09 00:10:00-0500",
+        "epoch": 1759986600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:15:00",
+        "dstFlag": "N",
+        "totalCharging": -460.235,
+        "totalDischarging": 155.612,
+        "netOutput": -304.623,
+        "timestamp": "2025-10-09 00:15:00-0500",
+        "epoch": 1759986900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:20:00",
+        "dstFlag": "N",
+        "totalCharging": -522.075,
+        "totalDischarging": 140.452,
+        "netOutput": -381.623,
+        "timestamp": "2025-10-09 00:20:00-0500",
+        "epoch": 1759987200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:25:00",
+        "dstFlag": "N",
+        "totalCharging": -391.542,
+        "totalDischarging": 119.562,
+        "netOutput": -271.98,
+        "timestamp": "2025-10-09 00:25:00-0500",
+        "epoch": 1759987500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:30:00",
+        "dstFlag": "N",
+        "totalCharging": -336.775,
+        "totalDischarging": 90.113,
+        "netOutput": -246.662,
+        "timestamp": "2025-10-09 00:30:00-0500",
+        "epoch": 1759987800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:35:00",
+        "dstFlag": "N",
+        "totalCharging": -453.093,
+        "totalDischarging": 53.701,
+        "netOutput": -399.392,
+        "timestamp": "2025-10-09 00:35:00-0500",
+        "epoch": 1759988100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:40:00",
+        "dstFlag": "N",
+        "totalCharging": -579.94,
+        "totalDischarging": 58.761,
+        "netOutput": -521.179,
+        "timestamp": "2025-10-09 00:40:00-0500",
+        "epoch": 1759988400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:45:00",
+        "dstFlag": "N",
+        "totalCharging": -510.746,
+        "totalDischarging": 104.156,
+        "netOutput": -406.589,
+        "timestamp": "2025-10-09 00:45:00-0500",
+        "epoch": 1759988700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:50:00",
+        "dstFlag": "N",
+        "totalCharging": -448.043,
+        "totalDischarging": 138.591,
+        "netOutput": -309.452,
+        "timestamp": "2025-10-09 00:50:00-0500",
+        "epoch": 1759989000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 00:55:00",
+        "dstFlag": "N",
+        "totalCharging": -549.438,
+        "totalDischarging": 50.551,
+        "netOutput": -498.887,
+        "timestamp": "2025-10-09 00:55:00-0500",
+        "epoch": 1759989300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:00:00",
+        "dstFlag": "N",
+        "totalCharging": -703.083,
+        "totalDischarging": 106.825,
+        "netOutput": -596.257,
+        "timestamp": "2025-10-09 01:00:00-0500",
+        "epoch": 1759989600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:05:00",
+        "dstFlag": "N",
+        "totalCharging": -643.734,
+        "totalDischarging": 215.375,
+        "netOutput": -428.359,
+        "timestamp": "2025-10-09 01:05:00-0500",
+        "epoch": 1759989900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:10:00",
+        "dstFlag": "N",
+        "totalCharging": -537.49,
+        "totalDischarging": 45.808,
+        "netOutput": -491.682,
+        "timestamp": "2025-10-09 01:10:00-0500",
+        "epoch": 1759990200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:15:00",
+        "dstFlag": "N",
+        "totalCharging": -570.416,
+        "totalDischarging": 2.56,
+        "netOutput": -567.855,
+        "timestamp": "2025-10-09 01:15:00-0500",
+        "epoch": 1759990500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:20:00",
+        "dstFlag": "N",
+        "totalCharging": -452.727,
+        "totalDischarging": 9.161,
+        "netOutput": -443.566,
+        "timestamp": "2025-10-09 01:20:00-0500",
+        "epoch": 1759990800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:25:00",
+        "dstFlag": "N",
+        "totalCharging": -429.17,
+        "totalDischarging": 81.071,
+        "netOutput": -348.099,
+        "timestamp": "2025-10-09 01:25:00-0500",
+        "epoch": 1759991100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:30:00",
+        "dstFlag": "N",
+        "totalCharging": -596.195,
+        "totalDischarging": 24.612,
+        "netOutput": -571.583,
+        "timestamp": "2025-10-09 01:30:00-0500",
+        "epoch": 1759991400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:35:00",
+        "dstFlag": "N",
+        "totalCharging": -660.694,
+        "totalDischarging": 127.795,
+        "netOutput": -532.899,
+        "timestamp": "2025-10-09 01:35:00-0500",
+        "epoch": 1759991700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:40:00",
+        "dstFlag": "N",
+        "totalCharging": -598.124,
+        "totalDischarging": 137.056,
+        "netOutput": -461.068,
+        "timestamp": "2025-10-09 01:40:00-0500",
+        "epoch": 1759992000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:45:00",
+        "dstFlag": "N",
+        "totalCharging": -696.026,
+        "totalDischarging": 56.794,
+        "netOutput": -639.232,
+        "timestamp": "2025-10-09 01:45:00-0500",
+        "epoch": 1759992300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:50:00",
+        "dstFlag": "N",
+        "totalCharging": -857.535,
+        "totalDischarging": 3.897,
+        "netOutput": -853.638,
+        "timestamp": "2025-10-09 01:50:00-0500",
+        "epoch": 1759992600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 01:55:00",
+        "dstFlag": "N",
+        "totalCharging": -893.823,
+        "totalDischarging": 55.101,
+        "netOutput": -838.722,
+        "timestamp": "2025-10-09 01:55:00-0500",
+        "epoch": 1759992900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:00:00",
+        "dstFlag": "N",
+        "totalCharging": -992.794,
+        "totalDischarging": 144.02,
+        "netOutput": -848.774,
+        "timestamp": "2025-10-09 02:00:00-0500",
+        "epoch": 1759993200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:05:00",
+        "dstFlag": "N",
+        "totalCharging": -916.344,
+        "totalDischarging": 147.755,
+        "netOutput": -768.589,
+        "timestamp": "2025-10-09 02:05:00-0500",
+        "epoch": 1759993500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:10:00",
+        "dstFlag": "N",
+        "totalCharging": -670.29,
+        "totalDischarging": 67.364,
+        "netOutput": -602.926,
+        "timestamp": "2025-10-09 02:10:00-0500",
+        "epoch": 1759993800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:15:00",
+        "dstFlag": "N",
+        "totalCharging": -685.877,
+        "totalDischarging": 1.625,
+        "netOutput": -684.252,
+        "timestamp": "2025-10-09 02:15:00-0500",
+        "epoch": 1759994100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:20:00",
+        "dstFlag": "N",
+        "totalCharging": -734.203,
+        "totalDischarging": 3.609,
+        "netOutput": -730.594,
+        "timestamp": "2025-10-09 02:20:00-0500",
+        "epoch": 1759994400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:25:00",
+        "dstFlag": "N",
+        "totalCharging": -657.939,
+        "totalDischarging": 6.549,
+        "netOutput": -651.389,
+        "timestamp": "2025-10-09 02:25:00-0500",
+        "epoch": 1759994700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:30:00",
+        "dstFlag": "N",
+        "totalCharging": -635.948,
+        "totalDischarging": 19.816,
+        "netOutput": -616.132,
+        "timestamp": "2025-10-09 02:30:00-0500",
+        "epoch": 1759995000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:35:00",
+        "dstFlag": "N",
+        "totalCharging": -719.246,
+        "totalDischarging": 135.445,
+        "netOutput": -583.801,
+        "timestamp": "2025-10-09 02:35:00-0500",
+        "epoch": 1759995300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:40:00",
+        "dstFlag": "N",
+        "totalCharging": -838.933,
+        "totalDischarging": 165.727,
+        "netOutput": -673.206,
+        "timestamp": "2025-10-09 02:40:00-0500",
+        "epoch": 1759995600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:45:00",
+        "dstFlag": "N",
+        "totalCharging": -890.954,
+        "totalDischarging": 123.605,
+        "netOutput": -767.349,
+        "timestamp": "2025-10-09 02:45:00-0500",
+        "epoch": 1759995900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:50:00",
+        "dstFlag": "N",
+        "totalCharging": -864.728,
+        "totalDischarging": 117.199,
+        "netOutput": -747.528,
+        "timestamp": "2025-10-09 02:50:00-0500",
+        "epoch": 1759996200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 02:55:00",
+        "dstFlag": "N",
+        "totalCharging": -910.196,
+        "totalDischarging": 57.639,
+        "netOutput": -852.557,
+        "timestamp": "2025-10-09 02:55:00-0500",
+        "epoch": 1759996500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:00:00",
+        "dstFlag": "N",
+        "totalCharging": -975.437,
+        "totalDischarging": 46.707,
+        "netOutput": -928.73,
+        "timestamp": "2025-10-09 03:00:00-0500",
+        "epoch": 1759996800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:05:00",
+        "dstFlag": "N",
+        "totalCharging": -941.169,
+        "totalDischarging": 107.019,
+        "netOutput": -834.15,
+        "timestamp": "2025-10-09 03:05:00-0500",
+        "epoch": 1759997100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:10:00",
+        "dstFlag": "N",
+        "totalCharging": -1087.097,
+        "totalDischarging": 69.878,
+        "netOutput": -1017.219,
+        "timestamp": "2025-10-09 03:10:00-0500",
+        "epoch": 1759997400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:15:00",
+        "dstFlag": "N",
+        "totalCharging": -1229.732,
+        "totalDischarging": 37.653,
+        "netOutput": -1192.079,
+        "timestamp": "2025-10-09 03:15:00-0500",
+        "epoch": 1759997700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:20:00",
+        "dstFlag": "N",
+        "totalCharging": -1289.526,
+        "totalDischarging": 93.006,
+        "netOutput": -1196.52,
+        "timestamp": "2025-10-09 03:20:00-0500",
+        "epoch": 1759998000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:25:00",
+        "dstFlag": "N",
+        "totalCharging": -1110.407,
+        "totalDischarging": 122.071,
+        "netOutput": -988.337,
+        "timestamp": "2025-10-09 03:25:00-0500",
+        "epoch": 1759998300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:30:00",
+        "dstFlag": "N",
+        "totalCharging": -957.53,
+        "totalDischarging": 136.117,
+        "netOutput": -821.413,
+        "timestamp": "2025-10-09 03:30:00-0500",
+        "epoch": 1759998600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:35:00",
+        "dstFlag": "N",
+        "totalCharging": -974.514,
+        "totalDischarging": 98.146,
+        "netOutput": -876.368,
+        "timestamp": "2025-10-09 03:35:00-0500",
+        "epoch": 1759998900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:40:00",
+        "dstFlag": "N",
+        "totalCharging": -1041.312,
+        "totalDischarging": 98.227,
+        "netOutput": -943.086,
+        "timestamp": "2025-10-09 03:40:00-0500",
+        "epoch": 1759999200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:45:00",
+        "dstFlag": "N",
+        "totalCharging": -1002.214,
+        "totalDischarging": 94.678,
+        "netOutput": -907.536,
+        "timestamp": "2025-10-09 03:45:00-0500",
+        "epoch": 1759999500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:50:00",
+        "dstFlag": "N",
+        "totalCharging": -1053.454,
+        "totalDischarging": 96.956,
+        "netOutput": -956.498,
+        "timestamp": "2025-10-09 03:50:00-0500",
+        "epoch": 1759999800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 03:55:00",
+        "dstFlag": "N",
+        "totalCharging": -1103.843,
+        "totalDischarging": 95.374,
+        "netOutput": -1008.469,
+        "timestamp": "2025-10-09 03:55:00-0500",
+        "epoch": 1760000100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:00:00",
+        "dstFlag": "N",
+        "totalCharging": -1083.833,
+        "totalDischarging": 93.115,
+        "netOutput": -990.718,
+        "timestamp": "2025-10-09 04:00:00-0500",
+        "epoch": 1760000400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:05:00",
+        "dstFlag": "N",
+        "totalCharging": -1042.15,
+        "totalDischarging": 196.582,
+        "netOutput": -845.568,
+        "timestamp": "2025-10-09 04:05:00-0500",
+        "epoch": 1760000700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:10:00",
+        "dstFlag": "N",
+        "totalCharging": -1045.671,
+        "totalDischarging": 136.736,
+        "netOutput": -908.934,
+        "timestamp": "2025-10-09 04:10:00-0500",
+        "epoch": 1760001000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:15:00",
+        "dstFlag": "N",
+        "totalCharging": -1052.412,
+        "totalDischarging": 104.867,
+        "netOutput": -947.545,
+        "timestamp": "2025-10-09 04:15:00-0500",
+        "epoch": 1760001300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:20:00",
+        "dstFlag": "N",
+        "totalCharging": -1118.856,
+        "totalDischarging": 118.504,
+        "netOutput": -1000.352,
+        "timestamp": "2025-10-09 04:20:00-0500",
+        "epoch": 1760001600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:25:00",
+        "dstFlag": "N",
+        "totalCharging": -1154.377,
+        "totalDischarging": 51.703,
+        "netOutput": -1102.673,
+        "timestamp": "2025-10-09 04:25:00-0500",
+        "epoch": 1760001900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:30:00",
+        "dstFlag": "N",
+        "totalCharging": -998.243,
+        "totalDischarging": 104.471,
+        "netOutput": -893.771,
+        "timestamp": "2025-10-09 04:30:00-0500",
+        "epoch": 1760002200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:35:00",
+        "dstFlag": "N",
+        "totalCharging": -830.774,
+        "totalDischarging": 231.379,
+        "netOutput": -599.395,
+        "timestamp": "2025-10-09 04:35:00-0500",
+        "epoch": 1760002500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:40:00",
+        "dstFlag": "N",
+        "totalCharging": -668.187,
+        "totalDischarging": 304.112,
+        "netOutput": -364.075,
+        "timestamp": "2025-10-09 04:40:00-0500",
+        "epoch": 1760002800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:45:00",
+        "dstFlag": "N",
+        "totalCharging": -655.199,
+        "totalDischarging": 85.28,
+        "netOutput": -569.918,
+        "timestamp": "2025-10-09 04:45:00-0500",
+        "epoch": 1760003100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:50:00",
+        "dstFlag": "N",
+        "totalCharging": -648.972,
+        "totalDischarging": 75.169,
+        "netOutput": -573.803,
+        "timestamp": "2025-10-09 04:50:00-0500",
+        "epoch": 1760003400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 04:55:00",
+        "dstFlag": "N",
+        "totalCharging": -776.917,
+        "totalDischarging": 52.413,
+        "netOutput": -724.504,
+        "timestamp": "2025-10-09 04:55:00-0500",
+        "epoch": 1760003700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:00:00",
+        "dstFlag": "N",
+        "totalCharging": -869.636,
+        "totalDischarging": 79.135,
+        "netOutput": -790.5,
+        "timestamp": "2025-10-09 05:00:00-0500",
+        "epoch": 1760004000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:05:00",
+        "dstFlag": "N",
+        "totalCharging": -733.385,
+        "totalDischarging": 275.03,
+        "netOutput": -458.355,
+        "timestamp": "2025-10-09 05:05:00-0500",
+        "epoch": 1760004300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:10:00",
+        "dstFlag": "N",
+        "totalCharging": -491.533,
+        "totalDischarging": 350.112,
+        "netOutput": -141.421,
+        "timestamp": "2025-10-09 05:10:00-0500",
+        "epoch": 1760004600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:15:00",
+        "dstFlag": "N",
+        "totalCharging": -431.358,
+        "totalDischarging": 172.19,
+        "netOutput": -259.168,
+        "timestamp": "2025-10-09 05:15:00-0500",
+        "epoch": 1760004900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:20:00",
+        "dstFlag": "N",
+        "totalCharging": -503.301,
+        "totalDischarging": 134.025,
+        "netOutput": -369.276,
+        "timestamp": "2025-10-09 05:20:00-0500",
+        "epoch": 1760005200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:25:00",
+        "dstFlag": "N",
+        "totalCharging": -525.884,
+        "totalDischarging": 144.181,
+        "netOutput": -381.703,
+        "timestamp": "2025-10-09 05:25:00-0500",
+        "epoch": 1760005500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:30:00",
+        "dstFlag": "N",
+        "totalCharging": -545.385,
+        "totalDischarging": 111.342,
+        "netOutput": -434.043,
+        "timestamp": "2025-10-09 05:30:00-0500",
+        "epoch": 1760005800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:35:00",
+        "dstFlag": "N",
+        "totalCharging": -420.493,
+        "totalDischarging": 164.848,
+        "netOutput": -255.646,
+        "timestamp": "2025-10-09 05:35:00-0500",
+        "epoch": 1760006100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:40:00",
+        "dstFlag": "N",
+        "totalCharging": -309.473,
+        "totalDischarging": 165.842,
+        "netOutput": -143.632,
+        "timestamp": "2025-10-09 05:40:00-0500",
+        "epoch": 1760006400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:45:00",
+        "dstFlag": "N",
+        "totalCharging": -243.753,
+        "totalDischarging": 165.352,
+        "netOutput": -78.401,
+        "timestamp": "2025-10-09 05:45:00-0500",
+        "epoch": 1760006700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:50:00",
+        "dstFlag": "N",
+        "totalCharging": -312.174,
+        "totalDischarging": 120.924,
+        "netOutput": -191.25,
+        "timestamp": "2025-10-09 05:50:00-0500",
+        "epoch": 1760007000000
+      },
+      {
+        "tagCLastTime": "2025-10-09 05:55:00",
+        "dstFlag": "N",
+        "totalCharging": -248.38,
+        "totalDischarging": 127.447,
+        "netOutput": -120.932,
+        "timestamp": "2025-10-09 05:55:00-0500",
+        "epoch": 1760007300000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:00:00",
+        "dstFlag": "N",
+        "totalCharging": -231.812,
+        "totalDischarging": 160.435,
+        "netOutput": -71.377,
+        "timestamp": "2025-10-09 06:00:00-0500",
+        "epoch": 1760007600000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:05:00",
+        "dstFlag": "N",
+        "totalCharging": -230.402,
+        "totalDischarging": 450.041,
+        "netOutput": 219.639,
+        "timestamp": "2025-10-09 06:05:00-0500",
+        "epoch": 1760007900000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:10:00",
+        "dstFlag": "N",
+        "totalCharging": -206.733,
+        "totalDischarging": 732.702,
+        "netOutput": 525.97,
+        "timestamp": "2025-10-09 06:10:00-0500",
+        "epoch": 1760008200000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:15:00",
+        "dstFlag": "N",
+        "totalCharging": -197.829,
+        "totalDischarging": 862.679,
+        "netOutput": 664.85,
+        "timestamp": "2025-10-09 06:15:00-0500",
+        "epoch": 1760008500000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:20:00",
+        "dstFlag": "N",
+        "totalCharging": -170.914,
+        "totalDischarging": 827.872,
+        "netOutput": 656.958,
+        "timestamp": "2025-10-09 06:20:00-0500",
+        "epoch": 1760008800000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:25:00",
+        "dstFlag": "N",
+        "totalCharging": -150.312,
+        "totalDischarging": 801.928,
+        "netOutput": 651.616,
+        "timestamp": "2025-10-09 06:25:00-0500",
+        "epoch": 1760009100000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:30:00",
+        "dstFlag": "N",
+        "totalCharging": -228.155,
+        "totalDischarging": 700.93,
+        "netOutput": 472.774,
+        "timestamp": "2025-10-09 06:30:00-0500",
+        "epoch": 1760009400000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:35:00",
+        "dstFlag": "N",
+        "totalCharging": -241.444,
+        "totalDischarging": 607.797,
+        "netOutput": 366.353,
+        "timestamp": "2025-10-09 06:35:00-0500",
+        "epoch": 1760009700000
+      },
+      {
+        "tagCLastTime": "2025-10-09 06:40:00",
+        "dstFlag": "N",
+        "totalCharging": -169.282,
+        "totalDischarging": 662.917,
+        "netOutput": 493.635,
+        "timestamp": "2025-10-09 06:40:00-0500",
+        "epoch": 1760010000000
+      }
+    ]
+  }
+}

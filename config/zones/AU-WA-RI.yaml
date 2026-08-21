@@ -2,10 +2,10 @@ _comment: 'Capacity data fetched from the test payload (capacity is sent in all 
   Parsing for production is done on instantaneous measurements : this is not reliable
   at all'
 bounding_box:
-  - - 114.94014224400007
-    - -32.52536222099991
-  - - 116.05219218900004
-    - -31.493806526999947
+  - - 115.44055440554402
+    - -32.02601390669214
+  - - 115.51615516155161
+    - -31.995961167200015
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,34 +18,94 @@ capacity:
   oil: 2.1
   solar: 0.6
   wind: 0.6
+center_point:
+  - 115.47835478354781
+  - -32.010987536946075
+centroid:
+  - 115.48255482554823
+  - -32.014565244028475
 contributors:
   - ajoga
 country: AU
+country_name: Australia
+currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 292.8252892705995
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 292.8252892705995
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 310.86
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 304.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 321.42
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 305.26
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.16042054489543
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 494.21
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.16042054489543
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 494.21
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 343.86
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 337.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 354.42
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 338.26
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -78,7 +138,70 @@ fallbackZoneMixes:
         solar: 0.07833126006705768
         unknown: 0.0
         wind: 0.16976688744150792
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7931552125610936
+        solar: 0.06026681890829423
+        unknown: 0.0
+        wind: 0.1463649654920588
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2343
+    - datetime: '2018-01-01'
+      value: 0.2343
+    - datetime: '2019-01-01'
+      value: 0.2343
+    - datetime: '2020-01-01'
+      value: 0.2343
+    - datetime: '2021-01-01'
+      value: 0.2343
+    - datetime: '2022-01-01'
+      value: 0.2343
+    - datetime: '2023-01-01'
+      value: 0.25
+    - datetime: '2024-01-01'
+      value: 0.2083
+    - datetime: '2025-01-01'
+      value: 0.2481
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2343
+    - datetime: '2018-01-01'
+      value: 0.2343
+    - datetime: '2019-01-01'
+      value: 0.2343
+    - datetime: '2020-01-01'
+      value: 0.2343
+    - datetime: '2021-01-01'
+      value: 0.2343
+    - datetime: '2022-01-01'
+      value: 0.2343
+    - datetime: '2023-01-01'
+      value: 0.25
+    - datetime: '2024-01-01'
+      value: 0.2083
+    - datetime: '2025-01-01'
+      value: 0.2481
 parsers:
   production: ajenti.fetch_production
 region: Oceania
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Australia/Perth
+zone_name: Rottnest Island

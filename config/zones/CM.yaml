@@ -1,8 +1,47 @@
 bounding_box:
-  - - 8.008685086850903
-    - 1.234661205627823
-  - - 16.69836198361986
-    - 13.581716988154412
+  - - 8.508685086850903
+    - 1.734661205627823
+  - - 16.19836198361986
+    - 13.081716988154412
+center_point:
+  - 12.429262772287434
+  - 6.692974824163294
+centroid:
+  - 13.090695192666242
+  - 6.768673955912862
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 730.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 810.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
 country: CM
+country_name: Cameroon
+currency: XAF
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Douala
+zone_name: Cameroon

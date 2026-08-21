@@ -1,3 +1,37 @@
+bounding_box:
+  - - -175.36315363153622
+    - -21.268564251344372
+  - - -175.06435064350634
+    - -21.114007305384874
+center_point:
+  - -175.21375213752128
+  - -21.191285778364623
+centroid:
+  - -175.19155191551909
+  - -21.168865480648275
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TO
+country_name: Tonga
+currency: TOP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tongatapu
+zone_name: Tonga

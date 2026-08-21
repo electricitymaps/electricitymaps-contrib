@@ -1,109 +1,54 @@
 bounding_box:
-  - - -54.708003
-    - 2.10212
-  - - -51.595232
-    - 5.78601
+  - - -54.61434614346139
+    - 2.111035990695861
+  - - -51.6515165151651
+    - 5.744555303577059
+center_point:
+  - -53.130423676789576
+  - 3.934857001976582
+centroid:
+  - -53.369082077917525
+  - 3.8700214482510638
 capacity:
   biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 5.0
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
       value: 0.0
-  gas:
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 13.0
   hydro:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 119.0
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 108.0
   oil:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 197.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 149.0
   solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 55.0
-  unknown:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  wind:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2024-01-01'
+      source: EDF SEI, Bilan Prévisionnel 2024 Guyane Littoral, Tableau 11
+      value: 57.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
 country: GF
+country_name: French Guiana
+currency: EUR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 238.86
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 177.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 186.2
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 257.84
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 245.02
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 168.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 160.62
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 421.33
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 238.86
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 177.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 186.2
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 257.84
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 245.02
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 168.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 160.62
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 421.33
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -215,20 +160,43 @@ fallbackZoneMixes:
       datetime: '2023-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.05430565706264205
+        biomass: 0.0559501875581819
+        coal: 0.0
+        gas: 0.11108404585690737
+        geothermal: 0.0
+        hydro: 0.2796028181832044
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.5319543577666881
+        solar: 0.021408668481840875
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.06495299663773707
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.3096511310663344
+        hydro: 0.34205537117791934
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.6161951779412499
-        solar: 0.019848443929996663
+        oil: 0.5670083003899943
+        solar: 0.025983803372641664
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Europe/Paris
+zone_name: French Guiana
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

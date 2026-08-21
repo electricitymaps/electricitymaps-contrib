@@ -1,0 +1,28 @@
+bounding_box:
+  - - 77.611412
+    - 28.542876
+  - - 80.940177
+    - 31.292794
+capacity:
+  biomass: 130.2
+  coal: 0
+  gas: 450
+  hydro: 3855.35
+  nuclear: 0
+  oil: 0
+  solar: 398.3
+  wind: 0
+contributors:
+  - alixunderplatz
+  - lorrieq
+  - gopikrishna1793
+country: IN
+country_name: India
+currency: INR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  production: IN_UT.fetch_production
+region: Asia
+timezone: Asia/Kolkata
+zone_name: Unknown

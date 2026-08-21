@@ -1,15 +1,18 @@
 from collections.abc import Callable
-from datetime import date, datetime
+from datetime import date, datetime, timezone
+from enum import Enum
 
-from pydantic import (
+# Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
+from pydantic.v1 import (
     BaseModel,
     Field,
     NonNegativeFloat,
     PositiveInt,
     confloat,
     root_validator,
+    validator,
 )
-from pydantic.utils import import_string
+from pydantic.v1.utils import import_string
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
@@ -18,8 +21,8 @@ from electricitymap.contrib.config import (
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
 )
-from electricitymap.contrib.config.types import Point
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.types import Point, ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 
@@ -81,7 +84,7 @@ class ParsersBaseModel(StrictBaseModel):
     def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
-        This requires the consumer to have install all parser dependencies.
+        This requires the consumer to have installed all parser dependencies.
 
         Returns:
             Optional[Callable]: parser function
@@ -98,10 +101,17 @@ class Parsers(ParsersBaseModel):
     consumptionForecast: str | None
     generationForecast: str | None
     productionPerModeForecast: str | None
+    productionPerModeForecastDayAhead: str | None
+    productionPerModeForecastIntraday: str | None
+    productionPerModeForecastLatest: str | None
+    dayaheadLocationalMarginalPrice: str | None
+    realtimeLocationalMarginalPrice: str | None
     price: str | None
+    priceIntraday: str | None
     production: str | None
-    productionPerUnit: str | None
     productionCapacity: str | None
+    gridAlerts: str | None
+    intradayContractStatistics: str | None
 
 
 class Source(StrictBaseModel):
@@ -115,7 +125,6 @@ class Delays(StrictBaseModel):
     price: PositiveInt | None
     production: PositiveInt | None
     productionPerModeForecast: PositiveInt | None
-    productionPerUnit: PositiveInt | None
 
 
 class Zone(StrictBaseModelWithAlias):
@@ -124,21 +133,33 @@ class Zone(StrictBaseModelWithAlias):
         [], alias="bypassedSubZones"
     )
     capacity: Capacity | None
+    center_point: Point | None
+    centroid: Point | None
     comment: str | None = Field(None, alias="_comment")
     contributors: list[str] | None
     delays: Delays | None
     disclaimer: str | None
     parsers: Parsers = Parsers()
-    price_displayed: bool | None
-    aggregates_displayed: list[str] | None
     generation_only: bool | None
+    can_have_zero_production: bool | None
+    has_day_ahead_price_license: bool | None
+    hide_day_ahead_price: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
-    estimation_method: str | None
     sources: dict[str, Source] | None
     region: str | None
     country: str | None
+    zone_name: str | None
+    zone_short_name: str | None
+    country_name: str | None
+    currency: str | None
+
+    @validator("currency")
+    def currency_is_valid(cls, v):
+        if v and v not in VALID_CURRENCIES:
+            raise ValueError(f"Currency {v} is not a valid ISO 4217 currency code")
+        return v
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
@@ -146,6 +167,14 @@ class Zone(StrictBaseModelWithAlias):
 
 class ExchangeParsers(ParsersBaseModel):
     exchange: str | None
+    exchangeCapacityForecastDayAhead: str | None
+    exchangeCapacityForecastWeekAhead: str | None
+    exchangeCapacityForecastMonthAhead: str | None
+    atcDayAhead: str | None
+    maxBexDayAhead: str | None
+    scheduledExchangesDayAhead: str | None
+    scheduledExchangesTotal: str | None
+    maxBflowDayAhead: str | None
     exchangeForecast: str | None
 
 
@@ -300,8 +329,8 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
         Check that all emission factors given as list are not empty.
         """
         for v in values.values():
-            if isinstance(v, list):
-                assert len(v) > 0, "Emission factors must not be an empty list"
+            if isinstance(v, list) and len(v) == 0:
+                raise ValueError("Emission factors must not be an empty list")
         return values
 
 
@@ -341,3 +370,84 @@ CONFIG_MODEL = _load_config_model()
 CO2EQ_CONFIG_MODEL = CO2eqConfigModel(
     direct=CO2EQ_PARAMETERS_DIRECT, lifecycle=CO2EQ_PARAMETERS_LIFECYCLE
 )
+
+
+class EmissionFactorVariant(Enum):
+    """
+    Describes where an emission factor (EF) comes from.
+    See electricitymap/contrib/config/emission_factors.py::_get_zone_specific_co2eq_parameter_with_metadata
+    """
+
+    GLOBAL_EXACT_TIMELESS = "global_exact_timeless"
+    GLOBAL_EXACT_TIMELY = "global_exact_timely"
+    GLOBAL_FALLBACK_LATEST = "global_fallback_latest"
+    GLOBAL_FALLBACK_OLDER = "global_fallback_older"
+    GLOBAL_FALLBACK_OLDEST = "global_fallback_oldest"
+
+    ZONE_EXACT_TIMELESS = "zone_exact_timeless"
+    ZONE_EXACT_TIMELY = "zone_exact_timely"
+    ZONE_FALLBACK_LATEST = "zone_fallback_latest"
+    ZONE_FALLBACK_OLDER = "zone_fallback_older"
+    ZONE_FALLBACK_OLDEST = "zone_fallback_oldest"
+
+
+class EmissionFactorMode(Enum):
+    BIOMASS = "biomass"
+    COAL = "coal"
+    GAS = "gas"
+    GEOTHERMAL = "geothermal"
+    HYDRO = "hydro"
+    NUCLEAR = "nuclear"
+    OIL = "oil"
+    SOLAR = "solar"
+    UNKNOWN = "unknown"
+    WIND = "wind"
+    BATTERY_DISCHARGE = "battery discharge"
+    HYDRO_DISCHARGE = "hydro discharge"
+
+
+class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
+    dt: datetime = Field(..., alias="datetime")
+    zone_key: ZoneKey
+    mode: EmissionFactorMode
+    lifecycle_value: NonNegativeFloat
+    lifecycle_source: str
+    lifecycle_variant: EmissionFactorVariant
+    lifecycle_datetime: datetime | None
+    direct_value: NonNegativeFloat
+    direct_source: str
+    direct_variant: EmissionFactorVariant
+    direct_datetime: datetime | None
+
+    @validator("dt", "lifecycle_datetime", "direct_datetime", pre=True)
+    def validate_datetime_field(cls, v: datetime | None) -> datetime | None:
+        if v is None:
+            return v
+
+        if isinstance(v, str):
+            v = datetime.fromisoformat(v).replace(tzinfo=timezone.utc)
+
+        if v.tzinfo is None or v.tzinfo.utcoffset(v) is None:
+            raise ValueError("Datetime must be timezone-aware")
+
+        truncated_to_year = v.replace(
+            month=1,
+            day=1,
+            hour=0,
+            minute=0,
+            second=0,
+            microsecond=0,
+        )
+        if v != truncated_to_year:
+            raise ValueError("Datetime must be truncated to year.")
+        return v
+
+    @root_validator
+    def check_factor_relationship(cls, values):
+        direct_value = values["direct_value"]
+        lifecycle_value = values["lifecycle_value"]
+        if direct_value > lifecycle_value:
+            raise ValueError(
+                f"Direct factor must be <= lifecycle factor. Got {direct_value=}, {lifecycle_value=}"
+            )
+        return values

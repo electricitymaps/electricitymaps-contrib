@@ -1,3 +1,46 @@
+bounding_box:
+  - - 40.9810098100981
+    - -1.695644344973296
+  - - 51.39591395913959
+    - 11.989800786607205
+center_point:
+  - 46.06667936446374
+  - 5.235881604609043
+centroid:
+  - 46.41751987140127
+  - 7.710989920869788
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: SO
+country_name: Somalia
+currency: SOS
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mogadishu
+zone_name: Somalia

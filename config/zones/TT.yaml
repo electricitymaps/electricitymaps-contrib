@@ -1,8 +1,42 @@
 bounding_box:
-  - - -62.42961929619291
-    - 9.556407879280513
-  - - -60.02920529205288
-    - 11.851537843107792
+  - - -61.92961929619291
+    - 10.056407879280513
+  - - -60.52920529205288
+    - 11.351537843107792
+center_point:
+  - -61.229412294122895
+  - 10.703972861194153
+centroid:
+  - -61.15621156211557
+  - 10.667480248953716
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2060.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TT
+country_name: Trinidad and Tobago
+currency: TTD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Port_of_Spain
+zone_name: Trinidad and Tobago

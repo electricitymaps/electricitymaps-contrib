@@ -4,4 +4,4 @@
 
 # Denote all files in the `parsers/test/mocks` directory as vendored.
 # This makes GitHub ignore them for language statistics.
-parsers/test/mocks/** linguist-vendored
+electricitymap/contrib/parsers/tests/mocks/** linguist-vendored

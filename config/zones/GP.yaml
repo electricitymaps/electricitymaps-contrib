@@ -1,8 +1,8 @@
 bounding_box:
-  - - -61.859314
-    - 15.831168
-  - - -60.992374
-    - 16.56759
+  - - -61.77121771217708
+    - 15.949606985402909
+  - - -61.18801188011875
+    - 16.51202253875553
 capacity:
   biomass: 5.162
   gas: 100
@@ -11,56 +11,31 @@ capacity:
   oil: 329.7
   solar: 60.447
   wind: 26.26
+center_point:
+  - -61.479614796147914
+  - 16.23081476207922
+centroid:
+  - -61.53406534065335
+  - 16.243336736867608
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
 country: GP
+country_name: Guadeloupe
+currency: EUR
 emissionFactors:
+  direct:
+    battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 405.21
   lifecycle:
     battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 391.37
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 378.16
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 375.25
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 374.49
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 378.99
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 348.18
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 564.76
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 391.37
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 378.16
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 375.25
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 374.49
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 378.99
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 348.18
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 564.76
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 438.21
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -168,8 +143,39 @@ fallbackZoneMixes:
         solar: 0.07987987695482408
         unknown: 0.0
         wind: 0.08073182769861344
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0863263801273544
+        coal: 0.1670242650885789
+        gas: 0.002524579671826125
+        geothermal: 0.055473024471245316
+        hydro: 0.009860607348963393
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.5665026157541078
+        solar: 0.06917119460371109
+        unknown: 0.0
+        wind: 0.04311598615929433
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2022-01-01'
+      value: 0.1722
+isRenewable:
+  battery discharge:
+    - datetime: '2022-01-01'
+      value: 0.1722
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Americas
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: America/Puerto_Rico
+zone_name: Guadeloupe
