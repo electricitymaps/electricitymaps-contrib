@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -534.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -10,6 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -526.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -17,6 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -542.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -24,6 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -532.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -31,6 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -424.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -38,6 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -440.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -45,6 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -422.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -52,6 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -346.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -59,6 +67,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -351.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -66,6 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -333.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -73,6 +83,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -272.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -80,6 +91,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -248.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -87,6 +99,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -182.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -94,6 +107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -194.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -101,6 +115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -196.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -108,6 +123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -227.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -115,6 +131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -225.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -122,6 +139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -171.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -129,6 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -179.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -136,6 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -188.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -143,6 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -211.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -150,6 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -234.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -157,6 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -224.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -164,6 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -296.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -171,6 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -327.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -178,6 +203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -332.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -185,6 +211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -325.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -192,6 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -130.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -199,6 +227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -352.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -206,6 +235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -392.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -213,6 +243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -378.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -220,6 +251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -390.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -227,6 +259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -432.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -234,6 +267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -270.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -241,6 +275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -247.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -248,6 +283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -297.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -255,6 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -263.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -262,6 +299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -295.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -269,6 +307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -342.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -276,6 +315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -340.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -283,6 +323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -292.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -290,6 +331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -311.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -297,6 +339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -307.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -304,6 +347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -322.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -311,6 +355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -358.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -318,6 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -353.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -325,6 +371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -382.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -332,6 +379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -367.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -339,6 +387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -356.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -346,6 +395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -384.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -353,6 +403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -383.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -360,6 +411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -338.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -367,6 +419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -281.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -374,6 +427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -322.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -381,6 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -288.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -388,6 +443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -272.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -395,6 +451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -266.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -402,6 +459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -298.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -409,6 +467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -279.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -416,6 +475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -293.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -423,6 +483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -333.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -430,6 +491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -371.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -437,6 +499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -389.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -444,6 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -343.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -451,6 +515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -319.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -458,6 +523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -333.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -465,6 +531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -325.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -472,6 +539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -310.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -479,6 +547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -277.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -486,6 +555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -299.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -493,6 +563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -302.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -500,6 +571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -304.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -507,6 +579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -300.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -514,6 +587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -337.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -521,6 +595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -320.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -528,6 +603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -379.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -535,6 +611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -347.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -542,6 +619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -337.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -549,6 +627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -356.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -556,6 +635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -380.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -563,6 +643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -377.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -570,6 +651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -373.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -577,6 +659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -348.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -584,6 +667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -343.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -591,6 +675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -349.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -598,6 +683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -353.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -605,6 +691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -322.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -612,6 +699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -333.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -619,6 +707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -321.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -626,6 +715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -318.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -633,6 +723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -330.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -640,6 +731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -306.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -647,6 +739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -297.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -654,6 +747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -306.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -661,6 +755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -308.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -668,6 +763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -304.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -675,6 +771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -317.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -682,6 +779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -274.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -689,6 +787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -290.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -696,6 +795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -220.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -703,6 +803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -213.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -710,6 +811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -241.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -717,6 +819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -263.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -724,6 +827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -267.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -731,6 +835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -227.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -738,6 +843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -205.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -745,6 +851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -226.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -752,6 +859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -198.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -759,6 +867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -141.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -766,6 +875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -164.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -773,6 +883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -207.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -780,6 +891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -189.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -787,6 +899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -217.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -794,6 +907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -176.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -801,6 +915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -214.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -808,6 +923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -259.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -815,6 +931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -265.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -822,6 +939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -258.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -829,6 +947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -234.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -836,6 +955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -206.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -843,6 +963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -266.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -850,6 +971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -264.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -857,6 +979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -358.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -864,6 +987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -449.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -871,6 +995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -438.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -878,6 +1003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -482.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -885,6 +1011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -535.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -892,6 +1019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -596.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -899,6 +1027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -576.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -906,6 +1035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -561.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -913,6 +1043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -570.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -920,6 +1051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -585.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -927,6 +1059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -619.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -934,6 +1067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -519.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -941,6 +1075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -577.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -948,6 +1083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -480.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -955,6 +1091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1001.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -962,6 +1099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1047.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -969,6 +1107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -918.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -976,6 +1115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -999.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -983,6 +1123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -964.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -990,6 +1131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -937.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -997,6 +1139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -971.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1004,6 +1147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -938.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1011,6 +1155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -898.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1018,6 +1163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -984.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1025,6 +1171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -990.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1032,6 +1179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -979.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1039,6 +1187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -955.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1046,6 +1195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -952.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1053,6 +1203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -949.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1060,6 +1211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -995.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1067,6 +1219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -957.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1074,6 +1227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -942.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1081,6 +1235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -962.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1088,6 +1243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -878.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1095,6 +1251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -959.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1102,6 +1259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -896.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1109,6 +1267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -871.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1116,6 +1275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -927.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1123,6 +1283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -960.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1130,6 +1291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -961.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1137,6 +1299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -958.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1144,6 +1307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -971.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1151,6 +1315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -896.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1158,6 +1323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -930.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1165,6 +1331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -884.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1172,6 +1339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -936.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1179,6 +1347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -934.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1186,6 +1355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -963.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1193,6 +1363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -906.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1200,6 +1371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -948.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1207,6 +1379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -905.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1214,6 +1387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -886.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1221,6 +1395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -921.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1228,6 +1403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -904.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1235,6 +1411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -917.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1242,6 +1419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -951.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1249,6 +1427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -891.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1256,6 +1435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -909.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1263,6 +1443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -858.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1270,6 +1451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -941.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1277,6 +1459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1057.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1284,6 +1467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1026.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1291,6 +1475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -996.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1298,6 +1483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -913.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1305,6 +1491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -910.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1312,6 +1499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -861.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1319,6 +1507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -872.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1326,6 +1515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -825.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1333,6 +1523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -884.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1340,6 +1531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -831.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1347,6 +1539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -861.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1354,6 +1547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -855.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1361,6 +1555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -870.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1368,6 +1563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -886.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1375,6 +1571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -875.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1382,6 +1579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -809.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1389,6 +1587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -839.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1396,6 +1595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -839.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1403,6 +1603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -886.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1410,6 +1611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -907.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1417,6 +1619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -948.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1424,6 +1627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -913.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1431,6 +1635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -988.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1438,6 +1643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -946.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1445,6 +1651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -993.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1452,6 +1659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -924.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1459,6 +1667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -790.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1466,6 +1675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -765.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1473,6 +1683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -765.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1480,6 +1691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -845.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1487,6 +1699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -809.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1494,6 +1707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -828.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1501,6 +1715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -847.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1508,6 +1723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -866.45,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1515,6 +1731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -862.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1522,6 +1739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -915.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1529,6 +1747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -902.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1536,6 +1755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -903.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1543,6 +1763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -869.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1550,6 +1771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -859.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1557,6 +1779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -749.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1564,6 +1787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -679.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1571,6 +1795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -706.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1578,6 +1803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -794.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1585,6 +1811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -793.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1592,6 +1819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -786.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1599,6 +1827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -791.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1606,6 +1835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -807.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1613,6 +1843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -770.1001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1620,6 +1851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -745.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1627,6 +1859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -680.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1634,6 +1867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -727.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1641,6 +1875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -735.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1648,6 +1883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -642.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1655,6 +1891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -619.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1662,6 +1899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -593.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1669,6 +1907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -608.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1676,6 +1915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -634.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1683,6 +1923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -639.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1690,6 +1931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -586.8001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1697,6 +1939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -671.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1704,6 +1947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -606.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1711,6 +1955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -624.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1718,6 +1963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -556.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1725,6 +1971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -394.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1732,6 +1979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -364.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1739,6 +1987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -347.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1746,6 +1995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -404.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1753,6 +2003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -339.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1760,6 +2011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -386.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1767,6 +2019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -367.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1774,6 +2027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -335.4001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1781,6 +2035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -371.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1788,6 +2043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -376.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1795,6 +2051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -383.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1802,6 +2059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -315.5001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1809,6 +2067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -308.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1816,6 +2075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -366.3501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1823,6 +2083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -359.9001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1830,6 +2091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -410.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1837,6 +2099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -357.1501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1844,6 +2107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -414.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1851,6 +2115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -432.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1858,6 +2123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -392.0501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1865,6 +2131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -442.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1872,6 +2139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -447.2001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1879,6 +2147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -424.2501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1886,6 +2155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -404.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1893,6 +2163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -380.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1900,6 +2171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -365.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1907,6 +2179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -394.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1914,6 +2187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -383.4501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1921,6 +2195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -401.7001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1928,6 +2203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -423.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1935,6 +2211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -461.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1942,6 +2219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -396.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1949,6 +2227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -457.7501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1956,6 +2235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -451.0001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1963,6 +2243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -418.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1970,6 +2251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -371.8501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1977,6 +2259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -408.5501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1984,6 +2267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -480.6001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1991,6 +2275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -444.3001,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -1998,6 +2283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -463.9501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -2005,6 +2291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -541.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -2012,6 +2299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -546.6501,
       'sortedZoneKeys': 'AU-NSW->AU-QLD',
       'source': 'opennem.org.au',
@@ -2023,6 +2311,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1638.9452,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2030,6 +2319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1649.5042,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2037,6 +2327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1671.075,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2044,6 +2335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1609.9634,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2051,6 +2343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1473.0838,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2058,6 +2351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1568.8404,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2065,6 +2359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1486.6966,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2072,6 +2367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1531.0558,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2079,6 +2375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1696.0598,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2086,6 +2383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1660.479,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2093,6 +2391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1614.272,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2100,6 +2399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1592.3448,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2107,6 +2407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1465.393,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2114,6 +2415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1499.3508,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2121,6 +2423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1614.3126,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2128,6 +2431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1499.4394,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2135,6 +2439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1482.563,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2142,6 +2447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1458.994,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2149,6 +2455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1571.2438,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2156,6 +2463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1564.7414,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2163,6 +2471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1570.5968,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2170,6 +2479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1570.3726,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2177,6 +2487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1739.248,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2184,6 +2495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1828.9454,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2191,6 +2503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1777.3728,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2198,6 +2511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1809.4972,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2205,6 +2519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1805.604,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2212,6 +2527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2169.3938,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2219,6 +2535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1807.0498,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2226,6 +2543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1888.5388,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2233,6 +2551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1715.411,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2240,6 +2559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1886.7404,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2247,6 +2567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2011.769,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2254,6 +2575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2355.8604,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2261,6 +2583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2357.0802,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2268,6 +2591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2411.1004,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2275,6 +2599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2258.7316,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2282,6 +2607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2426.1242,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2289,6 +2615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2589.13,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2296,6 +2623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2576.639,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2303,6 +2631,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2531.359,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2310,6 +2639,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2521.3346,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2317,6 +2647,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2488.4046,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2324,6 +2655,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2620.307,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2331,6 +2663,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2703.097,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2338,6 +2671,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2630.7814,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2345,6 +2679,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2647.0456,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2352,6 +2687,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2673.611,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2359,6 +2695,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2673.027,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2366,6 +2703,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2718.6032,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2373,6 +2711,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2709.4054,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2380,6 +2719,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2659.8388,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2387,6 +2727,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2508.0674,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2394,6 +2735,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2569.8088,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2401,6 +2743,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2591.3578,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2408,6 +2751,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2554.374,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2415,6 +2759,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2521.9808,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2422,6 +2767,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2534.2702,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2429,6 +2775,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2500.0728,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2436,6 +2783,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2565.831,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2443,6 +2791,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2673.9072,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2450,6 +2799,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2734.5834,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2457,6 +2807,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2720.0606,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2464,6 +2815,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2651.342,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2471,6 +2823,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2596.2752,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2478,6 +2831,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2651.1386,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2485,6 +2839,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2621.111,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2492,6 +2847,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2526.239,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2499,6 +2855,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2517.5234,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2506,6 +2863,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2560.1272,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2513,6 +2871,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2468.5304,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2520,6 +2879,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2687.6112,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2527,6 +2887,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2649.1306,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2534,6 +2895,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2716.5524,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2541,6 +2903,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2667.91,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2548,6 +2911,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2677.6868,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2555,6 +2919,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2683.0754,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2562,6 +2927,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2767.285,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2569,6 +2935,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2745.961,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2576,6 +2943,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2790.4462,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2583,6 +2951,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2718.135,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2590,6 +2959,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2742.195,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2597,6 +2967,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2756.0272,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2604,6 +2975,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2727.6742,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2611,6 +2983,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2719.5794,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2618,6 +2991,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2679.9696,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2625,6 +2999,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2707.7416,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2632,6 +3007,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2680.6424,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2639,6 +3015,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2690.5148,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2646,6 +3023,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2683.0814,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2653,6 +3031,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2650.418,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2660,6 +3039,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2604.2,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2667,6 +3047,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2601.9224,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2674,6 +3055,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2668.2056,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2681,6 +3063,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2748.6772,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2688,6 +3071,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2654.2892,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2695,6 +3079,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2648.4758,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2702,6 +3087,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2564.2656,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2709,6 +3095,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2601.6974,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2716,6 +3103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2839.9932,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2723,6 +3111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2737.6014,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2730,6 +3119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2650.9684,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2737,6 +3127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2466.453,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2744,6 +3135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2321.7084,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2751,6 +3143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2242.3254,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2758,6 +3151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2142.875,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2765,6 +3159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2244.3132,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2772,6 +3167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2225.0042,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2779,6 +3175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2115.0572,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2786,6 +3183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2104.757,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2793,6 +3191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2132.073,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2800,6 +3199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2224.5492,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2807,6 +3207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2156.6962,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2814,6 +3215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2246.9476,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2821,6 +3223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2184.269,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2828,6 +3231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2163.8966,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2835,6 +3239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2159.6632,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2842,6 +3247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2145.3176,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2849,6 +3255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2045.5002,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2856,6 +3263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2031.677,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2863,6 +3271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2081.883,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2870,6 +3279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2070.5338,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2877,6 +3287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2127.6206,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2884,6 +3295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2235.4426,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2891,6 +3303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2145.2006,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2898,6 +3311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2101.236,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2905,6 +3319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2195.4908,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2912,6 +3327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2162.232,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2919,6 +3335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2054.9454,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2926,6 +3343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1996.489,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2933,6 +3351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2143.8246,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2940,6 +3359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2103.1032,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2947,6 +3367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2198.0798,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2954,6 +3375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1958.9596,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2961,6 +3383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2081.5732,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2968,6 +3391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2002.2792,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2975,6 +3399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1449.343,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2982,6 +3407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1506.6748,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2989,6 +3415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1354.0108,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -2996,6 +3423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1387.4966,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3003,6 +3431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1232.9226,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3010,6 +3439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1287.2586,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3017,6 +3447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1429.68,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3024,6 +3455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1429.313,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3031,6 +3463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1164.587,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3038,6 +3471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1255.5894,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3045,6 +3479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1357.7402,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3052,6 +3487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1328.2094,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3059,6 +3495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1246.7472,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3066,6 +3503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1234.9724,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3073,6 +3511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1245.8594,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3080,6 +3519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1448.5328,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3087,6 +3527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1413.801,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3094,6 +3535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1411.587,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3101,6 +3543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1391.3726,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3108,6 +3551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1433.1996,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3115,6 +3559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1591.0274,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3122,6 +3567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1502.9202,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3129,6 +3575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1488.3568,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3136,6 +3583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1466.3954,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3143,6 +3591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1520.3156,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3150,6 +3599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1608.9966,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3157,6 +3607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1601.8198,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3164,6 +3615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1437.171,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3171,6 +3623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1247.5704,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3178,6 +3631,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1337.9,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3185,6 +3639,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1153.7462,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3192,6 +3647,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1322.779,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3199,6 +3655,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1327.7908,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3206,6 +3663,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1413.9798,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3213,6 +3671,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1295.6228,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3220,6 +3679,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1537.0544,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3227,6 +3687,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1435.3568,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3234,6 +3695,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1360.659,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3241,6 +3703,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1383.6636,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3248,6 +3711,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1452.368,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3255,6 +3719,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1510.7376,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3262,6 +3727,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1492.8404,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3269,6 +3735,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1212.77,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3276,6 +3743,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1466.3084,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3283,6 +3751,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1218.9476,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3290,6 +3759,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1350.949,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3297,6 +3767,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1628.7078,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3304,6 +3775,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1548.1904,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3311,6 +3783,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1402.4478,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3318,6 +3791,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1315.089,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3325,6 +3799,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1309.2826,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3332,6 +3807,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1103.207,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3339,6 +3815,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1328.1542,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3346,6 +3823,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1608.9888,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3353,6 +3831,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1830.6556,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3360,6 +3839,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1715.3542,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3367,6 +3847,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1645.629,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3374,6 +3855,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1679.7684,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3381,6 +3863,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1723.7536,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3388,6 +3871,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1781.2106,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3395,6 +3879,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1829.4326,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3402,6 +3887,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1849.3262,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3409,6 +3895,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1782.0304,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3416,6 +3903,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1333.4818,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3423,6 +3911,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1378.902,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3430,6 +3919,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1371.5366,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3437,6 +3927,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1518.9442,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3444,6 +3935,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1470.1102,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3451,6 +3943,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1610.6578,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3458,6 +3951,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1437.2662,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3465,6 +3959,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1510.0034,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3472,6 +3967,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1487.6872,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3479,6 +3975,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1422.6346,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3486,6 +3983,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1729.4464,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3493,6 +3991,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1725.5762,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3500,6 +3999,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1933.331,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3507,6 +4007,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1860.4534,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3514,6 +4015,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -2037.0152,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3521,6 +4023,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1743.783,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3528,6 +4031,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1725.8114,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3535,6 +4039,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1685.4482,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3542,6 +4047,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1647.7924,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3549,6 +4055,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1591.8508,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3556,6 +4063,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1487.0544,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3563,6 +4071,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1423.6188,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3570,6 +4079,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1286.1802,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3577,6 +4087,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1178.213,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3584,6 +4095,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1205.0942,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3591,6 +4103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1294.8688,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3598,6 +4111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1271.0302,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3605,6 +4119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1421.5806,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3612,6 +4127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1377.1142,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3619,6 +4135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1354.8084,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3626,6 +4143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1251.295,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3633,6 +4151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1171.2406,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3640,6 +4159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1159.5354,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3647,6 +4167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1115.036,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3654,6 +4175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -1105.1356,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3661,6 +4183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -939.0392,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3668,6 +4191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -832.7148,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3675,6 +4199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -856.5842,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3682,6 +4207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -767.4528,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3689,6 +4215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -909.3686,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3696,6 +4223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -955.1264,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3703,6 +4231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -902.0392,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3710,6 +4239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -801.607,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3717,6 +4247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -793.102,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3724,6 +4255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -834.1742,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3731,6 +4263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -909.8472,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3738,6 +4271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -627.0916,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3745,6 +4279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 197.7594,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3752,6 +4287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 168.4912,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3759,6 +4295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 331.6336,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3766,6 +4303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 110.5388,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3773,6 +4311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 331.3674,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3780,6 +4319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 239.7266,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3787,6 +4327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 356.7922,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3794,6 +4335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 291.5998,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3801,6 +4343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 299.2394,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3808,6 +4351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 273.573,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3815,6 +4359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 231.818,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3822,6 +4367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 372.8876,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3829,6 +4375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 405.5782,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3836,6 +4383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 185.4508,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3843,6 +4391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 224.1724,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3850,6 +4399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 220.9618,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3857,6 +4407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 341.7222,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3864,6 +4415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 211.5182,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3871,6 +4423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 212.4236,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3878,6 +4431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 317.6104,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3885,6 +4439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 219.713,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3892,6 +4447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 224.9672,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3899,6 +4455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 260.494,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3906,6 +4463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 293.0918,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3913,6 +4471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 357.1408,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3920,6 +4479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 345.2334,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3927,6 +4487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 353.4372,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3934,6 +4495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 286.397,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3941,6 +4503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 356.8042,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3948,6 +4511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 302.2506,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3955,6 +4519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 327.1058,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3962,6 +4527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 294.5012,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3969,6 +4535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 185.9602,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3976,6 +4543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 179.8772,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3983,6 +4551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 281.041,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3990,6 +4559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 282.207,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -3997,6 +4567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 171.2042,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -4004,6 +4575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 228.8228,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -4011,6 +4583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 237.4406,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -4018,6 +4591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 231.9974,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -4025,6 +4599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': 165.9206,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',
@@ -4032,6 +4607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 11, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'netFlow': -69.3206,
       'sortedZoneKeys': 'AU-NSW->AU-VIC',
       'source': 'opennem.org.au',

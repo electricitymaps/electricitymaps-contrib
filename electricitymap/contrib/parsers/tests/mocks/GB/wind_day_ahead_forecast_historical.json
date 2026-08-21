@@ -1,0 +1,35 @@
+{
+  "help": "Mock NESO historic day-ahead wind forecast data",
+  "success": true,
+  "result": {
+    "records": [
+      {
+        "_id": 100,
+        "Datetime_GMT": "2022-07-15T23:00:00",
+        "Date": "2022-07-16",
+        "Settlement_period": 1,
+        "Capacity": 15594,
+        "Incentive_forecast": 7523,
+        "Forecast_Timestamp": "2022-07-16T08:45:00"
+      },
+      {
+        "_id": 101,
+        "Datetime_GMT": "2022-07-15T23:30:00",
+        "Date": "2022-07-16",
+        "Settlement_period": 2,
+        "Capacity": 15594,
+        "Incentive_forecast": 7656,
+        "Forecast_Timestamp": "2022-07-16T08:45:00"
+      },
+      {
+        "_id": 102,
+        "Datetime_GMT": "2022-07-16T00:00:00",
+        "Date": "2022-07-16",
+        "Settlement_period": 3,
+        "Capacity": 15594,
+        "Incentive_forecast": 7736,
+        "Forecast_Timestamp": "2022-07-16T08:45:00"
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.7,
         'coal': 5757.7921,
@@ -26,6 +27,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 5707.2007,
@@ -47,6 +49,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.6,
         'coal': 5643.9034,
@@ -68,6 +71,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 70.6,
         'coal': 5524.3427,
@@ -89,6 +93,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 71.1,
         'coal': 5399.1972,
@@ -110,6 +115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 71.2,
         'coal': 5371.4282,
@@ -131,6 +137,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 69.5,
         'coal': 5303.0824,
@@ -152,6 +159,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.9,
         'coal': 5202.8487,
@@ -173,6 +181,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.5,
         'coal': 5174.2196,
@@ -194,6 +203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.4,
         'coal': 5101.3838,
@@ -215,6 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.9,
         'coal': 4974.533,
@@ -236,6 +247,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.5,
         'coal': 4963.2578,
@@ -257,6 +269,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.1,
         'coal': 4918.9446,
@@ -278,6 +291,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.0,
         'coal': 4968.6982,
@@ -299,6 +313,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.6,
         'coal': 4932.8668,
@@ -320,6 +335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.6,
         'coal': 4939.1821,
@@ -341,6 +357,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.9,
         'coal': 4906.9616,
@@ -362,6 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.6,
         'coal': 4925.3666,
@@ -383,6 +401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.2,
         'coal': 4896.7154,
@@ -404,6 +423,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.4,
         'coal': 4922.3799,
@@ -425,6 +445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.2,
         'coal': 4878.4882,
@@ -446,6 +467,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.2,
         'coal': 4873.2592,
@@ -467,6 +489,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.2,
         'coal': 4798.2214,
@@ -488,6 +511,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.9,
         'coal': 4961.0846,
@@ -509,6 +533,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.9,
         'coal': 5022.5019,
@@ -530,6 +555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.1,
         'coal': 5021.3514,
@@ -551,6 +577,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 50.9,
         'coal': 4959.6442,
@@ -572,6 +599,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.5,
         'coal': 4966.8304,
@@ -593,6 +621,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.8,
         'coal': 4961.4267,
@@ -614,6 +643,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 50.5,
         'coal': 4990.9319,
@@ -635,6 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.7,
         'coal': 4968.3275,
@@ -656,6 +687,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.6,
         'coal': 4953.4502,
@@ -677,6 +709,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 10, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.3,
         'coal': 4960.9742,
@@ -698,6 +731,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.3,
         'coal': 4948.7712,
@@ -719,6 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 47.1,
         'coal': 4922.4573,
@@ -740,6 +775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.2,
         'coal': 4919.7806,
@@ -761,6 +797,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.8,
         'coal': 4843.1292,
@@ -782,6 +819,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.2,
         'coal': 4847.5977,
@@ -803,6 +841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.1,
         'coal': 4827.6749,
@@ -824,6 +863,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.1,
         'coal': 4817.7965,
@@ -845,6 +885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.8,
         'coal': 4748.4216,
@@ -866,6 +907,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.4,
         'coal': 4745.0696,
@@ -887,6 +929,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.2,
         'coal': 4735.027,
@@ -908,6 +951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.4,
         'coal': 4732.5994,
@@ -929,6 +973,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.4,
         'coal': 4712.8674,
@@ -950,6 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.2,
         'coal': 4739.2993,
@@ -971,6 +1017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.3,
         'coal': 4725.691,
@@ -992,6 +1039,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 56.2,
         'coal': 4641.9033,
@@ -1013,6 +1061,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.6,
         'coal': 4671.6752,
@@ -1034,6 +1083,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.7,
         'coal': 4696.1408,
@@ -1055,6 +1105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.7,
         'coal': 4668.994,
@@ -1076,6 +1127,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.9,
         'coal': 4569.284,
@@ -1097,6 +1149,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.2,
         'coal': 4528.4351,
@@ -1118,6 +1171,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.0,
         'coal': 4602.5467,
@@ -1139,6 +1193,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.1,
         'coal': 4546.1002,
@@ -1160,6 +1215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.3,
         'coal': 4531.5554,
@@ -1181,6 +1237,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.1,
         'coal': 4616.4984,
@@ -1202,6 +1259,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 56.9,
         'coal': 4510.465,
@@ -1223,6 +1281,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 56.4,
         'coal': 4394.9588,
@@ -1244,6 +1303,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.7,
         'coal': 4395.8958,
@@ -1265,6 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.4,
         'coal': 4434.0213,
@@ -1286,6 +1347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.6,
         'coal': 4474.4622,
@@ -1308,6 +1370,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.0,
         'coal': 4534.5205,
@@ -1329,6 +1392,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.4,
         'coal': 4473.2579,
@@ -1350,6 +1414,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.5,
         'coal': 4423.6404,
@@ -1371,6 +1436,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.1,
         'coal': 4408.721,
@@ -1392,6 +1458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.7,
         'coal': 4437.6492,
@@ -1413,6 +1480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.8,
         'coal': 4490.307,
@@ -1434,6 +1502,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.9,
         'coal': 4439.988,
@@ -1455,6 +1524,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.4,
         'coal': 4417.0035,
@@ -1476,6 +1546,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.2,
         'coal': 4345.8415,
@@ -1497,6 +1568,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 56.2,
         'coal': 4399.5017,
@@ -1518,6 +1590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.9,
         'coal': 4465.5466,
@@ -1539,6 +1612,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.9,
         'coal': 4478.731,
@@ -1560,6 +1634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.3,
         'coal': 4545.7294,
@@ -1581,6 +1656,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.9,
         'coal': 4503.5935,
@@ -1602,6 +1678,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.6,
         'coal': 4404.1867,
@@ -1623,6 +1700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.5,
         'coal': 4370.0534,
@@ -1644,6 +1722,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.6,
         'coal': 4398.7857,
@@ -1665,6 +1744,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.5,
         'coal': 4450.7555,
@@ -1686,6 +1766,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.8,
         'coal': 4484.3136,
@@ -1707,6 +1788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.9,
         'coal': 4443.9754,
@@ -1728,6 +1810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.0,
         'coal': 4451.7189,
@@ -1749,6 +1832,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.7,
         'coal': 4474.2299,
@@ -1770,6 +1854,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.5,
         'coal': 4465.9932,
@@ -1791,6 +1876,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.8,
         'coal': 4509.5586,
@@ -1812,6 +1898,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.6,
         'coal': 4485.5773,
@@ -1833,6 +1920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.3,
         'coal': 4513.8593,
@@ -1854,6 +1942,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.7,
         'coal': 4524.4389,
@@ -1875,6 +1964,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.0,
         'coal': 4542.9326,
@@ -1896,6 +1986,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.0,
         'coal': 4576.675,
@@ -1917,6 +2008,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.4,
         'coal': 4576.3752,
@@ -1938,6 +2030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.2,
         'coal': 4613.3367,
@@ -1959,6 +2052,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.3,
         'coal': 4665.3098,
@@ -1980,6 +2074,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.9,
         'coal': 4690.9388,
@@ -2001,6 +2096,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.3,
         'coal': 4773.6915,
@@ -2022,6 +2118,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.4,
         'coal': 4835.2738,
@@ -2043,6 +2140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 70.0,
         'coal': 4821.6027,
@@ -2064,6 +2162,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 69.1,
         'coal': 4875.0976,
@@ -2085,6 +2184,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 63.5,
         'coal': 4884.6148,
@@ -2106,6 +2206,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.6,
         'coal': 4919.7749,
@@ -2127,6 +2228,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 63.8,
         'coal': 5035.3246,
@@ -2148,6 +2250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.1,
         'coal': 5074.3033,
@@ -2169,6 +2272,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.6,
         'coal': 5086.5438,
@@ -2190,6 +2294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.0,
         'coal': 5094.1403,
@@ -2211,6 +2316,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.1,
         'coal': 5093.3975,
@@ -2232,6 +2338,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 63.5,
         'coal': 5089.2978,
@@ -2253,6 +2360,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.3,
         'coal': 5193.2314,
@@ -2274,6 +2382,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 63.8,
         'coal': 5269.6236,
@@ -2295,6 +2404,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.9,
         'coal': 5284.786,
@@ -2316,6 +2426,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 61.8,
         'coal': 5319.2856,
@@ -2337,6 +2448,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 61.7,
         'coal': 5376.9892,
@@ -2358,6 +2470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.4,
         'coal': 5294.4621,
@@ -2379,6 +2492,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 64.3,
         'coal': 5291.9323,
@@ -2400,6 +2514,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.5,
         'coal': 5407.2018,
@@ -2421,6 +2536,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.9,
         'coal': 5528.1283,
@@ -2442,6 +2558,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.6,
         'coal': 5499.5669,
@@ -2463,6 +2580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.2,
         'coal': 5561.9554,
@@ -2484,6 +2602,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 63.9,
         'coal': 5594.8208,
@@ -2505,6 +2624,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.3,
         'coal': 5543.5602,
@@ -2526,6 +2646,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.4,
         'coal': 5542.6561,
@@ -2547,6 +2668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 67.7,
         'coal': 5551.5784,
@@ -2568,6 +2690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 66.6,
         'coal': 5521.239,
@@ -2589,6 +2712,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 5442.6377,
@@ -2610,6 +2734,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 75.0,
         'coal': 5400.3958,
@@ -2631,6 +2756,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 73.1,
         'coal': 5389.1515,
@@ -2652,6 +2778,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 71.2,
         'coal': 5308.5332,
@@ -2673,6 +2800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 71.3,
         'coal': 5254.9194,
@@ -2694,6 +2822,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 70.9,
         'coal': 5097.6416,
@@ -2715,6 +2844,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 65.9,
         'coal': 5011.2234,
@@ -2736,6 +2866,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.9,
         'coal': 4866.8758,
@@ -2757,6 +2888,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.0,
         'coal': 4873.9947,
@@ -2778,6 +2910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.9,
         'coal': 4699.4052,
@@ -2799,6 +2932,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.2,
         'coal': 4594.1085,
@@ -2820,6 +2954,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.2,
         'coal': 4456.3248,
@@ -2841,6 +2976,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.2,
         'coal': 4363.8397,
@@ -2862,6 +2998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 46.8,
         'coal': 4232.2395,
@@ -2883,6 +3020,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.4,
         'coal': 4203.5402,
@@ -2904,6 +3042,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.9,
         'coal': 4219.0826,
@@ -2925,6 +3064,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.7,
         'coal': 4209.9147,
@@ -2946,6 +3086,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.3,
         'coal': 4066.3275,
@@ -2967,6 +3108,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 27.9,
         'coal': 3967.0918,
@@ -2988,6 +3130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 23.9,
         'coal': 3875.3212,
@@ -3009,6 +3152,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 22.9,
         'coal': 3825.0735,
@@ -3030,6 +3174,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 24.4,
         'coal': 3850.365,
@@ -3051,6 +3196,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 26.3,
         'coal': 3901.7673,
@@ -3072,6 +3218,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 28.1,
         'coal': 3852.8391,
@@ -3093,6 +3240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.1,
         'coal': 3767.3691,
@@ -3114,6 +3262,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 31.0,
         'coal': 3768.4083,
@@ -3135,6 +3284,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.5,
         'coal': 3776.3835,
@@ -3156,6 +3306,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.5,
         'coal': 3782.2236,
@@ -3177,6 +3328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.5,
         'coal': 3775.0371,
@@ -3198,6 +3350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 31.1,
         'coal': 3758.332,
@@ -3219,6 +3372,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 29.6,
         'coal': 3781.7782,
@@ -3240,6 +3394,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 28.8,
         'coal': 3762.3554,
@@ -3261,6 +3416,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 27.6,
         'coal': 3783.3462,
@@ -3282,6 +3438,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 27.9,
         'coal': 3779.7363,
@@ -3303,6 +3460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 27.2,
         'coal': 3764.0639,
@@ -3324,6 +3482,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 29.0,
         'coal': 3784.1373,
@@ -3345,6 +3504,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 28.5,
         'coal': 3771.8732,
@@ -3366,6 +3526,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 29.5,
         'coal': 3753.8462,
@@ -3387,6 +3548,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 31.1,
         'coal': 3823.4093,
@@ -3408,6 +3570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 34.5,
         'coal': 3799.2815,
@@ -3429,6 +3592,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 34.4,
         'coal': 3835.089,
@@ -3450,6 +3614,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 33.8,
         'coal': 3882.0688,
@@ -3471,6 +3636,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 33.2,
         'coal': 3889.1649,
@@ -3492,6 +3658,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 32.8,
         'coal': 3889.0747,
@@ -3513,6 +3680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 29.1,
         'coal': 3935.1347,
@@ -3534,6 +3702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.7,
         'coal': 3920.4409,
@@ -3555,6 +3724,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 31.6,
         'coal': 3891.2621,
@@ -3576,6 +3746,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 28.2,
         'coal': 3897.3533,
@@ -3597,6 +3768,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 24.0,
         'coal': 3884.8348,
@@ -3618,6 +3790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.9,
         'coal': 3907.8607,
@@ -3639,6 +3812,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 18.2,
         'coal': 3921.7333,
@@ -3660,6 +3834,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.4,
         'coal': 3956.5176,
@@ -3681,6 +3856,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.9,
         'coal': 3990.8481,
@@ -3702,6 +3878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.7,
         'coal': 4023.0223,
@@ -3723,6 +3900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.2,
         'coal': 4011.0986,
@@ -3744,6 +3922,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.7,
         'coal': 4036.8966,
@@ -3765,6 +3944,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.8,
         'coal': 4039.444,
@@ -3786,6 +3966,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.0,
         'coal': 4022.1816,
@@ -3807,6 +3988,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.4,
         'coal': 4042.9811,
@@ -3828,6 +4010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 18.5,
         'coal': 4023.2358,
@@ -3849,6 +4032,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.8,
         'coal': 4021.3228,
@@ -3870,6 +4054,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.4,
         'coal': 3997.6898,
@@ -3891,6 +4076,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 18.1,
         'coal': 4005.3887,
@@ -3912,6 +4098,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.4,
         'coal': 4004.5745,
@@ -3933,6 +4120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.8,
         'coal': 3983.4617,
@@ -3954,6 +4142,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 24.1,
         'coal': 4014.3546,
@@ -3975,6 +4164,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.8,
         'coal': 3973.546,
@@ -3996,6 +4186,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.8,
         'coal': 3998.8777,
@@ -4017,6 +4208,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.7,
         'coal': 4004.3529,
@@ -4038,6 +4230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.2,
         'coal': 3963.9136,
@@ -4059,6 +4252,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.2,
         'coal': 3949.6319,
@@ -4080,6 +4274,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.8,
         'coal': 3919.5309,
@@ -4101,6 +4296,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.5,
         'coal': 3926.7341,
@@ -4122,6 +4318,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 17.4,
         'coal': 3895.34,
@@ -4143,6 +4340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.5,
         'coal': 3892.4434,
@@ -4164,6 +4362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 21.0,
         'coal': 3839.7847,
@@ -4185,6 +4384,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.3,
         'coal': 3863.9309,
@@ -4206,6 +4406,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.8,
         'coal': 3865.3757,
@@ -4227,6 +4428,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 18.1,
         'coal': 3841.1715,
@@ -4248,6 +4450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.2,
         'coal': 3900.7119,
@@ -4269,6 +4472,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 17.2,
         'coal': 3845.3452,
@@ -4290,6 +4494,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 18.3,
         'coal': 3800.3521,
@@ -4311,6 +4516,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 19.8,
         'coal': 3830.1403,
@@ -4332,6 +4538,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 20.7,
         'coal': 3826.3233,
@@ -4353,6 +4560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 23.0,
         'coal': 3809.4209,
@@ -4374,6 +4582,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 23.9,
         'coal': 3827.8877,
@@ -4395,6 +4604,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 24.6,
         'coal': 3771.8973,
@@ -4416,6 +4626,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 24.3,
         'coal': 3846.6664,
@@ -4437,6 +4648,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 25.5,
         'coal': 3849.0259,
@@ -4458,6 +4670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 26.2,
         'coal': 3828.4294,
@@ -4479,6 +4692,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.6,
         'coal': 3871.4419,
@@ -4500,6 +4714,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 33.1,
         'coal': 3841.8001,
@@ -4521,6 +4736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 36.4,
         'coal': 3832.5175,
@@ -4542,6 +4758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 37.3,
         'coal': 3815.4547,
@@ -4563,6 +4780,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 37.2,
         'coal': 3856.1926,
@@ -4584,6 +4802,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.7,
         'coal': 3822.2173,
@@ -4605,6 +4824,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.3,
         'coal': 3834.5592,
@@ -4626,6 +4846,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 41.4,
         'coal': 3909.3446,
@@ -4647,6 +4868,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 45.0,
         'coal': 3860.6206,
@@ -4668,6 +4890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.3,
         'coal': 3813.9009,
@@ -4689,6 +4912,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.5,
         'coal': 3882.7093,
@@ -4710,6 +4934,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.1,
         'coal': 4047.3847,
@@ -4731,6 +4956,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.7,
         'coal': 4164.1789,
@@ -4752,6 +4978,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 46.2,
         'coal': 4361.6361,
@@ -4773,6 +5000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 44.0,
         'coal': 4566.1622,
@@ -4794,6 +5022,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 42.1,
         'coal': 4754.7844,
@@ -4815,6 +5044,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 43.4,
         'coal': 4956.1881,
@@ -4836,6 +5066,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 43.8,
         'coal': 5046.5246,
@@ -4857,6 +5088,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.3,
         'coal': 5190.235,
@@ -4878,6 +5110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.0,
         'coal': 5361.5469,
@@ -4899,6 +5132,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 46.0,
         'coal': 5534.5882,
@@ -4920,6 +5154,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 43.6,
         'coal': 5732.7641,
@@ -4941,6 +5176,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.9,
         'coal': 5791.7374,
@@ -4962,6 +5198,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 44.8,
         'coal': 5932.8579,
@@ -4983,6 +5220,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 46.0,
         'coal': 5939.0004,
@@ -5004,6 +5242,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 48.2,
         'coal': 5959.7547,
@@ -5025,6 +5264,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 47.6,
         'coal': 6010.8007,
@@ -5046,6 +5286,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 47.4,
         'coal': 6033.8861,
@@ -5067,6 +5308,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 46.5,
         'coal': 6082.1869,
@@ -5088,6 +5330,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 47.1,
         'coal': 6115.7052,
@@ -5109,6 +5352,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 45.5,
         'coal': 6125.4069,
@@ -5130,6 +5374,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.2,
         'coal': 6099.3607,
@@ -5151,6 +5396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.7,
         'coal': 6102.837,
@@ -5172,6 +5418,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 49.8,
         'coal': 6160.1416,
@@ -5193,6 +5440,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.4,
         'coal': 6182.836,
@@ -5214,6 +5462,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.9,
         'coal': 6154.1806,
@@ -5235,6 +5484,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.6,
         'coal': 6180.7074,
@@ -5256,6 +5506,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.3,
         'coal': 6139.4909,
@@ -5277,6 +5528,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 50.9,
         'coal': 6156.8162,
@@ -5298,6 +5550,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.3,
         'coal': 6145.7619,
@@ -5319,6 +5572,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.6,
         'coal': 6125.1456,
@@ -5340,6 +5594,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.6,
         'coal': 6109.7811,
@@ -5361,6 +5616,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.1,
         'coal': 6166.9332,
@@ -5382,6 +5638,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.9,
         'coal': 6108.6173,
@@ -5403,6 +5660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 53.3,
         'coal': 6113.1288,
@@ -5424,6 +5682,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 51.4,
         'coal': 6112.2555,
@@ -5445,6 +5704,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.6,
         'coal': 6116.5083,
@@ -5466,6 +5726,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 52.3,
         'coal': 6136.4883,
@@ -5487,6 +5748,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.0,
         'coal': 6108.0372,
@@ -5508,6 +5770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 55.4,
         'coal': 6123.9227,
@@ -5529,6 +5792,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 54.7,
         'coal': 6114.3209,
@@ -5550,6 +5814,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 57.8,
         'coal': 5996.492,
@@ -5571,6 +5836,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.1,
         'coal': 6092.5857,
@@ -5592,6 +5858,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.2,
         'coal': 6099.0559,
@@ -5613,6 +5880,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.4,
         'coal': 6053.8753,
@@ -5634,6 +5902,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.0,
         'coal': 6015.4211,
@@ -5655,6 +5924,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.1,
         'coal': 6029.018,
@@ -5676,6 +5946,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.4,
         'coal': 5989.1359,
@@ -5697,6 +5968,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.1,
         'coal': 5944.9191,
@@ -5718,6 +5990,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 56.0,
         'coal': 5939.4696,
@@ -5739,6 +6012,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 58.1,
         'coal': 5957.2623,
@@ -5760,6 +6034,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.9,
         'coal': 5962.7972,
@@ -5781,6 +6056,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.6,
         'coal': 5944.3127,
@@ -5802,6 +6078,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.0,
         'coal': 5935.6921,
@@ -5823,6 +6100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.0,
         'coal': 5894.7111,
@@ -5844,6 +6122,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.8,
         'coal': 5902.0929,
@@ -5865,6 +6144,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 60.1,
         'coal': 5879.4775,
@@ -5886,6 +6166,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.5,
         'coal': 5862.6545,
@@ -5907,6 +6188,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 59.1,
         'coal': 5902.5748,
@@ -5928,6 +6210,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 61.1,
         'coal': 5904.5843,
@@ -5949,6 +6232,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.9,
         'coal': 5908.6251,
@@ -5970,6 +6254,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.7,
         'coal': 5892.4941,
@@ -5991,6 +6276,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.2,
         'coal': 5909.0957,
@@ -6012,6 +6298,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.7,
         'coal': 5919.6075,
@@ -6033,6 +6320,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 11, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'end_datetime': None,
       'production': dict({
         'biomass': 62.6,
         'coal': 5878.3962,

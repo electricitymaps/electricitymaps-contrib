@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -10,6 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -17,6 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -24,6 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -31,6 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -38,6 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -45,6 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -52,6 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -59,6 +67,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -66,6 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -73,6 +83,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -80,6 +91,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -87,6 +99,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -94,6 +107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -101,6 +115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -108,6 +123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -115,6 +131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -122,6 +139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -129,6 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -136,6 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -143,6 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -150,6 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -157,6 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -164,6 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -171,6 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -178,6 +203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -185,6 +211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -192,6 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -199,6 +227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -206,6 +235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -213,6 +243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -220,6 +251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -227,6 +259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -234,6 +267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -241,6 +275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -248,6 +283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -255,6 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -262,6 +299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -269,6 +307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -276,6 +315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -283,6 +323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -290,6 +331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -297,6 +339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -304,6 +347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -311,6 +355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -318,6 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -325,6 +371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -332,6 +379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -339,6 +387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -346,6 +395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -353,6 +403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -360,6 +411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -367,6 +419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -374,6 +427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -381,6 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -388,6 +443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -395,6 +451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -402,6 +459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -409,6 +467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -416,6 +475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -423,6 +483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -430,6 +491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -437,6 +499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -444,6 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -451,6 +515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -458,6 +523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -465,6 +531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -472,6 +539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -479,6 +547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -486,6 +555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -493,6 +563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -500,6 +571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -507,6 +579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -514,6 +587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -521,6 +595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -528,6 +603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -535,6 +611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -542,6 +619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -549,6 +627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -556,6 +635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -563,6 +643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -570,6 +651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -577,6 +659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -584,6 +667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -591,6 +675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -598,6 +683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -605,6 +691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -612,6 +699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -619,6 +707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -626,6 +715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -633,6 +723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -640,6 +731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -647,6 +739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -654,6 +747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -661,6 +755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -668,6 +763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 24, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -675,6 +771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -682,6 +779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -689,6 +787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -696,6 +795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -703,6 +803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -710,6 +811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -717,6 +819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -724,6 +827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -731,6 +835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -738,6 +843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -745,6 +851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -752,6 +859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -759,6 +867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -766,6 +875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -773,6 +883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -780,6 +891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -787,6 +899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -794,6 +907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -801,6 +915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -808,6 +923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -815,6 +931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -822,6 +939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -829,6 +947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -836,6 +955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -843,6 +963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -850,6 +971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -857,6 +979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -864,6 +987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -871,6 +995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -878,6 +1003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -885,6 +1011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -892,6 +1019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -67.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -899,6 +1027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -906,6 +1035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -913,6 +1043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -920,6 +1051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -927,6 +1059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -934,6 +1067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -941,6 +1075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -948,6 +1083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -955,6 +1091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -962,6 +1099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -969,6 +1107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -976,6 +1115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -983,6 +1123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -990,6 +1131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -997,6 +1139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1004,6 +1147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1011,6 +1155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1018,6 +1163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1025,6 +1171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1032,6 +1179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1039,6 +1187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1046,6 +1195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1053,6 +1203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1060,6 +1211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -75.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1067,6 +1219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1074,6 +1227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1081,6 +1235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1088,6 +1243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1095,6 +1251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1102,6 +1259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1109,6 +1267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1116,6 +1275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -74.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1123,6 +1283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1130,6 +1291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1137,6 +1299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1144,6 +1307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1151,6 +1315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1158,6 +1323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1165,6 +1331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1172,6 +1339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -72.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1179,6 +1347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1186,6 +1355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1193,6 +1363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1200,6 +1371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1207,6 +1379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1214,6 +1387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1221,6 +1395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1228,6 +1403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -73.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1235,6 +1411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1242,6 +1419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1249,6 +1427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1256,6 +1435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -70.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1263,6 +1443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1270,6 +1451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1277,6 +1459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1284,6 +1467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -36.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1291,6 +1475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1298,6 +1483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1305,6 +1491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1312,6 +1499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1319,6 +1507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1326,6 +1515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1333,6 +1523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',
@@ -1340,6 +1531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2021, 7, 25, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'MD->RO',
       'source': 'moldelectrica.md',

@@ -4,6 +4,7 @@
     dict({
       'consumption': 103.1,
       'datetime': datetime.datetime(2026, 4, 27, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES-CN-LZ',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 101.8,
       'datetime': datetime.datetime(2026, 4, 27, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES-CN-LZ',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 102.3,
       'datetime': datetime.datetime(2026, 4, 27, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES-CN-LZ',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 98.6,
       'datetime': datetime.datetime(2026, 4, 27, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES-CN-LZ',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 97.7,
       'datetime': datetime.datetime(2026, 4, 27, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES-CN-LZ',

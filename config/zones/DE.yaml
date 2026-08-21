@@ -10,31 +10,34 @@ capacity:
   battery storage:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 456.0
+      value: 453.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
-      value: 729.0
+      value: 726.0
     - datetime: '2019-01-01'
       source: Fraunhofer ISE
-      value: 1017.0
+      value: 1012.0
     - datetime: '2020-01-01'
       source: Fraunhofer ISE
-      value: 1569.0
+      value: 1563.0
     - datetime: '2021-01-01'
       source: Fraunhofer ISE
-      value: 2415.0
+      value: 2419.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 4132.0
+      value: 4200.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 8232.0
+      value: 8358.0
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 12340.0
+      value: 12657.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 12852.0
+      value: 16813.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 19034.0
   biomass:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -63,6 +66,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 9174.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 8958.0
   coal:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -94,6 +100,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 31193.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 30144.0
   gas:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -125,14 +134,44 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 36664.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 35311.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 56
   hydro:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 4782.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 4837.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 4849.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 4957.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 4946.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 6186.0
+      value: 4900.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 5610.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 5546.0
+    - datetime: '2025-01-01'
+      source: Fraunhofer ISE
+      value: 5889.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 5889.0
   hydro storage:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -152,6 +191,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 9870.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 9894.0
   nuclear:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -190,37 +232,40 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 4442.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 3811.0
   solar:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 42293.0
+      value: 42380.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
-      value: 45207.0
+      value: 45384.0
     - datetime: '2019-01-01'
       source: Fraunhofer ISE
-      value: 48864.0
+      value: 49394.0
     - datetime: '2020-01-01'
       source: Fraunhofer ISE
-      value: 54449.0
+      value: 54537.0
     - datetime: '2021-01-01'
       source: Fraunhofer ISE
-      value: 60162.0
+      value: 60242.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 67720.0
+      value: 67817.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 83052.0
+      value: 83270.0
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 99787.0
-    - datetime: '2024-11-11'
-      source: Fraunhofer ISE
-      value: 94300.0
+      value: 100747.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 100910.0
+      value: 117946.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 124341.0
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -243,6 +288,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 3171.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 2291.0
   wind:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -274,6 +322,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 72979.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 80417.0
 center_point:
   - 10.407266584569143
   - 51.055795801568294
@@ -297,31 +348,61 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 1063.74
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 1047.29
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 1048.04
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 1064.65
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 1073.03112
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 1053.25
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 1087.81
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 1052.58
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 1063.51
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 1060.91
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
-        value: 1070.47
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 1080.4
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 1052.69
     gas:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 355.2
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 454.69
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 374.61
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 401.58
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 472.8075167
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 374.57
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 451.55
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 392.31
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 385.86
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 398.98
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
-        value: 374.16
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 400.79
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 382.97
     hydro discharge:
       - _comment: used storage values greater than zero.
         datetime: '2015-01-01'
@@ -368,51 +449,94 @@ emissionFactors:
         source: Electricity Maps, 2025 zone average
         value: 235.37
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017
+        value: 910.01
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018
+        value: 957.57
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019
+        value: 972.1
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020
+        value: 967.1
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
+        source: EU-ETS 2025, ENTSO-E 2021
+        value: 903.53
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
+        source: EU-ETS 2025, ENTSO-E 2022
+        value: 873.76
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 791.59
+        source: EU-ETS 2025, ENTSO-E 2023
+        value: 850.74
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024
-        value: 857.84
+        source: EU-ETS 2025, ENTSO-E 2024
+        value: 869.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025
+        value: 826.11
   lifecycle:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1123.74
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1107.29
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1108.04
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1124.65
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1152.3866810000002
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1113.25
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1167.165561
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 1112.58
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1123.51
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 1120.91
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
-        value: 1130.47
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 1140.4
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1112.69
     gas:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 475.2
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 574.69
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 494.61
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 521.58
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 592.8075167
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 494.57
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 571.55
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 512.31
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 505.86
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 518.98
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
-        value: 494.16
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 520.79
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 502.97
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -467,18 +591,33 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS 2025, ENTSO-E 2017; IPCC 2014
+        value: 1154.01
+      - datetime: '2018-01-01'
+        source: EU-ETS 2025, ENTSO-E 2018; IPCC 2014
+        value: 1201.57
+      - datetime: '2019-01-01'
+        source: EU-ETS 2025, ENTSO-E 2019; IPCC 2014
+        value: 1216.1
+      - datetime: '2020-01-01'
+        source: EU-ETS 2025, ENTSO-E 2020; IPCC 2014
+        value: 1211.1
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
+        source: EU-ETS 2025, ENTSO-E 2021; IPCC 2014
+        value: 1147.53
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
+        source: EU-ETS 2025, ENTSO-E 2022; IPCC 2014
+        value: 1117.76
       - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1035.59
+        source: EU-ETS 2025, ENTSO-E 2023; IPCC 2014
+        value: 1094.74
       - datetime: '2024-01-01'
-        source: EU-ETS, ENTSO-E 2024; IPCC 2014
-        value: 1101.84
+        source: EU-ETS 2025, ENTSO-E 2024; IPCC 2014
+        value: 1113.31
+      - datetime: '2025-01-01'
+        source: EU-ETS 2025, ENTSO-E 2025; IPCC 2014
+        value: 1070.11
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -704,6 +843,24 @@ parsers:
   productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
+  EU-ETS 2025, ENTSO-E 2017:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2018:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2019:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2020:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2021:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2022:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2023:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
+  EU-ETS 2025, ENTSO-E 2025:
+    link: https://transparency.entsoe.eu/, https://climate.ec.europa.eu/areas-action/carbon-markets/eu-emissions-trading-system-eu-ets/union-registry_en
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:

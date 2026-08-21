@@ -63,7 +63,7 @@ This repository is licensed under GNU-AGPLv3 since v1.5.0, find our license [her
 ## Frequently asked questions
 
 **Where does the data come from?**
-The data comes from many different sources. But we strive to only use official sources from goverments, TSOs, producers and online OpenData platforms when avaiable.
+The data comes from many different sources. But we strive to only use official sources from governments, TSOs, producers and online OpenData platforms when available.
 
 **Why do you calculate the carbon intensity of _consumption_?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.

@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -10,6 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -17,6 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -24,6 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -31,6 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -38,6 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -45,6 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -52,6 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -59,6 +67,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -66,6 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -73,6 +83,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -80,6 +91,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -87,6 +99,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(195.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -94,6 +107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -101,6 +115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -108,6 +123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -115,6 +131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -122,6 +139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -129,6 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -136,6 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -143,6 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -150,6 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -157,6 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -164,6 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -171,6 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -178,6 +203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -185,6 +211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -192,6 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -199,6 +227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -206,6 +235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -213,6 +243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -220,6 +251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -227,6 +259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -234,6 +267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -241,6 +275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(198.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -248,6 +283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(295.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -255,6 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -262,6 +299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -269,6 +307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -276,6 +315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -283,6 +323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -290,6 +331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -297,6 +339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -304,6 +347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -311,6 +355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -318,6 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -325,6 +371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -332,6 +379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -339,6 +387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -346,6 +395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -353,6 +403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -360,6 +411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -367,6 +419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -374,6 +427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -381,6 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -388,6 +443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -395,6 +451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -402,6 +459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -409,6 +467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -416,6 +475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -423,6 +483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -430,6 +491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -437,6 +499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -444,6 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -451,6 +515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',
@@ -458,6 +523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 2, 5, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'netFlow': np.float64(290.93),
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'pronos.adme.com.uy',

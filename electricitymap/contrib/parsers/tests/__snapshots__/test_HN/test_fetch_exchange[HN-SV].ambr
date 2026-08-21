@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 58.5,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -10,6 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 51.5,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -17,6 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 33.9,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -24,6 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 23.8,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -31,6 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 36.3,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -38,6 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 45.0,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -45,6 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 28.7,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -52,6 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'end_datetime': None,
       'netFlow': 20.1,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',

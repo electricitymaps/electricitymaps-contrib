@@ -4,6 +4,7 @@
     dict({
       'currency': 'MDL',
       'datetime': datetime.datetime(2002, 9, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 35.2,
       'source': 'moldelectrica.md',
       'sourceType': <EventSourceType.measured: 'measured'>,

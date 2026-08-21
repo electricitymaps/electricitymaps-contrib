@@ -217,6 +217,7 @@ def _parse_price(response: Response, logger: Logger) -> PriceList:
             zoneKey=ZoneKey(INVERTED_ZONE_MAPPING[json["deliveryArea"]]),
             price=price["price"],
             datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryStart"])),
+            end_datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryEnd"])),
             currency=json["currency"],
             source=SOURCE,
         )
@@ -273,6 +274,9 @@ def _parse_exchange(response: Response, logger: Logger, target_zone) -> Exchange
                     ],  # Import is positive, export is negative
                     datetime=datetime.fromisoformat(
                         zulu_to_utc(exchange["deliveryStart"])
+                    ),
+                    end_datetime=datetime.fromisoformat(
+                        zulu_to_utc(exchange["deliveryEnd"])
                     ),
                     source=SOURCE,
                 )
@@ -469,6 +473,7 @@ def _parse_capacity(
         capacity_list.append(
             zoneKey=sorted_zone_key,
             datetime=datetime.fromisoformat(zulu_to_utc(period["deliveryStart"])),
+            end_datetime=datetime.fromisoformat(zulu_to_utc(period["deliveryEnd"])),
             source=SOURCE,
             capacityExport=capacity_export,
             capacityImport=capacity_import,
