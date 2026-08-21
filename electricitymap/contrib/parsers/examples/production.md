@@ -46,23 +46,23 @@ from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownLis
 logger = getLogger(__name__)
 production_list = ProductionBreakdownList(logger=logger)
 production_list.append(
-            zoneKey="AT",
-            datetime= datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(
-                biomass=10,
-                coal=4,
-                gas=3,
-                hydro=1,
-                nuclear=None,
-                oil=None,
-                solar=10,
-                wind=10,
-                geothermal=10,
-                unknown=10
-            ),
-            storage=StorageMix(hydro=-10),
-            source="someservice.com",
-        )
+    zoneKey="AT",
+    datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+    production=ProductionMix(
+        biomass=10,
+        coal=4,
+        gas=3,
+        hydro=1,
+        nuclear=None,
+        oil=None,
+        solar=10,
+        wind=10,
+        geothermal=10,
+        unknown=10,
+    ),
+    storage=StorageMix(hydro=-10),
+    source="someservice.com",
+)
 production_list.to_list()
 ```
 
