@@ -38,10 +38,12 @@ ZONE_KEY_TO_NETWORK = {
     "AU-WA": "WEM",
 }
 
-# exchanges are reconstructed from each zones total imports and exports
-# all exchanges except AU-NSW->AU-VIC only have one connection so we can
-# reconstruct the net flow by querying to leaf node
-# see diagram below
+# The API only reports flows aggregated per network region (`flow_imports` and
+# `flow_exports`), never per interconnector, so exchanges are reconstructed from
+# each region's net exports (exports - imports).
+#
+# Every region except NSW1 and VIC1 has a single interconnected neighbour, so
+# its net exports are the netflow of that one exchange. See diagram below.
 #       QLD
 #        |
 #       NSW
@@ -49,25 +51,38 @@ ZONE_KEY_TO_NETWORK = {
 #   SA--VIC
 #        |
 #       TAS
-EXCHANGE_MAPPING_DICTIONARY = {
-    "AU-NSW->AU-QLD": {
-        "zone_to_query": "AU-QLD",
-        "direction": -1,
-    },
-    "AU-SA->AU-VIC": {
-        "zone_to_query": "AU-SA",
-        "direction": 1,
-    },
-    "AU-TAS->AU-VIC": {
-        "zone_to_query": "AU-TAS",
-        "direction": 1,
-    },
-    # we get this flow by substracting QLD imports/exports from NSW imports/exports
-    "AU-NSW->AU-VIC": {
-        "zone_to_query": "AU-NSW",
-        "direction": 1,
-    },
+#
+# AU-NSW->AU-VIC is derived from the NSW and QLD flows. We want
+#     AU-NSW->AU-VIC = NSW_exports_to_VIC - NSW_imports_from_VIC
+#
+# NSW has two exchanges, one to QLD and one to VIC:
+#     NSW_exports = NSW_exports_to_QLD + NSW_exports_to_VIC
+#     NSW_imports = NSW_imports_from_QLD + NSW_imports_from_VIC
+#
+# and because QLD only has one exchange, to NSW:
+#     NSW_exports_to_QLD = QLD_imports_from_NSW = QLD_imports
+#     NSW_imports_from_QLD = QLD_exports_to_NSW = QLD_exports
+#
+# thus
+#     NSW_exports_to_VIC = NSW_exports - QLD_imports
+#     NSW_imports_from_VIC = NSW_imports - QLD_exports
+#
+# and
+#     AU-NSW->AU-VIC = NSW_exports - QLD_imports - NSW_imports + QLD_exports
+#                    = (NSW_exports - NSW_imports) + (QLD_exports - QLD_imports)
+#
+# Each exchange below therefore maps the regions whose net exports make up its
+# netflow to the coefficient each net export is weighted by.
+EXCHANGE_MAPPING_DICTIONARY: dict[str, dict[str, int]] = {
+    "AU-NSW->AU-QLD": {"QLD1": -1},
+    "AU-SA->AU-VIC": {"SA1": 1},
+    "AU-TAS->AU-VIC": {"TAS1": 1},
+    "AU-NSW->AU-VIC": {"NSW1": 1, "QLD1": 1},
 }
+
+# Both are only served by the market endpoint; the data endpoint rejects them.
+FLOW_IMPORTS_METRIC = "flow_imports"
+FLOW_EXPORTS_METRIC = "flow_exports"
 
 # Mapped from https://docs.openelectricity.org.au/guides/fueltechs#fueltechs
 OPENNEM_PRODUCTION_CATEGORIES = {
@@ -108,9 +123,8 @@ IGNORED_FUEL_TECH_KEYS = {
 
 SOURCE = "opennem.org.au"
 
-# Every OpenElectricity series carries an explicit resolution in its `interval`
-# field (dataset-level for the v4 API, inside the `history` block for the legacy
-# stats endpoint). The API exposes no explicit interval end, so reconstruct it as
+# Every OpenElectricity dataset carries an explicit resolution in its `interval`
+# field. The API exposes no explicit interval end, so reconstruct it as
 # end = start + interval.
 _INTERVAL_UNIT_TO_KWARG = {"m": "minutes", "h": "hours", "d": "days", "w": "weeks"}
 
@@ -127,45 +141,6 @@ def _interval_to_timedelta(interval: str) -> timedelta:
         raise NotImplementedError(f"Unsupported OPENNEM interval: {interval!r}")
     value, unit = int(match.group(1)), match.group(2)
     return timedelta(**{_INTERVAL_UNIT_TO_KWARG[unit]: value})
-
-
-# TODO: after full v4 migration: deprecate this in favor of fetch_network_datasets
-def fetch_datasets(
-    zone_key: ZoneKey, session: Session, target_datetime: datetime | None
-):
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    if not region:
-        raise ParserException(
-            parser="OPENNEM",
-            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
-            zone_key=zone_key,
-        )
-    url = generate_url(
-        zone_key=zone_key,
-        target_datetime=target_datetime,
-    )
-    response = session.get(url)
-    response.raise_for_status()
-
-    return response.json()["data"]
-
-
-# TODO: after full v4 migration: deprecate this in favor of generate_network_url
-def generate_url(zone_key: ZoneKey, target_datetime: datetime | None) -> str:
-    # Only 7d or 30d data is available
-    duration = (
-        "7d"
-        if not target_datetime
-        or (datetime.now() - target_datetime.replace(tzinfo=None)) < timedelta(days=7)
-        else "30d"
-    )
-    network = ZONE_KEY_TO_NETWORK[zone_key]
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    # Western Australia have no region in url
-    region = "" if region == "WEM" else f"/{region}"
-    url = f"https://data.openelectricity.org.au/v4/stats/au/{network}{region}/power/{duration}.json"
-
-    return url
 
 
 def process_production_datasets(
@@ -365,6 +340,7 @@ def fetch_price(
         dataset_type="market",
         target_datetime=target_datetime,
         metrics=["price"],
+        network_region=ZONE_KEY_TO_REGION.get(zone_key),
     )
 
     price_list = _build_price_list(datasets, zone_key, logger)
@@ -394,6 +370,7 @@ def fetch_consumption(
         dataset_type="market",
         target_datetime=target_datetime,
         metrics=["demand"],
+        network_region=ZONE_KEY_TO_REGION.get(zone_key),
     )
 
     return _build_consumption_list(datasets, zone_key, logger).to_list()
@@ -411,37 +388,48 @@ def fetch_exchange(
     exchange_key = ZoneKey("->".join([zone_key1, zone_key2]))
 
     try:
-        exchange_params = EXCHANGE_MAPPING_DICTIONARY[exchange_key]
+        region_coefficients = EXCHANGE_MAPPING_DICTIONARY[exchange_key]
     except KeyError:
         raise ParserException(
             parser="OPENNEM",
-            message=f"Valid exchange keys for this parser are {[EXCHANGE_MAPPING_DICTIONARY.keys()]}, you passed {exchange_key=}",
+            message=f"Valid exchange keys for this parser are {list(EXCHANGE_MAPPING_DICTIONARY.keys())}, you passed {exchange_key=}",
             zone_key=exchange_key,
         ) from None
 
-    zone_key = exchange_params["zone_to_query"]
-    direction = exchange_params["direction"]
+    # A single request returns every region's imports and exports on one shared
+    # set of timestamps, so the terms of the sums are aligned by construction.
+    datasets = _fetch_network_datasets(
+        zone_key=zone_key1,
+        session=session,
+        dataset_type="market",
+        target_datetime=target_datetime,
+        metrics=[FLOW_IMPORTS_METRIC, FLOW_EXPORTS_METRIC],
+        primary_grouping="network_region",
+    )
+    net_exports = _build_region_net_exports(datasets)
+    resolution = _flow_resolution(datasets, exchange_key)
 
-    if exchange_key == "AU-NSW->AU-VIC":
-        datetimes_and_netflows = _fetch_au_nsw_au_vic_exchange(
-            session=session,
-            target_datetime=target_datetime,
-            logger=logger,
-        )
-    else:
-        datetimes_and_netflows = _fetch_regular_exchange(
-            zone_key=zone_key,
-            direction=direction,
-            session=session,
-            target_datetime=target_datetime,
-            logger=logger,
+    missing_regions = [
+        region for region in region_coefficients if not net_exports.get(region)
+    ]
+    if missing_regions:
+        raise ParserException(
+            parser="OPENNEM",
+            message=f"Response did not contain both import and export data for {missing_regions}",
+            zone_key=exchange_key,
         )
 
     events = ExchangeList(logger=logger)
-    for dt, end_dt, netflow in datetimes_and_netflows:
+    for dt in sorted(
+        set.intersection(*(set(net_exports[region]) for region in region_coefficients))
+    ):
+        netflow = sum(
+            coefficient * net_exports[region][dt]
+            for region, coefficient in region_coefficients.items()
+        )
         events.append(
             datetime=dt,
-            end_datetime=end_dt,
+            end_datetime=dt + resolution if resolution else None,
             netFlow=netflow,
             zoneKey=exchange_key,
             source=SOURCE,
@@ -449,187 +437,66 @@ def fetch_exchange(
     return events.to_list()
 
 
-def _fetch_regular_exchange(
-    zone_key: ZoneKey,
-    direction: int,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[tuple[datetime, datetime, float]]:
+def _build_region_net_exports(
+    datasets: list[dict[str, Any]],
+) -> dict[str, dict[datetime, float]]:
     """
-    Calculate netflows for zones that have a single exchange.
-    """
-    url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
-    response = session.get(url)
-    response.raise_for_status()
+    Build each network region's net exports (exports - imports) per datetime from
+    the flow datasets of the market endpoint.
 
-    exports = None
-    imports = None
-    for dataset in response.json()["data"]:
-        if dataset["id"].endswith("exports.power"):
-            exports = dataset.get("history", None)
-        elif dataset["id"].endswith("imports.power"):
-            imports = dataset.get("history", None)
-        else:
+    Datetimes where either side is missing or null are dropped, as a netflow
+    cannot be derived from one side alone.
+    """
+    flows: dict[str, dict[str, dict[datetime, float]]] = {}
+    for dataset in datasets:
+        metric = dataset.get("metric")
+        if metric not in (FLOW_IMPORTS_METRIC, FLOW_EXPORTS_METRIC):
             continue
-    if exports is None or imports is None:
-        raise ParserException(
-            parser="OPENNEM",
-            message="Response did not contain both export and import datasets.",
-            zone_key=zone_key,
-        )
+        for result in dataset.get("results", []):
+            region = result.get("columns", {}).get("region")
+            if not region:
+                continue
+            series = flows.setdefault(region, {}).setdefault(metric, {})
+            for data_point in result.get("data", []):
+                if not isinstance(data_point, list) or len(data_point) < 2:
+                    continue
+                timestamp, value = data_point[0], data_point[1]
+                if value is None:
+                    continue
+                series[datetime.fromisoformat(timestamp)] = float(value)
 
-    if (
-        exports["start"] != imports["start"]
-        or exports["last"] != imports["last"]
-        or exports["interval"] != imports["interval"]
-        or len(exports["data"]) != len(imports["data"])
-    ):
-        raise ParserException(
-            parser="OPENNEM",
-            message="Export and import data is misaligned",
-            zone_key=zone_key,
-        )
-
-    # assume data is sorted from start to end
-    start = datetime.fromisoformat(exports["start"])
-    resolution = _interval_to_timedelta(exports["interval"])
-    datetimes_and_netflows = [
-        (
-            start + resolution * i,
-            start + resolution * (i + 1),
-            (exp - imp) * direction,
-        )
-        for i, (exp, imp) in enumerate(
-            zip(exports["data"], imports["data"], strict=True)
-        )
-    ]
-
-    return datetimes_and_netflows
+    net_exports: dict[str, dict[datetime, float]] = {}
+    for region, metrics in flows.items():
+        imports = metrics.get(FLOW_IMPORTS_METRIC, {})
+        exports = metrics.get(FLOW_EXPORTS_METRIC, {})
+        net_exports[region] = {
+            dt: exports[dt] - imports[dt] for dt in exports.keys() & imports.keys()
+        }
+    return net_exports
 
 
-def _fetch_au_nsw_au_vic_exchange(
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[tuple[datetime, datetime, float]]:
+def _flow_resolution(
+    datasets: list[dict[str, Any]], exchange_key: ZoneKey
+) -> timedelta | None:
     """
-    Calculate AU-NSW->AU-VIC netflow from exports and imports of AU-NSW and AU-QLD.
+    Resolution shared by the flow datasets, used to reconstruct end_datetime.
 
-    NSW has two exchanges one to QLD, one to VIC. QLD only has one exchange to NSW.
-    We want to know
-        AU-NSW->AU-VIC = NSW_exports_to_VIC - NSW_imports_from_VIC
-
-    NSW has two exchanges one to QLD, one to VIC:
-        NSW_exports = NSW_exports_to_QLD + NSW_exports_to_VIC
-        NSW_imports = NSW_imports_from_QLD + NSW_imports_from_VIC
-
-    and because QLD only has one exchange to NSW:
-        NSW_exports_to_QLD = QLD_imports_from_NSW = QLD_imports
-        NSW_imports_from_QLD = QLD_exports_to_NSW = QLD_exports
-
-    thus
-        NSW_exports_to_VIC = NSW_exports - QLD_imports
-        NSW_imports_from_VIC = NSW_imports - QLD_exports
-
-    and
-        AU-NSW->AU-VIC = NSW_exports - QLD_imports - NSW_imports + QLD_exports
-        = NSW_exports - NSW_imports + QLD_exports - QLD_imports
+    Imports and exports are summed per datetime, so they have to be reported at
+    the same resolution for the result to mean anything.
     """
-    nsw_zk = ZoneKey("AU-NSW")
-    qld_zk = ZoneKey("AU-QLD")
-
-    nsw_url = generate_url(zone_key=nsw_zk, target_datetime=target_datetime)
-    qld_url = generate_url(zone_key=qld_zk, target_datetime=target_datetime)
-
-    # potential race condition here
-    # if the first request if right before a 5 minute interval and
-    # the second request is right after then the responses could be out of sync
-    # so we issue additional request as close to base request
-    nsw_response = session.get(nsw_url)
-    qld_response = session.get(qld_url)
-
-    nsw_response.raise_for_status()
-    qld_response.raise_for_status()
-
-    nsw_exports = None
-    nsw_imports = None
-    for dataset in nsw_response.json()["data"]:
-        if dataset["id"].endswith("exports.power"):
-            nsw_exports = dataset.get("history", None)
-        elif dataset["id"].endswith("imports.power"):
-            nsw_imports = dataset.get("history", None)
-        else:
-            continue
-    if nsw_exports is None or nsw_imports is None:
+    intervals = {
+        dataset["interval"]
+        for dataset in datasets
+        if dataset.get("metric") in (FLOW_IMPORTS_METRIC, FLOW_EXPORTS_METRIC)
+        and dataset.get("interval")
+    }
+    if len(intervals) > 1:
         raise ParserException(
             parser="OPENNEM",
-            message="Response did not contain both export and import datasets.",
-            zone_key=nsw_zk,
+            message=f"Import and export data is reported at different intervals: {sorted(intervals)}",
+            zone_key=exchange_key,
         )
-
-    qld_exports = None
-    qld_imports = None
-    for dataset in qld_response.json()["data"]:
-        if dataset["id"].endswith("exports.power"):
-            qld_exports = dataset.get("history", None)
-        elif dataset["id"].endswith("imports.power"):
-            qld_imports = dataset.get("history", None)
-        else:
-            continue
-    if qld_exports is None or qld_imports is None:
-        raise ParserException(
-            parser="OPENNEM",
-            message="Response did not contain both export and import datasets.",
-            zone_key=qld_zk,
-        )
-
-    # all must have same start, end, interval, and number of data points
-    if not (
-        nsw_exports["start"]
-        == nsw_imports["start"]
-        == qld_exports["start"]
-        == qld_imports["start"]
-        and nsw_exports["last"]
-        == nsw_imports["last"]
-        == qld_exports["last"]
-        == qld_imports["last"]
-        and nsw_exports["interval"]
-        == nsw_imports["interval"]
-        == qld_exports["interval"]
-        == qld_imports["interval"]
-        and len(nsw_exports["data"])
-        == len(nsw_imports["data"])
-        == len(qld_exports["data"])
-        == len(qld_imports["data"])
-    ):
-        raise ParserException(
-            parser="OPENNEM",
-            message=f"{nsw_zk} and {qld_zk} export and import data is misaligned",
-            zone_key=nsw_zk,
-        )
-
-    # assume data is sorted from start to end
-    start = datetime.fromisoformat(nsw_exports["start"])
-    resolution = _interval_to_timedelta(nsw_exports["interval"])
-    datetimes_and_netflows = [
-        (
-            start + resolution * i,
-            start + resolution * (i + 1),
-            (nsw_exp - nsw_imp + qld_exp - qld_imp),
-        )
-        for i, (nsw_exp, nsw_imp, qld_exp, qld_imp) in enumerate(
-            zip(
-                nsw_exports["data"],
-                nsw_imports["data"],
-                qld_exports["data"],
-                qld_imports["data"],
-                strict=True,
-            )
-        )
-    ]
-
-    return datetimes_and_netflows
+    return _interval_to_timedelta(intervals.pop()) if intervals else None
 
 
 def _build_network_url(
@@ -638,6 +505,7 @@ def _build_network_url(
     metrics: list[str],
     target_datetime: datetime | None,
     network_region: str | None = None,
+    primary_grouping: str | None = None,
     secondary_grouping: str | None = None,
 ) -> tuple[str, dict[str, Any]]:
     base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
@@ -662,6 +530,10 @@ def _build_network_url(
     if network_region:
         params["network_region"] = network_region
 
+    # Add primary_grouping if provided (to get one series per network region)
+    if primary_grouping:
+        params["primary_grouping"] = primary_grouping
+
     # Add secondary_grouping if provided (for production data with fueltech)
     if secondary_grouping:
         params["secondary_grouping"] = secondary_grouping
@@ -675,6 +547,7 @@ def _fetch_network_datasets(
     dataset_type: str,
     target_datetime: datetime | None,
     metrics: list[str],
+    primary_grouping: str | None = None,
     secondary_grouping: str | None = None,
     network_region: str | None = None,
 ) -> list[dict[str, Any]]:
@@ -687,16 +560,13 @@ def _fetch_network_datasets(
             zone_key=zone_key,
         )
 
-    # Use provided network_region or get from zone_key mapping
-    if network_region is None:
-        network_region = ZONE_KEY_TO_REGION.get(zone_key)
-
     url, params = _build_network_url(
         path=dataset_type,
         network_code=network_code,
         metrics=metrics,
         target_datetime=target_datetime or datetime.now(tz=timezone.utc),
         network_region=network_region,
+        primary_grouping=primary_grouping,
         secondary_grouping=secondary_grouping,
     )
 
