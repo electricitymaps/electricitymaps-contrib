@@ -67,7 +67,7 @@ def test_elia_quarters_keep_entsoe_storage(by_datetime):
     # The hourly ENTSOE storage is step-held onto each 15-min slot, incl. pumping
     # (715 MW) which only ENTSOE reports (Elia ods201 has no consumption side).
     for dt in ELIA_QUARTERS:
-        assert by_datetime[dt]["source"] == "entsoe.eu, opendata.elia.be"
+        assert by_datetime[dt]["source"] == "entsoe.eu,opendata.elia.be"
         assert by_datetime[dt]["storage"] == {"battery": -25.0, "hydro": 715.0}
 
 

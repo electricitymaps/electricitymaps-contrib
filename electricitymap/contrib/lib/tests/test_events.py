@@ -19,11 +19,12 @@ from electricitymap.contrib.lib.models.events import (
     Price,
     ProductionBreakdown,
     ProductionMix,
+    ScheduledExchange,
     StorageMix,
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 
 def test_create_exchange():
@@ -151,6 +152,75 @@ def test_update_exchange():
     assert final_exchange.zoneKey == ZoneKey("AT->DE")
     assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert final_exchange.source == "trust.me"
+
+
+def test_create_scheduled_exchange_derives_net_flow():
+    # At native 15-min resolution only one direction clears, so the other
+    # column is 0 and netFlow equals the single directional value.
+    exchange = ScheduledExchange.create(
+        logger=logging.getLogger(),
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
+        source="trust.me",
+        scheduledExport=250.0,
+        scheduledImport=0.0,
+        marketAgreementType=MarketAgreementType.DAY_AHEAD,
+    )
+    assert exchange is not None
+    assert exchange.scheduledExport == 250.0
+    assert exchange.scheduledImport == 0.0
+    # netFlow is derived from scheduledExport - scheduledImport, positive when zone1 exports.
+    assert exchange.netFlow == 250.0
+    assert exchange.marketAgreementType == MarketAgreementType.DAY_AHEAD
+    # sourceType defaults to published for TSO ex-ante schedules.
+    assert exchange.sourceType == EventSourceType.published
+
+
+def test_scheduled_exchange_preserves_both_directions_when_hourly_aggregated():
+    # An hourly bucket can contain 15-min MTUs that cleared in opposite
+    # directions, leaving both gross totals positive. Both must survive; the
+    # signed netFlow alone would lose the gross flows.
+    exchange = ScheduledExchange.create(
+        logger=logging.getLogger(),
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=datetime(2023, 1, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        scheduledExport=100.0,
+        scheduledImport=80.0,
+        marketAgreementType=MarketAgreementType.TOTAL,
+    )
+    assert exchange is not None
+    assert exchange.scheduledExport == 100.0
+    assert exchange.scheduledImport == 80.0
+    assert exchange.netFlow == 20.0
+
+    as_dict = exchange.to_dict()
+    # to_dict exposes both gross directions and keeps netFlow (= scheduledExport -
+    # scheduledImport) for backward compatibility.
+    assert as_dict["scheduledExport"] == 100.0
+    assert as_dict["scheduledImport"] == 80.0
+    assert as_dict["netFlow"] == 20.0
+    assert as_dict["marketAgreementType"] == MarketAgreementType.TOTAL
+
+
+def test_scheduled_exchange_static_create_logs_error():
+    logger = logging.getLogger()
+    with patch.object(logger, "error") as mock_error:
+        # A None direction is invalid and must be caught, returning None.
+        exchange = ScheduledExchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            scheduledExport=None,
+            scheduledImport=None,
+            marketAgreementType=MarketAgreementType.DAY_AHEAD,
+        )
+        assert exchange is None
+        mock_error.assert_called_once()
 
 
 def test_update_total_production():

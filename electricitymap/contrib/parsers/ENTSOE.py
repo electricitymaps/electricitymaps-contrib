@@ -31,8 +31,8 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeCapacityList,
     ExchangeList,
+    ForecastTransferCapacityList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -422,7 +422,7 @@ def query_scheduled_exchanges(
     )
 
 
-def query_exchange_capacity_forecast(
+def query_forecast_transfer_capacity(
     in_domain: str,
     out_domain: str,
     session: Session,
@@ -968,16 +968,38 @@ def parse_exchange_forecast(
     return exchange_list
 
 
-def _merge_exchange_capacity_forecasts(
-    export_list: ExchangeCapacityList,
-    import_list: ExchangeCapacityList,
+def _parse_scheduled_exchange_points(
+    xml_text: str,
+    market_type: EntsoeTypeEnum,
+) -> Generator[tuple[datetime, datetime, float], None, None]:
+    """Yield raw (datetime, end_datetime, quantity) points from a single-direction
+    A09 document, filtered to `market_type`.
+
+    Unlike `parse_exchange_forecast`, this keeps the gross published quantity
+    unsigned (no import negation) so callers can retain both directional flows
+    separately instead of netting them into a single value.
+    """
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+    for timeseries in soup.find_all("timeseries"):
+        marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
+            0
+        ]
+        if marketAgreementType and marketAgreementType != market_type:
+            continue
+        yield from _get_datetime_value_from_timeseries(timeseries, "quantity")
+
+
+def _merge_forecast_transfer_capacities(
+    export_list: ForecastTransferCapacityList,
+    import_list: ForecastTransferCapacityList,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
-) -> ExchangeCapacityList:
+) -> ForecastTransferCapacityList:
     """
     Merges export and import direction capacity forecasts into a single list.
     For each datetime, combines capacities from both directions into one event.
     """
-    merged = ExchangeCapacityList(logger)
+    merged = ForecastTransferCapacityList(logger)
 
     # Create a dict of export capacities by datetime
     export_by_dt = {event.datetime: event for event in export_list.events}
@@ -1005,32 +1027,36 @@ def _merge_exchange_capacity_forecasts(
             source=source,
             capacityExport=export_cap,
             capacityImport=import_cap,
+            marketAgreementType=market_agreement_type,
         )
 
     return merged
 
 
-def parse_exchange_capacity_forecast(
+def parse_forecast_transfer_capacity(
     xml_text: str,
     sorted_zone_keys: ZoneKey,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
     direction: Literal["export", "import"] = "export",
-) -> ExchangeCapacityList:
+) -> ForecastTransferCapacityList:
     """
     Parses NTC (A61) exchange capacity forecast XML for a given direction.
 
     Args:
         xml_text: The XML response from ENTSOE
         sorted_zone_keys: The exchange pair (sorted, format "A->B")
+        market_agreement_type: The contract type this document was requested at
         logger: Logger instance
         direction: "export" for A→B, "import" for B→A
 
     Returns:
-        ExchangeCapacityList with capacity populated for the specified direction
+        ForecastTransferCapacityList with capacity populated for the specified
+        direction
     """
     try:
         soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-        forecasts = ExchangeCapacityList(logger)
+        forecasts = ForecastTransferCapacityList(logger)
         for timeseries in soup.find_all("timeseries"):
             for dt, dt_end, quantity in _get_datetime_value_from_timeseries(
                 timeseries, "quantity"
@@ -1043,6 +1069,7 @@ def parse_exchange_capacity_forecast(
                         source=SOURCE,
                         capacityExport=quantity,
                         capacityImport=None,
+                        marketAgreementType=market_agreement_type,
                     )
                 else:
                     forecasts.append(
@@ -1052,6 +1079,7 @@ def parse_exchange_capacity_forecast(
                         source=SOURCE,
                         capacityExport=None,
                         capacityImport=quantity,
+                        marketAgreementType=market_agreement_type,
                     )
         return forecasts
     except Exception as e:
@@ -1346,8 +1374,13 @@ def _get_scheduled_exchanges(
     total), and emits events tagged `sourceType=published` per the
     `EXCHANGE_PUBLICATION_DATA_TYPES` contract.
 
-    Per-direction lists are concatenated with `merge_exchanges` — the two
-    contract types are never silently merged across each other.
+    ENTSO-E publishes each direction as its own A09 document. Rather than
+    netting the two into a single number, we keep both gross directional
+    flows on each `ScheduledExchange` (scheduledExport = zone1 -> zone2,
+    scheduledImport = zone2 -> zone1) and let the model derive the signed netFlow.
+    This is lossless when a provider aggregates the native 15-minute schedules
+    into hourly buckets that cleared in both directions. Quantities are summed
+    across domain pairs within each direction (for aggregate borders).
     """
     if not session:
         session = Session()
@@ -1356,36 +1389,41 @@ def _get_scheduled_exchanges(
     xml_pairs = _fetch_a09_xml_for_pairs(
         domain_pairs, sorted_zone_keys, session, target_datetime
     )
-    parsed_lists = [
-        parse_exchange_forecast(
-            xml,
-            is_import=is_import,
-            sorted_zone_keys=sorted_zone_keys,
-            logger=logger,
-            market_type=market_type,
-            source_type=EventSourceType.published,
-        )
-        for is_import, xml in xml_pairs
-    ]
-    merged = ExchangeList.merge_exchanges(parsed_lists, logger)
+    # Accumulate gross quantities per datetime for each direction. The
+    # is_import=False document is the export direction (zone1 -> zone2, the
+    # positive contributor to netFlow); is_import=True is the import
+    # direction (zone2 -> zone1). Both are published as non-negative volumes.
+    export_by_dt: dict[datetime, float] = {}
+    import_by_dt: dict[datetime, float] = {}
+    end_by_dt: dict[datetime, datetime | None] = {}
+    for is_import, xml in xml_pairs:
+        accumulator = import_by_dt if is_import else export_by_dt
+        for dt, dt_end, quantity in _parse_scheduled_exchange_points(xml, market_type):
+            accumulator[dt] = accumulator.get(dt, 0.0) + quantity
+            end_by_dt.setdefault(dt, dt_end)
+
     # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A05) used in URL
     # params; `MarketAgreementType` values are the DB-friendly discriminator
     # names. Convert by matching enum names (DAY_AHEAD ↔ DAY_AHEAD,
     # TOTAL ↔ TOTAL). Raises KeyError loudly if an unsupported market_type
     # ever reaches this path.
     market_agreement_type = MarketAgreementType[market_type.name]
-    return [
-        ScheduledExchange(
-            zoneKey=evt.zoneKey,
-            datetime=evt.datetime,
-            end_datetime=evt.end_datetime,
-            source=evt.source,
-            netFlow=evt.netFlow,
-            sourceType=evt.sourceType,
+    events: list[dict] = []
+    for dt in sorted(set(export_by_dt) | set(import_by_dt)):
+        event = ScheduledExchange.create(
+            logger=logger,
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            end_datetime=end_by_dt.get(dt),
+            source=SOURCE,
+            scheduledExport=export_by_dt.get(dt, 0.0),
+            scheduledImport=import_by_dt.get(dt, 0.0),
             marketAgreementType=market_agreement_type,
-        ).to_dict()
-        for evt in merged.events
-    ]
+            sourceType=EventSourceType.published,
+        )
+        if event is not None:
+            events.append(event.to_dict())
+    return events
 
 
 @refetch_frequency(timedelta(days=1))
@@ -1772,37 +1810,38 @@ def fetch_wind_solar_forecasts_current(
     ).to_list()
 
 
-def _fetch_exchange_capacity_forecasts(
-    zone_key1: ZoneKey,
-    zone_key2: ZoneKey,
+def _query_forecast_transfer_capacity_both_directions(
+    domain_a: str,
+    domain_b: str,
     forecast_type: EntsoeTypeEnum,
     session: Session,
     target_datetime: datetime | None,
+    sorted_zone_keys: ZoneKey,
     logger: Logger,
-) -> list[dict]:
-    """Shared logic for all 3 type-specific fetch functions."""
-    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-    domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+) -> tuple[str, str]:
+    """Query A61 for both directions of one domain pair, retrying on failure.
 
+    Returns `(raw_export, raw_import)` where "export" is the `domain_a` →
+    `domain_b` flow, i.e. the first-to-second direction of `sorted_zone_keys`.
+    """
     raw_export: str | None = None
     raw_import: str | None = None
     max_retries = 5
 
     for attempt in range(1, max_retries + 1):
         if raw_export is None:
-            raw_export = query_exchange_capacity_forecast(
-                domain_2,
-                domain_1,
+            raw_export = query_forecast_transfer_capacity(
+                domain_b,
+                domain_a,
                 session,
                 forecast_type,
                 target_datetime=target_datetime,
                 logger=logger,
             )
         if raw_import is None:
-            raw_import = query_exchange_capacity_forecast(
-                domain_1,
-                domain_2,
+            raw_import = query_forecast_transfer_capacity(
+                domain_a,
+                domain_b,
                 session,
                 forecast_type,
                 target_datetime=target_datetime,
@@ -1824,28 +1863,141 @@ def _fetch_exchange_capacity_forecasts(
             parser="ENTSOE.py",
             message=(
                 f"Failed to get both export and import exchange capacity forecast "
-                f"data for {sorted_zone_keys} after {max_retries} attempts. "
+                f"data for {sorted_zone_keys} ({domain_a} <-> {domain_b}) after "
+                f"{max_retries} attempts. "
                 f"export={'OK' if raw_export else 'MISSING'}, "
                 f"import={'OK' if raw_import else 'MISSING'}"
             ),
             zone_key=sorted_zone_keys,
         )
 
-    export_list = parse_exchange_capacity_forecast(
-        raw_export,
-        sorted_zone_keys=sorted_zone_keys,
-        logger=logger,
-        direction="export",
-    )
-    import_list = parse_exchange_capacity_forecast(
-        raw_import,
-        sorted_zone_keys=sorted_zone_keys,
-        logger=logger,
-        direction="import",
-    )
+    return raw_export, raw_import
 
-    return _merge_exchange_capacity_forecasts(
-        export_list, import_list, logger
+
+def _sum_forecast_transfer_capacities(
+    per_pair: list[ForecastTransferCapacityList],
+    sorted_zone_keys: ZoneKey,
+    market_agreement_type: MarketAgreementType,
+    logger: Logger,
+) -> ForecastTransferCapacityList:
+    """Sum capacities across the domain pairs of an aggregated border.
+
+    Borders served by several interconnectors (e.g. FR-COR↔IT-SAR via the
+    SACOAC and SACODC links) are published as one A61 document per link; the
+    border's capacity is their total. Mirrors `ExchangeList.merge_exchanges`,
+    which sums net flows for the same aggregated borders.
+    """
+    totals: dict[datetime, tuple[datetime | None, str, float | None, float | None]] = {}
+    for capacities in per_pair:
+        for event in capacities.events:
+            end_datetime, source, export_cap, import_cap = totals.get(
+                event.datetime, (event.end_datetime, event.source, None, None)
+            )
+            totals[event.datetime] = (
+                # Keep the earliest end when links disagree on resolution, as
+                # `ExchangeList.merge_exchanges` does: it is deterministic and
+                # the finest resolution cannot overlap the next merged point.
+                _min_optional(end_datetime, event.end_datetime),
+                source,
+                _add_optional(export_cap, event.capacityExport),
+                _add_optional(import_cap, event.capacityImport),
+            )
+
+    summed = ForecastTransferCapacityList(logger)
+    for dt in sorted(totals):
+        end_datetime, source, export_cap, import_cap = totals[dt]
+        summed.append(
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            end_datetime=end_datetime,
+            source=source,
+            capacityExport=export_cap,
+            capacityImport=import_cap,
+            marketAgreementType=market_agreement_type,
+        )
+    return summed
+
+
+def _add_optional(a: float | None, b: float | None) -> float | None:
+    """Sum two capacities, treating a missing value as absent rather than zero."""
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return a + b
+
+
+def _min_optional(a: datetime | None, b: datetime | None) -> datetime | None:
+    """Earliest of two end datetimes, ignoring missing values."""
+    if a is None:
+        return b
+    if b is None:
+        return a
+    return min(a, b)
+
+
+def _fetch_forecast_transfer_capacity(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    forecast_type: EntsoeTypeEnum,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list[dict]:
+    """Shared logic for all 3 type-specific fetch functions."""
+    zone_a, zone_b = sorted([zone_key1, zone_key2])
+    sorted_zone_keys = ZoneKey(f"{zone_a}->{zone_b}")
+    # A61 is published per bidding zone, so a number of borders are only
+    # available under a domain that differs from the zone's own EIC code — e.g.
+    # DE->DK-DK1 is published on DE-LU (10Y1001A1001A82H), not on the DE
+    # country domain (10Y1001A1001A83F). Resolve through the shared lookup
+    # chain instead of indexing ENTSOE_DOMAIN_MAPPINGS directly. Passing the
+    # sorted zones keeps the returned pairs ordered (zone_a, zone_b), which the
+    # export/import direction below depends on.
+    domain_pairs = _resolve_exchange_domain_pairs(zone_a, zone_b)
+
+    # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A02) used in URL
+    # params; `MarketAgreementType` values are the DB-friendly discriminator
+    # names. Convert by matching enum names, as the scheduled-exchange path
+    # does. Raises KeyError loudly if an unsupported forecast_type ever reaches
+    # here (e.g. INTRADAY, which is not a transfer-capacity contract type).
+    market_agreement_type = MarketAgreementType[forecast_type.name]
+
+    per_pair: list[ForecastTransferCapacityList] = []
+    for domain_a, domain_b in domain_pairs:
+        raw_export, raw_import = _query_forecast_transfer_capacity_both_directions(
+            domain_a,
+            domain_b,
+            forecast_type,
+            session,
+            target_datetime,
+            sorted_zone_keys,
+            logger,
+        )
+        export_list = parse_forecast_transfer_capacity(
+            raw_export,
+            sorted_zone_keys=sorted_zone_keys,
+            market_agreement_type=market_agreement_type,
+            logger=logger,
+            direction="export",
+        )
+        import_list = parse_forecast_transfer_capacity(
+            raw_import,
+            sorted_zone_keys=sorted_zone_keys,
+            market_agreement_type=market_agreement_type,
+            logger=logger,
+            direction="import",
+        )
+        per_pair.append(
+            _merge_forecast_transfer_capacities(
+                export_list, import_list, market_agreement_type, logger
+            )
+        )
+
+    if len(per_pair) == 1:
+        return per_pair[0].to_list()
+    return _sum_forecast_transfer_capacities(
+        per_pair, sorted_zone_keys, market_agreement_type, logger
     ).to_list()
 
 
@@ -1858,7 +2010,7 @@ def fetch_exchange_capacity_forecasts_day_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets day-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.DAY_AHEAD,
@@ -1877,7 +2029,7 @@ def fetch_exchange_capacity_forecasts_week_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets week-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.WEEK_AHEAD,
@@ -1896,7 +2048,7 @@ def fetch_exchange_capacity_forecasts_month_ahead(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Gets month-ahead exchange capacity forecast between two zones for both directions."""
-    return _fetch_exchange_capacity_forecasts(
+    return _fetch_forecast_transfer_capacity(
         zone_key1,
         zone_key2,
         EntsoeTypeEnum.MONTH_AHEAD,

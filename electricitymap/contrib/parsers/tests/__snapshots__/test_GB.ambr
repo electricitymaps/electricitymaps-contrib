@@ -556,7 +556,7 @@
         'unknown': 0.0,
         'wind': 13.5,
       }),
-      'source': 'neso.energy, elexon.co.uk',
+      'source': 'neso.energy,elexon.co.uk',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
@@ -579,7 +579,7 @@
         'unknown': 0.5,
         'wind': 15.0,
       }),
-      'source': 'neso.energy, elexon.co.uk',
+      'source': 'neso.energy,elexon.co.uk',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
