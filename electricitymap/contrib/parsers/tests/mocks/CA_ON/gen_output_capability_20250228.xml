@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IMODocument xmlns="http://www.theIMO.com/schema">
+<IMODocHeader>
+<DocTitle>Generators Output and Capability Report</DocTitle>
+</IMODocHeader>
+<IMODocBody>
+<Date>2025-02-28</Date>
+<Generators>
+<Generator>
+<GeneratorName>BRUCEA-G1</GeneratorName>
+<FuelType>NUCLEAR</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>826</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>LENNOX-G1</GeneratorName>
+<FuelType>GAS</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>150</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>SIRADAMBECK-PGS1</GeneratorName>
+<FuelType>HYDRO</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>400</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>ONEIDA ENERGY STORAGE</GeneratorName>
+<FuelType>OTHER</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>100</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>TILBURY BATTERY STORAGE</GeneratorName>
+<FuelType>OTHER</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>40</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>ARLEN BESS</GeneratorName>
+<FuelType>OTHER</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>20</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+<Generator>
+<GeneratorName>EXPERIMENTAL FACILITY</GeneratorName>
+<FuelType>OTHER</FuelType>
+<Outputs>
+<Output>
+<Hour>1</Hour>
+<EnergyMW>999</EnergyMW>
+</Output>
+</Outputs>
+</Generator>
+</Generators>
+</IMODocBody>
+</IMODocument>

@@ -300,6 +300,7 @@ def fetch_production(
         return combined_data.to_list()
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production_forecast(
     zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,

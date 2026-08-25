@@ -18,7 +18,11 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import (
+    AtcType,
+    MarketAgreementType,
+    ZoneKey,
+)
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -543,24 +547,120 @@ class Exchange(Event):
         }
 
 
-class ScheduledExchange(Exchange):
-    """Exchange event tagged with a market_agreement_type discriminator
-    distinguishing day-ahead-cleared (A01) and total-cleared (A05) schedules.
+class ScheduledExchange(Event):
+    """A cleared scheduled commercial exchange between two zones, tagged with a
+    market_agreement_type discriminator distinguishing day-ahead-cleared (A01)
+    and total-cleared (A05) schedules.
 
-    Both share Exchange's net-flow shape; the discriminator — mirroring
-    ENTSOE's Contract_MarketAgreement.Type vocabulary — is what keeps
-    them apart in the unified bronze table downstream. Subclassing
-    Exchange (rather than adding an optional field) keeps every other
-    Exchange parser untouched and gives the discriminator a typed,
-    Pydantic-validated home next to where the parser produces it.
+    Carries the two gross directional flows separately:
+      - `scheduledExport`: scheduled flow zone1 -> zone2 (the sorted-first zone
+        exporting), always >= 0.
+      - `scheduledImport`: scheduled flow zone2 -> zone1 (the sorted-first zone
+        importing), always >= 0.
+    A single signed `netFlow` (= scheduledExport - scheduledImport, positive
+    when zone1 exports) is retained for backward compatibility and dropped once
+    downstream readers move to the directional columns.
+
+    Both directions are needed because some providers aggregate the native
+    15-minute MTU schedules into hourly buckets. Per MTU a commercial schedule
+    clears in only one direction, so `scheduledExport` and `scheduledImport`
+    are never both non-zero at 15-minute resolution — but an hourly bucket can
+    contain MTUs that cleared in opposite directions, leaving both gross totals
+    positive. Netting them into a single number is then lossy, so we store each
+    direction and derive `netFlow` from them.
+
+    Modelled as a sibling of `Exchange` (both subclass `Event`) rather than a
+    subtype: it shares the exchange zone-key shape but not the net-flow
+    semantics. This mirrors `ExchangeCapacity`/`ExchangeAtc`, the other
+    directional exchange events.
     """
 
     sourceType: EventSourceType = EventSourceType.published
     marketAgreementType: MarketAgreementType
+    scheduledExport: float | None
+    scheduledImport: float | None
+    # Derived (= scheduledExport - scheduledImport); retained for backward
+    # compatibility until downstream readers use the directional columns.
+    netFlow: float | None
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @validator("scheduledExport", "scheduledImport")
+    def _validate_directional_flow(cls, v: float | None):
+        if v is None:
+            raise ValueError(f"Scheduled exchange direction cannot be None: {v}")
+        if math.isnan(v):
+            raise ValueError(f"Scheduled exchange direction cannot be NaN: {v}")
+        # TODO in the future those checks should be performed in the data quality layer.
+        if abs(v) > 100000:
+            raise ValueError(
+                f"Scheduled exchange direction is implausibly high, above 100GW: {v}"
+            )
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        scheduledExport: float | None,
+        scheduledImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ScheduledExchange | None":
+        try:
+            scheduledExport = _none_safe_round(scheduledExport)
+            scheduledImport = _none_safe_round(scheduledImport)
+            # netFlow is derived so the two directional columns stay the single
+            # source of truth; positive when zone1 exports to zone2.
+            net_flow = (
+                None
+                if scheduledExport is None and scheduledImport is None
+                else (scheduledExport or 0) - (scheduledImport or 0)
+            )
+            return ScheduledExchange(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                netFlow=_none_safe_round(net_flow),
+                scheduledExport=scheduledExport,
+                scheduledImport=scheduledImport,
+                sourceType=sourceType,
+                marketAgreementType=marketAgreementType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating scheduled exchange Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "scheduledExchange",
+                },
+            )
+            return None
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            **super().to_dict(),
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "scheduledExport": self.scheduledExport,
+            "scheduledImport": self.scheduledImport,
+            "netFlow": self.netFlow,
+            "source": self.source,
+            "sourceType": self.sourceType,
             "marketAgreementType": self.marketAgreementType,
         }
 
@@ -1316,8 +1416,9 @@ class IntradayContractStatistics(Event):
 class ExchangeCapacity(Event):
     """
     An event representing a bilateral exchange capacity between two zones in
-    both directions. Used for NTC forecasts (ENTSOE A61), MaxBeX, MaxBflow.
-    ATC values use the dedicated `ExchangeAtc` class instead.
+    both directions. Used for MaxBeX and MaxBflow. ATC values use the dedicated
+    `ExchangeAtc` class, and NTC forecasts `ForecastTransferCapacity` — both
+    carry a discriminator this class has no field for.
 
     capacityExport: Capacity for zone1→zone2 direction (may be None).
     capacityImport: Capacity for zone2→zone1 direction (may be None).
@@ -1475,6 +1576,96 @@ class ExchangeAtc(Event):
             "capacityExport": self.capacityExport,
             "capacityImport": self.capacityImport,
             "atcType": self.atcType,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
+
+
+class ForecastTransferCapacity(Event):
+    """
+    An exchange-side event (keyed by a sorted `"A->B"` zone pair) representing a
+    forecast transfer capacity (NTC) value between two zones in both directions,
+    at a given market-agreement type. Distinct from ATC (see `ExchangeAtc`), from
+    the flow limits in `ExchangeCapacity` (MaxBeX, MaxBflow) and from cleared
+    schedules (see `ScheduledExchange`).
+
+    capacityExport: Capacity for zone1→zone2 direction (may be None).
+    capacityImport: Capacity for zone2→zone1 direction (may be None).
+    marketAgreementType: ENTSOE Contract_MarketAgreement.Type this value was
+        published under — day-, week- or month-ahead. All three share one
+        storage table, and each has its own cadence, so it travels with the
+        value rather than being inferred from which parser produced it.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    capacityExport: float | None
+    capacityImport: float | None
+    marketAgreementType: MarketAgreementType
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        if (
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
+        ):
+            raise ValueError(
+                "At least one of capacityExport or capacityImport must be set"
+            )
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ForecastTransferCapacity | None":
+        try:
+            return ForecastTransferCapacity(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
+                sourceType=sourceType,
+                marketAgreementType=marketAgreementType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ForecastTransferCapacity Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange transfer capacity",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
+            "marketAgreementType": self.marketAgreementType,
             "source": self.source,
             "sourceType": self.sourceType,
         }

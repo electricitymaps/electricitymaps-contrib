@@ -1,0 +1,32 @@
+{
+  "help": "Mock NESO live day-ahead wind forecast data",
+  "success": true,
+  "result": {
+    "records": [
+      {
+        "_id": 1,
+        "Datetime_GMT": "2024-12-16T23:00:00",
+        "Date": "2024-12-17",
+        "Settlement_period": 1,
+        "Capacity": 24472,
+        "Incentive_forecast": 2732
+      },
+      {
+        "_id": 2,
+        "Datetime_GMT": "2024-12-16T23:30:00",
+        "Date": "2024-12-17",
+        "Settlement_period": 2,
+        "Capacity": 24472,
+        "Incentive_forecast": 2796
+      },
+      {
+        "_id": 3,
+        "Datetime_GMT": "2024-12-17T00:00:00",
+        "Date": "2024-12-17",
+        "Settlement_period": 3,
+        "Capacity": 24472,
+        "Incentive_forecast": 2882
+      }
+    ]
+  }
+}
