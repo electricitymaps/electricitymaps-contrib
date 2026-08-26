@@ -147,10 +147,7 @@ def test_snapshot_fetch_exchange(
 def test_exchange_stamps_the_start_of_the_dispatch_interval(
     live_dispatch_mock, session
 ):
-    """
-    AEMO's SETTLEMENTDATE is the interval end, so an event starts one interval
-    earlier. The fixtures are the intervals ending 02:45 and 02:50 AEST.
-    """
+    """The fixtures are the intervals ending 02:45 and 02:50 AEST."""
     events = fetch_exchange("AU-TAS", "AU-VIC", session)
 
     assert [event["datetime"] for event in events] == [
@@ -167,11 +164,8 @@ def test_exchange_stamps_the_start_of_the_dispatch_interval(
 def test_exchange_sums_every_interconnector_on_the_border(
     live_dispatch_mock, session, zone_key1, zone_key2
 ):
-    """
-    Each border is the signed sum of its interconnectors: QNI + Terranora for
-    NSW-QLD, Heywood + Murraylink for SA-VIC, one line for the other two. The
-    sign follows AEMO's REGIONFROM -> REGIONTO against the exchange key.
-    """
+    """QNI + Terranora for NSW-QLD, Heywood + Murraylink for SA-VIC, one line each
+    for the other two, signed by AEMO's REGIONFROM -> REGIONTO."""
     events = fetch_exchange(zone_key1, zone_key2, session)
     flows = _interconnector_flows(LIVE_DISPATCH_FILES[0])
     settlement = "2026/08/26 02:45:00"
@@ -188,7 +182,7 @@ def test_exchange_sums_every_interconnector_on_the_border(
 
 
 def test_exchange_skips_an_interval_missing_an_interconnector(requests_mock, session):
-    """A border read from only some of its lines would understate the flow."""
+    """An interval one line of the border did not report yields no event."""
     name = "PUBLIC_DISPATCHIS_202608260245_0000000000000001.zip"
     requests_mock.register_uri(
         GET, CURRENT_DISPATCH_URL, text=f'<a href="{name}">x</a>'
@@ -210,11 +204,8 @@ def test_exchange_skips_an_interval_missing_an_interconnector(requests_mock, ses
 
 
 def test_republished_interval_is_not_counted_twice(requests_mock, session):
-    """
-    AEMO republishes an interval under a new sequence number when it is revised,
-    and the archives overlap around midnight. ExchangeList keeps both events of a
-    shared datetime and merging sums them, so repeats have to be dropped before.
-    """
+    """The same interval published twice, as AEMO does when revising it, is
+    counted once."""
     rows = [
         "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,T-V-MNSP1,1,0,386.4,380,2.1"
     ]
@@ -240,10 +231,8 @@ def test_republished_interval_is_not_counted_twice(requests_mock, session):
 def test_unmapped_interconnector_is_reported_but_not_fatal(
     requests_mock, session, caplog
 ):
-    """
-    A new interconnector means a new border, which needs its own exchange in
-    config. The borders we do know stay correct in the meantime.
-    """
+    """An interconnector the parser does not map is logged, and the borders it
+    does map still report."""
     name = "PUBLIC_DISPATCHIS_202608260245_0000000000000002.zip"
     requests_mock.register_uri(
         GET, CURRENT_DISPATCH_URL, text=f'<a href="{name}">x</a>'
@@ -267,7 +256,7 @@ def test_unmapped_interconnector_is_reported_but_not_fatal(
 
 
 def test_backfill_reads_the_monthly_archive(requests_mock, session):
-    """History comes from one ~2 MB file per month rather than per-interval files."""
+    """A target datetime is served from the monthly archive."""
     requests_mock.register_uri(
         GET,
         re.compile(r".*DISPATCHINTERCONNECTORRES.*"),
