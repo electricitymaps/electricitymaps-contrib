@@ -129,13 +129,9 @@ class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
         cls, ungrouped_events: Sequence["AggregatableEventList"], logger: Logger
     ) -> set[datetime]:
         """
-        The datetimes every input covers, warning about the ones only some cover.
+        Returns the datetimes every input covers, and warns about the rest.
 
-        Used by the merges when their inputs are parts of one total rather than
-        separate sources of the same series: summing a datetime an input does not
-        cover understates the total instead of leaving it missing. An input
-        covering nothing therefore leaves nothing matching - the same rule, not a
-        special case.
+        An input covering nothing leaves nothing matching.
         """
         covered = [{event.datetime for event in single} for single in ungrouped_events]
         if not covered:
@@ -196,13 +192,12 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
 
     Mixed into list types whose events must not overlap (exchanges, production,
     consumption, prices, exchange capacity). `to_list()` enforces that in two
-    steps: events sharing the exact same `datetime` collapse to the last one
-    appended, then events whose `[datetime, end_datetime)` intervals intersect
-    are clamped, the earlier event's end moved to the later event's start. Both
-    log a warning — a data imperfection should degrade the output, not crash the
-    whole fetch. Lists that legitimately hold several events per datetime —
-    e.g. locational marginal prices keyed by node, or grid alerts — do NOT use
-    this mixin.
+    steps, warning on each: events sharing the exact same `datetime` collapse to
+    the last one appended, then events whose `[datetime, end_datetime)` intervals
+    intersect are clamped, the earlier event's end moved to the later event's
+    start. Lists that legitimately hold several events per datetime — e.g.
+    locational marginal prices keyed by node, or grid alerts — do NOT use this
+    mixin.
     """
 
     def to_list(self) -> list[dict[str, Any]]:
@@ -211,18 +206,10 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
     def _collapse_duplicates(
         self, events: list[dict[str, Any]]
     ) -> list[dict[str, Any]]:
-        """Keeps one event per `datetime`: the last one appended.
+        """Keeps one event per `datetime`, the last one appended, and warns.
 
-        A source that republishes an interval — a revision, or an archive
-        overlapping the live feed — otherwise leaves two events on the same
-        instant, which downstream sums (`merge_exchanges`,
-        `merge_production_breakdowns`) would add together and double. Keeping
-        the last means the newest value wins, matching how `update_*` treats a
-        newer batch of events.
-
-        `events` arrives sorted by `datetime` from a stable sort, so within a
-        group of equal datetimes the append order survives and the last entry is
-        the most recently added one.
+        `events` is sorted by `datetime` from a stable sort, so the last entry of
+        a group of equal datetimes is the most recently appended one.
         """
         collapsed: dict[datetime, dict[str, Any]] = {}
         for event in events:
@@ -242,10 +229,7 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
         datetime, duplicates having already been collapsed; a pair overlaps when
         the earlier event's `end_datetime` is strictly after the later event's
         `datetime`. Events without an `end_datetime` are treated as
-        instantaneous points at `datetime`. Because the events are
-        start-sorted, checking consecutive pairs is enough to catch any
-        overlap. Clamping always leaves a positive duration, as the earlier
-        event starts strictly before the later one.
+        instantaneous points at `datetime`.
         """
         for previous, current in pairwise(events):
             previous_end = previous["end_datetime"]
@@ -287,15 +271,10 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         to create a unique exchange list. Sources will be aggregated in a
         comma-separated string. Ex: "entsoe, eia".
 
-        By default a datetime only some of the inputs reported is summed from
-        those that did, which is what merging two sources of the same flow wants.
-        Set `drop_non_matching_datetimes` when the inputs are instead parts of
-        one total — the interconnectors making up a border, or the two directions
-        of one exchange — where a partial sum understates the flow rather than
-        showing up as missing. Only the datetimes the inputs disagree on are
-        dropped, the rest are summed as usual; an input covering nothing at all
-        therefore drops every datetime, as there is none left that all inputs
-        cover.
+        A datetime only some of the inputs cover is summed from those that do,
+        unless `drop_non_matching_datetimes` is set, which drops it instead. Use
+        it when the inputs are parts of one total, such as the interconnectors of
+        a border or the two directions of one exchange.
         """
         exchanges = ExchangeList(logger)
         if ExchangeList.is_completely_empty(ungrouped_exchanges, logger):
@@ -494,9 +473,8 @@ class ProductionBreakdownList(
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
 
-        By default a datetime only some of the inputs cover is summed from those
-        that do. Set `drop_non_matching_datetimes` when the inputs are parts of
-        one total instead, and only the datetimes they disagree on are dropped.
+        A datetime only some of the inputs cover is summed from those that do,
+        unless `drop_non_matching_datetimes` is set, which drops it instead.
         """
         production_breakdowns = ProductionBreakdownList(logger)
         if ProductionBreakdownList.is_completely_empty(
