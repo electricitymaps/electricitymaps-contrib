@@ -78,6 +78,7 @@ def test_build_consumption_list_skips_null_future_and_malformed():
     datasets = [
         {
             "metric": "demand",
+            "interval": "5m",
             "results": [
                 {
                     "data": [
@@ -98,7 +99,30 @@ def test_build_consumption_list_skips_null_future_and_malformed():
 
     assert len(events) == 1
     assert events[0]["consumption"] == 1000.0
+    # the stamp is the interval end, so the event starts one interval earlier
+    assert events[0]["datetime"] == datetime.fromisoformat("2026-07-22T19:55:00+10:00")
+    assert events[0]["end_datetime"] == datetime.fromisoformat(
+        "2026-07-22T20:00:00+10:00"
+    )
+
+
+@freeze_time("2026-07-22 10:12:00")
+def test_build_consumption_list_keeps_the_stamp_when_the_interval_is_unknown(caplog):
+    datasets = [
+        {
+            "metric": "demand",
+            "results": [{"data": [["2026-07-22T20:00:00+10:00", 1000.0]]}],
+        }
+    ]
+
+    with caplog.at_level(logging.WARNING):
+        events = _build_consumption_list(
+            datasets, ZoneKey("AU-NSW"), logging.getLogger("test")
+        ).to_list()
+
     assert events[0]["datetime"] == datetime.fromisoformat("2026-07-22T20:00:00+10:00")
+    assert events[0]["end_datetime"] is None
+    assert "No interval on the demand dataset" in caplog.text
 
 
 @pytest.fixture
@@ -145,9 +169,11 @@ def test_single_neighbour_exchange_follows_region_net_exports(
         for timestamp, value in result["data"]
     }
 
+    # The source stamps each point with the end of the interval it covers, which
+    # is the event's end_datetime.
     for event in events:
-        exports = by_metric_and_datetime[("flow_exports", event["datetime"])]
-        imports = by_metric_and_datetime[("flow_imports", event["datetime"])]
+        exports = by_metric_and_datetime[("flow_exports", event["end_datetime"])]
+        imports = by_metric_and_datetime[("flow_imports", event["end_datetime"])]
         assert event["netFlow"] == pytest.approx(exports - imports)
         if exports > imports:
             assert event["netFlow"] > 0
@@ -182,12 +208,22 @@ def test_reconstructed_flows_balance_victorias_own_series(flows_mock, session):
 
     assert len({len(events) for events in borders}) == 1
     for nsw_vic, sa_vic, tas_vic in zip(*borders, strict=True):
-        dt = nsw_vic["datetime"]
-        assert sa_vic["datetime"] == tas_vic["datetime"] == dt
-        vic_net_exports = vic[("flow_exports", dt)] - vic[("flow_imports", dt)]
+        stamp = nsw_vic["end_datetime"]
+        assert sa_vic["end_datetime"] == tas_vic["end_datetime"] == stamp
+        vic_net_exports = vic[("flow_exports", stamp)] - vic[("flow_imports", stamp)]
         assert -(
             nsw_vic["netFlow"] + sa_vic["netFlow"] + tas_vic["netFlow"]
         ) == pytest.approx(vic_net_exports, abs=1e-6)
+
+
+def test_events_cover_the_interval_ending_at_the_source_stamp(flows_mock, session):
+    """The fixture's first stamp is 21:15 +10:00, at a 5-minute interval."""
+    events = fetch_exchange("AU-NSW", "AU-QLD", session, EXCHANGE_TARGET_DATETIME)
+
+    assert events[0]["datetime"] == datetime.fromisoformat("2025-07-10T21:10:00+10:00")
+    assert events[0]["end_datetime"] == datetime.fromisoformat(
+        "2025-07-10T21:15:00+10:00"
+    )
 
 
 def test_exchange_queries_region_flows_from_market_endpoint(flows_mock, session):

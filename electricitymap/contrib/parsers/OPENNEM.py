@@ -124,8 +124,10 @@ IGNORED_FUEL_TECH_KEYS = {
 SOURCE = "opennem.org.au"
 
 # Every OpenElectricity dataset carries an explicit resolution in its `interval`
-# field. The API exposes no explicit interval end, so reconstruct it as
-# end = start + interval.
+# field, and every data point is stamped with AEMO's SETTLEMENTDATE, which labels
+# the END of the interval it covers: the point stamped 14:35 covers 14:30-14:35.
+# https://docs.openelectricity.org.au/guides/curtailment states the convention.
+# Events therefore start one interval before the stamp.
 _INTERVAL_UNIT_TO_KWARG = {"m": "minutes", "h": "hours", "d": "days", "w": "weeks"}
 
 
@@ -141,6 +143,32 @@ def _interval_to_timedelta(interval: str) -> timedelta:
         raise NotImplementedError(f"Unsupported OPENNEM interval: {interval!r}")
     value, unit = int(match.group(1)), match.group(2)
     return timedelta(**{_INTERVAL_UNIT_TO_KWARG[unit]: value})
+
+
+def _dataset_resolution(
+    dataset: dict[str, Any], zone_key: ZoneKey, logger: Logger
+) -> timedelta | None:
+    """Resolution a dataset declares, or None when it declares none."""
+    interval = dataset.get("interval")
+    if not interval:
+        logger.warning(
+            f"No interval on the {dataset.get('metric')} dataset for {zone_key}; "
+            "timestamps are left on the source stamp instead of the interval start"
+        )
+        return None
+    return _interval_to_timedelta(interval)
+
+
+def _interval_bounds(
+    stamp: datetime, resolution: timedelta | None
+) -> tuple[datetime, datetime | None]:
+    """Start and end of the interval a source stamp labels.
+
+    Returns the stamp unchanged and no end when the resolution is unknown.
+    """
+    if resolution is None:
+        return stamp, None
+    return stamp - resolution, stamp
 
 
 def process_production_datasets(
@@ -160,8 +188,7 @@ def process_production_datasets(
         if dataset.get("metric") != "power":
             continue
 
-        interval = dataset.get("interval")
-        resolution = _interval_to_timedelta(interval) if interval else None
+        resolution = _dataset_resolution(dataset, zone_key, logger)
 
         for result in dataset.get("results", []):
             columns = result.get("columns", {})
@@ -225,6 +252,8 @@ def process_production_datasets(
                 if value is None:
                     continue
 
+                interval_start, interval_end = _interval_bounds(dt, resolution)
+
                 if is_production:
                     production = ProductionMix()
                     production.add_value(
@@ -234,8 +263,8 @@ def process_production_datasets(
                     )
                     production_breakdown_list.append(
                         zoneKey=zone_key,
-                        datetime=dt,
-                        end_datetime=dt + resolution if resolution else None,
+                        datetime=interval_start,
+                        end_datetime=interval_end,
                         production=production,
                         source=SOURCE,
                     )
@@ -255,8 +284,8 @@ def process_production_datasets(
                     )
                     production_breakdown_list.append(
                         zoneKey=zone_key,
-                        datetime=dt,
-                        end_datetime=dt + resolution if resolution else None,
+                        datetime=interval_start,
+                        end_datetime=interval_end,
                         storage=storage,
                         source=SOURCE,
                     )
@@ -428,9 +457,10 @@ def fetch_exchange(
     for region, coefficient in region_coefficients.items():
         events = ExchangeList(logger=logger)
         for dt in common:
+            interval_start, interval_end = _interval_bounds(dt, resolution)
             events.append(
-                datetime=dt,
-                end_datetime=dt + resolution if resolution else None,
+                datetime=interval_start,
+                end_datetime=interval_end,
                 netFlow=coefficient * net_exports[region][dt],
                 zoneKey=exchange_key,
                 source=SOURCE,
@@ -481,7 +511,7 @@ def _flow_resolution(
     datasets: list[dict[str, Any]], exchange_key: ZoneKey
 ) -> timedelta | None:
     """
-    Resolution shared by the flow datasets, used to reconstruct end_datetime.
+    Resolution shared by the flow datasets, used to place the interval bounds.
 
     Raises if the flow datasets report different intervals.
     """
@@ -587,15 +617,16 @@ def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
     for dataset in datasets:
         if dataset["metric"] != "price":
             continue
-        interval = dataset.get("interval")
-        resolution = _interval_to_timedelta(interval) if interval else None
+        resolution = _dataset_resolution(dataset, zone_key, logger)
         for result in dataset["results"]:
             for ts, price in result["data"]:
-                dt = datetime.fromisoformat(ts)
+                interval_start, interval_end = _interval_bounds(
+                    datetime.fromisoformat(ts), resolution
+                )
                 price_list.append(
                     zoneKey=zone_key,
-                    datetime=dt,
-                    end_datetime=dt + resolution if resolution else None,
+                    datetime=interval_start,
+                    end_datetime=interval_end,
                     currency="AUD",
                     price=price,
                     source=SOURCE,
@@ -612,6 +643,7 @@ def _build_consumption_list(
     for dataset in datasets:
         if dataset.get("metric") != "demand":
             continue
+        resolution = _dataset_resolution(dataset, zone_key, logger)
         for result in dataset.get("results", []):
             for data_point in result.get("data", []):
                 if not isinstance(data_point, list) or len(data_point) < 2:
@@ -623,9 +655,11 @@ def _build_consumption_list(
                 if dt > now:
                     logger.debug(f"Skipping future datetime {dt} for zone {zone_key}")
                     continue
+                interval_start, interval_end = _interval_bounds(dt, resolution)
                 consumption_list.append(
                     zoneKey=zone_key,
-                    datetime=dt,
+                    datetime=interval_start,
+                    end_datetime=interval_end,
                     consumption=float(value),
                     source=SOURCE,
                 )
