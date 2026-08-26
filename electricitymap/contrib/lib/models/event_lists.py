@@ -125,6 +125,31 @@ class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
         )
 
     @classmethod
+    def _matching_datetimes(
+        cls, ungrouped_events: Sequence["AggregatableEventList"], logger: Logger
+    ) -> set[datetime]:
+        """
+        The datetimes every input covers, warning about the ones only some cover.
+
+        Used by the merges when their inputs are parts of one total rather than
+        separate sources of the same series: summing a datetime an input does not
+        cover understates the total instead of leaving it missing. An input
+        covering nothing therefore leaves nothing matching - the same rule, not a
+        special case.
+        """
+        covered = [{event.datetime for event in single} for single in ungrouped_events]
+        if not covered:
+            return set()
+        matching = set.intersection(*covered)
+        non_matching = set.union(*covered) - matching
+        if non_matching:
+            logger.warning(
+                f"Dropping {len(non_matching)} datetime(s) that only some of the "
+                f"{len(covered)} merged {cls.__name__}s cover."
+            )
+        return matching
+
+    @classmethod
     def _get_unique_zone(cls, events: pd.DataFrame) -> ZoneKey:
         """
         Given a concatenated dataframe of events, return the unique zone.
@@ -288,16 +313,7 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
 
         if drop_non_matching_datetimes:
-            covered = [
-                {event.datetime for event in single} for single in ungrouped_exchanges
-            ]
-            matching = set.intersection(*covered)
-            non_matching = set.union(*covered) - matching
-            if non_matching:
-                logger.warning(
-                    f"Dropping {len(non_matching)} datetime(s) that only some of the "
-                    f"{len(covered)} merged {ExchangeList.__name__}s cover."
-                )
+            matching = ExchangeList._matching_datetimes(ungrouped_exchanges, logger)
             exchange_df = exchange_df[exchange_df.index.isin(matching)]
 
         end_datetimes = None
@@ -470,21 +486,23 @@ class ProductionBreakdownList(
     def merge_production_breakdowns(
         ungrouped_production_breakdowns: list["ProductionBreakdownList"],
         logger: Logger,
-        matching_timestamps_only: bool = False,
+        drop_non_matching_datetimes: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given multiple parser outputs, sum the production and storage
         of corresponding datetimes to create a unique production breakdown list.
         Sources will be aggregated in a comma-separated string. Ex: "entsoe, eia".
         There should be only one zone in the list of production breakdowns.
-        Matching timestamps only will only keep the timestamps where all the production breakdowns have data.
+
+        By default a datetime only some of the inputs cover is summed from those
+        that do. Set `drop_non_matching_datetimes` when the inputs are parts of
+        one total instead, and only the datetimes they disagree on are dropped.
         """
         production_breakdowns = ProductionBreakdownList(logger)
         if ProductionBreakdownList.is_completely_empty(
             ungrouped_production_breakdowns, logger
         ):
             return production_breakdowns
-        len_ungrouped_production_breakdowns = len(ungrouped_production_breakdowns)
         df = pd.concat(
             [
                 production_breakdowns.dataframe
@@ -496,14 +514,11 @@ class ProductionBreakdownList(
 
         df = df.drop(columns=["source", "sourceType", "zoneKey"])
         df = df.groupby(level=0, dropna=False)["data"].apply(list)
-        if matching_timestamps_only:
-            logger.info(
-                f"Filtering production breakdowns to keep \
-                only the timestamps where all the production breakdowns \
-                have data, {len(df[df.apply(lambda x: len(x) != len_ungrouped_production_breakdowns)])}\
-                points where discarded."
+        if drop_non_matching_datetimes:
+            matching = ProductionBreakdownList._matching_datetimes(
+                ungrouped_production_breakdowns, logger
             )
-            df = df[df.apply(lambda x: len(x) == len_ungrouped_production_breakdowns)]
+            df = df[df.index.isin(matching)]
         for row in df:
             prod = ProductionBreakdown.aggregate(row)
             production_breakdowns.events.append(prod)
@@ -514,7 +529,7 @@ class ProductionBreakdownList(
         production_breakdowns: "ProductionBreakdownList",
         new_production_breakdowns: "ProductionBreakdownList",
         logger: Logger,
-        matching_timestamps_only: bool = False,
+        drop_non_matching_datetimes: bool = False,
     ) -> "ProductionBreakdownList":
         """
         Given a new batch of production breakdowns, update the existing ones.
@@ -523,7 +538,7 @@ class ProductionBreakdownList(
         - production_breakdowns: The existing production breakdowns to be updated.
         - new_production_breakdowns: The new batch of production breakdowns.
         - logger: The logger object used for logging information.
-        - matching_timestamps_only: Flag indicating whether to update only the events with matching timestamps from both the production breakdowns.
+        - drop_non_matching_datetimes: Flag indicating whether to update only the events with matching timestamps from both the production breakdowns.
         """
 
         if len(new_production_breakdowns) == 0:
@@ -533,7 +548,7 @@ class ProductionBreakdownList(
 
         updated_production_breakdowns = ProductionBreakdownList(logger)
 
-        if matching_timestamps_only:
+        if drop_non_matching_datetimes:
             diff = abs(len(new_production_breakdowns) - len(production_breakdowns))
             logger.info(
                 f"Filtering production breakdowns to keep only the events where both the production breakdowns have matching datetimes, {diff} events where discarded."
@@ -552,7 +567,7 @@ class ProductionBreakdownList(
                     storage=updated_event.storage,
                     sourceType=updated_event.sourceType,
                 )
-            elif matching_timestamps_only is False:
+            elif drop_non_matching_datetimes is False:
                 updated_production_breakdowns.append(
                     new_event.zoneKey,
                     new_event.datetime,
@@ -563,7 +578,7 @@ class ProductionBreakdownList(
                     sourceType=new_event.sourceType,
                 )
 
-        if matching_timestamps_only is False:
+        if drop_non_matching_datetimes is False:
             for existing_event in production_breakdowns.events:
                 if existing_event.datetime not in new_production_breakdowns:
                     updated_production_breakdowns.append(

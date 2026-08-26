@@ -89,7 +89,7 @@ def fetch_production(
     return ProductionBreakdownList.merge_production_breakdowns(
         [conventional_production, renewables_production],
         logger,
-        matching_timestamps_only=True,
+        drop_non_matching_datetimes=True,
     ).to_list()
 
 
