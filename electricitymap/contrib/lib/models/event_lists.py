@@ -170,24 +170,52 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
     should cover any given instant.
 
     Mixed into list types whose events must not overlap (exchanges, production,
-    consumption, prices, exchange capacity). `to_list()` resolves events whose
-    `[datetime, end_datetime)` intervals intersect by clamping the earlier
-    event's end to the later event's start. Events sharing the exact same
-    `datetime` cannot be clamped, so they are kept as-is; both cases log a
-    warning — a data imperfection should degrade the output, not crash the
+    consumption, prices, exchange capacity). `to_list()` enforces that in two
+    steps: events sharing the exact same `datetime` collapse to the last one
+    appended, then events whose `[datetime, end_datetime)` intervals intersect
+    are clamped, the earlier event's end moved to the later event's start. Both
+    log a warning — a data imperfection should degrade the output, not crash the
     whole fetch. Lists that legitimately hold several events per datetime —
     e.g. locational marginal prices keyed by node, or grid alerts — do NOT use
     this mixin.
     """
 
     def to_list(self) -> list[dict[str, Any]]:
-        return self._resolve_overlaps(super().to_list())
+        return self._resolve_overlaps(self._collapse_duplicates(super().to_list()))
+
+    def _collapse_duplicates(
+        self, events: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        """Keeps one event per `datetime`: the last one appended.
+
+        A source that republishes an interval — a revision, or an archive
+        overlapping the live feed — otherwise leaves two events on the same
+        instant, which downstream sums (`merge_exchanges`,
+        `merge_production_breakdowns`) would add together and double. Keeping
+        the last means the newest value wins, matching how `update_*` treats a
+        newer batch of events.
+
+        `events` arrives sorted by `datetime` from a stable sort, so within a
+        group of equal datetimes the append order survives and the last entry is
+        the most recently added one.
+        """
+        collapsed: dict[datetime, dict[str, Any]] = {}
+        for event in events:
+            collapsed[event["datetime"]] = event
+        dropped = len(events) - len(collapsed)
+        if dropped:
+            self.logger.warning(
+                f"{type(self).__name__} has {dropped} event(s) sharing a datetime "
+                "with another; keeping the last of each."
+            )
+        return list(collapsed.values())
 
     def _resolve_overlaps(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Clamps overlapping `[datetime, end_datetime)` intervals in place.
 
-        `events` is sorted by start (`datetime`); a pair overlaps when the
-        earlier event's `end_datetime` is strictly after the later event's
+        `events` is sorted by start (`datetime`) and carries one event per
+        datetime, duplicates having already been collapsed; a pair overlaps when
+        the earlier event's `end_datetime` is strictly after the later event's
         `datetime`. Events without an `end_datetime` are treated as
         instantaneous points at `datetime`. Because the events are
         start-sorted, checking consecutive pairs is enough to catch any
@@ -195,12 +223,6 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
         event starts strictly before the later one.
         """
         for previous, current in pairwise(events):
-            if previous["datetime"] == current["datetime"]:
-                self.logger.warning(
-                    f"{type(self).__name__} has two events sharing datetime "
-                    f"{current['datetime']}; keeping both."
-                )
-                continue
             previous_end = previous["end_datetime"]
             if previous_end is not None and previous_end > current["datetime"]:
                 self.logger.warning(
@@ -231,12 +253,24 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
 
     @staticmethod
     def merge_exchanges(
-        ungrouped_exchanges: list["ExchangeList"], logger: Logger
+        ungrouped_exchanges: list["ExchangeList"],
+        logger: Logger,
+        drop_non_matching_datetimes: bool = False,
     ) -> "ExchangeList":
         """
         Given multiple parser outputs, sum the netflows of corresponding datetimes
         to create a unique exchange list. Sources will be aggregated in a
         comma-separated string. Ex: "entsoe, eia".
+
+        By default a datetime only some of the inputs reported is summed from
+        those that did, which is what merging two sources of the same flow wants.
+        Set `drop_non_matching_datetimes` when the inputs are instead parts of
+        one total — the interconnectors making up a border, or the two directions
+        of one exchange — where a partial sum understates the flow rather than
+        showing up as missing. Only the datetimes the inputs disagree on are
+        dropped, the rest are summed as usual; an input covering nothing at all
+        therefore drops every datetime, as there is none left that all inputs
+        cover.
         """
         exchanges = ExchangeList(logger)
         if ExchangeList.is_completely_empty(ungrouped_exchanges, logger):
@@ -252,6 +286,19 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         exchange_df = pd.concat(exchange_dfs)
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
         zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
+
+        if drop_non_matching_datetimes:
+            covered = [
+                {event.datetime for event in single} for single in ungrouped_exchanges
+            ]
+            matching = set.intersection(*covered)
+            non_matching = set.union(*covered) - matching
+            if non_matching:
+                logger.warning(
+                    f"Dropping {len(non_matching)} datetime(s) that only some of the "
+                    f"{len(covered)} merged {ExchangeList.__name__}s cover."
+                )
+            exchange_df = exchange_df[exchange_df.index.isin(matching)]
 
         end_datetimes = None
         if "end_datetime" in exchange_df.columns:
