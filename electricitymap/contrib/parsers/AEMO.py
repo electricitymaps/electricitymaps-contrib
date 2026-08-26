@@ -2,6 +2,7 @@ import csv
 import io
 import re
 import zipfile
+from collections import Counter
 from collections.abc import Iterable, Iterator
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
@@ -331,8 +332,13 @@ def fetch_exchange(
         window = (end - REFETCH_FREQUENCY, end)
         rows = _fetch_archived_rows(session, *window, logger)
 
-    flows: dict[datetime, float] = {}
-    contributors: dict[datetime, set[str]] = {}
+    contributions = {
+        interconnector: ExchangeList(logger) for interconnector in interconnectors
+    }
+    # AEMO republishes an interval under a new sequence number when it is
+    # revised, and the archives overlap around midnight, so the same flow can
+    # arrive twice. Merging sums whatever it is given, so drop repeats here.
+    seen: set[tuple[str, datetime]] = set()
     unmapped: set[str] = set()
     published = False
     for row in rows:
@@ -352,12 +358,16 @@ def fetch_exchange(
         ).replace(tzinfo=MARKET_TIMEZONE)
         if window and not window[0] < settlement <= window[1]:
             continue
-        if interconnector in contributors.setdefault(settlement, set()):
-            continue  # archives overlap, so an interval can arrive twice
-        contributors[settlement].add(interconnector)
-        flows[settlement] = flows.get(settlement, 0.0) + interconnectors[
-            interconnector
-        ] * float(row["METEREDMWFLOW"])
+        if (interconnector, settlement) in seen:
+            continue
+        seen.add((interconnector, settlement))
+        contributions[interconnector].append(
+            zoneKey=exchange_key,
+            datetime=settlement - DISPATCH_INTERVAL,
+            end_datetime=settlement,
+            netFlow=interconnectors[interconnector] * float(row["METEREDMWFLOW"]),
+            source=SOURCE,
+        )
 
     if window and not published:
         raise ParserException(
@@ -375,22 +385,24 @@ def fetch_exchange(
             f"AEMO dispatched interconnectors this parser does not map: {sorted(unmapped)}"
         )
 
-    events = ExchangeList(logger)
-    for settlement, netflow in sorted(flows.items()):
-        missing = set(interconnectors) - contributors[settlement]
-        if missing:
-            logger.warning(
-                f"Skipping {settlement} for {exchange_key}: no flow reported for {sorted(missing)}"
-            )
-            continue
-        events.append(
-            zoneKey=exchange_key,
-            datetime=settlement - DISPATCH_INTERVAL,
-            end_datetime=settlement,
-            netFlow=netflow,
-            source=SOURCE,
+    merged = ExchangeList.merge_exchanges(
+        list(contributions.values()), logger
+    ).to_list()
+
+    # Merging sums the lines it is given, so an interval one line did not report
+    # would come out understated rather than missing. Drop those.
+    reported = Counter(settlement for _, settlement in seen)
+    events = [
+        event
+        for event in merged
+        if reported[event["end_datetime"]] == len(interconnectors)
+    ]
+    if len(events) < len(merged):
+        logger.warning(
+            f"Skipping {len(merged) - len(events)} interval(s) of {exchange_key} where "
+            f"not all of {sorted(interconnectors)} reported a flow"
         )
-    return events.to_list()
+    return events
 
 
 if __name__ == "__main__":

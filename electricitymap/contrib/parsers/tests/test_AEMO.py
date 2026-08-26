@@ -209,6 +209,34 @@ def test_exchange_skips_an_interval_missing_an_interconnector(requests_mock, ses
     assert len(fetch_exchange("AU-TAS", "AU-VIC", session)) == 1
 
 
+def test_republished_interval_is_not_counted_twice(requests_mock, session):
+    """
+    AEMO republishes an interval under a new sequence number when it is revised,
+    and the archives overlap around midnight. ExchangeList keeps both events of a
+    shared datetime and merging sums them, so repeats have to be dropped before.
+    """
+    rows = [
+        "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,T-V-MNSP1,1,0,386.4,380,2.1"
+    ]
+    names = [
+        "PUBLIC_DISPATCHIS_202608260245_0000000000000003.zip",
+        "PUBLIC_DISPATCHIS_202608260245_0000000000000004.zip",  # same interval, revised
+    ]
+    requests_mock.register_uri(
+        GET,
+        CURRENT_DISPATCH_URL,
+        text="".join(f'<a href="{name}">x</a>' for name in names),
+    )
+    for name in names:
+        requests_mock.register_uri(
+            GET, CURRENT_DISPATCH_URL + name, content=_dispatch_zip(rows)
+        )
+
+    events = fetch_exchange("AU-TAS", "AU-VIC", session)
+
+    assert [event["netFlow"] for event in events] == [386.4]
+
+
 def test_unmapped_interconnector_is_reported_but_not_fatal(
     requests_mock, session, caplog
 ):
