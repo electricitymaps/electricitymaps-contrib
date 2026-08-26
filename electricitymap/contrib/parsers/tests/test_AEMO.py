@@ -1,6 +1,5 @@
 """Tests for AEMO.py"""
 
-import csv
 import io
 import logging
 import re
@@ -16,6 +15,11 @@ from electricitymap.contrib.parsers.AEMO import (
     CURRENT_DISPATCH_URL,
     EXCHANGE_KEY_TO_INTERCONNECTORS,
     FORECAST_DEMAND_URL,
+    INTERCONNECTOR_RES,
+    REGION_SUM,
+    REGION_TO_ZONE_KEY,
+    ReportTable,
+    _rows_from_zip,
     fetch_consumption,
     fetch_consumption_forecast,
     fetch_exchange,
@@ -23,54 +27,34 @@ from electricitymap.contrib.parsers.AEMO import (
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/AEMO")
+NEM_ZONES = sorted(REGION_TO_ZONE_KEY.values())
+FORECAST_FILE = "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202504011800_20250401173353.zip"
 
 
-@pytest.mark.parametrize("zone_key", ["AU-NSW", "AU-VIC", "AU-QLD", "AU-SA", "AU-TAS"])
-# "AU-WA" is not implemented in the zones here
+@pytest.fixture
+def forecast_demand_mock(requests_mock):
+    """The demand forecast report, as AEMO serves it."""
+    requests_mock.register_uri(
+        GET, FORECAST_DEMAND_URL, text=f'<a href="{FORECAST_FILE}">x</a>'
+    )
+    requests_mock.register_uri(
+        GET,
+        FORECAST_DEMAND_URL + FORECAST_FILE,
+        content=Path(BASE_PATH_TO_MOCK, FORECAST_FILE).read_bytes(),
+    )
+    return requests_mock
 
+
+@pytest.mark.parametrize("zone_key", NEM_ZONES)
 def test_snapshot_fetch_consumption_forecast(
-    requests_mock, session, snapshot, zone_key
+    forecast_demand_mock, session, snapshot, zone_key
 ):
-    base_url = FORECAST_DEMAND_URL
-
-    # Mock the base URL request with HTML that contains the expected link
-    html_content = """
-    <html>
-    <body>
-    <a href="PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202504011800_20250401173353.zip">Link</a>
-    </body>
-    </html>
-    """
-    requests_mock.register_uri(
-        GET,
-        base_url,
-        text=html_content,
-    )
-
-    # Mock specific document request
-    data_zip_file = Path(
-        BASE_PATH_TO_MOCK,
-        "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202504011800_20250401173353.zip",
-    )
-
-    print("Mock file path:", data_zip_file.resolve())
-    assert data_zip_file.exists(), "Mock zip file does not exist!"
-
-    with open(data_zip_file, "rb") as zip_file:
-        zip_content = zip_file.read()
-    requests_mock.register_uri(
-        GET,
-        re.compile(rf"{base_url}PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d+_\d+\.zip"),
-        content=zip_content,
-    )
-
-    # Run function under test
     assert snapshot(
         extension_class=SingleFileAmberSnapshotExtension
     ) == fetch_consumption_forecast(
         zone_key=zone_key,
         session=session,
-        target_datetime=datetime(2025, 4, 1, 18, 0),  # Mock file has this datetime
+        target_datetime=datetime(2025, 4, 1, 18, 0),  # the mock file's date
     )
 
 
@@ -100,26 +84,16 @@ def _dispatch_zip(rows: list[str]) -> bytes:
     return buffer.getvalue()
 
 
-def _rows(fixture: str, table: str) -> list[dict[str, str]]:
-    """Rows of one dispatch table, read straight from a fixture."""
-    with zipfile.ZipFile(Path(BASE_PATH_TO_MOCK, fixture)) as archive:
-        content = archive.read(archive.namelist()[0]).decode()
-    rows, columns = [], None
-    for row in csv.reader(io.StringIO(content)):
-        if len(row) < 4 or row[1] != "DISPATCH" or row[2] != table:
-            continue
-        if row[0] == "I":
-            columns = row[4:]
-        elif columns is not None:
-            rows.append(dict(zip(columns, row[4:], strict=False)))
-    return rows
+def _rows(fixture: str, table: ReportTable) -> list[dict[str, str]]:
+    """Rows of one report table, read straight from a fixture."""
+    return list(_rows_from_zip(Path(BASE_PATH_TO_MOCK, fixture).read_bytes(), table))
 
 
 def _interconnector_flows(fixture: str) -> dict[tuple[str, str], float]:
     """(settlement, interconnector) -> metered flow, read straight from a fixture."""
     return {
         (row["SETTLEMENTDATE"], row["INTERCONNECTORID"]): float(row["METEREDMWFLOW"])
-        for row in _rows(fixture, "INTERCONNECTORRES")
+        for row in _rows(fixture, INTERCONNECTOR_RES)
         if row["INTERVENTION"] == "0"
     }
 
@@ -287,9 +261,6 @@ def test_backfill_reads_the_monthly_archive(requests_mock, session):
     assert all(event["source"] == "aemo.com.au" for event in events)
 
 
-NEM_ZONES = ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC"]
-
-
 @pytest.mark.parametrize("zone_key", NEM_ZONES)
 def test_snapshot_fetch_consumption(live_dispatch_mock, session, snapshot, zone_key):
     assert snapshot(
@@ -302,20 +273,18 @@ def test_consumption_reports_total_demand_over_the_dispatch_interval(
 ):
     """The fixtures are the intervals ending 02:45 and 02:50 AEST."""
     events = fetch_consumption("AU-NSW", session)
-    demand = {
-        (row["REGIONID"], row["SETTLEMENTDATE"]): float(row["TOTALDEMAND"])
-        for row in _rows(LIVE_DISPATCH_FILES[0], "REGIONSUM")
-        if row["INTERVENTION"] == "0"
-    }
+    demand = next(
+        float(row["TOTALDEMAND"])
+        for row in _rows(LIVE_DISPATCH_FILES[0], REGION_SUM)
+        if row["REGIONID"] == "NSW1" and row["INTERVENTION"] == "0"
+    )
 
     assert [event["datetime"] for event in events] == [
         datetime(2026, 8, 26, 2, 40, tzinfo=AEST),
         datetime(2026, 8, 26, 2, 45, tzinfo=AEST),
     ]
     assert events[0]["end_datetime"] == datetime(2026, 8, 26, 2, 45, tzinfo=AEST)
-    assert events[0]["consumption"] == pytest.approx(
-        demand[("NSW1", "2026/08/26 02:45:00")]
-    )
+    assert events[0]["consumption"] == pytest.approx(demand)
     assert all(event["source"] == "aemo.com.au" for event in events)
 
 
