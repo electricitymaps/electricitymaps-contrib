@@ -1268,7 +1268,7 @@ def _production_list_at(logger, offsets_and_wind, source="trust.me"):
 def test_merge_production_breakdowns_can_drop_non_matching_datetimes():
     # Same rule as merge_exchanges, sharing one implementation: parts of one
     # total, so an hour an input does not cover is dropped rather than summed
-    # short. Previously this counted events per datetime instead.
+    # short.
     logger = logging.Logger("test")
     with patch.object(logger, "warning") as mock_warning:
         merged = ProductionBreakdownList.merge_production_breakdowns(
