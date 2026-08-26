@@ -264,12 +264,9 @@ def _fetch_archived_rows(
     session: Session, start: datetime, end: datetime, logger: Logger
 ) -> Iterator[dict[str, str]]:
     """
-    Rows covering a window, from the cheapest archive that carries each day.
-
-    The monthly archive holds a whole month of interconnector rows in ~2 MB and
-    reaches back to 2009, but is only published once the month has ended. Days it
-    does not cover come from the daily archive, which keeps about a year, and the
-    current day from the live reports.
+    Rows covering a window, taken from the monthly archive where it is published,
+    the daily archive for the days it does not cover, and the live reports for
+    the current day.
     """
     days = set()
     day = start.date()
@@ -309,10 +306,8 @@ def fetch_exchange(
     """
     Net flow across a NEM border, summed over the interconnectors that form it.
 
-    Reading interconnectors directly means the result does not depend on how many
-    borders a region has, unlike the reconstruction in OPENNEM.fetch_exchange:
-    when a new interconnector is commissioned this parser keeps reporting each
-    existing border correctly and logs the one it does not know.
+    Datetimes not reported by every interconnector of the border are dropped, and
+    interconnectors this parser does not map are logged.
     """
     session = session or Session()
     exchange_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
