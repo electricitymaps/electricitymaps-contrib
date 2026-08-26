@@ -103,7 +103,7 @@ def test_build_consumption_list_skips_null_future_and_malformed():
 
 @pytest.fixture
 def flows_mock(requests_mock):
-    """Every exchange is reconstructed from one region-grouped flows response."""
+    """One region-grouped flows response, serving every exchange."""
     mock_data = Path(base_path_to_mock, "OPENNEM_flows_NEM.json")
     requests_mock.register_uri(
         ANY,
@@ -132,10 +132,8 @@ def test_au_nsw_au_vic_exchange(flows_mock, session, snapshot):
 def test_single_neighbour_exchange_follows_region_net_exports(
     flows_mock, session, zone_key1, zone_key2, region
 ):
-    """
-    SA and TAS each have a single neighbour, VIC, so a region exporting means a
-    positive flow towards VIC, which is on the right of the arrow in both keys.
-    """
+    """VIC is on the right of the arrow in both keys, so the region's net exports
+    are the netflow."""
     events = fetch_exchange(zone_key1, zone_key2, session, EXCHANGE_TARGET_DATETIME)
 
     flows = json.loads(Path(base_path_to_mock, "OPENNEM_flows_NEM.json").read_text())
@@ -162,14 +160,11 @@ def test_single_neighbour_exchange_follows_region_net_exports(
 
 
 def test_reconstructed_flows_balance_victorias_own_series(flows_mock, session):
-    """
-    VIC's reported net exports must equal minus the sum of its three borders.
+    """VIC's reported net exports equal minus the sum of its three borders.
 
-    This is the system-wide balance - the five regions' net exports sum to zero -
-    seen through the reconstruction, so it pins the sign and weight of every
-    coefficient feeding a VIC border. It cannot detect a *missing* exchange:
-    region-aggregate flows carry no topology, so a new interconnector (NSW-SA,
-    say) would keep the sum at zero while silently corrupting two borders.
+    This is the five regions' net exports summing to zero, seen through the
+    reconstruction, so it pins the sign and weight of each coefficient. It cannot
+    detect a missing exchange.
     """
     borders = [
         fetch_exchange(zone_key1, "AU-VIC", session, EXCHANGE_TARGET_DATETIME)

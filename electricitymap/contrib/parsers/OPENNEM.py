@@ -447,8 +447,7 @@ def _build_region_net_exports(
     Build each network region's net exports (exports - imports) per datetime from
     the flow datasets of the market endpoint.
 
-    Datetimes where either side is missing or null are dropped, as a netflow
-    cannot be derived from one side alone.
+    Datetimes where either side is missing or null are dropped.
     """
     flows: dict[str, dict[str, dict[datetime, float]]] = {}
     for dataset in datasets:
@@ -484,8 +483,7 @@ def _flow_resolution(
     """
     Resolution shared by the flow datasets, used to reconstruct end_datetime.
 
-    Imports and exports are summed per datetime, so they have to be reported at
-    the same resolution for the result to mean anything.
+    Raises if the flow datasets report different intervals.
     """
     intervals = {
         dataset["interval"]
