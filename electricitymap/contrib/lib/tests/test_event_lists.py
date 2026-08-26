@@ -1252,6 +1252,68 @@ def test_merge_exchanges_sums_partially_reported_datetimes_by_default():
     assert [event["netFlow"] for event in merged] == [15, 20]
 
 
+def _production_list_at(logger, offsets_and_wind, source="trust.me"):
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    breakdowns = ProductionBreakdownList(logger)
+    for offset, wind in offsets_and_wind:
+        breakdowns.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt + timedelta(hours=offset),
+            production=ProductionMix(wind=wind),
+            source=source,
+        )
+    return breakdowns
+
+
+def test_merge_production_breakdowns_can_drop_non_matching_datetimes():
+    # Same rule as merge_exchanges, sharing one implementation: parts of one
+    # total, so an hour an input does not cover is dropped rather than summed
+    # short. Previously this counted events per datetime instead.
+    logger = logging.Logger("test")
+    with patch.object(logger, "warning") as mock_warning:
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [
+                _production_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+                _production_list_at(logger, [(0, 5)], source="b.com"),
+            ],
+            logger,
+            drop_non_matching_datetimes=True,
+        ).to_list()
+
+    assert [event["datetime"] for event in merged] == [
+        datetime(2023, 1, 1, tzinfo=timezone.utc)
+    ]
+    assert merged[0]["production"]["wind"] == 15
+    mock_warning.assert_called_once()
+
+
+def test_merge_production_breakdowns_sums_partially_covered_datetimes_by_default():
+    logger = logging.Logger("test")
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [
+            _production_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+            _production_list_at(logger, [(0, 5)], source="b.com"),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["production"]["wind"] for event in merged] == [15, 20]
+
+
+def test_merge_production_breakdowns_dropping_non_matching_drops_all_when_one_input_is_empty():
+    logger = logging.Logger("test")
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [
+            _production_list_at(logger, [(0, 10), (1, 20)]),
+            ProductionBreakdownList(logger),
+        ],
+        logger,
+        drop_non_matching_datetimes=True,
+    ).to_list()
+
+    assert merged == []
+
+
 def test_merge_exchanges_can_drop_non_matching_datetimes():
     # Parts of one total: an hour missing a part would be summed short, so it is
     # dropped instead.
