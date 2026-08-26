@@ -4,7 +4,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 26, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
       'end_datetime': datetime.datetime(2026, 8, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
-      'netFlow': 405.29688,
+      'netFlow': np.float64(405.29688),
       'sortedZoneKeys': 'AU-TAS->AU-VIC',
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -12,7 +12,7 @@
     dict({
       'datetime': datetime.datetime(2026, 8, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
       'end_datetime': datetime.datetime(2026, 8, 26, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
-      'netFlow': 413.89844,
+      'netFlow': np.float64(413.89844),
       'sortedZoneKeys': 'AU-TAS->AU-VIC',
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
