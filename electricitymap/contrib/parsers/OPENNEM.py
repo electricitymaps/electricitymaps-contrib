@@ -419,22 +419,25 @@ def fetch_exchange(
             zone_key=exchange_key,
         )
 
-    events = ExchangeList(logger=logger)
-    for dt in sorted(
-        set.intersection(*(set(net_exports[region]) for region in region_coefficients))
-    ):
-        netflow = sum(
-            coefficient * net_exports[region][dt]
-            for region, coefficient in region_coefficients.items()
-        )
-        events.append(
-            datetime=dt,
-            end_datetime=dt + resolution if resolution else None,
-            netFlow=netflow,
-            zoneKey=exchange_key,
-            source=SOURCE,
-        )
-    return events.to_list()
+    # Only datetimes every region reported can be summed; a term missing from
+    # the sum would understate the netflow rather than show up as missing.
+    common = set.intersection(
+        *(set(net_exports[region]) for region in region_coefficients)
+    )
+    contributions = []
+    for region, coefficient in region_coefficients.items():
+        events = ExchangeList(logger=logger)
+        for dt in common:
+            events.append(
+                datetime=dt,
+                end_datetime=dt + resolution if resolution else None,
+                netFlow=coefficient * net_exports[region][dt],
+                zoneKey=exchange_key,
+                source=SOURCE,
+            )
+        contributions.append(events)
+
+    return ExchangeList.merge_exchanges(contributions, logger).to_list()
 
 
 def _build_region_net_exports(
