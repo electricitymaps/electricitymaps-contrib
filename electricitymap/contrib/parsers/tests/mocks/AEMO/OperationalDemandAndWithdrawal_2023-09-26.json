@@ -1,0 +1,46 @@
+{
+ "data": {
+  "data": [
+   {
+    "dispatchInterval": "2023-09-26T08:00:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:05:00+08:00",
+    "operationalDemand": 1696.443,
+    "operationalWithdrawal": -50.641
+   },
+   {
+    "dispatchInterval": "2023-09-26T08:05:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:10:00+08:00",
+    "operationalDemand": 1648.299,
+    "operationalWithdrawal": -51.944
+   },
+   {
+    "dispatchInterval": "2023-09-26T08:10:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:15:00+08:00",
+    "operationalDemand": 1650.782,
+    "operationalWithdrawal": -47.269
+   },
+   {
+    "dispatchInterval": "2023-09-26T08:15:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:20:00+08:00",
+    "operationalDemand": 1588.236,
+    "operationalWithdrawal": -53.396
+   },
+   {
+    "dispatchInterval": "2023-09-26T08:20:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:25:00+08:00",
+    "operationalDemand": 1569.571,
+    "operationalWithdrawal": -44.437
+   },
+   {
+    "dispatchInterval": "2023-09-26T08:25:00+08:00",
+    "asAtTimeStamp": "2023-09-26T08:30:00+08:00",
+    "operationalDemand": 1513.153,
+    "operationalWithdrawal": -42.063
+   }
+  ]
+ },
+ "errors": [],
+ "warnings": [],
+ "infos": [],
+ "transactionId": "f4b953e7-0d64-4347-baf3-56535bb4ac02"
+}
