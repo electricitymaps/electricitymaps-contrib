@@ -5,8 +5,9 @@ import io
 import logging
 import re
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 from requests_mock import GET
@@ -77,7 +78,7 @@ LIVE_DISPATCH_FILES = (
     "PUBLIC_DISPATCHIS_202608260250_0000000534470840.zip",
 )
 # The fixtures above hold the dispatch intervals ending 02:45 and 02:50 AEST.
-AEST = timezone(timedelta(hours=10))
+AEST = ZoneInfo("Australia/Brisbane")  # AEST year round, never DST
 EXCHANGE_PAIRS = [
     ("AU-NSW", "AU-QLD"),
     ("AU-NSW", "AU-VIC"),
