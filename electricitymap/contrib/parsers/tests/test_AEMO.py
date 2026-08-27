@@ -4,7 +4,7 @@ import io
 import logging
 import re
 import zipfile
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -325,7 +325,7 @@ def test_unknown_exchange_raises(session):
 
 # --- WEM (AU-WA) ------------------------------------------------------------
 
-AWST = timezone(timedelta(hours=8))
+AWST = ZoneInfo("Australia/Perth")  # AWST, +08:00 year round, never DST
 WEM_SUMMARY_FILE = "balancing-summary-2023.csv"
 
 
