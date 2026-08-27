@@ -345,7 +345,7 @@ isRenewable:
     - datetime: '2025-01-01'
       value: 0.494
 parsers:
-  consumption: OPENNEM.fetch_consumption
+  consumption: AEMO.fetch_consumption
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
