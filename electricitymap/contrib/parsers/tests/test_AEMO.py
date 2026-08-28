@@ -1,14 +1,25 @@
 """Tests for AEMO.py"""
 
+import csv
+import io
+import logging
 import re
+import zipfile
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 from requests_mock import GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.parsers.AEMO import fetch_consumption_forecast
+from electricitymap.contrib.parsers.AEMO import (
+    CURRENT_DISPATCH_URL,
+    EXCHANGE_KEY_TO_INTERCONNECTORS,
+    fetch_consumption_forecast,
+    fetch_exchange,
+)
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/AEMO")
 
@@ -60,3 +71,217 @@ def test_snapshot_fetch_consumption_forecast(
         session=session,
         target_datetime=datetime(2025, 4, 1, 18, 0),  # Mock file has this datetime
     )
+
+
+LIVE_DISPATCH_FILES = (
+    "PUBLIC_DISPATCHIS_202608260245_0000000534470301.zip",
+    "PUBLIC_DISPATCHIS_202608260250_0000000534470840.zip",
+)
+# The fixtures above hold the dispatch intervals ending 02:45 and 02:50 AEST.
+AEST = ZoneInfo("Australia/Brisbane")  # AEST year round, never DST
+EXCHANGE_PAIRS = [
+    ("AU-NSW", "AU-QLD"),
+    ("AU-NSW", "AU-VIC"),
+    ("AU-SA", "AU-VIC"),
+    ("AU-TAS", "AU-VIC"),
+]
+
+
+def _dispatch_zip(rows: list[str]) -> bytes:
+    """A dispatch report holding just the interconnector rows given."""
+    header = (
+        "I,DISPATCH,INTERCONNECTORRES,3,SETTLEMENTDATE,RUNNO,INTERCONNECTORID,"
+        "DISPATCHINTERVAL,INTERVENTION,METEREDMWFLOW,MWFLOW,MWLOSSES"
+    )
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("PUBLIC_DISPATCHIS_TEST.CSV", "\n".join([header, *rows]))
+    return buffer.getvalue()
+
+
+def _interconnector_flows(fixture: str) -> dict[tuple[str, str], float]:
+    """(settlement, interconnector) -> metered flow, read straight from a fixture."""
+    flows = {}
+    with zipfile.ZipFile(Path(BASE_PATH_TO_MOCK, fixture)) as archive:
+        content = archive.read(archive.namelist()[0]).decode()
+    columns = None
+    for row in csv.reader(io.StringIO(content)):
+        if len(row) < 4 or row[1] != "DISPATCH" or row[2] != "INTERCONNECTORRES":
+            continue
+        if row[0] == "I":
+            columns = row[4:]
+        elif columns is not None:
+            values = dict(zip(columns, row[4:], strict=False))
+            if values["INTERVENTION"] == "0":
+                flows[values["SETTLEMENTDATE"], values["INTERCONNECTORID"]] = float(
+                    values["METEREDMWFLOW"]
+                )
+    return flows
+
+
+@pytest.fixture
+def live_dispatch_mock(requests_mock):
+    """The two most recent dispatch reports, as AEMO serves them."""
+    requests_mock.register_uri(
+        GET,
+        CURRENT_DISPATCH_URL,
+        text="".join(f'<a href="{name}">{name}</a>' for name in LIVE_DISPATCH_FILES),
+    )
+    for name in LIVE_DISPATCH_FILES:
+        requests_mock.register_uri(
+            GET,
+            CURRENT_DISPATCH_URL + name,
+            content=Path(BASE_PATH_TO_MOCK, name).read_bytes(),
+        )
+    return requests_mock
+
+
+@pytest.mark.parametrize(("zone_key1", "zone_key2"), EXCHANGE_PAIRS)
+def test_snapshot_fetch_exchange(
+    live_dispatch_mock, session, snapshot, zone_key1, zone_key2
+):
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
+        zone_key1, zone_key2, session
+    )
+
+
+def test_exchange_stamps_the_start_of_the_dispatch_interval(
+    live_dispatch_mock, session
+):
+    """The fixtures are the intervals ending 02:45 and 02:50 AEST."""
+    events = fetch_exchange("AU-TAS", "AU-VIC", session)
+
+    assert [event["datetime"] for event in events] == [
+        datetime(2026, 8, 26, 2, 40, tzinfo=AEST),
+        datetime(2026, 8, 26, 2, 45, tzinfo=AEST),
+    ]
+    assert [event["end_datetime"] for event in events] == [
+        datetime(2026, 8, 26, 2, 45, tzinfo=AEST),
+        datetime(2026, 8, 26, 2, 50, tzinfo=AEST),
+    ]
+
+
+@pytest.mark.parametrize(("zone_key1", "zone_key2"), EXCHANGE_PAIRS)
+def test_exchange_sums_every_interconnector_on_the_border(
+    live_dispatch_mock, session, zone_key1, zone_key2
+):
+    """QNI + Terranora for NSW-QLD, Heywood + Murraylink for SA-VIC, one line each
+    for the other two, signed by AEMO's REGIONFROM -> REGIONTO."""
+    events = fetch_exchange(zone_key1, zone_key2, session)
+    flows = _interconnector_flows(LIVE_DISPATCH_FILES[0])
+    settlement = "2026/08/26 02:45:00"
+    expected = sum(
+        direction * flows[settlement, interconnector]
+        for interconnector, direction in EXCHANGE_KEY_TO_INTERCONNECTORS[
+            f"{zone_key1}->{zone_key2}"
+        ].items()
+    )
+
+    first = events[0]
+    assert first["end_datetime"] == datetime(2026, 8, 26, 2, 45, tzinfo=AEST)
+    assert first["netFlow"] == pytest.approx(expected)
+
+
+def test_exchange_skips_an_interval_missing_an_interconnector(requests_mock, session):
+    """An interval one line of the border did not report yields no event."""
+    name = "PUBLIC_DISPATCHIS_202608260245_0000000000000001.zip"
+    requests_mock.register_uri(
+        GET, CURRENT_DISPATCH_URL, text=f'<a href="{name}">x</a>'
+    )
+    requests_mock.register_uri(
+        GET,
+        CURRENT_DISPATCH_URL + name,
+        content=_dispatch_zip(
+            [  # QNI reported, Terranora missing
+                "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,NSW1-QLD1,1,0,-492.8,-490,1.2",
+                "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,T-V-MNSP1,1,0,386.4,380,2.1",
+            ]
+        ),
+    )
+
+    assert fetch_exchange("AU-NSW", "AU-QLD", session) == []
+    # the border that is complete still reports
+    assert len(fetch_exchange("AU-TAS", "AU-VIC", session)) == 1
+
+
+def test_republished_interval_is_not_counted_twice(requests_mock, session):
+    """The same interval published twice, as AEMO does when revising it, is
+    counted once."""
+    rows = [
+        "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,T-V-MNSP1,1,0,386.4,380,2.1"
+    ]
+    names = [
+        "PUBLIC_DISPATCHIS_202608260245_0000000000000003.zip",
+        "PUBLIC_DISPATCHIS_202608260245_0000000000000004.zip",  # same interval, revised
+    ]
+    requests_mock.register_uri(
+        GET,
+        CURRENT_DISPATCH_URL,
+        text="".join(f'<a href="{name}">x</a>' for name in names),
+    )
+    for name in names:
+        requests_mock.register_uri(
+            GET, CURRENT_DISPATCH_URL + name, content=_dispatch_zip(rows)
+        )
+
+    events = fetch_exchange("AU-TAS", "AU-VIC", session)
+
+    assert [event["netFlow"] for event in events] == [386.4]
+
+
+def test_unmapped_interconnector_is_reported_but_not_fatal(
+    requests_mock, session, caplog
+):
+    """An interconnector the parser does not map is logged, and the borders it
+    does map still report."""
+    name = "PUBLIC_DISPATCHIS_202608260245_0000000000000002.zip"
+    requests_mock.register_uri(
+        GET, CURRENT_DISPATCH_URL, text=f'<a href="{name}">x</a>'
+    )
+    requests_mock.register_uri(
+        GET,
+        CURRENT_DISPATCH_URL + name,
+        content=_dispatch_zip(
+            [
+                "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,T-V-MNSP1,1,0,386.4,380,2.1",
+                "D,DISPATCH,INTERCONNECTORRES,3,2026/08/26 02:45:00,1,S-N-PEC,1,0,150,150,1",
+            ]
+        ),
+    )
+
+    with caplog.at_level(logging.WARNING):
+        events = fetch_exchange("AU-TAS", "AU-VIC", session)
+
+    assert [event["netFlow"] for event in events] == [386.4]
+    assert "S-N-PEC" in caplog.text
+
+
+def test_backfill_reads_the_monthly_archive(requests_mock, session):
+    """A target datetime is served from the monthly archive."""
+    requests_mock.register_uri(
+        GET,
+        re.compile(r".*DISPATCHINTERCONNECTORRES.*"),
+        content=Path(
+            BASE_PATH_TO_MOCK,
+            "PUBLIC_ARCHIVE_DISPATCHINTERCONNECTORRES_202607010000.zip",
+        ).read_bytes(),
+    )
+
+    events = fetch_exchange(
+        "AU-NSW",
+        "AU-QLD",
+        session,
+        target_datetime=datetime(2026, 7, 8, tzinfo=AEST),
+    )
+
+    assert [event["datetime"] for event in events] == [
+        datetime(2026, 7, 1, 0, 0, tzinfo=AEST),
+        datetime(2026, 7, 1, 0, 5, tzinfo=AEST),
+        datetime(2026, 7, 1, 0, 10, tzinfo=AEST),
+    ]
+    assert all(event["source"] == "aemo.com.au" for event in events)
+
+
+def test_unknown_exchange_raises(session):
+    with pytest.raises(ParserException, match="AU-NSW->AU-SA"):
+        fetch_exchange("AU-NSW", "AU-SA", session)
