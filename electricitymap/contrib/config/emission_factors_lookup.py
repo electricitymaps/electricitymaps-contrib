@@ -77,7 +77,7 @@ def _get_zone_specific_co2eq_parameter_no_metadata(
 
     if isinstance(res, list):
         # `n` dates are sorted in ascending order (d1, d2, ..., dn)
-        # d1 is valid from from (epoch to d2)
+        # d1 is valid from (epoch to d2)
         # d2 is valid from (d2 to d3)
         # dn is valid from (dn to end_of_time)
 
@@ -136,7 +136,7 @@ def _get_zone_specific_co2eq_parameter_with_metadata(
 
     if isinstance(res, list):
         # `n` dates are sorted in ascending order (d1, d2, ..., dn)
-        # d1 is valid from from (epoch to d2)
+        # d1 is valid from (epoch to d2)
         # d2 is valid from (d2 to d3)
         # dn is valid from (dn to end_of_time)
 
