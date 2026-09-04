@@ -1,9 +1,10 @@
 import csv
 import io
+import json
 import re
 import zipfile
 from collections.abc import Iterable, Iterator
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any, NamedTuple
 from zoneinfo import ZoneInfo
@@ -28,7 +29,7 @@ ZONE_KEY_TO_REGION = {
     "AU-SA": "SA1",
     "AU-TAS": "TAS1",
     "AU-VIC": "VIC1",
-    "AU-WA": "WEM",  # This zone is not implemented yet
+    "AU-WA": "WEM",  # a market of its own, read from the WEM feeds below
 }
 
 ZONE_KEY_TO_TIMEZONE = {
@@ -37,11 +38,8 @@ ZONE_KEY_TO_TIMEZONE = {
     "AU-SA": ZoneInfo("Australia/Adelaide"),
     "AU-TAS": ZoneInfo("Australia/Hobart"),
     "AU-VIC": ZoneInfo("Australia/Melbourne"),
-    "AU-WA": ZoneInfo("Australia/Perth"),  # This zone is not implemented yet
+    "AU-WA": ZoneInfo("Australia/Perth"),
 }
-
-# TODO, what about the other zone in Australia (AU-WA)? Check remaining zone
-
 
 # --- Dispatch and forecast reports ------------------------------------------
 #
@@ -316,6 +314,197 @@ def _dispatch_intervals(
         )
 
 
+# --- WEM operational demand -------------------------------------------------
+#
+# AU-WA is the Wholesale Electricity Market, a market of its own on a host of
+# its own publishing JSON and CSV rather than the NEM's report archives, so it
+# does not share the dispatch plumbing above. Three feeds cover it:
+#   - the real-time estimate, a single instantaneous reading;
+#   - one file per day of settled 5 minute dispatch intervals, published about
+#     two days late, which is what the refetch reads;
+#   - the balancing summary of the years before WEMDE, half hourly.
+
+WEM_TIMEZONE = ZoneInfo("Australia/Perth")  # AWST, +08:00 year round, never DST
+WEM_DISPATCH_INTERVAL = timedelta(minutes=5)
+WEM_TRADING_INTERVAL = timedelta(minutes=30)  # the pre-WEMDE resolution
+# A missing day older than this is missing rather than merely unpublished.
+WEM_PUBLICATION_LAG = timedelta(days=3)
+
+WEM_REALTIME_URL = (
+    "https://data.wa.aemo.com.au/public/market-data/wemde/operationalDemandWithdrawal/"
+    "realTime/OperationalDemandAndWithdrawalEstimate.json"
+)
+WEM_DAILY_URL = (
+    "https://data.wa.aemo.com.au/public/market-data/wemde/operationalDemandWithdrawal/"
+    "dailyFiles/OperationalDemandAndWithdrawal_{day}.json"
+)
+WEM_BALANCING_SUMMARY_URL = (
+    "https://data.wa.aemo.com.au/public/public-data/datafiles/balancing-summary/"
+    "balancing-summary-{year}.csv"
+)
+# WEMDE dispatched its first interval on 2023-10-01 and ran in parallel from
+# this instant, which is where the balancing summary before it hands over.
+WEM_DISPATCH_START = datetime(2023, 9, 26, tzinfo=timezone.utc)
+BALANCING_SUMMARY_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+
+
+class DemandInterval(NamedTuple):
+    """Demand in MW over one interval."""
+
+    start: datetime
+    end: datetime
+    demand: float
+
+
+def _utc_days(start: datetime, end: datetime) -> list[date]:
+    """The UTC days a half-open window touches, oldest first."""
+    days = []
+    day = start.astimezone(timezone.utc).date()
+    # end is exclusive, so a window ending at midnight stops the day before
+    last = (end - timedelta(minutes=1)).astimezone(timezone.utc).date()
+    while day <= last:
+        days.append(day)
+        day += timedelta(days=1)
+    return days
+
+
+def _wem_live_interval(session: Session) -> Iterator[DemandInterval]:
+    """
+    The dispatch interval in progress, from AEMO's real-time estimate.
+
+    The estimate is one instantaneous reading rather than a series, so a live
+    call yields a single interval, stamped at the start of the interval the
+    reading falls in - where the refetch later files the settled value over it.
+    """
+    response = session.get(WEM_REALTIME_URL)
+    response.raise_for_status()
+    row = response.json()["data"]["data"]
+    demand = row.get("operationalDemandEstimate")
+    if demand is None:
+        return
+    as_at = datetime.fromisoformat(row["asAtTimeStamp"])
+    minutes = int(WEM_DISPATCH_INTERVAL.total_seconds() // 60)
+    start = as_at.replace(second=0, microsecond=0) - timedelta(
+        minutes=as_at.minute % minutes
+    )
+    yield DemandInterval(start, start + WEM_DISPATCH_INTERVAL, float(demand))
+
+
+def _wem_dispatch_intervals(session: Session, day: date) -> Iterator[DemandInterval]:
+    """Settled dispatch intervals of one UTC day, empty when unpublished."""
+    blob = _get_if_published(session, WEM_DAILY_URL.format(day=day.isoformat()))
+    if blob is None:
+        return
+    for row in json.loads(blob)["data"]["data"]:
+        if row["operationalDemand"] is None:
+            continue
+        yield DemandInterval(
+            # dispatchInterval is the start of the interval and asAtTimeStamp
+            # its end, the opposite of the NEM's single SETTLEMENTDATE stamp
+            datetime.fromisoformat(row["dispatchInterval"]),
+            datetime.fromisoformat(row["asAtTimeStamp"]),
+            float(row["operationalDemand"]),
+        )
+
+
+def _wem_trading_intervals(session: Session, year: int) -> Iterator[DemandInterval]:
+    """
+    Half-hourly intervals of one pre-WEMDE year, empty when unpublished.
+
+    Operational demand is not published for these years, so this is total sent
+    out generation, which over the five days the two feeds overlap tracks it to
+    a -5 MW mean bias and 28 MW mean absolute on a 2 GW system.
+    """
+    blob = _get_if_published(session, WEM_BALANCING_SUMMARY_URL.format(year=year))
+    if blob is None:
+        return
+    for row in csv.DictReader(io.StringIO(blob.decode("utf-8", errors="replace"))):
+        # a row short of columns reads as unfilled rather than as a value
+        generation = row["Total Generation (MW)"]
+        if not generation:
+            continue
+        start = datetime.strptime(
+            row["Trading Interval"], BALANCING_SUMMARY_DATETIME_FORMAT
+        ).replace(tzinfo=WEM_TIMEZONE)
+        yield DemandInterval(start, start + WEM_TRADING_INTERVAL, float(generation))
+
+
+def _wem_demand_intervals(
+    session: Session,
+    target_datetime: datetime | None,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> Iterator[DemandInterval]:
+    """
+    Operational demand of the WEM, live or over the refetch window.
+
+    Both archives file a day, and a year, by its UTC bounds - the file named
+    2026-08-24 holds the intervals from 08:00 AWST that day to 07:55 the next -
+    so the window is walked in UTC days. Each feed is read only over the range
+    it covers, so the days the two overlap are not reported at both
+    resolutions. Raises when neither feed published anything for those days.
+    """
+    if target_datetime is None:
+        yield from _wem_live_interval(session)
+        return
+
+    end = target_datetime.astimezone(timezone.utc)
+    window = (end - REFETCH_FREQUENCY, end)
+    summary_days = _utc_days(window[0], min(window[1], WEM_DISPATCH_START))
+    dispatch_days = _utc_days(max(window[0], WEM_DISPATCH_START), window[1])
+    published_by = datetime.now(tz=timezone.utc).date() - WEM_PUBLICATION_LAG
+
+    published = 0
+    for year in sorted({day.year for day in summary_days}):
+        intervals = list(_wem_trading_intervals(session, year))
+        if not intervals:
+            logger.warning(f"AEMO has no published WEM balancing summary for {year}")
+        published += len(intervals)
+        yield from (
+            interval
+            for interval in intervals
+            if window[0] <= interval.start < min(window[1], WEM_DISPATCH_START)
+        )
+
+    for day in dispatch_days:
+        intervals = list(_wem_dispatch_intervals(session, day))
+        # the daily files run about two days behind, so a missing recent day is
+        # expected - the refetch reaching it next reads it
+        if not intervals and day < published_by:
+            logger.warning(f"AEMO has no published WEM demand for {day}")
+        published += len(intervals)
+        yield from (
+            interval
+            for interval in intervals
+            if window[0] <= interval.start < window[1]
+        )
+
+    if not published:
+        raise ParserException(
+            parser="AEMO",
+            message=f"AEMO published no WEM demand for {window[0]:%Y-%m-%d} to {window[1]:%Y-%m-%d}. "
+            f"Dispatch intervals start {WEM_DISPATCH_START:%Y-%m-%d} and the "
+            "balancing summary before them starts 2012-07-01.",
+            zone_key=zone_key,
+        )
+
+
+def _nem_demand_intervals(
+    session: Session,
+    region: str,
+    target_datetime: datetime | None,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> Iterator[DemandInterval]:
+    """Operational demand of one NEM region, as dispatched (`TOTALDEMAND`)."""
+    for row, start, end in _dispatch_intervals(
+        session, REGION_SUM, target_datetime, zone_key, logger
+    ):
+        if row["REGIONID"] != region or not row["TOTALDEMAND"]:
+            continue
+        yield DemandInterval(start, end, float(row["TOTALDEMAND"]))
+
+
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
     zone_key1: ZoneKey,
@@ -387,33 +576,33 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """
-    Operational demand of a NEM region, as dispatched (`TOTALDEMAND`).
+    Operational demand of an Australian market region.
 
-    WEM is a separate market whose data AEMO publishes elsewhere, so AU-WA is
-    not served here.
+    The NEM regions are read from dispatch (`TOTALDEMAND`), AU-WA from the WEM
+    feeds, which are a different host and format on their own resolutions.
     """
     session = mount_retry(session or Session())
-    # None for an unknown zone and WEM for AU-WA both miss the NEM regions.
     region = ZONE_KEY_TO_REGION.get(zone_key)
-    if region not in REGION_TO_ZONE_KEY:
+    if region is None:
         raise ParserException(
             parser="AEMO",
-            message=f"Valid zone keys for this parser are {sorted(REGION_TO_ZONE_KEY.values())}, you passed {zone_key=}",
+            message=f"Valid zone keys for this parser are {sorted(ZONE_KEY_TO_REGION)}, you passed {zone_key=}",
             zone_key=zone_key,
         )
 
+    intervals = (
+        _wem_demand_intervals(session, target_datetime, zone_key, logger)
+        if region == "WEM"
+        else _nem_demand_intervals(session, region, target_datetime, zone_key, logger)
+    )
     # A republished interval arrives twice; TotalConsumptionList keeps the last.
     consumption = TotalConsumptionList(logger)
-    for row, start, end in _dispatch_intervals(
-        session, REGION_SUM, target_datetime, zone_key, logger
-    ):
-        if row["REGIONID"] != region or not row["TOTALDEMAND"]:
-            continue
+    for start, end, demand in intervals:
         consumption.append(
             zoneKey=zone_key,
             datetime=start,
             end_datetime=end,
-            consumption=float(row["TOTALDEMAND"]),
+            consumption=demand,
             source=SOURCE,
         )
     return consumption.to_list()
@@ -428,7 +617,8 @@ def fetch_consumption_forecast(
     """
     Consumption forecast in MW every half an hour for 10 days ahead.
 
-    Only the NEM regions are forecast; AU-WA returns an empty list.
+    Only the NEM regions are covered by this report; the WEM load forecast is
+    published elsewhere, so AU-WA returns an empty list.
     """
     session = mount_retry(session or Session())
     region = ZONE_KEY_TO_REGION.get(zone_key)
@@ -462,9 +652,12 @@ if __name__ == "__main__":
     print(fetch_consumption_forecast("AU-SA"))
     print(fetch_consumption_forecast("AU-TAS"))
     print(fetch_consumption_forecast("AU-VIC"))
+    print(fetch_consumption_forecast("AU-WA"))  # not forecast, an empty list
+
+    print(fetch_consumption("AU-WA"))
     print(
-        fetch_consumption_forecast("AU-WA")
-    )  # Not implemented yet. It returns an empty list
+        fetch_consumption("AU-WA", target_datetime=datetime.fromisoformat("2015-06-15"))
+    )
 
     print(fetch_exchange("AU-NSW", "AU-QLD"))
     print(
