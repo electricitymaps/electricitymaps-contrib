@@ -89,6 +89,14 @@ class EntsoeTypeEnum(str, Enum):
         return self.value
 
 
+class SequenceEnum(str, Enum):
+    FIRST = "1"
+    SECOND = "2"
+
+    def __str__(self) -> str:
+        return self.value
+
+
 class EntsoeDocumentTypeEnum(str, Enum):
     ESTIMATED_NET_TRANSFER_CAPACITY = "A61"
 
@@ -275,6 +283,9 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
 }
 
+# Zones for which EXAA (secondary day-ahead auction) price data is available
+EXAA_SUPPORTED_ZONE_KEYS = {"DE", "AT"}
+
 
 def query_ENTSOE(
     session: Session,
@@ -458,6 +469,7 @@ def query_price(
     domain: str,
     session: Session,
     target_datetime: datetime | None = None,
+    classification_sequence: SequenceEnum | None = None,
 ) -> str | None:
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
@@ -469,6 +481,12 @@ def query_price(
         "out_Domain": domain,
         "contract_MarketAgreement.type": EntsoeTypeEnum.DAY_AHEAD,
     }
+
+    if classification_sequence is not None:
+        params["classificationSequence_AttributeInstanceComponent.position"] = (
+            classification_sequence.value
+        )
+
     return query_ENTSOE(
         session,
         params,
@@ -1094,6 +1112,7 @@ def parse_prices(
     xml_text: str,
     zoneKey: ZoneKey,
     logger: Logger,
+    source_type: EventSourceType = EventSourceType.measured,
 ) -> PriceList:
     if not xml_text:
         return PriceList(logger)
@@ -1110,6 +1129,7 @@ def parse_prices(
                 price=value,
                 source="entsoe.eu",
                 currency=currency,
+                sourceType=source_type,
             )
 
     return prices
@@ -1502,6 +1522,58 @@ def fetch_price(
             zone_key=zone_key,
         )
     return parse_prices(raw_price_data, zone_key, logger).to_list()
+
+
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
+def fetch_exaa_price(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Gets EXAA day-ahead price for DE-LU or AT."""
+
+    if zone_key not in EXAA_SUPPORTED_ZONE_KEYS:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"EXAA price is only supported for {sorted(EXAA_SUPPORTED_ZONE_KEYS)}",
+            zone_key=zone_key,
+        )
+
+    if not session:
+        session = Session()
+
+    domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
+
+    try:
+        raw_price_data = query_price(
+            domain,
+            session,
+            target_datetime=target_datetime,
+            # classificationSequence=2 selects the EXAA auction, per ENTSO-E API
+            # docs (documentType=A44, contract_MarketAgreement.type=A01).
+            classification_sequence=SequenceEnum.SECOND,
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch EXAA price for {zone_key}",
+            zone_key=zone_key,
+        ) from e
+
+    if raw_price_data is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No EXAA price data found for {zone_key}",
+            zone_key=zone_key,
+        )
+
+    return parse_prices(
+        raw_price_data,
+        zone_key,
+        logger,
+        source_type=EventSourceType.published,
+    ).to_list()
 
 
 # ------------------- #
