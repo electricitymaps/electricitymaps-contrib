@@ -1224,23 +1224,211 @@ def test_non_overlapping_list_clamps_overlapping_intervals():
     mock_warning.assert_called_once()
 
 
-def test_non_overlapping_list_keeps_and_warns_on_duplicate_datetimes():
+def _exchange_list_at(logger, offsets_and_flows, source="trust.me"):
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchanges = ExchangeList(logger)
+    for offset, net_flow in offsets_and_flows:
+        exchanges.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=dt + timedelta(hours=offset),
+            netFlow=net_flow,
+            source=source,
+        )
+    return exchanges
+
+
+def test_merge_exchanges_sums_partially_reported_datetimes_by_default():
+    # Two sources of the same flow: an hour only one of them covers is still
+    # worth reporting from that one.
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _exchange_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+            _exchange_list_at(logger, [(0, 5)], source="b.com"),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["netFlow"] for event in merged] == [15, 20]
+
+
+def _production_list_at(logger, offsets_and_wind, source="trust.me"):
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    breakdowns = ProductionBreakdownList(logger)
+    for offset, wind in offsets_and_wind:
+        breakdowns.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt + timedelta(hours=offset),
+            production=ProductionMix(wind=wind),
+            source=source,
+        )
+    return breakdowns
+
+
+def test_merge_production_breakdowns_can_drop_non_matching_datetimes():
+    # Same rule as merge_exchanges, sharing one implementation: parts of one
+    # total, so an hour an input does not cover is dropped rather than summed
+    # short.
+    logger = logging.Logger("test")
+    with patch.object(logger, "warning") as mock_warning:
+        merged = ProductionBreakdownList.merge_production_breakdowns(
+            [
+                _production_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+                _production_list_at(logger, [(0, 5)], source="b.com"),
+            ],
+            logger,
+            drop_non_matching_datetimes=True,
+        ).to_list()
+
+    assert [event["datetime"] for event in merged] == [
+        datetime(2023, 1, 1, tzinfo=timezone.utc)
+    ]
+    assert merged[0]["production"]["wind"] == 15
+    mock_warning.assert_called_once()
+
+
+def test_merge_production_breakdowns_sums_partially_covered_datetimes_by_default():
+    logger = logging.Logger("test")
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [
+            _production_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+            _production_list_at(logger, [(0, 5)], source="b.com"),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["production"]["wind"] for event in merged] == [15, 20]
+
+
+def test_merge_production_breakdowns_dropping_non_matching_drops_all_when_one_input_is_empty():
+    logger = logging.Logger("test")
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [
+            _production_list_at(logger, [(0, 10), (1, 20)]),
+            ProductionBreakdownList(logger),
+        ],
+        logger,
+        drop_non_matching_datetimes=True,
+    ).to_list()
+
+    assert merged == []
+
+
+def test_merge_exchanges_can_drop_non_matching_datetimes():
+    # Parts of one total: an hour missing a part would be summed short, so it is
+    # dropped instead.
+    logger = logging.Logger("test")
+    with patch.object(logger, "warning") as mock_warning:
+        merged = ExchangeList.merge_exchanges(
+            [
+                _exchange_list_at(logger, [(0, 10), (1, 20)]),
+                _exchange_list_at(logger, [(0, 5)]),
+            ],
+            logger,
+            drop_non_matching_datetimes=True,
+        ).to_list()
+
+    assert [event["netFlow"] for event in merged] == [15]
+    assert [event["datetime"] for event in merged] == [
+        datetime(2023, 1, 1, tzinfo=timezone.utc)
+    ]
+    mock_warning.assert_called_once()
+
+
+def test_merge_exchanges_dropping_non_matching_drops_all_when_one_input_is_empty():
+    # An input that reported nothing leaves no datetime complete.
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [_exchange_list_at(logger, [(0, 10), (1, 20)]), ExchangeList(logger)],
+        logger,
+        drop_non_matching_datetimes=True,
+    ).to_list()
+
+    assert merged == []
+
+
+def test_merge_exchanges_dropping_non_matching_keeps_end_datetimes():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    inputs = []
+    for net_flow in (10, 5):
+        exchanges = ExchangeList(logger)
+        exchanges.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=dt,
+            end_datetime=dt + timedelta(minutes=5),
+            netFlow=net_flow,
+            source="trust.me",
+        )
+        inputs.append(exchanges)
+
+    merged = ExchangeList.merge_exchanges(
+        inputs, logger, drop_non_matching_datetimes=True
+    ).to_list()
+
+    assert len(merged) == 1
+    assert merged[0]["netFlow"] == 15
+    assert merged[0]["end_datetime"] == dt + timedelta(minutes=5)
+
+
+def test_non_overlapping_list_collapses_duplicate_datetimes():
     logger = logging.Logger("test")
     production_list = ProductionBreakdownList(logger)
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
-    for _ in range(2):
+    for wind in (10, 12):
         production_list.append(
             zoneKey=ZoneKey("DE"),
             datetime=dt,
-            production=ProductionMix(wind=10),
+            production=ProductionMix(wind=wind),
             source="trust.me",
         )
     with patch.object(logger, "warning") as mock_warning:
         result = production_list.to_list()
-    # Duplicate starts cannot be clamped: both events are kept and a warning is
-    # emitted so the parser can be fixed upstream.
-    assert len(result) == 2
+    # One event per instant: the last append wins, so a republished interval
+    # revises the value instead of being summed on top of it downstream.
+    assert len(result) == 1
+    assert result[0]["production"]["wind"] == 12
     mock_warning.assert_called_once()
+
+
+def test_non_overlapping_list_keeps_collapsed_events_in_datetime_order():
+    logger = logging.Logger("test")
+    exchange_list = ExchangeList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for offset, net_flow in ((1, 1), (0, 2), (1, 3), (2, 4)):
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=dt + timedelta(hours=offset),
+            netFlow=net_flow,
+            source="trust.me",
+        )
+    with patch.object(logger, "warning"):
+        result = exchange_list.to_list()
+
+    assert [event["datetime"] for event in result] == [
+        dt,
+        dt + timedelta(hours=1),
+        dt + timedelta(hours=2),
+    ]
+    assert [event["netFlow"] for event in result] == [2, 3, 4]
+
+
+def test_non_overlapping_list_leaves_distinct_datetimes_alone():
+    logger = logging.Logger("test")
+    consumption_list = TotalConsumptionList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for hour in range(3):
+        consumption_list.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt + timedelta(hours=hour),
+            consumption=100 + hour,
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = consumption_list.to_list()
+
+    assert len(result) == 3
+    mock_warning.assert_not_called()
 
 
 def test_non_overlapping_list_allows_adjacent_intervals():
@@ -1301,10 +1489,10 @@ def test_non_overlapping_list_clamps_merged_mixed_resolution_gap():
     mock_warning.assert_called_once()
 
 
-def test_price_list_keeps_and_warns_on_duplicate_datetimes():
-    # PriceList represents a single series with one price per MTU. Duplicates
-    # (the ENTSO-E intraday parser collapses auction sessions upstream) are kept
-    # with a warning rather than failing the fetch.
+def test_price_list_collapses_duplicate_datetimes():
+    # PriceList represents a single series with one price per MTU, so a second
+    # price on the same MTU collapses onto the last one with a warning rather
+    # than failing the fetch or leaving two prices on one instant.
     logger = logging.Logger("test")
     price_list = PriceList(logger)
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
@@ -1318,5 +1506,28 @@ def test_price_list_keeps_and_warns_on_duplicate_datetimes():
         )
     with patch.object(logger, "warning") as mock_warning:
         result = price_list.to_list()
-    assert len(result) == 2
+    assert len(result) == 1
+    assert result[0]["price"] == 77.77
     mock_warning.assert_called_once()
+
+
+def test_list_holding_several_events_per_datetime_is_untouched():
+    # LocationalMarginalPriceList is keyed by node, so several events share a
+    # datetime legitimately. It does not use the non-overlapping mixin.
+    logger = logging.Logger("test")
+    prices = LocationalMarginalPriceList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for node in ("NODE_A", "NODE_B"):
+        prices.append(
+            zoneKey=ZoneKey("US-CENT-SWPP"),
+            datetime=dt,
+            price=20.0,
+            currency="USD",
+            node=node,
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = prices.to_list()
+
+    assert len(result) == 2
+    mock_warning.assert_not_called()
