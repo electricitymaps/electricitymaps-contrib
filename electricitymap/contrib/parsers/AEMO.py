@@ -5,12 +5,9 @@ import zipfile
 from collections.abc import Iterable, Iterator
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any
-from urllib.parse import urljoin
+from typing import Any, NamedTuple
 from zoneinfo import ZoneInfo
 
-import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -20,6 +17,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.session import mount_retry
 from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "aemo.com.au"
@@ -45,87 +43,12 @@ ZONE_KEY_TO_TIMEZONE = {
 # TODO, what about the other zone in Australia (AU-WA)? Check remaining zone
 
 
-def find_document(session, target_datetime):
-    # Fetch the directory listing
-    base_url = "http://nemweb.com.au/Reports/CURRENT/Operational_Demand/FORECAST_HH/"
-    response = session.get(base_url)
-
-    # Parse with BeautifulSoup
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # String datetime
-    target_date_str = target_datetime.strftime("%Y%m%d")
-
-    # Find matching links
-    matching_links = soup.find_all(
-        "a",
-        href=re.compile(
-            rf"PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{target_date_str}\d+_\d+\.zip"
-        ),
-    )
-
-    if matching_links:
-        target_link = matching_links[-1]  # Get the last (most recent) link
-        full_url = urljoin(base_url, target_link["href"])  # Construct full URL
-
-        file_response = session.get(full_url)
-
-        with zipfile.ZipFile(io.BytesIO(file_response.content)) as z:
-            csv_filename = z.namelist()[0]
-            with z.open(csv_filename) as f:
-                df = pd.read_csv(f)
-                return df
-    else:
-        print("No matching files found")
-
-
-def fetch_consumption_forecast(
-    zone_key: ZoneKey,  # "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[dict[str, Any]]:
-    """Consumption forecast in MW every half an hour for 10 days ahead.
-    Only for NSW1, QND1, SA1, TAS1, VIC1 zones."""
-    session = session or Session()
-
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=ZONE_KEY_TO_TIMEZONE[zone_key])
-
-    df = find_document(session, target_datetime)
-
-    # Transform dataframe
-    df.columns = df.iloc[0]
-    df = df.iloc[1:-1].reset_index(drop=True)
-
-    #
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    all_consumption_events = df[
-        df["REGIONID"] == region
-    ]  # all events with a datetime and a consumption value
-    consumption_list = TotalConsumptionList(logger)
-    for _, event in all_consumption_events.iterrows():
-        datetime_object = datetime.strptime(
-            event["INTERVAL_DATETIME"], "%Y/%m/%d %H:%M:%S"
-        ).replace(tzinfo=ZONE_KEY_TO_TIMEZONE[zone_key])
-
-        consumption_list.append(
-            zoneKey=zone_key,
-            datetime=datetime_object,
-            consumption=float(
-                event["OPERATIONAL_DEMAND_POE50"]
-            ),  # 50% probability of exceedance operational demand forecast value
-            source=SOURCE,
-            sourceType=EventSourceType.forecasted,
-        )
-    return consumption_list.to_list()
-
-
-# --- Exchanges --------------------------------------------------------------
+# --- Dispatch and forecast reports ------------------------------------------
 #
-# AEMO publishes the metered flow of every interconnector, so a border is read
-# directly instead of being reconstructed from region aggregates the way
-# OPENNEM.fetch_exchange has to. Both parsers are kept so they can be compared.
+# AEMO publishes the metered flow of every interconnector and the operational
+# demand of every region, so a border is read directly instead of being
+# reconstructed from region aggregates the way OPENNEM.fetch_exchange has to.
+# The OPENNEM parsers are kept so the two can be compared.
 
 REFETCH_FREQUENCY = timedelta(days=7)
 DISPATCH_INTERVAL = timedelta(minutes=5)
@@ -135,7 +58,7 @@ DISPATCH_INTERVAL = timedelta(minutes=5)
 # interval. OPENNEM passes the same stamp through untouched, so its events read
 # one interval later than these for the same physical interval.
 MARKET_TIMEZONE = ZoneInfo("Australia/Brisbane")  # AEST year round, never DST
-SETTLEMENT_FORMAT = "%Y/%m/%d %H:%M:%S"
+CSV_DATETIME_FORMAT = "%Y/%m/%d %H:%M:%S"
 
 CURRENT_DISPATCH_URL = "https://nemweb.com.au/Reports/Current/DispatchIS_Reports/"
 ARCHIVE_DISPATCH_URL = "https://nemweb.com.au/Reports/Archive/DispatchIS_Reports/"
@@ -147,11 +70,27 @@ MMSDM_DATA_URL = (
 # PUBLIC_DVD_..., newer ones PUBLIC_ARCHIVE#...#FILE01#... - so try both rather
 # than pin the changeover, which sits somewhere before 2025-10.
 MONTHLY_DISPATCH_FILENAMES = (
-    "PUBLIC_ARCHIVE%23DISPATCHINTERCONNECTORRES%23FILE01%23{year}{month:02d}010000.zip",
-    "PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{year}{month:02d}010000.zip",
+    "PUBLIC_ARCHIVE%23{report}{table}%23FILE01%23{year}{month:02d}010000.zip",
+    "PUBLIC_DVD_{report}{table}_{year}{month:02d}010000.zip",
 )
 # Every live interval is a separate ~20 kB file, so a live call reads one hour.
 LIVE_INTERVALS = 12
+
+FORECAST_DEMAND_URL = (
+    "https://nemweb.com.au/Reports/Current/Operational_Demand/FORECAST_HH/"
+)
+
+
+class ReportTable(NamedTuple):
+    """A table of an AEMO report, as tagged inside its CSVs."""
+
+    report: str
+    table: str
+
+
+INTERCONNECTOR_RES = ReportTable("DISPATCH", "INTERCONNECTORRES")
+REGION_SUM = ReportTable("DISPATCH", "REGIONSUM")
+FORECAST_DEMAND = ReportTable("OPERATIONAL_DEMAND", "FORECAST")
 
 # The region pair each interconnector runs between, from AEMO's INTERCONNECTOR
 # table (REGIONFROM, REGIONTO). Flows are positive from REGIONFROM to REGIONTO.
@@ -167,7 +106,7 @@ INTERCONNECTOR_TO_REGIONS = {
 REGION_TO_ZONE_KEY = {
     region: zone_key
     for zone_key, region in ZONE_KEY_TO_REGION.items()
-    if region != "WEM"  # WEM is a separate grid with no interconnectors
+    if region != "WEM"
 }
 
 
@@ -188,16 +127,17 @@ for _interconnector, _regions in INTERCONNECTOR_TO_REGIONS.items():
     EXCHANGE_KEY_TO_INTERCONNECTORS.setdefault(_key, {})[_interconnector] = _direction
 
 
-def _rows_from_csv(lines: Iterable[str]) -> Iterator[dict[str, str]]:
+def _rows_from_csv(lines: Iterable[str], rows: ReportTable) -> Iterator[dict[str, str]]:
     """
-    Interconnector rows of an AEMO report.
+    Rows of one table of an AEMO report.
 
     AEMO reports interleave tables in one CSV: an `I` row names the columns of
-    the `D` rows that follow it, both tagged with the table they belong to.
+    the `D` rows that follow it, both tagged with the report and table they
+    belong to.
     """
     columns: list[str] | None = None
     for row in csv.reader(lines):
-        if len(row) < 4 or row[1] != "DISPATCH" or row[2] != "INTERCONNECTORRES":
+        if len(row) < 4 or (row[1], row[2]) != rows:
             continue
         if row[0] == "I":
             columns = row[4:]
@@ -207,17 +147,19 @@ def _rows_from_csv(lines: Iterable[str]) -> Iterator[dict[str, str]]:
             yield dict(zip(columns, row[4:], strict=False))
 
 
-def _rows_from_zip(blob: bytes) -> Iterator[dict[str, str]]:
-    """Interconnector rows of a report archive, which may nest further zips."""
+def _rows_from_zip(blob: bytes, rows: ReportTable) -> Iterator[dict[str, str]]:
+    """Rows of one table of a report archive, which may nest further zips."""
     with zipfile.ZipFile(io.BytesIO(blob)) as archive:
         for name in archive.namelist():
-            member = archive.read(name)
             if name.lower().endswith(".zip"):
-                # daily archives hold one zip per dispatch interval
-                yield from _rows_from_zip(member)
-            else:
+                # daily archives hold one zip per dispatch interval, and zipfile
+                # needs those seekable, so they are the one case read in full
+                yield from _rows_from_zip(archive.read(name), rows)
+                continue
+            # a monthly archive holds ~50 MB of CSV, so stream it
+            with archive.open(name) as member:
                 yield from _rows_from_csv(
-                    io.StringIO(member.decode("utf-8", errors="replace"))
+                    io.TextIOWrapper(member, encoding="utf-8", errors="replace"), rows
                 )
 
 
@@ -230,43 +172,77 @@ def _get_if_published(session: Session, url: str) -> bytes | None:
     return response.content
 
 
-def _fetch_monthly_archive(session: Session, year: int, month: int) -> bytes | None:
-    """A month of interconnector rows, under whichever name AEMO filed it."""
+def _fetch_monthly_archive(
+    session: Session, year: int, month: int, rows: ReportTable
+) -> bytes | None:
+    """A month of one table's rows, under whichever name AEMO filed it."""
     for filename in MONTHLY_DISPATCH_FILENAMES:
         blob = _get_if_published(
             session,
             MMSDM_DATA_URL.format(year=year, month=month)
-            + filename.format(year=year, month=month),
+            + filename.format(year=year, month=month, **rows._asdict()),
         )
         if blob is not None:
             return blob
     return None
 
 
-def _fetch_live_rows(session: Session) -> Iterator[dict[str, str]]:
-    """Rows of the most recent dispatch intervals."""
-    listing = session.get(CURRENT_DISPATCH_URL)
+def _listed_reports(session: Session, base_url: str, pattern: str) -> list[str]:
+    """Names of the reports a directory lists, oldest first."""
+    listing = session.get(base_url)
     listing.raise_for_status()
-    names = sorted(set(re.findall(r"PUBLIC_DISPATCHIS_\d{12}_\d+\.zip", listing.text)))
+    names = sorted(set(re.findall(pattern, listing.text)))
     if not names:
         raise ParserException(
-            parser="AEMO",
-            message=f"No dispatch reports listed at {CURRENT_DISPATCH_URL}",
+            parser="AEMO", message=f"No reports matching {pattern} listed at {base_url}"
         )
+    return names
+
+
+def _fetch_report_rows(
+    session: Session, base_url: str, name: str, rows: ReportTable
+) -> Iterator[dict[str, str]]:
+    """Rows of one published report."""
+    response = session.get(base_url + name)
+    response.raise_for_status()
+    yield from _rows_from_zip(response.content, rows)
+
+
+def _fetch_live_rows(session: Session, rows: ReportTable) -> Iterator[dict[str, str]]:
+    """Rows of the most recent dispatch intervals."""
+    names = _listed_reports(
+        session, CURRENT_DISPATCH_URL, r"PUBLIC_DISPATCHIS_\d{12}_\d+\.zip"
+    )
     for name in names[-LIVE_INTERVALS:]:
-        response = session.get(CURRENT_DISPATCH_URL + name)
-        response.raise_for_status()
-        yield from _rows_from_zip(response.content)
+        yield from _fetch_report_rows(session, CURRENT_DISPATCH_URL, name, rows)
+
+
+def _fetch_forecast_rows(
+    session: Session, target_datetime: datetime
+) -> Iterator[dict[str, str]]:
+    """Rows of the last half-hourly demand forecast published on a date."""
+    names = _listed_reports(
+        session,
+        FORECAST_DEMAND_URL,
+        rf"PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{target_datetime:%Y%m%d}\d+_\d+\.zip",
+    )
+    yield from _fetch_report_rows(
+        session, FORECAST_DEMAND_URL, names[-1], FORECAST_DEMAND
+    )
 
 
 def _fetch_archived_rows(
-    session: Session, start: datetime, end: datetime, logger: Logger
+    session: Session,
+    rows: ReportTable,
+    window: tuple[datetime, datetime],
+    logger: Logger,
 ) -> Iterator[dict[str, str]]:
     """
     Rows covering a window, taken from the monthly archive where it is published,
     the daily archive for the days it does not cover, and the live reports for
     the current day.
     """
+    start, end = window
     days = set()
     day = start.date()
     while day <= end.date():
@@ -274,16 +250,16 @@ def _fetch_archived_rows(
         day += timedelta(days=1)
 
     for year, month in sorted({(d.year, d.month) for d in days}):
-        blob = _fetch_monthly_archive(session, year, month)
+        blob = _fetch_monthly_archive(session, year, month, rows)
         if blob is None:
             continue
         days -= {d for d in days if (d.year, d.month) == (year, month)}
-        yield from _rows_from_zip(blob)
+        yield from _rows_from_zip(blob, rows)
 
     today = datetime.now(tz=MARKET_TIMEZONE).date()
     for day in sorted(days):
         if day >= today:
-            yield from _fetch_live_rows(session)
+            yield from _fetch_live_rows(session, rows)
             continue
         blob = _get_if_published(
             session, f"{ARCHIVE_DISPATCH_URL}PUBLIC_DISPATCHIS_{day:%Y%m%d}.zip"
@@ -291,7 +267,53 @@ def _fetch_archived_rows(
         if blob is None:
             logger.warning(f"AEMO has no published dispatch data for {day}")
             continue
-        yield from _rows_from_zip(blob)
+        yield from _rows_from_zip(blob, rows)
+
+
+def _dispatch_intervals(
+    session: Session,
+    table: ReportTable,
+    target_datetime: datetime | None,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> Iterator[tuple[dict[str, str], datetime, datetime]]:
+    """
+    Rows of one dispatch table, paired with the interval each covers.
+
+    Reads the live reports when no target datetime is given and the archives
+    covering the refetch window otherwise, keeping the rows inside that window
+    and those of the normal dispatch run - an intervention interval is published
+    twice, with the same metered values in both. Raises when the window has no
+    published rows.
+    """
+    if target_datetime is None:
+        rows = _fetch_live_rows(session, table)
+        window = None
+    else:
+        end = target_datetime.astimezone(MARKET_TIMEZONE)
+        window = (end - REFETCH_FREQUENCY, end)
+        rows = _fetch_archived_rows(session, table, window, logger)
+
+    published = False
+    for row in rows:
+        published = True
+        if row["INTERVENTION"] != "0":
+            continue
+        settlement = datetime.strptime(
+            row["SETTLEMENTDATE"], CSV_DATETIME_FORMAT
+        ).replace(tzinfo=MARKET_TIMEZONE)
+        if window and not window[0] < settlement <= window[1]:
+            continue
+        yield row, settlement - DISPATCH_INTERVAL, settlement
+
+    if window and not published:
+        raise ParserException(
+            parser="AEMO",
+            message=f"AEMO published no {table.table} data for {window[0]:%Y-%m-%d} to {window[1]:%Y-%m-%d}. "
+            "Per-table monthly archives start in 2015; earlier months are only "
+            "distributed as whole-month bundles of every table.",
+            zone_key=zone_key,
+        )
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -308,7 +330,7 @@ def fetch_exchange(
     Datetimes not reported by every interconnector of the border are dropped, and
     interconnectors this parser does not map are logged.
     """
-    session = session or Session()
+    session = mount_retry(session or Session())
     exchange_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     interconnectors = EXCHANGE_KEY_TO_INTERCONNECTORS.get(exchange_key)
     if interconnectors is None:
@@ -318,14 +340,6 @@ def fetch_exchange(
             zone_key=exchange_key,
         )
 
-    if target_datetime is None:
-        rows = _fetch_live_rows(session)
-        window: tuple[datetime, datetime] | None = None
-    else:
-        end = target_datetime.astimezone(MARKET_TIMEZONE)
-        window = (end - REFETCH_FREQUENCY, end)
-        rows = _fetch_archived_rows(session, *window, logger)
-
     # AEMO republishes an interval under a new sequence number when it is
     # revised, and the archives overlap around midnight, so the same flow can
     # arrive twice. ExchangeList collapses those onto the last one appended,
@@ -334,39 +348,21 @@ def fetch_exchange(
         interconnector: ExchangeList(logger) for interconnector in interconnectors
     }
     unmapped: set[str] = set()
-    published = False
-    for row in rows:
-        published = True
+    for row, start, end in _dispatch_intervals(
+        session, INTERCONNECTOR_RES, target_datetime, exchange_key, logger
+    ):
         interconnector = row["INTERCONNECTORID"]
         if interconnector not in INTERCONNECTOR_TO_REGIONS:
             unmapped.add(interconnector)
             continue
-        if interconnector not in interconnectors:
-            continue
-        # An intervention interval is published twice, as the physical run and
-        # the pricing run. Metered flow is the same in both, so keep one.
-        if row["INTERVENTION"] != "0" or not row["METEREDMWFLOW"]:
-            continue
-        settlement = datetime.strptime(
-            row["SETTLEMENTDATE"], SETTLEMENT_FORMAT
-        ).replace(tzinfo=MARKET_TIMEZONE)
-        if window and not window[0] < settlement <= window[1]:
+        if interconnector not in interconnectors or not row["METEREDMWFLOW"]:
             continue
         contributions[interconnector].append(
             zoneKey=exchange_key,
-            datetime=settlement - DISPATCH_INTERVAL,
-            end_datetime=settlement,
+            datetime=start,
+            end_datetime=end,
             netFlow=interconnectors[interconnector] * float(row["METEREDMWFLOW"]),
             source=SOURCE,
-        )
-
-    if window and not published:
-        raise ParserException(
-            parser="AEMO",
-            message=f"AEMO published no dispatch data for {window[0]:%Y-%m-%d} to {window[1]:%Y-%m-%d}. "
-            "Per-table monthly archives start in 2015; earlier months are only "
-            "distributed as whole-month bundles of every table.",
-            zone_key=exchange_key,
         )
 
     if unmapped:
@@ -381,6 +377,81 @@ def fetch_exchange(
     return ExchangeList.merge_exchanges(
         list(contributions.values()), logger, drop_non_matching_datetimes=True
     ).to_list()
+
+
+@refetch_frequency(REFETCH_FREQUENCY)
+def fetch_consumption(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """
+    Operational demand of a NEM region, as dispatched (`TOTALDEMAND`).
+
+    WEM is a separate market whose data AEMO publishes elsewhere, so AU-WA is
+    not served here.
+    """
+    session = mount_retry(session or Session())
+    # None for an unknown zone and WEM for AU-WA both miss the NEM regions.
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    if region not in REGION_TO_ZONE_KEY:
+        raise ParserException(
+            parser="AEMO",
+            message=f"Valid zone keys for this parser are {sorted(REGION_TO_ZONE_KEY.values())}, you passed {zone_key=}",
+            zone_key=zone_key,
+        )
+
+    # A republished interval arrives twice; TotalConsumptionList keeps the last.
+    consumption = TotalConsumptionList(logger)
+    for row, start, end in _dispatch_intervals(
+        session, REGION_SUM, target_datetime, zone_key, logger
+    ):
+        if row["REGIONID"] != region or not row["TOTALDEMAND"]:
+            continue
+        consumption.append(
+            zoneKey=zone_key,
+            datetime=start,
+            end_datetime=end,
+            consumption=float(row["TOTALDEMAND"]),
+            source=SOURCE,
+        )
+    return consumption.to_list()
+
+
+def fetch_consumption_forecast(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """
+    Consumption forecast in MW every half an hour for 10 days ahead.
+
+    Only the NEM regions are forecast; AU-WA returns an empty list.
+    """
+    session = mount_retry(session or Session())
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    if region not in REGION_TO_ZONE_KEY:
+        return []  # only the NEM regions are forecast
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=ZONE_KEY_TO_TIMEZONE[zone_key])
+
+    consumption = TotalConsumptionList(logger)
+    for row in _fetch_forecast_rows(session, target_datetime):
+        if row["REGIONID"] != region:
+            continue
+        consumption.append(
+            zoneKey=zone_key,
+            datetime=datetime.strptime(
+                row["INTERVAL_DATETIME"], CSV_DATETIME_FORMAT
+            ).replace(tzinfo=ZONE_KEY_TO_TIMEZONE[zone_key]),
+            # 50% probability of exceedance operational demand forecast value
+            consumption=float(row["OPERATIONAL_DEMAND_POE50"]),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption.to_list()
 
 
 if __name__ == "__main__":
