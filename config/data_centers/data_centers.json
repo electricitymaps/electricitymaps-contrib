@@ -1478,5 +1478,145 @@
     "status": "operational",
     "source": "https://datacenters.microsoft.com",
     "operationalSince": "2018"
+  },
+  "meta-us-huntsville": {
+    "provider": "meta",
+    "lonlat": [-86.631483, 34.840817],
+    "displayName": "Huntsville",
+    "region": "us-huntsville",
+    "zoneKey": "US-TEN-TVA",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-eagle-mountain": {
+    "provider": "meta",
+    "lonlat": [-111.99621, 40.32277],
+    "displayName": "Eagle Mountain",
+    "region": "us-eagle-mountain",
+    "zoneKey": "US-NW-PACE",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-stanton-springs": {
+    "provider": "meta",
+    "lonlat": [-83.694046, 33.600797],
+    "displayName": "Stanton Springs",
+    "region": "us-stanton-springs",
+    "zoneKey": "US-SE-SOCO",
+    "status": "under_construction",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-henrico": {
+    "provider": "meta",
+    "lonlat": [-77.24442, 37.49576],
+    "displayName": "Henrico",
+    "region": "us-henrico",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-new-albany": {
+    "provider": "meta",
+    "lonlat": [-82.80873, 40.09351],
+    "displayName": "New Albany",
+    "region": "us-new-albany",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-sarpy": {
+    "provider": "meta",
+    "lonlat": [-96.140505, 41.124923],
+    "displayName": "Sarpy",
+    "region": "us-sarpy",
+    "zoneKey": "US-CENT-SWPP",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-dk-odense": {
+    "provider": "meta",
+    "lonlat": [10.487709, 55.372232],
+    "displayName": "Odense",
+    "region": "dk-odense",
+    "zoneKey": "DK-DK1",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-los-lunas": {
+    "provider": "meta",
+    "lonlat": [-106.384943, 34.694419],
+    "displayName": "Los Lunas",
+    "region": "us-los-lunas",
+    "zoneKey": "US-SW-PNM",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-ie-clonee": {
+    "provider": "meta",
+    "lonlat": [-6.431697, 53.417664],
+    "displayName": "Clonee",
+    "region": "ie-clonee",
+    "zoneKey": "IE",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-fort-worth": {
+    "provider": "meta",
+    "lonlat": [-97.33518, 32.90594],
+    "displayName": "Fort Worth",
+    "region": "us-fort-worth",
+    "zoneKey": "US-TEX-ERCO",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-se-lulea": {
+    "provider": "meta",
+    "lonlat": [22.117237, 65.619657],
+    "displayName": "Luleå",
+    "region": "se-lulea",
+    "zoneKey": "SE-SE1",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-forest-city": {
+    "provider": "meta",
+    "lonlat": [-81.827739, 35.315818],
+    "displayName": "Forest City",
+    "region": "us-forest-city",
+    "zoneKey": "US-CAR-CPLW",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-prineville": {
+    "provider": "meta",
+    "lonlat": [-120.885998, 44.295709],
+    "displayName": "Prineville",
+    "region": "us-prineville",
+    "zoneKey": "US-NW-PACW",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
+  },
+  "meta-us-altoona": {
+    "provider": "meta",
+    "lonlat": [-93.173376, 41.918557],
+    "displayName": "Altoona",
+    "region": "us-altoona",
+    "zoneKey": "US-MIDW-MISO",
+    "status": "operational",
+    "source": "https://sustainability.atmeta.com/map/",
+    "operationalSince": null
   }
 }
