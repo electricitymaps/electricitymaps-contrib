@@ -21,6 +21,7 @@ from electricitymap.contrib.parsers.ENTSOE import (
     parse_forecast_transfer_capacity,
     zulu_to_utc,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
@@ -167,6 +168,35 @@ def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
         content=data.read_bytes(),
     )
     assert snapshot == ENTSOE.fetch_price(ZoneKey("DE"), session)
+
+
+@pytest.mark.parametrize(
+    ("zone", "expected_domain"),
+    [
+        ("DE", ENTSOE.ENTSOE_PRICE_DOMAIN_MAPPINGS["DE"]),
+        ("AT", ENTSOE.ENTSOE_PRICE_DOMAIN_MAPPINGS["AT"]),
+    ],
+)
+def test_fetch_exaa_price(requests_mock, session, snapshot, zone, expected_domain):
+    data = base_path_to_mock / f"{zone}_exaa_price.xml"
+    requests_mock.register_uri(
+        GET,
+        ANY,
+        content=data.read_bytes(),
+    )
+
+    result = ENTSOE.fetch_exaa_price(ZoneKey(zone), session)
+
+    assert requests_mock.last_request.qs[
+        "classificationsequence_attributeinstancecomponent.position"
+    ] == ["2"]
+    assert requests_mock.last_request.qs["in_domain"] == [expected_domain.lower()]
+    assert snapshot == result
+
+
+def test_fetch_exaa_price_unsupported_zone(session):
+    with pytest.raises(ParserException):
+        ENTSOE.fetch_exaa_price(ZoneKey("FR"), session)
 
 
 def test_fetch_with_negative_values(requests_mock, session, snapshot):
