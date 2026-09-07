@@ -600,6 +600,8 @@ class ScheduledExchange(Event):
             raise ValueError(f"Scheduled exchange direction cannot be None: {v}")
         if math.isnan(v):
             raise ValueError(f"Scheduled exchange direction cannot be NaN: {v}")
+        if v < 0:
+            raise ValueError(f"Scheduled exchange direction cannot be negative: {v}")
         # TODO in the future those checks should be performed in the data quality layer.
         if abs(v) > 100000:
             raise ValueError(
