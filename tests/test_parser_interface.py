@@ -82,7 +82,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "productionCapacity": _RETURN_PARSER_TYPE,
     "gridAlerts": _RETURN_PARSER_TYPE,
     "intradayContractStatistics": _RETURN_PARSER_TYPE,
-    "priceExaa": _RETURN_PARSER_TYPE
+    "priceExaa": _RETURN_PARSER_TYPE,
 }
 
 
