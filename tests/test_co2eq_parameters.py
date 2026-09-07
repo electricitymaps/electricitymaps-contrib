@@ -371,7 +371,9 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     # Expected min and max values for emission factors, by mode.
     ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: usually above 500 gCO2eq/kWh.
-        "coal": (400, 1600),
+        # Coal upper bound accommodates low-efficiency lignite fleets
+        # (GR 2019: 1684 from EU-ETS verified emissions).
+        "coal": (400, 1700),
         "gas": (200, 700),
         "oil": (175, 1700),
         # Low-carbon: direct emissions are usually zero, with some possible exceptions.
@@ -402,9 +404,12 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
     # Expected min and max values for emission factors, by mode.
     ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
+        # Coal upper bound accommodates low-efficiency lignite fleets
+        # (GR 2019: 1744); gas lower bound accommodates heat-corrected CHP
+        # fleets (DK 2020 / SE 2024: ~375-380).
         "oil": (400, 1900),
-        "coal": (400, 1600),
-        "gas": (400, 900),
+        "coal": (400, 1800),
+        "gas": (350, 900),
         # Low-carbon: generally below 50 gCO2eq/kWh with some exceptions.
         # For lifecycle emissions, this should not be zero.
         "geothermal": (30, 199),

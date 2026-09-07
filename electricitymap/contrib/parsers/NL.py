@@ -14,6 +14,58 @@ ZONE_CONFIG = ZONES_CONFIG["NL"]
 UTC = timezone.utc
 
 
+def _fetch_dk1_exchange(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> pd.DataFrame:
+    """Fetch the NL<->DK-DK1 exchange covering the full ``[target-1d, target]`` window.
+
+    ``DK.fetch_exchange`` returns a single *calendar day* of 5-min data keyed off
+    ``target_datetime``'s date, whereas NL's other inputs (consumption and the
+    ENTSOE exchanges) use a rolling 24h window. With a single DK fetch the
+    "previous day" hours of NL's output get the DK-DK1 flow on a refetch that
+    targets day ``D-1`` but not on one that targets day ``D``, which flips the
+    derived ``unknown`` production back and forth (data churn). Fetching both the
+    current and previous calendar day guarantees every hour in the rolling window
+    has its full set of 5-min points, so the hourly mean is stable across
+    refetches.
+    """
+    zone_1, zone_2 = sorted(["DK-DK1", zone_key])
+    records = []
+    for day in (target_datetime - timedelta(days=1), target_datetime):
+        records.extend(
+            DK.fetch_exchange(
+                zone_key1=zone_1,
+                zone_key2=zone_2,
+                session=session,
+                target_datetime=day,
+                logger=logger,
+            )
+            or []
+        )
+
+    df_dk = pd.DataFrame(records)
+    if df_dk.empty:
+        return df_dk
+
+    # Adjacent calendar-day fetches can repeat the midnight boundary point.
+    df_dk = df_dk.drop_duplicates(subset=["datetime"])
+
+    # Other exchanges and consumption are hourly, so we floor the 5-min flows to
+    # the hour and average. Hours are now always complete (see docstring), so the
+    # mean no longer depends on where the fetch window edge happened to fall.
+    df_dk["datetime"] = df_dk["datetime"].dt.floor("H")
+    return (
+        df_dk.groupby(["datetime"])
+        .aggregate({"netFlow": "mean", "sortedZoneKeys": "max", "source": "max"})
+        .reset_index()
+        # averaging high-precision numbers leads to rounding errors
+        .round({"netFlow": 3})
+    )
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("NL"),
@@ -58,29 +110,7 @@ def fetch_production(
 
     # add DK1 data (only for dates after operation)
     if target_datetime > datetime(2019, 8, 24, tzinfo=UTC):
-        zone_1, zone_2 = sorted(["DK-DK1", zone_key])
-        df_dk = pd.DataFrame(
-            DK.fetch_exchange(
-                zone_key1=zone_1,
-                zone_key2=zone_2,
-                session=r,
-                target_datetime=target_datetime,
-                logger=logger,
-            )
-        )
-
-        # Because other exchanges and consumption data is only available per hour
-        # we floor the timpstamp to hour and group by hour with averaging of netFlow
-        df_dk["datetime"] = df_dk["datetime"].dt.floor("H")
-        exchange_DK = (
-            df_dk.groupby(["datetime"])
-            .aggregate({"netFlow": "mean", "sortedZoneKeys": "max", "source": "max"})
-            .reset_index()
-        )
-
-        # because averaging with high precision numbers leads to rounding errors
-        exchange_DK = exchange_DK.round({"netFlow": 3})
-
+        exchange_DK = _fetch_dk1_exchange(zone_key, r, target_datetime, logger)
         exchanges.extend(exchange_DK.to_dict(orient="records"))
 
     # We want to know the net-imports into NL, so if NL is in zone_1 we need

@@ -71,7 +71,7 @@ jobs:
           export ACCESS_TOKEN=$(gcloud auth print-access-token)
           uv publish --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
       - name: Push changes
-        uses: ad-m/github-push-action@v1.1.0
+        uses: ad-m/github-push-action@v1.3.0
         with:
           github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}

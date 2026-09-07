@@ -1,13 +1,16 @@
+import re
 from unittest import mock
 
 import pytest
-import requests
 
 import electricitymap.contrib.parsers.lib.utils as tested
 
 
 def test_TOKEN_WIKI_URL():
-    assert requests.get(tested.TOKEN_WIKI_URL).status_code == 200
+    assert (
+        tested.TOKEN_WIKI_URL
+        == "https://github.com/electricitymaps/electricitymaps-contrib/wiki/Create-tokens"
+    )
 
 
 def test_get_token():
@@ -18,7 +21,7 @@ def test_get_token():
 
     with (
         mock.patch.dict("electricitymap.contrib.parsers.lib.utils.os.environ", {}),
-        pytest.raises(Exception),
+        pytest.raises(Exception, match=re.escape(tested.TOKEN_WIKI_URL)),
     ):
         tested.get_token("token")
 
@@ -26,6 +29,6 @@ def test_get_token():
         mock.patch.dict(
             "electricitymap.contrib.parsers.lib.utils.os.environ", {"token": ""}
         ),
-        pytest.raises(Exception),
+        pytest.raises(Exception, match=re.escape(tested.TOKEN_WIKI_URL)),
     ):
         tested.get_token("token")

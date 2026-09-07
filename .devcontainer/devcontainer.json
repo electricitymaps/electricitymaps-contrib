@@ -1,6 +1,8 @@
 {
   "name": "Electricity Maps Dev",
-  "image": "mcr.microsoft.com/devcontainers/python:1-3.10-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainer-community/devcontainer-features/astral.sh-uv:1": {}
   },

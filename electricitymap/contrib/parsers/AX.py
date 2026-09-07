@@ -45,7 +45,7 @@ def fetch_data(session: Session, logger: Logger):
         if len(raw.split(",")) != len(time_series):
             raise ParserException(
                 "AX.py",
-                "The raw data did not match the length of the the time series. Check if the website has changed.",
+                "The raw data did not match the length of the time series. Check if the website has changed.",
             )
     data_list = []
     for time, sweden, alink, fossil, gustavs, wind, consumption in zip(
