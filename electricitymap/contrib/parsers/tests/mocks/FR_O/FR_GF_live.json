@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2026-05-26T10:01:00+00:00",
+    "bioenergies": 10.91,
+    "total": 313.451,
+    "hydraulique": 131.96233333333333,
+    "tac": 48.536,
+    "moteur_diesel": 121.984,
+    "photovoltaique": 0.0593
+  },
+  {
+    "date": "2026-05-26T10:16:00+00:00",
+    "bioenergies": 10.817,
+    "total": 320.712,
+    "hydraulique": 135.6173,
+    "tac": 48.669,
+    "moteur_diesel": 125.35866666666666,
+    "photovoltaique": 0.2506333333333333
+  },
+  {
+    "date": "2026-05-26T10:31:00+00:00",
+    "bioenergies": 10.5813,
+    "total": 360.897,
+    "hydraulique": 134.42066666666668,
+    "tac": 91.03496666666666,
+    "moteur_diesel": 124.362,
+    "photovoltaique": 0.4983333333333333
+  }
+]

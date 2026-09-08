@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-05-26T09:23:00+00:00",
+    "total": 224.567,
+    "bioenergies": 41.142,
+    "turbines_combustion": 5.41,
+    "hydraulique": 0,
+    "eolien": 0,
+    "moteurs_diesels": 178.0158,
+    "photovoltaique": 0,
+    "statut": "Estimé"
+  },
+  {
+    "date": "2026-05-26T09:38:00+00:00",
+    "total": 232.393,
+    "bioenergies": 40.744,
+    "turbines_combustion": 5.41,
+    "hydraulique": 0,
+    "eolien": 0,
+    "moteurs_diesels": 186.2398,
+    "photovoltaique": 0,
+    "statut": "Estimé"
+  },
+  {
+    "date": "2026-05-26T09:53:00+00:00",
+    "total": 235.485,
+    "bioenergies": 40.644,
+    "turbines_combustion": 5.41,
+    "hydraulique": 0,
+    "eolien": 0,
+    "moteurs_diesels": 189.306,
+    "photovoltaique": 0.1258,
+    "statut": "Estimé"
+  }
+]
