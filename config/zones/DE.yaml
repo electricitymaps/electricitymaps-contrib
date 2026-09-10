@@ -835,6 +835,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   intradayContractStatistics: NORDPOOL.fetch_intraday_contract_statistics
   price: NORDPOOL.fetch_price
+  priceExaa: ENTSOE.fetch_exaa_price
   production: ENTSOE.fetch_production
   productionCapacity: DE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
