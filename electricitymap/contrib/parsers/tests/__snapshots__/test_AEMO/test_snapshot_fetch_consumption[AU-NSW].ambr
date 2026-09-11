@@ -1,0 +1,21 @@
+# serializer version: 1
+# name: test_snapshot_fetch_consumption[AU-NSW]
+  list([
+    dict({
+      'consumption': 6972.28,
+      'datetime': datetime.datetime(2026, 8, 26, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
+      'end_datetime': datetime.datetime(2026, 8, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
+      'source': 'aemo.com.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'AU-NSW',
+    }),
+    dict({
+      'consumption': 6894.51,
+      'datetime': datetime.datetime(2026, 8, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
+      'end_datetime': datetime.datetime(2026, 8, 26, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Australia/Brisbane')),
+      'source': 'aemo.com.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'AU-NSW',
+    }),
+  ])
+# ---
