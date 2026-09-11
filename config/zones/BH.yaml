@@ -43,8 +43,18 @@ contributors:
 country: BH
 country_name: Bahrain
 currency: BHD
+disclaimer: Unknown production is assumed to follow the national generation mix, which is almost entirely gas.
 emissionFactors:
-  lifecycle: {}
+  direct:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (99.7% gas, 0.3% solar); IPCC 2014 direct emission factors'
+      value: 369.0
+  lifecycle:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (99.7% gas, 0.3% solar); IPCC 2014 lifecycle emission factors'
+      value: 488.8
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average

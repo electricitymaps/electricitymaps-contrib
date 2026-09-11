@@ -104,8 +104,18 @@ contributors:
 country: AE
 country_name: United Arab Emirates
 currency: AED
+disclaimer: Unknown production is assumed to follow the national generation mix, which is mostly gas with a large nuclear share (Barakah) and a growing solar share.
 emissionFactors:
-  lifecycle: {}
+  direct:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (68.3% gas, 22.9% nuclear, 8.6% solar, 0.1% wind, 0.1% bioenergy); IPCC 2014 direct emission factors'
+      value: 252.6
+  lifecycle:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (68.3% gas, 22.9% nuclear, 8.6% solar, 0.1% wind, 0.1% bioenergy); IPCC 2014 lifecycle emission factors'
+      value: 341.4
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

@@ -42,8 +42,18 @@ contributors:
 country: QA
 country_name: Qatar
 currency: QAR
+disclaimer: Unknown production is assumed to follow the national generation mix, which is almost entirely gas with a small and growing solar share.
 emissionFactors:
-  lifecycle: {}
+  direct:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2025 generation mix (95.9% gas, 3.8% solar, 0.2% bioenergy); IPCC 2014 direct emission factors'
+      value: 355.0
+  lifecycle:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2025 generation mix (95.9% gas, 3.8% solar, 0.2% bioenergy); IPCC 2014 lifecycle emission factors'
+      value: 472.4
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
