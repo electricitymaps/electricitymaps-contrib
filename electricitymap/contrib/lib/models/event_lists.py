@@ -192,41 +192,39 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
 
     Mixed into list types whose events must not overlap (exchanges, production,
     consumption, prices, exchange capacity). `to_list()` enforces that in two
-    steps, warning on each: events sharing the exact same `datetime` collapse to
-    the last one appended, then events whose `[datetime, end_datetime)` intervals
-    intersect are clamped, the earlier event's end moved to the later event's
-    start. Lists that legitimately hold several events per datetime — e.g.
-    locational marginal prices keyed by node, or grid alerts — do NOT use this
-    mixin.
+    steps, warning on each: events sharing the exact same `datetime` are
+    deduplicated to the last one appended, then events whose
+    `[datetime, end_datetime)` intervals intersect are clamped, the earlier
+    event's end moved to the later event's start. Lists that legitimately hold
+    several events per datetime — e.g. locational marginal prices keyed by node,
+    or grid alerts — do NOT use this mixin.
     """
 
     def to_list(self) -> list[dict[str, Any]]:
-        return self._resolve_overlaps(self._collapse_duplicates(super().to_list()))
+        return self._resolve_overlaps(self._deduplicate(super().to_list()))
 
-    def _collapse_duplicates(
-        self, events: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
+    def _deduplicate(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Keeps one event per `datetime`, the last one appended, and warns.
 
         `events` is sorted by `datetime` from a stable sort, so the last entry of
         a group of equal datetimes is the most recently appended one.
         """
-        collapsed: dict[datetime, dict[str, Any]] = {}
+        deduplicated: dict[datetime, dict[str, Any]] = {}
         for event in events:
-            collapsed[event["datetime"]] = event
-        dropped = len(events) - len(collapsed)
+            deduplicated[event["datetime"]] = event
+        dropped = len(events) - len(deduplicated)
         if dropped:
             self.logger.warning(
                 f"{type(self).__name__} has {dropped} event(s) sharing a datetime "
                 "with another; keeping the last of each."
             )
-        return list(collapsed.values())
+        return list(deduplicated.values())
 
     def _resolve_overlaps(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Clamps overlapping `[datetime, end_datetime)` intervals in place.
 
         `events` is sorted by start (`datetime`) and carries one event per
-        datetime, duplicates having already been collapsed; a pair overlaps when
+        datetime, duplicates having already been removed; a pair overlaps when
         the earlier event's `end_datetime` is strictly after the later event's
         `datetime`. Events without an `end_datetime` are treated as
         instantaneous points at `datetime`.

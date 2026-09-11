@@ -328,7 +328,7 @@ def fetch_exchange(
 
     # AEMO republishes an interval under a new sequence number when it is
     # revised, and the archives overlap around midnight, so the same flow can
-    # arrive twice. ExchangeList collapses those onto the last one appended,
+    # arrive twice. ExchangeList deduplicates those onto the last one appended,
     # which is the newest revision since the sources are read oldest first.
     contributions = {
         interconnector: ExchangeList(logger) for interconnector in interconnectors

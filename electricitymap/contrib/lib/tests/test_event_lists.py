@@ -1371,7 +1371,7 @@ def test_merge_exchanges_dropping_non_matching_keeps_end_datetimes():
     assert merged[0]["end_datetime"] == dt + timedelta(minutes=5)
 
 
-def test_non_overlapping_list_collapses_duplicate_datetimes():
+def test_non_overlapping_list_deduplicates_datetimes():
     logger = logging.Logger("test")
     production_list = ProductionBreakdownList(logger)
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
@@ -1391,7 +1391,7 @@ def test_non_overlapping_list_collapses_duplicate_datetimes():
     mock_warning.assert_called_once()
 
 
-def test_non_overlapping_list_keeps_collapsed_events_in_datetime_order():
+def test_non_overlapping_list_keeps_deduplicated_events_in_datetime_order():
     logger = logging.Logger("test")
     exchange_list = ExchangeList(logger)
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
@@ -1489,10 +1489,10 @@ def test_non_overlapping_list_clamps_merged_mixed_resolution_gap():
     mock_warning.assert_called_once()
 
 
-def test_price_list_collapses_duplicate_datetimes():
+def test_price_list_deduplicates_datetimes():
     # PriceList represents a single series with one price per MTU, so a second
-    # price on the same MTU collapses onto the last one with a warning rather
-    # than failing the fetch or leaving two prices on one instant.
+    # price on the same MTU is deduplicated onto the last one with a warning
+    # rather than failing the fetch or leaving two prices on one instant.
     logger = logging.Logger("test")
     price_list = PriceList(logger)
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
