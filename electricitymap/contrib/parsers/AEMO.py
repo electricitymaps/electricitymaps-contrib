@@ -103,6 +103,8 @@ INTERCONNECTOR_TO_REGIONS = {
     "T-V-MNSP1": ("TAS1", "VIC1"),  # Basslink
 }
 
+# The NEM regions only: WEM is a separate grid, with no interconnectors to them
+# and its own feeds.
 REGION_TO_ZONE_KEY = {
     region: zone_key
     for zone_key, region in ZONE_KEY_TO_REGION.items()
