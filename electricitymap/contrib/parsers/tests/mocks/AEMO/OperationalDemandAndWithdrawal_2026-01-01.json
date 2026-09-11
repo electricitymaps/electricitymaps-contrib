@@ -1,0 +1,46 @@
+{
+ "data": {
+  "data": [
+   {
+    "dispatchInterval": "2026-01-01T08:00:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:05:00+08:00",
+    "operationalDemand": 1845.68542,
+    "operationalWithdrawal": -621.37609
+   },
+   {
+    "dispatchInterval": "2026-01-01T08:05:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:10:00+08:00",
+    "operationalDemand": 1862.48718,
+    "operationalWithdrawal": -645.82312
+   },
+   {
+    "dispatchInterval": "2026-01-01T08:10:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:15:00+08:00",
+    "operationalDemand": 1895.80249,
+    "operationalWithdrawal": -698.26392
+   },
+   {
+    "dispatchInterval": "2026-01-01T08:15:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:20:00+08:00",
+    "operationalDemand": 1875.00659,
+    "operationalWithdrawal": -703.59159
+   },
+   {
+    "dispatchInterval": "2026-01-01T08:20:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:25:00+08:00",
+    "operationalDemand": 1878.07251,
+    "operationalWithdrawal": -716.24292
+   },
+   {
+    "dispatchInterval": "2026-01-01T08:25:00+08:00",
+    "asAtTimeStamp": "2026-01-01T08:30:00+08:00",
+    "operationalDemand": 1923.47717,
+    "operationalWithdrawal": -779.28711
+   }
+  ]
+ },
+ "errors": [],
+ "warnings": [],
+ "infos": [],
+ "transactionId": "56a1df6e-b058-42d4-8556-5aec8e49e52e"
+}
