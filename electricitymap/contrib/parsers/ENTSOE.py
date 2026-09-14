@@ -59,7 +59,8 @@ ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
 DEFAULT_LOOKBACK_HOURS_REALTIME = timedelta(hours=72)
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=0))
-DEFAULT_TARGET_HOURS_FORECAST = (-timedelta(hours=24), timedelta(hours=48))
+DEFAULT_TARGET_HOURS_FORECAST = (-timedelta(hours=24), timedelta(days=4))
+DEFAULT_TARGET_HOURS_PRICE = (-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(days=4))
 EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_DAY_AHEAD = (
     -timedelta(days=2),
     timedelta(days=7),
@@ -414,8 +415,8 @@ def query_scheduled_exchanges(
     """Query A09 ("Finalised Schedule") for one direction of a border.
 
     Returns the cleared commercial schedule (DAY_AHEAD + TOTAL contract
-    types) over the standard forecast window — 24 h prior + 48 h ahead of
-    `target_datetime`. The caller is responsible for filtering the
+    types) over the standard forecast window — 24 h prior + up to 4 days
+    ahead of `target_datetime`. The caller is responsible for filtering the
     resulting timeseries by `contract_marketagreement.type`.
     """
     params = {
@@ -471,7 +472,7 @@ def query_price(
     target_datetime: datetime | None = None,
     classification_sequence: SequenceEnum | None = None,
 ) -> str | None:
-    """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
+    """Gets day-ahead price for up to 4 days ahead and previous 72 hours."""
 
     params = {
         # Price Document - The document is used to provide market spot price
@@ -491,14 +492,14 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=24)),
+        span=DEFAULT_TARGET_HOURS_PRICE,
     )
 
 
 def query_generation_forecast(
     in_domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
-    """Gets generation forecast for 48 hours ahead and previous 24 hours."""
+    """Gets generation forecast for up to 4 days ahead and previous 24 hours."""
 
     # Note: this does not give a breakdown of the production
     params = {
@@ -520,7 +521,7 @@ def query_generation_forecast(
 def query_consumption_forecast(
     in_domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
-    """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
+    """Gets consumption forecast for up to 4 days ahead and previous 24 hours."""
 
     params = {
         # System total load - Total load', including losses without power used
@@ -545,7 +546,7 @@ def query_wind_solar_production_forecast(
     process_type: EntsoeTypeEnum,
     target_datetime: datetime | None = None,
 ) -> str | None:
-    """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
+    """Gets consumption forecast for up to 4 days ahead and previous 24 hours."""
 
     allowed_types = {
         EntsoeTypeEnum.DAY_AHEAD,
