@@ -1,0 +1,62 @@
+# serializer version: 1
+# name: test_fetch_production_historical
+  list([
+    dict({
+      'correctedModes': list([
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.36,
+        'geothermal': None,
+        'hydro': 58.57,
+        'solar': 0,
+        'unknown': 154.91,
+        'wind': 10.3,
+      }),
+      'source': 'opendata.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+    dict({
+      'correctedModes': list([
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.36,
+        'geothermal': None,
+        'hydro': 27.33,
+        'solar': 0,
+        'unknown': 161.2,
+        'wind': 9.6,
+      }),
+      'source': 'opendata.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+    dict({
+      'correctedModes': list([
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.36,
+        'geothermal': None,
+        'hydro': 12.41,
+        'solar': 0,
+        'unknown': 155.12,
+        'wind': 9.05,
+      }),
+      'source': 'opendata.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+  ])
+# ---
