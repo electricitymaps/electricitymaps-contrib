@@ -1409,3 +1409,23 @@ def test_exchange_capacity_forecast_to_dict():
     assert d["capacityImport"] == 900.0
     assert d["source"] == "trust.me"
     assert d["sourceType"] == EventSourceType.published
+
+
+def test_scheduled_exchange_rejects_negative_directions():
+    # Both gross directions are magnitudes, so a negative value is not a
+    # smaller flow but a flow the other way: a negative import would otherwise
+    # be derived into a positive netFlow and invert the arrow.
+    for export, imp in ((-250.0, 0.0), (0.0, -250.0), (-100.0, -80.0)):
+        assert (
+            ScheduledExchange.create(
+                logger=logging.getLogger(),
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                end_datetime=None,
+                source="trust.me",
+                scheduledExport=export,
+                scheduledImport=imp,
+                marketAgreementType=MarketAgreementType.DAY_AHEAD,
+            )
+            is None
+        )
