@@ -270,8 +270,8 @@ EXCHANGE_AGGREGATES: dict[str, list[list]] = {
 ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
-    "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
-    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
+    "IE": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
+    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
 }
 
