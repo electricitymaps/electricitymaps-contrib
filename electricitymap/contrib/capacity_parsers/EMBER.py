@@ -29,6 +29,7 @@ SPECIFIC_MODE_MAPPING = {
     "KR": {"other fossil": "oil"},
     "KW": {"other fossil": "oil"},
     "MN": {"other fossil": "coal"},
+    "NI": {"other fossil": "oil", "other renewables": "geothermal"},
     "NZ": {"other renewables": "geothermal"},
     "SG": {"other fossil": "coal"},
     "SV": {"other renewables": "geothermal"},

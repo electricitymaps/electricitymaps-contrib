@@ -123,6 +123,76 @@ def _em_to_jao_zone(em_zone: str) -> str:
     return EM_TO_JAO_ZONE.get(em_zone, em_zone)
 
 
+# Most border fields are `border_{zone_a}_{zone_b}`, but JAO names some borders
+# after the *interconnector endpoints* rather than the bidding zones, so the
+# field cannot be derived from the zone codes alone:
+#
+#   BG->RO      border_BG_RO_BG_VH            (endpoints BG / RO_BG_VH)
+#   DE->DK-DK1  border_DE_DK1_VH_DK1_DE       (Vejle hub)
+#   DK-DK1->NL  border_DK1_CO_NL_DK1_COBRA    (COBRAcable)
+#
+# Keyed by the sorted EM exchange key; the tuple is (endpoint for zone_a,
+# endpoint for zone_b), so export is `{prefix}_{a}_{b}` and import the reverse,
+# exactly as for the derived names.
+#
+# The payload carries further qualified borders we do not consume here
+# (`border_ALBE_ALDE` for ALEGrO, `border_DE_NO2_BigHub_NO2_NK` for NordLink);
+# add them only alongside wiring the matching exchange to this parser, to avoid
+# double-sourcing borders already served by NORDPOOL.
+JAO_BORDER_ENDPOINTS: dict[str, tuple[str, str]] = {
+    "BG->RO": ("BG", "RO_BG_VH"),
+    "DE->DK-DK1": ("DE_DK1_VH", "DK1_DE"),
+    "DK-DK1->NL": ("DK1_CO", "NL_DK1_COBRA"),
+}
+
+
+def _resolve_border_fields(
+    sorted_zone_keys: ZoneKey,
+    rows: list[dict],
+    field_prefix: str,
+    logger: Logger,
+) -> tuple[str, str]:
+    """Resolve the (export, import) field names for a border.
+
+    Picks whichever naming the payload actually carries: the interconnector
+    endpoints from `JAO_BORDER_ENDPOINTS` if present, otherwise the names
+    derived from the zone codes. Selecting on the payload rather than switching
+    outright matters because the convention varies *per dataset* - shadowAuctionATC
+    still publishes plain `border_DE_FR`, while coreExternal moved to qualified
+    names - and the same EM border can appear in more than one dataset.
+
+    Warns when neither naming is present. Both extractors skip rows where the
+    two fields are absent, so without this a renamed field is indistinguishable
+    from "no capacity published": the parser returns zero events, raises
+    nothing, and writes nothing. That is how the Core-external borders above
+    went unnoticed for ~3 months after JAO renamed them.
+    """
+    zone_a, zone_b = sorted_zone_keys.split("->")
+    derived = (_em_to_jao_zone(zone_a), _em_to_jao_zone(zone_b))
+    qualified = JAO_BORDER_ENDPOINTS.get(sorted_zone_keys)
+
+    candidates = [qualified, derived] if qualified else [derived]
+    for endpoint_a, endpoint_b in candidates:
+        export_field = f"{field_prefix}_{endpoint_a}_{endpoint_b}"
+        import_field = f"{field_prefix}_{endpoint_b}_{endpoint_a}"
+        if not rows or export_field in rows[0] or import_field in rows[0]:
+            return export_field, import_field
+
+    # Nothing matched: fall back to the derived names so behaviour is unchanged,
+    # but say so loudly - this is the signal that a border has been renamed.
+    export_field = f"{field_prefix}_{derived[0]}_{derived[1]}"
+    import_field = f"{field_prefix}_{derived[1]}_{derived[0]}"
+    available = sorted(k for k in rows[0] if k.startswith(f"{field_prefix}_"))
+    logger.warning(
+        f"JAO: no field found for {sorted_zone_keys} - tried "
+        f"{[f'{field_prefix}_{a}_{b}' for a, b in candidates]}. The border may "
+        f"have been renamed; available fields: {available}",
+        extra={"key": sorted_zone_keys},
+    )
+
+    return export_field, import_field
+
+
 def _format_utc(dt: datetime) -> str:
     """Format a tz-aware datetime as the ISO-8601 string JAO expects."""
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
@@ -221,11 +291,9 @@ def _extract_border_capacity(
     (MaxBeX, MaxBflow). ATC datasets use `_extract_border_atc` instead so the
     `atcType` discriminator can be attached.
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
     capacities = ExchangeCapacityList(logger)
     for row in rows:
@@ -256,11 +324,9 @@ def _extract_border_atc(
     Same `border_XX_YY` row shape as `_extract_border_capacity` but emits the
     ATC-specific event class (carries the `atcType` discriminator).
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
     capacities = ExchangeAtcList(logger)
     for row in rows:
@@ -299,11 +365,9 @@ def _extract_border_scheduled_exchanges(
     Emitted with sourceType=published since the values are TSO-published
     ex-ante schedules, not statistical forecasts.
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
     exchanges: list[ScheduledExchange] = []
     for row in rows:

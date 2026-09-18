@@ -1233,6 +1233,12 @@ def get_physical_flows(
 
     raw_exchange_lists: list[ExchangeList] = []
     for domain_pair in domain_pairs:
+        # The two directions are the halves of one net flow, so an MTU only one
+        # of them covers is dropped rather than reported one-sided. Whole domain
+        # pairs are then added up as they come: a border can map to a pair
+        # ENTSO-E publishes nothing for (FR-COR->IT-SAR), and the pairs that do
+        # publish still describe the border.
+        directions: list[ExchangeList] = []
         for is_import in (True, False):
             domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
             try:
@@ -1255,7 +1261,7 @@ def get_physical_flows(
                     message=f"No exchange data found for {domain1} -> {domain2}",
                     zone_key=sorted_zone_keys,
                 )
-            raw_exchange_lists.append(
+            directions.append(
                 parse_exchange(
                     raw_exchange,
                     is_import=is_import,
@@ -1263,6 +1269,11 @@ def get_physical_flows(
                     logger=logger,
                 )
             )
+        raw_exchange_lists.append(
+            ExchangeList.merge_exchanges(
+                directions, logger, drop_non_matching_datetimes=True
+            )
+        )
     return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
 
