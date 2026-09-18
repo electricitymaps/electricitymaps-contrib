@@ -174,7 +174,6 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "HR": "10YHR-HEP------M",
     "HU": "10YHU-MAVIR----U",
     "IE": "10YIE-1001A00010",
-    "IE(SEM)": "10Y1001A1001A59C",
     "IE-SEM": "10Y1001A1001A59C",
     "IS": "10Y1001A1001A958",
     "IT": "10YIT-GRTN-----B",
