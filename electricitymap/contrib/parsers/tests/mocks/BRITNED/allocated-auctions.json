@@ -1,0 +1,39 @@
+{
+    "entries": [
+        {
+            "id": "1ca87bd6-2622-4b56-afeb-9a759e9dc2c7",
+            "displayId": "BDL-NL-GB-D-BASE---260828-01",
+            "name": "BDL-NL-GB-D-BASE---260828-01",
+            "productType": "DA_EXPLICIT_DA",
+            "borderDirection": "NL_GB",
+            "deliveryPeriod": {
+                "fromMtuStart": "2026-08-27T22:00:00Z",
+                "toMtuEnd": "2026-08-28T22:00:00Z"
+            },
+            "participantRequestedCount": 25,
+            "participantAllocatedCount": 22,
+            "offeredCapacity": -1,
+            "totalRequestedCapacity": -1,
+            "totalAllocatedCapacity": -1,
+            "marginalClearingPrice": -1
+        },
+        {
+            "id": "3966cbc6-0e79-4bda-82ab-991a2ad68c3f",
+            "displayId": "BDL-GB-NL-D-BASE---260828-01",
+            "name": "BDL-GB-NL-D-BASE---260828-01",
+            "productType": "DA_EXPLICIT_DA",
+            "borderDirection": "GB_NL",
+            "deliveryPeriod": {
+                "fromMtuStart": "2026-08-27T22:00:00Z",
+                "toMtuEnd": "2026-08-28T22:00:00Z"
+            },
+            "participantRequestedCount": 16,
+            "participantAllocatedCount": 9,
+            "offeredCapacity": -1,
+            "totalRequestedCapacity": -1,
+            "totalAllocatedCapacity": -1,
+            "marginalClearingPrice": -1
+        }
+    ],
+    "totalCount": 2
+}
