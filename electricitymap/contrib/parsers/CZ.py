@@ -4,7 +4,7 @@ from logging import Logger, getLogger
 from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
-from requests import Response, Session
+from requests import RequestException, Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
@@ -72,6 +72,72 @@ def get_target_datetime(dt: datetime | None) -> datetime:
         now = datetime.now()
         dt = (now - timedelta(minutes=now.minute % 15)).replace(second=0, microsecond=0)
     return dt
+
+
+def build_payload(
+    method: str,
+    date_from: datetime,
+    date_to: datetime,
+    para1: str | None = None,
+) -> str:
+    para1_tag = f"<para1>{para1}</para1>" if para1 is not None else ""
+    return f"""<?xml version="1.0" encoding="utf-8"?>
+    <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+      <soap12:Body>
+        <{method} xmlns="https://www.ceps.cz/CepsData/">
+          <dateFrom>{date_from.isoformat()}</dateFrom>
+          <dateTo>{date_to.isoformat()}</dateTo>
+          <agregation>QH</agregation>
+          <function>AVG</function>
+          <version>RT</version>
+          {para1_tag}
+        </{method}>
+      </soap12:Body>
+    </soap12:Envelope>"""
+
+
+def get_pumping_by_datetime(
+    session: Session,
+    date_from: datetime,
+    date_to: datetime,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> dict[datetime, float]:
+    """Derive pumped storage pumping per interval from the CEPS Load data,
+    as the difference between the "Load including pumping" and "Load" series.
+
+    Pumping is an optional enrichment: failures degrade to production
+    without pumped storage consumption instead of aborting the fetch.
+    """
+    try:
+        payload = build_payload("Load", date_from, date_to)
+        content = make_request(session, payload, zone_key).text
+        xml = BeautifulSoup(content, "xml")
+        mapper = get_mapper(xml) if xml.find("series") is not None else {}
+        data_tag = xml.find("data")
+
+        if (
+            data_tag is not None
+            and "Load including pumping" in mapper
+            and "Load" in mapper
+        ):
+            pumping_by_datetime: dict[datetime, float] = {}
+            for values in data_tag:
+                load_including_pumping = float(values[mapper["Load including pumping"]])
+                load = float(values[mapper["Load"]])
+                # guard against negative rounding artifacts in the source
+                pumping = max(0.0, load_including_pumping - load)
+                pumping_by_datetime[datetime.fromisoformat(values["date"])] = pumping
+            return pumping_by_datetime
+        failure = "no Load series in the response"
+    except (AssertionError, RequestException, KeyError, ValueError) as error:
+        failure = str(error)
+
+    logger.warning(
+        f"CZ.py: no usable Load data between {date_from} and {date_to} "
+        f"({failure}), pumped storage consumption will be missing"
+    )
+    return {}
 
 
 def __get_exchange_data(
@@ -146,29 +212,19 @@ def fetch_production(
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict]:
     target_datetime = get_target_datetime(target_datetime)
     from_datetime = target_datetime - timedelta(hours=48)
 
-    payload = """<?xml version="1.0" encoding="utf-8"?>
-            <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-              <soap12:Body>
-                <Generation xmlns="https://www.ceps.cz/CepsData/">
-                  <dateFrom>{}</dateFrom>
-                  <dateTo>{}</dateTo>
-                  <agregation>{}</agregation>
-                  <function>{}</function>
-                  <version>{}</version>
-                  <para1>{}</para1>
-                </Generation>
-              </soap12:Body>
-            </soap12:Envelope>""".format(
-        from_datetime.isoformat(), target_datetime.isoformat(), "QH", "AVG", "RT", "all"
-    )
+    payload = build_payload("Generation", from_datetime, target_datetime, para1="all")
 
     content = make_request(session, payload, zone_key).text
     xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
+
+    pumping_by_datetime = get_pumping_by_datetime(
+        session, from_datetime, target_datetime, zone_key, logger
+    )
 
     data_tag = xml.find("data")
     production_breakdowns = ProductionBreakdownList(logger)
@@ -177,6 +233,7 @@ def fetch_production(
         for values in data_tag:
             production = ProductionMix()
             storage = StorageMix()
+            event_datetime = datetime.fromisoformat(values["date"])
 
             for k, v in mapper.items():
                 generator = translate_table_gen[k]
@@ -185,16 +242,21 @@ def fetch_production(
                 else:
                     storage.add_value(mode=generator, value=float(values[v]) * -1)
 
+            pumping = pumping_by_datetime.get(event_datetime)
+            if pumping is not None:
+                # net hydro storage = pumping - pumped storage generation
+                storage.add_value(mode="hydro", value=pumping)
+
             production_breakdowns.append(
                 zoneKey=zone_key,
-                datetime=datetime.fromisoformat(values["date"]),
+                datetime=event_datetime,
                 source=source,
                 production=production,
                 storage=storage,
             )
 
     else:
-        ParserException(
+        raise ParserException(
             "CZ.py",
             f"There was no data returned for {zone_key} at {target_datetime}",
             zone_key,
