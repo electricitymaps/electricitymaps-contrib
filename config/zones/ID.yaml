@@ -21,6 +21,7 @@ capacity:
   wind: 154
 contributors:
   - nessie2013
+  - harunmahfud
 country: ID
 country_name: Indonesia
 currency: IDR
@@ -179,6 +180,8 @@ fallbackZoneMixes:
         wind: 0.0
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
+parsers:
+  price: ID.fetch_price
 region: Asia
 timezone: Asia/Jakarta
 zone_name: Indonesia
