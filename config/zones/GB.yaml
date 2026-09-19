@@ -138,6 +138,12 @@ capacity:
     - datetime: '2024-01-01'
       source: bmreports.com
       value: 15896
+    - datetime: '2025-01-01'
+      source: DESNZ
+      value: 19001
+    - datetime: '2026-01-01'
+      source: DESNZ
+      value: 21525
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
