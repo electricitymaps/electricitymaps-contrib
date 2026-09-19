@@ -1,0 +1,59 @@
+# serializer version: 1
+# name: test_fetch_production[MQ]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 23, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 41.142,
+        'gas': 5.41,
+        'hydro': 0,
+        'oil': 178.0158,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'opendata-martinique.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'MQ',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 38, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 40.744,
+        'gas': 5.41,
+        'hydro': 0,
+        'oil': 186.2398,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'opendata-martinique.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'MQ',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 53, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 40.644,
+        'gas': 5.41,
+        'hydro': 0,
+        'oil': 189.306,
+        'solar': 0.1258,
+        'wind': 0,
+      }),
+      'source': 'opendata-martinique.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'MQ',
+    }),
+  ])
+# ---
