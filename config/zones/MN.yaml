@@ -3,12 +3,6 @@ bounding_box:
     - 41.59604243484914
   - - 119.90459904599047
     - 52.130243168255404
-center_point:
-  - 103.72665465197798
-  - 46.81891404665491
-centroid:
-  - 103.29277632507599
-  - 47.64088239652732
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -22,7 +16,10 @@ capacity:
       value: 960.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1150.0
+      value: 1160.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 1400.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -43,6 +40,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,6 +56,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 160.0
+center_point:
+  - 103.72665465197798
+  - 46.81891404665491
+centroid:
+  - 103.29277632507599
+  - 47.64088239652732
 contributors:
   - q--
   - alixunderplatz
@@ -94,8 +100,8 @@ fallbackZoneMixes:
         solar: 0.025727593324883617
         unknown: 0.8876911885022577
         wind: 0.06354042950942215
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -111,10 +117,10 @@ parsers:
   production: MN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Ulaanbaatar
-zone_name: Mongolia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Ulaanbaatar
+zone_name: Mongolia

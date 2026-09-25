@@ -3,12 +3,6 @@ bounding_box:
     - 13.14611571563755
   - - -61.166411664116595
     - 13.36936463757904
-center_point:
-  - -61.21861218612182
-  - 13.257740176608294
-centroid:
-  - -61.216812168121635
-  - 13.233888796058986
 capacity:
   hydro:
     - datetime: '2017-01-01'
@@ -18,6 +12,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -31,11 +28,17 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+center_point:
+  - -61.21861218612182
+  - 13.257740176608294
+centroid:
+  - -61.216812168121635
+  - 13.233888796058986
 country: VC
 country_name: Saint Vincent and the Grenadines
 currency: XCD
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

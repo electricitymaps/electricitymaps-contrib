@@ -3,12 +3,6 @@ bounding_box:
     - 12.417694553661747
   - - -69.8784987849878
     - 12.6323569786055
-center_point:
-  - -69.9684996849968
-  - 12.525025766133624
-centroid:
-  - -69.96789967899674
-  - 12.525025766133625
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -24,10 +18,19 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 220.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+center_point:
+  - -69.9684996849968
+  - 12.525025766133624
+centroid:
+  - -69.96789967899674
+  - 12.525025766133625
 contributors:
   - pascalheraud
 country: AW
@@ -140,8 +143,8 @@ fallbackZoneMixes:
         solar: 0.006176899034154593
         unknown: 0.0015510181027602445
         wind: 0.10858758715681341
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

@@ -3,12 +3,6 @@ bounding_box:
     - 18.982071508441607
   - - 11.968319683196853
     - 37.08240717969856
-center_point:
-  - 1.5925447337166325
-  - 28.02492976863435
-centroid:
-  - 2.9813168670991392
-  - 31.062722570726514
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -29,6 +23,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 23470.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 25830.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -66,6 +63,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+center_point:
+  - 1.5925447337166325
+  - 28.02492976863435
+centroid:
+  - 2.9813168670991392
+  - 31.062722570726514
 country: DZ
 country_name: Algeria
 currency: DZD
@@ -103,15 +106,15 @@ fallbackZoneMixes:
         solar: 0.0070754161021284396
         unknown: 0.0
         wind: 0.00016600744389401443
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Algiers
-zone_name: Algeria
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Algiers
+zone_name: Algeria

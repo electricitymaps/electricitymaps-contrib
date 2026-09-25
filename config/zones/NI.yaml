@@ -3,12 +3,6 @@ bounding_box:
     - 10.717568148107262
   - - -83.13023130231296
     - 15.030851806643668
-center_point:
-  - -85.20004029841722
-  - 12.915995902894023
-centroid:
-  - -84.90224902249018
-  - 12.832867584423333
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -24,6 +18,10 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 160.0
+  oil:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 380.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -31,6 +29,9 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -42,12 +43,19 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 190.0
+center_point:
+  - -85.20004029841722
+  - 12.915995902894023
+centroid:
+  - -84.90224902249018
+  - 12.832867584423333
 contributors:
   - corradio
   - systemcatch
   - jarek
 country: NI
 country_name: Nicaragua
+currency: USD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -200,8 +208,8 @@ fallbackZoneMixes:
         solar: 0.011695191572445699
         unknown: 4.012659652412689e-05
         wind: 0.11489319131069319
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   price: NI.fetch_price
   production: NI.fetch_production
@@ -209,4 +217,3 @@ parsers:
 region: Americas
 timezone: America/Managua
 zone_name: Nicaragua
-currency: USD

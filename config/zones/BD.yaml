@@ -3,12 +3,6 @@ bounding_box:
     - 20.76233855264178
   - - 92.64152641526417
     - 26.453754979317054
-center_point:
-  - 90.38515806873329
-  - 24.0522788218513
-centroid:
-  - 90.50032320418202
-  - 23.52364309030219
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -32,7 +26,10 @@ capacity:
       value: 4770.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 6040.0
+      value: 6030.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 7360.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -84,6 +81,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 7720.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 7670.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 7830.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -109,11 +112,23 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 850.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 1150.0
   wind:
     - _comment: https://en.powerchina.cn/2023-10/13/c_828590.htm
       datetime: '2023-10-12'
       source: POWERCHINA
       value: 66.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+center_point:
+  - 90.38515806873329
+  - 24.0522788218513
+centroid:
+  - 90.50032320418202
+  - 23.52364309030219
 contributors:
   - systemcatch
   - alixunderplatz
@@ -277,17 +292,17 @@ fallbackZoneMixes:
         solar: 0.01021179644515913
         unknown: 0.021465682698105372
         wind: 0.001123168509769495
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ERP_PGCB.fetch_consumption
   production: ERP_PGCB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Dhaka
-zone_name: Bangladesh
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Dhaka
+zone_name: Bangladesh

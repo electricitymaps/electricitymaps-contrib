@@ -3,12 +3,6 @@ bounding_box:
     - 36.69887698046574
   - - 75.16335163351633
     - 41.02647146733173
-center_point:
-  - 71.78491803058495
-  - 38.22522906505693
-centroid:
-  - 70.80775807758079
-  - 38.71494244221951
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -28,15 +22,24 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 5740.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 5840.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 71.78491803058495
+  - 38.22522906505693
+centroid:
+  - 70.80775807758079
+  - 38.71494244221951
 country: TJ
 country_name: Tajikistan
 currency: TJS
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

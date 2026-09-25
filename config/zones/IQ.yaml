@@ -3,12 +3,6 @@ bounding_box:
     - 29.062618983800093
   - - 48.53028530285303
     - 37.36862374629024
-center_point:
-  - 43.44345558532116
-  - 33.21746235405574
-centroid:
-  - 44.54713255817012
-  - 34.003316815933665
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -32,6 +26,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 34030.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 34620.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -53,6 +50,15 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 12120.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10020.0
+center_point:
+  - 43.44345558532116
+  - 33.21746235405574
+centroid:
+  - 44.54713255817012
+  - 34.003316815933665
 contributors:
   - alixunderplatz
   - systemcatch
@@ -92,8 +98,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

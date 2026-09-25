@@ -3,12 +3,6 @@ bounding_box:
     - 8.689723773805298
   - - 38.60138601386015
     - 22.2027018585931
-center_point:
-  - 30.254414578262065
-  - 15.349649136996366
-centroid:
-  - 30.076084492010274
-  - 13.377774092734752
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -51,11 +45,17 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 1340.0
+center_point:
+  - 30.254414578262065
+  - 15.349649136996366
+centroid:
+  - 30.076084492010274
+  - 13.377774092734752
 country: SD
 country_name: Sudan
 currency: SDG
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

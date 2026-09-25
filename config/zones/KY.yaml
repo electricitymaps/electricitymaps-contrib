@@ -3,12 +3,6 @@ bounding_box:
     - 19.261071915595686
   - - -79.72230689375876
     - 19.755142692881883
-center_point:
-  - -80.11012136312443
-  - 19.661757918098214
-centroid:
-  - -80.91321820571495
-  - 19.431235963505397
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -21,17 +15,26 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 200.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - -80.11012136312443
+  - 19.661757918098214
+centroid:
+  - -80.91321820571495
+  - 19.431235963505397
 contributors:
   - VIKTORVAV99
 country: KY
 country_name: Cayman Islands
 currency: KYD
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

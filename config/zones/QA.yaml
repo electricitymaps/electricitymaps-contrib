@@ -4,12 +4,6 @@ bounding_box:
     - 24.56758780547797
   - - 51.59031590315905
     - 26.160382998560593
-center_point:
-  - 51.18039101269935
-  - 25.139696266063734
-centroid:
-  - 51.208969232549485
-  - 25.374514082861765
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -29,13 +23,19 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 810.0
-    - datetime: '2024-01-01'
+    - datetime: '2025-01-01'
       source: Ember, Yearly electricity data
       value: 1680.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+center_point:
+  - 51.18039101269935
+  - 25.139696266063734
+centroid:
+  - 51.208969232549485
+  - 25.374514082861765
 contributors:
   - q--
   - nessie2013
@@ -91,16 +91,16 @@ fallbackZoneMixes:
         solar: 0.04696731182387401
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Qatar
-zone_name: Qatar
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Qatar
+zone_name: Qatar

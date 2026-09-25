@@ -3,12 +3,6 @@ bounding_box:
     - 13.084579153820329
   - - -59.42759427594271
     - 13.345036229418753
-center_point:
-  - -59.519395193951894
-  - 13.21480769161954
-centroid:
-  - -59.548795487954834
-  - 13.196680642402066
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -37,6 +31,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - -59.519395193951894
+  - 13.21480769161954
+centroid:
+  - -59.548795487954834
+  - 13.196680642402066
 country: BB
 country_name: Barbados
 currency: BBD
@@ -59,16 +59,16 @@ fallbackZoneMixes:
         solar: 0.014305633100344143
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: BB.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
-timezone: America/Barbados
-zone_name: Barbados
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: America/Barbados
+zone_name: Barbados

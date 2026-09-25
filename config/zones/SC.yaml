@@ -3,12 +3,6 @@ bounding_box:
     - -4.802634091088595
   - - 55.856329489439965
     - -4.275717804997701
-center_point:
-  - 55.46681685600321
-  - -4.57926331668171
-centroid:
-  - 55.55254076336677
-  - -4.510572017234428
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -31,13 +25,19 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+center_point:
+  - 55.46681685600321
+  - -4.57926331668171
+centroid:
+  - 55.55254076336677
+  - -4.510572017234428
 contributors:
   - VIKTORVAV99
 country: SC
 country_name: Seychelles
 currency: SCR
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
