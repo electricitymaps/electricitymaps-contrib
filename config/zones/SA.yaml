@@ -14,6 +14,18 @@ contributors:
 country: SA
 country_name: Saudi Arabia
 currency: SAR
+disclaimer: Unknown production is assumed to follow the national generation mix, which is mostly gas and oil-fired thermal with a small and growing solar and wind share. GCCIA does not currently report Saudi consumption data, so this override has no effect until that resumes (see #6003); it is added now so the zone is ready when it does.
+emissionFactors:
+  direct:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (63.3% gas, 34.5% other fossil (oil), 1.8% solar, 0.4% wind); IPCC 2014 direct emission factors'
+      value: 374.4
+  lifecycle:
+    unknown:
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      source: 'Ember, Yearly Electricity Data: 2024 generation mix (63.3% gas, 34.5% other fossil (oil), 1.8% solar, 0.4% wind); IPCC 2014 lifecycle emission factors'
+      value: 535.5
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 parsers:
