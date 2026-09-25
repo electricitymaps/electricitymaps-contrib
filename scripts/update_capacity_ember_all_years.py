@@ -2,9 +2,13 @@
 """
 Script to update capacity data from EMBER for all available years at once.
 
-This script is specifically designed for EMBER data which provides all years
+This script is specifically designed for EMBER data which provides all months
 in a single API call. It updates the zone configuration files with all available
-years from EMBER in one go, rather than year-by-year.
+months from EMBER in one go, rather than year-by-year.
+
+Wind and solar come from EMBER's monthly capacity API, all other modes from its
+yearly electricity data CSV. Only the modes returned by EMBER are replaced; any other
+modes in the zone config (e.g. added manually) are kept as they are.
 
 Usage:
     # Update a single zone with all years:
@@ -25,7 +29,7 @@ from electricitymap.contrib.capacity_parsers.EMBER import (
     EMBER_ZONES,
     fetch_production_capacity_all_years,
 )
-from electricitymap.contrib.config import CONFIG_DIR
+from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG
 from electricitymap.contrib.types import ZoneKey
 from scripts.update_capacity_configuration import sort_config_keys
 
@@ -36,12 +40,12 @@ logging.basicConfig(
 
 
 def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
-    """Update a zone's capacity configuration with all years from EMBER.
+    """Update a zone's capacity configuration with all months from EMBER.
 
-    This function REPLACES THE ENTIRE 'capacity' section with EMBER data only.
-    All existing capacity data from other sources (ENTSOE, manual entries, etc.)
-    will be removed. Other sections (emissionFactors, parsers, etc.) remain
-    completely untouched with EXACT original formatting preserved.
+    This function REPLACES the modes returned by EMBER entirely.
+    Existing capacity for other modes is kept. Other sections (emissionFactors,
+    parsers, etc.) remain completely untouched with EXACT original formatting
+    preserved.
 
     Args:
         zone_key: The zone key to update
@@ -56,8 +60,12 @@ def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     with open(zone_file, encoding="utf-8") as f:
         original_content = f.read()
 
+    # Keep modes EMBER does not report, replace the ones it does
+    existing_capacity = ZONES_CONFIG.get(zone_key, {}).get("capacity", {})
+    merged_capacity = {**existing_capacity, **capacity_data}
+
     # Sort capacity keys
-    sorted_capacity = sort_config_keys(capacity_data)
+    sorted_capacity = sort_config_keys(merged_capacity)
 
     # Generate just the capacity section using ruamel.yaml
     yaml = YAML()
