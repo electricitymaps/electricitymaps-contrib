@@ -27,6 +27,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 6030.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 7360.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -81,6 +84,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 7670.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 7830.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -106,6 +112,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 850.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 1150.0
   wind:
     - _comment: https://en.powerchina.cn/2023-10/13/c_828590.htm
       datetime: '2023-10-12'

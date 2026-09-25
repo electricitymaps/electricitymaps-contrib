@@ -29,6 +29,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 4350.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 4310.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -39,6 +42,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 5990.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 5840.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -64,6 +70,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 38130.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 38830.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -96,6 +105,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 3390.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 6840.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

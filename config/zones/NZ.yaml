@@ -14,6 +14,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 150.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -79,6 +82,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 580.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 840.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
