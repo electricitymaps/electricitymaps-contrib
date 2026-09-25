@@ -13,42 +13,32 @@ from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZON
 from electricitymap.contrib.config.constants import ENERGIES
 from electricitymap.contrib.parsers.lib.utils import get_token
 
-""" Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
+""" Collects installed wind and solar capacity from Ember's monthly capacity dataset.
+API docs: https://api.ember-energy.org/v1/docs#/Main%20routes/getMonthlyCapacity
+Dataset: https://ember-energy.org/data/monthly-wind-and-solar-capacity-data/
+
+Note: this endpoint only covers wind and solar. Other modes must come from another source."""
 logger = logging.getLogger(__name__)
 EMBER_URL = "https://ember-climate.org"
-SOURCE = "Ember, Yearly electricity data"
+EMBER_CAPACITY_URL = "https://api.ember-energy.org/v1/installed-capacity/monthly"
+SOURCE = "Ember, Monthly wind and solar capacity data"
 START_YEAR = 2017
-SPECIFIC_MODE_MAPPING = {
-    "AR": {"other fossil": "unknown"},
-    "BD": {"other fossil": "oil"},
-    "BO": {"other fossil": "oil"},
-    "CO": {"other fossil": "oil"},
-    "CR": {"other fossil": "oil", "other renewables": "geothermal"},
-    "CY": {"other fossil": "oil"},
-    "IE": {"other fossil": "oil"},
-    "KR": {"other fossil": "oil"},
-    "KW": {"other fossil": "oil"},
-    "MN": {"other fossil": "coal"},
-    "NI": {"other fossil": "oil", "other renewables": "geothermal"},
-    "NZ": {"other renewables": "geothermal"},
-    "SG": {"other fossil": "coal"},
-    "SV": {"other renewables": "geothermal"},
-    "TR": {"other fossil": "oil", "other renewables": "geothermal"},
-    "TW": {"other fossil": "oil"},
-    "UY": {"other fossil": "unknown"},
-    "ZA": {"other fossil": "oil"},
-}
+# 'Wind' is Ember's aggregate of onshore and offshore wind, so only it is requested
+EMBER_SERIES = ["Solar", "Wind"]
 
 EMBER_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EMBER"]
 
 
-def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> str:
+def get_ember_capacity_monthly_data(
+    country_iso2: ZoneKey, session: Session
+) -> pd.DataFrame:
     """
-    Creates a URL to fetch generation_yearly data from the API,
-    using ISO 3 country code and a year
-    ex: 'https://api.ember-energy.org/data-tools/electricity-capacity/yearly?entity=xxx&api_key=xxxx
+    Fetches monthly installed capacity from the Ember API for one country.
+    The API expects an ISO 3 country code, so the ISO 2 zone key is converted first
+    (e.g., "FR" -> "FRA").
+    ex: 'https://api.ember-energy.org/v1/installed-capacity/monthly?entity_code=FRA&series=Solar,Wind&start_date=2017-01&api_key=xxxx'
     Args:
-        country_iso2 (str | None): ISO 2 country code (e.g., "FR").
+        country_iso2 (str): ISO 2 zone key (e.g., "FR"), converted to ISO 3 for the API.
         session (Session): The requests session to use.
     Returns:
         pd.DataFrame: A dataframe with the capacity data.
@@ -57,23 +47,16 @@ def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> s
     if not ember_api_key:
         raise ValueError("EMBER_CAPACITY_KEY not found in environment variables")
 
-    # Go from ISO2 to country name, capitalize each word
-
-    if country_iso2 in SPECIAL_MAPPING_ZONE_KEY:
-        country_name = SPECIAL_MAPPING_ZONE_KEY[country_iso2]
-    else:
-        country = pycountry.countries.get(alpha_2=country_iso2)
-        if country:
-            country_name = country.name.title()
-        else:
-            raise ValueError(f"Invalid ISO2 country code: {country_iso2}")
+    country = pycountry.countries.get(alpha_2=country_iso2)
+    if country is None:
+        raise ValueError(f"Invalid ISO2 country code: {country_iso2}")
 
     query_params = {
-        "entity": country_name,
+        "entity_code": country.alpha_3,
+        "series": ",".join(EMBER_SERIES),
+        "start_date": f"{START_YEAR}-01",
         "api_key": ember_api_key,
     }
-
-    base_url = "https://api.ember-energy.org/data-tools/electricity-capacity/yearly"
 
     # Retry up to 3 times with exponential backoff
     max_retries = 3
@@ -82,7 +65,7 @@ def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> s
             logger.info(
                 f"Fetching Ember capacity data for {country_iso2} (attempt {attempt + 1}/{max_retries})"
             )
-            response = session.get(base_url, params=query_params, timeout=30)
+            response = session.get(EMBER_CAPACITY_URL, params=query_params, timeout=30)
             response.raise_for_status()
 
             # Add a small delay to avoid spamming the API
@@ -111,63 +94,32 @@ def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> s
     )
 
 
-def _ember_production_mode_mapper(row: pd.Series) -> str | None:
-    category_col = "mode"
-
-    # Ember also reports the following, which we exclude due to:
-    # 'Wind and solar' is contained in 'wind' and 'solar' data
-    # 'Fossil' contained in all non-renewable sources, i.e. 'coal', 'gas', 'oil', 'other fossil
-    # 'Clean' containd in all renewable sources, i.e. 'wind', 'solar', 'other renewables', ...
-    ember_mapper = {
-        "other fossil": "unknown",
-        "bioenergy": "biomass",
-        "other renewables": "unknown",
-    }
-
-    if isinstance(row[category_col], str):
-        mode = row[category_col].lower()
-        if (
-            row["zone_key"] in SPECIFIC_MODE_MAPPING
-            and mode in SPECIFIC_MODE_MAPPING[row["zone_key"]]
-        ):
-            production_mode = SPECIFIC_MODE_MAPPING[row["zone_key"]][mode]
-        elif mode in ENERGIES:
-            production_mode = mode
-        elif mode in ember_mapper:
-            production_mode = ember_mapper[mode]
-        else:
-            production_mode = "unknown"
-            raise ValueError(f"Unknown production mode: {row[category_col]}")
-
-    return production_mode
+def _ember_production_mode_mapper(series: str) -> str:
+    mode = series.lower()
+    if mode not in ENERGIES:
+        raise ValueError(f"Unknown production mode: {series}")
+    return mode
 
 
 def transform_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
-    if ember_df.empty is True:
+    if ember_df.empty:
         logger.warning("Empty Ember data received")
         raise ValueError("Empty Ember data received")
-    df = ember_df.loc[~ember_df["is_aggregate_series"]].reset_index(drop=True)
+    # Guard against series we did not request, e.g. 'Onshore wind' which is part of 'Wind'
+    df = ember_df.loc[ember_df["series"].isin(EMBER_SERIES)].reset_index(drop=True)
 
     df_capacity = df[["country_code_iso2", "date", "series", "capacity_gw"]].rename(
-        columns={"date": "year", "series": "variable"}
+        columns={"country_code_iso2": "zone_key", "series": "mode"}
     )
+    # Dates are monthly (YYYY-MM), parsed to the first day of the month in UTC
+    df_capacity["datetime"] = pd.to_datetime(df_capacity["date"], utc=True)
+    df_capacity["capacity_mw"] = (
+        pd.to_numeric(df_capacity["capacity_gw"], errors="coerce").astype(float) * 1000
+    )  # convert from GW to MW
+    df_capacity = df_capacity.drop(columns=["date", "capacity_gw"])
+    df_capacity = df_capacity.dropna(subset=["capacity_mw"])
 
-    df_capacity = df_capacity.rename(
-        columns={
-            "country_code_iso2": "zone_key",
-            "variable": "mode",
-        }
-    )
-    df_capacity["datetime"] = df_capacity["year"].apply(
-        lambda x: datetime(int(x), 1, 1)
-    )
-    df_capacity["capacity_mw"] = pd.to_numeric(
-        df_capacity["capacity_gw"] * 1000, errors="coerce"
-    ).astype(float)  # convert from GW to MW
-    df_capacity.drop(columns=["capacity_gw"], inplace=True)
-    df_capacity.dropna(subset=["capacity_mw"], inplace=True)
-
-    df_capacity["mode"] = df_capacity.apply(_ember_production_mode_mapper, axis=1)
+    df_capacity["mode"] = df_capacity["mode"].map(_ember_production_mode_mapper)
     df_capacity = (
         df_capacity.groupby(["zone_key", "datetime", "mode"])[["capacity_mw"]]
         .sum()
@@ -180,29 +132,31 @@ def transform_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
 def get_capacity_dict_from_df(
     df_capacity: pd.DataFrame, zone_key: ZoneKey, target_datetime: datetime
 ) -> dict[str, Any]:
-    """Get capacity data for a specific zone for a specific year. The unit is the MW
+    """Get capacity data for a specific zone for a specific month. The unit is the MW
 
     Args:
         df_capacity: DataFrame with capacity data
         zone_key: The zone key
-        target_datetime: The target datetime (year will be used to filter data)
+        target_datetime: The target datetime (year and month will be used to filter data)
 
     Returns:
-        Dictionary with capacity data per mode for the target year
+        Dictionary with capacity data per mode for the target month
     """
     if [zone_key] != df_capacity.index.unique().tolist():
         raise ValueError(f"Zone key {zone_key} not found in dataframe")
 
-    # Filter data for the target year
-    target_year = target_datetime.year
-    df_year = df_capacity[df_capacity["datetime"].dt.year == target_year]
+    # Filter data for the target month
+    df_month = df_capacity[
+        (df_capacity["datetime"].dt.year == target_datetime.year)
+        & (df_capacity["datetime"].dt.month == target_datetime.month)
+    ]
 
-    if df_year.empty:
-        logger.warning(f"No capacity data for {zone_key} in year {target_year}")
+    if df_month.empty:
+        logger.warning(f"No capacity data for {zone_key} in {target_datetime:%Y-%m}")
         return {}
 
     zone_capacity = {}
-    for _i, data in df_year.iterrows():
+    for _i, data in df_month.iterrows():
         mode_capacity = {}
         mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
         mode_capacity["source"] = SOURCE
@@ -284,18 +238,18 @@ def get_capacity_dict_all_years_from_df(
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> dict[str, Any] | None:
-    """Get capacity data for a specific zone for a specific year. The unit is the MW
+    """Get capacity data for a specific zone for a specific month. The unit is the MW
 
     Args:
         zone_key: The zone key (ISO2 country code)
-        target_datetime: The target datetime (year will be used to filter data)
+        target_datetime: The target datetime (year and month will be used to filter data)
         session: The requests session
 
     Returns:
         Dictionary with capacity data for the zone
     """
     session = session or Session()
-    df_capacity = get_ember_capacity_yearly_data(
+    df_capacity = get_ember_capacity_monthly_data(
         country_iso2=zone_key,
         session=session,
     )
@@ -304,7 +258,7 @@ def fetch_production_capacity(
 
     if capacity:
         logger.info(
-            f"Fetched capacity for {zone_key} in {target_datetime.year}: \n{capacity}"
+            f"Fetched capacity for {zone_key} in {target_datetime:%Y-%m}: \n{capacity}"
         )
     return capacity if capacity else None
 
@@ -312,9 +266,9 @@ def fetch_production_capacity(
 def fetch_production_capacity_all_years(
     zone_key: ZoneKey, session: Session | None = None
 ) -> dict[str, Any]:
-    """Get capacity data for a specific zone for ALL available years >= 2017. The unit is the MW
+    """Get capacity data for a specific zone for ALL available months >= 2017. The unit is the MW
 
-    This function fetches all years available from EMBER in one API call and returns
+    This function fetches all months available from EMBER in one API call and returns
     them in the list format that matches the zone YAML configuration structure.
 
     Data is filtered to start from 2017 and consecutive duplicate values are
@@ -325,18 +279,18 @@ def fetch_production_capacity_all_years(
         session: The requests session
 
     Returns:
-        Dictionary with capacity data per mode as lists containing all years >= 2017
+        Dictionary with capacity data per mode as lists containing all months >= 2017
         (with consecutive duplicates removed):
         {
-            "coal": [
+            "wind": [
                 {"datetime": "2017-01-01", "value": 1234.56, "source": "..."},
-                {"datetime": "2022-01-01", "value": 1245.67, "source": "..."}  # 2018-2021 removed (duplicates)
+                {"datetime": "2017-06-01", "value": 1245.67, "source": "..."}  # Feb-May removed (duplicates)
             ],
             "solar": [...]
         }
     """
     session = session or Session()
-    df_capacity = get_ember_capacity_yearly_data(
+    df_capacity = get_ember_capacity_monthly_data(
         country_iso2=zone_key,
         session=session,
     )
@@ -419,38 +373,24 @@ def fetch_production_capacity_for_all_zones_all_years(
     return all_capacity
 
 
-SPECIAL_MAPPING_ZONE_KEY = {
-    "FK": "Falkland Islands [Malvinas]",
-    "KP": "North Korea",
-    "KR": "South Korea",
-    "LA": "Lao",
-    "MO": "Macao (SAR of China)",
-    "PS": "Palestine (State of)",
-    "RU": "Russia",
-    "SY": "Syria",
-    "TR": "Türkiye",
-    "TW": "Taiwan (China)",
-    "TZ": "Tanzania (the United Republic of)",
-    "VI": "Virgin Islands (U.S.)",
-}
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     session = Session()
 
-    # Example 1: Fetch capacity for one year (for use with update_capacity_configuration.py)
-    print("\n=== Example 1: Single year ===")
+    # Example 1: Fetch capacity for one month (for use with update_capacity_configuration.py)
+    print("\n=== Example 1: Single month ===")
     FR_single_year = fetch_production_capacity(
         zone_key="FR", target_datetime=datetime(2024, 1, 1), session=session
     )
-    print(f"FR capacity data for 2024: {list(FR_single_year.keys())}")
+    print(f"FR capacity data for 2024-01: {list(FR_single_year.keys())}")
 
     # Example 2: Fetch capacity for all years at once
     print("\n=== Example 2: All years for one zone ===")
     FR_all_years = fetch_production_capacity_all_years(zone_key="FR", session=session)
     print("FR capacity data for all years:")
     for mode, data in FR_all_years.items():
-        print(f"  {mode}: {len(data)} years")
+        print(f"  {mode}: {len(data)} data points")
 
     # Example 3: Fetch capacity for all zones and all years (use with caution - many API calls!)
     # Uncomment to run:
