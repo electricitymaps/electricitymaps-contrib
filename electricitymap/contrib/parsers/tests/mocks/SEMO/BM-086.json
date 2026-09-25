@@ -1,0 +1,232 @@
+{
+  "pagination": {
+    "pageSize": 5000,
+    "currentPage": 1,
+    "totalItems": 22,
+    "totalPages": 1,
+    "sort_by": "StartTime",
+    "order_by": "ASC"
+  },
+  "items": [
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400020",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 100.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_501690",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 50.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_405850",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 200.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400270",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 80.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_500041",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 10.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400750",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 5.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400200",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 30.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400570",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 15.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400120",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 40.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_403560",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": -20.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400360",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 25.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_405170",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 0.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "I_ROIGRLK",
+      "ResourceType": "IU",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 150.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_999999",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 12.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400020",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:30:00",
+      "EndTime": "2026-09-20T00:59:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 110.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_501690",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:30:00",
+      "EndTime": "2026-09-20T00:59:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 45.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_405850",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:30:00",
+      "EndTime": "2026-09-20T00:59:59",
+      "Jurisdiction": "ROI",
+      "MeteredMW": 190.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400030",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "NI",
+      "MeteredMW": 60.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400050",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "NI",
+      "MeteredMW": 20.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_501650",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "NI",
+      "MeteredMW": 8.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "GU_400180",
+      "ResourceType": "GEN",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "NI",
+      "MeteredMW": 300.0
+    },
+    {
+      "TradeDate": "2026-09-20",
+      "ParticipantName": "PT_TEST",
+      "ResourceName": "I_NIMOYLE",
+      "ResourceType": "IU",
+      "StartTime": "2026-09-20T00:00:00",
+      "EndTime": "2026-09-20T00:29:59",
+      "Jurisdiction": "NI",
+      "MeteredMW": 100.0
+    }
+  ]
+}
