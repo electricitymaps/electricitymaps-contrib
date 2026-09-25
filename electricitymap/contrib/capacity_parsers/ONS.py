@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timezone
+from io import BytesIO
 from logging import getLogger
 from typing import Any
 
@@ -12,7 +13,7 @@ Solar capacity is much lower than in reality because the majority is distributed
 This capacity is not available in this dataset and should collected from the link below and added manually to the zone configuration.
 Distributed solar generation is available here (tipo de usina = Geracao Distribuida): https://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx"""
 logger = getLogger(__name__)
-CAPACITY_URL = "https://ons-dl-prod-opendata.s3.amazonaws.com/dataset/capacidade-geracao/CAPACIDADE_GERACAO.csv"
+CAPACITY_URL = "https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/capacidade-geracao/CAPACIDADE_GERACAO.csv"
 MODE_MAPPING = {
     "HIDRÁULICA": "hydro",
     "ÓLEO DIESEL": "unknown",
@@ -59,7 +60,8 @@ def fetch_production_capacity_for_all_zones(
 ) -> dict[str, Any] | None:
     session = session or Session()
     r: Response = session.get(CAPACITY_URL)
-    df = pd.read_csv(r.url, sep=";")
+    r.raise_for_status()
+    df = pd.read_csv(BytesIO(r.content), sep=";")
     df = df[
         [
             "nom_subsistema",
@@ -78,18 +80,19 @@ def fetch_production_capacity_for_all_zones(
             "val_potenciaefetiva": "value",
         }
     )
+    # ONS pads the subsystem names with trailing whitespace
+    df["zone_key"] = df["zone_key"].str.strip()
+    df["mode"] = df["mode"].str.strip()
 
-    # convert start and end columns to datetime
-    df["start"] = df["start"].apply(
-        lambda x: pd.to_datetime(x, utc=False).replace(day=1, month=1)
-    )
-    df["end"] = df["end"].apply(
-        lambda x: (
-            pd.to_datetime(x, utc=False).replace(day=31, month=12)
-            if x is not None
-            else x
-        )
-    )
+    # capacity is aggregated per year: a unit counts for the whole year it was
+    # commissioned in and the whole year it was decommissioned in
+    start = pd.to_datetime(df["start"], utc=True)
+    end = pd.to_datetime(df["end"], utc=True)
+    df["start"] = start.apply(lambda x: x.replace(day=1, month=1))
+    df["end"] = end.apply(lambda x: x.replace(day=31, month=12) if pd.notna(x) else x)
+
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
     df = filter_data_by_date(df, target_datetime)
     df["datetime"] = target_datetime
     df["mode"] = df["mode"].map(MODE_MAPPING)
@@ -127,4 +130,8 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
-    print(fetch_production_capacity("BR-N", datetime(2021, 1, 1), Session()))
+    print(
+        fetch_production_capacity(
+            "BR-N", datetime(2021, 1, 1, tzinfo=timezone.utc), Session()
+        )
+    )

@@ -19,6 +19,8 @@ GENERATION_MAPPING = {
     "eolica": "wind",
     "termica": "unknown",
     "solar": "solar",
+    # Micro e Minigeração Distribuída: distributed generation, overwhelmingly rooftop solar.
+    "mmgd": "solar",
     "hidraulica": "hydro",
     "itaipu50HzBrasil": "hydro",  # BR_CS contains the Itaipu Dam.
     # We merge the hydro keys into one.
