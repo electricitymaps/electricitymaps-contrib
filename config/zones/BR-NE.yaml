@@ -3,12 +3,6 @@ bounding_box:
     - -18.323395781116133
   - - -34.79614796147959
     - -2.74107331350884
-center_point:
-  - -40.61435490558871
-  - -10.47934926085047
-centroid:
-  - -42.38474909604173
-  - -10.441985640867259
 capacity:
   hydro:
     - datetime: '2023-01-01'
@@ -18,14 +12,29 @@ capacity:
     - datetime: '2023-01-01'
       source: ons.org.br
       value: 9851.0
+    - datetime: '2026-01-01'
+      source: ons.org.br
+      value: 11314.0
   unknown:
     - datetime: '2023-01-01'
       source: ons.org.br
       value: 7332.0
+    - datetime: '2026-01-01'
+      source: ons.org.br
+      value: 6607.0
   wind:
     - datetime: '2023-01-01'
       source: ons.org.br
       value: 24209.0
+    - datetime: '2026-01-01'
+      source: ons.org.br
+      value: 31136.0
+center_point:
+  - -40.61435490558871
+  - -10.47934926085047
+centroid:
+  - -42.38474909604173
+  - -10.441985640867259
 contributors:
   - alexanmtz
   - corradio
@@ -34,7 +43,8 @@ contributors:
 country: BR
 country_name: Brazil
 currency: BRL
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -187,8 +197,8 @@ fallbackZoneMixes:
         solar: 0.15130703599836154
         unknown: 0.03702929035700427
         wind: 0.5795009589558684
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
