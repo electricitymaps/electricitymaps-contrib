@@ -22,7 +22,7 @@ def mock_response():
 
 
 @pytest.mark.parametrize(
-    "data_file", ["BR.json", "BR_negative_solar.json", "data.json"]
+    "data_file", ["BR.json", "BR_negative_solar.json", "data.json", "BR_mmgd.json"]
 )
 @pytest.mark.parametrize("zone_key", ["BR-NE", "BR-N", "BR-CS", "BR-S"])
 def test_snapshot_fetch_production(
@@ -47,7 +47,7 @@ def test_snapshot_fetch_production(
 
 
 @pytest.mark.parametrize(
-    "data_file", ["BR.json", "BR_negative_solar.json", "data.json"]
+    "data_file", ["BR.json", "BR_negative_solar.json", "data.json", "BR_mmgd.json"]
 )
 @pytest.mark.parametrize(
     "zone_key1,zone_key2",
