@@ -3,12 +3,6 @@ bounding_box:
     - 29.386043704048674
   - - 74.89334893348934
     - 38.443366953841945
-center_point:
-  - 66.0540719083482
-  - 33.82887273724214
-centroid:
-  - 67.63767919369339
-  - 34.81340519194689
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -34,6 +28,9 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -42,11 +39,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 66.0540719083482
+  - 33.82887273724214
+centroid:
+  - 67.63767919369339
+  - 34.81340519194689
 country: AF
 country_name: Afghanistan
 currency: AFN
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

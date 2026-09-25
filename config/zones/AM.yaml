@@ -3,12 +3,6 @@ bounding_box:
     - 38.86410530673169
   - - 46.60426604266044
     - 41.28979070859606
-center_point:
-  - 44.63778369870547
-  - 40.48084853967063
-centroid:
-  - 45.282401167166356
-  - 40.04925295979527
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -70,6 +64,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 44.63778369870547
+  - 40.48084853967063
+centroid:
+  - 45.282401167166356
+  - 40.04925295979527
 contributors:
   - tmslaine
   - systemcatch
@@ -110,8 +110,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 4.115911610833948e-07
         wind: 1.2884592868697575e-06
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

@@ -3,12 +3,6 @@ bounding_box:
     - 31.212105398903503
   - - 35.55935559355595
     - 32.54301243355475
-center_point:
-  - 35.00855008550087
-  - 31.87612783339617
-centroid:
-  - 34.998424984249866
-  - 31.786327385628027
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -18,6 +12,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -34,10 +31,19 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 190.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 300.0
+center_point:
+  - 35.00855008550087
+  - 31.87612783339617
+centroid:
+  - 34.998424984249866
+  - 31.786327385628027
 country: PS
 country_name: State of Palestine
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

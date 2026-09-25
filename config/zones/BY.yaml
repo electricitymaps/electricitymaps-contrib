@@ -1,15 +1,10 @@
-_comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP
+_comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273
+  CHP
 bounding_box:
   - - 23.164431644316466
     - 51.23581639765645
   - - 32.71892718927191
     - 56.16068318571228
-center_point:
-  - 27.68373046367583
-  - 53.751740127851846
-centroid:
-  - 28.172208782115028
-  - 53.56060161053779
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -24,6 +19,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -92,6 +90,12 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 120.0
+center_point:
+  - 27.68373046367583
+  - 53.751740127851846
+centroid:
+  - 28.172208782115028
+  - 53.56060161053779
 contributors:
   - admetny
 country: BY
@@ -104,8 +108,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.01
       unknown: 0.01
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

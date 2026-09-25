@@ -1,15 +1,10 @@
-_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal
+_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas
+  incl. 13 MW of coal
 bounding_box:
   - - 39.987399873998754
     - 41.045075544160184
   - - 46.62946629466296
     - 43.575229992830515
-center_point:
-  - 43.77730700229085
-  - 42.16081597950481
-centroid:
-  - 43.59067269225706
-  - 42.238123079285806
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -62,11 +57,17 @@ capacity:
       value: 60.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 130.0
+      value: 140.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+center_point:
+  - 43.77730700229085
+  - 42.16081597950481
+centroid:
+  - 43.59067269225706
+  - 42.238123079285806
 contributors:
   - alixunderplatz
   - kruschk
@@ -197,8 +198,8 @@ fallbackZoneMixes:
         solar: 9.334021495300608e-05
         unknown: 0.05224346510003176
         wind: 0.00475058940672753
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

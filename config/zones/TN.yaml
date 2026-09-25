@@ -3,12 +3,6 @@ bounding_box:
     - 30.228951492661125
   - - 11.565115651156532
     - 37.33570884113219
-center_point:
-  - 9.490716854735648
-  - 33.894911522715674
-centroid:
-  - 9.817171411150756
-  - 34.5145608310616
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -20,6 +14,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 5770.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 5450.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,6 +53,12 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 250.0
+center_point:
+  - 9.490716854735648
+  - 33.894911522715674
+centroid:
+  - 9.817171411150756
+  - 34.5145608310616
 country: TN
 country_name: Tunisia
 currency: TND
@@ -93,15 +96,15 @@ fallbackZoneMixes:
         solar: 0.014851571340234765
         unknown: 0.009993849327866806
         wind: 0.01516080650910127
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Tunis
-zone_name: Tunisia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Tunis
+zone_name: Tunisia

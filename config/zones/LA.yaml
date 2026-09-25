@@ -3,12 +3,6 @@ bounding_box:
     - 13.917469362602077
   - - 107.65727657276571
     - 22.44672304703373
-center_point:
-  - 103.89189363748629
-  - 18.66296979024183
-centroid:
-  - 103.97856593950556
-  - 18.164945227481375
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -43,6 +37,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 9780.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10190.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,11 +53,18 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 60.0
+center_point:
+  - 103.89189363748629
+  - 18.66296979024183
+centroid:
+  - 103.97856593950556
+  - 18.164945227481375
 country: LA
 country_name: Laos
 currency: LAK
 fallbackZoneMixes:
-  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.
+  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
+    generation not broken down by type). Biomass includes waste.
   _url: https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
   powerOriginRatios:
     value:
@@ -68,8 +72,8 @@ fallbackZoneMixes:
       coal: 0.28410228182546
       hydro: 0.713395716573259
       solar: 0.0010758606885508
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

@@ -3,6 +3,23 @@ bounding_box:
     - -3.93672006138604
   - - 14.499144991449924
     - 2.309956504477071
+capacity:
+  gas:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 500.0
+  hydro:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 320.0
+  solar:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
 center_point:
   - 11.708644369489573
   - -0.6967646921278292
@@ -12,8 +29,8 @@ centroid:
 country: GA
 country_name: Gabon
 currency: XAF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

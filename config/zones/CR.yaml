@@ -3,12 +3,6 @@ bounding_box:
     - 8.034287836310384
   - - -82.57222572225717
     - 11.209860642644927
-center_point:
-  - -84.27575410391903
-  - 9.949824880295713
-centroid:
-  - -84.05730980386721
-  - 9.674501408646611
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -27,6 +21,9 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 260.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -100,6 +97,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 400.0
+center_point:
+  - -84.27575410391903
+  - 9.949824880295713
+centroid:
+  - -84.05730980386721
+  - 9.674501408646611
 contributors:
   - corradio
   - jarek
@@ -271,26 +274,26 @@ fallbackZoneMixes:
         solar: 0.0013911656652474905
         unknown: 0.0
         wind: 0.09941766316203218
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
-parsers:
-  production: CR.fetch_production
-  productionCapacity: EMBER.fetch_production_capacity
-region: Americas
-timezone: America/Costa_Rica
-zone_name: Costa Rica
-sources:
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
-isRenewable:
-  unknown:
-    _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
-    source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
-    value: 0.42
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
     source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
     value: 0.42
+isRenewable:
+  unknown:
+    _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
+    source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
+    value: 0.42
+parsers:
+  production: CR.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
+region: Americas
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: America/Costa_Rica
+zone_name: Costa Rica

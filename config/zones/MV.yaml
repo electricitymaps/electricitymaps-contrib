@@ -3,12 +3,6 @@ bounding_box:
     - -0.702364251585757
   - - 73.5538126436328
     - 4.24016710592131
-center_point:
-  - 73.48630139921762
-  - 1.822984655278469
-centroid:
-  - 73.37222347111515
-  - 1.4019136306608828
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -17,6 +11,9 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -33,6 +30,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -44,13 +44,19 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 73.48630139921762
+  - 1.822984655278469
+centroid:
+  - 73.37222347111515
+  - 1.4019136306608828
 contributors:
   - VIKTORVAV99
 country: MV
 country_name: Maldives
 currency: MVR
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

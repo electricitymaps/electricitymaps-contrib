@@ -3,12 +3,6 @@ bounding_box:
     - 18.169216459321277
   - - 134.77274772747725
     - 53.56848141537853
-center_point:
-  - 104.16675282687595
-  - 35.92817723593884
-centroid:
-  - 106.98483483977198
-  - 35.16965556919855
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -34,7 +28,7 @@ capacity:
       value: 18370.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 19140.0
+      value: 18610.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -59,7 +53,7 @@ capacity:
       value: 1146470.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1174540.0
+      value: 1173380.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -84,7 +78,7 @@ capacity:
       value: 133280.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 152990.0
+      value: 138940.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -109,7 +103,7 @@ capacity:
       value: 370600.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 385000.0
+      value: 377260.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -134,7 +128,7 @@ capacity:
       value: 56910.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 60810.0
+      value: 60830.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -158,8 +152,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 609920.0
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 887930.0
+      source: Ember, Monthly wind and solar capacity data
+      value: 754420.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -184,7 +178,7 @@ capacity:
       value: 14900.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 15440.0
+      value: 15790.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -208,13 +202,19 @@ capacity:
       source: Ember, Yearly electricity data
       value: 441890.0
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 521750.0
+      source: Ember, Monthly wind and solar capacity data
+      value: 445850.0
+center_point:
+  - 104.16675282687595
+  - 35.92817723593884
+centroid:
+  - 106.98483483977198
+  - 35.16965556919855
 country: CN
 country_name: China
 currency: CNY
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

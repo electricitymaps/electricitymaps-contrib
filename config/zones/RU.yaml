@@ -3,12 +3,6 @@ bounding_box:
     - 41.196770324453766
   - - 180
     - 81.8581268572988
-center_point:
-  - 21.687780666148868
-  - 54.69528449606483
-centroid:
-  - 84.39350790706435
-  - 65.2797034536478
 bypassedSubZones:
   - RU-1
   - RU-2
@@ -48,7 +42,7 @@ capacity:
       value: 37550.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 37310.0
+      value: 37190.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -73,7 +67,7 @@ capacity:
       value: 110820.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 111680.0
+      value: 110490.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -98,7 +92,7 @@ capacity:
       value: 51620.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 49100.0
+      value: 51730.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -111,7 +105,7 @@ capacity:
       value: 28020.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 27910.0
+      value: 28650.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -136,11 +130,14 @@ capacity:
       value: 2190.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 2550.0
+      value: 2260.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 260.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1290.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -163,6 +160,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 2570.0
+center_point:
+  - 21.687780666148868
+  - 54.69528449606483
+centroid:
+  - 84.39350790706435
+  - 65.2797034536478
 contributors:
   - denplis
   - systemcatch
@@ -175,13 +178,17 @@ currency: RUB
 emissionFactors:
   direct:
     unknown:
-      _comment: 'Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh; 2015 production'
+      _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
+        22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
+        567 g/kWh; 2015 production'
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 460.06
   lifecycle:
     unknown:
-      _comment: 'Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh; 2015 production'
+      _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
+        22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
+        567 g/kWh; 2015 production'
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 567.5
@@ -292,8 +299,14 @@ fallbackZoneMixes:
         solar: 0.0021536301209946376
         unknown: 0.635339299328092
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  unknown:
+    value: 0
+isRenewable:
+  unknown:
+    value: 0
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -317,9 +330,3 @@ subZoneNames:
   - RU-KGD
 timezone: Europe/Moscow
 zone_name: Russia
-isLowCarbon:
-  unknown:
-    value: 0
-isRenewable:
-  unknown:
-    value: 0

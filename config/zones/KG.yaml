@@ -3,12 +3,6 @@ bounding_box:
     - 39.190392192646186
   - - 80.21060210602107
     - 43.261822852412635
-center_point:
-  - 75.1427702005121
-  - 41.27352312964108
-centroid:
-  - 73.56645493060435
-  - 41.02530296850483
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -29,16 +23,22 @@ capacity:
       value: 3140.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 3260.0
+      value: 3310.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 75.1427702005121
+  - 41.27352312964108
+centroid:
+  - 73.56645493060435
+  - 41.02530296850483
 country: KG
 country_name: Kyrgyzstan
 currency: KGS
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

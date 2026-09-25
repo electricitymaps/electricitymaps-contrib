@@ -3,12 +3,6 @@ bounding_box:
     - -18.337706609445718
   - - -68.68328683286828
     - -0.032726093075716
-center_point:
-  - -75.03004352182998
-  - -9.268566468684224
-centroid:
-  - -74.55105220330144
-  - -8.063048545075539
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -27,6 +21,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -49,6 +46,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 6700.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4910.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -68,6 +68,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 5520.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 5540.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -106,6 +109,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1980.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2980.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -124,7 +130,13 @@ capacity:
       value: 1010.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1150.0
+      value: 1030.0
+center_point:
+  - -75.03004352182998
+  - -9.268566468684224
+centroid:
+  - -74.55105220330144
+  - -8.063048545075539
 contributors:
   - corradio
   - nessie2013
@@ -283,8 +295,8 @@ fallbackZoneMixes:
         solar: 0.022634861767733317
         unknown: 0.0
         wind: 0.06261290684751358
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: PE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

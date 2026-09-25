@@ -3,12 +3,6 @@ bounding_box:
     - -4.229086617449174
   - - -66.87606876068756
     - 12.464920287149383
-center_point:
-  - -73.04449225188162
-  - 4.39172329381876
-centroid:
-  - -73.22878688086467
-  - 4.316577362474531
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -33,6 +27,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 1650.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1610.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -114,7 +111,7 @@ capacity:
       value: 720.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1390.0
+      value: 1420.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -126,6 +123,12 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+center_point:
+  - -73.04449225188162
+  - 4.39172329381876
+centroid:
+  - -73.22878688086467
+  - 4.316577362474531
 contributors:
   - lav-julien
   - alixunderplatz
@@ -287,18 +290,18 @@ fallbackZoneMixes:
         solar: 0.004379411289697945
         unknown: 0.0
         wind: 0.001009305470052309
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: CO.fetch_consumption
   price: CO.fetch_price
   production: CO.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
-timezone: America/Bogota
-zone_name: Colombia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: America/Bogota
+zone_name: Colombia

@@ -3,12 +3,6 @@ bounding_box:
     - 21.99593195465185
   - - 36.89496894968951
     - 31.657172159953546
-center_point:
-  - 30.498232586821736
-  - 26.804007270011923
-centroid:
-  - 31.50899318261996
-  - 28.851579751153995
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -45,6 +39,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 52270.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 53430.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -76,7 +73,11 @@ capacity:
       value: 1860.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 2590.0
+      value: 2550.0
+  unknown:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 790.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -96,6 +97,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 2200.0
+center_point:
+  - 30.498232586821736
+  - 26.804007270011923
+centroid:
+  - 31.50899318261996
+  - 28.851579751153995
 country: EG
 country_name: Egypt
 currency: EGP
@@ -133,15 +140,15 @@ fallbackZoneMixes:
         solar: 0.023436075509726206
         unknown: 0.0
         wind: 0.027833902166199798
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Cairo
-zone_name: Egypt
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Cairo
+zone_name: Egypt

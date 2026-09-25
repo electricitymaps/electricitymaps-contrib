@@ -3,12 +3,6 @@ bounding_box:
     - 13.158995461134168
   - - -87.70227702277018
     - 14.415486188471576
-center_point:
-  - -88.84019856374907
-  - 13.716598382243662
-centroid:
-  - -88.79891656059411
-  - 13.802846442362274
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -34,6 +28,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 210.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -69,6 +66,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 650.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 740.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -83,6 +83,12 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+center_point:
+  - -88.84019856374907
+  - 13.716598382243662
+centroid:
+  - -88.79891656059411
+  - 13.802846442362274
 contributors:
   - systemcatch
   - nessie2013
@@ -92,13 +98,15 @@ country_name: El Salvador
 emissionFactors:
   direct:
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 387.6470588235294
   lifecycle:
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
@@ -225,8 +233,24 @@ fallbackZoneMixes:
         solar: 0.06517101483556031
         unknown: 0.36756974032893625
         wind: 0.018960503204449836
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  unknown:
+    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 0
+isRenewable:
+  unknown:
+    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 0
 parsers:
   production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -238,17 +262,3 @@ sources:
     link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
 zone_name: El Salvador
-isLowCarbon:
-  unknown:
-    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
-      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
-      datetime: '2022-01-01'
-      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
-      value: 0
-isRenewable:
-  unknown:
-    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
-      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
-      datetime: '2022-01-01'
-      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
-      value: 0

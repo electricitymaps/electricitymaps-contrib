@@ -3,12 +3,6 @@ bounding_box:
     - 37.68632413520699
   - - 130.7011070110701
     - 42.98133061715281
-center_point:
-  - 127.14091694367448
-  - 40.004097703647005
-centroid:
-  - 127.36051684841172
-  - 40.123284149120195
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -33,10 +27,16 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 4890.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4970.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,6 +56,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 120.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -64,11 +67,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 127.14091694367448
+  - 40.004097703647005
+centroid:
+  - 127.36051684841172
+  - 40.123284149120195
 country: KP
 country_name: North Korea
 currency: KPW
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

@@ -3,12 +3,6 @@ bounding_box:
     - -20.50722818421054
   - - 57.79677796777969
     - -19.993469447178505
-center_point:
-  - 57.58437584375845
-  - -20.250348815694522
-centroid:
-  - 57.569975699757
-  - -20.248202191445085
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -38,6 +32,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 130.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -49,6 +46,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+center_point:
+  - 57.58437584375845
+  - -20.250348815694522
+centroid:
+  - 57.569975699757
+  - -20.248202191445085
 country: MU
 country_name: Mauritius
 currency: MUR
@@ -86,15 +89,15 @@ fallbackZoneMixes:
         solar: 0.04942291741728504
         unknown: 0.0
         wind: 0.004813099721722564
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Indian/Mauritius
-zone_name: Mauritius
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Indian/Mauritius
+zone_name: Mauritius

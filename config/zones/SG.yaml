@@ -3,12 +3,6 @@ bounding_box:
     - 1.268128202083403
   - - 103.96003960039602
     - 1.426212512352693
-center_point:
-  - 103.80343803438035
-  - 1.347170357218048
-centroid:
-  - 103.831737208542
-  - 1.359443451724828
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -52,6 +46,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10880.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10910.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -76,7 +73,13 @@ capacity:
       value: 920.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1160.0
+      value: 1210.0
+center_point:
+  - 103.80343803438035
+  - 1.347170357218048
+centroid:
+  - 103.831737208542
+  - 1.359443451724828
 contributors:
   - corradio
   - jarek
@@ -240,8 +243,8 @@ fallbackZoneMixes:
         solar: 0.021984125166641562
         unknown: 0.020398877413407873
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     value: 1
