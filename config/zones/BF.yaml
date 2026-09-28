@@ -3,12 +3,6 @@ bounding_box:
     - 9.392385444787848
   - - 2.388623886238889
     - 15.069491043133539
-center_point:
-  - -1.5714554596591372
-  - 12.395099231962625
-centroid:
-  - -1.8678342627581854
-  - 12.102744817462897
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -34,6 +28,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 180.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -47,11 +44,17 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 400.0
+center_point:
+  - -1.5714554596591372
+  - 12.395099231962625
+centroid:
+  - -1.8678342627581854
+  - 12.102744817462897
 country: BF
 country_name: Burkina Faso
 currency: XOF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

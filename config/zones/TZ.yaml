@@ -3,12 +3,6 @@ bounding_box:
     - -11.731828252510063
   - - 40.448204482044844
     - -0.999999951214068
-center_point:
-  - 34.76378616239491
-  - -6.36168514408601
-centroid:
-  - 35.36215659970235
-  - -7.420304556123768
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -40,6 +34,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 680.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1390.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -47,6 +44,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -61,6 +61,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 34.76378616239491
+  - -6.36168514408601
+centroid:
+  - 35.36215659970235
+  - -7.420304556123768
 country: TZ
 country_name: Tanzania
 currency: TZS
@@ -98,15 +104,15 @@ fallbackZoneMixes:
         solar: 0.003117324755408123
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Dar_es_Salaam
-zone_name: Tanzania
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Dar_es_Salaam
+zone_name: Tanzania
