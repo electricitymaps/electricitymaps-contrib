@@ -30,6 +30,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 46690.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 47490.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -78,8 +81,17 @@ capacity:
       source: Ember, Yearly electricity data
       value: 6160.0
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 6670.0
+      source: Ember, Monthly wind and solar capacity data
+      value: 10760.0
+    - datetime: '2025-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 11850.0
+    - datetime: '2026-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 13940.0
+    - datetime: '2026-07-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 16600.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -96,6 +108,15 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 3440.0
+    - datetime: '2024-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 3520.0
+    - datetime: '2026-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 4220.0
+    - datetime: '2026-07-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 4310.0
 center_point:
   - 24.738611853654092
   - -28.466860005694404

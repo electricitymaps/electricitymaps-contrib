@@ -3,17 +3,14 @@ bounding_box:
     - 45.82632328907397
   - - 10.475965739913786
     - 47.79406218439166
-center_point:
-  - 8.037048335634369
-  - 46.80812081210978
-centroid:
-  - 8.414250452210126
-  - 46.6900871230039
 capacity:
   biomass:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -24,6 +21,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 230.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -46,6 +46,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 16220.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 16030.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 16050.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -53,6 +59,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 2960.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2970.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -77,7 +86,10 @@ capacity:
       value: 6090.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 7790.0
+      value: 7760.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 9110.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -97,6 +109,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 740.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 470.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -107,6 +122,15 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+center_point:
+  - 8.037048335634369
+  - 46.80812081210978
+centroid:
+  - 8.414250452210126
+  - 46.6900871230039
 contributors:
   - corradio
   - postronium
@@ -116,7 +140,9 @@ contributors:
 country: CH
 country_name: Switzerland
 currency: EUR
-disclaimer: Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.
+disclaimer: Data for the electricity consumption and generation mix is based on estimates
+  stemming from different data sources. As such, it may diverge from aggregated public
+  statistics of the Swiss Federal Office for Energy.
 emissionFactors:
   direct:
     biomass:
@@ -334,8 +360,8 @@ fallbackZoneMixes:
         solar: 0.07650531319955396
         unknown: 0.05260567945226856
         wind: 0.04436559558550984
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
     _comment: Average share of electricity coming from low carbon sources in 2021

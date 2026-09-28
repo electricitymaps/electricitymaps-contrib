@@ -3,17 +3,14 @@ bounding_box:
     - 29.490512750854634
   - - 35.88695886958871
     - 33.40738646466157
-center_point:
-  - 34.854673528375955
-  - 30.92475608739115
-centroid:
-  - 35.13419134191345
-  - 31.83605751407333
 capacity:
   biomass:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -40,6 +37,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 12910.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 13740.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -66,10 +66,19 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 5520.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 5610.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 7360.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 150
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -80,6 +89,15 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 340.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 350.0
+center_point:
+  - 34.854673528375955
+  - 30.92475608739115
+centroid:
+  - 35.13419134191345
+  - 31.83605751407333
 contributors:
   - alixunderplatz
   - jarek
@@ -87,17 +105,21 @@ contributors:
 country: IL
 country_name: Israel
 currency: ILS
-disclaimer: The data source (Israel Electric Corporation) has been blocking access to real-time production mix data. The data is therefore fully estimated by Electricity Maps.
+disclaimer: The data source (Israel Electric Corporation) has been blocking access
+  to real-time production mix data. The data is therefore fully estimated by Electricity
+  Maps.
 emissionFactors:
   direct:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
+        wind, 0.3% other
       value: 459.09
   lifecycle:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
+        wind, 0.3% other
       value: 558.188
 fallbackZoneMixes:
   powerOriginRatios:
@@ -251,8 +273,8 @@ fallbackZoneMixes:
         solar: 0.07300763261212727
         unknown: 0.0028733995131826184
         wind: 9.474408704417814e-05
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in IL unknown production
@@ -265,10 +287,10 @@ parsers:
   consumption: IL.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Jerusalem
-zone_name: Israel
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Jerusalem
+zone_name: Israel

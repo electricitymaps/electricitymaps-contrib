@@ -3,12 +3,6 @@ bounding_box:
     - 27.661588890001504
   - - -1.04581045810454
     - 35.92484053994865
-center_point:
-  - -6.462670406960019
-  - 31.706459352556955
-centroid:
-  - -5.12783129851419
-  - 33.13633184283514
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -48,6 +42,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 930.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 950.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 1090.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -73,7 +73,16 @@ capacity:
       value: 1860.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 2130.0
+      value: 2390.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 2450.0
+center_point:
+  - -6.462670406960019
+  - 31.706459352556955
+centroid:
+  - -5.12783129851419
+  - 33.13633184283514
 contributors:
   - veqtrus
 country: MA
@@ -113,15 +122,15 @@ fallbackZoneMixes:
         solar: 0.04602936580239592
         unknown: 0.028736370118761283
         wind: 0.13163639894593068
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Casablanca
-zone_name: Morocco
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Casablanca
+zone_name: Morocco
