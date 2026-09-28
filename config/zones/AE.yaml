@@ -3,12 +3,6 @@ bounding_box:
     - 22.6318083973945
   - - 56.3819638196382
     - 26.061638283086467
-center_point:
-  - 54.35428314468383
-  - 23.855518564941015
-centroid:
-  - 54.608389122127726
-  - 24.402860761486757
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -49,6 +43,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 41660.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 41700.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -64,7 +61,7 @@ capacity:
       value: 4170.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 5570.0
+      value: 5560.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -89,7 +86,7 @@ capacity:
       value: 5940.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 6010.0
+      value: 6500.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -97,6 +94,15 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+center_point:
+  - 54.35428314468383
+  - 23.855518564941015
+centroid:
+  - 54.608389122127726
+  - 24.402860761486757
 contributors:
   - q--
   - florianscheidl
@@ -228,8 +234,8 @@ fallbackZoneMixes:
         solar: 0.07128789104234305
         unknown: 0.0016348372505816842
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

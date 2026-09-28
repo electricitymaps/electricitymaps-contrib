@@ -3,12 +3,6 @@ bounding_box:
     - 23.69605836020635
   - - 77.049770497705
     - 37.02230170071432
-center_point:
-  - 69.19541996790124
-  - 30.41085277986934
-centroid:
-  - 69.40598196474166
-  - 29.868529783303504
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -36,9 +30,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 7790.0
-    - datetime: '2024-01-01'
+    - datetime: '2025-01-01'
       source: Ember, Yearly electricity data
-      value: 8450.0
+      value: 8480.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -55,6 +49,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 17390.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 17790.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -73,7 +70,7 @@ capacity:
       value: 10640.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 11530.0
+      value: 11520.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -105,7 +102,7 @@ capacity:
       value: 1240.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1400.0
+      value: 3720.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -113,6 +110,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 3890.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 3870.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -129,11 +129,17 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1850.0
+center_point:
+  - 69.19541996790124
+  - 30.41085277986934
+centroid:
+  - 69.40598196474166
+  - 29.868529783303504
 country: PK
 country_name: Pakistan
 currency: PKR
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

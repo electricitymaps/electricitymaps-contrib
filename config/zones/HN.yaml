@@ -3,12 +3,6 @@ bounding_box:
     - 12.980110107014383
   - - -83.13023130231296
     - 16.00398813305533
-center_point:
-  - -86.53741620408366
-  - 14.625236890548269
-centroid:
-  - -86.43120249384306
-  - 14.730454510161772
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -28,6 +22,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -60,6 +57,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 530.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 550.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -70,6 +70,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 910.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 870.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -77,6 +80,12 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 240.0
+center_point:
+  - -86.53741620408366
+  - 14.625236890548269
+centroid:
+  - -86.43120249384306
+  - 14.730454510161772
 contributors:
   - alixunderplatz
   - VIKTORVAV99
@@ -86,12 +95,14 @@ emissionFactors:
   direct:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
+        7.8% wind, 2.8% geothermal
       value: 192.444
   lifecycle:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
+        7.8% wind, 2.8% geothermal
       value: 339.42599999999993
 fallbackZoneMixes:
   powerOriginRatios:
@@ -215,26 +226,28 @@ fallbackZoneMixes:
         solar: 0.08937585918740454
         unknown: 0.0017265823617785528
         wind: 0.06533864088864909
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  unknown:
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8%
+      wind, 2.8% geothermal
+    value: 0.526
+isRenewable:
+  unknown:
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8%
+      wind, 2.8% geothermal
+    value: 0.526
 parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
-timezone: America/Tegucigalpa
-zone_name: Honduras
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
-isRenewable:
-  unknown:
-    _url: https://www.iea.org/fuels-and-technologies/electricity
-    source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
-    value: 0.526
-isLowCarbon:
-  unknown:
-    _url: https://www.iea.org/fuels-and-technologies/electricity
-    source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
-    value: 0.526
+timezone: America/Tegucigalpa
+zone_name: Honduras

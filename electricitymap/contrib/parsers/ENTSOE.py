@@ -174,7 +174,7 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "HR": "10YHR-HEP------M",
     "HU": "10YHU-MAVIR----U",
     "IE": "10YIE-1001A00010",
-    "IE(SEM)": "10Y1001A1001A59C",
+    "IE-SEM": "10Y1001A1001A59C",
     "IS": "10Y1001A1001A958",
     "IT": "10YIT-GRTN-----B",
     "IT-BR": "10Y1001A1001A699",
@@ -270,8 +270,8 @@ EXCHANGE_AGGREGATES: dict[str, list[list]] = {
 ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
-    "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
-    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
+    "IE": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
+    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
 }
 
