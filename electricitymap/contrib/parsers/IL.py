@@ -25,6 +25,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
 URL = "https://www.noga-iso.co.il/Umbraco/Api/Documents/GetElectricalData"
@@ -70,7 +71,7 @@ def fetch_noga_iso_data(session: Session, logger: Logger):
     """Fetches data from Noga-ISO"""
     response: Response = session.get(URL)
     if not response.ok:
-        logger.warning(
+        raise ParserException(
             "IL.py",
             f"Failed to fetch data from www.noga-iso.co.il with error: {response.status_code}",
         )
