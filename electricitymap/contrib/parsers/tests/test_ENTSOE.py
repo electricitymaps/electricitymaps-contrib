@@ -248,6 +248,194 @@ def test_fetch_exchange_with_aggregated_exchanges(requests_mock, session, snapsh
     )
 
 
+def _a11_xml(start: str, end: str, quantities: list[float]) -> str:
+    """Minimal A11 document with one hourly period, one point per quantity."""
+    points = "".join(
+        f"<Point><position>{i}</position><quantity>{q}</quantity></Point>"
+        for i, q in enumerate(quantities, start=1)
+    )
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<Publication_MarketDocument xmlns="urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:0">'
+        "<type>A11</type>"
+        "<TimeSeries><mRID>1</mRID><businessType>A66</businessType>"
+        "<quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name>"
+        "<curveType>A01</curveType>"
+        f"<Period><timeInterval><start>{start}</start><end>{end}</end></timeInterval>"
+        f"<resolution>PT60M</resolution>{points}</Period>"
+        "</TimeSeries></Publication_MarketDocument>"
+    )
+
+
+def _register_dk1_gb_a11(requests_mock, imports_xml: str, exports_xml: str) -> None:
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
+        text=imports_xml,
+    )
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
+        text=exports_xml,
+    )
+
+
+class TestParseExchangeDirections:
+    xml = (base_path_to_mock / "DK-DK1_GB_exchange_exports.xml").read_text()
+    zone_key = ZoneKey("DK-DK1->GB")
+
+    def test_import_document_fills_imports_only(self):
+        events = ENTSOE.parse_exchange(
+            self.xml,
+            is_import=True,
+            sorted_zone_keys=self.zone_key,
+            logger=logging.getLogger("test"),
+        ).to_list()
+
+        assert len(events) == 44
+        assert any(event["imports"] > 0 for event in events)
+        for event in events:
+            assert event["exports"] == 0
+            assert event["imports"] >= 0
+            assert event["netFlow"] == -event["imports"]
+        assert events[0]["datetime"] == datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
+        assert events[0]["imports"] == 1362
+        assert events[0]["netFlow"] == -1362
+
+    def test_export_document_fills_exports_only(self):
+        events = ENTSOE.parse_exchange(
+            self.xml,
+            is_import=False,
+            sorted_zone_keys=self.zone_key,
+            logger=logging.getLogger("test"),
+        ).to_list()
+
+        assert len(events) == 44
+        assert any(event["exports"] > 0 for event in events)
+        for event in events:
+            assert event["imports"] == 0
+            assert event["exports"] >= 0
+            assert event["netFlow"] == event["exports"]
+        assert events[0]["exports"] == 1362
+        assert events[0]["netFlow"] == 1362
+
+    def test_same_document_yields_opposite_net_flow_per_direction(self):
+        logger = logging.getLogger("test")
+        as_import = ENTSOE.parse_exchange(
+            self.xml, is_import=True, sorted_zone_keys=self.zone_key, logger=logger
+        ).to_list()
+        as_export = ENTSOE.parse_exchange(
+            self.xml, is_import=False, sorted_zone_keys=self.zone_key, logger=logger
+        ).to_list()
+
+        assert [e["datetime"] for e in as_import] == [e["datetime"] for e in as_export]
+        for imp, exp in zip(as_import, as_export, strict=True):
+            assert imp["imports"] == exp["exports"]
+            assert imp["netFlow"] == -exp["netFlow"]
+
+
+def test_fetch_exchange_keeps_both_directions_when_both_flow(requests_mock, session):
+    _register_dk1_gb_a11(
+        requests_mock,
+        imports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T20:00Z", [40, 30, 0]),
+        exports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T20:00Z", [100, 30, 5]),
+    )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=session
+    )
+
+    assert [
+        (e["datetime"].hour, e["exports"], e["imports"], e["netFlow"]) for e in events
+    ] == [(17, 100, 40, 60), (18, 30, 30, 0), (19, 5, 0, 5)]
+    assert all(e["sortedZoneKeys"] == "DK-DK1->GB" for e in events)
+    assert all(e["sourceType"] == EventSourceType.measured for e in events)
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="_resolve_exchange_domain_pairs falls back to argument order, not sorted",
+)
+def test_fetch_exchange_is_argument_order_independent_for_directions(
+    requests_mock, session
+):
+    _register_dk1_gb_a11(
+        requests_mock,
+        imports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T18:00Z", [40]),
+        exports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T18:00Z", [100]),
+    )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("GB"), zone_key2=ZoneKey("DK-DK1"), session=session
+    )
+
+    assert len(events) == 1
+    assert events[0]["sortedZoneKeys"] == "DK-DK1->GB"
+    assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
+        100,
+        40,
+        60,
+    )
+
+
+def test_fetch_exchange_drops_hours_covered_by_one_direction_only(
+    requests_mock, session
+):
+    _register_dk1_gb_a11(
+        requests_mock,
+        imports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T19:00Z", [40, 10]),
+        exports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T18:00Z", [100]),
+    )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=session
+    )
+
+    assert [e["datetime"] for e in events] == [
+        datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
+    ]
+    assert (events[0]["exports"], events[0]["imports"]) == (100, 40)
+
+
+def test_fetch_exchange_aggregated_border_sums_each_direction(requests_mock, session):
+    for query, name in [
+        (
+            "in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
+            "AC_exchange_imports",
+        ),
+        (
+            "in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
+            "AC_exchange_exports",
+        ),
+        (
+            "in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
+            "DC_exchange_imports",
+        ),
+        (
+            "in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
+            "DC_exchange_exports",
+        ),
+    ]:
+        requests_mock.register_uri(
+            GET,
+            f"?documentType=A11&{query}",
+            content=(base_path_to_mock / f"FR-COR_IT-SAR_{name}.xml").read_bytes(),
+        )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("FR-COR"), zone_key2=ZoneKey("IT-SAR"), session=session
+    )
+
+    assert len(events) == 47
+    for event in events:
+        assert event["exports"] > 0
+        assert event["imports"] > 0
+        assert event["netFlow"] == pytest.approx(event["exports"] - event["imports"])
+    by_datetime = {e["datetime"]: e for e in events}
+    sample = by_datetime[datetime(2023, 12, 27, 10, tzinfo=timezone.utc)]
+    assert (sample["exports"], sample["imports"], sample["netFlow"]) == (47, 10, 37)
+
+
 def test_fetch_exchange_forecast(requests_mock, session, snapshot):
     imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"

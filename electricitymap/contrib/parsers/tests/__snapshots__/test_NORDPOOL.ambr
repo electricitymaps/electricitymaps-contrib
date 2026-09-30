@@ -38,6 +38,8 @@
     dict({
       'datetime': datetime.datetime(2024, 11, 30, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 11, 30, 23, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 907.0,
       'netFlow': -907.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -46,6 +48,8 @@
     dict({
       'datetime': datetime.datetime(2024, 11, 30, 23, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 11, 30, 23, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 907.0,
       'netFlow': -907.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -54,6 +58,8 @@
     dict({
       'datetime': datetime.datetime(2024, 11, 30, 23, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 11, 30, 23, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 907.0,
       'netFlow': -907.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -62,6 +68,8 @@
     dict({
       'datetime': datetime.datetime(2024, 11, 30, 23, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 907.0,
       'netFlow': -907.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -70,6 +78,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 0, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 960.0,
       'netFlow': -960.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -78,6 +88,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 0, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 0, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 960.0,
       'netFlow': -960.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -86,6 +98,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 0, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 0, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 960.0,
       'netFlow': -960.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -94,6 +108,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 0, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 960.0,
       'netFlow': -960.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -102,6 +118,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 1, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 866.0,
       'netFlow': -866.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -110,6 +128,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 1, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 1, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 866.0,
       'netFlow': -866.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -118,6 +138,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 1, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 1, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 866.0,
       'netFlow': -866.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -126,6 +148,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 1, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 866.0,
       'netFlow': -866.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -134,6 +158,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 2, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 979.0,
       'netFlow': -979.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -142,6 +168,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 2, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 2, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 979.0,
       'netFlow': -979.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -150,6 +178,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 2, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 2, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 979.0,
       'netFlow': -979.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -158,6 +188,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 2, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 979.0,
       'netFlow': -979.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -166,6 +198,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 3, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 769.0,
       'netFlow': -769.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -174,6 +208,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 3, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 3, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 769.0,
       'netFlow': -769.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -182,6 +218,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 3, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 3, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 769.0,
       'netFlow': -769.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -190,6 +228,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 3, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 769.0,
       'netFlow': -769.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -198,6 +238,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 4, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 702.0,
       'netFlow': -702.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -206,6 +248,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 4, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 4, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 702.0,
       'netFlow': -702.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -214,6 +258,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 4, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 4, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 702.0,
       'netFlow': -702.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -222,6 +268,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 4, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 702.0,
       'netFlow': -702.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -230,6 +278,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 5, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 640.0,
       'netFlow': -640.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -238,6 +288,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 5, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 5, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 640.0,
       'netFlow': -640.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -246,6 +298,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 5, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 5, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 640.0,
       'netFlow': -640.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -254,6 +308,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 5, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 640.0,
       'netFlow': -640.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -262,6 +318,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 6, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 692.0,
       'netFlow': -692.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -270,6 +328,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 6, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 6, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 692.0,
       'netFlow': -692.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -278,6 +338,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 6, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 6, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 692.0,
       'netFlow': -692.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -286,6 +348,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 6, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 692.0,
       'netFlow': -692.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -294,6 +358,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 7, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 7, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 345.0,
       'netFlow': -345.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -302,6 +368,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 7, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 7, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 345.0,
       'netFlow': -345.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -310,6 +378,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 7, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 7, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 345.0,
       'netFlow': -345.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -318,6 +388,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 7, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 8, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 345.0,
       'netFlow': -345.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -326,6 +398,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 8, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 8, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 169.0,
       'netFlow': -169.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -334,6 +408,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 8, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 8, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 169.0,
       'netFlow': -169.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -342,6 +418,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 8, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 8, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 169.0,
       'netFlow': -169.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -350,6 +428,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 8, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 9, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 169.0,
       'netFlow': -169.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -358,6 +438,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 9, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 9, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -366,6 +448,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 9, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 9, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -374,6 +458,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 9, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 9, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -382,6 +468,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 9, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 10, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -390,6 +478,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 10, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 10, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 227.0,
       'netFlow': -227.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -398,6 +488,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 10, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 10, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 227.0,
       'netFlow': -227.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -406,6 +498,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 10, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 10, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 227.0,
       'netFlow': -227.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -414,6 +508,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 10, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 11, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 227.0,
       'netFlow': -227.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -422,6 +518,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 11, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 11, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -430,6 +528,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 11, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 11, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -438,6 +538,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 11, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 11, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -446,6 +548,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 11, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 12, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 97.0,
       'netFlow': -97.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -454,6 +558,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 12, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 12, 15, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 34.0,
       'netFlow': -34.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -462,6 +568,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 12, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 12, 30, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 34.0,
       'netFlow': -34.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -470,6 +578,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 12, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 12, 45, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 34.0,
       'netFlow': -34.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -478,6 +588,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 12, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 13, 0, tzinfo=datetime.timezone.utc),
+      'exports': 0.0,
+      'imports': 34.0,
       'netFlow': -34.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -486,6 +598,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 13, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 13, 15, tzinfo=datetime.timezone.utc),
+      'exports': 71.0,
+      'imports': 0.0,
       'netFlow': 71.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -494,6 +608,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 13, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 13, 30, tzinfo=datetime.timezone.utc),
+      'exports': 71.0,
+      'imports': 0.0,
       'netFlow': 71.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -502,6 +618,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 13, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 13, 45, tzinfo=datetime.timezone.utc),
+      'exports': 71.0,
+      'imports': 0.0,
       'netFlow': 71.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -510,6 +628,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 13, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 14, 0, tzinfo=datetime.timezone.utc),
+      'exports': 71.0,
+      'imports': 0.0,
       'netFlow': 71.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -518,6 +638,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 14, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 14, 15, tzinfo=datetime.timezone.utc),
+      'exports': 438.0,
+      'imports': 0.0,
       'netFlow': 438.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -526,6 +648,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 14, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 14, 30, tzinfo=datetime.timezone.utc),
+      'exports': 438.0,
+      'imports': 0.0,
       'netFlow': 438.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -534,6 +658,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 14, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 14, 45, tzinfo=datetime.timezone.utc),
+      'exports': 438.0,
+      'imports': 0.0,
       'netFlow': 438.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -542,6 +668,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 14, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 15, 0, tzinfo=datetime.timezone.utc),
+      'exports': 438.0,
+      'imports': 0.0,
       'netFlow': 438.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -550,6 +678,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 15, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 15, 15, tzinfo=datetime.timezone.utc),
+      'exports': 638.0,
+      'imports': 0.0,
       'netFlow': 638.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -558,6 +688,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 15, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 15, 30, tzinfo=datetime.timezone.utc),
+      'exports': 638.0,
+      'imports': 0.0,
       'netFlow': 638.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -566,6 +698,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 15, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 15, 45, tzinfo=datetime.timezone.utc),
+      'exports': 638.0,
+      'imports': 0.0,
       'netFlow': 638.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -574,6 +708,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 15, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 16, 0, tzinfo=datetime.timezone.utc),
+      'exports': 638.0,
+      'imports': 0.0,
       'netFlow': 638.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -582,6 +718,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 16, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 16, 15, tzinfo=datetime.timezone.utc),
+      'exports': 857.0,
+      'imports': 0.0,
       'netFlow': 857.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -590,6 +728,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 16, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 16, 30, tzinfo=datetime.timezone.utc),
+      'exports': 857.0,
+      'imports': 0.0,
       'netFlow': 857.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -598,6 +738,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 16, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 16, 45, tzinfo=datetime.timezone.utc),
+      'exports': 857.0,
+      'imports': 0.0,
       'netFlow': 857.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -606,6 +748,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 16, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 17, 0, tzinfo=datetime.timezone.utc),
+      'exports': 857.0,
+      'imports': 0.0,
       'netFlow': 857.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -614,6 +758,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 17, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 17, 15, tzinfo=datetime.timezone.utc),
+      'exports': 610.0,
+      'imports': 0.0,
       'netFlow': 610.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -622,6 +768,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 17, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 17, 30, tzinfo=datetime.timezone.utc),
+      'exports': 610.0,
+      'imports': 0.0,
       'netFlow': 610.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -630,6 +778,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 17, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 17, 45, tzinfo=datetime.timezone.utc),
+      'exports': 610.0,
+      'imports': 0.0,
       'netFlow': 610.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -638,6 +788,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 17, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 18, 0, tzinfo=datetime.timezone.utc),
+      'exports': 610.0,
+      'imports': 0.0,
       'netFlow': 610.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -646,6 +798,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 18, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 18, 15, tzinfo=datetime.timezone.utc),
+      'exports': 609.0,
+      'imports': 0.0,
       'netFlow': 609.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -654,6 +808,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 18, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 18, 30, tzinfo=datetime.timezone.utc),
+      'exports': 609.0,
+      'imports': 0.0,
       'netFlow': 609.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -662,6 +818,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 18, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 18, 45, tzinfo=datetime.timezone.utc),
+      'exports': 609.0,
+      'imports': 0.0,
       'netFlow': 609.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -670,6 +828,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 18, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 19, 0, tzinfo=datetime.timezone.utc),
+      'exports': 609.0,
+      'imports': 0.0,
       'netFlow': 609.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -678,6 +838,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 19, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 19, 15, tzinfo=datetime.timezone.utc),
+      'exports': 1069.0,
+      'imports': 0.0,
       'netFlow': 1069.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -686,6 +848,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 19, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 19, 30, tzinfo=datetime.timezone.utc),
+      'exports': 1069.0,
+      'imports': 0.0,
       'netFlow': 1069.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -694,6 +858,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 19, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 19, 45, tzinfo=datetime.timezone.utc),
+      'exports': 1069.0,
+      'imports': 0.0,
       'netFlow': 1069.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -702,6 +868,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 19, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 20, 0, tzinfo=datetime.timezone.utc),
+      'exports': 1069.0,
+      'imports': 0.0,
       'netFlow': 1069.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -710,6 +878,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 20, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 20, 15, tzinfo=datetime.timezone.utc),
+      'exports': 895.0,
+      'imports': 0.0,
       'netFlow': 895.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -718,6 +888,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 20, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 20, 30, tzinfo=datetime.timezone.utc),
+      'exports': 895.0,
+      'imports': 0.0,
       'netFlow': 895.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -726,6 +898,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 20, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 20, 45, tzinfo=datetime.timezone.utc),
+      'exports': 895.0,
+      'imports': 0.0,
       'netFlow': 895.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -734,6 +908,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 20, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 21, 0, tzinfo=datetime.timezone.utc),
+      'exports': 895.0,
+      'imports': 0.0,
       'netFlow': 895.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -742,6 +918,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 21, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 21, 15, tzinfo=datetime.timezone.utc),
+      'exports': 1087.0,
+      'imports': 0.0,
       'netFlow': 1087.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -750,6 +928,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 21, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 21, 30, tzinfo=datetime.timezone.utc),
+      'exports': 1087.0,
+      'imports': 0.0,
       'netFlow': 1087.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -758,6 +938,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 21, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 21, 45, tzinfo=datetime.timezone.utc),
+      'exports': 1087.0,
+      'imports': 0.0,
       'netFlow': 1087.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -766,6 +948,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 21, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 22, 0, tzinfo=datetime.timezone.utc),
+      'exports': 1087.0,
+      'imports': 0.0,
       'netFlow': 1087.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -774,6 +958,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 22, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 22, 15, tzinfo=datetime.timezone.utc),
+      'exports': 1014.0,
+      'imports': 0.0,
       'netFlow': 1014.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -782,6 +968,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 22, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 22, 30, tzinfo=datetime.timezone.utc),
+      'exports': 1014.0,
+      'imports': 0.0,
       'netFlow': 1014.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -790,6 +978,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 22, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 22, 45, tzinfo=datetime.timezone.utc),
+      'exports': 1014.0,
+      'imports': 0.0,
       'netFlow': 1014.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -798,6 +988,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 22, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 23, 0, tzinfo=datetime.timezone.utc),
+      'exports': 1014.0,
+      'imports': 0.0,
       'netFlow': 1014.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -806,6 +998,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 23, 15, tzinfo=datetime.timezone.utc),
+      'exports': 667.0,
+      'imports': 0.0,
       'netFlow': 667.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -814,6 +1008,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 23, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 23, 30, tzinfo=datetime.timezone.utc),
+      'exports': 667.0,
+      'imports': 0.0,
       'netFlow': 667.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -822,6 +1018,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 23, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 1, 23, 45, tzinfo=datetime.timezone.utc),
+      'exports': 667.0,
+      'imports': 0.0,
       'netFlow': 667.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -830,6 +1028,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 1, 23, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': 667.0,
+      'imports': 0.0,
       'netFlow': 667.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -838,6 +1038,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 0, 15, tzinfo=datetime.timezone.utc),
+      'exports': 693.0,
+      'imports': 0.0,
       'netFlow': 693.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -846,6 +1048,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 0, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 0, 30, tzinfo=datetime.timezone.utc),
+      'exports': 693.0,
+      'imports': 0.0,
       'netFlow': 693.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -854,6 +1058,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 0, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 0, 45, tzinfo=datetime.timezone.utc),
+      'exports': 693.0,
+      'imports': 0.0,
       'netFlow': 693.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -862,6 +1068,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 0, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': 693.0,
+      'imports': 0.0,
       'netFlow': 693.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -870,6 +1078,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 1, 15, tzinfo=datetime.timezone.utc),
+      'exports': 669.0,
+      'imports': 0.0,
       'netFlow': 669.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -878,6 +1088,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 1, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 1, 30, tzinfo=datetime.timezone.utc),
+      'exports': 669.0,
+      'imports': 0.0,
       'netFlow': 669.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -886,6 +1098,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 1, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 1, 45, tzinfo=datetime.timezone.utc),
+      'exports': 669.0,
+      'imports': 0.0,
       'netFlow': 669.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -894,6 +1108,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 1, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': 669.0,
+      'imports': 0.0,
       'netFlow': 669.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -902,6 +1118,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 2, 15, tzinfo=datetime.timezone.utc),
+      'exports': 595.0,
+      'imports': 0.0,
       'netFlow': 595.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -910,6 +1128,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 2, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 2, 30, tzinfo=datetime.timezone.utc),
+      'exports': 595.0,
+      'imports': 0.0,
       'netFlow': 595.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -918,6 +1138,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 2, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 2, 45, tzinfo=datetime.timezone.utc),
+      'exports': 595.0,
+      'imports': 0.0,
       'netFlow': 595.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -926,6 +1148,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 2, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': 595.0,
+      'imports': 0.0,
       'netFlow': 595.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -934,6 +1158,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 3, 15, tzinfo=datetime.timezone.utc),
+      'exports': 649.0,
+      'imports': 0.0,
       'netFlow': 649.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -942,6 +1168,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 3, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 3, 30, tzinfo=datetime.timezone.utc),
+      'exports': 649.0,
+      'imports': 0.0,
       'netFlow': 649.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -950,6 +1178,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 3, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 3, 45, tzinfo=datetime.timezone.utc),
+      'exports': 649.0,
+      'imports': 0.0,
       'netFlow': 649.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -958,6 +1188,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 3, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': 649.0,
+      'imports': 0.0,
       'netFlow': 649.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -966,6 +1198,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 4, 15, tzinfo=datetime.timezone.utc),
+      'exports': 918.0,
+      'imports': 0.0,
       'netFlow': 918.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -974,6 +1208,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 4, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 4, 30, tzinfo=datetime.timezone.utc),
+      'exports': 918.0,
+      'imports': 0.0,
       'netFlow': 918.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -982,6 +1218,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 4, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 4, 45, tzinfo=datetime.timezone.utc),
+      'exports': 918.0,
+      'imports': 0.0,
       'netFlow': 918.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -990,6 +1228,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 4, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': 918.0,
+      'imports': 0.0,
       'netFlow': 918.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -998,6 +1238,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 5, 15, tzinfo=datetime.timezone.utc),
+      'exports': 938.0,
+      'imports': 0.0,
       'netFlow': 938.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1006,6 +1248,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 5, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 5, 30, tzinfo=datetime.timezone.utc),
+      'exports': 938.0,
+      'imports': 0.0,
       'netFlow': 938.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1014,6 +1258,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 5, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 5, 45, tzinfo=datetime.timezone.utc),
+      'exports': 938.0,
+      'imports': 0.0,
       'netFlow': 938.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1022,6 +1268,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 5, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': 938.0,
+      'imports': 0.0,
       'netFlow': 938.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1030,6 +1278,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 6, 15, tzinfo=datetime.timezone.utc),
+      'exports': 805.0,
+      'imports': 0.0,
       'netFlow': 805.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1038,6 +1288,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 6, 15, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 6, 30, tzinfo=datetime.timezone.utc),
+      'exports': 805.0,
+      'imports': 0.0,
       'netFlow': 805.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1046,6 +1298,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 6, 30, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 6, 45, tzinfo=datetime.timezone.utc),
+      'exports': 805.0,
+      'imports': 0.0,
       'netFlow': 805.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
@@ -1054,6 +1308,8 @@
     dict({
       'datetime': datetime.datetime(2024, 12, 2, 6, 45, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2024, 12, 2, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': 805.0,
+      'imports': 0.0,
       'netFlow': 805.0,
       'sortedZoneKeys': 'FI->SE-SE1',
       'source': 'nordpool.com',
