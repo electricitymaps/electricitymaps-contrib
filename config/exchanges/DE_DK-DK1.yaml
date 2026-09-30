@@ -3,6 +3,9 @@ lonlat:
   - 54.9
 parsers:
   exchange: DK.fetch_exchange
+  exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
+  exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
+  exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
   atcDayAhead: JAO.fetch_core_external_atc_day_ahead
   maxBexDayAhead: JAO.fetch_nordic_max_bex_day_ahead
   scheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead

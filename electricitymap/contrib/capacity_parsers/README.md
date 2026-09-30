@@ -21,14 +21,14 @@ In an effort to increase the quality of the data published on our app or API, we
 
 Of all electricity data available, capacity is probably the least consistent (e.g. different reporting standards, different update frequencies, accessibility). A review of available capacity data was done in order to manage the number of different data sources used for capacity and to ensure that the capacity data has been reviewed and has an overall consistent quality level.
 
-The main organisations that published capacity data are:
+The main organisations that publish capacity data are:
 
 - **[EIA](https://www.eia.gov/electricity/data/eia860/)**: The EIA publishes generator-level specific information about existing and planned generators and associated environmental equipment at electric power plants with 1 megawatt or greater of combined nameplate capacity. This data is available in the EIA API and can be aggregated by balancing authority.
 - **[EMBER](https://ember-climate.org/)**: EMBER aggregates data from different sources:
   - IRENA for non-fossil generation,
   - Global Energy Monitor for coal and gas generation,
-  - World Resource Institue, although this datbase is incomplete is can be used to verify information from the other sources.
-- **[ENTSO-e](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)**: Net generation capacity is published on an annual basis on the ENTSO-e Transparency platform. This will be the prefered data source for European zones as the capacity breakdown is more detailed.
+  - World Resources Institute, although this database is incomplete it can be used to verify information from the other sources.
+- **[ENTSO-e](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)**: Net generation capacity is published on an annual basis on the ENTSO-e Transparency platform. This will be the preferred data source for European zones as the capacity breakdown is more detailed.
 - **[IRENA](https://www.irena.org/Data/Downloads/IRENASTAT)**: For most countries and technologies, the data reflects the capacity installed and connected at the end of the calendar year. Data has been obtained from a variety of sources, including an IRENA questionnaire, official national statistics, industry association reports, other reports and news articles.
 
 In the case of countries divided in subzones, capacity data is collected directly from the main data source. This is the case for Brasil, Australia or Spain for instance.
@@ -76,8 +76,8 @@ capacity
 
 Before opening a PR to update capacity data, you should check the following:
 
-- **Do not update all capacities at once!** Smaller PRs will help us make sure that no error slips through the cracks. We recommend updated a few zones at once or by group of zones (EIA, ENTSOE, EMBER, IRENA etc.)
-- **The new data points are consistent with the previous ones.** Big breaks in trends are rare for capacity data. You should check whether the variation between two data points is realistic. We expect that renewable capacity will increase in the coming years and fossil capacity to decrease,so these are patterns to look out for.
+- **Do not update all capacities at once!** Smaller PRs will help us make sure that no error slips through the cracks. We recommend updating a few zones at once or by group of zones (EIA, ENTSOE, EMBER, IRENA etc.)
+- **The new data points are consistent with the previous ones.** Big breaks in trends are rare for capacity data. You should check whether the variation between two data points is realistic. We expect that renewable capacity will increase in the coming years and fossil capacity to decrease, so these are patterns to look out for.
 - **Reference main changes in the PR description**. If you spot a major change in values, please mention it and verify it. This will make the reviewer's job easier!
 
 ### The zone capacity can be updated automatically
@@ -97,7 +97,7 @@ The `capacity_update` function has the following arguments:
 Here is a list of examples:
 
 ```{python}
-uv run capacity_update --zone DK-DK1 --target_datetime "2023-01-01 --update_aggregate True"
+uv run capacity_update --zone DK-DK1 --target_datetime "2023-01-01" --update_aggregate True
 ```
 
 ```{python}
@@ -122,7 +122,7 @@ If the capacity for the zone in question is collected using a capacity parser:
 
 - **Verify the data source.**
 - **Compare the new data with the existing data.** As explained above, we want to limit the number of data sources used and wish to use sources for which a certain level of quality is implied.
-- **Discuss with the Electricity Maps team.** If the new data source is indeed of higher quality and meets all the requirements, feel free to ask the Electricity Maps team. We will find the best way forward otgether :)
+- **Discuss with the Electricity Maps team.** If the new data source is indeed of higher quality and meets all the requirements, feel free to ask the Electricity Maps team. We will find the best way forward together :)
 
 You can create an issue on [contrib](https://github.com/electricitymaps/electricitymaps-contrib/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) if you find a new data source or if an existing link is broken.
 

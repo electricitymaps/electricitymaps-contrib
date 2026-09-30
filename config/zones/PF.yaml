@@ -3,12 +3,6 @@ bounding_box:
     - -17.86974252306834
   - - -138.83718837188366
     - -8.786659782281824
-center_point:
-  - -140.2268022680226
-  - -8.926905899911738
-centroid:
-  - -144.47754477544768
-  - -13.492537164659796
 capacity:
   hydro:
     - datetime: '2017-01-01'
@@ -24,6 +18,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -35,6 +32,12 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - -140.2268022680226
+  - -8.926905899911738
+centroid:
+  - -144.47754477544768
+  - -13.492537164659796
 contributors:
   - autipial
 country: PF
@@ -102,8 +105,8 @@ fallbackZoneMixes:
         solar: 0.09626067428950572
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: PF.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

@@ -3,12 +3,6 @@ bounding_box:
     - 19.495830245473655
   - - 25.151651516515187
     - 33.18127537705416
-center_point:
-  - 17.239798066171005
-  - 26.357581207474148
-centroid:
-  - 16.397234781464054
-  - 29.556392561603673
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -17,6 +11,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 11040.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11880.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -31,11 +28,20 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 2320.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2390.0
+center_point:
+  - 17.239798066171005
+  - 26.357581207474148
+centroid:
+  - 16.397234781464054
+  - 29.556392561603673
 country: LY
 country_name: Libya
 currency: LYD
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

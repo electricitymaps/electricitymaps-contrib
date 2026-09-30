@@ -380,7 +380,7 @@ def fetch_grid_india_report(
     Rely on grid-india.in backend API to fetch data report.
     First query the backend to get the list of files available for a given date.
     Reports can be found here : https://grid-india.in/en/reports/daily-psp-report
-    And also here here : https://report.grid-india.in/index.php?p=
+    And also here : https://report.grid-india.in/index.php?p=
 
     """
 

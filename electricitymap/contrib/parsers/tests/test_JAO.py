@@ -1,6 +1,7 @@
 import json
 import re
 from datetime import datetime
+from logging import WARNING, getLogger
 from pathlib import Path
 
 from requests_mock import GET
@@ -8,6 +9,7 @@ from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.parsers.JAO import (
+    _extract_border_atc,
     fetch_core_external_atc_day_ahead,
     fetch_core_max_bex_day_ahead,
     fetch_core_scheduled_exchanges_day_ahead,
@@ -15,6 +17,7 @@ from electricitymap.contrib.parsers.JAO import (
     fetch_nordic_max_bflow_day_ahead,
     fetch_shadow_auction_atc_day_ahead,
 )
+from electricitymap.contrib.types import AtcType
 
 BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO")
 SHADOW_AUCTION_ATC_URL_REGEX = re.compile(
@@ -228,3 +231,63 @@ def test_fetch_nordic_max_bflow_day_ahead_no1_se3(requests_mock, session, snapsh
     )
 
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+# ---------------------------------------------------------------------------
+# Border field-name resolution.
+#
+# JAO names some borders after the interconnector endpoints rather than the
+# bidding zones (`border_DE_DK1_VH_DK1_DE` instead of `border_DE_DK1`), and the
+# convention differs per dataset. The extractors skip rows whose fields are
+# absent, so an unrecognised name yields zero events with no error - these pin
+# both namings and the warning that makes the silent case visible.
+# ---------------------------------------------------------------------------
+
+_ROW_DT = "2026-08-24T00:00:00Z"
+
+
+def _atc_for(rows: list[dict], logger) -> list[dict]:
+    return _extract_border_atc(
+        rows, ZoneKey("DE->DK-DK1"), "jao.eu", logger, AtcType.COORDINATED_NTC
+    ).to_list()
+
+
+def test_border_fields_resolve_qualified_interconnector_names():
+    """Current Core-external naming: endpoints, not bidding zones."""
+    rows = [
+        {
+            "dateTimeUtc": _ROW_DT,
+            "border_DE_DK1_VH_DK1_DE": 700.0,
+            "border_DK1_DE_DE_DK1_VH": 500.0,
+        }
+    ]
+
+    result = _atc_for(rows, getLogger("test"))
+
+    assert len(result) == 1
+    assert result[0]["capacityExport"] == 700.0
+    assert result[0]["capacityImport"] == 500.0
+
+
+def test_border_fields_fall_back_to_plain_zone_names():
+    """shadowAuctionATC still publishes plain names, and older captured
+    responses use them too - the qualified mapping must not break those."""
+    rows = [{"dateTimeUtc": _ROW_DT, "border_DE_DK1": 700.0, "border_DK1_DE": 500.0}]
+
+    result = _atc_for(rows, getLogger("test"))
+
+    assert len(result) == 1
+    assert result[0]["capacityExport"] == 700.0
+    assert result[0]["capacityImport"] == 500.0
+
+
+def test_border_fields_warn_when_no_naming_matches(caplog):
+    """The regression guard: an unrecognised border must not fail silently."""
+    rows = [{"dateTimeUtc": _ROW_DT, "border_ES_FR": 1000.0}]
+
+    with caplog.at_level(WARNING):
+        result = _atc_for(rows, getLogger("test"))
+
+    assert result == []
+    assert "no field found for DE->DK-DK1" in caplog.text
+    assert "border_ES_FR" in caplog.text

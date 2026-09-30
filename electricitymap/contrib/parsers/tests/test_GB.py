@@ -14,8 +14,11 @@ from electricitymap.contrib.parsers.GB import (
     ELEXON_MELS_STREAM,
     ELEXON_MILS_STREAM,
     ELEXON_PN_STREAM,
+    NESO_API,
+    fetch_consumption_forecast,
     fetch_price,
     fetch_production,
+    fetch_wind_forecasts_day_ahead,
 )
 from electricitymap.contrib.types import ZoneKey
 
@@ -84,4 +87,72 @@ def test_fetch_production(requests_mock, session, snapshot):
     assert snapshot == fetch_production(
         zone_key=ZoneKey("GB"),
         session=session,
+    )
+
+
+@freeze_time("2024-12-16 12:00:00")
+def test_fetch_wind_solar_forecasts_day_ahead_live(requests_mock, session, snapshot):
+    gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+    requests_mock.register_uri(
+        GET,
+        NESO_API,
+        json=json.loads(
+            gb_mock.joinpath("wind_day_ahead_forecast_live.json").read_text()
+        ),
+    )
+
+    assert snapshot == fetch_wind_forecasts_day_ahead(
+        zone_key=ZoneKey("GB"),
+        session=session,
+    )
+
+
+def test_fetch_wind_forecasts_day_ahead_historical(requests_mock, session, snapshot):
+    gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+    requests_mock.register_uri(
+        GET,
+        NESO_API,
+        json=json.loads(
+            gb_mock.joinpath("wind_day_ahead_forecast_historical.json").read_text()
+        ),
+    )
+
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    assert snapshot == fetch_wind_forecasts_day_ahead(
+        zone_key=ZoneKey("GB"),
+        session=session,
+        target_datetime=historical_datetime,
+    )
+
+
+@freeze_time("2024-12-16 12:00:00")
+def test_fetch_consumption_forecast_live(requests_mock, session, snapshot):
+    gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+    requests_mock.register_uri(
+        GET,
+        NESO_API,
+        json=json.loads(gb_mock.joinpath("consumption_forecast_live.json").read_text()),
+    )
+
+    assert snapshot == fetch_consumption_forecast(
+        zone_key=ZoneKey("GB"),
+        session=session,
+    )
+
+
+def test_fetch_consumption_forecast_historical(requests_mock, session, snapshot):
+    gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+    requests_mock.register_uri(
+        GET,
+        NESO_API,
+        json=json.loads(
+            gb_mock.joinpath("consumption_forecast_historical.json").read_text()
+        ),
+    )
+
+    historical_datetime = datetime(2026, 7, 17, 12, tzinfo=timezone.utc)
+    assert snapshot == fetch_consumption_forecast(
+        zone_key=ZoneKey("GB"),
+        session=session,
+        target_datetime=historical_datetime,
     )

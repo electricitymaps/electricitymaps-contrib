@@ -55,7 +55,7 @@ Note: This requires you to have [Python 3.10][python homepage] and [uv][uv homep
 
 ### Parser information
 
-For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [electricitymap/contrib/parsers/README.md][parser readme] with specific information about the parser functions located in the [electricitymap/contrib/parser/example][parser examples folder] folder
+For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [electricitymap/contrib/parsers/README.md][parser readme] with specific information about the parser functions located in the [electricitymap/contrib/parsers/examples][parser examples folder] folder
 
 #### Example parser:
 
@@ -120,7 +120,7 @@ flowchart LR
 
 In order to do code changes to the Electricity Maps repository you need to fork the repo and make changes in your own fork and then open a pull request (PR) against the Electricity Maps repository.
 
-Once this has been done the automatic and manual review process starts, this consists of manual approval of the CI pipeline if you are a first time contributor, if the CI pipeline passes a team member will review your specific code changes. If they pass all automated tests and manual review from a Electricity Maps Employee it will be merged in our contrib PR. This does not mean it will be automatically de deployed or that the changes will be instantly visible.
+Once this has been done the automatic and manual review process starts, this consists of manual approval of the CI pipeline if you are a first time contributor, if the CI pipeline passes a team member will review your specific code changes. If they pass all automated tests and manual review from an Electricity Maps Employee it will be merged in our contrib PR. This does not mean it will be automatically de deployed or that the changes will be instantly visible.
 
 If there is parser changes these go on to more internal tests that includes both automated test suits and manual reviews. Once everything passes and an approval has been granted a new release will be created that updates the production environment for both the frontend and parser changes.
 
@@ -144,5 +144,5 @@ If there is parser changes these go on to more internal tests that includes both
 [old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
 [config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
 [config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
-[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers/README.md
+[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/README.md
 [parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/

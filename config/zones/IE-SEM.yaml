@@ -1,0 +1,12 @@
+_comment: Internal auxiliary zone, not user-facing. All-island Single Electricity
+  Market (SEM) actual generation per production type from ENTSO-E (EIC
+  10Y1001A1001A59C, covering both IE and GB-NIR). Used only as an input to the IE and
+  GB-NIR thermal-composition estimator (see estimator ModeBreakdown). It is
+  non-sellable (no subZoneNames, not in ESTIMATION_ZONES) and has no geometry, so it
+  is excluded from the API and the map.
+generation_only: true
+parsers:
+  production: ENTSOE.fetch_production
+region: Europe
+timezone: Europe/Dublin
+zone_name: All-Island (SEM)

@@ -39,7 +39,6 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeAtcList,
     ExchangeCapacityList,
-    ExchangeList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -97,6 +96,10 @@ class JaoDataset(str, Enum):
 # exchange (e.g. BE-LU capacity is rolled into `border_BE_DE`). EM exchanges
 # where LU is a party (BE_LU, DE_LU, FR_LU) should NOT be wired to this
 # parser to avoid double-counting.
+#
+# These codes are specific to the Publication Tool. The Auction API
+# (JAO_Auctions.py) uses different ones for the same zones — DK-DK1 is "DK1" here
+# but "D1" there. Both are correct for their API; don't unify them.
 EM_TO_JAO_ZONE: dict[str, str] = {
     # Italy: JAO publishes a single "IT" code for Core-external borders,
     # which physically corresponds to the Italy North bidding zone.
@@ -118,6 +121,76 @@ EM_TO_JAO_ZONE: dict[str, str] = {
 def _em_to_jao_zone(em_zone: str) -> str:
     """Translate an EM zone key to the zone code JAO uses in its border field names."""
     return EM_TO_JAO_ZONE.get(em_zone, em_zone)
+
+
+# Most border fields are `border_{zone_a}_{zone_b}`, but JAO names some borders
+# after the *interconnector endpoints* rather than the bidding zones, so the
+# field cannot be derived from the zone codes alone:
+#
+#   BG->RO      border_BG_RO_BG_VH            (endpoints BG / RO_BG_VH)
+#   DE->DK-DK1  border_DE_DK1_VH_DK1_DE       (Vejle hub)
+#   DK-DK1->NL  border_DK1_CO_NL_DK1_COBRA    (COBRAcable)
+#
+# Keyed by the sorted EM exchange key; the tuple is (endpoint for zone_a,
+# endpoint for zone_b), so export is `{prefix}_{a}_{b}` and import the reverse,
+# exactly as for the derived names.
+#
+# The payload carries further qualified borders we do not consume here
+# (`border_ALBE_ALDE` for ALEGrO, `border_DE_NO2_BigHub_NO2_NK` for NordLink);
+# add them only alongside wiring the matching exchange to this parser, to avoid
+# double-sourcing borders already served by NORDPOOL.
+JAO_BORDER_ENDPOINTS: dict[str, tuple[str, str]] = {
+    "BG->RO": ("BG", "RO_BG_VH"),
+    "DE->DK-DK1": ("DE_DK1_VH", "DK1_DE"),
+    "DK-DK1->NL": ("DK1_CO", "NL_DK1_COBRA"),
+}
+
+
+def _resolve_border_fields(
+    sorted_zone_keys: ZoneKey,
+    rows: list[dict],
+    field_prefix: str,
+    logger: Logger,
+) -> tuple[str, str]:
+    """Resolve the (export, import) field names for a border.
+
+    Picks whichever naming the payload actually carries: the interconnector
+    endpoints from `JAO_BORDER_ENDPOINTS` if present, otherwise the names
+    derived from the zone codes. Selecting on the payload rather than switching
+    outright matters because the convention varies *per dataset* - shadowAuctionATC
+    still publishes plain `border_DE_FR`, while coreExternal moved to qualified
+    names - and the same EM border can appear in more than one dataset.
+
+    Warns when neither naming is present. Both extractors skip rows where the
+    two fields are absent, so without this a renamed field is indistinguishable
+    from "no capacity published": the parser returns zero events, raises
+    nothing, and writes nothing. That is how the Core-external borders above
+    went unnoticed for ~3 months after JAO renamed them.
+    """
+    zone_a, zone_b = sorted_zone_keys.split("->")
+    derived = (_em_to_jao_zone(zone_a), _em_to_jao_zone(zone_b))
+    qualified = JAO_BORDER_ENDPOINTS.get(sorted_zone_keys)
+
+    candidates = [qualified, derived] if qualified else [derived]
+    for endpoint_a, endpoint_b in candidates:
+        export_field = f"{field_prefix}_{endpoint_a}_{endpoint_b}"
+        import_field = f"{field_prefix}_{endpoint_b}_{endpoint_a}"
+        if not rows or export_field in rows[0] or import_field in rows[0]:
+            return export_field, import_field
+
+    # Nothing matched: fall back to the derived names so behaviour is unchanged,
+    # but say so loudly - this is the signal that a border has been renamed.
+    export_field = f"{field_prefix}_{derived[0]}_{derived[1]}"
+    import_field = f"{field_prefix}_{derived[1]}_{derived[0]}"
+    available = sorted(k for k in rows[0] if k.startswith(f"{field_prefix}_"))
+    logger.warning(
+        f"JAO: no field found for {sorted_zone_keys} - tried "
+        f"{[f'{field_prefix}_{a}_{b}' for a, b in candidates]}. The border may "
+        f"have been renamed; available fields: {available}",
+        extra={"key": sorted_zone_keys},
+    )
+
+    return export_field, import_field
 
 
 def _format_utc(dt: datetime) -> str:
@@ -218,11 +291,9 @@ def _extract_border_capacity(
     (MaxBeX, MaxBflow). ATC datasets use `_extract_border_atc` instead so the
     `atcType` discriminator can be attached.
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
     capacities = ExchangeCapacityList(logger)
     for row in rows:
@@ -253,11 +324,9 @@ def _extract_border_atc(
     Same `border_XX_YY` row shape as `_extract_border_capacity` but emits the
     ATC-specific event class (carries the `atcType` discriminator).
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
     capacities = ExchangeAtcList(logger)
     for row in rows:
@@ -276,44 +345,50 @@ def _extract_border_atc(
     return capacities
 
 
-def _extract_border_net_flow(
+def _extract_border_scheduled_exchanges(
     rows: list[dict],
     sorted_zone_keys: ZoneKey,
     source: str,
+    market_agreement_type: MarketAgreementType,
     logger: Logger,
     field_prefix: str = "border",
-) -> ExchangeList:
-    """Turn per-border rows into an ExchangeList of scheduled netFlow events.
+) -> list[ScheduledExchange]:
+    """Turn per-border rows into scheduled exchange events keeping both directions.
 
-    For a sorted zone key `"A->B"`, netFlow = `{prefix}_A_B` − `{prefix}_B_A`
-    (positive when A exports to B). JAO publishes both directional fields; day-
-    ahead market coupling clears a netted schedule so typically only one side
-    is non-zero per MTU, but subtracting handles both cases uniformly.
+    For a sorted zone key `"A->B"`, JAO publishes both directional fields:
+      - `scheduledExport` = `{prefix}_A_B` (flow A -> B)
+      - `scheduledImport` = `{prefix}_B_A` (flow B -> A)
+    Both are kept so hourly-aggregated schedules that clear in both directions
+    within a bucket stay lossless; `netFlow` (= scheduledExport - scheduledImport) is
+    derived by `ScheduledExchange.create`. Per MTU only one side is non-zero.
 
     Emitted with sourceType=published since the values are TSO-published
     ex-ante schedules, not statistical forecasts.
     """
-    zone_a, zone_b = sorted_zone_keys.split("->")
-    jao_a = _em_to_jao_zone(zone_a)
-    jao_b = _em_to_jao_zone(zone_b)
-    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
-    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+    export_field, import_field = _resolve_border_fields(
+        sorted_zone_keys, rows, field_prefix, logger
+    )
 
-    flows = ExchangeList(logger)
+    exchanges: list[ScheduledExchange] = []
     for row in rows:
         export_value = row.get(export_field)
         import_value = row.get(import_field)
         if export_value is None and import_value is None:
             continue
-        net_flow = (export_value or 0) - (import_value or 0)
-        flows.append(
+        event = ScheduledExchange.create(
+            logger=logger,
             zoneKey=sorted_zone_keys,
             datetime=_parse_utc(row["dateTimeUtc"]),
+            end_datetime=None,
             source=source,
-            netFlow=net_flow,
+            scheduledExport=export_value or 0,
+            scheduledImport=import_value or 0,
+            marketAgreementType=market_agreement_type,
             sourceType=EventSourceType.published,
         )
-    return flows
+        if event is not None:
+            exchanges.append(event)
+    return exchanges
 
 
 def _fetch_jao_rows(
@@ -448,10 +523,10 @@ def fetch_core_scheduled_exchanges_day_ahead(
 ) -> list[dict]:
     """Day-ahead scheduled commercial exchanges for a Core border.
 
-    The cleared net commercial flow from Core day-ahead market coupling, per
-    MTU (15 min). Covers Core internal borders and Core-external ones (e.g.
-    FR↔ES, DK1↔DE). Emitted as signed netFlow events (Exchange shape), not
-    capacity pairs, since market coupling publishes a netted schedule.
+    The cleared commercial flow from Core day-ahead market coupling, per MTU
+    (15 min). Covers Core internal borders and Core-external ones (e.g. FR↔ES,
+    DK1↔DE). Emitted as ScheduledExchange events carrying both directional
+    flows (export/import) plus a derived signed netFlow.
     """
     sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
@@ -462,18 +537,10 @@ def fetch_core_scheduled_exchanges_day_ahead(
         target_datetime,
         logger,
     )
-    exchange_list = _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger)
-    return [
-        ScheduledExchange(
-            zoneKey=evt.zoneKey,
-            datetime=evt.datetime,
-            source=evt.source,
-            netFlow=evt.netFlow,
-            sourceType=evt.sourceType,
-            marketAgreementType=MarketAgreementType.DAY_AHEAD,
-        ).to_dict()
-        for evt in exchange_list.events
-    ]
+    exchanges = _extract_border_scheduled_exchanges(
+        rows, sorted_zone_keys, SOURCE, MarketAgreementType.DAY_AHEAD, logger
+    )
+    return [event.to_dict() for event in exchanges]
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))

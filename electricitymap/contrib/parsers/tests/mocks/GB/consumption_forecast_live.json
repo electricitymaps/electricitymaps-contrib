@@ -1,0 +1,50 @@
+{
+  "help": "Mock NESO live 2-14 days ahead half hourly demand forecast data",
+  "success": true,
+  "result": {
+    "records": [
+      {
+        "_id": 605,
+        "DATE": "2026-07-31",
+        "CTIME": 1430,
+        "GDATETIME": "2026-07-31T13:30:00",
+        "NATIONALDEMAND": 20289
+      },
+      {
+        "_id": 606,
+        "DATE": "2026-07-31",
+        "CTIME": 1500,
+        "GDATETIME": "2026-07-31T14:00:00",
+        "NATIONALDEMAND": 20099
+      },
+      {
+        "_id": 607,
+        "DATE": "2026-07-31",
+        "CTIME": 1530,
+        "GDATETIME": "2026-07-31T14:30:00",
+        "NATIONALDEMAND": 20663
+      },
+      {
+        "_id": 608,
+        "DATE": "2026-07-31",
+        "CTIME": 1600,
+        "GDATETIME": "2026-07-31T15:00:00",
+        "NATIONALDEMAND": 20747
+      },
+      {
+        "_id": 609,
+        "DATE": "2026-07-31",
+        "CTIME": 1630,
+        "GDATETIME": "2026-07-31T15:30:00",
+        "NATIONALDEMAND": 21203
+      },
+      {
+        "_id": 610,
+        "DATE": "2026-07-31",
+        "CTIME": 1700,
+        "GDATETIME": "2026-07-31T16:00:00",
+        "NATIONALDEMAND": 22465
+      }
+    ]
+  }
+}

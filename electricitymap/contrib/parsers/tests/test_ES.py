@@ -30,6 +30,13 @@ def mock_response(requests_mock):
                 content=data.read(),
             )
 
+    with open(f"{MOCKS_DIR}/demandaGeneracionCanariasLaGomera.json", "rb") as data:
+        requests_mock.register_uri(
+            GET,
+            ES.get_url(ZoneKey("ES-CN-IG"), "2026-08-01"),
+            content=data.read(),
+        )
+
 
 @pytest.mark.parametrize(
     "zone_key,target_date",
@@ -59,8 +66,9 @@ def test_fetch_production(requests_mock, session, snapshot, zone_key, target_dat
         (ZoneKey("ES"), ZoneKey("PT"), "2024-10-26"),
         (ZoneKey("ES-IB-IZ"), ZoneKey("ES-IB-MA"), "2024-10-26"),
         (ZoneKey("ES-CN-FV"), ZoneKey("ES-CN-LZ"), "2026-04-28"),
+        (ZoneKey("ES-CN-IG"), ZoneKey("ES-CN-TE"), "2026-08-01"),
     ],
-    ids=["ES->PT", "ES-IB-IZ->ES-IB-MA", "ES-CN-FV->ES-CN-LZ"],
+    ids=["ES->PT", "ES-IB-IZ->ES-IB-MA", "ES-CN-FV->ES-CN-LZ", "ES-CN-IG->ES-CN-TE"],
 )
 def test_fetch_exchange(
     requests_mock, session, snapshot, zone_key1, zone_key2, target_date

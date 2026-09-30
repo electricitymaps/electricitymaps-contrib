@@ -18,11 +18,18 @@ class MarketAgreementType(str, Enum):
     """ENTSOE Contract_MarketAgreement.Type discriminator subset.
 
     Extend by adding the matching value as new storage requirements emerge.
-    The full ENTSOE codelist also includes A02 (week-ahead), A03
-    (month-ahead), A04 (year-ahead), A07 (intraday), and others.
+    The full ENTSOE codelist also includes A04 (year-ahead), A07 (intraday),
+    and others.
+
+    Not every member is meaningful for every consumer: cleared schedules use
+    DAY_AHEAD / TOTAL, while forecast transfer capacity uses DAY_AHEAD /
+    WEEK_AHEAD / MONTH_AHEAD. Storage tables narrow to their own valid subset
+    with a CHECK constraint rather than each defining a private enum.
     """
 
-    DAY_AHEAD = "DAY_AHEAD"  # A01: cleared day-ahead schedule.
+    DAY_AHEAD = "DAY_AHEAD"  # A01: cleared day-ahead schedule / day-ahead capacity.
+    WEEK_AHEAD = "WEEK_AHEAD"  # A02: week-ahead capacity.
+    MONTH_AHEAD = "MONTH_AHEAD"  # A03: month-ahead capacity.
     TOTAL = "TOTAL"  # A05: finalised total schedule (DA + ID + balancing).
 
 

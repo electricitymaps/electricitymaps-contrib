@@ -1,0 +1,13 @@
+{
+ "data": {
+  "data": {
+   "asAtTimeStamp": "2026-08-26T21:17:07+08:00",
+   "operationalDemandEstimate": 2688.4487,
+   "operationalWithdrawalEstimate": -149.3193
+  }
+ },
+ "errors": [],
+ "warnings": [],
+ "infos": [],
+ "transactionId": "57c15e00-1943-4d39-8412-0444ba170734"
+}

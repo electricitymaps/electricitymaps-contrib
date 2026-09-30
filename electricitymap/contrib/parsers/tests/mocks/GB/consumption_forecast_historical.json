@@ -1,0 +1,92 @@
+{
+  "help": "Mock NESO day ahead half hourly demand forecast performance data",
+  "success": true,
+  "result": {
+    "records": [
+      {
+        "_id": 92793,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T05:30:00",
+        "Settlement_Period": 11,
+        "Demand_Forecast": 20902,
+        "Demand_Outturn": 20415,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 20415,
+        "APE": 2.385500857,
+        "Absolute_Error": 487,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      },
+      {
+        "_id": 92794,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T06:00:00",
+        "Settlement_Period": 12,
+        "Demand_Forecast": 20951,
+        "Demand_Outturn": 20640,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 20640,
+        "APE": 1.506782945,
+        "Absolute_Error": 311,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      },
+      {
+        "_id": 92795,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T06:30:00",
+        "Settlement_Period": 13,
+        "Demand_Forecast": 22373,
+        "Demand_Outturn": 22096,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 22096,
+        "APE": 1.253620564,
+        "Absolute_Error": 277,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      },
+      {
+        "_id": 92796,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T07:00:00",
+        "Settlement_Period": 14,
+        "Demand_Forecast": 23098,
+        "Demand_Outturn": 22845,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 22845,
+        "APE": 1.107463339,
+        "Absolute_Error": 253,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      },
+      {
+        "_id": 92797,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T07:30:00",
+        "Settlement_Period": 15,
+        "Demand_Forecast": 24147,
+        "Demand_Outturn": 24606,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 24606,
+        "APE": 1.865398683,
+        "Absolute_Error": 459,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      },
+      {
+        "_id": 92798,
+        "Month": "Jul",
+        "Date": "2026-07-17",
+        "Datetime": "2026-07-17T08:00:00",
+        "Settlement_Period": 16,
+        "Demand_Forecast": 24310,
+        "Demand_Outturn": 24915,
+        "TRIAD_Avoidance_Estimate": 0,
+        "TRIAD_Avoidance_Corrected_Demand_Outturn": 24915,
+        "APE": 2.42825607,
+        "Absolute_Error": 605,
+        "Publish_Datetime": "2026-07-16T08:33:00"
+      }
+    ]
+  }
+}

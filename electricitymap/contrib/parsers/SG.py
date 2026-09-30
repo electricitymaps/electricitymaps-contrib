@@ -210,7 +210,7 @@ def fetch_production(
         zoneKey=zone_key,
         production=mix,
         storage=None,
-        source="emcsg.com, ema.gov.sg",
+        source="emcsg.com,ema.gov.sg",
     )
     return production_breakdowns.to_list()
 
