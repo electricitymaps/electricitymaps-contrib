@@ -368,7 +368,7 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                 existing_event = exchanges[new_event.datetime]
                 updated_event = Exchange._update(existing_event, new_event)
                 exchanges[new_event.datetime] = updated_event
-            elif new_event.exports is not None:
+            elif new_event.exports is not None and new_event.imports is not None:
                 exchanges.append(
                     new_event.zoneKey,
                     new_event.datetime,

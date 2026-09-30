@@ -481,7 +481,11 @@ class Exchange(Event):
             raise ValueError(
                 f"exports and imports must be set together: {exports}, {imports}"
             )
-        if exports is not None and values.get("netFlow") is None:
+        if (
+            exports is not None
+            and imports is not None
+            and values.get("netFlow") is None
+        ):
             values["netFlow"] = _none_safe_round(exports - imports)
         return values
 
@@ -602,7 +606,7 @@ class Exchange(Event):
             "source": self.source,
             "sourceType": self.sourceType,
         }
-        if self.exports is not None:
+        if self.exports is not None and self.imports is not None:
             exchange["exports"] = self.exports
             exchange["imports"] = self.imports
         return exchange
