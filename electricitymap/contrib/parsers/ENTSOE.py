@@ -917,15 +917,13 @@ def parse_exchange(
     exchange_list = ExchangeList(logger)
     points = parse_scalar(xml_text)
     for dt, dt_end, quantity in points:
-        if is_import:
-            quantity *= -1
-        # Find out whether or not we should update the net production
         exchange_list.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
             end_datetime=dt_end,
             source=SOURCE,
-            netFlow=quantity,
+            exports=0.0 if is_import else quantity,
+            imports=quantity if is_import else 0.0,
         )
 
     return exchange_list
