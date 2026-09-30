@@ -7,6 +7,7 @@ from zoneinfo import ZoneInfo
 import freezegun
 import numpy as np
 import pytest
+from pydantic import ValidationError
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -152,6 +153,316 @@ def test_update_exchange():
     assert final_exchange.zoneKey == ZoneKey("AT->DE")
     assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert final_exchange.source == "trust.me"
+
+
+OLD_STYLE_EXCHANGE_KEYS = {
+    "datetime",
+    "end_datetime",
+    "sortedZoneKeys",
+    "netFlow",
+    "source",
+    "sourceType",
+}
+
+INVALID_GROSS_FLOWS = [
+    pytest.param(500, None, id="export-only"),
+    pytest.param(None, 300, id="import-only"),
+    pytest.param(-1, 0, id="negative-export"),
+    pytest.param(0, -1, id="negative-import"),
+    pytest.param(math.nan, 0, id="nan-export"),
+    pytest.param(0, np.nan, id="numpy-nan-import"),
+    pytest.param(100001, 0, id="export-above-100GW"),
+    pytest.param(0, 100001, id="import-above-100GW"),
+    pytest.param(150000, 149000, id="both-above-100GW-small-net"),
+]
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports", "expected_net_flow"),
+    [
+        pytest.param(500, 300, 200, id="both-directions"),
+        pytest.param(0, 300, -300, id="pure-import"),
+        pytest.param(300, 0, 300, id="pure-export"),
+        pytest.param(0, 0, 0, id="no-flow"),
+        pytest.param(100000, 100000, 0, id="both-at-100GW"),
+    ],
+)
+def test_create_exchange_from_gross_derives_net_flow(
+    exports, imports, expected_net_flow
+):
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=exports,
+        imports=imports,
+        source="trust.me",
+    )
+    assert exchange.netFlow == expected_net_flow
+    assert exchange.exports == exports
+    assert exchange.imports == imports
+
+
+def test_create_exchange_from_gross_rounds_derived_net_flow():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=0.3,
+        imports=0.1,
+        source="trust.me",
+    )
+    # 0.3 - 0.1 is 0.19999999999999998 in floating point.
+    assert exchange.netFlow == 0.2
+
+
+def test_exchange_accepts_net_flow_matching_gross():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=200.0005,
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    assert exchange.netFlow == 200.0005
+    assert exchange.exports == 500
+    assert exchange.imports == 300
+
+
+def test_raises_if_exchange_has_neither_net_flow_nor_gross():
+    with pytest.raises(ValidationError):
+        Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+        )
+
+
+@pytest.mark.parametrize(("exports", "imports"), INVALID_GROSS_FLOWS)
+def test_raises_if_invalid_gross_exchange(exports, imports):
+    with pytest.raises(ValidationError):
+        Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            exports=exports,
+            imports=imports,
+            source="trust.me",
+        )
+
+
+@pytest.mark.parametrize("net_flow", [201, -200, 200.002])
+def test_raises_if_net_flow_does_not_match_gross(net_flow):
+    with pytest.raises(ValidationError):
+        Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=net_flow,
+            exports=500,
+            imports=300,
+            source="trust.me",
+        )
+
+
+def test_raises_if_net_flow_given_with_one_gross_side():
+    with pytest.raises(ValidationError):
+        Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=500,
+            exports=500,
+            source="trust.me",
+        )
+
+
+def test_exchange_static_create_from_gross():
+    exchange = Exchange.create(
+        logger=logging.Logger("test"),
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
+        source="trust.me",
+        exports=500.1234567,
+        imports=300,
+    )
+    assert exchange is not None
+    assert exchange.exports == 500.123457
+    assert exchange.imports == 300
+    assert exchange.netFlow == 200.123457
+
+
+def test_exchange_static_create_with_net_flow_only_is_unchanged():
+    # Positional call, as existing parsers make it.
+    exchange = Exchange.create(
+        logging.Logger("test"),
+        ZoneKey("AT->DE"),
+        datetime(2023, 1, 1, tzinfo=timezone.utc),
+        None,
+        "trust.me",
+        1.23456789,
+        EventSourceType.estimated,
+    )
+    assert exchange is not None
+    assert exchange.netFlow == 1.234568
+    assert exchange.sourceType == EventSourceType.estimated
+    assert exchange.exports is None
+    assert exchange.imports is None
+    assert set(exchange.to_dict()) == OLD_STYLE_EXCHANGE_KEYS
+
+
+def test_exchange_static_create_logs_error_without_net_flow_or_gross():
+    logger = logging.Logger("test")
+    with patch.object(logger, "error") as mock_error:
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+        )
+        assert exchange is None
+        mock_error.assert_called_once()
+
+
+@pytest.mark.parametrize(("exports", "imports"), INVALID_GROSS_FLOWS)
+def test_exchange_static_create_logs_invalid_gross(exports, imports):
+    logger = logging.Logger("test")
+    with patch.object(logger, "error") as mock_error:
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+        assert exchange is None
+        mock_error.assert_called_once()
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports"),
+    [
+        pytest.param(500, 300, id="both-gross"),
+        pytest.param(500, None, id="export-only"),
+        pytest.param(None, 300, id="import-only"),
+    ],
+)
+def test_exchange_static_create_raises_on_net_flow_and_gross(exports, imports):
+    logger = logging.Logger("test")
+    with pytest.raises(ValueError):
+        Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            netFlow=0,
+            exports=exports,
+            imports=imports,
+        )
+
+
+def test_exchange_to_dict_without_gross_has_no_gross_keys():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=1,
+        source="trust.me",
+    )
+    as_dict = exchange.to_dict()
+    assert set(as_dict) == OLD_STYLE_EXCHANGE_KEYS
+    assert as_dict["netFlow"] == 1
+
+
+def test_exchange_to_dict_with_gross():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    as_dict = exchange.to_dict()
+    assert set(as_dict) == OLD_STYLE_EXCHANGE_KEYS | {"exports", "imports"}
+    assert as_dict["netFlow"] == 200
+    assert as_dict["exports"] == 500
+    assert as_dict["imports"] == 300
+
+
+def test_exchange_to_dict_with_zero_gross_keeps_gross_keys():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=0,
+        imports=0,
+        source="trust.me",
+    )
+    as_dict = exchange.to_dict()
+    assert as_dict["exports"] == 0
+    assert as_dict["imports"] == 0
+    assert as_dict["netFlow"] == 0
+
+
+def test_update_exchange_with_gross_replaces_net_flow_only_event():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=1,
+        source="trust.me",
+    )
+    new_exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    final_exchange = Exchange._update(exchange, new_exchange)
+    assert final_exchange.netFlow == 200
+    assert final_exchange.exports == 500
+    assert final_exchange.imports == 300
+
+
+def test_update_exchange_with_net_flow_only_drops_previous_gross():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    new_exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=-50,
+        source="trust.me",
+    )
+    final_exchange = Exchange._update(exchange, new_exchange)
+    assert final_exchange.netFlow == -50
+    assert final_exchange.exports is None
+    assert final_exchange.imports is None
+    assert set(final_exchange.to_dict()) == OLD_STYLE_EXCHANGE_KEYS
+
+
+def test_update_exchange_with_gross_replaces_gross():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    new_exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=0,
+        imports=400,
+        source="trust.me",
+    )
+    final_exchange = Exchange._update(exchange, new_exchange)
+    assert final_exchange.netFlow == -400
+    assert final_exchange.exports == 0
+    assert final_exchange.imports == 400
 
 
 def test_create_scheduled_exchange_derives_net_flow():
