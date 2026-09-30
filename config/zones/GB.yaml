@@ -539,13 +539,13 @@ isRenewable:
       value: 0.5929
 parsers:
   consumption: ELEXON.fetch_consumption
-  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  consumptionForecast: GB.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: NORDPOOL.fetch_price
   production: GB.fetch_production
   productionCapacity: GB.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastDayAhead: GB.fetch_wind_forecasts_day_ahead
   productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
   productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe

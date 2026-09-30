@@ -4,6 +4,7 @@
     dict({
       'consumption': 29998.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 29796.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 29865.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 29631.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 29678.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 29600.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 29315.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 29130.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 28740.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 28597.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 28199.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 28104.0,
       'datetime': datetime.datetime(2024, 10, 25, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 27782.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 27424.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 27169.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 27064.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 26655.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 26611.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 26324.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 26182.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 26082.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 25798.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 25771.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 25400.0,
       'datetime': datetime.datetime(2024, 10, 25, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 25312.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -179,6 +204,7 @@
     dict({
       'consumption': 25226.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -186,6 +212,7 @@
     dict({
       'consumption': 24960.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -193,6 +220,7 @@
     dict({
       'consumption': 24596.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -200,6 +228,7 @@
     dict({
       'consumption': 24581.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -207,6 +236,7 @@
     dict({
       'consumption': 24423.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -214,6 +244,7 @@
     dict({
       'consumption': 24164.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -221,6 +252,7 @@
     dict({
       'consumption': 24091.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -228,6 +260,7 @@
     dict({
       'consumption': 24050.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -235,6 +268,7 @@
     dict({
       'consumption': 23823.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -242,6 +276,7 @@
     dict({
       'consumption': 23517.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -249,6 +284,7 @@
     dict({
       'consumption': 23497.0,
       'datetime': datetime.datetime(2024, 10, 25, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -256,6 +292,7 @@
     dict({
       'consumption': 23638.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -263,6 +300,7 @@
     dict({
       'consumption': 23354.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -270,6 +308,7 @@
     dict({
       'consumption': 23261.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -277,6 +316,7 @@
     dict({
       'consumption': 23141.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -284,6 +324,7 @@
     dict({
       'consumption': 23105.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -291,6 +332,7 @@
     dict({
       'consumption': 22953.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -298,6 +340,7 @@
     dict({
       'consumption': 22849.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -305,6 +348,7 @@
     dict({
       'consumption': 22633.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -312,6 +356,7 @@
     dict({
       'consumption': 22660.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -319,6 +364,7 @@
     dict({
       'consumption': 22404.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -326,6 +372,7 @@
     dict({
       'consumption': 22217.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -333,6 +380,7 @@
     dict({
       'consumption': 22227.0,
       'datetime': datetime.datetime(2024, 10, 26, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -340,6 +388,7 @@
     dict({
       'consumption': 22053.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -347,6 +396,7 @@
     dict({
       'consumption': 21884.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -354,6 +404,7 @@
     dict({
       'consumption': 21763.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -361,6 +412,7 @@
     dict({
       'consumption': 21731.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -368,6 +420,7 @@
     dict({
       'consumption': 21782.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -375,6 +428,7 @@
     dict({
       'consumption': 21580.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -382,6 +436,7 @@
     dict({
       'consumption': 21245.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -389,6 +444,7 @@
     dict({
       'consumption': 21356.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -396,6 +452,7 @@
     dict({
       'consumption': 21305.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -403,6 +460,7 @@
     dict({
       'consumption': 21102.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -410,6 +468,7 @@
     dict({
       'consumption': 21053.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -417,6 +476,7 @@
     dict({
       'consumption': 20765.0,
       'datetime': datetime.datetime(2024, 10, 26, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -424,6 +484,7 @@
     dict({
       'consumption': 20862.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -431,6 +492,7 @@
     dict({
       'consumption': 20702.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -438,6 +500,7 @@
     dict({
       'consumption': 20673.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -445,6 +508,7 @@
     dict({
       'consumption': 20359.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -452,6 +516,7 @@
     dict({
       'consumption': 20286.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -459,6 +524,7 @@
     dict({
       'consumption': 20401.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -466,6 +532,7 @@
     dict({
       'consumption': 20293.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -473,6 +540,7 @@
     dict({
       'consumption': 20239.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -480,6 +548,7 @@
     dict({
       'consumption': 20266.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -487,6 +556,7 @@
     dict({
       'consumption': 20159.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -494,6 +564,7 @@
     dict({
       'consumption': 20192.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -501,6 +572,7 @@
     dict({
       'consumption': 20113.0,
       'datetime': datetime.datetime(2024, 10, 26, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -508,6 +580,7 @@
     dict({
       'consumption': 20087.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -515,6 +588,7 @@
     dict({
       'consumption': 19823.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -522,6 +596,7 @@
     dict({
       'consumption': 19778.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -529,6 +604,7 @@
     dict({
       'consumption': 19785.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -536,6 +612,7 @@
     dict({
       'consumption': 19885.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -543,6 +620,7 @@
     dict({
       'consumption': 19780.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -550,6 +628,7 @@
     dict({
       'consumption': 19796.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -557,6 +636,7 @@
     dict({
       'consumption': 19697.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -564,6 +644,7 @@
     dict({
       'consumption': 19577.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -571,6 +652,7 @@
     dict({
       'consumption': 19655.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -578,6 +660,7 @@
     dict({
       'consumption': 19582.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -585,6 +668,7 @@
     dict({
       'consumption': 19516.0,
       'datetime': datetime.datetime(2024, 10, 26, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -592,6 +676,7 @@
     dict({
       'consumption': 19527.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -599,6 +684,7 @@
     dict({
       'consumption': 19474.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -606,6 +692,7 @@
     dict({
       'consumption': 19613.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -613,6 +700,7 @@
     dict({
       'consumption': 19640.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -620,6 +708,7 @@
     dict({
       'consumption': 19484.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -627,6 +716,7 @@
     dict({
       'consumption': 19434.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -634,6 +724,7 @@
     dict({
       'consumption': 19439.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -641,6 +732,7 @@
     dict({
       'consumption': 19457.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -648,6 +740,7 @@
     dict({
       'consumption': 19464.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -655,6 +748,7 @@
     dict({
       'consumption': 19409.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -662,6 +756,7 @@
     dict({
       'consumption': 19527.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -669,6 +764,7 @@
     dict({
       'consumption': 19459.0,
       'datetime': datetime.datetime(2024, 10, 26, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -676,6 +772,7 @@
     dict({
       'consumption': 19515.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -683,6 +780,7 @@
     dict({
       'consumption': 19432.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -690,6 +788,7 @@
     dict({
       'consumption': 19467.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -697,6 +796,7 @@
     dict({
       'consumption': 19336.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -704,6 +804,7 @@
     dict({
       'consumption': 19309.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -711,6 +812,7 @@
     dict({
       'consumption': 19489.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -718,6 +820,7 @@
     dict({
       'consumption': 19265.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -725,6 +828,7 @@
     dict({
       'consumption': 19351.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -732,6 +836,7 @@
     dict({
       'consumption': 19586.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -739,6 +844,7 @@
     dict({
       'consumption': 19414.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -746,6 +852,7 @@
     dict({
       'consumption': 19528.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -753,6 +860,7 @@
     dict({
       'consumption': 19345.0,
       'datetime': datetime.datetime(2024, 10, 26, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -760,6 +868,7 @@
     dict({
       'consumption': 19600.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -767,6 +876,7 @@
     dict({
       'consumption': 19648.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -774,6 +884,7 @@
     dict({
       'consumption': 19795.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -781,6 +892,7 @@
     dict({
       'consumption': 19772.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -788,6 +900,7 @@
     dict({
       'consumption': 19830.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -795,6 +908,7 @@
     dict({
       'consumption': 20037.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -802,6 +916,7 @@
     dict({
       'consumption': 20003.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -809,6 +924,7 @@
     dict({
       'consumption': 20136.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -816,6 +932,7 @@
     dict({
       'consumption': 20210.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -823,6 +940,7 @@
     dict({
       'consumption': 20247.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -830,6 +948,7 @@
     dict({
       'consumption': 20435.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -837,6 +956,7 @@
     dict({
       'consumption': 20465.0,
       'datetime': datetime.datetime(2024, 10, 26, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -844,6 +964,7 @@
     dict({
       'consumption': 20533.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -851,6 +972,7 @@
     dict({
       'consumption': 20770.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -858,6 +980,7 @@
     dict({
       'consumption': 20900.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -865,6 +988,7 @@
     dict({
       'consumption': 21022.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -872,6 +996,7 @@
     dict({
       'consumption': 21095.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -879,6 +1004,7 @@
     dict({
       'consumption': 21323.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -886,6 +1012,7 @@
     dict({
       'consumption': 21227.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -893,6 +1020,7 @@
     dict({
       'consumption': 21553.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -900,6 +1028,7 @@
     dict({
       'consumption': 21484.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -907,6 +1036,7 @@
     dict({
       'consumption': 21618.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -914,6 +1044,7 @@
     dict({
       'consumption': 21921.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -921,6 +1052,7 @@
     dict({
       'consumption': 21801.0,
       'datetime': datetime.datetime(2024, 10, 26, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -928,6 +1060,7 @@
     dict({
       'consumption': 22067.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -935,6 +1068,7 @@
     dict({
       'consumption': 22329.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -942,6 +1076,7 @@
     dict({
       'consumption': 22760.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -949,6 +1084,7 @@
     dict({
       'consumption': 22763.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -956,6 +1092,7 @@
     dict({
       'consumption': 22993.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -963,6 +1100,7 @@
     dict({
       'consumption': 22807.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -970,6 +1108,7 @@
     dict({
       'consumption': 22682.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -977,6 +1116,7 @@
     dict({
       'consumption': 22889.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -984,6 +1124,7 @@
     dict({
       'consumption': 22884.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -991,6 +1132,7 @@
     dict({
       'consumption': 22875.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -998,6 +1140,7 @@
     dict({
       'consumption': 23109.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1005,6 +1148,7 @@
     dict({
       'consumption': 23215.0,
       'datetime': datetime.datetime(2024, 10, 26, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1012,6 +1156,7 @@
     dict({
       'consumption': 23467.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1019,6 +1164,7 @@
     dict({
       'consumption': 23513.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1026,6 +1172,7 @@
     dict({
       'consumption': 23420.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1033,6 +1180,7 @@
     dict({
       'consumption': 23685.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1040,6 +1188,7 @@
     dict({
       'consumption': 23826.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1047,6 +1196,7 @@
     dict({
       'consumption': 23864.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1054,6 +1204,7 @@
     dict({
       'consumption': 23937.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1061,6 +1212,7 @@
     dict({
       'consumption': 23897.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1068,6 +1220,7 @@
     dict({
       'consumption': 23969.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1075,6 +1228,7 @@
     dict({
       'consumption': 24098.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1082,6 +1236,7 @@
     dict({
       'consumption': 24273.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1089,6 +1244,7 @@
     dict({
       'consumption': 24446.0,
       'datetime': datetime.datetime(2024, 10, 26, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1096,6 +1252,7 @@
     dict({
       'consumption': 24233.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1103,6 +1260,7 @@
     dict({
       'consumption': 24659.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1110,6 +1268,7 @@
     dict({
       'consumption': 24677.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1117,6 +1276,7 @@
     dict({
       'consumption': 24639.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1124,6 +1284,7 @@
     dict({
       'consumption': 24884.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1131,6 +1292,7 @@
     dict({
       'consumption': 24896.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1138,6 +1300,7 @@
     dict({
       'consumption': 25207.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1145,6 +1308,7 @@
     dict({
       'consumption': 25016.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1152,6 +1316,7 @@
     dict({
       'consumption': 25055.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1159,6 +1324,7 @@
     dict({
       'consumption': 25093.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1166,6 +1332,7 @@
     dict({
       'consumption': 25263.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1173,6 +1340,7 @@
     dict({
       'consumption': 25260.0,
       'datetime': datetime.datetime(2024, 10, 26, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1180,6 +1348,7 @@
     dict({
       'consumption': 25014.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1187,6 +1356,7 @@
     dict({
       'consumption': 25051.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1194,6 +1364,7 @@
     dict({
       'consumption': 25138.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1201,6 +1372,7 @@
     dict({
       'consumption': 25016.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1208,6 +1380,7 @@
     dict({
       'consumption': 25017.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1215,6 +1388,7 @@
     dict({
       'consumption': 24699.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1222,6 +1396,7 @@
     dict({
       'consumption': 24485.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1229,6 +1404,7 @@
     dict({
       'consumption': 24820.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1236,6 +1412,7 @@
     dict({
       'consumption': 24851.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1243,6 +1420,7 @@
     dict({
       'consumption': 24630.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1250,6 +1428,7 @@
     dict({
       'consumption': 24744.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1257,6 +1436,7 @@
     dict({
       'consumption': 24583.0,
       'datetime': datetime.datetime(2024, 10, 26, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1264,6 +1444,7 @@
     dict({
       'consumption': 24448.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1271,6 +1452,7 @@
     dict({
       'consumption': 24541.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1278,6 +1460,7 @@
     dict({
       'consumption': 24679.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1285,6 +1468,7 @@
     dict({
       'consumption': 24525.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1292,6 +1476,7 @@
     dict({
       'consumption': 24537.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1299,6 +1484,7 @@
     dict({
       'consumption': 24482.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1306,6 +1492,7 @@
     dict({
       'consumption': 24583.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1313,6 +1500,7 @@
     dict({
       'consumption': 24827.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1320,6 +1508,7 @@
     dict({
       'consumption': 24589.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1327,6 +1516,7 @@
     dict({
       'consumption': 24508.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1334,6 +1524,7 @@
     dict({
       'consumption': 24767.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1341,6 +1532,7 @@
     dict({
       'consumption': 24677.0,
       'datetime': datetime.datetime(2024, 10, 26, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1348,6 +1540,7 @@
     dict({
       'consumption': 24791.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1355,6 +1548,7 @@
     dict({
       'consumption': 24699.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1362,6 +1556,7 @@
     dict({
       'consumption': 24702.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1369,6 +1564,7 @@
     dict({
       'consumption': 24757.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1376,6 +1572,7 @@
     dict({
       'consumption': 24875.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1383,6 +1580,7 @@
     dict({
       'consumption': 24881.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1390,6 +1588,7 @@
     dict({
       'consumption': 24782.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1397,6 +1596,7 @@
     dict({
       'consumption': 24910.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1404,6 +1604,7 @@
     dict({
       'consumption': 24960.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1411,6 +1612,7 @@
     dict({
       'consumption': 25137.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1418,6 +1620,7 @@
     dict({
       'consumption': 25038.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1425,6 +1628,7 @@
     dict({
       'consumption': 24986.0,
       'datetime': datetime.datetime(2024, 10, 26, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1432,6 +1636,7 @@
     dict({
       'consumption': 24860.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1439,6 +1644,7 @@
     dict({
       'consumption': 24817.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1446,6 +1652,7 @@
     dict({
       'consumption': 24941.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1453,6 +1660,7 @@
     dict({
       'consumption': 24766.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1460,6 +1668,7 @@
     dict({
       'consumption': 24976.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1467,6 +1676,7 @@
     dict({
       'consumption': 24612.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1474,6 +1684,7 @@
     dict({
       'consumption': 24524.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1481,6 +1692,7 @@
     dict({
       'consumption': 24493.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1488,6 +1700,7 @@
     dict({
       'consumption': 24340.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1495,6 +1708,7 @@
     dict({
       'consumption': 24245.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1502,6 +1716,7 @@
     dict({
       'consumption': 23993.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1509,6 +1724,7 @@
     dict({
       'consumption': 24054.0,
       'datetime': datetime.datetime(2024, 10, 26, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1516,6 +1732,7 @@
     dict({
       'consumption': 23922.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1523,6 +1740,7 @@
     dict({
       'consumption': 23755.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1530,6 +1748,7 @@
     dict({
       'consumption': 23929.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1537,6 +1756,7 @@
     dict({
       'consumption': 23913.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1544,6 +1764,7 @@
     dict({
       'consumption': 23652.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1551,6 +1772,7 @@
     dict({
       'consumption': 23578.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1558,6 +1780,7 @@
     dict({
       'consumption': 23497.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1565,6 +1788,7 @@
     dict({
       'consumption': 23523.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1572,6 +1796,7 @@
     dict({
       'consumption': 23463.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1579,6 +1804,7 @@
     dict({
       'consumption': 23352.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1586,6 +1812,7 @@
     dict({
       'consumption': 23177.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1593,6 +1820,7 @@
     dict({
       'consumption': 23132.0,
       'datetime': datetime.datetime(2024, 10, 26, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1600,6 +1828,7 @@
     dict({
       'consumption': 23162.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1607,6 +1836,7 @@
     dict({
       'consumption': 23221.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1614,6 +1844,7 @@
     dict({
       'consumption': 23002.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1621,6 +1852,7 @@
     dict({
       'consumption': 22858.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1628,6 +1860,7 @@
     dict({
       'consumption': 23042.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1635,6 +1868,7 @@
     dict({
       'consumption': 22954.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1642,6 +1876,7 @@
     dict({
       'consumption': 23079.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1649,6 +1884,7 @@
     dict({
       'consumption': 22941.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1656,6 +1892,7 @@
     dict({
       'consumption': 23039.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1663,6 +1900,7 @@
     dict({
       'consumption': 23105.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1670,6 +1908,7 @@
     dict({
       'consumption': 22992.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1677,6 +1916,7 @@
     dict({
       'consumption': 23125.0,
       'datetime': datetime.datetime(2024, 10, 26, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1684,6 +1924,7 @@
     dict({
       'consumption': 23230.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1691,6 +1932,7 @@
     dict({
       'consumption': 23255.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1698,6 +1940,7 @@
     dict({
       'consumption': 22904.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1705,6 +1948,7 @@
     dict({
       'consumption': 23243.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1712,6 +1956,7 @@
     dict({
       'consumption': 23408.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1719,6 +1964,7 @@
     dict({
       'consumption': 23263.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1726,6 +1972,7 @@
     dict({
       'consumption': 23448.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1733,6 +1980,7 @@
     dict({
       'consumption': 23243.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1740,6 +1988,7 @@
     dict({
       'consumption': 23345.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1747,6 +1996,7 @@
     dict({
       'consumption': 23220.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1754,6 +2004,7 @@
     dict({
       'consumption': 23603.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1761,6 +2012,7 @@
     dict({
       'consumption': 23493.0,
       'datetime': datetime.datetime(2024, 10, 26, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1768,6 +2020,7 @@
     dict({
       'consumption': 23541.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1775,6 +2028,7 @@
     dict({
       'consumption': 23795.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1782,6 +2036,7 @@
     dict({
       'consumption': 23778.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1789,6 +2044,7 @@
     dict({
       'consumption': 23737.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1796,6 +2052,7 @@
     dict({
       'consumption': 23874.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1803,6 +2060,7 @@
     dict({
       'consumption': 23814.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1810,6 +2068,7 @@
     dict({
       'consumption': 24017.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1817,6 +2076,7 @@
     dict({
       'consumption': 24130.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1824,6 +2084,7 @@
     dict({
       'consumption': 24216.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1831,6 +2092,7 @@
     dict({
       'consumption': 23917.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1838,6 +2100,7 @@
     dict({
       'consumption': 24050.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1845,6 +2108,7 @@
     dict({
       'consumption': 24226.0,
       'datetime': datetime.datetime(2024, 10, 26, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1852,6 +2116,7 @@
     dict({
       'consumption': 24323.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1859,6 +2124,7 @@
     dict({
       'consumption': 24813.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1866,6 +2132,7 @@
     dict({
       'consumption': 24839.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1873,6 +2140,7 @@
     dict({
       'consumption': 25166.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1880,6 +2148,7 @@
     dict({
       'consumption': 25412.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1887,6 +2156,7 @@
     dict({
       'consumption': 25454.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1894,6 +2164,7 @@
     dict({
       'consumption': 25618.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1901,6 +2172,7 @@
     dict({
       'consumption': 26001.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1908,6 +2180,7 @@
     dict({
       'consumption': 26130.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1915,6 +2188,7 @@
     dict({
       'consumption': 26234.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1922,6 +2196,7 @@
     dict({
       'consumption': 26202.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1929,6 +2204,7 @@
     dict({
       'consumption': 26386.0,
       'datetime': datetime.datetime(2024, 10, 26, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1936,6 +2212,7 @@
     dict({
       'consumption': 26413.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1943,6 +2220,7 @@
     dict({
       'consumption': 26521.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1950,6 +2228,7 @@
     dict({
       'consumption': 26614.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1957,6 +2236,7 @@
     dict({
       'consumption': 26540.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1964,6 +2244,7 @@
     dict({
       'consumption': 26653.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1971,6 +2252,7 @@
     dict({
       'consumption': 26754.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1978,6 +2260,7 @@
     dict({
       'consumption': 26841.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1985,6 +2268,7 @@
     dict({
       'consumption': 27118.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1992,6 +2276,7 @@
     dict({
       'consumption': 26925.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -1999,6 +2284,7 @@
     dict({
       'consumption': 26789.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2006,6 +2292,7 @@
     dict({
       'consumption': 26974.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2013,6 +2300,7 @@
     dict({
       'consumption': 26794.0,
       'datetime': datetime.datetime(2024, 10, 26, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2020,6 +2308,7 @@
     dict({
       'consumption': 26755.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2027,6 +2316,7 @@
     dict({
       'consumption': 26922.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2034,6 +2324,7 @@
     dict({
       'consumption': 26801.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2041,6 +2332,7 @@
     dict({
       'consumption': 26535.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2048,6 +2340,7 @@
     dict({
       'consumption': 26518.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2055,6 +2348,7 @@
     dict({
       'consumption': 26383.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2062,6 +2356,7 @@
     dict({
       'consumption': 26340.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2069,6 +2364,7 @@
     dict({
       'consumption': 26135.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2076,6 +2372,7 @@
     dict({
       'consumption': 25799.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2083,6 +2380,7 @@
     dict({
       'consumption': 25553.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2090,6 +2388,7 @@
     dict({
       'consumption': 25431.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2097,6 +2396,7 @@
     dict({
       'consumption': 25575.0,
       'datetime': datetime.datetime(2024, 10, 26, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2104,6 +2404,7 @@
     dict({
       'consumption': 25338.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2111,6 +2412,7 @@
     dict({
       'consumption': 25143.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2118,6 +2420,7 @@
     dict({
       'consumption': 24811.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2125,6 +2428,7 @@
     dict({
       'consumption': 24717.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2132,6 +2436,7 @@
     dict({
       'consumption': 24476.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2139,6 +2444,7 @@
     dict({
       'consumption': 23999.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2146,6 +2452,7 @@
     dict({
       'consumption': 24081.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2153,6 +2460,7 @@
     dict({
       'consumption': 23975.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2160,6 +2468,7 @@
     dict({
       'consumption': 23839.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2167,6 +2476,7 @@
     dict({
       'consumption': 23266.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2174,6 +2484,7 @@
     dict({
       'consumption': 23143.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2181,6 +2492,7 @@
     dict({
       'consumption': 23353.0,
       'datetime': datetime.datetime(2024, 10, 26, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2188,6 +2500,7 @@
     dict({
       'consumption': 23263.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2195,6 +2508,7 @@
     dict({
       'consumption': 23220.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2202,6 +2516,7 @@
     dict({
       'consumption': 23067.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2209,6 +2524,7 @@
     dict({
       'consumption': 23082.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2216,6 +2532,7 @@
     dict({
       'consumption': 22792.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2223,6 +2540,7 @@
     dict({
       'consumption': 22721.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2230,6 +2548,7 @@
     dict({
       'consumption': 22538.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2237,6 +2556,7 @@
     dict({
       'consumption': 22407.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2244,6 +2564,7 @@
     dict({
       'consumption': 22118.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2251,6 +2572,7 @@
     dict({
       'consumption': 22133.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2258,6 +2580,7 @@
     dict({
       'consumption': 21975.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2265,6 +2588,7 @@
     dict({
       'consumption': 21915.0,
       'datetime': datetime.datetime(2024, 10, 26, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2272,6 +2596,7 @@
     dict({
       'consumption': 21665.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2279,6 +2604,7 @@
     dict({
       'consumption': 21652.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2286,6 +2612,7 @@
     dict({
       'consumption': 21505.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2293,6 +2620,7 @@
     dict({
       'consumption': 21505.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2300,6 +2628,7 @@
     dict({
       'consumption': 21312.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2307,6 +2636,7 @@
     dict({
       'consumption': 21102.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2314,6 +2644,7 @@
     dict({
       'consumption': 20898.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2321,6 +2652,7 @@
     dict({
       'consumption': 20882.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2328,6 +2660,7 @@
     dict({
       'consumption': 20652.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2335,6 +2668,7 @@
     dict({
       'consumption': 20557.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2342,6 +2676,7 @@
     dict({
       'consumption': 20543.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2349,6 +2684,7 @@
     dict({
       'consumption': 20485.0,
       'datetime': datetime.datetime(2024, 10, 27, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2356,6 +2692,7 @@
     dict({
       'consumption': 20229.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2363,6 +2700,7 @@
     dict({
       'consumption': 20296.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2370,6 +2708,7 @@
     dict({
       'consumption': 20288.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2377,6 +2716,7 @@
     dict({
       'consumption': 20055.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2384,6 +2724,7 @@
     dict({
       'consumption': 20021.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2391,6 +2732,7 @@
     dict({
       'consumption': 19789.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2398,6 +2740,7 @@
     dict({
       'consumption': 19755.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2405,6 +2748,7 @@
     dict({
       'consumption': 19714.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2412,6 +2756,7 @@
     dict({
       'consumption': 19649.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2419,6 +2764,7 @@
     dict({
       'consumption': 19613.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2426,6 +2772,7 @@
     dict({
       'consumption': 19298.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2433,6 +2780,7 @@
     dict({
       'consumption': 19358.0,
       'datetime': datetime.datetime(2024, 10, 27, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2440,6 +2788,7 @@
     dict({
       'consumption': 19284.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2447,6 +2796,7 @@
     dict({
       'consumption': 19192.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2454,6 +2804,7 @@
     dict({
       'consumption': 19058.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2461,6 +2812,7 @@
     dict({
       'consumption': 19230.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2468,6 +2820,7 @@
     dict({
       'consumption': 19127.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2475,6 +2828,7 @@
     dict({
       'consumption': 18971.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2482,6 +2836,7 @@
     dict({
       'consumption': 18733.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2489,6 +2844,7 @@
     dict({
       'consumption': 18754.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2496,6 +2852,7 @@
     dict({
       'consumption': 18966.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2503,6 +2860,7 @@
     dict({
       'consumption': 18778.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2510,6 +2868,7 @@
     dict({
       'consumption': 18666.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2517,6 +2876,7 @@
     dict({
       'consumption': 18719.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -2524,6 +2884,7 @@
     dict({
       'consumption': 18524.0,
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'end_datetime': None,
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',

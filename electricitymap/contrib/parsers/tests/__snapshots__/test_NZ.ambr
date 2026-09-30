@@ -5,6 +5,7 @@
       dict({
         'currency': 'NZD',
         'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+        'end_datetime': None,
         'price': 79.8623076923077,
         'source': 'api.em6.co.nz',
         'sourceType': <EventSourceType.measured: 'measured'>,
@@ -15,6 +16,7 @@
       dict({
         'currency': 'NZD',
         'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+        'end_datetime': None,
         'price': 79.8623076923077,
         'source': 'api.em6.co.nz',
         'sourceType': <EventSourceType.measured: 'measured'>,
@@ -42,6 +44,7 @@
         'correctedModes': list([
         ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+        'end_datetime': None,
         'production': dict({
           'coal': 156,
           'gas': 252,
@@ -78,6 +81,7 @@
         'correctedModes': list([
         ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+        'end_datetime': None,
         'production': dict({
           'coal': 156,
           'gas': 252,

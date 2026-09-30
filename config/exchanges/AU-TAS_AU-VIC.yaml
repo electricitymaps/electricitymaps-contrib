@@ -5,5 +5,5 @@ lonlat:
   - 146.096047
   - -39.836207
 parsers:
-  exchange: OPENNEM.fetch_exchange
+  exchange: AEMO.fetch_exchange
 rotation: 0

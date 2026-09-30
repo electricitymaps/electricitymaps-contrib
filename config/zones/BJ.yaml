@@ -3,12 +3,6 @@ bounding_box:
     - 6.213950472787388
   - - 3.835838358383597
     - 12.399090476833294
-center_point:
-  - 2.2836346851900076
-  - 9.290317399155198
-centroid:
-  - 2.382090154351049
-  - 9.747409139345764
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -41,11 +35,17 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 170.0
+center_point:
+  - 2.2836346851900076
+  - 9.290317399155198
+centroid:
+  - 2.382090154351049
+  - 9.747409139345764
 country: BJ
 country_name: Benin
 currency: XOF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

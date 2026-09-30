@@ -63,8 +63,16 @@ def test_fetch_production_data_structure(requests_mock, session):
     """Test that the production data has the expected structure and values."""
 
     def mock_response(request, context):
-        """Mock response that returns consistent data."""
-        mock_file = MOCK_DATA_DIR / "response_20250910.json"
+        """Mock response based on the requested date so the "yesterday" and
+        "today" fetches return their own data instead of duplicating one day."""
+        form_data = request.text
+        if (
+            "fechaInicial=09%2F09%2F2025" in form_data
+            or "fechaInicial=09/09/2025" in form_data
+        ):
+            mock_file = MOCK_DATA_DIR / "response_20250909.json"
+        else:
+            mock_file = MOCK_DATA_DIR / "response_20250910.json"
         with open(mock_file, encoding="utf-8") as f:
             return json.load(f)
 

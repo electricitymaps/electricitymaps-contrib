@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 320.0,
         'gas': 700.0,
@@ -18,8 +19,8 @@
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 30.0,
-        'hydro': 200.0,
+        'battery': -30.0,
+        'hydro': -150.0,
       }),
       'zoneKey': 'BE',
     }),
@@ -27,9 +28,10 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 1, 1, 1, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 321.0,
-        'gas': 550.0,
+        'gas': None,
         'hydro': 46.7,
         'nuclear': 3948.0,
         'oil': 0.0,
@@ -37,11 +39,11 @@
         'unknown': 607.0,
         'wind': 4217.0,
       }),
-      'source': 'entsoe.eu, opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 40.0,
-        'hydro': 180.0,
+        'battery': -25.0,
+        'hydro': 715.0,
       }),
       'zoneKey': 'BE',
     }),
@@ -49,6 +51,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 1, 1, 1, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 325.84,
         'gas': 560.96,
@@ -59,11 +62,11 @@
         'unknown': 600.66,
         'wind': 4251.79,
       }),
-      'source': 'opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 45.0,
-        'hydro': None,
+        'battery': -25.0,
+        'hydro': 715.0,
       }),
       'zoneKey': 'BE',
     }),
@@ -71,6 +74,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 1, 1, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 320.65,
         'gas': None,
@@ -81,11 +85,11 @@
         'unknown': 591.49,
         'wind': 4266.5,
       }),
-      'source': 'opendata.elia.be',
+      'source': 'entsoe.eu,opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 50.0,
-        'hydro': None,
+        'battery': -25.0,
+        'hydro': 715.0,
       }),
       'zoneKey': 'BE',
     }),

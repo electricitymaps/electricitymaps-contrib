@@ -1,15 +1,12 @@
-_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.
+_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically
+  viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769
+  says battery will be tendered summer 2018 so below battery storage will need to
+  be updated when built.
 bounding_box:
   - - 25.662856628566317
     - 35.82019212102932
   - - 44.80784807848079
     - 42.09835250921752
-center_point:
-  - 35.36795764440553
-  - 39.05209407218814
-centroid:
-  - 33.42393423934243
-  - 39.04288107342735
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -33,6 +30,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1950.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1990.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -102,7 +102,10 @@ capacity:
       value: 31960.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 32390.0
+      value: 32200.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 32290.0
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -130,8 +133,17 @@ capacity:
       source: Ember, Yearly electricity data
       value: 11290.0
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 19880.0
+      source: Ember, Monthly wind and solar capacity data
+      value: 15940.0
+    - datetime: '2025-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 20680.0
+    - datetime: '2026-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 25820.0
+    - datetime: '2026-07-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 27300.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -155,8 +167,23 @@ capacity:
       source: Ember, Yearly electricity data
       value: 11810.0
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 12970.0
+      source: Ember, Monthly wind and solar capacity data
+      value: 11880.0
+    - datetime: '2025-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 13050.0
+    - datetime: '2026-01-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 14890.0
+    - datetime: '2026-07-01'
+      source: Ember, Monthly wind and solar capacity data
+      value: 15320.0
+center_point:
+  - 35.36795764440553
+  - 39.05209407218814
+centroid:
+  - 33.42393423934243
+  - 39.04288107342735
 contributors:
   - corradio
   - olivierSemet
@@ -325,8 +352,8 @@ fallbackZoneMixes:
         solar: 0.016206573078968178
         unknown: 0.0023705547277017153
         wind: 0.11272769958002037
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: TR.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -338,7 +365,6 @@ parsers:
   productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
   productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
   productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
-
 region: Asia
 sources:
   INCER ACV:

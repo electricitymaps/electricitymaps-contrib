@@ -16,8 +16,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
     TotalConsumptionList,
+    TotalProductionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -25,6 +26,11 @@ from electricitymap.contrib.types import ZoneKey
 CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 MX_PRODUCTION_URL = f"{CAISO_PROXY}/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx?host=https://www.cenace.gob.mx"
 MX_EXCHANGE_URL = f"{CAISO_PROXY}/Paginas/Publicas/Info/DemandaRegional.aspx?host=https://www.cenace.gob.mx"
+MX_GENERATION_FORECAST_URL = f"{CAISO_PROXY}/GraficaDemanda.aspx/obtieneValoresTotal?host=https://www.cenace.gob.mx"
+
+# "gerencia" selects the region the dashboard reports on; 10 is the national
+# total. Regional values exist but are not mapped to the MX-* zone keys here.
+NATIONAL_GERENCIA = "10"
 
 EXCHANGES = {
     "MX-NO->MX-NW": "IntercambioNTE-NOR",
@@ -316,12 +322,119 @@ def fetch_consumption(
     return consumption_list.to_list()
 
 
+def fetch_generation_forecast_data(
+    session: Session,
+) -> list[dict]:
+    """Fetches the raw hourly rows backing the national demand dashboard."""
+    response: Response = session.post(
+        MX_GENERATION_FORECAST_URL,
+        json={"gerencia": NATIONAL_GERENCIA},
+        headers={
+            "Content-Type": "application/json; charset=utf-8",
+            "User-Agent": "Mozilla/5.0",
+        },
+    )
+    if not response.ok:
+        raise ParserException(
+            "CENACE.py",
+            f"[{response.status_code}] Generation forecast could not be reached: {response.text}",
+            ZoneKey("MX"),
+        )
+    # The endpoint is an ASP.NET method, so the payload arrives as a JSON string
+    # under "d" rather than as a nested object.
+    payload = response.json()["d"]
+    return json.loads(payload) if isinstance(payload, str) else payload
+
+
+def parse_generation_forecast(
+    zone_key: ZoneKey, now: datetime, raw_data: list[dict], logger: Logger
+) -> TotalProductionList:
+    """Parses the dashboard's forecast column into a TotalProductionList.
+
+    CENACE labels hours 1-24, where hour N covers the interval starting at N-1
+    (the same convention `parse_date` above already applies to the production
+    CSV). Rows arrive in chronological order covering the current day.
+
+    The window is *not* a fixed length: the dashboard sometimes prepends hour 24
+    of the previous day, so the same request returns 24 or 25 rows minutes
+    apart. Timestamps are therefore anchored on the row where the labels wrap
+    back to hour 1 — midnight today — rather than on the first row, which may
+    belong to either day.
+    """
+    result = TotalProductionList(logger)
+    today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    midnight_index = next(
+        (index for index, row in enumerate(raw_data) if int(row["hora"]) == 1), None
+    )
+    if midnight_index is None:
+        raise ParserException(
+            "CENACE.py",
+            "Could not anchor the forecast window: no row reports hora 1",
+            zone_key,
+        )
+
+    for offset, row in enumerate(raw_data):
+        timestamp = today + timedelta(hours=offset - midnight_index)
+        # Guard the anchor: the rows must be contiguous and hourly for the
+        # offsets to mean anything. Without this a changed window shape would
+        # silently shift every timestamp rather than fail.
+        expected_hora = timestamp.hour + 1
+        if int(row["hora"]) != expected_hora:
+            raise ParserException(
+                "CENACE.py",
+                f"Unexpected hour ordering: row {offset} reports hora {row['hora']}, expected {expected_hora}",
+                zone_key,
+            )
+
+        forecast = str(row["valorPronostico"]).strip()
+        if not forecast:
+            logger.warning(f"No forecast value for {timestamp.isoformat()}")
+            continue
+
+        result.append(
+            zoneKey=zone_key,
+            datetime=timestamp,
+            value=float(forecast),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return result
+
+
+@refetch_frequency(timedelta(hours=1))
+def fetch_generation_forecast(
+    zone_key: ZoneKey = ZoneKey("MX"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Gets the hourly national generation forecast from the live dashboard."""
+    if zone_key != "MX":
+        raise ValueError(
+            f"MX parser cannot fetch generation forecast for zone {zone_key}"
+        )
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    s = session or Session()
+
+    raw_data = fetch_generation_forecast_data(session=s)
+    forecast = parse_generation_forecast(
+        zone_key, datetime.now(tz=TIMEZONE), raw_data, logger
+    )
+    return forecast.to_list()
+
+
 if __name__ == "__main__":
     print(
         fetch_production(
             ZoneKey("MX"), target_datetime=datetime(year=2019, month=7, day=1)
         )
     )
+    print("fetch_generation_forecast(MX)")
+    print(fetch_generation_forecast(ZoneKey("MX")))
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange(ZoneKey("MX-NO"), ZoneKey("MX-NW")))
     print("fetch_exchange(MX-OR, MX-PN)")

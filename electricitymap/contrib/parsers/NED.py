@@ -295,11 +295,12 @@ def fetch_production(
             zone_key, session, target_datetime, logger
         )
         combined_data = ProductionBreakdownList.update_production_breakdowns(
-            ENTSOE_data, NED_data, logger, matching_timestamps_only=True
+            ENTSOE_data, NED_data, logger, drop_non_matching_datetimes=True
         )
         return combined_data.to_list()
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production_forecast(
     zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,

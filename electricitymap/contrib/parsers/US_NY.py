@@ -6,7 +6,6 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from io import BytesIO
 from logging import Logger, getLogger
-from operator import itemgetter
 from typing import Any
 from zipfile import ZipFile
 from zoneinfo import ZoneInfo
@@ -100,35 +99,36 @@ def timestamp_converter(timestamp_string: str) -> datetime:
 
 def data_parser(df, mapping, logger) -> list[tuple[datetime, ProductionMix]]:
     """
-    Takes dataframe and loops over rows to form dictionaries consisting of datetime and generation type.
-    Merges these dictionaries using datetime key.
+    Takes dataframe and loops over rows to build a ProductionMix per minute.
+
+    NYISO occasionally reports several snapshots within the same minute (e.g.
+    :00 and :22). Events are stored at minute precision, so readings for the
+    same (minute, fuel category) are averaged rather than dropping all but one.
 
     :return: list of tuples containing datetime and production.
     """
 
-    chunks = []
+    # minute -> source fuel category -> list of readings within that minute
+    readings: dict[datetime, dict[str, list[float]]] = defaultdict(
+        lambda: defaultdict(list)
+    )
     for row in df.itertuples():
-        piece = {}
-        piece["datetime"] = row[1]
-        piece[row[3]] = row[4]
-        chunks.append(piece)
-
-    # Join dicts on shared 'datetime' keys.
-    combine = defaultdict(dict)
-    for elem in chunks:
-        combine[elem["datetime"]].update(elem)
-
-    ordered = sorted(combine.values(), key=itemgetter("datetime"))
+        dt = timestamp_converter(row[1]).replace(second=0, microsecond=0)
+        value = row[4]
+        if pd.notna(value):
+            readings[dt][row[3]].append(value)
 
     mapped_generation = []
-    for item in ordered:
+    for dt in sorted(readings):
         mix = ProductionMix()
-        dt = timestamp_converter(item.pop("datetime"))
-        for key, val in item.items():
+        for category, values in readings[dt].items():
+            # Average the sub-minute readings for this category; categories that
+            # map to the same production mode are then summed by add_value.
+            average = sum(values) / len(values)
             try:
-                mix.add_value(mapping[key], val)
+                mix.add_value(mapping[category], average)
             except KeyError:
-                logger.warning("Unrecognized production key '%s'", key)
+                logger.warning("Unrecognized production key '%s'", category)
 
         mapped_generation.append((dt, mix))
 

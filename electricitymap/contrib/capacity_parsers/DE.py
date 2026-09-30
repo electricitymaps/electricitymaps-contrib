@@ -15,13 +15,13 @@ MODE_MAPPING = {
     "Fossil gas": "gas",
     "Fossil oil": "oil",
     "Other, non-renewable": "unknown",
-    "Hydro Run-of-River": "hydro",
+    "Hydro": "hydro",
     "Hydro pumped storage": "hydro storage",
-    "Battery Storage (Power)": "battery storage",
+    "Battery storage (power)": "battery storage",
     "Biomass": "biomass",
     "Wind onshore": "wind",
     "Wind offshore": "wind",
-    "Solar": "solar",
+    "Solar DC": "solar",
 }
 
 SOURCE = "Fraunhofer ISE"
