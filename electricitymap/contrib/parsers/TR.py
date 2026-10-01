@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
@@ -11,6 +11,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -18,8 +19,9 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import DayAheadAuction
 
-from .lib.utils import get_token
+from .lib.utils import get_token, to_utc
 
 TR_TZ = ZoneInfo("Europe/Istanbul")
 
@@ -50,6 +52,7 @@ INVERT_PRODUCTION_MAPPPING = {
 }
 IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
+_EPIAS_MCP_RESOLUTION = timedelta(hours=1)
 
 
 def fetch_ticket_TGT(session: Session) -> str:
@@ -222,6 +225,47 @@ def fetch_price(
             currency="TRY",
         )
 
+    return prices.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_price_day_ahead(
+    zone_key: ZoneKey = ZoneKey("TR"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """EPİAŞ day-ahead market clearing prices (PTF) for `parser_data_price_day_ahead`.
+
+    Runs alongside `fetch_price`. `fetch_data` covers [target - 1 day, target], so a live
+    run targets tomorrow to get today plus tomorrow once the auction has cleared.
+    `target_datetime` is UTC (naive values are assumed UTC). TR time is only used for the
+    EPİAŞ request window, and rows are emitted in UTC.
+    """
+    session = session or Session()
+    target = to_utc(target_datetime)
+    if target_datetime is None:
+        target += timedelta(days=1)
+    # Convert (not relabel) to TR time, so `fetch_data`'s `.replace(tzinfo=TR_TZ)` is a no-op.
+    target = target.astimezone(TR_TZ)
+
+    data = fetch_data(target_datetime=target, kind="price", session=session)
+    prices = DayAheadPriceList(logger)
+    for item in data:
+        start = (
+            datetime.fromisoformat(item.get("date"))
+            .replace(tzinfo=TR_TZ)
+            .astimezone(timezone.utc)
+        )
+        prices.append(
+            zoneKey=zone_key,
+            datetime=start,
+            end_datetime=start + _EPIAS_MCP_RESOLUTION,
+            price=item.get("price"),
+            currency="TRY",
+            auction=DayAheadAuction.EPIAS_DA,
+            source=SOURCE,
+        )
     return prices.to_list()
 
 

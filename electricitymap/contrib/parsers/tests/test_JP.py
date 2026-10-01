@@ -1,7 +1,7 @@
 """Test for JP parsers"""
 
 import re
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -9,9 +9,14 @@ from freezegun import freeze_time
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.JP import (
+    JEPX_SPOT_URL,
     fetch_consumption_forecast,
     fetch_generation_forecast,
+    fetch_price_day_ahead,
 )
+from electricitymap.contrib.types import DayAheadAuction, ZoneKey
+
+JEPX_MOCKS = Path("electricitymap/contrib/parsers/tests/mocks/JP")
 
 
 @pytest.mark.parametrize(
@@ -264,3 +269,77 @@ def test_snapshot_fetch_consumption_forecast(
             2025, 4, 16, 12, 0
         ),  # the mock files were extracted this date
     )
+
+
+def _register_jepx(requests_mock):
+    for fiscal_year in (2025, 2026):
+        requests_mock.register_uri(
+            GET,
+            JEPX_SPOT_URL.format(fiscal_year=fiscal_year),
+            content=(JEPX_MOCKS / f"spot_{fiscal_year}.csv").read_bytes(),
+        )
+
+
+def test_fetch_price_day_ahead(requests_mock, session, snapshot):
+    _register_jepx(requests_mock)
+
+    rows = fetch_price_day_ahead(
+        ZoneKey("JP-TK"),
+        session,
+        target_datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+    )
+
+    assert snapshot == rows
+    # 2026-10-01T00:00Z is 09:00 JST, so the window is JST 2026-09-30 and 2026-10-01.
+    assert len(rows) == 96
+    # JST 2026-10-01 Period 1 starts at 00:00 JST.
+    first_of_target_day = rows[48]
+    assert first_of_target_day["datetime"] == datetime(
+        2026, 9, 30, 15, tzinfo=timezone.utc
+    )
+    assert first_of_target_day["price"] == 24010  # 24.01 JPY/kWh.
+    assert rows[0]["datetime"] == datetime(2026, 9, 29, 15, tzinfo=timezone.utc)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 1, 15, tzinfo=timezone.utc)
+    for row in rows:
+        assert row["end_datetime"] - row["datetime"] == timedelta(minutes=30)
+        assert row["datetime"].utcoffset() == timedelta(0)
+        assert row["end_datetime"].utcoffset() == timedelta(0)
+        assert row["auction"] == DayAheadAuction.JEPX_DA
+        assert row["currency"] == "JPY"
+        assert row["publishedAt"] is None
+
+
+@freeze_time("2026-09-30 16:00:00")  # 2026-10-01T01:00 JST.
+def test_fetch_price_day_ahead_live_includes_tomorrow(requests_mock, session):
+    _register_jepx(requests_mock)
+
+    rows = fetch_price_day_ahead(ZoneKey("JP-KY"), session)
+
+    # Today and tomorrow in JST.
+    assert rows[0]["datetime"] == datetime(2026, 9, 30, 15, tzinfo=timezone.utc)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 15, tzinfo=timezone.utc)
+    assert len(rows) == 96
+
+
+def test_fetch_price_day_ahead_spans_fiscal_years(requests_mock, session):
+    _register_jepx(requests_mock)
+
+    rows = fetch_price_day_ahead(
+        ZoneKey("JP-HKD"),
+        session,
+        target_datetime=datetime(2026, 4, 1, tzinfo=timezone.utc),
+    )
+
+    assert [request.url for request in requests_mock.request_history] == [
+        JEPX_SPOT_URL.format(fiscal_year=2025),
+        JEPX_SPOT_URL.format(fiscal_year=2026),
+    ]
+    # JST 2026-03-31 from FY2025 and 2026-04-01 from FY2026.
+    assert len(rows) == 96
+    assert rows[0]["datetime"] == datetime(2026, 3, 30, 15, tzinfo=timezone.utc)
+    assert rows[-1]["end_datetime"] == datetime(2026, 4, 1, 15, tzinfo=timezone.utc)
+
+
+def test_fetch_price_day_ahead_jp_on_raises(session):
+    with pytest.raises(NotImplementedError):
+        fetch_price_day_ahead(ZoneKey("JP-ON"), session)

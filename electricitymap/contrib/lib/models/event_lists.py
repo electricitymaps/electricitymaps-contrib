@@ -9,6 +9,7 @@ from typing import Any, Generic, TypeVar
 import pandas as pd
 
 from electricitymap.contrib.lib.models.events import (
+    DayAheadPrice,
     Event,
     EventSourceType,
     Exchange,
@@ -26,7 +27,12 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import (
+    AtcType,
+    DayAheadAuction,
+    MarketAgreementType,
+    ZoneKey,
+)
 
 EventType = TypeVar("EventType", bound="Event")
 
@@ -748,6 +754,42 @@ class PriceList(NonOverlappingEventList[Price]):
             source,
             price,
             currency,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class DayAheadPriceList(NonOverlappingEventList[DayAheadPrice]):
+    """A single auction's day-ahead prices for one zone.
+
+    Plain append with no per-auction handling: each parser emits one auction per
+    zone, so the inherited per-`datetime` dedup is the right one.
+    """
+
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        auction: DayAheadAuction,
+        *,
+        end_datetime: datetime | None = None,
+        publishedAt: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = DayAheadPrice.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            price,
+            currency,
+            auction,
+            publishedAt,
             sourceType,
         )
         if event:
