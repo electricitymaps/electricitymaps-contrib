@@ -126,9 +126,10 @@ IGNORED_PREFIXES = ("part_", "filiere_")
 # Historical data is served by a different, national dataset
 # (``courbe-de-charge-de-la-production-delectricite-par-filiere``) which uses a
 # more aggregated schema (``*_mw`` suffixes) than the per-territory live feeds.
-# Thermal generation (oil/gas) and bagasse/coal are each reported as a single
-# lumped value that cannot be split into individual modes, so both are reported
-# as ``unknown``.
+# Thermal generation (oil/gas) is reported as a single lumped value that cannot
+# be split into individual modes, so it is reported as ``unknown``. Bagasse/coal
+# plants burn bagasse (sugarcane residue) as a biofuel and are reported as
+# ``biomass``, consistent with the live RE ``charbon`` mapping.
 HISTORICAL_GENERATION_MAPPING = {
     "photovoltaique_mw": "solar",
     "eolien_mw": "wind",
@@ -137,7 +138,7 @@ HISTORICAL_GENERATION_MAPPING = {
     "bioenergies_mw": "biomass",
     "geothermie_mw": "geothermal",
     "thermique_mw": "unknown",
-    "bagasse_charbon_mw": "unknown",
+    "bagasse_charbon_mw": "biomass",
 }
 
 HISTORICAL_STORAGE_MAPPING = {"stockage_mw": "battery"}

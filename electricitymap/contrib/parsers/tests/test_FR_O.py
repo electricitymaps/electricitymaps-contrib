@@ -52,8 +52,8 @@ def test_fetch_production(requests_mock, session, snapshot, zone_key):
 def test_fetch_production_historical(requests_mock, session, snapshot):
     # Historical data comes from the national dataset, which uses a different,
     # more aggregated schema (*_mw suffixes) than the live feeds. Every field it
-    # returns must be mapped or ignored - no warnings - and thermal/bagasse must
-    # collapse to the 'unknown' mode since they cannot be split.
+    # returns must be mapped or ignored - no warnings - and thermal must
+    # collapse to the 'unknown' mode since it cannot be split.
     requests_mock.register_uri(ANY, ANY, json=_load_mock("FR_COR_historical.json"))
     logger = MagicMock()
     data_list = FR_O.fetch_production(
