@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 23, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 41.142,
         'gas': 5.41,
@@ -23,6 +24,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 38, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.744,
         'gas': 5.41,
@@ -41,6 +43,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 53, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.644,
         'gas': 5.41,

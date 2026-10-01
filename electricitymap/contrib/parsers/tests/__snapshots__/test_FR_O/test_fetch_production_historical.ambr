@@ -6,6 +6,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.36,
         'geothermal': None,
@@ -25,6 +26,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.36,
         'geothermal': None,
@@ -44,6 +46,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.36,
         'geothermal': None,

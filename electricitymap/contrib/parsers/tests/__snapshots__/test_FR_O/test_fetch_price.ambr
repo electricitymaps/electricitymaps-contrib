@@ -4,6 +4,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2018, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 193.7,
       'source': 'opendata.edf.fr',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -12,6 +13,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2018, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 195.8,
       'source': 'opendata.edf.fr',
       'sourceType': <EventSourceType.measured: 'measured'>,

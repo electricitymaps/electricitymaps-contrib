@@ -6,6 +6,7 @@
         'geothermal',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 21, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 21.762,
         'coal': 21.792,
@@ -27,6 +28,7 @@
         'geothermal',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 36, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 22.716,
         'coal': 22.092,
@@ -48,6 +50,7 @@
         'geothermal',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 51, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 22.576,
         'coal': 21.996,

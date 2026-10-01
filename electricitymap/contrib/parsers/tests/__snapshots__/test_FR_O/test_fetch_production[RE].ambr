@@ -6,6 +6,7 @@
         'gas',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 25, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 279.3918,
         'gas': 0,
@@ -25,6 +26,7 @@
         'gas',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 40, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 282.9156,
         'gas': 0,
@@ -44,6 +46,7 @@
         'gas',
       ]),
       'datetime': datetime.datetime(2026, 5, 26, 9, 50, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'production': dict({
         'biomass': 282.3438,
         'gas': 0,
