@@ -1,340 +1,340 @@
 {
   "items": [
     {
-      "date": "2026-09-30T00:00:00+03:00",
-      "hour": "00:00",
-      "price": 1800.0,
-      "priceUsd": 43.69,
-      "priceEur": 37.42
-    },
-    {
-      "date": "2026-09-30T01:00:00+03:00",
-      "hour": "01:00",
-      "price": 1820.44,
-      "priceUsd": 44.19,
-      "priceEur": 37.85
-    },
-    {
-      "date": "2026-09-30T02:00:00+03:00",
-      "hour": "02:00",
-      "price": 1880.38,
-      "priceUsd": 45.64,
-      "priceEur": 39.09
-    },
-    {
-      "date": "2026-09-30T03:00:00+03:00",
-      "hour": "03:00",
-      "price": 1975.74,
-      "priceUsd": 47.95,
-      "priceEur": 41.08
-    },
-    {
-      "date": "2026-09-30T04:00:00+03:00",
-      "hour": "04:00",
-      "price": 2100.0,
-      "priceUsd": 50.97,
-      "priceEur": 43.66
-    },
-    {
-      "date": "2026-09-30T05:00:00+03:00",
-      "hour": "05:00",
-      "price": 2244.71,
-      "priceUsd": 54.48,
-      "priceEur": 46.67
-    },
-    {
-      "date": "2026-09-30T06:00:00+03:00",
-      "hour": "06:00",
-      "price": 2400.0,
-      "priceUsd": 58.25,
-      "priceEur": 49.9
-    },
-    {
-      "date": "2026-09-30T07:00:00+03:00",
-      "hour": "07:00",
-      "price": 2555.29,
-      "priceUsd": 62.02,
-      "priceEur": 53.12
-    },
-    {
-      "date": "2026-09-30T08:00:00+03:00",
-      "hour": "08:00",
-      "price": 2700.0,
-      "priceUsd": 65.53,
-      "priceEur": 56.13
-    },
-    {
-      "date": "2026-09-30T09:00:00+03:00",
-      "hour": "09:00",
-      "price": 2824.26,
-      "priceUsd": 68.55,
-      "priceEur": 58.72
-    },
-    {
-      "date": "2026-09-30T10:00:00+03:00",
-      "hour": "10:00",
-      "price": 2919.62,
-      "priceUsd": 70.86,
-      "priceEur": 60.7
-    },
-    {
-      "date": "2026-09-30T11:00:00+03:00",
-      "hour": "11:00",
-      "price": 2979.56,
-      "priceUsd": 72.32,
-      "priceEur": 61.95
-    },
-    {
-      "date": "2026-09-30T12:00:00+03:00",
-      "hour": "12:00",
-      "price": 3000.0,
-      "priceUsd": 72.82,
-      "priceEur": 62.37
-    },
-    {
-      "date": "2026-09-30T13:00:00+03:00",
-      "hour": "13:00",
-      "price": 2979.56,
-      "priceUsd": 72.32,
-      "priceEur": 61.95
-    },
-    {
-      "date": "2026-09-30T14:00:00+03:00",
-      "hour": "14:00",
-      "price": 2919.62,
-      "priceUsd": 70.86,
-      "priceEur": 60.7
-    },
-    {
-      "date": "2026-09-30T15:00:00+03:00",
-      "hour": "15:00",
-      "price": 2824.26,
-      "priceUsd": 68.55,
-      "priceEur": 58.72
-    },
-    {
-      "date": "2026-09-30T16:00:00+03:00",
-      "hour": "16:00",
-      "price": 2700.0,
-      "priceUsd": 65.53,
-      "priceEur": 56.13
-    },
-    {
-      "date": "2026-09-30T17:00:00+03:00",
-      "hour": "17:00",
-      "price": 2555.29,
-      "priceUsd": 62.02,
-      "priceEur": 53.12
-    },
-    {
-      "date": "2026-09-30T18:00:00+03:00",
-      "hour": "18:00",
-      "price": 2400.0,
-      "priceUsd": 58.25,
-      "priceEur": 49.9
-    },
-    {
-      "date": "2026-09-30T19:00:00+03:00",
-      "hour": "19:00",
-      "price": 2244.71,
-      "priceUsd": 54.48,
-      "priceEur": 46.67
-    },
-    {
-      "date": "2026-09-30T20:00:00+03:00",
-      "hour": "20:00",
-      "price": 2100.0,
-      "priceUsd": 50.97,
-      "priceEur": 43.66
-    },
-    {
-      "date": "2026-09-30T21:00:00+03:00",
-      "hour": "21:00",
-      "price": 1975.74,
-      "priceUsd": 47.95,
-      "priceEur": 41.08
-    },
-    {
-      "date": "2026-09-30T22:00:00+03:00",
-      "hour": "22:00",
-      "price": 1880.38,
-      "priceUsd": 45.64,
-      "priceEur": 39.09
-    },
-    {
-      "date": "2026-09-30T23:00:00+03:00",
-      "hour": "23:00",
-      "price": 1820.44,
-      "priceUsd": 44.19,
-      "priceEur": 37.85
-    },
-    {
       "date": "2026-10-01T00:00:00+03:00",
       "hour": "00:00",
-      "price": 1800.0,
-      "priceUsd": 43.69,
-      "priceEur": 37.42
+      "price": 2129,
+      "priceUsd": 43.53,
+      "priceEur": 38.35
     },
     {
       "date": "2026-10-01T01:00:00+03:00",
       "hour": "01:00",
-      "price": 1820.44,
-      "priceUsd": 44.19,
-      "priceEur": 37.85
+      "price": 1750,
+      "priceUsd": 35.78,
+      "priceEur": 31.53
     },
     {
       "date": "2026-10-01T02:00:00+03:00",
       "hour": "02:00",
-      "price": 1880.38,
-      "priceUsd": 45.64,
-      "priceEur": 39.09
+      "price": 1330.01,
+      "priceUsd": 27.19,
+      "priceEur": 23.96
     },
     {
       "date": "2026-10-01T03:00:00+03:00",
       "hour": "03:00",
-      "price": 1975.74,
-      "priceUsd": 47.95,
-      "priceEur": 41.08
+      "price": 2000,
+      "priceUsd": 40.89,
+      "priceEur": 36.03
     },
     {
       "date": "2026-10-01T04:00:00+03:00",
       "hour": "04:00",
-      "price": 2100.0,
-      "priceUsd": 50.97,
-      "priceEur": 43.66
+      "price": 1500.01,
+      "priceUsd": 30.67,
+      "priceEur": 27.02
     },
     {
       "date": "2026-10-01T05:00:00+03:00",
       "hour": "05:00",
-      "price": 2244.71,
-      "priceUsd": 54.48,
-      "priceEur": 46.67
+      "price": 1749.63,
+      "priceUsd": 35.77,
+      "priceEur": 31.52
     },
     {
       "date": "2026-10-01T06:00:00+03:00",
       "hour": "06:00",
-      "price": 2400.0,
-      "priceUsd": 58.25,
-      "priceEur": 49.9
+      "price": 1699.99,
+      "priceUsd": 34.76,
+      "priceEur": 30.62
     },
     {
       "date": "2026-10-01T07:00:00+03:00",
       "hour": "07:00",
-      "price": 2555.29,
-      "priceUsd": 62.02,
-      "priceEur": 53.12
+      "price": 1398.56,
+      "priceUsd": 28.59,
+      "priceEur": 25.19
     },
     {
       "date": "2026-10-01T08:00:00+03:00",
       "hour": "08:00",
-      "price": 2700.0,
-      "priceUsd": 65.53,
-      "priceEur": 56.13
+      "price": 3571,
+      "priceUsd": 73.01,
+      "priceEur": 64.33
     },
     {
       "date": "2026-10-01T09:00:00+03:00",
       "hour": "09:00",
-      "price": 2824.26,
-      "priceUsd": 68.55,
-      "priceEur": 58.72
+      "price": 3000,
+      "priceUsd": 61.33,
+      "priceEur": 54.04
     },
     {
       "date": "2026-10-01T10:00:00+03:00",
       "hour": "10:00",
-      "price": 2919.62,
-      "priceUsd": 70.86,
-      "priceEur": 60.7
+      "price": 1750,
+      "priceUsd": 35.78,
+      "priceEur": 31.53
     },
     {
       "date": "2026-10-01T11:00:00+03:00",
       "hour": "11:00",
-      "price": 2979.56,
-      "priceUsd": 72.32,
-      "priceEur": 61.95
+      "price": 2199.99,
+      "priceUsd": 44.98,
+      "priceEur": 39.63
     },
     {
       "date": "2026-10-01T12:00:00+03:00",
       "hour": "12:00",
-      "price": 3000.0,
-      "priceUsd": 72.82,
-      "priceEur": 62.37
+      "price": 950.01,
+      "priceUsd": 19.42,
+      "priceEur": 17.11
     },
     {
       "date": "2026-10-01T13:00:00+03:00",
       "hour": "13:00",
-      "price": 2979.56,
-      "priceUsd": 72.32,
-      "priceEur": 61.95
+      "price": 2088,
+      "priceUsd": 42.69,
+      "priceEur": 37.61
     },
     {
       "date": "2026-10-01T14:00:00+03:00",
       "hour": "14:00",
-      "price": 2919.62,
-      "priceUsd": 70.86,
-      "priceEur": 60.7
+      "price": 2499.99,
+      "priceUsd": 51.11,
+      "priceEur": 45.04
     },
     {
       "date": "2026-10-01T15:00:00+03:00",
       "hour": "15:00",
-      "price": 2824.26,
-      "priceUsd": 68.55,
-      "priceEur": 58.72
+      "price": 2348.31,
+      "priceUsd": 48.01,
+      "priceEur": 42.3
     },
     {
       "date": "2026-10-01T16:00:00+03:00",
       "hour": "16:00",
-      "price": 2700.0,
-      "priceUsd": 65.53,
-      "priceEur": 56.13
+      "price": 3449.01,
+      "priceUsd": 70.51,
+      "priceEur": 62.13
     },
     {
       "date": "2026-10-01T17:00:00+03:00",
       "hour": "17:00",
-      "price": 2555.29,
-      "priceUsd": 62.02,
-      "priceEur": 53.12
+      "price": 4007.25,
+      "priceUsd": 81.93,
+      "priceEur": 72.19
     },
     {
       "date": "2026-10-01T18:00:00+03:00",
       "hour": "18:00",
-      "price": 2400.0,
-      "priceUsd": 58.25,
-      "priceEur": 49.9
+      "price": 4099.99,
+      "priceUsd": 83.82,
+      "priceEur": 73.86
     },
     {
       "date": "2026-10-01T19:00:00+03:00",
       "hour": "19:00",
-      "price": 2244.71,
-      "priceUsd": 54.48,
-      "priceEur": 46.67
+      "price": 4007.25,
+      "priceUsd": 81.93,
+      "priceEur": 72.19
     },
     {
       "date": "2026-10-01T20:00:00+03:00",
       "hour": "20:00",
-      "price": 2100.0,
-      "priceUsd": 50.97,
-      "priceEur": 43.66
+      "price": 3248.6,
+      "priceUsd": 66.42,
+      "priceEur": 58.52
     },
     {
       "date": "2026-10-01T21:00:00+03:00",
       "hour": "21:00",
-      "price": 1975.74,
-      "priceUsd": 47.95,
-      "priceEur": 41.08
+      "price": 3323.7,
+      "priceUsd": 67.95,
+      "priceEur": 59.88
     },
     {
       "date": "2026-10-01T22:00:00+03:00",
       "hour": "22:00",
-      "price": 1880.38,
-      "priceUsd": 45.64,
-      "priceEur": 39.09
+      "price": 2500,
+      "priceUsd": 51.11,
+      "priceEur": 45.04
     },
     {
       "date": "2026-10-01T23:00:00+03:00",
       "hour": "23:00",
-      "price": 1820.44,
-      "priceUsd": 44.19,
-      "priceEur": 37.85
+      "price": 2100,
+      "priceUsd": 42.93,
+      "priceEur": 37.83
+    },
+    {
+      "date": "2026-10-02T00:00:00+03:00",
+      "hour": "00:00",
+      "price": 2000,
+      "priceUsd": 40.87,
+      "priceEur": 36
+    },
+    {
+      "date": "2026-10-02T01:00:00+03:00",
+      "hour": "01:00",
+      "price": 1749.99,
+      "priceUsd": 35.76,
+      "priceEur": 31.5
+    },
+    {
+      "date": "2026-10-02T02:00:00+03:00",
+      "hour": "02:00",
+      "price": 1750,
+      "priceUsd": 35.77,
+      "priceEur": 31.5
+    },
+    {
+      "date": "2026-10-02T03:00:00+03:00",
+      "hour": "03:00",
+      "price": 1767.72,
+      "priceUsd": 36.13,
+      "priceEur": 31.82
+    },
+    {
+      "date": "2026-10-02T04:00:00+03:00",
+      "hour": "04:00",
+      "price": 1499.94,
+      "priceUsd": 30.65,
+      "priceEur": 27
+    },
+    {
+      "date": "2026-10-02T05:00:00+03:00",
+      "hour": "05:00",
+      "price": 1749.99,
+      "priceUsd": 35.76,
+      "priceEur": 31.5
+    },
+    {
+      "date": "2026-10-02T06:00:00+03:00",
+      "hour": "06:00",
+      "price": 2200,
+      "priceUsd": 44.96,
+      "priceEur": 39.6
+    },
+    {
+      "date": "2026-10-02T07:00:00+03:00",
+      "hour": "07:00",
+      "price": 1429.25,
+      "priceUsd": 29.21,
+      "priceEur": 25.73
+    },
+    {
+      "date": "2026-10-02T08:00:00+03:00",
+      "hour": "08:00",
+      "price": 2900,
+      "priceUsd": 59.27,
+      "priceEur": 52.2
+    },
+    {
+      "date": "2026-10-02T09:00:00+03:00",
+      "hour": "09:00",
+      "price": 2424.24,
+      "priceUsd": 49.54,
+      "priceEur": 43.64
+    },
+    {
+      "date": "2026-10-02T10:00:00+03:00",
+      "hour": "10:00",
+      "price": 2200,
+      "priceUsd": 44.96,
+      "priceEur": 39.6
+    },
+    {
+      "date": "2026-10-02T11:00:00+03:00",
+      "hour": "11:00",
+      "price": 2300.01,
+      "priceUsd": 47.01,
+      "priceEur": 41.4
+    },
+    {
+      "date": "2026-10-02T12:00:00+03:00",
+      "hour": "12:00",
+      "price": 800,
+      "priceUsd": 16.35,
+      "priceEur": 14.4
+    },
+    {
+      "date": "2026-10-02T13:00:00+03:00",
+      "hour": "13:00",
+      "price": 1200,
+      "priceUsd": 24.52,
+      "priceEur": 21.6
+    },
+    {
+      "date": "2026-10-02T14:00:00+03:00",
+      "hour": "14:00",
+      "price": 2199.99,
+      "priceUsd": 44.96,
+      "priceEur": 39.6
+    },
+    {
+      "date": "2026-10-02T15:00:00+03:00",
+      "hour": "15:00",
+      "price": 1957.64,
+      "priceUsd": 40.01,
+      "priceEur": 35.24
+    },
+    {
+      "date": "2026-10-02T16:00:00+03:00",
+      "hour": "16:00",
+      "price": 2440.01,
+      "priceUsd": 49.87,
+      "priceEur": 43.92
+    },
+    {
+      "date": "2026-10-02T17:00:00+03:00",
+      "hour": "17:00",
+      "price": 3400,
+      "priceUsd": 69.49,
+      "priceEur": 61.2
+    },
+    {
+      "date": "2026-10-02T18:00:00+03:00",
+      "hour": "18:00",
+      "price": 3325.01,
+      "priceUsd": 67.95,
+      "priceEur": 59.85
+    },
+    {
+      "date": "2026-10-02T19:00:00+03:00",
+      "hour": "19:00",
+      "price": 3399.99,
+      "priceUsd": 69.49,
+      "priceEur": 61.2
+    },
+    {
+      "date": "2026-10-02T20:00:00+03:00",
+      "hour": "20:00",
+      "price": 2799.99,
+      "priceUsd": 57.22,
+      "priceEur": 50.4
+    },
+    {
+      "date": "2026-10-02T21:00:00+03:00",
+      "hour": "21:00",
+      "price": 2999.99,
+      "priceUsd": 61.31,
+      "priceEur": 54
+    },
+    {
+      "date": "2026-10-02T22:00:00+03:00",
+      "hour": "22:00",
+      "price": 2200,
+      "priceUsd": 44.96,
+      "priceEur": 39.6
+    },
+    {
+      "date": "2026-10-02T23:00:00+03:00",
+      "hour": "23:00",
+      "price": 1750,
+      "priceUsd": 35.77,
+      "priceEur": 31.5
     }
   ],
   "page": {
@@ -346,5 +346,21 @@
       "direction": "ASC"
     }
   },
-  "statistics": {}
+  "statistic": {
+    "priceAvg": 2315.5,
+    "priceUsdAvg": 47.33,
+    "priceEurAvg": 41.7,
+    "priceMax": 4099.99,
+    "priceUsdMax": 83.82,
+    "priceEurMax": 73.86,
+    "priceMin": 800,
+    "priceUsdMin": 16.35,
+    "priceEurMin": 14.4,
+    "priceTotal": 111144.06,
+    "priceUsdTotal": 2271.9,
+    "priceEurTotal": 2001.45,
+    "ptfWeightedAvg": 2394.41,
+    "ptfUsdWeightedAvg": 48.94,
+    "ptfEurWeightedAvg": 43.12
+  }
 }

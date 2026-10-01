@@ -93,9 +93,11 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
     )
 
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == rows
+    # Today and tomorrow in TR time.
     assert len(rows) == 48
     # 2026-10-01T00:00:00+03:00 is emitted as 2026-09-30T21:00Z.
-    assert rows[24]["datetime"] == datetime(2026, 9, 30, 21, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2026, 9, 30, 21, tzinfo=timezone.utc)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 21, tzinfo=timezone.utc)
     for row in rows:
         assert row["end_datetime"] - row["datetime"] == timedelta(hours=1)
         assert row["datetime"].utcoffset() == timedelta(0)

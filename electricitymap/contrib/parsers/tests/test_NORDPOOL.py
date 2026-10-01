@@ -160,20 +160,15 @@ def test_price_day_ahead_se(requests_mock, session, snapshot):
 
 def test_price_day_ahead_gb(requests_mock, session, snapshot):
     _register_token(requests_mock)
-    target_day = loads(
-        Path(base_path_to_mock, "gb_n2ex_day_ahead_price.json").read_text()
-    )
-    # Stand-in for a delivery day without prices yet, so only the target day remains.
-    next_day = [{**target_day[0], "deliveryDateCET": "2026-10-02", "prices": []}]
     requests_mock.register_uri(
         GET,
         "https://data-api.nordpoolgroup.com/api/v2/Auction/Prices/ByAreas?areas=UK&currency=GBP&market=N2EX_DayAhead&date=2026-10-01",
-        json=target_day,
+        json=loads(Path(base_path_to_mock, "gb_n2ex_day_ahead_price.json").read_text()),
     )
     requests_mock.register_uri(
         GET,
         "https://data-api.nordpoolgroup.com/api/v2/Auction/Prices/ByAreas?areas=UK&currency=GBP&market=N2EX_DayAhead&date=2026-10-02",
-        json=next_day,
+        json=loads(Path(base_path_to_mock, "gb_n2ex_next_day_price.json").read_text()),
     )
 
     rows = NORDPOOL.fetch_price_day_ahead(
@@ -183,15 +178,19 @@ def test_price_day_ahead_gb(requests_mock, session, snapshot):
     )
 
     assert snapshot == rows
-    assert len(rows) == 24
+    assert len(rows) == 48
     assert all(
         row["end_datetime"] - row["datetime"] == timedelta(hours=1) for row in rows
     )
     assert {row["auction"] for row in rows} == {DayAheadAuction.NORDPOOL_N2EX_DA}
     assert {row["currency"] for row in rows} == {"GBP"}
-    assert {row["publishedAt"] for row in rows} == {
-        datetime(2026, 9, 30, 8, 59, 40, 955084, tzinfo=timezone.utc)
-    }
+    # Each delivery day carries its own `updatedAt`.
+    assert rows[0]["publishedAt"] == datetime(
+        2026, 9, 30, 8, 59, 40, 955084, tzinfo=timezone.utc
+    )
+    assert rows[-1]["publishedAt"] == datetime(
+        2026, 10, 1, 8, 59, 10, 8320, tzinfo=timezone.utc
+    )
     _assert_utc(rows)
 
 
