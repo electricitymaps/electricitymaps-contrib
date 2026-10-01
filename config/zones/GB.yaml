@@ -115,29 +115,35 @@ capacity:
       value: 5883
   solar:
     - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 12750
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 11850
     - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 13000
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 12600
     - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 13250
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 12822
     - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 13750
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 13134
     - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 14000
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 13445
     - datetime: '2022-01-01'
-      source: bmreports.com
-      value: 13324
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 13904
     - datetime: '2023-01-01'
-      source: bmreports.com
-      value: 14518
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 14762
     - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 15896
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 17162
+    - datetime: '2025-01-01'
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 19030
+    - datetime: '2026-01-01'
+      source: DESNZ, Solar photovoltaics deployment ET 6.3 (Sep 2026)
+      value: 21666
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
