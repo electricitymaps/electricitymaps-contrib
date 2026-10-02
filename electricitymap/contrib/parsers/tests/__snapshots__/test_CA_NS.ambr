@@ -1,0 +1,25 @@
+# serializer version: 1
+# name: test_fetch_exchange[CA-NB-CA-NS]
+  list([
+    dict({
+      'datetime': datetime.datetime(2026, 9, 30, 10, 41, tzinfo=zoneinfo.ZoneInfo(key='America/Halifax')),
+      'end_datetime': None,
+      'netFlow': 1.2,
+      'sortedZoneKeys': 'CA-NB->CA-NS',
+      'source': 'nspower.ca',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_fetch_exchange[CA-NL-CA-NS]
+  list([
+    dict({
+      'datetime': datetime.datetime(2026, 9, 30, 10, 41, tzinfo=zoneinfo.ZoneInfo(key='America/Halifax')),
+      'end_datetime': None,
+      'netFlow': 304.6,
+      'sortedZoneKeys': 'CA-NL->CA-NS',
+      'source': 'nspower.ca',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
