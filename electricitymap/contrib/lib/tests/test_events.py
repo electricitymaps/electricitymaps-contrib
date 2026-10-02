@@ -10,6 +10,7 @@ import pytest
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
+    DayAheadPrice,
     EventSourceType,
     Exchange,
     ExchangeCapacity,
@@ -24,7 +25,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import DayAheadAuction, MarketAgreementType, ZoneKey
 
 
 def test_create_exchange():
@@ -421,6 +422,102 @@ def test_prices_can_be_in_future():
         source="trust.me",
         currency="EUR",
     )
+
+
+def _day_ahead_price(**overrides) -> DayAheadPrice:
+    fields = {
+        "zoneKey": ZoneKey("DE"),
+        "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
+        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        "price": 1,
+        "source": "trust.me",
+        "currency": "EUR",
+        "auction": DayAheadAuction.SDAC,
+    }
+    return DayAheadPrice(**{**fields, **overrides})
+
+
+def test_create_day_ahead_price():
+    price = _day_ahead_price(publishedAt=datetime(2026, 9, 30, 11, tzinfo=timezone.utc))
+    assert price.to_dict() == {
+        "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
+        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        "zoneKey": ZoneKey("DE"),
+        "auction": DayAheadAuction.SDAC,
+        "currency": "EUR",
+        "price": 1,
+        "source": "trust.me",
+        "sourceType": EventSourceType.published,
+        "publishedAt": datetime(2026, 9, 30, 11, tzinfo=timezone.utc),
+    }
+
+
+def test_day_ahead_price_published_at_is_optional():
+    assert _day_ahead_price().publishedAt is None
+
+
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"publishedAt": datetime(2026, 9, 30, 11)},  # Naive.
+        {"price": None},
+        {"price": math.nan},
+        {"auction": "NOT_AN_AUCTION"},
+    ],
+)
+def test_invalid_day_ahead_price_raises(overrides):
+    with pytest.raises(ValueError):
+        _day_ahead_price(**overrides)
+
+
+def test_day_ahead_price_requires_auction():
+    with pytest.raises(ValueError):
+        DayAheadPrice(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EUR",
+        )
+
+
+@freezegun.freeze_time("2026-10-01")
+def test_day_ahead_price_can_be_in_future():
+    _day_ahead_price(
+        datetime=datetime(2026, 10, 5, tzinfo=timezone.utc),
+        end_datetime=datetime(2026, 10, 5, 1, tzinfo=timezone.utc),
+    )
+
+
+def test_day_ahead_price_timestamps_are_converted_to_utc():
+    tokyo = ZoneInfo("Asia/Tokyo")
+    price = _day_ahead_price(
+        datetime=datetime(2026, 10, 1, 9, tzinfo=tokyo),
+        end_datetime=datetime(2026, 10, 1, 9, 30, tzinfo=tokyo),
+        publishedAt=datetime(2026, 9, 30, 17, 5, tzinfo=tokyo),
+    )
+    assert price.datetime == datetime(2026, 10, 1, 0, tzinfo=timezone.utc)
+    assert price.end_datetime == datetime(2026, 10, 1, 0, 30, tzinfo=timezone.utc)
+    assert price.publishedAt == datetime(2026, 9, 30, 8, 5, tzinfo=timezone.utc)
+    for value in (price.datetime, price.end_datetime, price.publishedAt):
+        assert value.tzinfo == timezone.utc
+
+
+def test_create_day_ahead_price_logs_error():
+    logger = logging.getLogger("test")
+    with patch.object(logger, "error") as mock_error:
+        price = DayAheadPrice.create(
+            logger=logger,
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            price=None,
+            currency="EUR",
+            auction=DayAheadAuction.SDAC,
+        )
+    assert price is None
+    mock_error.assert_called_once()
 
 
 def test_create_locational_marginal_price():
