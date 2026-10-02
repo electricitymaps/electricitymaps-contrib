@@ -770,27 +770,27 @@ class DayAheadPriceList(NonOverlappingEventList[DayAheadPrice]):
     def append(
         self,
         zoneKey: ZoneKey,
+        auction: DayAheadAuction,
         datetime: datetime,
         source: str,
         price: float | None,
         currency: str,
-        auction: DayAheadAuction,
         *,
         end_datetime: datetime | None = None,
         publishedAt: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
         event = DayAheadPrice.create(
-            self.logger,
-            zoneKey,
-            datetime,
-            end_datetime,
-            source,
-            price,
-            currency,
-            auction,
-            publishedAt,
-            sourceType,
+            logger=self.logger,
+            zoneKey=zoneKey,
+            auction=auction,
+            datetime=datetime,
+            end_datetime=end_datetime,
+            source=source,
+            price=price,
+            currency=currency,
+            publishedAt=publishedAt,
+            sourceType=sourceType,
         )
         if event:
             self.events.append(event)

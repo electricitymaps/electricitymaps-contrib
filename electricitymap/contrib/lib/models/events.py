@@ -1175,24 +1175,24 @@ class DayAheadPrice(Price):
     def create(
         logger: Logger,
         zoneKey: ZoneKey,
+        auction: DayAheadAuction,
         datetime: datetime,
         end_datetime: datetime | None,
         source: str,
         price: float | None,
         currency: str,
-        auction: DayAheadAuction,
         publishedAt: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ) -> "DayAheadPrice | None":
         try:
             return DayAheadPrice(
                 zoneKey=zoneKey,
+                auction=auction,
                 datetime=datetime,
                 end_datetime=end_datetime,
                 source=source,
                 price=price,
                 currency=currency,
-                auction=auction,
                 publishedAt=publishedAt,
                 sourceType=sourceType,
             )
@@ -1209,10 +1209,10 @@ class DayAheadPrice(Price):
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "datetime": self.datetime,
-            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "auction": self.auction,
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "currency": self.currency,
             "price": self.price,
             "source": self.source,
