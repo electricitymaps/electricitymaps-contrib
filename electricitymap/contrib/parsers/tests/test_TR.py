@@ -9,6 +9,7 @@ from requests_mock import POST
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import TR
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/TR")
@@ -138,3 +139,19 @@ def test_fetch_price_day_ahead_converts_target_to_tr_time(
         "2026-09-30T01:30:00+03:00",
         "2026-10-01T01:30:00+03:00",
     )
+
+
+def test_fetch_price_day_ahead_rejects_unexpected_resolution(requests_mock, session):
+    _register_mcp(requests_mock)
+    items = json.loads((base_path_to_mock / "mcp_response.json").read_text())["items"]
+    del items[5]  # A missing hour must not silently become a 2 h MTU.
+    requests_mock.register_uri(
+        POST, MCP_URL, [{"json": {"items": items}}, {"json": {"items": []}}]
+    )
+
+    with pytest.raises(ParserException, match="Expected 1:00:00 MCP intervals"):
+        TR.fetch_price_day_ahead(
+            ZoneKey("TR"),
+            session,
+            target_datetime=datetime(2026, 10, 1, 12, tzinfo=timezone.utc),
+        )

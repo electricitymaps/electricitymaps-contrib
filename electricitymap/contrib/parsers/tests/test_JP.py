@@ -14,6 +14,7 @@ from electricitymap.contrib.parsers.JP import (
     fetch_generation_forecast,
     fetch_price_day_ahead,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
 JEPX_MOCKS = Path("electricitymap/contrib/parsers/tests/mocks/JP")
@@ -343,3 +344,24 @@ def test_fetch_price_day_ahead_spans_fiscal_years(requests_mock, session):
 def test_fetch_price_day_ahead_jp_on_raises(session):
     with pytest.raises(NotImplementedError):
         fetch_price_day_ahead(ZoneKey("JP-ON"), session)
+
+
+def test_fetch_price_day_ahead_rejects_unexpected_periods(requests_mock, session):
+    _register_jepx(requests_mock)
+    lines = (JEPX_MOCKS / "spot_2026.csv").read_bytes().decode("shift-jis").splitlines()
+    # Drop one 30-min period on a delivery day in the window.
+    lines = [line for line in lines if not line.startswith("2026/10/01,5,")]
+    requests_mock.register_uri(
+        GET,
+        JEPX_SPOT_URL.format(fiscal_year=2026),
+        content="\n".join(lines).encode("shift-jis"),
+    )
+
+    with pytest.raises(
+        ParserException, match="Expected JEPX periods 1-48 on 2026-10-01"
+    ):
+        fetch_price_day_ahead(
+            ZoneKey("JP-TK"),
+            session,
+            target_datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+        )

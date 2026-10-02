@@ -27,6 +27,7 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import to_utc
 from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
@@ -1028,6 +1029,7 @@ def fetch_price(
 
 JEPX_SPOT_URL = "https://www.jepx.jp/market/excel/spot_{fiscal_year}.csv"
 _JEPX_RESOLUTION = timedelta(minutes=30)
+_JEPX_PERIODS = list(range(1, timedelta(days=1) // _JEPX_RESOLUTION + 1))
 # Area-price column of each zone in the JEPX spot CSV (same layout as `fetch_price`).
 # JP-ON has none: JEPX publishes no Okinawa area price.
 JEPX_AREA_COLUMNS: dict[str, int] = {
@@ -1076,7 +1078,18 @@ def fetch_price_day_ahead(
         df = df.iloc[:, [0, 1, JEPX_AREA_COLUMNS[zone_key]]]
         df.columns = ["Date", "Period", "price"]
         df["Date"] = pd.to_datetime(df["Date"], format="%Y/%m/%d").dt.date
-        for row in df[df["Date"].isin(delivery_dates)].itertuples():
+        df = df[df["Date"].isin(delivery_dates)]
+        # Rows only carry a period code, so check each day has exactly the periods
+        # `_JEPX_RESOLUTION` implies (1..48) before turning codes into timestamps.
+        for date, periods in df.groupby("Date")["Period"]:
+            if sorted(periods) != _JEPX_PERIODS:
+                raise ParserException(
+                    parser="JP.py",
+                    message=f"Expected JEPX periods 1-{len(_JEPX_PERIODS)} on {date}, "
+                    f"got {len(periods)} periods",
+                    zone_key=zone_key,
+                )
+        for row in df.itertuples():
             start = (
                 datetime.combine(row.Date, time(), tzinfo=ZONE_INFO)
                 + (row.Period - 1) * _JEPX_RESOLUTION

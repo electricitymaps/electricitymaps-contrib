@@ -2,6 +2,7 @@
 import json
 import urllib.parse
 from datetime import datetime, timedelta, timezone
+from itertools import pairwise
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
@@ -52,6 +53,8 @@ INVERT_PRODUCTION_MAPPPING = {
 }
 IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
+# EPİAŞ documents the MCP as an hourly price, and items only carry their start (`date`):
+# https://seffaflik.epias.com.tr/electricity-service/technical/en/index.html#_mcp-data
 _EPIAS_MCP_RESOLUTION = timedelta(hours=1)
 
 
@@ -250,13 +253,24 @@ def fetch_price_day_ahead(
     target = target.astimezone(TR_TZ)
 
     data = fetch_data(target_datetime=target, kind="price", session=session)
-    prices = DayAheadPriceList(logger)
-    for item in data:
-        start = (
-            datetime.fromisoformat(item.get("date"))
-            .replace(tzinfo=TR_TZ)
-            .astimezone(timezone.utc)
+    starts = [
+        datetime.fromisoformat(item["date"])
+        .replace(tzinfo=TR_TZ)
+        .astimezone(timezone.utc)
+        for item in data
+    ]
+    # The response has no end or resolution, so check the spacing of the starts
+    # matches the documented resolution rather than trusting it blindly.
+    steps = {b - a for a, b in pairwise(sorted(starts))}
+    if starts and steps != {_EPIAS_MCP_RESOLUTION}:
+        raise ParserException(
+            parser="TR.py",
+            message=f"Expected {_EPIAS_MCP_RESOLUTION} MCP intervals, got {steps}",
+            zone_key=zone_key,
         )
+
+    prices = DayAheadPriceList(logger)
+    for start, item in zip(starts, data, strict=True):
         prices.append(
             zoneKey=zone_key,
             datetime=start,
