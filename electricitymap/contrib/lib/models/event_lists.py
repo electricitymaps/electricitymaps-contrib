@@ -253,13 +253,23 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        netFlow: float | None,
+        netFlow: float | None = None,
         *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
+        exports: float | None = None,
+        imports: float | None = None,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, end_datetime, source, netFlow, sourceType
+            self.logger,
+            zoneKey,
+            datetime,
+            end_datetime,
+            source,
+            netFlow,
+            sourceType,
+            exports=exports,
+            imports=imports,
         )
         if event:
             self.events.append(event)
@@ -274,6 +284,9 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         Given multiple parser outputs, sum the netflows of corresponding datetimes
         to create a unique exchange list. Sources will be aggregated in a
         comma-separated string. Ex: "entsoe, eia".
+
+        Exports and imports are summed for a datetime only when every
+        input at that datetime has them; otherwise only the net flow is kept.
 
         A datetime only some of the inputs cover is summed from those that do,
         unless `drop_non_matching_datetimes` is set, which drops it instead. Use
@@ -306,6 +319,14 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
             # the finest resolution cannot overlap the next merged point.
             end_datetimes = exchange_df.groupby(level="datetime")["end_datetime"].min()
 
+        gross_columns = ["exports", "imports"]
+        gross_df = None
+        if all(column in exchange_df.columns for column in gross_columns):
+            gross = exchange_df[gross_columns].astype(float)
+            gross_df = gross.groupby(level="datetime").sum()
+            is_complete = gross.notna().all(axis=1).groupby(level="datetime").all()
+            gross_df = gross_df[is_complete]
+
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True,
         )
@@ -316,14 +337,25 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                 if not pd.isna(val):
                     end_datetime = val.to_pydatetime()
 
-            exchanges.append(
-                zoneKey=zone_key,
-                datetime=dt.to_pydatetime(),
-                source=sources,
-                netFlow=row["netFlow"],
-                end_datetime=end_datetime,
-                sourceType=source_type,
-            )
+            if gross_df is not None and dt in gross_df.index:
+                exchanges.append(
+                    zoneKey=zone_key,
+                    datetime=dt.to_pydatetime(),
+                    source=sources,
+                    end_datetime=end_datetime,
+                    sourceType=source_type,
+                    exports=gross_df.at[dt, "exports"],
+                    imports=gross_df.at[dt, "imports"],
+                )
+            else:
+                exchanges.append(
+                    zoneKey=zone_key,
+                    datetime=dt.to_pydatetime(),
+                    source=sources,
+                    netFlow=row["netFlow"],
+                    end_datetime=end_datetime,
+                    sourceType=source_type,
+                )
 
         return exchanges
 
@@ -342,6 +374,16 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                 existing_event = exchanges[new_event.datetime]
                 updated_event = Exchange._update(existing_event, new_event)
                 exchanges[new_event.datetime] = updated_event
+            elif new_event.exports is not None and new_event.imports is not None:
+                exchanges.append(
+                    new_event.zoneKey,
+                    new_event.datetime,
+                    new_event.source,
+                    end_datetime=new_event.end_datetime,
+                    sourceType=new_event.sourceType,
+                    exports=new_event.exports,
+                    imports=new_event.imports,
+                )
             else:
                 exchanges.append(
                     new_event.zoneKey,

@@ -450,13 +450,18 @@ class AggregatableEvent(Event):
 
 class Exchange(Event):
     """
-    An event class representing the net exchange between two zones.
+    An event class representing the exchange between two zones.
     netFlow: The net flow of electricity between the two zones.
     It should be positive if the zoneKey on the left of the arrow is exporting electricity to the zoneKey on the right of the arrow.
     Negative otherwise.
+    exports: Optional flow from the zoneKey on the left of the arrow to the one on the right, >= 0.
+    imports: Optional flow from the zoneKey on the right of the arrow to the one on the left, >= 0.
+    Set either netFlow, or exports and imports (netFlow is then derived as exports - imports).
     """
 
     netFlow: float | None
+    exports: float | None = None
+    imports: float | None = None
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
@@ -469,7 +474,23 @@ class Exchange(Event):
             raise ValueError(f"Unknown zone: {v}")
         return v
 
-    @validator("netFlow")
+    @root_validator(pre=True)
+    def _derive_net_flow(cls, values: dict[str, Any]) -> dict[str, Any]:
+        exports = values.get("exports")
+        imports = values.get("imports")
+        if (exports is None) != (imports is None):
+            raise ValueError(
+                f"exports and imports must be set together: {exports}, {imports}"
+            )
+        if (
+            exports is not None
+            and imports is not None
+            and values.get("netFlow") is None
+        ):
+            values["netFlow"] = _none_safe_round(exports - imports)
+        return values
+
+    @validator("netFlow", always=True)
     def _validate_value(cls, v: float | None):
         if v is None:
             raise ValueError(f"Exchange cannot be None: {v}")
@@ -480,6 +501,37 @@ class Exchange(Event):
             raise ValueError(f"Exchange is implausibly high, above 100GW: {v}")
         return v
 
+    @validator("exports", "imports")
+    def _validate_directional_flow(cls, v: float | None):
+        if v is None:
+            return v
+        if math.isnan(v):
+            raise ValueError(f"Exchange direction cannot be NaN: {v}")
+        if v < 0:
+            raise ValueError(f"Exchange direction cannot be negative: {v}")
+        # TODO in the future those checks should be performed in the data quality layer.
+        if v > 100000:
+            raise ValueError(
+                f"Exchange direction is implausibly high, above 100GW: {v}"
+            )
+        return v
+
+    @root_validator(skip_on_failure=True)
+    def _validate_directions_match_net_flow(cls, values: dict[str, Any]):
+        exports = values.get("exports")
+        imports = values.get("imports")
+        net_flow = values.get("netFlow")
+        if (
+            exports is not None
+            and imports is not None
+            and net_flow is not None
+            and abs(net_flow - (exports - imports)) > 1e-3
+        ):
+            raise ValueError(
+                f"netFlow {net_flow} does not match exports - imports: {exports} - {imports}"
+            )
+        return values
+
     @staticmethod
     def create(
         logger: Logger,
@@ -487,9 +539,14 @@ class Exchange(Event):
         datetime: datetime,
         end_datetime: datetime | None,
         source: str,
-        netFlow: float | None,
+        netFlow: float | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
+        *,
+        exports: float | None = None,
+        imports: float | None = None,
     ) -> "Exchange | None":
+        if netFlow is not None and (exports is not None or imports is not None):
+            raise ValueError("Set either netFlow, or exports and imports, not both.")
         try:
             return Exchange(
                 zoneKey=zoneKey,
@@ -497,6 +554,8 @@ class Exchange(Event):
                 end_datetime=end_datetime,
                 source=source,
                 netFlow=_none_safe_round(netFlow),
+                exports=_none_safe_round(exports),
+                imports=_none_safe_round(imports),
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -534,11 +593,13 @@ class Exchange(Event):
             end_datetime=new_event.end_datetime or event.end_datetime,
             source=event.source,
             netFlow=new_event.netFlow,  # Exchange values can never be none so a new valid value will always be provided.
+            exports=new_event.exports,
+            imports=new_event.imports,
             sourceType=event.sourceType,
         )
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        exchange = {
             "datetime": self.datetime,
             "end_datetime": self.end_datetime,
             "sortedZoneKeys": self.zoneKey,
@@ -546,6 +607,10 @@ class Exchange(Event):
             "source": self.source,
             "sourceType": self.sourceType,
         }
+        if self.exports is not None and self.imports is not None:
+            exchange["exports"] = self.exports
+            exchange["imports"] = self.imports
+        return exchange
 
 
 class ScheduledExchange(Event):
