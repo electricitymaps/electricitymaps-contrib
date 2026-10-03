@@ -132,143 +132,111 @@ centroid:
   - 13.122412537841157
 contributors:
   - PPsyrius
+  - dphrag
 country: TH
 country_name: Thailand
 currency: THB
 emissionFactors:
   direct:
     unknown:
-      _url: https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing
-      source: IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6%
-        solar, 1.7% wind, 0.1% other
-      value: 386.645
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2020-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 56.0%
+          gas, 23.3% coal, 10.2% hydro, 6.0% biomass, 2.5% solar, 1.6% wind, 0.4% oil
+        value: 385.8
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2021-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.4%
+          gas, 22.7% coal, 11.9% hydro, 6.5% biomass, 2.4% solar, 1.7% wind, 0.3% oil
+        value: 375.5
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2022-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 53.6%
+          gas, 22.0% coal, 13.4% hydro, 6.5% biomass, 2.4% solar, 1.4% wind, 0.8% oil
+        value: 368.5
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2023-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.5%
+          gas, 18.9% coal, 11.7% hydro, 6.5% biomass, 2.3% solar, 1.7% wind, 0.4% oil
+        value: 361.8
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2024-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.8%
+          gas, 19.3% coal, 11.7% hydro, 6.2% biomass, 2.3% solar, 1.5% wind, 0.1% oil
+        value: 365.0
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2025-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.8%
+          gas, 19.9% coal, 14.7% hydro, 4.5% biomass, 4.4% solar, 1.5% wind, 0.1% oil
+        value: 354.5
   lifecycle:
     unknown:
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '1998-01-01'
-        source: EPPO
-        value: 636
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '1999-01-01'
-        source: EPPO
-        value: 646
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2000-01-01'
-        source: EPPO
-        value: 634
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2001-01-01'
-        source: EPPO
-        value: 604
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2002-01-01'
-        source: EPPO
-        value: 587
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2003-01-01'
-        source: EPPO
-        value: 573
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2004-01-01'
-        source: EPPO
-        value: 581
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2005-01-01'
-        source: EPPO
-        value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2006-01-01'
-        source: EPPO
-        value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2007-01-01'
-        source: EPPO
-        value: 571
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2008-01-01'
-        source: EPPO
-        value: 570
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2009-01-01'
-        source: EPPO
-        value: 560
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2010-01-01'
-        source: EPPO
-        value: 551
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2011-01-01'
-        source: EPPO
-        value: 530
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2012-01-01'
-        source: EPPO
-        value: 530
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2013-01-01'
-        source: EPPO
-        value: 532
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2014-01-01'
-        source: EPPO
-        value: 532
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2015-01-01'
-        source: EPPO
-        value: 507
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2016-01-01'
-        source: EPPO
-        value: 493
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2017-01-01'
-        source: EPPO
-        value: 471
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2018-01-01'
-        source: EPPO
-        value: 459
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
-        datetime: '2019-01-01'
-        source: EPPO
-        value: 445
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
         datetime: '2020-01-01'
-        source: EPPO
-        value: 442
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 56.0%
+          gas, 23.3% coal, 10.2% hydro, 6.0% biomass, 2.5% solar, 1.6% wind, 0.4% oil
+        value: 485.5
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
         datetime: '2021-01-01'
-        source: EPPO
-        value: 433
-      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-          SPP, and VSPP
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.4%
+          gas, 22.7% coal, 11.9% hydro, 6.5% biomass, 2.4% solar, 1.7% wind, 0.3% oil
+        value: 474.3
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
         datetime: '2022-01-01'
-        source: EPPO
-        value: 409
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 53.6%
+          gas, 22.0% coal, 13.4% hydro, 6.5% biomass, 2.4% solar, 1.4% wind, 0.8% oil
+        value: 467.4
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2023-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.5%
+          gas, 18.9% coal, 11.7% hydro, 6.5% biomass, 2.3% solar, 1.7% wind, 0.4% oil
+        value: 463.2
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2024-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.8%
+          gas, 19.3% coal, 11.7% hydro, 6.2% biomass, 2.3% solar, 1.5% wind, 0.1% oil
+        value: 465.7
+      - _comment: Ember generation plus net imports; imports counted as hydro except
+          EGAT's share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power
+          factsheets), counted as coal
+        _url: https://ember-energy.org/data/yearly-electricity-data/
+        datetime: '2025-01-01'
+        source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.8%
+          gas, 19.9% coal, 14.7% hydro, 4.5% biomass, 4.4% solar, 1.5% wind, 0.1% oil
+        value: 448.5
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -320,12 +288,104 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: true
 isLowCarbon:
   unknown:
-    _comment: Sum of renewable sources in TH unknown production
-    value: 0.159
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2020-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 56.0%
+        gas, 23.3% coal, 10.2% hydro, 6.0% biomass, 2.5% solar, 1.6% wind, 0.4% oil
+      value: 0.2034
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2021-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.4%
+        gas, 22.7% coal, 11.9% hydro, 6.5% biomass, 2.4% solar, 1.7% wind, 0.3% oil
+      value: 0.225
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2022-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 53.6%
+        gas, 22.0% coal, 13.4% hydro, 6.5% biomass, 2.4% solar, 1.4% wind, 0.8% oil
+      value: 0.2362
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2023-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.5%
+        gas, 18.9% coal, 11.7% hydro, 6.5% biomass, 2.3% solar, 1.7% wind, 0.4% oil
+      value: 0.2217
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2024-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.8%
+        gas, 19.3% coal, 11.7% hydro, 6.2% biomass, 2.3% solar, 1.5% wind, 0.1% oil
+      value: 0.2175
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2025-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.8%
+        gas, 19.9% coal, 14.7% hydro, 4.5% biomass, 4.4% solar, 1.5% wind, 0.1% oil
+      value: 0.2521
 isRenewable:
   unknown:
-    _comment: Sum of renewable sources in TH unknown production
-    value: 0.159
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2020-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 56.0%
+        gas, 23.3% coal, 10.2% hydro, 6.0% biomass, 2.5% solar, 1.6% wind, 0.4% oil
+      value: 0.2034
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2021-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.4%
+        gas, 22.7% coal, 11.9% hydro, 6.5% biomass, 2.4% solar, 1.7% wind, 0.3% oil
+      value: 0.225
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2022-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 53.6%
+        gas, 22.0% coal, 13.4% hydro, 6.5% biomass, 2.4% solar, 1.4% wind, 0.8% oil
+      value: 0.2362
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2023-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.5%
+        gas, 18.9% coal, 11.7% hydro, 6.5% biomass, 2.3% solar, 1.7% wind, 0.4% oil
+      value: 0.2217
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2024-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 58.8%
+        gas, 19.3% coal, 11.7% hydro, 6.2% biomass, 2.3% solar, 1.5% wind, 0.1% oil
+      value: 0.2175
+    - _comment: Ember generation plus net imports; imports counted as hydro except EGAT's
+        share (1,473 of 1,573 MW) of Hongsa lignite net generation (Banpu Power factsheets),
+        counted as coal
+      _url: https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2025-01-01'
+      source: Ember, Yearly electricity data; Banpu Power, Factsheets; assumes 54.8%
+        gas, 19.9% coal, 14.7% hydro, 4.5% biomass, 4.4% solar, 1.5% wind, 0.1% oil
+      value: 0.2521
 parsers:
   consumption: TH.fetch_consumption
   price: TH.fetch_price
@@ -334,7 +394,9 @@ parsers:
   productionPerModeForecast: TH.fetch_generation_forecast
 region: Asia
 sources:
-  EPPO:
-    link: https://www.eppo.go.th/index.php/en/en-energystatistics/co2-statistic
+  Banpu Power, Factsheets:
+    link: https://www.banpupower.com/investor-relations/factsheet/
+  Ember, Yearly electricity data:
+    link: https://ember-energy.org/data/yearly-electricity-data/
 timezone: Asia/Bangkok
 zone_name: Thailand
