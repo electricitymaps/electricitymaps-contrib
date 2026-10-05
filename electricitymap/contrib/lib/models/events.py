@@ -455,7 +455,8 @@ class Exchange(Event):
     Negative otherwise.
     exports: Optional flow from the zoneKey on the left of the arrow to the one on the right, >= 0.
     imports: Optional flow from the zoneKey on the right of the arrow to the one on the left, >= 0.
-    Set either netFlow, or exports and imports (netFlow is then derived as exports - imports).
+    Set either netFlow, or exports and/or imports. netFlow is derived as exports - imports
+    when both are set, and is None otherwise.
     """
 
     netFlow: float | None
@@ -477,10 +478,6 @@ class Exchange(Event):
     def _derive_net_flow(cls, values: dict[str, Any]) -> dict[str, Any]:
         exports = values.get("exports")
         imports = values.get("imports")
-        if (exports is None) != (imports is None):
-            raise ValueError(
-                f"exports and imports must be set together: {exports}, {imports}"
-            )
         if (
             exports is not None
             and imports is not None
@@ -489,10 +486,10 @@ class Exchange(Event):
             values["netFlow"] = _none_safe_round(exports - imports)
         return values
 
-    @validator("netFlow", always=True)
+    @validator("netFlow")
     def _validate_value(cls, v: float | None):
         if v is None:
-            raise ValueError(f"Exchange cannot be None: {v}")
+            return v
         if math.isnan(v):
             raise ValueError(f"Exchange cannot be NaN: {v}")
         # TODO in the future those checks should be performed in the data quality layer.
@@ -516,10 +513,22 @@ class Exchange(Event):
         return v
 
     @root_validator(skip_on_failure=True)
+    def _validate_has_value(cls, values: dict[str, Any]):
+        if all(
+            values.get(field) is None for field in ("netFlow", "exports", "imports")
+        ):
+            raise ValueError("Exchange needs a netFlow, exports or imports value")
+        return values
+
+    @root_validator(skip_on_failure=True)
     def _validate_directions_match_net_flow(cls, values: dict[str, Any]):
         exports = values.get("exports")
         imports = values.get("imports")
         net_flow = values.get("netFlow")
+        if net_flow is not None and (exports is None) != (imports is None):
+            raise ValueError(
+                f"netFlow {net_flow} cannot be combined with only one of exports/imports: {exports}, {imports}"
+            )
         if (
             exports is not None
             and imports is not None
@@ -545,7 +554,22 @@ class Exchange(Event):
         imports: float | None = None,
     ) -> "Exchange | None":
         if netFlow is not None and (exports is not None or imports is not None):
-            raise ValueError("Set either netFlow, or exports and imports, not both.")
+            raise ValueError("Set either netFlow, or exports and/or imports, not both.")
+        directions = {
+            "exports": _none_safe_round(exports),
+            "imports": _none_safe_round(imports),
+        }
+        for direction, value in directions.items():
+            if value is not None and not 0 <= value <= 100000:
+                logger.warning(
+                    f"Dropping invalid exchange {direction} {value} at {datetime}",
+                    extra={
+                        "zoneKey": zoneKey,
+                        "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "kind": "exchange",
+                    },
+                )
+                directions[direction] = None
         try:
             return Exchange(
                 zoneKey=zoneKey,
@@ -553,8 +577,8 @@ class Exchange(Event):
                 end_datetime=end_datetime,
                 source=source,
                 netFlow=_none_safe_round(netFlow),
-                exports=_none_safe_round(exports),
-                imports=_none_safe_round(imports),
+                exports=directions["exports"],
+                imports=directions["imports"],
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -591,7 +615,7 @@ class Exchange(Event):
             datetime=event.datetime,
             end_datetime=new_event.end_datetime or event.end_datetime,
             source=event.source,
-            netFlow=new_event.netFlow,  # Exchange values can never be none so a new valid value will always be provided.
+            netFlow=new_event.netFlow,
             exports=new_event.exports,
             imports=new_event.imports,
             sourceType=event.sourceType,
@@ -606,7 +630,7 @@ class Exchange(Event):
             "source": self.source,
             "sourceType": self.sourceType,
         }
-        if self.exports is not None and self.imports is not None:
+        if self.exports is not None or self.imports is not None:
             exchange["exports"] = self.exports
             exchange["imports"] = self.imports
         return exchange

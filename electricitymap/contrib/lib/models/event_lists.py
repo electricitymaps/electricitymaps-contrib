@@ -279,8 +279,10 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         to create a unique exchange list. Sources will be aggregated in a
         comma-separated string. Ex: "entsoe, eia".
 
-        Exports and imports are summed for a datetime only when every
-        input at that datetime has them; otherwise only the net flow is kept.
+        Each of netFlow, exports and imports is summed for a datetime only when
+        every input at that datetime has it, and is None otherwise. The merged
+        event uses exports and imports when both are known, else the net flow,
+        else whichever direction is known.
 
         A datetime only some of the inputs cover is summed from those that do,
         unless `drop_non_matching_datetimes` is set, which drops it instead. Use
@@ -313,42 +315,41 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
             # the finest resolution cannot overlap the next merged point.
             end_datetimes = exchange_df.groupby(level="datetime")["end_datetime"].min()
 
-        gross_columns = ["exports", "imports"]
-        gross_df = None
-        if all(column in exchange_df.columns for column in gross_columns):
-            gross = exchange_df[gross_columns].astype(float)
-            gross_df = gross.groupby(level="datetime").sum()
-            is_complete = gross.notna().all(axis=1).groupby(level="datetime").all()
-            gross_df = gross_df[is_complete]
+        value_columns = ["netFlow", "exports", "imports"]
+        values_df = exchange_df.reindex(columns=value_columns).astype(float)
+        sums = values_df.groupby(level="datetime").sum()
+        is_complete = values_df.notna().groupby(level="datetime").all()
+        sums = sums.where(is_complete)
 
-        exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True,
-        )
-        for dt, row in exchange_df.iterrows():
+        for dt, row in sums.iterrows():
             end_datetime = None
             if end_datetimes is not None:
                 val = end_datetimes.get(dt)
                 if not pd.isna(val):
                     end_datetime = val.to_pydatetime()
 
-            if gross_df is not None and dt in gross_df.index:
+            net_flow, exports, imports = (
+                None if pd.isna(row[column]) else row[column]
+                for column in value_columns
+            )
+            if (exports is None or imports is None) and net_flow is not None:
                 exchanges.append(
                     zoneKey=zone_key,
                     datetime=dt.to_pydatetime(),
                     source=sources,
+                    netFlow=net_flow,
                     end_datetime=end_datetime,
                     sourceType=source_type,
-                    exports=gross_df.at[dt, "exports"],
-                    imports=gross_df.at[dt, "imports"],
                 )
             else:
                 exchanges.append(
                     zoneKey=zone_key,
                     datetime=dt.to_pydatetime(),
                     source=sources,
-                    netFlow=row["netFlow"],
                     end_datetime=end_datetime,
                     sourceType=source_type,
+                    exports=exports,
+                    imports=imports,
                 )
 
         return exchanges
@@ -368,7 +369,7 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                 existing_event = exchanges[new_event.datetime]
                 updated_event = Exchange._update(existing_event, new_event)
                 exchanges[new_event.datetime] = updated_event
-            elif new_event.exports is not None and new_event.imports is not None:
+            elif new_event.exports is not None or new_event.imports is not None:
                 exchanges.append(
                     new_event.zoneKey,
                     new_event.datetime,
