@@ -50,7 +50,7 @@ def test_create_exchange():
 
 
 def test_raises_if_invalid_exchange():
-    # This should raise a ValueError because the netFlow is None.
+    # This should raise a ValueError because no netFlow, exports or imports is set.
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
@@ -165,8 +165,6 @@ OLD_STYLE_EXCHANGE_KEYS = {
 }
 
 INVALID_GROSS_FLOWS = [
-    pytest.param(500, None, id="export-only"),
-    pytest.param(None, 300, id="import-only"),
     pytest.param(-1, 0, id="negative-export"),
     pytest.param(0, -1, id="negative-import"),
     pytest.param(math.nan, 0, id="nan-export"),
@@ -174,6 +172,13 @@ INVALID_GROSS_FLOWS = [
     pytest.param(100001, 0, id="export-above-100GW"),
     pytest.param(0, 100001, id="import-above-100GW"),
     pytest.param(150000, 149000, id="both-above-100GW-small-net"),
+]
+
+ONE_DIRECTION_FLOWS = [
+    pytest.param(500, None, id="export-only"),
+    pytest.param(None, 300, id="import-only"),
+    pytest.param(0, None, id="zero-export-only"),
+    pytest.param(None, 0, id="zero-import-only"),
 ]
 
 
@@ -212,6 +217,20 @@ def test_create_exchange_from_gross_rounds_derived_net_flow():
     )
     # 0.3 - 0.1 is 0.19999999999999998 in floating point.
     assert exchange.netFlow == 0.2
+
+
+@pytest.mark.parametrize(("exports", "imports"), ONE_DIRECTION_FLOWS)
+def test_create_exchange_with_one_direction_leaves_net_flow_unset(exports, imports):
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=exports,
+        imports=imports,
+        source="trust.me",
+    )
+    assert exchange.netFlow is None
+    assert exchange.exports == exports
+    assert exchange.imports == imports
 
 
 def test_exchange_accepts_net_flow_matching_gross():
@@ -262,13 +281,16 @@ def test_raises_if_net_flow_does_not_match_gross(net_flow):
         )
 
 
-def test_raises_if_net_flow_given_with_one_gross_side():
+@pytest.mark.parametrize("net_flow", [500, -300, 0])
+@pytest.mark.parametrize(("exports", "imports"), ONE_DIRECTION_FLOWS)
+def test_raises_if_net_flow_given_with_one_direction(net_flow, exports, imports):
     with pytest.raises(ValidationError):
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=500,
-            exports=500,
+            netFlow=net_flow,
+            exports=exports,
+            imports=imports,
             source="trust.me",
         )
 
@@ -322,10 +344,13 @@ def test_exchange_static_create_logs_error_without_net_flow_or_gross():
         mock_error.assert_called_once()
 
 
-@pytest.mark.parametrize(("exports", "imports"), INVALID_GROSS_FLOWS)
-def test_exchange_static_create_logs_invalid_gross(exports, imports):
+@pytest.mark.parametrize(("exports", "imports"), ONE_DIRECTION_FLOWS)
+def test_exchange_static_create_with_one_direction(exports, imports):
     logger = logging.Logger("test")
-    with patch.object(logger, "error") as mock_error:
+    with (
+        patch.object(logger, "error") as mock_error,
+        patch.object(logger, "warning") as mock_warning,
+    ):
         exchange = Exchange.create(
             logger=logger,
             zoneKey=ZoneKey("AT->DE"),
@@ -335,8 +360,137 @@ def test_exchange_static_create_logs_invalid_gross(exports, imports):
             exports=exports,
             imports=imports,
         )
-        assert exchange is None
-        mock_error.assert_called_once()
+    assert exchange is not None
+    assert exchange.netFlow is None
+    assert exchange.exports == exports
+    assert exchange.imports == imports
+    mock_error.assert_not_called()
+    mock_warning.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports", "expected_exports", "expected_imports"),
+    [
+        pytest.param(-1, 300, None, 300, id="negative-export"),
+        pytest.param(500, -1, 500, None, id="negative-import"),
+        pytest.param(100001, 300, None, 300, id="export-above-100GW"),
+        pytest.param(500, 100001, 500, None, id="import-above-100GW"),
+    ],
+)
+def test_exchange_static_create_drops_invalid_direction_and_keeps_the_other(
+    exports, imports, expected_exports, expected_imports
+):
+    logger = logging.Logger("test")
+    with (
+        patch.object(logger, "error") as mock_error,
+        patch.object(logger, "warning") as mock_warning,
+    ):
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+    assert exchange is not None
+    assert exchange.exports == expected_exports
+    assert exchange.imports == expected_imports
+    assert exchange.netFlow is None
+    mock_warning.assert_called_once()
+    mock_error.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports", "expected_exports", "expected_imports"),
+    [
+        pytest.param(math.nan, 300, None, 300, id="nan-export"),
+        pytest.param(500, np.nan, 500, None, id="numpy-nan-import"),
+    ],
+)
+def test_exchange_static_create_treats_nan_direction_as_missing(
+    exports, imports, expected_exports, expected_imports
+):
+    logger = logging.Logger("test")
+    with (
+        patch.object(logger, "error") as mock_error,
+        patch.object(logger, "warning") as mock_warning,
+    ):
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+    assert exchange is not None
+    assert exchange.exports == expected_exports
+    assert exchange.imports == expected_imports
+    assert exchange.netFlow is None
+    mock_warning.assert_not_called()
+    mock_error.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports"),
+    [
+        pytest.param(0, 100000, id="zero-export-100GW-import"),
+        pytest.param(100000, 0, id="100GW-export-zero-import"),
+    ],
+)
+def test_exchange_static_create_keeps_directions_at_the_bounds(exports, imports):
+    logger = logging.Logger("test")
+    with patch.object(logger, "warning") as mock_warning:
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+    assert exchange is not None
+    assert exchange.exports == exports
+    assert exchange.imports == imports
+    assert exchange.netFlow == exports - imports
+    mock_warning.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports", "expected_warnings"),
+    [
+        pytest.param(-1, None, 1, id="negative-export-only"),
+        pytest.param(None, 100001, 1, id="import-only-above-100GW"),
+        pytest.param(-1, 100001, 2, id="both-invalid"),
+        pytest.param(150000, 149000, 2, id="both-above-100GW-small-net"),
+        pytest.param(math.nan, -1, 1, id="nan-export-negative-import"),
+        pytest.param(math.nan, np.nan, 0, id="both-nan"),
+    ],
+)
+def test_exchange_static_create_logs_error_when_no_valid_direction_remains(
+    exports, imports, expected_warnings
+):
+    logger = logging.Logger("test")
+    with (
+        patch.object(logger, "error") as mock_error,
+        patch.object(logger, "warning") as mock_warning,
+    ):
+        exchange = Exchange.create(
+            logger=logger,
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+    assert exchange is None
+    mock_error.assert_called_once()
+    assert mock_warning.call_count == expected_warnings
 
 
 @pytest.mark.parametrize(
@@ -387,6 +541,24 @@ def test_exchange_to_dict_with_gross():
     assert as_dict["netFlow"] == 200
     assert as_dict["exports"] == 500
     assert as_dict["imports"] == 300
+
+
+@pytest.mark.parametrize(("exports", "imports"), ONE_DIRECTION_FLOWS)
+def test_exchange_to_dict_with_one_direction_emits_both_direction_keys(
+    exports, imports
+):
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=exports,
+        imports=imports,
+        source="trust.me",
+    )
+    as_dict = exchange.to_dict()
+    assert set(as_dict) == OLD_STYLE_EXCHANGE_KEYS | {"exports", "imports"}
+    assert as_dict["netFlow"] is None
+    assert as_dict["exports"] == exports
+    assert as_dict["imports"] == imports
 
 
 def test_exchange_to_dict_with_zero_gross_keeps_gross_keys():
@@ -462,6 +634,26 @@ def test_update_exchange_with_gross_replaces_gross():
     final_exchange = Exchange._update(exchange, new_exchange)
     assert final_exchange.netFlow == -400
     assert final_exchange.exports == 0
+    assert final_exchange.imports == 400
+
+
+def test_update_exchange_with_one_direction_replaces_both_directions():
+    exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        exports=500,
+        imports=300,
+        source="trust.me",
+    )
+    new_exchange = Exchange(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        imports=400,
+        source="trust.me",
+    )
+    final_exchange = Exchange._update(exchange, new_exchange)
+    assert final_exchange.netFlow is None
+    assert final_exchange.exports is None
     assert final_exchange.imports == 400
 
 

@@ -241,16 +241,67 @@ def test_exchange_list_append_with_net_flow_only_is_unchanged():
     assert "imports" not in event
 
 
-def test_append_gross_to_list_logs_error_when_one_side_is_missing():
+@pytest.mark.parametrize(
+    ("exports", "imports"),
+    [
+        pytest.param(500, None, id="export-only"),
+        pytest.param(None, 300, id="import-only"),
+    ],
+)
+def test_exchange_list_append_with_one_direction(exports, imports):
     exchange_list = ExchangeList(logging.Logger("test"))
     with patch.object(exchange_list.logger, "error") as mock_error:
         exchange_list.append(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            exports=500,
+            exports=exports,
+            imports=imports,
         )
-        mock_error.assert_called_once()
+    mock_error.assert_not_called()
+    assert len(exchange_list.events) == 1
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] is None
+    assert event["exports"] == exports
+    assert event["imports"] == imports
+
+
+def test_exchange_list_append_drops_an_invalid_direction_and_logs_warning():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    with (
+        patch.object(exchange_list.logger, "error") as mock_error,
+        patch.object(exchange_list.logger, "warning") as mock_warning,
+    ):
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            exports=-5,
+            imports=30,
+        )
+    mock_warning.assert_called_once()
+    mock_error.assert_not_called()
+    assert len(exchange_list.events) == 1
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] is None
+    assert event["exports"] is None
+    assert event["imports"] == 30
+
+
+def test_exchange_list_append_logs_error_when_no_valid_direction_remains():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    with (
+        patch.object(exchange_list.logger, "error") as mock_error,
+        patch.object(exchange_list.logger, "warning") as mock_warning,
+    ):
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            exports=-5,
+        )
+    mock_warning.assert_called_once()
+    mock_error.assert_called_once()
     assert len(exchange_list.events) == 0
 
 
@@ -320,6 +371,43 @@ def test_update_exchange_list_appends_new_net_flow_only_events_without_gross():
     assert [event["netFlow"] for event in updated] == [7, 3]
     assert all("exports" not in event for event in updated)
     assert all("imports" not in event for event in updated)
+
+
+def test_update_exchange_list_with_one_direction_events():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list1 = ExchangeList(logging.Logger("test"))
+    exchange_list1.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list2 = ExchangeList(logging.Logger("test"))
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        source="trust.me",
+        exports=500,
+    )
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=2),
+        source="trust.me",
+        imports=40,
+    )
+    updated = ExchangeList.update_exchanges(
+        exchange_list1, exchange_list2, logging.Logger("test")
+    ).to_list()
+    assert len(updated) == 2
+    assert updated[0]["netFlow"] is None
+    assert updated[0]["exports"] == 500
+    assert updated[0]["imports"] is None
+    assert updated[1]["datetime"] == dt + timedelta(hours=1)
+    assert updated[1]["end_datetime"] == dt + timedelta(hours=2)
+    assert updated[1]["netFlow"] is None
+    assert updated[1]["exports"] is None
+    assert updated[1]["imports"] == 40
 
 
 def test_consumption_list():
@@ -1644,6 +1732,54 @@ def test_merge_exchanges_with_gross_keeps_end_datetimes():
     assert merged[0]["exports"] == 10
     assert merged[0]["imports"] == 4
     assert merged[0]["end_datetime"] == dt + timedelta(minutes=15)
+
+
+def test_merge_exchanges_keeps_only_the_direction_every_input_has():
+    # Hour 0: the third input reports exports only. Hour 1: it reports nothing.
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _gross_exchange_list_at(logger, [(0, 100, 10), (1, 20, 5)]),
+            _gross_exchange_list_at(logger, [(0, 50, 30), (1, 0, 7)]),
+            _gross_exchange_list_at(logger, [(0, 5, None)]),
+        ],
+        logger,
+    ).to_list()
+
+    assert len(merged) == 2
+    assert merged[0]["exports"] == 155
+    assert merged[0]["imports"] is None
+    assert merged[0]["netFlow"] is None
+    assert merged[1]["exports"] == 20
+    assert merged[1]["imports"] == 12
+    assert merged[1]["netFlow"] == 8
+
+
+@pytest.mark.parametrize("direction", ["exports", "imports"])
+def test_merge_exchanges_sums_one_direction_across_inputs(direction):
+    # e.g. one domain pair per interconnector, each reporting the same direction.
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    inputs = []
+    for offsets_and_values in ([(0, 100), (1, 20)], [(0, 30)]):
+        exchanges = ExchangeList(logger)
+        for offset, value in offsets_and_values:
+            exchanges.append(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=dt + timedelta(hours=offset),
+                source="trust.me",
+                **{direction: value},
+            )
+        inputs.append(exchanges)
+    other_direction = "imports" if direction == "exports" else "exports"
+
+    with patch.object(logger, "error") as mock_error:
+        merged = ExchangeList.merge_exchanges(inputs, logger).to_list()
+
+    mock_error.assert_not_called()
+    assert [event[direction] for event in merged] == [130, 20]
+    assert [event[other_direction] for event in merged] == [None, None]
+    assert [event["netFlow"] for event in merged] == [None, None]
 
 
 def test_non_overlapping_list_deduplicates_datetimes():

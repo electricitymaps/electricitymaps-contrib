@@ -294,11 +294,15 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
             return exchanges
 
         # Create a dataframe for each parser output, then flatten the exchanges.
-        exchange_dfs = [
-            pd.json_normalize(exchanges.to_list()).set_index("datetime")
-            for exchanges in ungrouped_exchanges
-            if len(exchanges.events) > 0
-        ]
+        value_columns = ["netFlow", "exports", "imports"]
+        exchange_dfs = []
+        for exchange_list in ungrouped_exchanges:
+            if len(exchange_list.events) == 0:
+                continue
+            df = pd.json_normalize(exchange_list.to_list()).set_index("datetime")
+            exchange_dfs.append(
+                df.astype({c: float for c in value_columns if c in df.columns})
+            )
 
         exchange_df = pd.concat(exchange_dfs)
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
@@ -315,7 +319,6 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
             # the finest resolution cannot overlap the next merged point.
             end_datetimes = exchange_df.groupby(level="datetime")["end_datetime"].min()
 
-        value_columns = ["netFlow", "exports", "imports"]
         values_df = exchange_df.reindex(columns=value_columns).astype(float)
         sums = values_df.groupby(level="datetime").sum()
         is_complete = values_df.notna().groupby(level="datetime").all()
