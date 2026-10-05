@@ -269,8 +269,8 @@ def _parse_exchange(response: Response, logger: Logger, target_zone) -> Exchange
                     zoneKey=ZoneKey(
                         f"{INVERTED_ZONE_MAPPING[json['deliveryArea']]}->{INVERTED_ZONE_MAPPING[connection['area']]}"
                     ),
-                    exports=connection["export"],
-                    imports=connection["import"],
+                    exports=connection.get("export"),
+                    imports=connection.get("import"),
                     datetime=datetime.fromisoformat(
                         zulu_to_utc(exchange["deliveryStart"])
                     ),

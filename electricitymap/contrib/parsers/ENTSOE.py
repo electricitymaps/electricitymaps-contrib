@@ -40,6 +40,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    Exchange,
     ProductionMix,
     ScheduledExchange,
     StorageMix,
@@ -922,11 +923,35 @@ def parse_exchange(
             datetime=dt,
             end_datetime=dt_end,
             source=SOURCE,
-            exports=0.0 if is_import else quantity,
-            imports=quantity if is_import else 0.0,
+            exports=None if is_import else quantity,
+            imports=quantity if is_import else None,
         )
 
     return exchange_list
+
+
+def _combine_directions(
+    directions: list[ExchangeList], sorted_zone_keys: ZoneKey, logger: Logger
+) -> ExchangeList:
+    """Combines the export and import lists of one domain pair into one event per datetime."""
+    events_by_datetime: dict[datetime, list[Exchange]] = {}
+    for event in chain.from_iterable(direction.events for direction in directions):
+        events_by_datetime.setdefault(event.datetime, []).append(event)
+
+    combined = ExchangeList(logger)
+    for dt, events in sorted(events_by_datetime.items(), key=itemgetter(0)):
+        combined.append(
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            source=SOURCE,
+            end_datetime=min(
+                (e.end_datetime for e in events if e.end_datetime is not None),
+                default=None,
+            ),
+            exports=next((e.exports for e in events if e.exports is not None), None),
+            imports=next((e.imports for e in events if e.imports is not None), None),
+        )
+    return combined
 
 
 def parse_exchange_forecast(
@@ -1231,11 +1256,11 @@ def get_physical_flows(
 
     raw_exchange_lists: list[ExchangeList] = []
     for domain_pair in domain_pairs:
-        # The two directions are the halves of one net flow, so an MTU only one
-        # of them covers is dropped rather than reported one-sided. Whole domain
-        # pairs are then added up as they come: a border can map to a pair
-        # ENTSO-E publishes nothing for (FR-COR->IT-SAR), and the pairs that do
-        # publish still describe the border.
+        # The two directions are combined per MTU, keeping an MTU only one of
+        # them covers as one-sided. Whole domain pairs are then added up as they
+        # come: a border can map to a pair ENTSO-E publishes nothing for
+        # (FR-COR->IT-SAR), and the pairs that do publish still describe the
+        # border.
         directions: list[ExchangeList] = []
         for is_import in (True, False):
             domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
@@ -1268,9 +1293,7 @@ def get_physical_flows(
                 )
             )
         raw_exchange_lists.append(
-            ExchangeList.merge_exchanges(
-                directions, logger, drop_non_matching_datetimes=True
-            )
+            _combine_directions(directions, sorted_zone_keys, logger)
         )
     return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
