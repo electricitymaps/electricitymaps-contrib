@@ -211,6 +211,206 @@ def test_update_exchange_list_with_longer_new_list():
     assert updated_list.events[1].source == "trust.me"
 
 
+def test_exchange_list_append_with_gross():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        exports=500,
+        imports=300,
+    )
+    assert len(exchange_list.events) == 1
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] == 200
+    assert event["exports"] == 500
+    assert event["imports"] == 300
+
+
+def test_exchange_list_append_with_net_flow_only_is_unchanged():
+    # Positional netFlow, as existing parsers pass it.
+    exchange_list = ExchangeList(logging.Logger("test"))
+    exchange_list.append(
+        ZoneKey("AT->DE"),
+        datetime(2023, 1, 1, tzinfo=timezone.utc),
+        "trust.me",
+        -5,
+    )
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] == -5
+    assert "exports" not in event
+    assert "imports" not in event
+
+
+@pytest.mark.parametrize(
+    ("exports", "imports"),
+    [
+        pytest.param(500, None, id="export-only"),
+        pytest.param(None, 300, id="import-only"),
+    ],
+)
+def test_exchange_list_append_with_one_direction(exports, imports):
+    exchange_list = ExchangeList(logging.Logger("test"))
+    with patch.object(exchange_list.logger, "error") as mock_error:
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+    mock_error.assert_not_called()
+    assert len(exchange_list.events) == 1
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] is None
+    assert event["exports"] == exports
+    assert event["imports"] == imports
+
+
+def test_exchange_list_append_drops_an_invalid_direction_and_logs_warning():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    with (
+        patch.object(exchange_list.logger, "error") as mock_error,
+        patch.object(exchange_list.logger, "warning") as mock_warning,
+    ):
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            exports=-5,
+            imports=30,
+        )
+    mock_warning.assert_called_once()
+    mock_error.assert_not_called()
+    assert len(exchange_list.events) == 1
+    event = exchange_list.to_list()[0]
+    assert event["netFlow"] is None
+    assert event["exports"] is None
+    assert event["imports"] == 30
+
+
+def test_exchange_list_append_logs_error_when_no_valid_direction_remains():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    with (
+        patch.object(exchange_list.logger, "error") as mock_error,
+        patch.object(exchange_list.logger, "warning") as mock_warning,
+    ):
+        exchange_list.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            exports=-5,
+        )
+    mock_warning.assert_called_once()
+    mock_error.assert_called_once()
+    assert len(exchange_list.events) == 0
+
+
+def test_update_exchange_list_appends_new_gross_events():
+    exchange_list1 = ExchangeList(logging.Logger("test"))
+    exchange_list1.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list2 = ExchangeList(logging.Logger("test"))
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        exports=500,
+        imports=300,
+    )
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        end_datetime=datetime(2023, 1, 2, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        exports=0,
+        imports=40,
+    )
+    updated = ExchangeList.update_exchanges(
+        exchange_list1, exchange_list2, logging.Logger("test")
+    ).to_list()
+    assert len(updated) == 2
+    assert updated[0]["netFlow"] == 200
+    assert updated[0]["exports"] == 500
+    assert updated[0]["imports"] == 300
+    assert updated[1]["datetime"] == datetime(2023, 1, 2, tzinfo=timezone.utc)
+    assert updated[1]["end_datetime"] == datetime(2023, 1, 2, 1, tzinfo=timezone.utc)
+    assert updated[1]["netFlow"] == -40
+    assert updated[1]["exports"] == 0
+    assert updated[1]["imports"] == 40
+
+
+def test_update_exchange_list_appends_new_net_flow_only_events_without_gross():
+    exchange_list1 = ExchangeList(logging.Logger("test"))
+    exchange_list1.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        exports=500,
+        imports=300,
+    )
+    exchange_list2 = ExchangeList(logging.Logger("test"))
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        netFlow=7,
+        source="trust.me",
+    )
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        netFlow=3,
+        source="trust.me",
+    )
+    updated = ExchangeList.update_exchanges(
+        exchange_list1, exchange_list2, logging.Logger("test")
+    ).to_list()
+    assert [event["netFlow"] for event in updated] == [7, 3]
+    assert all("exports" not in event for event in updated)
+    assert all("imports" not in event for event in updated)
+
+
+def test_update_exchange_list_with_one_direction_events():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list1 = ExchangeList(logging.Logger("test"))
+    exchange_list1.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list2 = ExchangeList(logging.Logger("test"))
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        source="trust.me",
+        exports=500,
+    )
+    exchange_list2.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=2),
+        source="trust.me",
+        imports=40,
+    )
+    updated = ExchangeList.update_exchanges(
+        exchange_list1, exchange_list2, logging.Logger("test")
+    ).to_list()
+    assert len(updated) == 2
+    assert updated[0]["netFlow"] is None
+    assert updated[0]["exports"] == 500
+    assert updated[0]["imports"] is None
+    assert updated[1]["datetime"] == dt + timedelta(hours=1)
+    assert updated[1]["end_datetime"] == dt + timedelta(hours=2)
+    assert updated[1]["netFlow"] is None
+    assert updated[1]["exports"] is None
+    assert updated[1]["imports"] == 40
+
+
 def test_consumption_list():
     consumption_list = TotalConsumptionList(logging.Logger("test"))
     consumption_list.append(
@@ -1412,6 +1612,419 @@ def test_merge_exchanges_dropping_non_matching_keeps_end_datetimes():
     assert len(merged) == 1
     assert merged[0]["netFlow"] == 15
     assert merged[0]["end_datetime"] == dt + timedelta(minutes=5)
+
+
+def _gross_exchange_list_at(logger, offsets_and_gross, source="trust.me"):
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchanges = ExchangeList(logger)
+    for offset, exports, imports in offsets_and_gross:
+        exchanges.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=dt + timedelta(hours=offset),
+            source=source,
+            exports=exports,
+            imports=imports,
+        )
+    return exchanges
+
+
+def test_merge_exchanges_sums_gross_of_the_two_directions():
+    # ENTSO-E reports each direction as its own series: one list only ever
+    # exports, the other only ever imports.
+    logger = logging.Logger("test")
+    exports = _gross_exchange_list_at(logger, [(0, 500, 0), (1, 0, 0), (2, 120.5, 0)])
+    imports = _gross_exchange_list_at(logger, [(0, 0, 300), (1, 0, 80), (2, 0, 0)])
+
+    merged = ExchangeList.merge_exchanges(
+        [exports, imports], logger, drop_non_matching_datetimes=True
+    ).to_list()
+
+    assert [event["exports"] for event in merged] == [500, 0, 120.5]
+    assert [event["imports"] for event in merged] == [300, 80, 0]
+    summed_net_flows = [
+        e.netFlow + i.netFlow
+        for e, i in zip(exports.events, imports.events, strict=True)
+    ]
+    assert [event["netFlow"] for event in merged] == summed_net_flows
+    assert [event["netFlow"] for event in merged] == [200, -80, 120.5]
+
+
+def test_merge_exchanges_keeps_only_net_flow_when_an_input_lacks_gross():
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _gross_exchange_list_at(logger, [(0, 500, 300), (1, 50, 0)]),
+            _exchange_list_at(logger, [(0, -10), (1, 5)]),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["netFlow"] for event in merged] == [190, 55]
+    assert all("exports" not in event for event in merged)
+    assert all("imports" not in event for event in merged)
+
+
+def test_merge_exchanges_decides_gross_per_datetime():
+    # Hour 0 is gross in both inputs, hour 1 is net-only in one of them.
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    partly_gross = _gross_exchange_list_at(logger, [(0, 0, 30)])
+    partly_gross.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        netFlow=15,
+        source="trust.me",
+    )
+
+    merged = ExchangeList.merge_exchanges(
+        [_gross_exchange_list_at(logger, [(0, 100, 0), (1, 20, 0)]), partly_gross],
+        logger,
+    ).to_list()
+
+    assert merged[0]["netFlow"] == 70
+    assert merged[0]["exports"] == 100
+    assert merged[0]["imports"] == 30
+    assert merged[1]["netFlow"] == 35
+    assert "exports" not in merged[1]
+    assert "imports" not in merged[1]
+
+
+def test_merge_exchanges_without_gross_emits_no_gross_keys():
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _exchange_list_at(logger, [(0, 10), (1, 20)], source="a.com"),
+            _exchange_list_at(logger, [(0, -5), (1, 5)], source="b.com"),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["netFlow"] for event in merged] == [5, 25]
+    assert all(
+        set(event)
+        == {
+            "datetime",
+            "end_datetime",
+            "sortedZoneKeys",
+            "netFlow",
+            "source",
+            "sourceType",
+        }
+        for event in merged
+    )
+
+
+def test_merge_exchanges_sums_gross_for_a_datetime_only_one_input_covers():
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _gross_exchange_list_at(logger, [(0, 100, 0), (1, 20, 0)], source="a.com"),
+            _gross_exchange_list_at(logger, [(0, 0, 30)], source="b.com"),
+        ],
+        logger,
+    ).to_list()
+
+    assert [event["netFlow"] for event in merged] == [70, 20]
+    assert [event["exports"] for event in merged] == [100, 20]
+    assert [event["imports"] for event in merged] == [30, 0]
+
+
+def test_merge_exchanges_can_drop_non_matching_datetimes_with_gross():
+    logger = logging.Logger("test")
+    with patch.object(logger, "warning") as mock_warning:
+        merged = ExchangeList.merge_exchanges(
+            [
+                _gross_exchange_list_at(logger, [(0, 100, 0), (1, 20, 0)]),
+                _gross_exchange_list_at(logger, [(0, 0, 30)]),
+            ],
+            logger,
+            drop_non_matching_datetimes=True,
+        ).to_list()
+
+    assert [event["datetime"] for event in merged] == [
+        datetime(2023, 1, 1, tzinfo=timezone.utc)
+    ]
+    assert merged[0]["netFlow"] == 70
+    assert merged[0]["exports"] == 100
+    assert merged[0]["imports"] == 30
+    mock_warning.assert_called_once()
+
+
+def test_merge_exchanges_with_gross_keeps_end_datetimes():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    inputs = []
+    for exports, imports in ((10, 0), (0, 4)):
+        exchanges = ExchangeList(logger)
+        exchanges.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=dt,
+            end_datetime=dt + timedelta(minutes=15),
+            source="trust.me",
+            exports=exports,
+            imports=imports,
+        )
+        inputs.append(exchanges)
+
+    merged = ExchangeList.merge_exchanges(
+        inputs, logger, drop_non_matching_datetimes=True
+    ).to_list()
+
+    assert len(merged) == 1
+    assert merged[0]["netFlow"] == 6
+    assert merged[0]["exports"] == 10
+    assert merged[0]["imports"] == 4
+    assert merged[0]["end_datetime"] == dt + timedelta(minutes=15)
+
+
+def test_merge_exchanges_keeps_only_the_direction_every_input_has():
+    # Hour 0: the third input reports exports only. Hour 1: it reports nothing.
+    logger = logging.Logger("test")
+    merged = ExchangeList.merge_exchanges(
+        [
+            _gross_exchange_list_at(logger, [(0, 100, 10), (1, 20, 5)]),
+            _gross_exchange_list_at(logger, [(0, 50, 30), (1, 0, 7)]),
+            _gross_exchange_list_at(logger, [(0, 5, None)]),
+        ],
+        logger,
+    ).to_list()
+
+    assert len(merged) == 2
+    assert merged[0]["exports"] == 155
+    assert merged[0]["imports"] is None
+    assert merged[0]["netFlow"] is None
+    assert merged[1]["exports"] == 20
+    assert merged[1]["imports"] == 12
+    assert merged[1]["netFlow"] == 8
+
+
+@pytest.mark.parametrize("direction", ["exports", "imports"])
+def test_merge_exchanges_sums_one_direction_across_inputs(direction):
+    # e.g. one domain pair per interconnector, each reporting the same direction.
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    inputs = []
+    for offsets_and_values in ([(0, 100), (1, 20)], [(0, 30)]):
+        exchanges = ExchangeList(logger)
+        for offset, value in offsets_and_values:
+            exchanges.append(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=dt + timedelta(hours=offset),
+                source="trust.me",
+                **{direction: value},
+            )
+        inputs.append(exchanges)
+    other_direction = "imports" if direction == "exports" else "exports"
+
+    with patch.object(logger, "error") as mock_error:
+        merged = ExchangeList.merge_exchanges(inputs, logger).to_list()
+
+    mock_error.assert_not_called()
+    assert [event[direction] for event in merged] == [130, 20]
+    assert [event[other_direction] for event in merged] == [None, None]
+    assert [event["netFlow"] for event in merged] == [None, None]
+
+
+_T17 = datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
+_T18 = datetime(2023, 12, 20, 18, tzinfo=timezone.utc)
+_T19 = datetime(2023, 12, 20, 19, tzinfo=timezone.utc)
+
+
+def _direction_list(
+    logger,
+    direction,
+    points,
+    zone_key=ZoneKey("DK-DK1->GB"),
+    source="entsoe.eu",
+    source_type=EventSourceType.measured,
+):
+    exchanges = ExchangeList(logger)
+    for dt, dt_end, quantity in points:
+        exchanges.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            end_datetime=dt_end,
+            source=source,
+            sourceType=source_type,
+            **{direction: quantity},
+        )
+    return exchanges
+
+
+def test_combine_directions_carries_both_directions_and_net_flow():
+    logger = logging.Logger("test")
+    imports = _direction_list(logger, "imports", [(_T17, _T18, 40)])
+    exports = _direction_list(logger, "exports", [(_T17, _T18, 100)])
+
+    events = ExchangeList.combine_directions([imports, exports], logger).to_list()
+
+    assert len(events) == 1
+    assert events[0]["datetime"] == _T17
+    assert events[0]["end_datetime"] == _T18
+    assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
+        100,
+        40,
+        60,
+    )
+    assert events[0]["sortedZoneKeys"] == ZoneKey("DK-DK1->GB")
+    assert events[0]["sourceType"] == EventSourceType.measured
+
+
+def test_combine_directions_keeps_datetimes_one_direction_covers_one_sided():
+    logger = logging.Logger("test")
+    hour = timedelta(hours=1)
+    imports = _direction_list(logger, "imports", [(_T17, _T18, 40), (_T18, _T19, 10)])
+    exports = _direction_list(
+        logger, "exports", [(_T17, _T18, 100), (_T19, _T19 + hour, 25)]
+    )
+
+    events = ExchangeList.combine_directions([imports, exports], logger).to_list()
+
+    assert [
+        (e["datetime"], e["exports"], e["imports"], e["netFlow"]) for e in events
+    ] == [
+        (_T17, 100, 40, 60),
+        (_T18, None, 10, None),
+        (_T19, 25, None, None),
+    ]
+
+
+def test_combine_directions_keeps_the_earliest_end_datetime():
+    logger = logging.Logger("test")
+    quarter_end = _T17 + timedelta(minutes=15)
+    half_end = _T17 + timedelta(minutes=30)
+    imports = _direction_list(logger, "imports", [(_T17, _T18, 40)])
+    exports = _direction_list(
+        logger, "exports", [(_T17, quarter_end, 100), (quarter_end, half_end, 90)]
+    )
+
+    events = ExchangeList.combine_directions([exports, imports], logger).to_list()
+
+    assert [(e["datetime"], e["end_datetime"]) for e in events] == [
+        (_T17, quarter_end),
+        (quarter_end, half_end),
+    ]
+    assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
+        100,
+        40,
+        60,
+    )
+    assert (events[1]["exports"], events[1]["imports"], events[1]["netFlow"]) == (
+        90,
+        None,
+        None,
+    )
+
+
+def test_combine_directions_ignores_a_missing_end_datetime():
+    logger = logging.Logger("test")
+    imports = _direction_list(logger, "imports", [(_T17, None, 40)])
+    exports = _direction_list(logger, "exports", [(_T17, _T18, 100)])
+
+    events = ExchangeList.combine_directions([imports, exports], logger).to_list()
+
+    assert len(events) == 1
+    assert events[0]["end_datetime"] == _T18
+
+
+def test_combine_directions_end_datetime_is_none_when_no_input_has_one():
+    logger = logging.Logger("test")
+    imports = _direction_list(logger, "imports", [(_T17, None, 40)])
+    exports = _direction_list(logger, "exports", [(_T17, None, 100)])
+
+    events = ExchangeList.combine_directions([imports, exports], logger).to_list()
+
+    assert len(events) == 1
+    assert events[0]["end_datetime"] is None
+    assert events[0]["netFlow"] == 60
+
+
+def test_combine_directions_sorts_output_by_datetime():
+    logger = logging.Logger("test")
+    imports = _direction_list(logger, "imports", [(_T19, None, 1), (_T17, None, 3)])
+    exports = _direction_list(logger, "exports", [(_T18, None, 2)])
+
+    events = ExchangeList.combine_directions([imports, exports], logger).to_list()
+
+    assert [e["datetime"] for e in events] == [_T17, _T18, _T19]
+
+
+@pytest.mark.parametrize("n_inputs", [0, 1, 2])
+def test_combine_directions_of_empty_inputs_is_empty(n_inputs):
+    logger = logging.Logger("test")
+
+    combined = ExchangeList.combine_directions(
+        [ExchangeList(logger) for _ in range(n_inputs)], logger
+    )
+
+    assert isinstance(combined, ExchangeList)
+    assert combined.to_list() == []
+
+
+def test_combine_directions_raises_on_a_net_flow_only_event():
+    logger = logging.Logger("test")
+    net_flow_only = ExchangeList(logger)
+    net_flow_only.append(
+        zoneKey=ZoneKey("DK-DK1->GB"),
+        datetime=_T18,
+        source="entsoe.eu",
+        netFlow=60,
+    )
+    exports = _direction_list(logger, "exports", [(_T17, None, 100)])
+
+    with pytest.raises(ValueError):
+        ExchangeList.combine_directions([exports, net_flow_only], logger)
+
+
+@pytest.mark.parametrize("direction", ["exports", "imports"])
+def test_combine_directions_raises_when_two_inputs_report_a_direction(direction):
+    logger = logging.Logger("test")
+    first = _direction_list(logger, direction, [(_T17, None, 100), (_T18, None, 5)])
+    second = _direction_list(logger, direction, [(_T18, None, 7)])
+
+    with pytest.raises(ValueError):
+        ExchangeList.combine_directions([first, second], logger)
+
+
+def test_combine_directions_raises_on_mixed_zones():
+    logger = logging.Logger("test")
+    exports = _direction_list(logger, "exports", [(_T17, None, 100)])
+    imports = _direction_list(
+        logger, "imports", [(_T17, None, 40)], zone_key=ZoneKey("DK-DK1->NL")
+    )
+
+    with pytest.raises(ValueError):
+        ExchangeList.combine_directions([exports, imports], logger)
+
+
+def test_combine_directions_raises_on_mixed_source_types():
+    logger = logging.Logger("test")
+    exports = _direction_list(logger, "exports", [(_T17, None, 100)])
+    imports = _direction_list(
+        logger, "imports", [(_T17, None, 40)], source_type=EventSourceType.forecasted
+    )
+
+    with pytest.raises(ValueError):
+        ExchangeList.combine_directions([exports, imports], logger)
+
+
+def test_combine_directions_joins_sources():
+    logger = logging.Logger("test")
+    exports = _direction_list(
+        logger, "exports", [(_T17, None, 100), (_T18, None, 90)], source="a.com"
+    )
+    imports = _direction_list(logger, "imports", [(_T17, None, 40)], source="b.com")
+    more_imports = _direction_list(
+        logger, "imports", [(_T18, None, 30)], source="a.com"
+    )
+
+    events = ExchangeList.combine_directions(
+        [exports, imports, more_imports], logger
+    ).to_list()
+
+    for event in events:
+        sources = event["source"].split(", ")
+        assert sorted(sources) == ["a.com", "b.com"]
 
 
 def test_non_overlapping_list_deduplicates_datetimes():
