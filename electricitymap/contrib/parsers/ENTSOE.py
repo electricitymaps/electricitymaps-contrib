@@ -40,7 +40,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
-    Exchange,
     ProductionMix,
     ScheduledExchange,
     StorageMix,
@@ -930,30 +929,6 @@ def parse_exchange(
     return exchange_list
 
 
-def _combine_directions(
-    directions: list[ExchangeList], sorted_zone_keys: ZoneKey, logger: Logger
-) -> ExchangeList:
-    """Combines the export and import lists of one domain pair into one event per datetime."""
-    events_by_datetime: dict[datetime, list[Exchange]] = {}
-    for event in chain.from_iterable(direction.events for direction in directions):
-        events_by_datetime.setdefault(event.datetime, []).append(event)
-
-    combined = ExchangeList(logger)
-    for dt, events in sorted(events_by_datetime.items(), key=itemgetter(0)):
-        combined.append(
-            zoneKey=sorted_zone_keys,
-            datetime=dt,
-            source=SOURCE,
-            end_datetime=min(
-                (e.end_datetime for e in events if e.end_datetime is not None),
-                default=None,
-            ),
-            exports=next((e.exports for e in events if e.exports is not None), None),
-            imports=next((e.imports for e in events if e.imports is not None), None),
-        )
-    return combined
-
-
 def parse_exchange_forecast(
     xml_text: str,
     is_import: bool,
@@ -1292,9 +1267,7 @@ def get_physical_flows(
                     logger=logger,
                 )
             )
-        raw_exchange_lists.append(
-            _combine_directions(directions, sorted_zone_keys, logger)
-        )
+        raw_exchange_lists.append(ExchangeList.combine_directions(directions, logger))
     return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
 
