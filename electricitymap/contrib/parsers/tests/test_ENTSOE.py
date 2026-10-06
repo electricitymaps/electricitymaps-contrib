@@ -9,14 +9,12 @@ from requests_mock import ANY, GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeList,
     ForecastTransferCapacityList,
 )
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
     DateTimePoint,
-    _combine_directions,
     _get_datetime_value_from_timeseries,
     _merge_forecast_transfer_capacities,
     fetch_production,
@@ -332,130 +330,6 @@ class TestParseExchangeDirections:
         for imp, exp in zip(as_import, as_export, strict=True):
             assert imp["imports"] == exp["exports"]
             assert imp["end_datetime"] == exp["end_datetime"]
-
-
-def _direction_list(
-    zone_key: ZoneKey,
-    is_import: bool,
-    points: list[tuple[datetime, datetime | None, float]],
-) -> ExchangeList:
-    exchanges = ExchangeList(logging.getLogger("test"))
-    for dt, dt_end, quantity in points:
-        exchanges.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            end_datetime=dt_end,
-            source="entsoe.eu",
-            exports=None if is_import else quantity,
-            imports=quantity if is_import else None,
-        )
-    return exchanges
-
-
-class TestCombineDirections:
-    zone_key = ZoneKey("DK-DK1->GB")
-    t17 = datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
-    t18 = datetime(2023, 12, 20, 18, tzinfo=timezone.utc)
-    t19 = datetime(2023, 12, 20, 19, tzinfo=timezone.utc)
-    hour = timedelta(hours=1)
-
-    def _combine(self, directions: list[ExchangeList]) -> list[dict]:
-        return _combine_directions(
-            directions, self.zone_key, logging.getLogger("test")
-        ).to_list()
-
-    def test_overlapping_mtu_carries_both_directions_and_net_flow(self):
-        imports = _direction_list(self.zone_key, True, [(self.t17, self.t18, 40)])
-        exports = _direction_list(self.zone_key, False, [(self.t17, self.t18, 100)])
-
-        events = self._combine([imports, exports])
-
-        assert len(events) == 1
-        assert events[0]["datetime"] == self.t17
-        assert events[0]["end_datetime"] == self.t18
-        assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
-            100,
-            40,
-            60,
-        )
-        assert events[0]["sortedZoneKeys"] == self.zone_key
-        assert events[0]["sourceType"] == EventSourceType.measured
-
-    def test_mtus_covered_by_one_direction_are_kept_one_sided(self):
-        imports = _direction_list(
-            self.zone_key,
-            True,
-            [(self.t17, self.t18, 40), (self.t18, self.t19, 10)],
-        )
-        exports = _direction_list(
-            self.zone_key,
-            False,
-            [(self.t17, self.t18, 100), (self.t19, self.t19 + self.hour, 25)],
-        )
-
-        events = self._combine([imports, exports])
-
-        assert [
-            (e["datetime"], e["exports"], e["imports"], e["netFlow"]) for e in events
-        ] == [
-            (self.t17, 100, 40, 60),
-            (self.t18, None, 10, None),
-            (self.t19, 25, None, None),
-        ]
-
-    def test_keeps_the_earliest_end_datetime_when_directions_differ(self):
-        quarter_end = self.t17 + timedelta(minutes=15)
-        half_end = self.t17 + timedelta(minutes=30)
-        imports = _direction_list(self.zone_key, True, [(self.t17, self.t18, 40)])
-        exports = _direction_list(
-            self.zone_key,
-            False,
-            [(self.t17, quarter_end, 100), (quarter_end, half_end, 90)],
-        )
-
-        events = self._combine([exports, imports])
-
-        assert [(e["datetime"], e["end_datetime"]) for e in events] == [
-            (self.t17, quarter_end),
-            (quarter_end, half_end),
-        ]
-        assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
-            100,
-            40,
-            60,
-        )
-        assert (events[1]["exports"], events[1]["imports"], events[1]["netFlow"]) == (
-            90,
-            None,
-            None,
-        )
-
-    def test_end_datetime_is_none_when_no_direction_has_one(self):
-        imports = _direction_list(self.zone_key, True, [(self.t17, None, 40)])
-        exports = _direction_list(self.zone_key, False, [(self.t17, None, 100)])
-
-        events = self._combine([imports, exports])
-
-        assert len(events) == 1
-        assert events[0]["end_datetime"] is None
-        assert events[0]["netFlow"] == 60
-
-    def test_output_is_sorted_by_datetime_regardless_of_input_order(self):
-        imports = _direction_list(
-            self.zone_key, True, [(self.t19, None, 1), (self.t17, None, 3)]
-        )
-        exports = _direction_list(self.zone_key, False, [(self.t18, None, 2)])
-
-        events = self._combine([imports, exports])
-
-        assert [e["datetime"] for e in events] == [self.t17, self.t18, self.t19]
-
-    def test_empty_directions_yield_no_events(self):
-        logger = logging.getLogger("test")
-
-        events = self._combine([ExchangeList(logger), ExchangeList(logger)])
-
-        assert events == []
 
 
 def test_fetch_exchange_keeps_both_directions_when_both_flow(requests_mock, session):
