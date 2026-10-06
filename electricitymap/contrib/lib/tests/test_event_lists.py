@@ -275,7 +275,6 @@ def test_day_ahead_price_list():
         source="trust.me",
         currency="GBP",
         auction=DayAheadAuction.NORDPOOL_N2EX_DA,
-        publishedAt=datetime(2026, 9, 30, 9, tzinfo=timezone.utc),
     )
     assert price_list.to_list() == [
         {
@@ -287,7 +286,6 @@ def test_day_ahead_price_list():
             "price": 1,
             "source": "trust.me",
             "sourceType": EventSourceType.published,
-            "publishedAt": datetime(2026, 9, 30, 9, tzinfo=timezone.utc),
         }
     ]
 
