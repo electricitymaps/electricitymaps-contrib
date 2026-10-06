@@ -282,7 +282,8 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
         Each of netFlow, exports and imports is summed for a datetime only when
         every input at that datetime has it, and is None otherwise. The merged
         event uses exports and imports when both are known, else the net flow,
-        else whichever direction is known.
+        else whichever direction is known. Use `combine_directions` to join inputs
+        that report different directions.
 
         A datetime only some of the inputs cover is summed from those that do,
         unless `drop_non_matching_datetimes` is set, which drops it instead. Use
@@ -356,6 +357,69 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                 )
 
         return exchanges
+
+    @staticmethod
+    def combine_directions(
+        direction_lists: list["ExchangeList"], logger: Logger
+    ) -> "ExchangeList":
+        """
+        Given lists that each report some directions of one exchange, combine them into
+        one event per datetime, taking each direction from the input that reports it.
+        A datetime only some inputs cover keeps the directions those inputs report.
+        Raises if an event has no exports or imports, or if two inputs report the same
+        direction at a datetime.
+        """
+        combined = ExchangeList(logger)
+        events = [event for exchanges in direction_lists for event in exchanges.events]
+        if not events:
+            return combined
+
+        zone_key, sources, source_type = ExchangeList.get_zone_source_type(
+            pd.DataFrame(
+                [
+                    {
+                        "zoneKey": event.zoneKey,
+                        "source": event.source,
+                        "sourceType": event.sourceType,
+                    }
+                    for event in events
+                ]
+            )
+        )
+        events_by_datetime: dict[datetime, list[Exchange]] = {}
+        for event in events:
+            if event.exports is None and event.imports is None:
+                raise ValueError(
+                    f"Cannot combine an exchange without exports or imports: {event}"
+                )
+            events_by_datetime.setdefault(event.datetime, []).append(event)
+
+        for dt, dt_events in sorted(events_by_datetime.items(), key=itemgetter(0)):
+            directions: dict[str, float | None] = {}
+            for direction in ("exports", "imports"):
+                values = [
+                    getattr(event, direction)
+                    for event in dt_events
+                    if getattr(event, direction) is not None
+                ]
+                if len(values) > 1:
+                    raise ValueError(
+                        f"Multiple {direction} for {zone_key} at {dt}: {values}"
+                    )
+                directions[direction] = values[0] if values else None
+            combined.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=sources,
+                end_datetime=min(
+                    (e.end_datetime for e in dt_events if e.end_datetime is not None),
+                    default=None,
+                ),
+                sourceType=source_type,
+                exports=directions["exports"],
+                imports=directions["imports"],
+            )
+        return combined
 
     @staticmethod
     def update_exchanges(
