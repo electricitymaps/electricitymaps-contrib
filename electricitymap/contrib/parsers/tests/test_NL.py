@@ -15,6 +15,7 @@ fake that mimics the real calendar-day behaviour, so no HTTP is performed.
 
 from datetime import datetime, timedelta, timezone
 
+import pandas as pd
 import pytest
 
 from electricitymap.contrib.parsers import NL
@@ -170,3 +171,88 @@ def test_hourly_value_equals_mean_of_twelve_five_minute_points(dk_calls):
     row = df.loc[df["datetime"] == settled_hour].iloc[0]
     assert row["sortedZoneKeys"] == SORTED_ZONE_KEYS
     assert row["source"] == SOURCE
+
+
+HOURS = [D.replace(hour=10), D.replace(hour=11)]
+
+
+def _capacities() -> pd.DataFrame:
+    return pd.DataFrame(
+        {"capacity (MW)": [1000.0]},
+        index=pd.DatetimeIndex([datetime(2024, 1, 1, tzinfo=UTC)], name="datetime"),
+    )
+
+
+def _entsoe_exchange(key: str, dt: datetime, exports, imports) -> dict:
+    net_flow = None if exports is None or imports is None else exports - imports
+    return {
+        "sortedZoneKeys": key,
+        "datetime": dt,
+        "netFlow": net_flow,
+        "exports": exports,
+        "imports": imports,
+        "source": "entsoe.eu",
+        "sourceType": "measured",
+    }
+
+
+@pytest.fixture
+def nl_boundaries(monkeypatch):
+    """Stub NL's ENTSO-E, DK and capacity sources; return the exchanges by key."""
+    exchanges_by_key: dict[str, list[dict]] = {
+        "BE->NL": [_entsoe_exchange("BE->NL", h, 150.0, 50.0) for h in HOURS],
+        "DE->NL": [_entsoe_exchange("DE->NL", h, 0.0, 0.0) for h in HOURS],
+        "GB->NL": [_entsoe_exchange("GB->NL", h, 0.0, 0.0) for h in HOURS],
+        "NL->NO-NO2": [_entsoe_exchange("NL->NO-NO2", h, 0.0, 0.0) for h in HOURS],
+    }
+    monkeypatch.setattr(
+        NL.ENTSOE,
+        "fetch_exchange",
+        lambda zone_key1, zone_key2, **kwargs: exchanges_by_key[
+            f"{zone_key1}->{zone_key2}"
+        ],
+    )
+    monkeypatch.setattr(
+        NL.ENTSOE,
+        "fetch_consumption",
+        lambda **kwargs: [
+            {"datetime": h, "consumption": 1000.0, "zoneKey": "NL", "source": "x"}
+            for h in HOURS
+        ],
+    )
+    monkeypatch.setattr(
+        NL.ENTSOE,
+        "fetch_production",
+        lambda **kwargs: [
+            {
+                "datetime": h,
+                "zoneKey": "NL",
+                "production": {"gas": 500.0, "unknown": 10.0},
+                "storage": {},
+                "source": "entsoe.eu",
+            }
+            for h in HOURS
+        ],
+    )
+    monkeypatch.setattr(NL.DK, "fetch_exchange", lambda **kwargs: [])
+    monkeypatch.setattr(NL, "get_solar_capacities", _capacities)
+    monkeypatch.setattr(NL, "get_wind_capacities", _capacities)
+    return exchanges_by_key
+
+
+@pytest.mark.parametrize(
+    "key, exports, imports",
+    [
+        pytest.param("NL->NO-NO2", 80.0, None, id="nl-first-imports-missing"),
+        pytest.param("NL->NO-NO2", None, 80.0, id="nl-first-exports-missing"),
+    ],
+)
+def test_fetch_production_ignores_one_sided_entsoe_exchanges(
+    nl_boundaries, key, exports, imports
+):
+    nl_boundaries[key][1] = _entsoe_exchange(key, HOURS[1], exports, imports)
+
+    productions = NL.fetch_production(target_datetime=D.replace(hour=12))
+
+    assert [p["datetime"] for p in productions] == HOURS
+    assert all(p["zoneKey"] == "NL" for p in productions)

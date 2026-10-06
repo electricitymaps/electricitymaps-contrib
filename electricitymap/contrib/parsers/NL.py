@@ -106,7 +106,7 @@ def fetch_production(
         )
         if not exchange:
             return
-        exchanges.extend(exchange or [])
+        exchanges.extend(e for e in exchange if e["netFlow"] is not None)
 
     # add DK1 data (only for dates after operation)
     if target_datetime > datetime(2019, 8, 24, tzinfo=UTC):

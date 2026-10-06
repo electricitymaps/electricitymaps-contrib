@@ -917,15 +917,13 @@ def parse_exchange(
     exchange_list = ExchangeList(logger)
     points = parse_scalar(xml_text)
     for dt, dt_end, quantity in points:
-        if is_import:
-            quantity *= -1
-        # Find out whether or not we should update the net production
         exchange_list.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
             end_datetime=dt_end,
             source=SOURCE,
-            netFlow=quantity,
+            exports=None if is_import else quantity,
+            imports=quantity if is_import else None,
         )
 
     return exchange_list
@@ -1233,11 +1231,11 @@ def get_physical_flows(
 
     raw_exchange_lists: list[ExchangeList] = []
     for domain_pair in domain_pairs:
-        # The two directions are the halves of one net flow, so an MTU only one
-        # of them covers is dropped rather than reported one-sided. Whole domain
-        # pairs are then added up as they come: a border can map to a pair
-        # ENTSO-E publishes nothing for (FR-COR->IT-SAR), and the pairs that do
-        # publish still describe the border.
+        # The two directions are combined per MTU, keeping an MTU only one of
+        # them covers as one-sided. Whole domain pairs are then added up as they
+        # come: a border can map to a pair ENTSO-E publishes nothing for
+        # (FR-COR->IT-SAR), and the pairs that do publish still describe the
+        # border.
         directions: list[ExchangeList] = []
         for is_import in (True, False):
             domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
@@ -1269,11 +1267,7 @@ def get_physical_flows(
                     logger=logger,
                 )
             )
-        raw_exchange_lists.append(
-            ExchangeList.merge_exchanges(
-                directions, logger, drop_non_matching_datetimes=True
-            )
-        )
+        raw_exchange_lists.append(ExchangeList.combine_directions(directions, logger))
     return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
 

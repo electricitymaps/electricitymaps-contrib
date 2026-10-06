@@ -1156,6 +1156,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 17, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1362.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1362.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1164,6 +1166,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 18, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(102.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(102.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1172,6 +1176,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 19, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1180,6 +1186,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 20, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1188,6 +1196,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 21, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1196,6 +1206,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 22, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1204,6 +1216,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1212,6 +1226,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1220,6 +1236,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1228,6 +1246,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1236,6 +1256,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1244,6 +1266,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1252,6 +1276,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1260,6 +1286,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1268,6 +1296,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 7, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1276,6 +1306,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 8, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1284,6 +1316,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 9, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(38.0),
       'netFlow': np.float64(-38.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1292,6 +1326,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 10, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(710.0),
       'netFlow': np.float64(-710.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1300,6 +1336,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 11, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(732.0),
       'netFlow': np.float64(-732.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1308,6 +1346,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 12, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1382.0),
       'netFlow': np.float64(-1382.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1316,6 +1356,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 13, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1400.0),
       'netFlow': np.float64(-1400.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1324,6 +1366,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 14, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1402.0),
       'netFlow': np.float64(-1402.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1332,6 +1376,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 15, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1406.0),
       'netFlow': np.float64(-1406.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1340,6 +1386,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 16, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1366.0),
       'netFlow': np.float64(-1366.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1348,6 +1396,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 17, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(1326.0),
       'netFlow': np.float64(-1326.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1356,6 +1406,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 18, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(96.0),
       'netFlow': np.float64(-96.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1364,6 +1416,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 19, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(2.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(2.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1372,6 +1426,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 20, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1380,6 +1436,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 21, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1388,6 +1446,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 22, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1396,6 +1456,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 21, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1404,6 +1466,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1412,6 +1476,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1420,6 +1486,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1428,6 +1496,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1436,6 +1506,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1444,6 +1516,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1452,6 +1526,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1460,6 +1536,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 7, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 8, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1468,6 +1546,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 9, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 10, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1476,6 +1556,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 10, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 11, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(1.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(1.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1484,6 +1566,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 13, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 14, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(2.0),
       'netFlow': np.float64(-2.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1492,6 +1576,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 14, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 15, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -1500,6 +1586,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 22, 15, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 22, 16, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(0.0),
+      'imports': np.float64(0.0),
       'netFlow': np.float64(0.0),
       'sortedZoneKeys': 'DK-DK1->GB',
       'source': 'entsoe.eu',
@@ -7194,6 +7282,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 10, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 11, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(47.0),
+      'imports': np.float64(10.0),
       'netFlow': np.float64(37.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7202,6 +7292,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 11, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 12, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(48.0),
+      'imports': np.float64(10.0),
       'netFlow': np.float64(38.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7210,6 +7302,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 12, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 13, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(48.0),
+      'imports': np.float64(13.0),
       'netFlow': np.float64(35.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7218,6 +7312,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 13, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 14, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(49.0),
+      'imports': np.float64(8.0),
       'netFlow': np.float64(41.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7226,6 +7322,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 14, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 15, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(48.0),
+      'imports': np.float64(12.0),
       'netFlow': np.float64(36.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7234,6 +7332,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 15, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 16, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(11.0),
       'netFlow': np.float64(17.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7242,6 +7342,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 16, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 17, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(13.0),
       'netFlow': np.float64(15.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7250,6 +7352,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 17, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 18, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(11.0),
       'netFlow': np.float64(17.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7258,6 +7362,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 18, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 19, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(8.0),
       'netFlow': np.float64(20.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7266,6 +7372,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 19, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 20, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(21.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7274,6 +7382,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 20, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 21, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(21.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7282,6 +7392,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 21, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 22, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(21.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7290,6 +7402,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 22, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 27, 23, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(22.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7298,6 +7412,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 27, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(39.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(33.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7306,6 +7422,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(76.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(70.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7314,6 +7432,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(87.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(81.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7322,6 +7442,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(88.0),
+      'imports': np.float64(3.0),
       'netFlow': np.float64(85.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7330,6 +7452,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(88.0),
+      'imports': np.float64(3.0),
       'netFlow': np.float64(85.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7338,6 +7462,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(89.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(83.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7346,6 +7472,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(68.0),
+      'imports': np.float64(3.0),
       'netFlow': np.float64(65.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7354,6 +7482,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(88.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(82.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7362,6 +7492,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 7, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 8, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(55.0),
+      'imports': np.float64(10.0),
       'netFlow': np.float64(45.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7370,6 +7502,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 8, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 9, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(9.0),
       'netFlow': np.float64(19.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7378,6 +7512,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 9, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 10, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(9.0),
       'netFlow': np.float64(19.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7386,6 +7522,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 10, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 11, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(9.0),
       'netFlow': np.float64(19.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7394,6 +7532,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 11, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 12, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(21.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7402,6 +7542,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 12, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 13, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(34.0),
+      'imports': np.float64(12.0),
       'netFlow': np.float64(22.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7410,6 +7552,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 13, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 14, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(39.0),
+      'imports': np.float64(12.0),
       'netFlow': np.float64(27.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7418,6 +7562,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 14, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 15, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(35.0),
+      'imports': np.float64(11.0),
       'netFlow': np.float64(24.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7426,6 +7572,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 15, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 16, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(31.0),
+      'imports': np.float64(11.0),
       'netFlow': np.float64(20.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7434,6 +7582,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 16, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 17, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(74.0),
+      'imports': np.float64(14.0),
       'netFlow': np.float64(60.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7442,6 +7592,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 17, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 18, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(83.0),
+      'imports': np.float64(13.0),
       'netFlow': np.float64(70.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7450,6 +7602,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 18, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 19, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(83.0),
+      'imports': np.float64(10.0),
       'netFlow': np.float64(73.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7458,6 +7612,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 19, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 20, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(58.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(51.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7466,6 +7622,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 20, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 21, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(29.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(23.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7474,6 +7632,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 21, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 22, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(21.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(14.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7482,6 +7642,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 22, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 28, 23, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(37.0),
+      'imports': np.float64(7.0),
       'netFlow': np.float64(30.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7490,6 +7652,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 28, 23, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 0, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(76.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(70.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7498,6 +7662,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 0, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 1, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(89.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(83.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7506,6 +7672,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 1, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 2, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(85.0),
+      'imports': np.float64(10.0),
       'netFlow': np.float64(75.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7514,6 +7682,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 2, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 3, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(92.0),
+      'imports': np.float64(4.0),
       'netFlow': np.float64(88.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7522,6 +7692,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 3, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 4, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(92.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(86.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7530,6 +7702,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 4, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 5, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(92.0),
+      'imports': np.float64(5.0),
       'netFlow': np.float64(87.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7538,6 +7712,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 5, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 6, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(92.0),
+      'imports': np.float64(9.0),
       'netFlow': np.float64(83.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7546,6 +7722,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 6, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 7, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(46.0),
+      'imports': np.float64(9.0),
       'netFlow': np.float64(37.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7554,6 +7732,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 7, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 8, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(29.0),
+      'imports': np.float64(8.0),
       'netFlow': np.float64(21.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',
@@ -7562,6 +7742,8 @@
     dict({
       'datetime': datetime.datetime(2023, 12, 29, 8, 0, tzinfo=datetime.timezone.utc),
       'end_datetime': datetime.datetime(2023, 12, 29, 9, 0, tzinfo=datetime.timezone.utc),
+      'exports': np.float64(28.0),
+      'imports': np.float64(6.0),
       'netFlow': np.float64(22.0),
       'sortedZoneKeys': 'FR-COR->IT-SAR',
       'source': 'entsoe.eu',

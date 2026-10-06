@@ -68,6 +68,8 @@ def fetch_swiss_exchanges(session, target_datetime, logger):
             continue
 
         for exchange in exchanges:
+            if exchange["netFlow"] is None:
+                continue
             dt = exchange["datetime"]
             if dt not in swiss_transmissions:
                 swiss_transmissions[dt] = exchange["netFlow"]
