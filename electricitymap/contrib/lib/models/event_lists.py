@@ -333,7 +333,7 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
                     end_datetime = val.to_pydatetime()
 
             net_flow, exports, imports = (
-                None if pd.isna(row[column]) else row[column]
+                None if pd.isna(value := row[column]) else value
                 for column in value_columns
             )
             if (exports is None or imports is None) and net_flow is not None:
@@ -398,9 +398,9 @@ class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exch
             directions: dict[str, float | None] = {}
             for direction in ("exports", "imports"):
                 values = [
-                    getattr(event, direction)
+                    value
                     for event in dt_events
-                    if getattr(event, direction) is not None
+                    if (value := getattr(event, direction)) is not None
                 ]
                 if len(values) > 1:
                     raise ValueError(
