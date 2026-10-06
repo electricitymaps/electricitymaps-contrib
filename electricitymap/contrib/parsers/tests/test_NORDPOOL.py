@@ -176,6 +176,82 @@ def test_exchange_keeps_both_directions_within_one_period(requests_mock, session
     assert all(e["sortedZoneKeys"] == "FI->SE-SE1" for e in events)
 
 
+def _fi_payload_with_se1_connection(start: str, end: str, se1_connection: dict) -> list:
+    return [
+        {
+            "deliveryArea": "FI",
+            "exchanges": [
+                {
+                    "byConnections": [{"area": "SE1", **se1_connection}],
+                    "deliveryStart": start,
+                    "deliveryEnd": end,
+                }
+            ],
+        }
+    ]
+
+
+@pytest.mark.parametrize(
+    "connection, expected",
+    [
+        pytest.param({"export": 300.0}, (300, None, None), id="missing-import"),
+        pytest.param({"import": 120.0}, (None, 120, None), id="missing-export"),
+        pytest.param(
+            {"export": 300.0, "import": None}, (300, None, None), id="null-import"
+        ),
+        pytest.param(
+            {"export": None, "import": 120.0}, (None, 120, None), id="null-export"
+        ),
+    ],
+)
+def test_exchange_keeps_connection_reported_in_one_direction(
+    requests_mock, session, connection, expected
+):
+    _register_fi_exchange(
+        requests_mock,
+        current_day=_fi_payload_with_se1_connection(
+            "2024-12-01T00:00:00Z", "2024-12-01T00:15:00Z", connection
+        ),
+        previous_day=_fi_payload_with_se1_connection(
+            "2024-11-30T00:00:00Z",
+            "2024-11-30T00:15:00Z",
+            {"export": 50.0, "import": 80.0},
+        ),
+    )
+
+    events = sorted(_fetch_fi_se1(session), key=lambda e: e["datetime"])
+
+    assert [(e["exports"], e["imports"], e["netFlow"]) for e in events] == [
+        (50, 80, -30),
+        expected,
+    ]
+    assert events[1]["datetime"] == datetime.fromisoformat("2024-12-01T00:00:00+00:00")
+    assert events[1]["end_datetime"] == datetime.fromisoformat(
+        "2024-12-01T00:15:00+00:00"
+    )
+    assert all(e["sortedZoneKeys"] == "FI->SE-SE1" for e in events)
+
+
+def test_exchange_drops_connection_without_either_direction(requests_mock, session):
+    _register_fi_exchange(
+        requests_mock,
+        current_day=_fi_payload_with_se1_connection(
+            "2024-12-01T00:00:00Z", "2024-12-01T00:15:00Z", {"netPosition": 0.0}
+        ),
+        previous_day=_fi_payload_with_se1_connection(
+            "2024-11-30T00:00:00Z",
+            "2024-11-30T00:15:00Z",
+            {"export": 50.0, "import": 80.0},
+        ),
+    )
+
+    events = _fetch_fi_se1(session)
+
+    assert [e["datetime"] for e in events] == [
+        datetime.fromisoformat("2024-11-30T00:00:00+00:00")
+    ]
+
+
 def test_atc_parser_de_no_no2(requests_mock, session, snapshot):
     """DE↔NO-NO2 is the NordLink cable. The parser queries from zone1's side
     (DE → Nordpool code `GER`) and filters byConnection on the counterpart

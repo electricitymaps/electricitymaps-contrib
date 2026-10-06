@@ -9,12 +9,14 @@ from requests_mock import ANY, GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
     ForecastTransferCapacityList,
 )
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
     DateTimePoint,
+    _combine_directions,
     _get_datetime_value_from_timeseries,
     _merge_forecast_transfer_capacities,
     fetch_production,
@@ -295,12 +297,11 @@ class TestParseExchangeDirections:
         assert len(events) == 44
         assert any(event["imports"] > 0 for event in events)
         for event in events:
-            assert event["exports"] == 0
+            assert event["exports"] is None
             assert event["imports"] >= 0
-            assert event["netFlow"] == -event["imports"]
+            assert event["netFlow"] is None
         assert events[0]["datetime"] == datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
         assert events[0]["imports"] == 1362
-        assert events[0]["netFlow"] == -1362
 
     def test_export_document_fills_exports_only(self):
         events = ENTSOE.parse_exchange(
@@ -313,13 +314,12 @@ class TestParseExchangeDirections:
         assert len(events) == 44
         assert any(event["exports"] > 0 for event in events)
         for event in events:
-            assert event["imports"] == 0
+            assert event["imports"] is None
             assert event["exports"] >= 0
-            assert event["netFlow"] == event["exports"]
+            assert event["netFlow"] is None
         assert events[0]["exports"] == 1362
-        assert events[0]["netFlow"] == 1362
 
-    def test_same_document_yields_opposite_net_flow_per_direction(self):
+    def test_same_document_yields_the_same_quantity_in_either_direction(self):
         logger = logging.getLogger("test")
         as_import = ENTSOE.parse_exchange(
             self.xml, is_import=True, sorted_zone_keys=self.zone_key, logger=logger
@@ -331,7 +331,131 @@ class TestParseExchangeDirections:
         assert [e["datetime"] for e in as_import] == [e["datetime"] for e in as_export]
         for imp, exp in zip(as_import, as_export, strict=True):
             assert imp["imports"] == exp["exports"]
-            assert imp["netFlow"] == -exp["netFlow"]
+            assert imp["end_datetime"] == exp["end_datetime"]
+
+
+def _direction_list(
+    zone_key: ZoneKey,
+    is_import: bool,
+    points: list[tuple[datetime, datetime | None, float]],
+) -> ExchangeList:
+    exchanges = ExchangeList(logging.getLogger("test"))
+    for dt, dt_end, quantity in points:
+        exchanges.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            end_datetime=dt_end,
+            source="entsoe.eu",
+            exports=None if is_import else quantity,
+            imports=quantity if is_import else None,
+        )
+    return exchanges
+
+
+class TestCombineDirections:
+    zone_key = ZoneKey("DK-DK1->GB")
+    t17 = datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
+    t18 = datetime(2023, 12, 20, 18, tzinfo=timezone.utc)
+    t19 = datetime(2023, 12, 20, 19, tzinfo=timezone.utc)
+    hour = timedelta(hours=1)
+
+    def _combine(self, directions: list[ExchangeList]) -> list[dict]:
+        return _combine_directions(
+            directions, self.zone_key, logging.getLogger("test")
+        ).to_list()
+
+    def test_overlapping_mtu_carries_both_directions_and_net_flow(self):
+        imports = _direction_list(self.zone_key, True, [(self.t17, self.t18, 40)])
+        exports = _direction_list(self.zone_key, False, [(self.t17, self.t18, 100)])
+
+        events = self._combine([imports, exports])
+
+        assert len(events) == 1
+        assert events[0]["datetime"] == self.t17
+        assert events[0]["end_datetime"] == self.t18
+        assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
+            100,
+            40,
+            60,
+        )
+        assert events[0]["sortedZoneKeys"] == self.zone_key
+        assert events[0]["sourceType"] == EventSourceType.measured
+
+    def test_mtus_covered_by_one_direction_are_kept_one_sided(self):
+        imports = _direction_list(
+            self.zone_key,
+            True,
+            [(self.t17, self.t18, 40), (self.t18, self.t19, 10)],
+        )
+        exports = _direction_list(
+            self.zone_key,
+            False,
+            [(self.t17, self.t18, 100), (self.t19, self.t19 + self.hour, 25)],
+        )
+
+        events = self._combine([imports, exports])
+
+        assert [
+            (e["datetime"], e["exports"], e["imports"], e["netFlow"]) for e in events
+        ] == [
+            (self.t17, 100, 40, 60),
+            (self.t18, None, 10, None),
+            (self.t19, 25, None, None),
+        ]
+
+    def test_keeps_the_earliest_end_datetime_when_directions_differ(self):
+        quarter_end = self.t17 + timedelta(minutes=15)
+        half_end = self.t17 + timedelta(minutes=30)
+        imports = _direction_list(self.zone_key, True, [(self.t17, self.t18, 40)])
+        exports = _direction_list(
+            self.zone_key,
+            False,
+            [(self.t17, quarter_end, 100), (quarter_end, half_end, 90)],
+        )
+
+        events = self._combine([exports, imports])
+
+        assert [(e["datetime"], e["end_datetime"]) for e in events] == [
+            (self.t17, quarter_end),
+            (quarter_end, half_end),
+        ]
+        assert (events[0]["exports"], events[0]["imports"], events[0]["netFlow"]) == (
+            100,
+            40,
+            60,
+        )
+        assert (events[1]["exports"], events[1]["imports"], events[1]["netFlow"]) == (
+            90,
+            None,
+            None,
+        )
+
+    def test_end_datetime_is_none_when_no_direction_has_one(self):
+        imports = _direction_list(self.zone_key, True, [(self.t17, None, 40)])
+        exports = _direction_list(self.zone_key, False, [(self.t17, None, 100)])
+
+        events = self._combine([imports, exports])
+
+        assert len(events) == 1
+        assert events[0]["end_datetime"] is None
+        assert events[0]["netFlow"] == 60
+
+    def test_output_is_sorted_by_datetime_regardless_of_input_order(self):
+        imports = _direction_list(
+            self.zone_key, True, [(self.t19, None, 1), (self.t17, None, 3)]
+        )
+        exports = _direction_list(self.zone_key, False, [(self.t18, None, 2)])
+
+        events = self._combine([imports, exports])
+
+        assert [e["datetime"] for e in events] == [self.t17, self.t18, self.t19]
+
+    def test_empty_directions_yield_no_events(self):
+        logger = logging.getLogger("test")
+
+        events = self._combine([ExchangeList(logger), ExchangeList(logger)])
+
+        assert events == []
 
 
 def test_fetch_exchange_keeps_both_directions_when_both_flow(requests_mock, session):
@@ -378,7 +502,7 @@ def test_fetch_exchange_is_argument_order_independent_for_directions(
     )
 
 
-def test_fetch_exchange_drops_hours_covered_by_one_direction_only(
+def test_fetch_exchange_keeps_hours_covered_by_one_direction_only(
     requests_mock, session
 ):
     _register_dk1_gb_a11(
@@ -391,10 +515,26 @@ def test_fetch_exchange_drops_hours_covered_by_one_direction_only(
         zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=session
     )
 
-    assert [e["datetime"] for e in events] == [
-        datetime(2023, 12, 20, 17, tzinfo=timezone.utc)
-    ]
-    assert (events[0]["exports"], events[0]["imports"]) == (100, 40)
+    assert [
+        (e["datetime"].hour, e["exports"], e["imports"], e["netFlow"]) for e in events
+    ] == [(17, 100, 40, 60), (18, None, 10, None)]
+    assert events[1]["end_datetime"] == datetime(2023, 12, 20, 19, tzinfo=timezone.utc)
+
+
+def test_fetch_exchange_keeps_hours_covered_by_exports_only(requests_mock, session):
+    _register_dk1_gb_a11(
+        requests_mock,
+        imports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T18:00Z", [40]),
+        exports_xml=_a11_xml("2023-12-20T17:00Z", "2023-12-20T19:00Z", [100, 70]),
+    )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("DK-DK1"), zone_key2=ZoneKey("GB"), session=session
+    )
+
+    assert [
+        (e["datetime"].hour, e["exports"], e["imports"], e["netFlow"]) for e in events
+    ] == [(17, 100, 40, 60), (18, 70, None, None)]
 
 
 def test_fetch_exchange_aggregated_border_sums_each_direction(requests_mock, session):
@@ -434,6 +574,38 @@ def test_fetch_exchange_aggregated_border_sums_each_direction(requests_mock, ses
     by_datetime = {e["datetime"]: e for e in events}
     sample = by_datetime[datetime(2023, 12, 27, 10, tzinfo=timezone.utc)]
     assert (sample["exports"], sample["imports"], sample["netFlow"]) == (47, 10, 37)
+
+
+FR_COR_IT_SAR_A11_QUERIES = {
+    "AC_imports": "in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
+    "AC_exports": "in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
+    "DC_imports": "in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
+    "DC_exports": "in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
+}
+
+
+def test_fetch_exchange_aggregated_border_with_one_sided_domain_pair(
+    requests_mock, session
+):
+    documents = {
+        "AC_imports": _a11_xml("2023-12-27T10:00Z", "2023-12-27T12:00Z", [10, 20]),
+        "AC_exports": _a11_xml("2023-12-27T10:00Z", "2023-12-27T12:00Z", [50, 60]),
+        "DC_imports": _a11_xml("2023-12-27T10:00Z", "2023-12-27T11:00Z", [5]),
+        "DC_exports": _a11_xml("2023-12-27T10:00Z", "2023-12-27T12:00Z", [7, 8]),
+    }
+    for name, query in FR_COR_IT_SAR_A11_QUERIES.items():
+        requests_mock.register_uri(
+            GET, f"?documentType=A11&{query}", text=documents[name]
+        )
+
+    events = ENTSOE.fetch_exchange(
+        zone_key1=ZoneKey("FR-COR"), zone_key2=ZoneKey("IT-SAR"), session=session
+    )
+
+    assert [
+        (e["datetime"].hour, e["exports"], e["imports"], e["netFlow"]) for e in events
+    ] == [(10, 57, 15, 42), (11, 68, None, None)]
+    assert all(e["sortedZoneKeys"] == "FR-COR->IT-SAR" for e in events)
 
 
 def test_fetch_exchange_forecast(requests_mock, session, snapshot):
