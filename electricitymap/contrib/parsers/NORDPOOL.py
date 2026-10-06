@@ -5,7 +5,6 @@ from enum import Enum
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-from pydantic.datetime_parse import parse_datetime
 from requests import Response, Session
 from urllib3.util.retry import Retry
 
@@ -280,8 +279,6 @@ def _parse_price_day_ahead(
 ) -> DayAheadPriceList:
     price_list = DayAheadPriceList(logger)
     area = response.json()[0]
-    # `updatedAt` has 7 fractional digits, which `datetime.fromisoformat` rejects on 3.10.
-    published_at = parse_datetime(area["updatedAt"]) if area.get("updatedAt") else None
     for price in area["prices"]:
         price_list.append(
             zoneKey=ZoneKey(INVERTED_ZONE_MAPPING[area["deliveryArea"]]),
@@ -290,7 +287,6 @@ def _parse_price_day_ahead(
             end_datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryEnd"])),
             currency=area["currency"],
             auction=auction,
-            publishedAt=published_at,
             source=SOURCE,
         )
     return price_list
@@ -303,7 +299,7 @@ def fetch_price_day_ahead(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """Day-ahead auction prices tagged with their auction and Nord Pool's publication time.
+    """Day-ahead auction prices tagged with their auction.
 
     Runs alongside `fetch_price`, feeding `parser_data_price_day_ahead`. Same request
     pattern (target delivery day and the next one). `target_datetime` is UTC (naive values

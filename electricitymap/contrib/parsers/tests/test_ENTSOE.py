@@ -168,7 +168,6 @@ def test_fetch_price_day_ahead_es(requests_mock, session, snapshot):
 
     assert snapshot == rows
     assert {row["auction"] for row in rows} == {DayAheadAuction.SDAC}
-    assert {row["publishedAt"] for row in rows} == {None}
     for row in rows:
         assert row["datetime"].utcoffset() == timedelta(0)
         assert row["end_datetime"].utcoffset() == timedelta(0)

@@ -125,7 +125,7 @@ def _register_token(requests_mock):
 
 def _assert_utc(rows):
     for row in rows:
-        for key in ("datetime", "end_datetime", "publishedAt"):
+        for key in ("datetime", "end_datetime"):
             assert row[key].utcoffset() == timedelta(0)
 
 
@@ -151,10 +151,6 @@ def test_price_day_ahead_se(requests_mock, session, snapshot):
     assert snapshot == rows
     assert len(rows) == 48
     assert {row["auction"] for row in rows} == {DayAheadAuction.SDAC}
-    # The next day's `updatedAt` has 7 fractional digits.
-    assert rows[-1]["publishedAt"] == datetime(
-        2024, 7, 8, 11, 12, 16, 85662, tzinfo=timezone.utc
-    )
     _assert_utc(rows)
 
 
@@ -184,13 +180,6 @@ def test_price_day_ahead_gb(requests_mock, session, snapshot):
     )
     assert {row["auction"] for row in rows} == {DayAheadAuction.NORDPOOL_N2EX_DA}
     assert {row["currency"] for row in rows} == {"GBP"}
-    # Each delivery day carries its own `updatedAt`.
-    assert rows[0]["publishedAt"] == datetime(
-        2026, 9, 30, 8, 59, 40, 955084, tzinfo=timezone.utc
-    )
-    assert rows[-1]["publishedAt"] == datetime(
-        2026, 10, 1, 8, 59, 10, 8320, tzinfo=timezone.utc
-    )
     _assert_utc(rows)
 
 

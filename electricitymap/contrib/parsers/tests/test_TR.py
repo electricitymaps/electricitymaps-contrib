@@ -105,7 +105,6 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
         assert row["end_datetime"].utcoffset() == timedelta(0)
         assert row["auction"] == DayAheadAuction.EPIAS_DA
         assert row["currency"] == "TRY"
-        assert row["publishedAt"] is None
 
 
 @freeze_time("2026-10-01 09:00:00")

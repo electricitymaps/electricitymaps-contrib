@@ -1175,7 +1175,6 @@ def parse_prices_day_ahead(
                 source=SOURCE,
                 currency=currency,
                 auction=auction,
-                # No publishedAt: ENTSO-E's <createdDateTime> is the response time.
             )
     return prices
 
