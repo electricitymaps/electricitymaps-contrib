@@ -20,6 +20,7 @@ from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
 from electricitymap.contrib.types import (
     AtcType,
+    DayAheadAuction,
     MarketAgreementType,
     ZoneKey,
 )
@@ -1142,6 +1143,81 @@ class LocationalMarginalPrice(Price):
             "node": self.node,
             "source": self.source,
             "sourceType": self.sourceType,
+        }
+
+
+class DayAheadPrice(Price):
+    """A cleared day-ahead auction price for one MTU.
+
+    auction: the auction that cleared the price. Part of the identity
+        (zone, auction, datetime), since several auctions can clear the same zone and MTU.
+    publishedAt: when the source says the result was published, if it exposes that
+        (Nord Pool `updatedAt`). None otherwise. Inference happens downstream.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    auction: DayAheadAuction
+    publishedAt: datetime | None = None
+
+    @validator("publishedAt")
+    def _validate_published_at(cls, v: datetime | None) -> datetime | None:
+        if v is not None and _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        return v
+
+    @validator("datetime", "end_datetime", "publishedAt")
+    def _to_utc(cls, v: datetime | None) -> datetime | None:
+        # Runs after the inherited validators, which reject naive values, so every
+        # row leaves the parser in UTC regardless of the source's local timezone.
+        return v.astimezone(timezone.utc) if v is not None else v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        auction: DayAheadAuction,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        price: float | None,
+        currency: str,
+        publishedAt: datetime | None = None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "DayAheadPrice | None":
+        try:
+            return DayAheadPrice(
+                zoneKey=zoneKey,
+                auction=auction,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                price=price,
+                currency=currency,
+                publishedAt=publishedAt,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating day-ahead price Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "price day ahead",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "zoneKey": self.zoneKey,
+            "auction": self.auction,
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
+            "currency": self.currency,
+            "price": self.price,
+            "source": self.source,
+            "sourceType": self.sourceType,
+            "publishedAt": self.publishedAt,
         }
 
 

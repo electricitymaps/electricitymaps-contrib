@@ -5,7 +5,7 @@ import re
 import unicodedata
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, timezone
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -16,6 +16,7 @@ import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
     TotalProductionList,
@@ -26,7 +27,9 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import to_utc
+from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
 # Zone key → OCCTO zone number → TSO name
 # JP-HKD : 01 : Hokkaido Electric (HEPCO)
@@ -1022,6 +1025,86 @@ def fetch_price(
         )
 
     return data
+
+
+JEPX_SPOT_URL = "https://www.jepx.jp/market/excel/spot_{fiscal_year}.csv"
+_JEPX_RESOLUTION = timedelta(minutes=30)
+_JEPX_PERIODS = list(range(1, timedelta(days=1) // _JEPX_RESOLUTION + 1))
+# Area-price column of each zone in the JEPX spot CSV (same layout as `fetch_price`).
+# JP-ON has none: JEPX publishes no Okinawa area price.
+JEPX_AREA_COLUMNS: dict[str, int] = {
+    "JP-HKD": 6,
+    "JP-TH": 7,
+    "JP-TK": 8,
+    "JP-CB": 9,
+    "JP-HR": 10,
+    "JP-KN": 11,
+    "JP-CG": 12,
+    "JP-SK": 13,
+    "JP-KY": 14,
+}
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_price_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """JEPX spot (day-ahead) area prices for `parser_data_price_day_ahead`.
+
+    Runs alongside `fetch_price`, with the same CSV and window: the target day and the one
+    before it, where a live run targets tomorrow to pick up the latest auction.
+    `target_datetime` is UTC (naive values are assumed UTC). JST is only used to pick
+    JEPX delivery dates, and rows are emitted in UTC.
+    """
+    if zone_key not in JEPX_AREA_COLUMNS:
+        raise NotImplementedError(f"JEPX publishes no area price for {zone_key}")
+    session = session or Session()
+    target = to_utc(target_datetime)
+    if target_datetime is None:
+        target += timedelta(days=1)
+    target = target.astimezone(ZONE_INFO)  # JEPX dates and periods are JST.
+    window = (target - timedelta(days=1), target)
+    delivery_dates = {dt.date() for dt in window}
+
+    prices = DayAheadPriceList(logger)
+    # The window can straddle 31 March / 1 April, i.e. two fiscal-year files.
+    for fiscal_year in sorted({_fiscal_year(dt) for dt in window}):
+        response = session.get(JEPX_SPOT_URL.format(fiscal_year=fiscal_year))
+        response.raise_for_status()
+        df = pd.read_csv(StringIO(response.content.decode("shift-jis")))
+        df = df.iloc[:, [0, 1, JEPX_AREA_COLUMNS[zone_key]]]
+        df.columns = ["Date", "Period", "price"]
+        df["Date"] = pd.to_datetime(df["Date"], format="%Y/%m/%d").dt.date
+        df = df[df["Date"].isin(delivery_dates)]
+        # Rows only carry a period code, so check each day has exactly the periods
+        # `_JEPX_RESOLUTION` implies (1..48) before turning codes into timestamps.
+        for date, periods in df.groupby("Date")["Period"]:
+            if sorted(periods) != _JEPX_PERIODS:
+                raise ParserException(
+                    parser="JP.py",
+                    message=f"Expected JEPX periods 1-{len(_JEPX_PERIODS)} on {date}, "
+                    f"got {len(periods)} periods",
+                    zone_key=zone_key,
+                )
+        for row in df.itertuples():
+            start = (
+                datetime.combine(row.Date, time(), tzinfo=ZONE_INFO)
+                + (row.Period - 1) * _JEPX_RESOLUTION
+            ).astimezone(timezone.utc)
+            prices.append(
+                zoneKey=zone_key,
+                datetime=start,
+                end_datetime=start + _JEPX_RESOLUTION,
+                # JPY/kWh to JPY/MWh, same conversion as `fetch_price`.
+                price=round(int(1000 * row.price), -1),
+                currency="JPY",
+                auction=DayAheadAuction.JEPX_DA,
+                source="jepx.jp",
+            )
+    return prices.to_list()
 
 
 SOURCES_FORECAST_DATA = {

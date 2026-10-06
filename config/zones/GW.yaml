@@ -3,12 +3,6 @@ bounding_box:
     - 10.96800764387497
   - - -13.66393663936637
     - 12.679582712093122
-center_point:
-  - -14.742429018642051
-  - 12.083543435674374
-centroid:
-  - -15.267509431851042
-  - 11.875198126227332
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -18,11 +12,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+center_point:
+  - -14.742429018642051
+  - 12.083543435674374
+centroid:
+  - -15.267509431851042
+  - 11.875198126227332
 country: GW
 country_name: Guinea-Bissau
 currency: XOF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
