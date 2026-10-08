@@ -20,7 +20,7 @@ MODE_MAPPING = {
     "ÓLEO COMBUSTÍVEL": "unknown",
     "MULTI-COMBUSTÍVEL GÁS/DIESEL": "unknown",
     "MULTI-COMBUSTÍVEL DIESEL/ÓLEO": "unknown",
-    "GÁS": "unknown",
+    "GÁS": "unknown",                               # Maps gas and biomass to unknown since the ONS parser does not have gas and biomass as separate modes.
     "RESÍDUO CICLO COMBINADO": "unknown",
     "EÓLICA": "wind",
     "CARVÃO": "unknown",
