@@ -5,8 +5,8 @@ from logging import Logger, getLogger
 
 from requests import Session
 
-from .lib import IN, web, zonekey
-from .lib.exceptions import ParserException
+from ..lib import IN, web, zonekey
+from ..lib.exceptions import ParserException
 
 
 def fetch_consumption(

@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 
 from requests import Session
 
-from .lib import web
+from ..lib import web
 
 # IMPORTANT: This parser is as of December 2024 not functional, and the data is
 #            currently very unreliable or not available at all - in both an old

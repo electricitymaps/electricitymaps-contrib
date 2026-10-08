@@ -180,9 +180,6 @@ fallbackZoneMixes:
         wind: 0.1271854795574422
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-parsers:
-  consumption: IN_KA.fetch_consumption
-  production: IN_KA.fetch_production
 region: Asia
 sources:
   IPCC 2014:

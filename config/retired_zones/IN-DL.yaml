@@ -127,9 +127,6 @@ fallbackZoneMixes:
         wind: 0.0
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-parsers:
-  consumption: IN_DL.fetch_consumption
-  production: IN_DL.fetch_production
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Unknown

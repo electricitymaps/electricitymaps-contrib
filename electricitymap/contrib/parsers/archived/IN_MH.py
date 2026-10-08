@@ -9,7 +9,7 @@ from imageio import imread
 from PIL import Image, ImageOps
 from requests import Session
 
-from .lib.exceptions import ParserException
+from ..lib.exceptions import ParserException
 
 url = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
 

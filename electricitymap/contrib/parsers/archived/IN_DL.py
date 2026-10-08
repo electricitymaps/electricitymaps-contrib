@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 
 from requests import Session
 
-from .lib import IN, web, zonekey
+from ..lib import IN, web, zonekey
 
 ZONE_INFO = ZoneInfo
 
