@@ -5,10 +5,10 @@ bounding_box:
     - -22.52219281301587
 capacity:
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: ons.org.br
-      value: 15493.0
-    - datetime: '2026-01-01'
+      value: 15506.0
+    - datetime: '2024-01-01'
       source: ons.org.br
       value: 15506.0
   solar:
@@ -16,17 +16,23 @@ capacity:
       source: ons.org.br
       value: 6319.0
   unknown:
+    - datetime: '2022-01-01'
+      source: ons.org.br
+      value: 3634.0
     - datetime: '2023-01-01'
       source: ons.org.br
-      value: 3608.0
-    - datetime: '2026-01-01'
+      value: 3604.0
+    - datetime: '2024-01-01'
       source: ons.org.br
       value: 3635.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: ons.org.br
-      value: 2000.0
-    - datetime: '2026-01-01'
+      value: 1996.0
+    - datetime: '2024-01-01'
+      source: ons.org.br
+      value: 2159.0
+    - datetime: '2025-01-01'
       source: ons.org.br
       value: 2264.0
 center_point:
