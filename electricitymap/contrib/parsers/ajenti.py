@@ -12,10 +12,15 @@ To get the very exact data, we would need to have a parser running constanty to 
 import json
 from datetime import datetime
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from requests import Session
 from signalr import Connection
+
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.types import ZoneKey
 
 ZONE_PARAMS = {
     # King Island
@@ -134,11 +139,11 @@ def sum_storage_techs(technologies_parsed):
 
 
 def fetch_production(
-    zone_key: str = "AU-TAS-KI",
+    zone_key: ZoneKey = ZoneKey("AU-TAS-KI"),
     session: Session | None = None,
-    target_datetime=None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     if target_datetime is not None:
         raise NotImplementedError(
             "The datasource currently implemented is only real time"
@@ -161,34 +166,31 @@ def fetch_production(
     technologies_parsed = parse_payload(logger, payload)
     storage_techs = sum_storage_techs(technologies_parsed)
 
-    return [
-        {
-            "zoneKey": zone_key,
-            "datetime": datetime.now(tz=ZoneInfo(tz)),
-            "production": {
-                "biomass": technologies_parsed["biomass"],
-                "coal": technologies_parsed["coal"],
-                "gas": technologies_parsed["gas"],
-                "hydro": technologies_parsed["hydro"],
-                "nuclear": technologies_parsed["nuclear"],
-                "oil": technologies_parsed["oil"],
-                "solar": technologies_parsed["solar"],
-                "wind": 0
-                if technologies_parsed["wind"] < 0
-                and technologies_parsed["wind"] > -0.1
-                else technologies_parsed[
-                    "wind"
-                ],  # If wind between 0 and -0.1 set to 0 to ignore self-consumption
-                "geothermal": technologies_parsed["geothermal"],
-                "unknown": technologies_parsed["unknown"],
-            },
-            "storage": {
-                "battery": storage_techs
-                * -1  # Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
-            },
-            "source": source,
-        }
-    ]
+    production_breakdowns = ProductionBreakdownList(logger)
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=ZoneInfo(tz)),
+        production=ProductionMix(
+            biomass=technologies_parsed["biomass"],
+            coal=technologies_parsed["coal"],
+            gas=technologies_parsed["gas"],
+            hydro=technologies_parsed["hydro"],
+            nuclear=technologies_parsed["nuclear"],
+            oil=technologies_parsed["oil"],
+            solar=technologies_parsed["solar"],
+            # If wind between 0 and -0.1 set to 0 to ignore self-consumption
+            wind=0
+            if technologies_parsed["wind"] < 0 and technologies_parsed["wind"] > -0.1
+            else technologies_parsed["wind"],
+            geothermal=technologies_parsed["geothermal"],
+            unknown=technologies_parsed["unknown"],
+        ),
+        # Somewhat counterintuitively, to Electricity Maps positive means charging
+        # and negative means discharging
+        storage=StorageMix(battery=storage_techs * -1),
+        source=source,
+    )
+    return production_breakdowns.to_list()
 
 
 if __name__ == "__main__":
