@@ -136,7 +136,6 @@ exclude = [
   "dist",
   "node_modules",
   "venv",
-  "electricitymap/contrib/parsers/archived",
 ]
 
 # Same as Black.

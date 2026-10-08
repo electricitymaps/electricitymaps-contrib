@@ -35,8 +35,4 @@ Right now we support the following parsers:
 - #### Exchange Forecast parser:
   Parse the forecasted net flow, exchange, between two zones.
 
-# Archived parsers
-
-Parsers that are no longer used or have been broken for a long time reside in the [/archived](/electricitymap/contrib/parsers/archived/) folder.
-
 [wiki data source req]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Technical-requirements-for-parser-data

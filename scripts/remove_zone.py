@@ -64,13 +64,11 @@ def remove_exchanges(zone_key: ZoneKey):
             pass
 
 
-def move_parser_to_archived(zone_key: ZoneKey):
-    parser_path = ROOT_PATH / f"parsers/{zone_key}.py"
+def remove_parser(zone_key: ZoneKey):
+    parser_path = ROOT_PATH / f"electricitymap/contrib/parsers/{zone_key}.py"
     if parser_path.exists():
-        run_shell_command(
-            f"git mv {parser_path} {ROOT_PATH / 'parsers/archived'}", cwd=ROOT_PATH
-        )
-        print("🧹 Moved parser to /archived folder")
+        run_shell_command(f"git rm {parser_path}", cwd=ROOT_PATH)
+        print(f"🧹 Removed {parser_path.name}")
 
 
 def find_files_mentioning_zone(text):
@@ -78,7 +76,6 @@ def find_files_mentioning_zone(text):
     IGNORED_PATHS = [
         "node_modules",
         "dist",
-        "archived",
     ]
     VALID_EXTENSIONS = (
         ".py",
@@ -133,10 +130,10 @@ def main():
     remove_config(zone_key)
     remove_from_parent_config(zone_key)
     remove_exchanges(zone_key)
-    move_parser_to_archived(zone_key)
+    remove_parser(zone_key)
     # For legacy reasons, a subzone parser can both use dash and underscore
     # in the file name so we need to search for both
-    move_parser_to_archived(zone_key.replace("-", "_"))
+    remove_parser(zone_key.replace("-", "_"))
     find_files_mentioning_zone(zone_key)
 
     print("\n✔  All done!")
