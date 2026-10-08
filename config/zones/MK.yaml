@@ -27,13 +27,16 @@ capacity:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 165.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 210.0
   solar:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 22.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 67.0
+      value: 155.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -41,6 +44,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 37.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 122.0
 center_point:
   - 21.724323687808077
   - 41.593212096876016
