@@ -20,6 +20,7 @@ from signalr import Connection
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.parsers.lib.config import ProductionModes
 from electricitymap.contrib.types import ZoneKey
 
 ZONE_PARAMS = {
@@ -166,28 +167,24 @@ def fetch_production(
     technologies_parsed = parse_payload(logger, payload)
     storage_techs = sum_storage_techs(technologies_parsed)
 
+    production = ProductionMix()
+    for mode, value in technologies_parsed.items():
+        if mode not in ProductionModes.values():
+            continue
+        # Wind can read slightly negative from self-consumption, count it as 0
+        production.add_value(mode, value, correct_negative_with_zero=mode == "wind")
+
+    # Somewhat counterintuitively, to Electricity Maps positive means charging
+    # and negative means discharging
+    storage = StorageMix()
+    storage.add_value("battery", storage_techs * -1)
+
     production_breakdowns = ProductionBreakdownList(logger)
     production_breakdowns.append(
         zoneKey=zone_key,
         datetime=datetime.now(tz=ZoneInfo(tz)),
-        production=ProductionMix(
-            biomass=technologies_parsed["biomass"],
-            coal=technologies_parsed["coal"],
-            gas=technologies_parsed["gas"],
-            hydro=technologies_parsed["hydro"],
-            nuclear=technologies_parsed["nuclear"],
-            oil=technologies_parsed["oil"],
-            solar=technologies_parsed["solar"],
-            # If wind between 0 and -0.1 set to 0 to ignore self-consumption
-            wind=0
-            if technologies_parsed["wind"] < 0 and technologies_parsed["wind"] > -0.1
-            else technologies_parsed["wind"],
-            geothermal=technologies_parsed["geothermal"],
-            unknown=technologies_parsed["unknown"],
-        ),
-        # Somewhat counterintuitively, to Electricity Maps positive means charging
-        # and negative means discharging
-        storage=StorageMix(battery=storage_techs * -1),
+        production=production,
+        storage=storage,
         source=source,
     )
     return production_breakdowns.to_list()
