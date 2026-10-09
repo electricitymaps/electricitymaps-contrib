@@ -16,17 +16,17 @@ logger = getLogger(__name__)
 CAPACITY_URL = "https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/capacidade-geracao/CAPACIDADE_GERACAO.csv"
 MODE_MAPPING = {
     "HIDRÁULICA": "hydro",
-    "ÓLEO DIESEL": "unknown",
-    "ÓLEO COMBUSTÍVEL": "unknown",
-    "MULTI-COMBUSTÍVEL GÁS/DIESEL": "unknown",
-    "MULTI-COMBUSTÍVEL DIESEL/ÓLEO": "unknown",
-    "GÁS": "unknown",  # Maps gas and biomass to unknown since the ONS parser does not have gas and biomass as separate modes.
+    "ÓLEO DIESEL": "oil",
+    "ÓLEO COMBUSTÍVEL": "oil",
+    "MULTI-COMBUSTÍVEL GÁS/DIESEL": "gas",
+    "MULTI-COMBUSTÍVEL DIESEL/ÓLEO": "oil",
+    "GÁS": "gas",
     "RESÍDUO CICLO COMBINADO": "unknown",
     "EÓLICA": "wind",
-    "CARVÃO": "unknown",
-    "BIOMASSA": "unknown",
+    "CARVÃO": "coal",
+    "BIOMASSA": "biomass",
     "NUCLEAR": "nuclear",
-    "RESÍDUOS INDUSTRIAIS": "unknown",
+    "RESÍDUOS INDUSTRIAIS": "biomass",
     "FOTOVOLTAICA": "solar",
 }
 
