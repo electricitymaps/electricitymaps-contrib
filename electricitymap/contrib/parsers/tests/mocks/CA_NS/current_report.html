@@ -1,0 +1,109 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <title>Nova Scotia Power Transmission System Information</title>
+  <style>
+    body { background:#EAEAEA; margin:16px; font-family:tahoma,verdana,arial,helvetica,sans-serif; color:#666; }
+    .container { max-width:1100px; margin:0 auto; }
+    .standard { font-size:0.95em; line-height:1.35em; }
+    .section-bar { background:#666; color:#EAEAEA; padding:8px 10px; font-weight:bold; }
+    .updated { background:#666; color:#EAEAEA; padding:6px 10px; font-style:italic; }
+    table { width:100%; border-collapse:collapse; }
+    td, th { padding:6px 8px; vertical-align:top; }
+    th { text-align:left; }
+    .spacer { height:12px; }
+    .num { text-align:right; font-variant-numeric: tabular-nums; }
+    .updated-header {
+      display: flex;
+      justify-content: space-between;   /* pushes MW to the far right */
+      align-items: center;
+     }
+   .updated-header .mw-col {
+    font-style: normal;
+    font-weight: bold;
+    padding-right: 10px;              /* match right padding of your numbers */
+    }
+
+  </style>
+</head>
+<body>
+<div class="container standard">
+  <div>
+    <strong>Nova Scotia Power Transmission System Information</strong><br/><br/>
+    Daily report for: 30-Sep-26<br/><br/>
+    <i>
+      All load values are in MW; negative flow on the NS Export interconnection indicates import into NS.<br/>
+      Current Condition Values are 2 minute averages.
+    </i><br/><br/>
+  </div>
+
+  <div class="section-bar">Current System Conditions</div>
+
+  <div class="updated updated-header">
+    <span>Last Updated: <i>30-Sep-26 10:41</i></span>
+    <span class="mw-col">MW</span>
+  </div>
+
+ <!-- <div class="updated">Last Updated: <i>30-Sep-26 10:41</i></div> -->   
+  <table class="two-col">
+
+    <tbody>
+      <tr><td>Net Load</td><td class="num">1208.8</td></tr>
+      <tr><td>Highlands Export</td><td class="num">-3.8</td></tr>
+      <tr><td>East End Export (at Sydney)</td><td class="num">141.7</td></tr>
+      <tr><td>East End Export (at East Bay)</td><td class="num">442.4</td></tr>
+      <tr><td>Cape Breton Export</td><td class="num">455.5</td></tr>
+      <tr><td>Onslow Import</td><td class="num">444.1</td></tr>
+      <tr><td>NS Export</td><td class="num">-1.2</td></tr>
+      <tr><td>Onslow South</td><td class="num">379.0</td></tr>
+      <tr><td>Flow Into Metro</td><td class="num">266.6</td></tr>
+      <tr><td>Western Import</td><td class="num">60.8</td></tr>
+      <tr><td>Valley Import</td><td class="num">113.4</td></tr>
+      <tr><td>Maritime Link Import</td><td class="num">304.6</td></tr>
+      <tr><td>Wind Generation</td><td class="num">81.3</td></tr>
+      
+    </tbody>
+  </table>
+
+  <div class="spacer"></div>
+
+  <div class="section-bar">Five Day Historic Peak Demand</div>
+  <div class="updated">Last Updated: <i>30-Sep-26 10:41</i></div>
+  <table>
+    <thead class="section-bar">
+      <tr><th>Date</th><th class="num">Net Peak Demand</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>25-Sep-26 19:31</td><td class='num'>1119.3</td></tr>
+<tr><td>26-Sep-26 19:38</td><td class='num'>1135.5</td></tr>
+<tr><td>27-Sep-26 21:00</td><td class='num'>1310.7</td></tr>
+<tr><td>28-Sep-26 17:31</td><td class='num'>1297.0</td></tr>
+<tr><td>29-Sep-26 09:40</td><td class='num'>1223.0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spacer"></div>
+
+  <div class="section-bar">Five Day Load Forecast</div>
+  <div class="updated">Last Updated: <i>30-Sep-26 10:41</i></div>
+  <table>
+    <thead class="section-bar">
+      <tr><th>Date</th><th class="num">Net Peak Demand</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>30-Sep-26 20:00</td><td class='num'>1251.0</td></tr>
+<tr><td>01-Oct-26 18:00</td><td class='num'>1241.0</td></tr>
+<tr><td>02-Oct-26 20:00</td><td class='num'>1168.0</td></tr>
+<tr><td>03-Oct-26 20:00</td><td class='num'>1240.0</td></tr>
+<tr><td>04-Oct-26 18:00</td><td class='num'>1271.0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spacer"></div>
+</div>
+</body>
+</html>
+``
+<!-- built 2026-09-30 10:41:07 by Build_NSP_Report.ps1 -->
