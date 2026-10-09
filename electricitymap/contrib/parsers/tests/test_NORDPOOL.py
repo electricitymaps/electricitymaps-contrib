@@ -243,3 +243,32 @@ def test_price_day_ahead_does_not_depend_on_host_timezone(
 def test_price_day_ahead_unknown_zone_raises(session):
     with pytest.raises(NotImplementedError):
         NORDPOOL.fetch_price_day_ahead(ZoneKey("RU-1"), session)
+
+
+@pytest.mark.parametrize(
+    ("expires_in", "expected_token"),
+    [
+        (timedelta(minutes=-1), "token"),  # already expired
+        (timedelta(minutes=1), "token"),  # would expire before it is used
+        (timedelta(hours=1), "cached"),  # still valid, no new token needed
+    ],
+)
+def test_cached_token_is_refreshed_once_expired(
+    requests_mock, session, monkeypatch, expires_in, expected_token
+):
+    monkeypatch.setattr(
+        NORDPOOL,
+        "CURRENT_TOKEN",
+        NORDPOOL.NordpoolToken(
+            token="cached", expiration=datetime.now(timezone.utc) + expires_in
+        ),
+    )
+    _register_gb_any(requests_mock)
+    NORDPOOL.fetch_price_day_ahead(
+        ZoneKey("GB"), session, target_datetime=datetime(2026, 9, 30, 12, 0)
+    )
+    assert {
+        request.headers["Authorization"]
+        for request in requests_mock.request_history
+        if request.method == GET
+    } == {f"Bearer {expected_token}"}
