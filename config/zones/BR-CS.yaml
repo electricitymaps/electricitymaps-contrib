@@ -3,19 +3,22 @@ bounding_box:
     - -25.307080005952784
   - - -39.67419674196739
     - -7.11801719905241
-center_point:
-  - -56.738675265321376
-  - -16.157032956222388
-centroid:
-  - -54.78559517672911
-  - -15.732630454134739
 capacity:
   hydro:
+    - datetime: '2022-01-01'
+      source: ons.org.br
+      value: 54180.0
     - datetime: '2023-01-01'
       source: ons.org.br
-      value: 54189.0
+      value: 54202.0
+    - datetime: '2024-01-01'
+      source: ons.org.br
+      value: 54202.0
+    - datetime: '2025-01-01'
+      source: ons.org.br
+      value: 54252.0
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: ons.org.br
       value: 1990.0
   solar:
@@ -23,9 +26,31 @@ capacity:
       source: ons.org.br
       value: 17163.0
   unknown:
+    - datetime: '2022-01-01'
+      source: ons.org.br
+      value: 14349.0
     - datetime: '2023-01-01'
       source: ons.org.br
-      value: 14936.0
+      value: 14714.0
+    - datetime: '2024-01-01'
+      source: ons.org.br
+      value: 15264.0
+    - datetime: '2025-01-01'
+      source: ons.org.br
+      value: 17361.0
+    - datetime: '2026-01-01'
+      source: ons.org.br
+      value: 17414.0
+  wind:
+    - datetime: '2025-01-01'
+      source: ons.org.br
+      value: 261.0
+center_point:
+  - -56.738675265321376
+  - -16.157032956222388
+centroid:
+  - -54.78559517672911
+  - -15.732630454134739
 contributors:
   - alexanmtz
   - corradio
@@ -34,7 +59,8 @@ contributors:
 country: BR
 country_name: Brazil
 currency: BRL
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -187,8 +213,8 @@ fallbackZoneMixes:
         solar: 0.10222112507742348
         unknown: 0.11400721976581607
         wind: 0.048779087668148355
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
