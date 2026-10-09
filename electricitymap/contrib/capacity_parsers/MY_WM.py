@@ -35,7 +35,9 @@ def get_capacity_datetime(session: Session) -> datetime:
 def fetch_production_capacity(
     zone_key: ZoneKey, session: Session, target_datetime: datetime | None = None
 ) -> dict[str, Any]:
-    logger.info(f"Fetching capacity for {zone_key} at latest available date, disregarding target_datetime={target_datetime}")
+    logger.info(
+        f"Fetching capacity for {zone_key} at latest available date, disregarding target_datetime={target_datetime}"
+    )
     target_datetime = datetime.now()
     capacity_datetime = get_capacity_datetime(session)
 
