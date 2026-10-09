@@ -3,11 +3,13 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 from requests import Response, Session
 from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     ExchangeAtcList,
     ExchangeList,
     IntradayContractStatisticsList,
@@ -17,11 +19,11 @@ from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
     STATS_AREAS,
     ContractStatisticsResponse,
 )
-from electricitymap.contrib.types import AtcType, ZoneKey
+from electricitymap.contrib.types import AtcType, DayAheadAuction, ZoneKey
 
 from .lib.config import refetch_frequency
 from .lib.session import mount_retry
-from .lib.utils import get_token
+from .lib.utils import get_token, to_utc
 
 """
 Parser for the Nordpool API.
@@ -29,6 +31,8 @@ API documentation: https://data-api.nordpoolgroup.com/index.html
 """
 
 NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
+
+CET = ZoneInfo("Europe/Berlin")  # Nord Pool `date` params are CET delivery dates.
 
 
 @dataclass
@@ -67,6 +71,7 @@ class NORDPOOL_API_ENDPOINT(Enum):
 class MARKET_TYPE(Enum):
     DAY_AHEAD = "DayAhead"
     GB_DAY_AHEAD = "GbHalfHour_DayAhead"
+    N2EX_DAY_AHEAD = "N2EX_DayAhead"
 
 
 class CURRENCY(Enum):
@@ -107,6 +112,17 @@ ZONE_MAPPING = {
 }
 
 INVERTED_ZONE_MAPPING = {value: key for key, value in ZONE_MAPPING.items()}
+
+# Nord Pool market queried per zone by `fetch_price_day_ahead`, and the auction it clears.
+# Nord Pool's "DayAhead" market in coupled areas is the SDAC result.
+DAY_AHEAD_MARKETS: dict[ZoneKey, tuple[MARKET_TYPE, DayAheadAuction]] = {
+    **{
+        ZoneKey(zone_key): (MARKET_TYPE.DAY_AHEAD, DayAheadAuction.SDAC)
+        for zone_key in ZONE_MAPPING
+        if zone_key not in ("GB", "RU-1", "RU-KGD")
+    },
+    ZoneKey("GB"): (MARKET_TYPE.N2EX_DAY_AHEAD, DayAheadAuction.NORDPOOL_N2EX_DA),
+}
 
 
 # Sorted "A->B" → (query_area on zone1's side, counterpart on zone2's side).
@@ -256,6 +272,66 @@ def fetch_price(
     )
 
     return (price_data_target + price_data_target_day_ahead).to_list()
+
+
+def _parse_price_day_ahead(
+    response: Response, auction: DayAheadAuction, logger: Logger
+) -> DayAheadPriceList:
+    price_list = DayAheadPriceList(logger)
+    area = response.json()[0]
+    for price in area["prices"]:
+        price_list.append(
+            zoneKey=ZoneKey(INVERTED_ZONE_MAPPING[area["deliveryArea"]]),
+            price=price["price"],
+            datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryStart"])),
+            end_datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryEnd"])),
+            currency=area["currency"],
+            auction=auction,
+            source=SOURCE,
+        )
+    return price_list
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_price_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Day-ahead auction prices tagged with their auction.
+
+    Runs alongside `fetch_price`, feeding `parser_data_price_day_ahead`. Same request
+    pattern (target delivery day and the next one). `target_datetime` is UTC (naive values
+    are assumed UTC). It is converted to CET only for Nord Pool's `date` parameter.
+    """
+    if zone_key not in DAY_AHEAD_MARKETS:
+        raise NotImplementedError(
+            f"fetch_price_day_ahead has no Nord Pool auction configured for {zone_key}"
+        )
+    market, auction = DAY_AHEAD_MARKETS[zone_key]
+    session = mount_retry(session or Session(), retry=_NORDPOOL_RETRY)
+    delivery_date = to_utc(target_datetime).astimezone(CET).date()
+
+    params = {
+        "areas": ZONE_MAPPING[zone_key],
+        "currency": CURRENCY.GBP.value
+        if zone_key == ZoneKey("GB")
+        else CURRENCY.EUR.value,
+        "market": market.value,
+        "date": delivery_date.isoformat(),
+    }
+    response_target = _query_nordpool(
+        NORDPOOL_API_ENDPOINT.PRICE, params, logger, session
+    )
+    params["date"] = (delivery_date + timedelta(days=1)).isoformat()
+    response_target_day_ahead = _query_nordpool(
+        NORDPOOL_API_ENDPOINT.PRICE, params, logger, session
+    )
+    return (
+        _parse_price_day_ahead(response_target, auction, logger)
+        + _parse_price_day_ahead(response_target_day_ahead, auction, logger)
+    ).to_list()
 
 
 def _parse_exchange(response: Response, logger: Logger, target_zone) -> ExchangeList:

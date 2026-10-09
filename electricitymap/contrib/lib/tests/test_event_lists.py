@@ -6,6 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     ExchangeCapacityList,
     ExchangeList,
     GridAlertList,
@@ -21,7 +22,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
 
 def test_exchange_list():
@@ -262,6 +263,46 @@ def test_append_to_price_list_logs_error():
             currency="EURO",
         )
         mock_error.assert_called_once()
+
+
+def test_day_ahead_price_list():
+    price_list = DayAheadPriceList(logging.Logger("test"))
+    price_list.append(
+        zoneKey=ZoneKey("GB"),
+        datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+        end_datetime=datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="GBP",
+        auction=DayAheadAuction.NORDPOOL_N2EX_DA,
+    )
+    assert price_list.to_list() == [
+        {
+            "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
+            "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+            "zoneKey": ZoneKey("GB"),
+            "auction": DayAheadAuction.NORDPOOL_N2EX_DA,
+            "currency": "GBP",
+            "price": 1,
+            "source": "trust.me",
+            "sourceType": EventSourceType.published,
+        }
+    ]
+
+
+def test_append_to_day_ahead_price_list_logs_error():
+    price_list = DayAheadPriceList(logging.Logger("test"))
+    with patch.object(price_list.logger, "error") as mock_error:
+        price_list.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EURO",
+            auction=DayAheadAuction.SDAC,
+        )
+        mock_error.assert_called_once()
+    assert len(price_list.events) == 0
 
 
 def test_locational_marginal_price_list():

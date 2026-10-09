@@ -107,6 +107,7 @@ class Parsers(ParsersBaseModel):
     dayaheadLocationalMarginalPrice: str | None
     realtimeLocationalMarginalPrice: str | None
     price: str | None
+    priceDayAhead: str | None
     priceIntraday: str | None
     production: str | None
     productionCapacity: str | None

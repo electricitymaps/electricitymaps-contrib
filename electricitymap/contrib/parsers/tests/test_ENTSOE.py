@@ -21,7 +21,8 @@ from electricitymap.contrib.parsers.ENTSOE import (
     parse_forecast_transfer_capacity,
     zulu_to_utc,
 )
-from electricitymap.contrib.types import MarketAgreementType, ZoneKey
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import DayAheadAuction, MarketAgreementType, ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
 
@@ -157,6 +158,74 @@ def test_fetch_prices_day_ahead(requests_mock, session, snapshot):
     )
 
     assert snapshot == ENTSOE.fetch_price(ZoneKey("ES"), session)
+
+
+def test_fetch_price_day_ahead_es(requests_mock, session, snapshot):
+    data = base_path_to_mock / "ES_day_ahead_price.xml"
+    requests_mock.register_uri(GET, ANY, content=data.read_bytes())
+
+    rows = ENTSOE.fetch_price_day_ahead(ZoneKey("ES"), session)
+
+    assert snapshot == rows
+    assert {row["auction"] for row in rows} == {DayAheadAuction.SDAC}
+    for row in rows:
+        assert row["datetime"].utcoffset() == timedelta(0)
+        assert row["end_datetime"].utcoffset() == timedelta(0)
+    # Same points as the old path; only the tagging differs.
+    shared_keys = ("datetime", "end_datetime", "zoneKey", "currency", "price", "source")
+    assert [{key: row[key] for key in shared_keys} for row in rows] == [
+        {key: row[key] for key in shared_keys}
+        for row in ENTSOE.fetch_price(ZoneKey("ES"), session)
+    ]
+
+
+@pytest.mark.parametrize(
+    "zone_key, auction",
+    [
+        ("CH", DayAheadAuction.EPEX_CH_DA),
+        ("IE", DayAheadAuction.SEMOPX_DA),
+        ("GB-NIR", DayAheadAuction.SEMOPX_DA),
+        ("RS", DayAheadAuction.SEEPEX_DA),
+        ("AL", DayAheadAuction.ALPEX_DA),
+        ("XK", DayAheadAuction.ALPEX_DA),
+        ("ME", DayAheadAuction.BELEN_DA),
+        ("MK", DayAheadAuction.MEMO_DA),
+        ("UA", DayAheadAuction.UA_MO_DA),
+    ],
+)
+def test_fetch_price_day_ahead_non_sdac(requests_mock, session, zone_key, auction):
+    # Parsing doesn't depend on the domain, so any A44 document will do.
+    data = base_path_to_mock / "ES_day_ahead_price.xml"
+    requests_mock.register_uri(GET, ANY, content=data.read_bytes())
+
+    rows = ENTSOE.fetch_price_day_ahead(ZoneKey(zone_key), session)
+
+    assert rows
+    assert {row["auction"] for row in rows} == {auction}
+    assert {row["zoneKey"] for row in rows} == {zone_key}
+
+
+def test_fetch_price_day_ahead_unmapped_zone_raises(requests_mock, session):
+    requests_mock.register_uri(GET, ANY, text="")
+    with pytest.raises(ParserException, match="No day-ahead auction configured"):
+        ENTSOE.fetch_price_day_ahead(ZoneKey("BA"), session)
+    assert not requests_mock.called
+
+
+def test_fetch_price_day_ahead_queries_utc_window(requests_mock, session):
+    data = base_path_to_mock / "ES_day_ahead_price.xml"
+    requests_mock.register_uri(GET, ANY, content=data.read_bytes())
+
+    # 2026-10-01T00:30+02:00 is 2026-09-30T22:30Z; naive targets are UTC too.
+    for target in (
+        datetime(2026, 10, 1, 0, 30, tzinfo=timezone(timedelta(hours=2))),
+        datetime(2026, 9, 30, 22, 30),
+    ):
+        ENTSOE.fetch_price_day_ahead(ZoneKey("ES"), session, target_datetime=target)
+
+    for request in requests_mock.request_history:
+        assert request.qs["periodstart"] == ["202609272200"]
+        assert request.qs["periodend"] == ["202610012200"]
 
 
 def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):

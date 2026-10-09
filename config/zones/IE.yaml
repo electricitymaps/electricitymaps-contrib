@@ -487,6 +487,7 @@ parsers:
   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
   generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
   price: ENTSOE.fetch_price
+  priceDayAhead: ENTSOE.fetch_price_day_ahead
   production: SMARTGRIDDASHBOARD.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
