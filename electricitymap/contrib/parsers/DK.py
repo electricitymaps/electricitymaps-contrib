@@ -83,13 +83,15 @@ def fetch_data(
         FORECAST_URL if is_forecast else EXCHANGE_URL,
         params=params,
     )
+    target_date = target_datetime.date() if target_datetime else datetime.now().date()
+    data_type = "forecast" if is_forecast else "exchange"
     if response.ok:
         data = response.json()
         if data["total"] == 0:
             raise ParserException(
                 parser="DK.py",
                 zone_key=zone_key,
-                message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+                message=f"No {data_type} data was returned for {target_date}",
             )
 
         else:
@@ -98,7 +100,7 @@ def fetch_data(
         raise ParserException(
             parser="DK.py",
             zone_key=zone_key,
-            message=f"No exchange data was returned for {target_datetime.date() or datetime.now().date()}",
+            message=f"No {data_type} data was returned for {target_date}",
         )
 
 
@@ -124,31 +126,31 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     sorted_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    data = fetch_data(sorted_keys, session, target_datetime, logger)
-    all_exchange_data = ExchangeList(logger)
-
     if sorted_keys not in EXCHANGE_MAPPING:
         raise ParserException(
             "DK.py",
-            sorted_keys,
             "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2)",
+            sorted_keys,
         )
-    else:
-        price_area = EXCHANGE_MAPPING[sorted_keys]["priceArea"]
-        for datapoint in data["records"]:
-            if datapoint["PriceArea"] != price_area:
-                continue
-            dt = datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
-                tzinfo=timezone.utc
-            )
-            all_exchange_data.append(
-                zoneKey=sorted_keys,
-                datetime=dt,
-                end_datetime=dt + RESOLUTION,
-                netFlow=flow(sorted_keys, datapoint),
-                source=SOURCE,
-            )
-        return all_exchange_data.to_list()
+
+    data = fetch_data(sorted_keys, session, target_datetime, logger)
+    all_exchange_data = ExchangeList(logger)
+
+    price_area = EXCHANGE_MAPPING[sorted_keys]["priceArea"]
+    for datapoint in data["records"]:
+        if datapoint["PriceArea"] != price_area:
+            continue
+        dt = datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
+            tzinfo=timezone.utc
+        )
+        all_exchange_data.append(
+            zoneKey=sorted_keys,
+            datetime=dt,
+            end_datetime=dt + RESOLUTION,
+            netFlow=flow(sorted_keys, datapoint),
+            source=SOURCE,
+        )
+    return all_exchange_data.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -158,6 +160,12 @@ def fetch_wind_solar_forecasts(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    if zone_key not in FORCAST_AREA_MAPPING:
+        raise ParserException(
+            "DK.py",
+            f"Only able to fetch forecasts for zones: {list(FORCAST_AREA_MAPPING.keys())}",
+            zone_key,
+        )
     data = fetch_data(zone_key, session, target_datetime, logger, True)
 
     # Group data by datetime Minutes5UTC
