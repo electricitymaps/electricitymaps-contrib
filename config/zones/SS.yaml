@@ -3,12 +3,6 @@ bounding_box:
     - 3.490599841667688
   - - 35.91935919359196
     - 12.215911874214626
-center_point:
-  - 29.845297731564216
-  - 7.80912677340828
-centroid:
-  - 30.54390543905441
-  - 7.157809229574787
 capacity:
   solar:
     - datetime: '2017-01-01'
@@ -17,6 +11,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -30,11 +27,17 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 200.0
+center_point:
+  - 29.845297731564216
+  - 7.80912677340828
+centroid:
+  - 30.54390543905441
+  - 7.157809229574787
 country: SS
 country_name: South Sudan
 currency: SSP
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

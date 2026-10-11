@@ -3,12 +3,6 @@ bounding_box:
     - -22.3976886065485
   - - 33.03573035730358
     - -15.61435597832601
-center_point:
-  - 29.321467588966293
-  - -18.989150357823178
-centroid:
-  - 29.81626959126735
-  - -18.691388509591135
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -24,6 +18,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1330.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1670.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -41,15 +38,24 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+center_point:
+  - 29.321467588966293
+  - -18.989150357823178
+centroid:
+  - 29.81626959126735
+  - -18.691388509591135
 country: ZW
 country_name: Zimbabwe
 currency: ZWL
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

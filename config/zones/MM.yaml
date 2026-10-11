@@ -3,12 +3,6 @@ bounding_box:
     - 9.987715903298508
   - - 101.1592115921159
     - 28.53884266693734
-center_point:
-  - 96.40290375955206
-  - 19.75868543584393
-centroid:
-  - 96.90601844397696
-  - 19.148418582187293
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -40,6 +34,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 3040.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2440.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -77,11 +74,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 96.40290375955206
+  - 19.75868543584393
+centroid:
+  - 96.90601844397696
+  - 19.148418582187293
 country: MM
 country_name: Myanmar
 currency: MMK
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

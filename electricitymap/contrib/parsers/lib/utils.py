@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timezone
 
 TOKEN_WIKI_URL = (
     "https://github.com/electricitymaps/electricitymaps-contrib/wiki/Create-tokens"
@@ -19,3 +20,12 @@ def get_token(token):
             "tokens."
         )
     return os.environ[token]
+
+
+def to_utc(dt: datetime | None) -> datetime:
+    """Returns `dt` as an aware UTC datetime: now if None, naive values assumed UTC."""
+    if dt is None:
+        return datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
