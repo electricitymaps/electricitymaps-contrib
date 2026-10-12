@@ -411,7 +411,7 @@
   },
   "azure-centralindia": {
     "provider": "azure",
-    "lonlat": [75.0544541, 18.521428],
+    "lonlat": [73.85528, 18.52111],
     "displayName": "Central India",
     "region": "centralindia",
     "zoneKey": "IN-WE",
