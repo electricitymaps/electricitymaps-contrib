@@ -1,0 +1,13 @@
+# serializer version: 1
+# name: test_snapshot_fetch_consumption_wem
+  list([
+    dict({
+      'consumption': 2688.4487,
+      'datetime': datetime.datetime(2026, 8, 26, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'end_datetime': datetime.datetime(2026, 8, 26, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'source': 'aemo.com.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'AU-WA',
+    }),
+  ])
+# ---

@@ -3,12 +3,6 @@ bounding_box:
     - 63.39715831213634
   - - -13.527135271352677
     - 66.53695404764692
-center_point:
-  - -17.82619692663021
-  - 64.8298913248652
-centroid:
-  - -19.530974414221717
-  - 65.39408488941281
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -27,6 +21,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 2150.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2130.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -47,10 +44,19 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 920.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - -17.82619692663021
+  - 64.8298913248652
+centroid:
+  - -19.530974414221717
+  - 65.39408488941281
 contributors:
   - corradio
   - SNPerkin
@@ -203,11 +209,11 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
-  production: amper_landsnet.fetch_production
   consumption: ENTSOE.fetch_consumption
+  production: amper_landsnet.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 sources:

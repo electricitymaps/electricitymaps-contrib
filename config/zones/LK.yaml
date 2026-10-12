@@ -3,12 +3,6 @@ bounding_box:
     - 5.923440657696858
   - - 81.88101881018812
     - 9.818848129009424
-center_point:
-  - 80.81466458315062
-  - 7.7135449000821765
-centroid:
-  - 80.65433987673212
-  - 7.8927696450511755
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -46,7 +40,7 @@ capacity:
       value: 1840.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1850.0
+      value: 1970.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -71,7 +65,10 @@ capacity:
       value: 960.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1450.0
+      value: 1580.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 2510.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -89,6 +86,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 270.0
+center_point:
+  - 80.81466458315062
+  - 7.7135449000821765
+centroid:
+  - 80.65433987673212
+  - 7.8927696450511755
 contributors:
   - q--
 country: LK
@@ -218,16 +221,16 @@ fallbackZoneMixes:
         solar: 0.013187344859185718
         unknown: 0.0
         wind: 0.04677362839649372
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   production: CEB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Colombo
-zone_name: Sri Lanka
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Colombo
+zone_name: Sri Lanka

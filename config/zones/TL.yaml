@@ -3,12 +3,6 @@ bounding_box:
     - -9.500770115928027
   - - 127.31347313473131
     - -8.308678116073736
-center_point:
-  - 125.67185671856717
-  - -8.904724116000882
-centroid:
-  - 125.71419999914285
-  - -8.89944273887925
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -26,10 +20,16 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 350.0
+center_point:
+  - 125.67185671856717
+  - -8.904724116000882
+centroid:
+  - 125.71419999914285
+  - -8.89944273887925
 country: TL
 country_name: Timor-Leste
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

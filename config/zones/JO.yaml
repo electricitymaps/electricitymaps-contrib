@@ -3,12 +3,6 @@ bounding_box:
     - 29.189985355933374
   - - 39.29992274590594
     - 33.37779736975472
-center_point:
-  - 36.650141036611664
-  - 31.27194964593257
-centroid:
-  - 36.8660244675459
-  - 31.46873567339284
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -47,6 +41,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1970.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2200.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -70,11 +67,17 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 630.0
+center_point:
+  - 36.650141036611664
+  - 31.27194964593257
+centroid:
+  - 36.8660244675459
+  - 31.46873567339284
 country: JO
 country_name: Jordan
 currency: JOD
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

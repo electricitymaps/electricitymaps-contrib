@@ -3,12 +3,6 @@ bounding_box:
     - -1.469533257365882
   - - 34.97974979749799
     - 4.219021003643483
-center_point:
-  - 32.282368350850085
-  - 1.2986888296080246
-centroid:
-  - 32.12486145396523
-  - 1.6522897558541663
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -17,6 +11,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -33,6 +30,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1030.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1710.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -46,6 +46,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 80.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -53,6 +56,12 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
+center_point:
+  - 32.282368350850085
+  - 1.2986888296080246
+centroid:
+  - 32.12486145396523
+  - 1.6522897558541663
 country: UG
 country_name: Uganda
 currency: UGX
@@ -90,15 +99,15 @@ fallbackZoneMixes:
         solar: 0.02528760510767805
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Kampala
-zone_name: Uganda
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Kampala
+zone_name: Uganda

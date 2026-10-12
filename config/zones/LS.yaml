@@ -3,12 +3,6 @@ bounding_box:
     - -30.659329801216934
   - - 29.4356943569436
     - -28.571379947930733
-center_point:
-  - 28.257855823214147
-  - -29.55365921123402
-centroid:
-  - 28.269082690826927
-  - -29.57870325312974
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -18,19 +12,31 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 28.257855823214147
+  - -29.55365921123402
+centroid:
+  - 28.269082690826927
+  - -29.57870325312974
 country: LS
 country_name: Lesotho
 currency: LSL
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

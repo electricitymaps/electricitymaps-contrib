@@ -3,12 +3,6 @@ bounding_box:
     - -22.89284326675208
   - - -57.551975519755146
     - -9.681086552880778
-center_point:
-  - -63.57658074636778
-  - -16.31882317007259
-centroid:
-  - -65.04744965211675
-  - -16.514933194829595
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -23,6 +17,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 270.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -42,6 +39,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 2650.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2430.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 2350.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -90,6 +93,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 180.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -100,6 +106,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+center_point:
+  - -63.57658074636778
+  - -16.31882317007259
+centroid:
+  - -65.04744965211675
+  - -16.514933194829595
 contributors:
   - igorarduin
   - corradio
@@ -107,7 +119,8 @@ contributors:
 country: BO
 country_name: Bolivia
 currency: BOB
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
+  coal and oil.
 emissionFactors:
   direct:
     unknown:
@@ -241,25 +254,25 @@ fallbackZoneMixes:
         solar: 0.02987487302326382
         unknown: 0.6597806473912572
         wind: 0.04254825673223788
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026
+isRenewable:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026
 parsers:
   generationForecast: CNDC.fetch_generation_forecast
   production: CNDC.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
-timezone: America/La_Paz
-zone_name: Bolivia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
-isRenewable:
-  unknown:
-    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
-    value: 0.026
-isLowCarbon:
-  unknown:
-    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
-    value: 0.026
+timezone: America/La_Paz
+zone_name: Bolivia
