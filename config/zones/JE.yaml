@@ -27,6 +27,10 @@ contributors:
 country: JE
 country_name: Jersey
 currency: GBP
+disclaimer: Data for real-time consumption and generation mix is estimated from Jersey
+  Electricity's audited annual fuel mix. Jersey Electricity publishes no sub-hourly
+  generation, demand or import data, and the French-side interconnector feed published by
+  RTE does not cover the Channel Islands.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Jersey Electricity Annual Report and Accounts 2025
