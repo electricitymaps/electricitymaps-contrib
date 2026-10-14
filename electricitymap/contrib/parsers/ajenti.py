@@ -121,18 +121,6 @@ def parse_payload(logger: Logger, payload) -> dict:
 
 
 # Both keys battery and flywheel are negative when storing energy, and positive when feeding energy to the grid
-def format_storage_techs(technologies_parsed):
-    # sometimes we don't get those keys. For instance Rottnest island don't have any storage.
-    if "battery" and "flywheel" in technologies_parsed:
-        storage_techs = technologies_parsed["battery"] + technologies_parsed["flywheel"]
-    else:
-        storage_techs = 0
-    _battery_production = (
-        storage_techs if storage_techs > 0 else 0
-    )  # TODO: Should this just be removed?
-    _battery_storage = storage_techs if storage_techs < 0 else 0
-
-
 def sum_storage_techs(technologies_parsed):
     storage_techs = technologies_parsed["battery"] + technologies_parsed["flywheel"]
 
