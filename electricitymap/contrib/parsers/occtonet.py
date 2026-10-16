@@ -2,10 +2,15 @@
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
 from requests import Session, cookies
+
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.types import ZoneKey
 
 from .lib.exceptions import ParserException
 
@@ -45,14 +50,17 @@ EXCHANGE_MAPPING = {
 FLOWS_TO_REVERT = ["JP-CB->JP-TK", "JP-CG->JP-KN", "JP-CG->JP-SK"]
 
 SOURCE_URL = "occtonet.occto.or.jp"
-EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
 
 ZONE_INFO = ZoneInfo("Asia/Tokyo")
 
 
 def _fetch_exchange(
-    session: Session, datetime: datetime, sorted_zone_keys: str
-) -> list[dict]:
+    session: Session,
+    datetime: str,
+    sorted_zone_keys: ZoneKey,
+    logger: Logger,
+    source_type: EventSourceType = EventSourceType.measured,
+) -> list[dict[str, Any]]:
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
@@ -71,27 +79,25 @@ def _fetch_exchange(
     if sorted_zone_keys in FLOWS_TO_REVERT:
         df["netFlow"] = -1 * df["netFlow"]
 
-    df["source"] = SOURCE_URL
-
-    df["sortedZoneKeys"] = sorted_zone_keys
-    df = df[EXCHANGE_COLUMNS]
-    df = df.reset_index()
-
-    results = df.to_dict("records")
-    # For some reason, to_dict converts datetimes to Timestamps
-    # See https://stackoverflow.com/questions/64171427/pandas-to-dict-converts-datetime-to-timestamp
-    for result in results:
-        result["datetime"] = result["datetime"].to_pydatetime()
-    return results
+    exchanges = ExchangeList(logger)
+    for dt, row in df.iterrows():
+        exchanges.append(
+            zoneKey=sorted_zone_keys,
+            datetime=pd.Timestamp(dt).to_pydatetime(),
+            netFlow=float(row["netFlow"]),
+            source=SOURCE_URL,
+            sourceType=source_type,
+        )
+    return exchanges.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str = "JP-TH",
-    zone_key2: str = "JP-TK",
+    zone_key1: ZoneKey = ZoneKey("JP-TH"),
+    zone_key2: ZoneKey = ZoneKey("JP-TK"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
     if not session:
         session = Session()
@@ -103,17 +109,17 @@ def fetch_exchange(
 
     query_datetime = target_datetime.strftime("%Y/%m/%d")
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    return _fetch_exchange(session, query_datetime, sorted_zone_keys)
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    return _fetch_exchange(session, query_datetime, sorted_zone_keys, logger)
 
 
 def fetch_exchange_forecast(
-    zone_key1: str = "JP-TH",
-    zone_key2: str = "JP-TK",
+    zone_key1: ZoneKey = ZoneKey("JP-TH"),
+    zone_key2: ZoneKey = ZoneKey("JP-TK"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = Session()
@@ -130,8 +136,14 @@ def fetch_exchange_forecast(
             "Future dates(local time) not implemented for selected exchange"
         )
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    return _fetch_exchange(session, query_datetime, sorted_zone_keys)
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    return _fetch_exchange(
+        session,
+        query_datetime,
+        sorted_zone_keys,
+        logger,
+        source_type=EventSourceType.forecasted,
+    )
 
 
 def get_cookies(session: Session | None = None) -> cookies.RequestsCookieJar:
