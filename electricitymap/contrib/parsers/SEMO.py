@@ -49,8 +49,9 @@ FUEL_TO_MODE = {
     "SOLAR": "solar",
     "HYDRO": "hydro",
     "GAS": "gas",
-    "COAL": "coal",
-    "PEAT": "coal",
+    # Coal and peat units are mapped to unknown rather than coal.
+    "COAL": "unknown",
+    "PEAT": "unknown",
     "OIL": "oil",
     "DISTILLATE": "oil",
     "BIOMASS": "biomass",
