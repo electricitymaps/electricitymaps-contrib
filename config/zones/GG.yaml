@@ -9,9 +9,67 @@ center_point:
 centroid:
   - -2.450818105076321
   - 49.43914509312574
+capacity:
+  oil:
+    - _comment: Vale Power Station dispatchable thermal capacity. The 2021 base year is
+        given as 149 MW, with the strategy modelling 138 MW from 2025; GEL restored 11 MW
+        of standby capacity in September 2025.
+      datetime: '2021-01-01'
+      source: gov.gg (Electricity Strategy for Guernsey, P.2023/55, Table 1)
+      value: 149.0
+  solar:
+    - datetime: '2021-01-01'
+      source: gov.gg (Electricity Strategy for Guernsey, P.2023/55)
+      value: 2.2
+    - _comment: Island-wide installed solar PV (Guernsey Electricity reports "over 4MW
+        of solar PV already installed"; the States target was 5 MW by 2025 and 10 MW by
+        2028).
+      datetime: '2025-01-01'
+      source: Guernsey Electricity Annual Report 2025
+      value: 4.0
+contributors:
+  - Jaylouisw
 country: GG
 country_name: Guernsey
 currency: GBP
+disclaimer: Real-time consumption and generation mix data is not available and is fully
+  estimated.
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+      datetime: '2021-01-01'
+      value:
+        hydro: 0.928
+        oil: 0.07
+        solar: 0.001
+        wind: 0.001
+    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+      datetime: '2022-01-01'
+      value:
+        hydro: 0.694
+        oil: 0.079
+        solar: 0.017
+        wind: 0.21
+    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+      datetime: '2023-01-01'
+      value:
+        hydro: 0.71
+        oil: 0.091
+        solar: 0.095
+        wind: 0.104
+    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+      datetime: '2024-01-01'
+      value:
+        hydro: 0.924
+        oil: 0.075
+        solar: 0.001
+    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+      datetime: '2025-01-01'
+      value:
+        hydro: 0.695
+        oil: 0.08
+        solar: 0.035
+        wind: 0.19
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 region: Europe
