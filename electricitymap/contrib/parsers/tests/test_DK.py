@@ -50,3 +50,39 @@ def test_fetch_forecast(session, snapshot):
         session=session,
         target_datetime=target_datetime,
     )
+
+
+def test_fetch_exchange_unsupported_pair():
+    with pytest.raises(DK.ParserException) as exc_info:
+        DK.fetch_exchange("DK-DK1", "FR")
+    assert "Only able to fetch data for exchanges that are connected to Denmark" in str(
+        exc_info.value
+    )
+
+
+def test_fetch_forecast_unsupported_zone():
+    with pytest.raises(DK.ParserException) as exc_info:
+        DK.fetch_wind_solar_forecasts("FR")
+    assert "Only able to fetch forecasts for zones" in str(exc_info.value)
+
+
+def test_fetch_data_no_records_none_datetime(requests_mock):
+    requests_mock.register_uri(
+        GET,
+        DK.EXCHANGE_URL,
+        json={"total": 0, "records": []},
+    )
+    with pytest.raises(DK.ParserException) as exc_info:
+        DK.fetch_exchange("DK-DK2", "SE-SE4", target_datetime=None)
+    assert "No exchange data was returned for" in str(exc_info.value)
+
+
+def test_fetch_data_http_error_none_datetime(requests_mock):
+    requests_mock.register_uri(
+        GET,
+        DK.EXCHANGE_URL,
+        status_code=500,
+    )
+    with pytest.raises(DK.ParserException) as exc_info:
+        DK.fetch_exchange("DK-DK2", "SE-SE4", target_datetime=None)
+    assert "No exchange data was returned for" in str(exc_info.value)
