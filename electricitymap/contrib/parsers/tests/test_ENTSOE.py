@@ -257,6 +257,24 @@ def test_parse_prices_day_ahead_ignores_the_second_auction():
     _assert_sdac_hours_only(rows)
 
 
+def test_auction_timeseries_selects_by_classification_sequence():
+    two_auctions = (base_path_to_mock / "DE_prices_two_auctions.xml").read_text()
+    unlabelled = (base_path_to_mock / "ES_day_ahead_price.xml").read_text()
+
+    def resolutions(xml_text: str, sequence: int) -> list[str]:
+        return [
+            timeseries.find("resolution").text
+            for timeseries in ENTSOE._auction_timeseries(xml_text, sequence)
+        ]
+
+    assert resolutions(two_auctions, 1) == ["PT60M"]
+    assert resolutions(two_auctions, 2) == ["PT15M"]
+    assert resolutions(two_auctions, 3) == []
+    # Unlabelled series are the zone's only auction.
+    assert resolutions(unlabelled, 1)
+    assert resolutions(unlabelled, 2) == []
+
+
 def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
     data = base_path_to_mock / "FR_prices.xml"
     requests_mock.register_uri(
