@@ -15,18 +15,6 @@ capacity:
     - datetime: '2023-12-01'
       source: cea.nic.in
       value: 36997.0
-    - datetime: '2024-01-01'
-      source: cea.nic.in
-      value: 27852.5
-    - datetime: '2025-01-01'
-      source: cea.nic.in
-      value: 28874.86
-    - datetime: '2026-01-01'
-      source: cea.nic.in
-      value: 31163.43
-    - datetime: '2026-08-01'
-      source: cea.nic.in
-      value: 33667.68
   gas:
     - datetime: '2023-12-01'
       source: cea.nic.in
