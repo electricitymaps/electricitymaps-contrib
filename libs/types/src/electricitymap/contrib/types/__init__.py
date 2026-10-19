@@ -4,6 +4,7 @@ from enum import Enum
 from typing import NewType
 
 from electricitymap.contrib.types.atc_type import AtcType
+from electricitymap.contrib.types.day_ahead_auction import DayAheadAuction
 from electricitymap.contrib.types.market_agreement_type import MarketAgreementType
 
 ZoneKey = NewType("ZoneKey", str)
@@ -37,6 +38,7 @@ class ParserDataType(Enum):
     GENERATION_FORECAST = "generationForecast"
     INTRADAY_CONTRACT_STATISTICS = "intradayContractStatistics"
     PRICE = "price"
+    PRICE_DAY_AHEAD = "priceDayAhead"
     PRICE_INTRADAY = "priceIntraday"
     PRODUCTION = "production"
     PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
@@ -99,6 +101,7 @@ __all__: list[str] = [
     "BoundingBox",
     "ParserDataType",
     "AtcType",
+    "DayAheadAuction",
     "MarketAgreementType",
     "ALL_DATA_TYPES",
     "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",

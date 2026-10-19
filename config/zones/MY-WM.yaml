@@ -3,17 +3,29 @@ bounding_box:
     - 1.27099036774932
   - - 104.29484294842948
     - 6.701949718826185
+capacity:
+  coal:
+    - datetime: '2024-01-01'
+      source: gso.org.my
+      value: 12054.0
+  gas:
+    - datetime: '2024-01-01'
+      source: gso.org.my
+      value: 13796.0
+  hydro:
+    - datetime: '2024-01-01'
+      source: gso.org.my
+      value: 2532.0
+  solar:
+    - datetime: '2024-01-01'
+      source: gso.org.my
+      value: 1090.0
 center_point:
   - 102.27369841140032
   - 3.742606580008735
 centroid:
   - 101.73300381445378
   - 4.425161917753544
-capacity:
-  coal: 12054
-  gas: 10114
-  hydro: 2160
-  solar: 729
 contributors:
   - kruschk
   - systemcatch
@@ -142,8 +154,8 @@ fallbackZoneMixes:
         solar: 0.021171527148129823
         unknown: 0.001574858961476563
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: GSO.fetch_consumption
   production: GSO.fetch_production

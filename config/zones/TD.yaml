@@ -3,12 +3,6 @@ bounding_box:
     - 7.457561454628177
   - - 23.985239852398536
     - 23.444187781605677
-center_point:
-  - 18.731206651857388
-  - 15.463777788083647
-centroid:
-  - 18.514302692463016
-  - 12.430596048417103
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -30,11 +24,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 18.731206651857388
+  - 15.463777788083647
+centroid:
+  - 18.514302692463016
+  - 12.430596048417103
 country: TD
 country_name: Chad
 currency: XAF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

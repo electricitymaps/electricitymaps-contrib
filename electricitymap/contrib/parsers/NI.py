@@ -39,25 +39,6 @@ ZONE_KEYS_TO_INTERCONNECTION = {
 }
 
 
-def extract_text(full_text: str, start_text: str, end_text: str | None = None):
-    start = full_text.find(start_text)
-
-    if start == -1:
-        return full_text
-
-    start += len(start_text)
-
-    if not end_text:
-        return full_text[start:]
-
-    end = full_text.find(end_text, start)
-
-    if end == -1:
-        return full_text[start:]
-    else:
-        return full_text[start:end]
-
-
 @config.refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "NI",

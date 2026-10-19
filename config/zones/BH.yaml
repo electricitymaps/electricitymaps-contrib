@@ -3,12 +3,6 @@ bounding_box:
     - 25.78973254482439
   - - 50.61830618306183
     - 26.194728986551596
-center_point:
-  - 50.53910539105392
-  - 25.992230765687992
-centroid:
-  - 50.54810548105482
-  - 26.039098728467376
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -20,6 +14,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 8600.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 9280.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -33,10 +30,19 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 60.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 50.53910539105392
+  - 25.992230765687992
+centroid:
+  - 50.54810548105482
+  - 26.039098728467376
 contributors:
   - q--
   - nessie2013
@@ -92,16 +98,16 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 1.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
-timezone: Asia/Bahrain
-zone_name: Bahrain
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Bahrain
+zone_name: Bahrain

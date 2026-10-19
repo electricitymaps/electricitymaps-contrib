@@ -52,7 +52,4 @@ fallbackZoneMixes:
         unknown: 0.004844329355440729
         wind: 0.11508224818233796
 flag_file_name: in.png
-parsers:
-  consumption: IN_GJ.fetch_consumption
-  production: IN_GJ.fetch_production
 timezone: Asia/Kolkata
