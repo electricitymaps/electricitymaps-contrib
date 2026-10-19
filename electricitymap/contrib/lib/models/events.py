@@ -858,8 +858,13 @@ class ProductionBreakdown(AggregatableEvent):
             target_end_datetime,
         ) = ProductionBreakdown._aggregated_fields(df_view)
 
-        production_mix = ProductionMix.merge(
-            [event.production for event in events if event.production is not None]
+        # Events can carry storage only, merging no mixes would give an empty one.
+        production_mix = (
+            ProductionMix.merge(
+                [event.production for event in events if event.production is not None]
+            )
+            if any(event.production is not None for event in events)
+            else None
         )
         storage_mix = StorageMix.merge(
             [event.storage for event in events if event.storage is not None]
