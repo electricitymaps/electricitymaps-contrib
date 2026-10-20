@@ -1128,6 +1128,34 @@ def parse_forecast_transfer_capacity(
         ) from e
 
 
+def _classification_sequence(timeseries: Any) -> int:
+    """The day-ahead auction an A44 price series belongs to.
+
+    Zones with several auctions label each series with a classification sequence
+    (in DE and AT, 1 is SDAC and 2 a second auction). Unlabelled series are the
+    zone's only auction, so they count as 1.
+    """
+    position = timeseries.find(
+        "classificationsequence_attributeinstancecomponent.position"
+    )
+    return int(position.text) if position else 1
+
+
+def _auction_timeseries(xml_text: str, sequence: int) -> list[Any]:
+    """The A44 price series of one day-ahead auction, by classification sequence.
+
+    A response lists the auctions in no fixed order, so they have to be told
+    apart here. Filtering the query on a sequence instead would return nothing
+    for zones whose series are unlabelled.
+    """
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+    return [
+        timeseries
+        for timeseries in soup.find_all("timeseries")
+        if _classification_sequence(timeseries) == sequence
+    ]
+
+
 def parse_prices(
     xml_text: str,
     zoneKey: ZoneKey,
@@ -1135,9 +1163,8 @@ def parse_prices(
 ) -> PriceList:
     if not xml_text:
         return PriceList(logger)
-    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     prices = PriceList(logger)
-    for timeseries in soup.find_all("timeseries"):
+    for timeseries in _auction_timeseries(xml_text, sequence=1):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
@@ -1161,9 +1188,8 @@ def parse_prices_day_ahead(
 ) -> DayAheadPriceList:
     if not xml_text:
         return DayAheadPriceList(logger)
-    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     prices = DayAheadPriceList(logger)
-    for timeseries in soup.find_all("timeseries"):
+    for timeseries in _auction_timeseries(xml_text, sequence=1):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
