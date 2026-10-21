@@ -72,3 +72,21 @@ def test_fetch_production_capacity_raises_on_http_error(adapter, session):
 
     with pytest.raises(Exception, match="503"):
         EIA.fetch_production_capacity(ZoneKey("US-CAL-CISO"), TARGET_DATETIME, session)
+
+
+def test_fetch_production_capacity_for_all_zones_skips_failed_zones(monkeypatch):
+    zones = [ZoneKey("US-CAL-CISO"), ZoneKey("US-TEX-ERCO"), ZoneKey("US-NY-NYIS")]
+    monkeypatch.setattr(EIA, "US_ZONES", zones)
+
+    def fake_fetch(zone_key, target_datetime, session):
+        if zone_key == "US-TEX-ERCO":
+            raise ValueError("504 Gateway Time-out")
+        if zone_key == "US-NY-NYIS":
+            return None
+        return {"solar": {"value": 1.0}}
+
+    monkeypatch.setattr(EIA, "fetch_production_capacity", fake_fetch)
+
+    assert EIA.fetch_production_capacity_for_all_zones(TARGET_DATETIME) == {
+        "US-CAL-CISO": {"solar": {"value": 1.0}}
+    }

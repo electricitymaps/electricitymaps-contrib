@@ -1,4 +1,5 @@
 import calendar
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from logging import getLogger
 from typing import Any
@@ -19,6 +20,8 @@ CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/
 SOURCE = "EIA.gov"
 PAGE_SIZE = 5000
 TIMEOUT_SECONDS = 120
+# Responses take tens of seconds each, so zones are fetched concurrently.
+MAX_WORKERS = 8
 US_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EIA"]
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
@@ -128,15 +131,20 @@ def fetch_production_capacity(
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ) -> dict[str, Any]:
-    eia_capacity = {}
     session = mount_retry(session or Session())
-    for zone in US_ZONES:
+
+    def _fetch_zone(zone: ZoneKey) -> dict[str, Any] | None:
         try:
-            zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-            if zone_capacity:
-                eia_capacity[zone] = zone_capacity
+            return fetch_production_capacity(zone, target_datetime, session)
         except Exception as e:
             logger.error(
                 f"Error fetching production capacity for {zone} at {target_datetime.strftime('%Y-%m')}: {e}"
             )
-    return eia_capacity
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        zone_capacities = executor.map(_fetch_zone, US_ZONES)
+    return {
+        zone: zone_capacity
+        for zone, zone_capacity in zip(US_ZONES, zone_capacities, strict=True)
+        if zone_capacity
+    }
