@@ -72,7 +72,7 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 693.3
-    - datetime: '2026-05-01'
+    - datetime: '2026-02-01'
       source: EIA.gov
       value: 681.3
   hydro:
