@@ -1,0 +1,21 @@
+contributors:
+  - unitrium
+country: IT
+country_name: Italy
+currency: EUR
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  priceDayAhead: ENTSOE.fetch_price_day_ahead
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
+region: Europe
+timezone: Europe/Rome
+zone_name: Calabria
