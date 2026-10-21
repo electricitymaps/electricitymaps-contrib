@@ -3,6 +3,7 @@ bounding_box:
     - 28.02651501273826
   - - -17.0983709837098
     - 28.20683144969101
+can_have_zero_production: true
 capacity:
   oil: 22.8
 center_point:
