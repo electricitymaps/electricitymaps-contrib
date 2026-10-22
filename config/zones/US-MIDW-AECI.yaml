@@ -79,12 +79,6 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 959.4
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 941.4
-    - datetime: '2025-05-01'
-      source: EIA.gov
-      value: 959.4
 center_point:
   - -92.78449868725454
   - 37.92824198196455
