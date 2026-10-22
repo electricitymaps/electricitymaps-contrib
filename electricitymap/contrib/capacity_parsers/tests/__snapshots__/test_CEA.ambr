@@ -1,0 +1,215 @@
+# serializer version: 1
+# name: test_fetch_production_capacity_for_all_zones
+  dict({
+    'IN-EA': dict({
+      'biomass': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 581.44,
+      }),
+      'coal': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 33667.68,
+      }),
+      'gas': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'hydro': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in, mnre.gov.in',
+        'value': 5231.41,
+      }),
+      'nuclear': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'oil': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'solar': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 2620.57,
+      }),
+      'wind': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 0.0,
+      }),
+    }),
+    'IN-NE': dict({
+      'biomass': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 21.8,
+      }),
+      'coal': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 1118.57,
+      }),
+      'gas': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 1649.96,
+      }),
+      'hydro': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in, mnre.gov.in',
+        'value': 2803.76,
+      }),
+      'nuclear': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'oil': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 36.0,
+      }),
+      'solar': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 983.52,
+      }),
+      'wind': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 0.0,
+      }),
+    }),
+    'IN-NO': dict({
+      'biomass': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 3727.64,
+      }),
+      'coal': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 63151.04,
+      }),
+      'gas': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 5618.96,
+      }),
+      'hydro': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in, mnre.gov.in',
+        'value': 24766.72,
+      }),
+      'nuclear': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 2220.0,
+      }),
+      'oil': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'solar': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 58621.82,
+      }),
+      'wind': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 5815.29,
+      }),
+    }),
+    'IN-SO': dict({
+      'biomass': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 3831.8,
+      }),
+      'coal': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 58153.04,
+      }),
+      'gas': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 2990.71,
+      }),
+      'hydro': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in, mnre.gov.in',
+        'value': 15614.96,
+      }),
+      'nuclear': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 3320.0,
+      }),
+      'oil': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 132.8,
+      }),
+      'solar': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 42991.49,
+      }),
+      'wind': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 26113.46,
+      }),
+    }),
+    'IN-WE': dict({
+      'biomass': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 3584.89,
+      }),
+      'coal': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 74687.18,
+      }),
+      'gas': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 8884.39,
+      }),
+      'hydro': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in, mnre.gov.in',
+        'value': 8824.32,
+      }),
+      'nuclear': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 3240.0,
+      }),
+      'oil': dict({
+        'datetime': '2026-08-01',
+        'source': 'cea.nic.in',
+        'value': 0.0,
+      }),
+      'solar': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 65746.83,
+      }),
+      'wind': dict({
+        'datetime': '2026-09-30',
+        'source': 'mnre.gov.in',
+        'value': 27268.02,
+      }),
+    }),
+  })
+# ---

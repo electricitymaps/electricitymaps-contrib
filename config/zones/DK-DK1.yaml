@@ -550,6 +550,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: NORDPOOL.fetch_price
+  priceDayAhead: NORDPOOL.fetch_price_day_ahead
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: DK.fetch_wind_solar_forecasts

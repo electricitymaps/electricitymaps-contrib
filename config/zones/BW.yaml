@@ -3,12 +3,6 @@ bounding_box:
     - -26.891288702037656
   - - 29.349293492934947
     - -17.788170801589715
-center_point:
-  - 24.53717185626963
-  - -22.35501250816072
-centroid:
-  - 24.69984773909776
-  - -22.82359771901274
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -21,10 +15,19 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
+center_point:
+  - 24.53717185626963
+  - -22.35501250816072
+centroid:
+  - 24.69984773909776
+  - -22.82359771901274
 country: BW
 country_name: Botswana
 currency: BWP
@@ -62,15 +65,15 @@ fallbackZoneMixes:
         solar: 0.002355337032443158
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Gaborone
-zone_name: Botswana
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Gaborone
+zone_name: Botswana

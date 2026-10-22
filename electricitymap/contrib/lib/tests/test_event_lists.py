@@ -6,6 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     ExchangeCapacityList,
     ExchangeList,
     GridAlertList,
@@ -21,7 +22,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import DayAheadAuction, ZoneKey
 
 
 def test_exchange_list():
@@ -262,6 +263,46 @@ def test_append_to_price_list_logs_error():
             currency="EURO",
         )
         mock_error.assert_called_once()
+
+
+def test_day_ahead_price_list():
+    price_list = DayAheadPriceList(logging.Logger("test"))
+    price_list.append(
+        zoneKey=ZoneKey("GB"),
+        datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+        end_datetime=datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="GBP",
+        auction=DayAheadAuction.NORDPOOL_N2EX_DA,
+    )
+    assert price_list.to_list() == [
+        {
+            "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
+            "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+            "zoneKey": ZoneKey("GB"),
+            "auction": DayAheadAuction.NORDPOOL_N2EX_DA,
+            "currency": "GBP",
+            "price": 1,
+            "source": "trust.me",
+            "sourceType": EventSourceType.published,
+        }
+    ]
+
+
+def test_append_to_day_ahead_price_list_logs_error():
+    price_list = DayAheadPriceList(logging.Logger("test"))
+    with patch.object(price_list.logger, "error") as mock_error:
+        price_list.append(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="EURO",
+            auction=DayAheadAuction.SDAC,
+        )
+        mock_error.assert_called_once()
+    assert len(price_list.events) == 0
 
 
 def test_locational_marginal_price_list():
@@ -732,6 +773,32 @@ def test_update_production_list_with_new_list_being_longer():
     assert updated_list.events[1].production.wind == 21
     assert updated_list.events[1].production.coal == 21
     assert updated_list.events[1].source == "trust.me"
+
+
+def test_merge_production_breakdowns_with_storage_only_events():
+    # Sub-zones can report storage at a datetime without any production.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+    production_list_1.append(
+        zoneKey=ZoneKey("DE"),
+        datetime=dt,
+        storage=StorageMix(hydro=1),
+        source="trust.me",
+    )
+    production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+    production_list_2.append(
+        zoneKey=ZoneKey("DE"),
+        datetime=dt,
+        storage=StorageMix(hydro=2),
+        source="trust2.me",
+    )
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [production_list_1, production_list_2], logging.Logger("test")
+    )
+    assert len(merged.events) == 1
+    assert merged.events[0].production is None
+    assert merged.events[0].storage is not None
+    assert merged.events[0].storage.hydro == 3
 
 
 def test_update_storage_list_with_new_list_being_longer():

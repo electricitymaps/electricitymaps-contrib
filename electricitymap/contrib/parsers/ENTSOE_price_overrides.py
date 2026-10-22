@@ -45,3 +45,20 @@ def fetch_price(
             zone_key,
         )
     return ENTSOE.parse_prices(raw_price_data, zone_key, logger).to_list()
+
+
+@ENTSOE.refetch_frequency(ENTSOE.DEFAULT_LOOKBACK_HOURS_REALTIME)
+def fetch_price_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead auction prices for a zone via the ENTSOE domain it shares with another zone."""
+    return ENTSOE.get_price_day_ahead(
+        zone_key,
+        PRICE_DOMAIN_OVERRIDES[zone_key],
+        session or Session(),
+        target_datetime,
+        logger,
+    )

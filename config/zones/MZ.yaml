@@ -3,12 +3,6 @@ bounding_box:
     - -26.85642468684171
   - - 40.84420844208444
     - -10.475337525172648
-center_point:
-  - 35.568162979898084
-  - -18.42016168090376
-centroid:
-  - 35.21669624375571
-  - -17.531883501682522
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -41,6 +35,15 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+center_point:
+  - 35.568162979898084
+  - -18.42016168090376
+centroid:
+  - 35.21669624375571
+  - -17.531883501682522
 country: MZ
 country_name: Mozambique
 currency: MZN
@@ -78,15 +81,15 @@ fallbackZoneMixes:
         solar: 0.003473283673712482
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Maputo
-zone_name: Mozambique
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Maputo
+zone_name: Mozambique

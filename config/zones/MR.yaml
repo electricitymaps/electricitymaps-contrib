@@ -3,12 +3,6 @@ bounding_box:
     - 14.73461766022129
   - - -4.822248222482187
     - 27.31536235784889
-center_point:
-  - -11.029922274992696
-  - 20.949763236203662
-centroid:
-  - -13.251953353992638
-  - 18.658925825772442
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -21,6 +15,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 90.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -29,11 +26,20 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+center_point:
+  - -11.029922274992696
+  - 20.949763236203662
+centroid:
+  - -13.251953353992638
+  - 18.658925825772442
 country: MR
 country_name: Mauritania
 currency: MRU
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
