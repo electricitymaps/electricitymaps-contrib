@@ -384,7 +384,8 @@ def fetch_production(
         data_mapping["gas"] = "oil"
         data_mapping["cc"] = "oil"
 
-    if zone_key == "ES-IB-ME" or zone_key == "ES-IB-FO":
+    # These systems have no natural-gas supply, so their gas turbines burn oil
+    if zone_key in ("ES-IB-ME", "ES-IB-FO", "ES-CE", "ES-ML"):
         data_mapping["gas"] = "oil"
     if zone_key == "ES-IB-IZ":
         data_mapping["die"] = "gas"
