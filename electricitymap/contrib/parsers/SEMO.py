@@ -258,7 +258,7 @@ def fetch_production(
         if fuel is None:
             # Unit not (yet) in the registered-units list: keep it in the
             # totals as unknown rather than dropping it.
-            print(
+            logger.warning(
                 f"Resource {resource} not found in registered units list, value {value}"
             )
             unmapped_units.add(resource)
