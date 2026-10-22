@@ -79,7 +79,9 @@ def test_merge_uses_smartgrid_wind_solar_and_semo_rest(requests_mock, session):
     assert first["storage"] == {"battery": 20.0, "hydro": -25.0}
 
 
-def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(requests_mock, session):
+def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(
+    requests_mock, session
+):
     _register_mapping(requests_mock)
     requests_mock.register_uri(GET, SEMO_API_URL, json=_bm086())
     # SmartGrid only has the 00:00 reading, so nothing lands in the 00:30 window.
