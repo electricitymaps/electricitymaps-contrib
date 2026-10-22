@@ -274,7 +274,7 @@ capacity:
     - datetime: '2021-06-01'
       source: EIA.gov
       value: 459.2
-    - datetime: '2025-01-01'
+    - datetime: '2025-09-01'
       source: EIA.gov
       value: 113.6
   gas:
