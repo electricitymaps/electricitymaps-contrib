@@ -51,10 +51,7 @@ capacity:
       value: 1364.6
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 1403.6
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 1364.6
+      value: 1239.6
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1239.6
@@ -74,7 +71,7 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 161.4
-    - datetime: '2026-01-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 134.5
   nuclear:

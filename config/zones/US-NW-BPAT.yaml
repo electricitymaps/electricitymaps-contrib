@@ -60,6 +60,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 281.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 256.1
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 273.7
@@ -84,7 +87,10 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 18.0
-    - datetime: '2026-01-01'
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2025-04-01'
       source: EIA.gov
       value: 16.0
   hydro:
@@ -112,9 +118,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 18988.6
-    - datetime: '2025-11-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
-      value: 18988.2
+      value: 18453.7
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 18453.7

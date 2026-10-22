@@ -32,7 +32,7 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 465.0
-    - datetime: '2026-05-01'
+    - datetime: '2025-12-01'
       source: EIA.gov
       value: 471.1
   geothermal:
@@ -79,16 +79,10 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 701.2
-    - datetime: '2025-02-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
-      value: 698.1
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 701.2
+      value: 698.6
     - datetime: '2025-07-01'
-      source: EIA.gov
-      value: 704.7
-    - datetime: '2025-11-01'
       source: EIA.gov
       value: 699.1
   hydro storage:
@@ -154,9 +148,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 763.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 764.3
     - datetime: '2025-08-01'
       source: EIA.gov
-      value: 1011.6
+      value: 1012.3
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1012.3
