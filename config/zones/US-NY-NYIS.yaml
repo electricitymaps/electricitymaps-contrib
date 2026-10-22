@@ -79,16 +79,19 @@ capacity:
       value: 229.3
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 228.3
+      value: 225.3
     - datetime: '2024-05-01'
       source: EIA.gov
-      value: 238.5
+      value: 234.3
+    - datetime: '2024-08-01'
+      source: EIA.gov
+      value: 229.5
     - datetime: '2024-09-01'
       source: EIA.gov
-      value: 241.5
+      value: 232.5
     - datetime: '2024-12-01'
       source: EIA.gov
-      value: 249.5
+      value: 240.5
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 243.5
@@ -226,7 +229,10 @@ capacity:
       value: 25777.0
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 25728.7
+      value: 25739.9
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 25739.7
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 25775.0
@@ -274,6 +280,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 4353.9
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4081.2
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 4272.5
@@ -340,9 +349,15 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 3444.4
-    - datetime: '2024-04-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
-      value: 3423.1
+      value: 3508.3
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 3487.0
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 3486.0
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 3483.6
@@ -586,40 +601,40 @@ capacity:
       value: 1599.2
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 1628.5
+      value: 1667.0
     - datetime: '2024-02-01'
       source: EIA.gov
-      value: 1688.1
+      value: 1750.2
     - datetime: '2024-03-01'
       source: EIA.gov
-      value: 1695.1
+      value: 1785.4
     - datetime: '2024-04-01'
       source: EIA.gov
-      value: 1730.8
+      value: 1829.5
     - datetime: '2024-05-01'
       source: EIA.gov
-      value: 1799.0
+      value: 1896.3
     - datetime: '2024-06-01'
       source: EIA.gov
-      value: 1828.4
+      value: 1947.4
     - datetime: '2024-07-01'
       source: EIA.gov
-      value: 1837.2
+      value: 1961.2
     - datetime: '2024-08-01'
       source: EIA.gov
-      value: 1947.9
+      value: 2071.9
     - datetime: '2024-09-01'
       source: EIA.gov
-      value: 1955.9
+      value: 2091.3
     - datetime: '2024-10-01'
       source: EIA.gov
-      value: 1980.9
+      value: 2142.1
     - datetime: '2024-11-01'
       source: EIA.gov
-      value: 2207.7
+      value: 2376.6
     - datetime: '2024-12-01'
       source: EIA.gov
-      value: 2340.9
+      value: 2515.4
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 2359.9
