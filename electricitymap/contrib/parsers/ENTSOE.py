@@ -269,6 +269,7 @@ IT_CALABRIA_BIDDING_ZONE_START = datetime(2021, 1, 1, tzinfo=ZoneInfo("Europe/Ro
 
 # Borders whose ENTSO-E domains only apply over part of history. Outside every
 # period the border did not exist and has no data.
+# TODO: Remove this once zone and exchange configs can declare their own lifespans.
 ENTSOE_EXCHANGE_DOMAIN_PERIODS: dict[str, list[ExchangeDomainPeriod]] = {
     "IT-SIC->IT-SO": [
         ExchangeDomainPeriod(
