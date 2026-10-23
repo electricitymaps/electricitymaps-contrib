@@ -1,10 +1,15 @@
 from datetime import datetime, timezone
 
+import pandas as pd
 import pytest
 from requests_mock import GET, POST
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.parsers.IEMOP import REPORTS_ADMIN_URL, fetch_production
+from electricitymap.contrib.parsers.IEMOP import (
+    REPORTS_ADMIN_URL,
+    fetch_production,
+    match_resources_to_modes,
+)
 from electricitymap.contrib.types import ZoneKey
 
 zone_keys = [ZoneKey("PH-LU"), ZoneKey("PH-MI"), ZoneKey("PH-VI")]
@@ -40,3 +45,8 @@ def test_production(requests_mock, session, snapshot, zone_key: ZoneKey):
         session=session,
         target_datetime=target_datetime,
     )
+
+
+def test_match_resources_to_modes_keeps_trailing_zeros():
+    df = pd.DataFrame({"resource_name": ["05CPPC_U10", "09WMPC_U10"]})
+    assert match_resources_to_modes(df)["mode"].tolist() == ["oil", "oil"]
