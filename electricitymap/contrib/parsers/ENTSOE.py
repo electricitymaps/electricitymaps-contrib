@@ -25,12 +25,12 @@ from logging import Logger, getLogger
 from operator import attrgetter, itemgetter
 from re import fullmatch
 from typing import Any, Literal, NamedTuple
-from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.topology import GRID_TOPOLOGY
 from electricitymap.contrib.lib.models.event_lists import (
     DayAheadPriceList,
     ExchangeList,
@@ -245,6 +245,12 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "GR->IT-SO": [ENTSOE_DOMAIN_MAPPINGS["GR"], ENTSOE_DOMAIN_MAPPINGS["IT-SO"]],
     "HU->UA": [ENTSOE_DOMAIN_MAPPINGS["HU"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "IT-CSO->ME": [ENTSOE_DOMAIN_MAPPINGS["IT"], ENTSOE_DOMAIN_MAPPINGS["ME"]],
+    # Until Calabria became a bidding zone, Sicily's mainland border was the
+    # Rossano virtual zone. The exchange config ends this border at that point.
+    "IT-SIC->IT-SO": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-RO"],
+    ],
     "LV->RU-1": [ENTSOE_DOMAIN_MAPPINGS["LV"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "MD->UA": [ENTSOE_DOMAIN_MAPPINGS["MD"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
@@ -253,55 +259,6 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "SK->UA": [ENTSOE_DOMAIN_MAPPINGS["SK"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
 }
 
-
-class ExchangeDomainPeriod(NamedTuple):
-    """ENTSO-E domain pair of a border, valid from `start` (inclusive) to `end`
-    (exclusive). `None` leaves that side open."""
-
-    start: datetime | None
-    end: datetime | None
-    domain_pair: list[str]
-
-
-# On 2021-01-01 Calabria became a bidding zone, replacing the Rossano virtual zone
-# as Sicily's mainland border. Until then Calabria was part of IT-SO.
-IT_CALABRIA_BIDDING_ZONE_START = datetime(2021, 1, 1, tzinfo=ZoneInfo("Europe/Rome"))
-
-# Borders whose ENTSO-E domains only apply over part of history. Outside every
-# period the border did not exist and has no data.
-# TODO: Remove this once zone and exchange configs can declare their own lifespans.
-ENTSOE_EXCHANGE_DOMAIN_PERIODS: dict[str, list[ExchangeDomainPeriod]] = {
-    "IT-SIC->IT-SO": [
-        ExchangeDomainPeriod(
-            start=None,
-            end=IT_CALABRIA_BIDDING_ZONE_START,
-            domain_pair=[
-                ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
-                ENTSOE_DOMAIN_MAPPINGS["IT-RO"],
-            ],
-        ),
-    ],
-    "IT-CA->IT-SIC": [
-        ExchangeDomainPeriod(
-            start=IT_CALABRIA_BIDDING_ZONE_START,
-            end=None,
-            domain_pair=[
-                ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
-                ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
-            ],
-        ),
-    ],
-    "IT-CA->IT-SO": [
-        ExchangeDomainPeriod(
-            start=IT_CALABRIA_BIDDING_ZONE_START,
-            end=None,
-            domain_pair=[
-                ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
-                ENTSOE_DOMAIN_MAPPINGS["IT-SO"],
-            ],
-        ),
-    ],
-}
 
 EXCHANGE_AGGREGATES: dict[str, list[list]] = {
     "FR-COR->IT-SAR": [
@@ -1287,25 +1244,19 @@ def _resolve_exchange_domain_pairs(
 ) -> list[list[str]]:
     """Resolve an EM zone pair to ENTSO-E EIC domain pairs.
 
-    Walks the lookup chain `ENTSOE_EXCHANGE_DOMAIN_PERIODS` →
-    `EXCHANGE_AGGREGATES` → `ENTSOE_EXCHANGE_DOMAIN_OVERRIDE` →
-    `ENTSOE_DOMAIN_MAPPINGS`. Returns a list because aggregated borders (e.g.
-    FR-COR↔IT-SAR via AC + DC) fan out to multiple domain pairs that must be
-    queried independently.
+    Walks the lookup chain `EXCHANGE_AGGREGATES` →
+    `ENTSOE_EXCHANGE_DOMAIN_OVERRIDE` → `ENTSOE_DOMAIN_MAPPINGS`. Returns a list
+    because aggregated borders (e.g. FR-COR↔IT-SAR via AC + DC) fan out to
+    multiple domain pairs that must be queried independently.
 
-    Time-bounded borders are routed on `target_datetime` (now when `None`), and
-    resolve to no pairs when it falls outside every period. A query window that
-    straddles a period boundary only gets the pairs valid at `target_datetime`.
+    Resolves to no pairs when the exchange is not in the grid topology at
+    `target_datetime` (now when `None`). A query window that straddles a
+    lifespan bound is routed on `target_datetime` alone.
     """
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    if sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_PERIODS:
-        at = target_datetime or datetime.now(timezone.utc)
-        return [
-            period.domain_pair
-            for period in ENTSOE_EXCHANGE_DOMAIN_PERIODS[sorted_zone_keys]
-            if (period.start is None or period.start <= at)
-            and (period.end is None or at < period.end)
-        ]
+    at = target_datetime or datetime.now(timezone.utc)
+    if sorted_zone_keys not in GRID_TOPOLOGY.at(at).exchanges_config:
+        return []
     if sorted_zone_keys in EXCHANGE_AGGREGATES:
         return list(EXCHANGE_AGGREGATES[sorted_zone_keys])
     if sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:

@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from datetime import date, datetime, timezone
 from enum import Enum
+from zoneinfo import available_timezones
 
 # Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
 from pydantic.v1 import (
@@ -21,12 +22,18 @@ from electricitymap.contrib.config import (
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
 )
+from electricitymap.contrib.config.lifespan import (
+    lifespan_instants,
+    parse_lifespan_bound,
+)
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.types import Point, ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 
 Percentage = confloat(ge=0, le=1)
+
+IANA_TIMEZONES = available_timezones()
 
 
 class StrictBaseModel(BaseModel):
@@ -42,6 +49,50 @@ class StrictBaseModelWithAlias(BaseModel):
         # _url and url
         # TODO: stick to one of them
         allow_population_by_field_name = True
+
+
+class EntityWithLifespan(StrictBaseModelWithAlias):
+    """A zone or exchange that only exists from `active_from` (inclusive) to
+    `active_to` (exclusive), e.g. a bidding zone created or merged by a market
+    reform. Bounds are dates taken at midnight in `timezone`, which is required
+    when either is set, and a missing bound leaves that side open."""
+
+    active_from: date | None
+    active_to: date | None
+    timezone: str | None
+
+    @validator("active_from", "active_to", pre=True)
+    def bound_is_a_date(cls, v):
+        return parse_lifespan_bound(v)
+
+    @validator("timezone")
+    def timezone_is_known(cls, v):
+        if v is not None and v not in IANA_TIMEZONES:
+            raise ValueError(f"Unknown IANA timezone {v!r}")
+        return v
+
+    @root_validator(skip_on_failure=True)
+    def lifespan_is_ordered(cls, values):
+        active_from, active_to = lifespan_instants(values)
+        if (
+            active_from is not None
+            and active_to is not None
+            and active_from >= active_to
+        ):
+            raise ValueError(
+                f"active_from ({active_from}) must be before active_to ({active_to})"
+            )
+        return values
+
+    def lifespan_instants(self) -> tuple[datetime | None, datetime | None]:
+        """Returns the UTC instants at which the lifespan starts and ends."""
+        return lifespan_instants(
+            {
+                "active_from": self.active_from,
+                "active_to": self.active_to,
+                "timezone": self.timezone,
+            }
+        )
 
 
 class ModeCapacity(StrictBaseModelWithAlias):
@@ -128,7 +179,7 @@ class Delays(StrictBaseModel):
     productionPerModeForecast: PositiveInt | None
 
 
-class Zone(StrictBaseModelWithAlias):
+class Zone(EntityWithLifespan):
     bounding_box: list[Point] | None
     bypass_aggregation_checks: list[ZoneKey] | None = Field(
         [], alias="bypassedSubZones"
@@ -146,7 +197,6 @@ class Zone(StrictBaseModelWithAlias):
     has_day_ahead_price_license: bool | None
     hide_day_ahead_price: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
-    timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     sources: dict[str, Source] | None
     region: str | None
@@ -179,7 +229,7 @@ class ExchangeParsers(ParsersBaseModel):
     exchangeForecast: str | None
 
 
-class Exchange(StrictBaseModelWithAlias):
+class Exchange(EntityWithLifespan):
     capacity: tuple[int, int] | None
     comment: str | None = Field(None, alias="_comment")
     lonlat: tuple[float, float] | None
@@ -350,6 +400,31 @@ class CO2eqParameters(StrictBaseModelWithAlias):
 class ConfigModel(StrictBaseModel):
     exchanges: dict[str, Exchange]
     zones: dict[str, Zone]
+
+    @root_validator(skip_on_failure=True)
+    def exchanges_are_active_only_while_their_zones_are(cls, values):
+        """An exchange cannot carry flows before either of its zones exists or
+        after either is gone, so its lifespan must fit within both of theirs."""
+        zones: dict[str, Zone] = values["zones"]
+        for exchange_key, exchange in values["exchanges"].items():
+            for zone_key in exchange_key.split("->"):
+                zone = zones.get(zone_key)
+                if zone is None:
+                    continue
+                zone_from, zone_to = zone.lifespan_instants()
+                exchange_from, exchange_to = exchange.lifespan_instants()
+                starts_before_zone = zone_from is not None and (
+                    exchange_from is None or exchange_from < zone_from
+                )
+                ends_after_zone = zone_to is not None and (
+                    exchange_to is None or exchange_to > zone_to
+                )
+                if starts_before_zone or ends_after_zone:
+                    raise ValueError(
+                        f"Exchange {exchange_key} must only be active while "
+                        f"{zone_key} is active"
+                    )
+        return values
 
 
 # The co2eq parameters config model is separated as it does not respect the
