@@ -549,6 +549,10 @@
     "IT": {
       "zoneName": "Italy"
     },
+    "IT-CA": {
+      "countryName": "Italy",
+      "zoneName": "Calabria"
+    },
     "IT-CNO": {
       "countryName": "Italy",
       "zoneName": "Central North Italy"
