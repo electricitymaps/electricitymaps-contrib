@@ -1574,12 +1574,17 @@ class ExchangeAtc(Event):
     capacityImport: ATC for zone2→zone1 direction (may be None).
     atcType: CACM capacity-calculation methodology that produced this row —
         either shadow auction (FBMC fallback, CACM Art. 51) or Coordinated NTC.
+    auctionPriceExport: clearing price of the zone1→zone2 capacity, EUR/MWh.
+    auctionPriceImport: clearing price of the zone2→zone1 capacity, EUR/MWh.
+        Both only exist for explicit auctions, where capacity is sold.
     """
 
     sourceType: EventSourceType = EventSourceType.published
     capacityExport: float | None
     capacityImport: float | None
     atcType: AtcType
+    auctionPriceExport: float | None = None
+    auctionPriceImport: float | None = None
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
@@ -1603,6 +1608,20 @@ class ExchangeAtc(Event):
             )
         return values
 
+    @root_validator(pre=False)
+    def _validate_auction_prices(cls, values: dict[str, Any]) -> dict[str, Any]:
+        prices = [
+            values.get("auctionPriceExport"),
+            values.get("auctionPriceImport"),
+        ]
+        if all(price is None for price in prices):
+            return values
+        if values.get("atcType") != AtcType.EXPLICIT_AUCTION:
+            raise ValueError("Auction prices only exist for explicit auctions")
+        if any(price is not None and price < 0 for price in prices):
+            raise ValueError(f"Auction prices cannot be negative: {prices}")
+        return values
+
     @staticmethod
     def create(
         logger: Logger,
@@ -1614,6 +1633,8 @@ class ExchangeAtc(Event):
         capacityImport: float | None,
         atcType: AtcType,
         sourceType: EventSourceType = EventSourceType.published,
+        auctionPriceExport: float | None = None,
+        auctionPriceImport: float | None = None,
     ) -> "ExchangeAtc | None":
         try:
             return ExchangeAtc(
@@ -1625,6 +1646,8 @@ class ExchangeAtc(Event):
                 capacityImport=_none_safe_round(capacityImport),
                 sourceType=sourceType,
                 atcType=atcType,
+                auctionPriceExport=_none_safe_round(auctionPriceExport),
+                auctionPriceImport=_none_safe_round(auctionPriceImport),
             )
         except ValidationError as e:
             logger.error(
@@ -1645,6 +1668,8 @@ class ExchangeAtc(Event):
             "capacityExport": self.capacityExport,
             "capacityImport": self.capacityImport,
             "atcType": self.atcType,
+            "auctionPriceExport": self.auctionPriceExport,
+            "auctionPriceImport": self.auctionPriceImport,
             "source": self.source,
             "sourceType": self.sourceType,
         }

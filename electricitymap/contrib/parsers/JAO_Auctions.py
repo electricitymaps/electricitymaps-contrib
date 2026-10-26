@@ -30,12 +30,14 @@ interconnector and is only present where several cables share a border:
 The full list is available from `GET /OWSMP/getcorridors`.
 
 Currently wired (day-ahead horizon):
-- fetch_auction_atc_day_ahead  →  summed ATC across corridors for a border
+- fetch_auction_atc_day_ahead  →  summed ATC across corridors for a border, with
+  each direction's auction clearing price
 """
 
 from datetime import datetime, time, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
+from typing import NamedTuple
 
 from requests import Session
 
@@ -232,8 +234,17 @@ def _product_hour_sort_key(product_hour: str) -> tuple[str, bool]:
     return (product_hour.rstrip("*"), product_hour.endswith("*"))
 
 
-def _auction_hourly_atc(auction: dict, logger: Logger) -> dict[datetime, float]:
-    """Map each hourly product of one auction to its UTC start and ATC value.
+class HourlyResult(NamedTuple):
+    """One corridor's result for one hour."""
+
+    capacity: float
+    price: float | None
+    allocated: float | None
+
+
+def _auction_hourly_atc(auction: dict, logger: Logger) -> dict[datetime, HourlyResult]:
+    """Map each hourly product of one auction to its UTC start and its ATC, clearing
+    price and allocated capacity.
 
     `marketPeriodStart` is CET/CEST midnight expressed in UTC, and the products tile the
     market period one hour at a time, so the Nth product in chronological order starts N
@@ -279,13 +290,28 @@ def _auction_hourly_atc(auction: dict, logger: Logger) -> dict[datetime, float]:
         )
         return {}
 
-    atc_by_datetime: dict[datetime, float] = {}
+    atc_by_datetime: dict[datetime, HourlyResult] = {}
     for offset, row in enumerate(rows):
         capacity = row.get("offeredCapacity")
         if capacity is None:
             continue
-        atc_by_datetime[start + timedelta(hours=offset)] = capacity
+        atc_by_datetime[start + timedelta(hours=offset)] = HourlyResult(
+            capacity, row.get("auctionPrice"), row.get("allocatedCapacity")
+        )
     return atc_by_datetime
+
+
+def _border_price(results: list[HourlyResult]) -> float | None:
+    """One hour's price for a border made of several corridors: the average price
+    paid, weighted by allocated capacity, or the plain mean when nothing was
+    allocated. Prices cannot be summed like capacity."""
+    priced = [r for r in results if r.price is not None]
+    if not priced:
+        return None
+    allocated = sum(r.allocated or 0.0 for r in priced)
+    if allocated > 0:
+        return sum(r.price * (r.allocated or 0.0) for r in priced) / allocated
+    return sum(r.price for r in priced) / len(priced)
 
 
 def _extract_atc(
@@ -304,15 +330,17 @@ def _extract_atc(
       - Export (A→B): corridor {prefix}{jao_a}-{jao_b}  (capacity entering B)
       - Import (B→A): corridor {prefix}{jao_b}-{jao_a}  (capacity entering A)
 
-    Values from all prefixes are accumulated into capacityExport / capacityImport.
+    Values from all prefixes are accumulated into capacityExport / capacityImport,
+    and their clearing prices combined by `_border_price` into auctionPriceExport /
+    auctionPriceImport.
     """
     zone_a, zone_b = sorted_zone_keys.split("->")
     prefixes = _em_zone_to_jao_prefix(sorted_zone_keys)
     jao_a = _em_to_jao_zone(zone_a)
     jao_b = _em_to_jao_zone(zone_b)
 
-    export_by_dt: dict[datetime, float] = {}
-    import_by_dt: dict[datetime, float] = {}
+    export_by_dt: dict[datetime, list[HourlyResult]] = {}
+    import_by_dt: dict[datetime, list[HourlyResult]] = {}
 
     for prefix in prefixes:
         for corridor, accumulator in (
@@ -323,23 +351,25 @@ def _extract_atc(
                 session, from_utc, to_utc, horizon, corridor, logger
             )
             for auction in auctions:
-                for dt, capacity in _auction_hourly_atc(auction, logger).items():
-                    accumulator[dt] = accumulator.get(dt, 0.0) + capacity
+                for dt, result in _auction_hourly_atc(auction, logger).items():
+                    accumulator.setdefault(dt, []).append(result)
 
     capacities = ExchangeAtcList(logger)
     for dt in sorted(set(export_by_dt) | set(import_by_dt)):
-        export_val = export_by_dt.get(dt)
-        import_val = import_by_dt.get(dt)
-        if export_val is None and import_val is None:
+        exports = export_by_dt.get(dt)
+        imports = import_by_dt.get(dt)
+        if exports is None and imports is None:
             continue
         capacities.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
             end_datetime=dt + timedelta(hours=1),
             source=source,
-            capacityExport=export_val,
-            capacityImport=import_val,
+            capacityExport=sum(r.capacity for r in exports) if exports else None,
+            capacityImport=sum(r.capacity for r in imports) if imports else None,
             atcType=atc_type,
+            auctionPriceExport=_border_price(exports) if exports else None,
+            auctionPriceImport=_border_price(imports) if imports else None,
         )
     return capacities
 
@@ -355,7 +385,8 @@ def fetch_auction_atc_day_ahead(
     """Day-ahead ATC capacity from the JAO Auction API.
 
     Sums ATC across all configured corridors for the given border and returns
-    an ExchangeAtcList-shaped list with capacityExport and capacityImport.
+    an ExchangeAtcList-shaped list with capacityExport and capacityImport, plus each
+    direction's clearing price (auctionPriceExport, auctionPriceImport, EUR/MWh).
 
     Tagged AtcType.EXPLICIT_AUCTION. Neither direction is a bound on physical flow
     here: capacity is sold as directional rights that buyers nominate, so flow is the

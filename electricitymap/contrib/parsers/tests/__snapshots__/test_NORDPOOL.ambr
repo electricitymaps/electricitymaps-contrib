@@ -3,6 +3,8 @@
   list([
     dict({
       'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'auctionPriceExport': None,
+      'auctionPriceImport': None,
       'capacityExport': 1100.0,
       'capacityImport': 1444.0,
       'datetime': datetime.datetime(2025, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
@@ -13,6 +15,8 @@
     }),
     dict({
       'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'auctionPriceExport': None,
+      'auctionPriceImport': None,
       'capacityExport': 1200.0,
       'capacityImport': 1444.0,
       'datetime': datetime.datetime(2025, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
@@ -23,6 +27,8 @@
     }),
     dict({
       'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'auctionPriceExport': None,
+      'auctionPriceImport': None,
       'capacityExport': 1200.0,
       'capacityImport': 1444.0,
       'datetime': datetime.datetime(2025, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),

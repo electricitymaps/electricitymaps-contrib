@@ -393,6 +393,8 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
         *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
+        auctionPriceExport: float | None = None,
+        auctionPriceImport: float | None = None,
     ):
         event = ExchangeAtc.create(
             self.logger,
@@ -404,6 +406,8 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
             capacityImport,
             atcType,
             sourceType,
+            auctionPriceExport,
+            auctionPriceImport,
         )
         if event:
             self.events.append(event)

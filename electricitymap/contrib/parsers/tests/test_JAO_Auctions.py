@@ -16,6 +16,8 @@ from electricitymap.contrib.parsers.JAO_Auctions import (
     EM_TO_JAO_ZONE,
     EM_ZONE_TO_JAO_PREFIX,
     JAO_AUCTION_MAX_WINDOW_DAYS,
+    HourlyResult,
+    _border_price,
     fetch_auction_atc_day_ahead,
 )
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -190,6 +192,8 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
             "capacityExport": 2500.0,
             "capacityImport": 2200.0,
             "atcType": AtcType.EXPLICIT_AUCTION,
+            "auctionPriceExport": None,
+            "auctionPriceImport": None,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
@@ -261,7 +265,8 @@ def test_fetch_auction_atc_day_ahead_unprefixed_borders_are_configured(
 
 def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
     """When only the export corridor (CH-DE) has an auction and the import corridor
-    (DE-CH) returns "No Data found", capacityImport should be None."""
+    (DE-CH) returns "No Data found", capacityImport should be None. A single-corridor
+    border passes its corridor's clearing price through unchanged."""
     requests_mock.register_uri(
         GET,
         ATC_DAY_AHEAD_AUCTION_URL_REGEX,
@@ -273,7 +278,12 @@ def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
                         "marketPeriodStart": "2026-07-27T22:00:00.000+00:00",
                         "marketPeriodStop": "2026-07-27T23:00:00.000+00:00",
                         "results": [
-                            {"productHour": "00:00-01:00", "offeredCapacity": 3620}
+                            {
+                                "productHour": "00:00-01:00",
+                                "offeredCapacity": 3620,
+                                "allocatedCapacity": 3620,
+                                "auctionPrice": 4.37,
+                            }
                         ],
                     }
                 ]
@@ -299,6 +309,8 @@ def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
             "capacityExport": 3620.0,
             "capacityImport": None,
             "atcType": AtcType.EXPLICIT_AUCTION,
+            "auctionPriceExport": 4.37,
+            "auctionPriceImport": None,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
@@ -346,6 +358,8 @@ def test_fetch_auction_atc_day_ahead_import_only_and_zone_key_ordering(
             "capacityExport": None,
             "capacityImport": 1800.0,
             "atcType": AtcType.EXPLICIT_AUCTION,
+            "auctionPriceExport": None,
+            "auctionPriceImport": None,
             "source": "jao.eu",
             "sourceType": EventSourceType.published,
         }
@@ -534,3 +548,33 @@ def test_fetch_auction_atc_day_ahead_skips_auction_not_tiling_market_period(
     )
 
     assert result == []
+
+
+def test_border_price_weights_corridors_by_allocated_capacity():
+    """FR->GB's first hour in the real capture: IFA1, IFA2 and ElecLink."""
+    corridors = [
+        HourlyResult(capacity=1868.0, price=0.43, allocated=1868.0),
+        HourlyResult(capacity=962.0, price=0.56, allocated=962.0),
+        HourlyResult(capacity=883.0, price=1.0, allocated=883.0),
+    ]
+
+    assert _border_price(corridors) == pytest.approx(0.599235, abs=1e-6)
+
+
+def test_border_price_is_the_plain_mean_when_nothing_was_allocated():
+    corridors = [
+        HourlyResult(capacity=1000.0, price=0.0, allocated=0.0),
+        HourlyResult(capacity=500.0, price=2.0, allocated=None),
+    ]
+
+    assert _border_price(corridors) == 1.0
+
+
+def test_border_price_ignores_corridors_without_a_price():
+    corridors = [
+        HourlyResult(capacity=1000.0, price=None, allocated=1000.0),
+        HourlyResult(capacity=500.0, price=3.0, allocated=500.0),
+    ]
+
+    assert _border_price(corridors) == 3.0
+    assert _border_price([HourlyResult(1000.0, None, None)]) is None

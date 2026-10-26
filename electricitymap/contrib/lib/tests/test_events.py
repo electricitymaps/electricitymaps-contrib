@@ -13,6 +13,7 @@ from electricitymap.contrib.lib.models.events import (
     DayAheadPrice,
     EventSourceType,
     Exchange,
+    ExchangeAtc,
     ExchangeCapacity,
     GridAlert,
     GridAlertType,
@@ -25,7 +26,12 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import DayAheadAuction, MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import (
+    AtcType,
+    DayAheadAuction,
+    MarketAgreementType,
+    ZoneKey,
+)
 
 
 def test_create_exchange():
@@ -1519,3 +1525,64 @@ def test_exchange_capacity_forecast_to_dict():
     assert d["capacityImport"] == 900.0
     assert d["source"] == "trust.me"
     assert d["sourceType"] == EventSourceType.published
+
+
+def _atc(**kwargs) -> ExchangeAtc:
+    return ExchangeAtc(
+        zoneKey=ZoneKey("CH->FR"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="jao.eu",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+        **kwargs,
+    )
+
+
+def test_exchange_atc_auction_prices_default_to_none():
+    atc = _atc(atcType=AtcType.COORDINATED_NTC)
+
+    assert atc.auctionPriceExport is None
+    assert atc.auctionPriceImport is None
+    assert atc.to_dict()["auctionPriceExport"] is None
+    assert atc.to_dict()["auctionPriceImport"] is None
+
+
+def test_exchange_atc_auction_prices_on_an_explicit_auction():
+    atc = _atc(
+        atcType=AtcType.EXPLICIT_AUCTION,
+        auctionPriceExport=0.0,
+        auctionPriceImport=34.12,
+    )
+
+    d = atc.to_dict()
+    assert d["auctionPriceExport"] == 0.0
+    assert d["auctionPriceImport"] == 34.12
+
+
+@pytest.mark.parametrize("atc_type", [AtcType.COORDINATED_NTC, AtcType.SHADOW_AUCTION])
+def test_exchange_atc_auction_prices_only_for_explicit_auctions(atc_type):
+    with pytest.raises(ValueError, match="explicit auctions"):
+        _atc(atcType=atc_type, auctionPriceExport=1.0)
+
+
+def test_exchange_atc_auction_prices_cannot_be_negative():
+    with pytest.raises(ValueError, match="negative"):
+        _atc(atcType=AtcType.EXPLICIT_AUCTION, auctionPriceImport=-0.01)
+
+
+def test_exchange_atc_create_logs_an_invalid_auction_price():
+    logger = logging.Logger("test")
+    with patch.object(logger, "error") as mock_error:
+        event = ExchangeAtc.create(
+            logger=logger,
+            zoneKey=ZoneKey("CH->FR"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
+            source="jao.eu",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+            atcType=AtcType.EXPLICIT_AUCTION,
+            auctionPriceExport=-1.0,
+        )
+        mock_error.assert_called_once()
+    assert event is None
