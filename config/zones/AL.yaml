@@ -73,7 +73,7 @@ contributors:
   - VIKTORVAV99
 country: AL
 country_name: Albania
-currency: ALL
+currency: EUR
 emissionFactors:
   lifecycle:
     hydro:
