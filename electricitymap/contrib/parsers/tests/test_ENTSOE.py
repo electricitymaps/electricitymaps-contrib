@@ -290,6 +290,12 @@ _FIRST_HOUR_OF_CALABRIA = datetime(2020, 12, 31, 23, tzinfo=timezone.utc)
         ("IT-SIC", "IT-SO", _LAST_HOUR_BEFORE_CALABRIA, [["IT-SIC", "IT-RO"]]),
         ("IT-SO", "IT-SIC", _LAST_HOUR_BEFORE_CALABRIA, [["IT-SIC", "IT-RO"]]),
         ("IT-SIC", "IT-SO", _FIRST_HOUR_OF_CALABRIA, []),
+        (
+            "IT-SIC",
+            "IT-SO",
+            _LAST_HOUR_BEFORE_CALABRIA.replace(tzinfo=None),
+            [["IT-SIC", "IT-RO"]],
+        ),
         ("IT-CA", "IT-SIC", _LAST_HOUR_BEFORE_CALABRIA, []),
         ("IT-CA", "IT-SIC", _FIRST_HOUR_OF_CALABRIA, [["IT-CA", "IT-SIC"]]),
         ("IT-CA", "IT-SO", _LAST_HOUR_BEFORE_CALABRIA, []),

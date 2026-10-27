@@ -1293,13 +1293,14 @@ def _resolve_exchange_domain_pairs(
     FR-COR↔IT-SAR via AC + DC) fan out to multiple domain pairs that must be
     queried independently.
 
-    Time-bounded borders are routed on `target_datetime` (now when `None`), and
-    resolve to no pairs when it falls outside every period. A query window that
-    straddles a period boundary only gets the pairs valid at `target_datetime`.
+    Time-bounded borders are routed on `target_datetime` (now when `None`, UTC
+    when naive, matching how `query_ENTSOE` formats it), and resolve to no pairs
+    when it falls outside every period. A query window that straddles a period
+    boundary only gets the pairs valid at `target_datetime`.
     """
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_PERIODS:
-        at = target_datetime or datetime.now(timezone.utc)
+        at = to_utc(target_datetime)
         return [
             period.domain_pair
             for period in ENTSOE_EXCHANGE_DOMAIN_PERIODS[sorted_zone_keys]
