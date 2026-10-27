@@ -274,7 +274,7 @@ emissionFactors:
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
-      value: 25.7
+      value: 25.65
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
