@@ -1,3 +1,4 @@
+active_to: '2021-01-01'
 capacity:
   - -1500
   - 1300
@@ -13,3 +14,4 @@ parsers:
   scheduledExchangesTotal: ENTSOE.fetch_scheduled_exchanges_total
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 90
+timezone: Europe/Rome
