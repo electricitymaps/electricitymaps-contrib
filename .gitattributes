@@ -3,7 +3,7 @@
 * text=auto eol=lf
 
 # Preserve the archived CER download byte for byte for its provenance checksum.
-notebooks/au_emission_factors/nger_2024_25.csv -text
+notebooks/au_emission_factors/nger_2024_25.csv -text -whitespace
 
 # Denote all files in the `parsers/test/mocks` directory as vendored.
 # This makes GitHub ignore them for language statistics.
