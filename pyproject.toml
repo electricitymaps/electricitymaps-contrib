@@ -1,6 +1,6 @@
 [project]
 name = "electricitymap-contrib"
-version = "2.12.2"
+version = "2.14.2"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.10, < 3.14"
@@ -27,7 +27,7 @@ test = "scripts.tooling:test"
 members = [".", "libs/types"]
 
 [tool.uv]
-required-version = ">=0.4.0"
+required-version = ">=0.13.4"
 # The electricitymaps index is for consumers of the published package.
 # For local development, workspace sources take precedence.
 index = [
