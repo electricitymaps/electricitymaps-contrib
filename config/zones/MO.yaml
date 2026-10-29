@@ -3,12 +3,6 @@ bounding_box:
     - 22.07645485902869
   - - 113.63042179357811
     - 22.21674764489182
-center_point:
-  - 113.57910969469962
-  - 22.146601251960256
-centroid:
-  - 113.55852235156526
-  - 22.17149743747339
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -18,13 +12,19 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 270.0
+center_point:
+  - 113.57910969469962
+  - 22.146601251960256
+centroid:
+  - 113.55852235156526
+  - 22.17149743747339
 contributors:
   - VIKTORVAV99
 country: MO
 country_name: Macao
 currency: MOP
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

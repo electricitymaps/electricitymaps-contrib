@@ -3,17 +3,14 @@ bounding_box:
     - 13.064543994158925
   - - -13.818738187381854
     - 13.820155729960916
-center_point:
-  - -15.32355323553233
-  - 13.44234986205992
-centroid:
-  - -15.297726890312353
-  - 13.45236744189062
 capacity:
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -28,11 +25,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - -15.32355323553233
+  - 13.44234986205992
+centroid:
+  - -15.297726890312353
+  - 13.45236744189062
 country: GM
 country_name: Gambia
 currency: GMD
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

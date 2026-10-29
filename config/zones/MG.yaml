@@ -3,6 +3,23 @@ bounding_box:
     - -25.584710075546695
   - - 50.48510485104853
     - -11.9436285117879
+capacity:
+  coal:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+  hydro:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
+  solar:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  unknown:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 500.0
 center_point:
   - 46.8079946111028
   - -19.05016857783316
@@ -12,8 +29,8 @@ centroid:
 country: MG
 country_name: Madagascar
 currency: MGA
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

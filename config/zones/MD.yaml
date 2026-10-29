@@ -3,12 +3,6 @@ bounding_box:
     - 45.461397166669585
   - - 30.08010080100803
     - 48.47239544721391
-center_point:
-  - 28.38562455797984
-  - 47.37689507165253
-centroid:
-  - 28.585295609053674
-  - 47.05489044893901
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -47,7 +41,10 @@ capacity:
       value: 200.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 340.0
+      value: 400.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 710.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -69,7 +66,16 @@ capacity:
       value: 140.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 120.0
+      value: 160.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+center_point:
+  - 28.38562455797984
+  - 47.37689507165253
+centroid:
+  - 28.585295609053674
+  - 47.05489044893901
 contributors:
   - systemcatch
   - alixunderplatz
@@ -209,8 +215,8 @@ fallbackZoneMixes:
         solar: 0.012678326413849667
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
-has_day_ahead_price_license: False
-hide_day_ahead_price: True
+has_day_ahead_price_license: false
+hide_day_ahead_price: true
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

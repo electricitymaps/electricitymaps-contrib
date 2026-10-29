@@ -3,12 +3,6 @@ bounding_box:
     - 10.419902918851918
   - - 107.60687606876067
     - 14.704564920729169
-center_point:
-  - 104.98856517147142
-  - 12.474528391008167
-centroid:
-  - 105.16052484468507
-  - 12.781915212697765
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -45,7 +39,7 @@ capacity:
       value: 1330.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 1340.0
+      value: 1800.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -70,7 +64,10 @@ capacity:
       value: 490.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 880.0
+      value: 970.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 1480.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -90,15 +87,24 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 650.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 820.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+center_point:
+  - 104.98856517147142
+  - 12.474528391008167
+centroid:
+  - 105.16052484468507
+  - 12.781915212697765
 country: KH
 country_name: Cambodia
 currency: KHR
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

@@ -3,12 +3,6 @@ bounding_box:
     - -17.129872698428883
   - - 35.9049590495905
     - -9.407749731785735
-center_point:
-  - 34.17551417350189
-  - -13.353425614705001
-centroid:
-  - 34.171465658318574
-  - -12.993116130752323
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -34,6 +28,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 110.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -44,11 +41,17 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 130.0
+center_point:
+  - 34.17551417350189
+  - -13.353425614705001
+centroid:
+  - 34.171465658318574
+  - -12.993116130752323
 country: MW
 country_name: Malawi
 currency: MWK
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

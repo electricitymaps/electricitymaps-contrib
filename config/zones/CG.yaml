@@ -3,12 +3,6 @@ bounding_box:
     - -5.020049765935497
   - - 18.624786247862488
     - 3.708124432277359
-center_point:
-  - 14.972389993853595
-  - -0.5365495548993182
-centroid:
-  - 14.523959525309563
-  - -1.1205662640540501
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -36,11 +30,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 60.0
+center_point:
+  - 14.972389993853595
+  - -0.5365495548993182
+centroid:
+  - 14.523959525309563
+  - -1.1205662640540501
 country: CG
 country_name: Congo
 currency: XAF
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

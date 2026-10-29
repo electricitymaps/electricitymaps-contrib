@@ -17,6 +17,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2660.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2670.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -63,7 +66,7 @@ capacity:
       value: 23620.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 25640.0
+      value: 27190.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -83,6 +86,12 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 83280.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 83500.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 84130.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -96,6 +105,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 11580.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 12670.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -120,7 +132,10 @@ capacity:
       value: 5880.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 6110.0
+      value: 5820.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 5930.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -149,7 +164,10 @@ capacity:
       value: 16990.0
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 18380.0
+      value: 17400.0
+    - datetime: '2025-01-01'
+      source: Ember, Yearly electricity data
+      value: 17740.0
 center_point:
   - -97.1821186078896
   - 62.57918935741333

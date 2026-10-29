@@ -3,6 +3,23 @@ bounding_box:
     - 16.370345338292665
   - - 55.66653168245267
     - 32.155267833754806
+capacity:
+  gas:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 69420.0
+  solar:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 6200.0
+  unknown:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 28330.0
+  wind:
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
 center_point:
   - 45.21936963272702
   - 24.524262432832636
@@ -14,8 +31,8 @@ contributors:
 country: SA
 country_name: Saudi Arabia
 currency: SAR
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

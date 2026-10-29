@@ -31,6 +31,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    DayAheadPriceList,
     ExchangeList,
     ForecastTransferCapacityList,
     PriceList,
@@ -50,8 +51,8 @@ from electricitymap.contrib.parsers.lib.config import (
     refetch_frequency,
 )
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.contrib.parsers.lib.utils import get_token
-from electricitymap.contrib.types import MarketAgreementType
+from electricitymap.contrib.parsers.lib.utils import get_token, to_utc
+from electricitymap.contrib.types import DayAheadAuction, MarketAgreementType
 
 SOURCE = "entsoe.eu"
 
@@ -273,6 +274,43 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE-SEM"],
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
+}
+
+# Auction behind the ENTSO-E A44 price of each zone fetched by `fetch_price_day_ahead`.
+# Explicit allowlist: unmapped zones raise instead of being mislabelled.
+ENTSOE_DAY_AHEAD_AUCTIONS: dict[str, DayAheadAuction] = {
+    **dict.fromkeys(
+        (
+            "AX",
+            "BG",
+            "CZ",
+            "ES",
+            "GR",
+            "HR",
+            "HU",
+            "IT-CNO",
+            "IT-CSO",
+            "IT-NO",
+            "IT-SAR",
+            "IT-SIC",
+            "IT-SO",
+            "LU",
+            "PT",
+            "RO",
+            "SI",
+            "SK",
+        ),
+        DayAheadAuction.SDAC,
+    ),
+    "CH": DayAheadAuction.EPEX_CH_DA,
+    "IE": DayAheadAuction.SEMOPX_DA,
+    "GB-NIR": DayAheadAuction.SEMOPX_DA,
+    "RS": DayAheadAuction.SEEPEX_DA,
+    "AL": DayAheadAuction.ALPEX_DA,
+    "XK": DayAheadAuction.ALPEX_DA,
+    "ME": DayAheadAuction.BELEN_DA,
+    "MK": DayAheadAuction.MEMO_DA,
+    "UA": DayAheadAuction.UA_MO_DA,
 }
 
 
@@ -1090,6 +1128,34 @@ def parse_forecast_transfer_capacity(
         ) from e
 
 
+def _classification_sequence(timeseries: Any) -> int:
+    """The day-ahead auction an A44 price series belongs to.
+
+    Zones with several auctions label each series with a classification sequence
+    (in DE and AT, 1 is SDAC and 2 a second auction). Unlabelled series are the
+    zone's only auction, so they count as 1.
+    """
+    position = timeseries.find(
+        "classificationsequence_attributeinstancecomponent.position"
+    )
+    return int(position.text) if position else 1
+
+
+def _auction_timeseries(xml_text: str, sequence: int) -> list[Any]:
+    """The A44 price series of one day-ahead auction, by classification sequence.
+
+    A response lists the auctions in no fixed order, so they have to be told
+    apart here. Filtering the query on a sequence instead would return nothing
+    for zones whose series are unlabelled.
+    """
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+    return [
+        timeseries
+        for timeseries in soup.find_all("timeseries")
+        if _classification_sequence(timeseries) == sequence
+    ]
+
+
 def parse_prices(
     xml_text: str,
     zoneKey: ZoneKey,
@@ -1097,9 +1163,8 @@ def parse_prices(
 ) -> PriceList:
     if not xml_text:
         return PriceList(logger)
-    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     prices = PriceList(logger)
-    for timeseries in soup.find_all("timeseries"):
+    for timeseries in _auction_timeseries(xml_text, sequence=1):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
@@ -1112,6 +1177,31 @@ def parse_prices(
                 currency=currency,
             )
 
+    return prices
+
+
+def parse_prices_day_ahead(
+    xml_text: str,
+    zoneKey: ZoneKey,
+    auction: DayAheadAuction,
+    logger: Logger,
+) -> DayAheadPriceList:
+    if not xml_text:
+        return DayAheadPriceList(logger)
+    prices = DayAheadPriceList(logger)
+    for timeseries in _auction_timeseries(xml_text, sequence=1):
+        currency = str(timeseries.find("currency_unit.name").contents[0])
+        points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
+        for dt, dt_end, value in points:
+            prices.append(
+                zoneKey=zoneKey,
+                datetime=dt,
+                end_datetime=dt_end,
+                price=value,
+                source=SOURCE,
+                currency=currency,
+                auction=auction,
+            )
     return prices
 
 
@@ -1513,6 +1603,63 @@ def fetch_price(
             zone_key=zone_key,
         )
     return parse_prices(raw_price_data, zone_key, logger).to_list()
+
+
+def get_price_day_ahead(
+    zone_key: ZoneKey,
+    domain: str,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list:
+    """Shared by `fetch_price_day_ahead` here and in `ENTSOE_price_overrides`."""
+    if zone_key not in ENTSOE_DAY_AHEAD_AUCTIONS:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No day-ahead auction configured for {zone_key}",
+            zone_key=zone_key,
+        )
+    try:
+        # `query_ENTSOE` formats periodStart/periodEnd with strftime, which prints wall
+        # time, and ENTSO-E expects UTC. So pass an explicit UTC datetime.
+        raw_price_data = query_price(
+            domain, session, target_datetime=to_utc(target_datetime)
+        )
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch day-ahead price for {zone_key}",
+            zone_key=zone_key,
+        ) from e
+    if raw_price_data is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No day-ahead price data found for {zone_key}",
+            zone_key=zone_key,
+        )
+    return parse_prices_day_ahead(
+        raw_price_data, zone_key, ENTSOE_DAY_AHEAD_AUCTIONS[zone_key], logger
+    ).to_list()
+
+
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
+def fetch_price_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Day-ahead auction prices tagged with their auction, for `parser_data_price_day_ahead`.
+
+    Runs alongside `fetch_price`, with the same A44 query, window and parsing.
+    """
+    return get_price_day_ahead(
+        zone_key,
+        ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key],
+        session or Session(),
+        target_datetime,
+        logger,
+    )
 
 
 # ------------------- #

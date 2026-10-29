@@ -176,8 +176,6 @@ fallbackZoneMixes:
         wind: 0.02900752525848245
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-parsers:
-  production: IN_MH.fetch_production
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Unknown
