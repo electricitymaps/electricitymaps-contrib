@@ -489,7 +489,6 @@ parsers:
   price: ENTSOE.fetch_price
   production: SEMOxSMARTGRID.fetch_production
   priceDayAhead: ENTSOE.fetch_price_day_ahead
-  production: SMARTGRIDDASHBOARD.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
 region: Europe
