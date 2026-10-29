@@ -2,6 +2,9 @@
 # text files on check-out and check-in.
 * text=auto eol=lf
 
+# Preserve the archived CER download byte for byte for its provenance checksum.
+notebooks/au_emission_factors/nger_2024_25.csv -text
+
 # Denote all files in the `parsers/test/mocks` directory as vendored.
 # This makes GitHub ignore them for language statistics.
 electricitymap/contrib/parsers/tests/mocks/** linguist-vendored
