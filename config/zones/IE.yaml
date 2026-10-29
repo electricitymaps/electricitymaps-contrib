@@ -466,7 +466,7 @@ parsers:
   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
   generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
   price: ENTSOE.fetch_price
-  production: SMARTGRIDDASHBOARD.fetch_production
+  production: SEMOxSMARTGRID.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
 region: Europe
