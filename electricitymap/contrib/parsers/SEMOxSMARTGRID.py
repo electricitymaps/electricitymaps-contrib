@@ -41,16 +41,22 @@ SMARTGRID_MODES = ("wind", "solar")
 
 
 def _half_hour_label(dt: datetime) -> datetime:
-    """Rounds a timestamp up to the half-hour that ends the window it belongs to.
+    """Labels a 15-minute reading with the half-hour that ends its window.
 
-    The 30-minute value is labelled at the end of its interval, so it averages
-    the previous and current 15-minute readings, e.g. 06:30 uses 06:15 and
-    06:30. Timestamps already on a boundary keep their own label.
+    SmartGridDashboard readings fall on :00, :15, :30 and :45, and each
+    30-minute value is labelled at the end of its window (so it averages the
+    previous and current reading). That maps:
+
+        :15 and :30 -> :30            (e.g. 06:30 uses 06:15 and 06:30)
+        :45         -> the next :00
+        :00         -> itself (already a window end)
     """
-    if dt.minute in (0, 30) and dt.second == 0 and dt.microsecond == 0:
+    dt = dt.replace(second=0, microsecond=0)
+    if dt.minute == 0:
         return dt
-    floored = dt.replace(minute=0 if dt.minute < 30 else 30, second=0, microsecond=0)
-    return floored + timedelta(minutes=30)
+    if dt.minute <= 30:
+        return dt.replace(minute=30)
+    return dt.replace(minute=0) + timedelta(hours=1)
 
 
 def _smartgrid_wind_solar(
