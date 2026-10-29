@@ -42,7 +42,6 @@ def test_fetch_price_day_ahead(requests_mock, session, zone):
     assert {row["zoneKey"] for row in rows} == {zone}
     assert {row["auction"] for row in rows} == {DayAheadAuction.SDAC}
     assert {row["sourceType"] for row in rows} == {EventSourceType.published}
-    assert {row["publishedAt"] for row in rows} == {None}
     # Same points as the old path.
     assert [(row["datetime"], row["price"]) for row in rows] == [
         (row["datetime"], row["price"]) for row in fetch_price(ZoneKey(zone), session)

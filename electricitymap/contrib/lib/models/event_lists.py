@@ -777,7 +777,6 @@ class DayAheadPriceList(NonOverlappingEventList[DayAheadPrice]):
         currency: str,
         *,
         end_datetime: datetime | None = None,
-        publishedAt: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
         event = DayAheadPrice.create(
@@ -789,7 +788,6 @@ class DayAheadPriceList(NonOverlappingEventList[DayAheadPrice]):
             source=source,
             price=price,
             currency=currency,
-            publishedAt=publishedAt,
             sourceType=sourceType,
         )
         if event:

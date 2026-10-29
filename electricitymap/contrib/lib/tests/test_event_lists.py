@@ -275,7 +275,6 @@ def test_day_ahead_price_list():
         source="trust.me",
         currency="GBP",
         auction=DayAheadAuction.NORDPOOL_N2EX_DA,
-        publishedAt=datetime(2026, 9, 30, 9, tzinfo=timezone.utc),
     )
     assert price_list.to_list() == [
         {
@@ -287,7 +286,6 @@ def test_day_ahead_price_list():
             "price": 1,
             "source": "trust.me",
             "sourceType": EventSourceType.published,
-            "publishedAt": datetime(2026, 9, 30, 9, tzinfo=timezone.utc),
         }
     ]
 
@@ -775,6 +773,32 @@ def test_update_production_list_with_new_list_being_longer():
     assert updated_list.events[1].production.wind == 21
     assert updated_list.events[1].production.coal == 21
     assert updated_list.events[1].source == "trust.me"
+
+
+def test_merge_production_breakdowns_with_storage_only_events():
+    # Sub-zones can report storage at a datetime without any production.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
+    production_list_1.append(
+        zoneKey=ZoneKey("DE"),
+        datetime=dt,
+        storage=StorageMix(hydro=1),
+        source="trust.me",
+    )
+    production_list_2 = ProductionBreakdownList(logging.Logger("test"))
+    production_list_2.append(
+        zoneKey=ZoneKey("DE"),
+        datetime=dt,
+        storage=StorageMix(hydro=2),
+        source="trust2.me",
+    )
+    merged = ProductionBreakdownList.merge_production_breakdowns(
+        [production_list_1, production_list_2], logging.Logger("test")
+    )
+    assert len(merged.events) == 1
+    assert merged.events[0].production is None
+    assert merged.events[0].storage is not None
+    assert merged.events[0].storage.hydro == 3
 
 
 def test_update_storage_list_with_new_list_being_longer():

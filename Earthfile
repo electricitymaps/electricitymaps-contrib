@@ -1,5 +1,5 @@
 VERSION 0.8
-FROM astral/uv:python3.10-bookworm-slim
+FROM astral/uv:0.13-python3.10-trixie-slim
 WORKDIR /contrib
 
 linting-files:
@@ -39,7 +39,7 @@ uv-lock:
 
 prepare:
   FROM +src-files-with-parsers
-  RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
+  RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng
   COPY uv.lock .
   RUN uv sync --frozen --group dev --extra parsers --compile-bytecode
 

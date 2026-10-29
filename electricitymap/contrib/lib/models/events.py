@@ -858,8 +858,13 @@ class ProductionBreakdown(AggregatableEvent):
             target_end_datetime,
         ) = ProductionBreakdown._aggregated_fields(df_view)
 
-        production_mix = ProductionMix.merge(
-            [event.production for event in events if event.production is not None]
+        # Events can carry storage only, merging no mixes would give an empty one.
+        production_mix = (
+            ProductionMix.merge(
+                [event.production for event in events if event.production is not None]
+            )
+            if any(event.production is not None for event in events)
+            else None
         )
         storage_mix = StorageMix.merge(
             [event.storage for event in events if event.storage is not None]
@@ -1151,21 +1156,12 @@ class DayAheadPrice(Price):
 
     auction: the auction that cleared the price. Part of the identity
         (zone, auction, datetime), since several auctions can clear the same zone and MTU.
-    publishedAt: when the source says the result was published, if it exposes that
-        (Nord Pool `updatedAt`). None otherwise. Inference happens downstream.
     """
 
     sourceType: EventSourceType = EventSourceType.published
     auction: DayAheadAuction
-    publishedAt: datetime | None = None
 
-    @validator("publishedAt")
-    def _validate_published_at(cls, v: datetime | None) -> datetime | None:
-        if v is not None and _is_naive(v):
-            raise ValueError(f"Missing timezone: {v}")
-        return v
-
-    @validator("datetime", "end_datetime", "publishedAt")
+    @validator("datetime", "end_datetime")
     def _to_utc(cls, v: datetime | None) -> datetime | None:
         # Runs after the inherited validators, which reject naive values, so every
         # row leaves the parser in UTC regardless of the source's local timezone.
@@ -1181,7 +1177,6 @@ class DayAheadPrice(Price):
         source: str,
         price: float | None,
         currency: str,
-        publishedAt: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ) -> "DayAheadPrice | None":
         try:
@@ -1193,7 +1188,6 @@ class DayAheadPrice(Price):
                 source=source,
                 price=price,
                 currency=currency,
-                publishedAt=publishedAt,
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -1217,7 +1211,6 @@ class DayAheadPrice(Price):
             "price": self.price,
             "source": self.source,
             "sourceType": self.sourceType,
-            "publishedAt": self.publishedAt,
         }
 
 

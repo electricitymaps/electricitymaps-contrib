@@ -120,39 +120,6 @@ def get_data(session: Session | None = None) -> list[list[str]]:
     return data
 
 
-def floater(item):
-    """
-    Attempts to convert any item given to a float.
-    Returns item if it fails.
-    """
-
-    try:
-        return float(item)
-    except ValueError:
-        return item
-
-
-def chunker(big_lst) -> dict:
-    """
-    Breaks a big list into a list of lists.
-    Removes any list with no data then turns remaining
-    lists into key: value pairs with first element from the list being the key.
-    """
-
-    chunks = [big_lst[x : x + 27] for x in range(0, len(big_lst), 27)]
-
-    # Remove the list if it contains no data.
-    for chunk in chunks:
-        if any(chunk):
-            continue
-        else:
-            chunks.remove(chunk)
-
-    chunked_list = {words[0]: words[1:] for words in chunks}
-
-    return chunked_list
-
-
 def data_formatter(data: list[list[str]]) -> list[list[str]]:
     """
     Aligns the tabular data to a standard format: (ID, hour_0, hour_1, ... , hour_23, hour_24)

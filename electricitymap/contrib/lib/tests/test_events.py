@@ -438,7 +438,7 @@ def _day_ahead_price(**overrides) -> DayAheadPrice:
 
 
 def test_create_day_ahead_price():
-    price = _day_ahead_price(publishedAt=datetime(2026, 9, 30, 11, tzinfo=timezone.utc))
+    price = _day_ahead_price()
     assert price.to_dict() == {
         "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
         "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
@@ -448,18 +448,12 @@ def test_create_day_ahead_price():
         "price": 1,
         "source": "trust.me",
         "sourceType": EventSourceType.published,
-        "publishedAt": datetime(2026, 9, 30, 11, tzinfo=timezone.utc),
     }
-
-
-def test_day_ahead_price_published_at_is_optional():
-    assert _day_ahead_price().publishedAt is None
 
 
 @pytest.mark.parametrize(
     "overrides",
     [
-        {"publishedAt": datetime(2026, 9, 30, 11)},  # Naive.
         {"price": None},
         {"price": math.nan},
         {"auction": "NOT_AN_AUCTION"},
@@ -494,12 +488,10 @@ def test_day_ahead_price_timestamps_are_converted_to_utc():
     price = _day_ahead_price(
         datetime=datetime(2026, 10, 1, 9, tzinfo=tokyo),
         end_datetime=datetime(2026, 10, 1, 9, 30, tzinfo=tokyo),
-        publishedAt=datetime(2026, 9, 30, 17, 5, tzinfo=tokyo),
     )
     assert price.datetime == datetime(2026, 10, 1, 0, tzinfo=timezone.utc)
     assert price.end_datetime == datetime(2026, 10, 1, 0, 30, tzinfo=timezone.utc)
-    assert price.publishedAt == datetime(2026, 9, 30, 8, 5, tzinfo=timezone.utc)
-    for value in (price.datetime, price.end_datetime, price.publishedAt):
+    for value in (price.datetime, price.end_datetime):
         assert value.tzinfo == timezone.utc
 
 
@@ -857,6 +849,27 @@ def test_aggregate_takes_earliest_known_end_datetime():
         [hourly, unknown]
     ).end_datetime == dt + timedelta(hours=1)
     assert ProductionBreakdown.aggregate([unknown, unknown]).end_datetime is None
+
+
+def test_aggregate_storage_only_breakdowns():
+    # A breakdown may carry storage without production, so an aggregate of
+    # such breakdowns has storage and no production mix.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    events = [
+        ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            storage=StorageMix(hydro=value),
+            source=source,
+        )
+        for source, value in [("a", 1), ("b", 2)]
+    ]
+
+    aggregated = ProductionBreakdown.aggregate(events)
+
+    assert aggregated.production is None
+    assert aggregated.storage is not None
+    assert aggregated.storage.hydro == 3
 
 
 def test_static_create_logs_error_with_none():

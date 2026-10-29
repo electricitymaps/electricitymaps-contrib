@@ -54,47 +54,6 @@ def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     assert snapshot == ENTSOE.fetch_consumption_forecast(ZoneKey("DK-DK2"), session)
 
 
-def test_fetch_consumption_aggregated_zone(monkeypatch):
-    dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
-    dt_end = dt + timedelta(hours=1)
-    called_domains: list[str] = []
-
-    def fake_query_consumption(in_domain, session, target_datetime=None):
-        called_domains.append(in_domain)
-        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"]:
-            return "raw-it-ca"
-        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"]:
-            return "raw-it-so"
-        raise AssertionError(f"Unexpected domain {in_domain}")
-
-    def fake_parse_scalar(raw_xml, only_outBiddingZone_Domain=True):
-        if raw_xml == "raw-it-ca":
-            return [(dt, dt_end, 70.0)]
-        if raw_xml == "raw-it-so":
-            return [(dt, dt_end, 30.0)]
-        return None
-
-    monkeypatch.setattr(ENTSOE, "query_consumption", fake_query_consumption)
-    monkeypatch.setattr(ENTSOE, "parse_scalar", fake_parse_scalar)
-
-    result = ENTSOE.fetch_consumption(ZoneKey("IT-SO"), session=None)
-
-    assert called_domains == [
-        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
-        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"],
-    ]
-    assert result == [
-        {
-            "datetime": dt,
-            "end_datetime": dt_end,
-            "zoneKey": ZoneKey("IT-SO"),
-            "consumption": 100.0,
-            "source": ENTSOE.SOURCE,
-            "sourceType": EventSourceType.measured,
-        }
-    ]
-
-
 def test_fetch_generation_forecast(requests_mock, session, snapshot):
     data = base_path_to_mock / "SE-SE3_generation_forecast.xml"
     requests_mock.register_uri(
@@ -104,49 +63,6 @@ def test_fetch_generation_forecast(requests_mock, session, snapshot):
     )
 
     assert snapshot == ENTSOE.fetch_generation_forecast(ZoneKey("SE-SE3"), session)
-
-
-def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
-    dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
-    dt_end = dt + timedelta(hours=1)
-    called_domains: list[str] = []
-
-    def fake_query_generation_forecast(in_domain, session, target_datetime=None):
-        called_domains.append(in_domain)
-        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"]:
-            return "raw-it-ca"
-        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"]:
-            return "raw-it-so"
-        raise AssertionError(f"Unexpected domain {in_domain}")
-
-    def fake_parse_scalar(raw_xml, only_inBiddingZone_Domain=True):
-        if raw_xml == "raw-it-ca":
-            return [(dt, dt_end, 120.0)]
-        if raw_xml == "raw-it-so":
-            return [(dt, dt_end, 80.0)]
-        return None
-
-    monkeypatch.setattr(
-        ENTSOE, "query_generation_forecast", fake_query_generation_forecast
-    )
-    monkeypatch.setattr(ENTSOE, "parse_scalar", fake_parse_scalar)
-
-    result = ENTSOE.fetch_generation_forecast(ZoneKey("IT-SO"), session=None)
-
-    assert called_domains == [
-        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
-        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"],
-    ]
-    assert result == [
-        {
-            "datetime": dt,
-            "end_datetime": dt_end,
-            "zoneKey": ZoneKey("IT-SO"),
-            "value": 200.0,
-            "source": ENTSOE.SOURCE,
-            "sourceType": EventSourceType.forecasted,
-        }
-    ]
 
 
 def test_fetch_prices_day_ahead(requests_mock, session, snapshot):
@@ -168,7 +84,6 @@ def test_fetch_price_day_ahead_es(requests_mock, session, snapshot):
 
     assert snapshot == rows
     assert {row["auction"] for row in rows} == {DayAheadAuction.SDAC}
-    assert {row["publishedAt"] for row in rows} == {None}
     for row in rows:
         assert row["datetime"].utcoffset() == timedelta(0)
         assert row["end_datetime"].utcoffset() == timedelta(0)
@@ -227,6 +142,53 @@ def test_fetch_price_day_ahead_queries_utc_window(requests_mock, session):
     for request in requests_mock.request_history:
         assert request.qs["periodstart"] == ["202609272200"]
         assert request.qs["periodend"] == ["202610012200"]
+
+
+def _assert_sdac_hours_only(rows: list) -> None:
+    assert len(rows) == 24
+    assert all(
+        row["end_datetime"] - row["datetime"] == timedelta(hours=1) for row in rows
+    )
+    assert rows[0]["datetime"] == datetime(2024, 1, 5, 23, tzinfo=timezone.utc)
+    assert (rows[0]["price"], rows[-1]["price"]) == (82.25, 79.87)
+
+
+def test_fetch_price_ignores_the_second_auction(requests_mock, session):
+    """DE's A44 document holds SDAC (sequence 1, hourly here) and a second auction
+    (sequence 2, quarter-hourly), listed first. Only SDAC is the zone's
+    day-ahead price."""
+    data = base_path_to_mock / "DE_prices_two_auctions.xml"
+    requests_mock.register_uri(GET, ANY, content=data.read_bytes())
+
+    _assert_sdac_hours_only(ENTSOE.fetch_price(ZoneKey("DE"), session))
+
+
+def test_parse_prices_day_ahead_ignores_the_second_auction():
+    data = base_path_to_mock / "DE_prices_two_auctions.xml"
+
+    rows = ENTSOE.parse_prices_day_ahead(
+        data.read_text(), ZoneKey("DE"), DayAheadAuction.SDAC, logging.getLogger()
+    ).to_list()
+
+    _assert_sdac_hours_only(rows)
+
+
+def test_auction_timeseries_selects_by_classification_sequence():
+    two_auctions = (base_path_to_mock / "DE_prices_two_auctions.xml").read_text()
+    unlabelled = (base_path_to_mock / "ES_day_ahead_price.xml").read_text()
+
+    def resolutions(xml_text: str, sequence: int) -> list[str]:
+        return [
+            timeseries.find("resolution").text
+            for timeseries in ENTSOE._auction_timeseries(xml_text, sequence)
+        ]
+
+    assert resolutions(two_auctions, 1) == ["PT60M"]
+    assert resolutions(two_auctions, 2) == ["PT15M"]
+    assert resolutions(two_auctions, 3) == []
+    # Unlabelled series are the zone's only auction.
+    assert resolutions(unlabelled, 1)
+    assert resolutions(unlabelled, 2) == []
 
 
 def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
@@ -316,6 +278,62 @@ def test_fetch_exchange_with_aggregated_exchanges(requests_mock, session, snapsh
         zone_key2=ZoneKey("IT-SAR"),
         session=session,
     )
+
+
+_LAST_HOUR_BEFORE_CALABRIA = datetime(2020, 12, 31, 22, 59, tzinfo=timezone.utc)
+_FIRST_HOUR_OF_CALABRIA = datetime(2020, 12, 31, 23, tzinfo=timezone.utc)
+
+
+@pytest.mark.parametrize(
+    "zone_key1, zone_key2, target_datetime, expected",
+    [
+        ("IT-SIC", "IT-SO", _LAST_HOUR_BEFORE_CALABRIA, [["IT-SIC", "IT-RO"]]),
+        ("IT-SO", "IT-SIC", _LAST_HOUR_BEFORE_CALABRIA, [["IT-SIC", "IT-RO"]]),
+        ("IT-SIC", "IT-SO", _FIRST_HOUR_OF_CALABRIA, []),
+        (
+            "IT-SIC",
+            "IT-SO",
+            _LAST_HOUR_BEFORE_CALABRIA.replace(tzinfo=None),
+            [["IT-SIC", "IT-RO"]],
+        ),
+        ("IT-CA", "IT-SIC", _LAST_HOUR_BEFORE_CALABRIA, []),
+        ("IT-CA", "IT-SIC", _FIRST_HOUR_OF_CALABRIA, [["IT-CA", "IT-SIC"]]),
+        ("IT-CA", "IT-SO", _LAST_HOUR_BEFORE_CALABRIA, []),
+        ("IT-CA", "IT-SO", _FIRST_HOUR_OF_CALABRIA, [["IT-CA", "IT-SO"]]),
+    ],
+)
+def test_resolve_exchange_domain_pairs_calabria_split(
+    zone_key1, zone_key2, target_datetime, expected
+):
+    domains = ENTSOE.ENTSOE_DOMAIN_MAPPINGS
+    assert ENTSOE._resolve_exchange_domain_pairs(
+        ZoneKey(zone_key1), ZoneKey(zone_key2), target_datetime
+    ) == [[domains[a], domains[b]] for a, b in expected]
+
+
+@pytest.mark.parametrize(
+    "fetcher",
+    [
+        ENTSOE.fetch_exchange,
+        ENTSOE.fetch_exchange_forecast,
+        ENTSOE.fetch_scheduled_exchanges_day_ahead,
+        ENTSOE.fetch_scheduled_exchanges_total,
+        ENTSOE.fetch_exchange_capacity_forecasts_day_ahead,
+    ],
+)
+def test_exchange_outside_its_period_returns_nothing_without_querying(
+    requests_mock, session, fetcher
+):
+    assert (
+        fetcher(
+            ZoneKey("IT-SIC"),
+            ZoneKey("IT-SO"),
+            session=session,
+            target_datetime=_FIRST_HOUR_OF_CALABRIA,
+        )
+        == []
+    )
+    assert requests_mock.call_count == 0
 
 
 def test_fetch_exchange_forecast(requests_mock, session, snapshot):

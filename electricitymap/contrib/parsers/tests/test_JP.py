@@ -307,7 +307,6 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
         assert row["end_datetime"].utcoffset() == timedelta(0)
         assert row["auction"] == DayAheadAuction.JEPX_DA
         assert row["currency"] == "JPY"
-        assert row["publishedAt"] is None
 
 
 @freeze_time("2026-09-30 16:00:00")  # 2026-10-01T01:00 JST.
