@@ -851,6 +851,27 @@ def test_aggregate_takes_earliest_known_end_datetime():
     assert ProductionBreakdown.aggregate([unknown, unknown]).end_datetime is None
 
 
+def test_aggregate_storage_only_breakdowns():
+    # A breakdown may carry storage without production, so an aggregate of
+    # such breakdowns has storage and no production mix.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    events = [
+        ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            storage=StorageMix(hydro=value),
+            source=source,
+        )
+        for source, value in [("a", 1), ("b", 2)]
+    ]
+
+    aggregated = ProductionBreakdown.aggregate(events)
+
+    assert aggregated.production is None
+    assert aggregated.storage is not None
+    assert aggregated.storage.hydro == 3
+
+
 def test_static_create_logs_error_with_none():
     logger = logging.Logger("test")
     with patch.object(logger, "error") as mock_error:
