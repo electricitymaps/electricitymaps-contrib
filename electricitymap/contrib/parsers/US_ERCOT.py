@@ -170,8 +170,7 @@ def fetch_live_production(
 
     # Process generation data
     df_generation = process_generation_dataframe(
-        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json]),
-        logger,
+        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json])
     )
     if not df_storage.empty:
         df_generation_storage = df_generation.merge(
@@ -647,7 +646,7 @@ def fetch_realtime_locational_marginal_price(
     return prices.to_list()
 
 
-def process_generation_dataframe(df, logger: Logger):
+def process_generation_dataframe(df):
     """
     Process generation DataFrame by:
     1. Flooring timestamps to nearest 5 minutes
@@ -663,13 +662,10 @@ def process_generation_dataframe(df, logger: Logger):
 
     df_processed.index = df_processed.index.floor("5min")
 
-    # Unmapped keys would crash ProductionMix: drop them, and warn on new ones so they
-    # get mapped. The "Power Storage" split is known and covered, see GENERATION_MAPPING
-    unmapped = [col for col in df_processed.columns if col not in GENERATION_MAPPING]
-    unknown = set(unmapped) - {"Power Storage Charging", "Power Storage Discharging"}
-    if unknown:
-        logger.warning(f"Ignoring unknown ERCOT generation keys: {sorted(unknown)}")
-    df_processed = df_processed.drop(columns=unmapped)
+    # Unmapped keys (e.g. the "Power Storage" split, see GENERATION_MAPPING) would crash ProductionMix
+    df_processed = df_processed[
+        [col for col in df_processed.columns if col in GENERATION_MAPPING]
+    ]
 
     # Extract 'gen' values from dictionaries
     df_processed = df_processed.apply(

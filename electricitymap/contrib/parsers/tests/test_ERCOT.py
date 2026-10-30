@@ -32,18 +32,10 @@ def test_fetch_production():
         else:
             return fake_generation_data
 
-    with (
-        LogCapture() as log,
-        patch("electricitymap.contrib.parsers.US_ERCOT.get_data") as gjd,
-    ):
+    with patch("electricitymap.contrib.parsers.US_ERCOT.get_data") as gjd:
         gjd.side_effect = mock_get_data
         data = US_ERCOT.fetch_production(logger=logging.getLogger("test"))
     assert data
-
-    # Unknown keys are dropped with a warning, the known storage split silently
-    log.check(
-        ("test", "WARNING", "Ignoring unknown ERCOT generation keys: ['Geothermal']")
-    )
 
     assert data[-1]["source"] == "ercot.com"
     assert data[-1]["zoneKey"] == "US-TEX-ERCO"
