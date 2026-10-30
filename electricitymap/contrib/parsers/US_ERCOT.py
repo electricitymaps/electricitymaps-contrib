@@ -64,6 +64,11 @@ GENERATION_MAPPING = {
     "Nuclear": "nuclear",
     "Other": "unknown",
     "Power Storage": "battery",
+    # Since Oct 2026, the live fuel mix also splits "Power Storage" (net) into
+    # these two keys. They are dropped in process_generation_dataframe: the net
+    # value already covers them. Map them once we model charge/discharge modes.
+    # "Power Storage Charging": ...,
+    # "Power Storage Discharging": ...,
     "Solar": "solar",
     "Wind": "wind",
     "WSL": "battery",
@@ -657,6 +662,11 @@ def process_generation_dataframe(df):
 
     df_processed.index = df_processed.index.floor("5min")
 
+    # Unmapped keys (e.g. the "Power Storage" split, see GENERATION_MAPPING) would crash ProductionMix
+    df_processed = df_processed[
+        [col for col in df_processed.columns if col in GENERATION_MAPPING]
+    ]
+
     # Extract 'gen' values from dictionaries
     df_processed = df_processed.apply(
         lambda col: col.apply(
@@ -669,7 +679,7 @@ def process_generation_dataframe(df):
 
     # Then group columns by their target names and sum (for columns that map to same target)
     column_mapping = pd.Series(
-        {col: GENERATION_MAPPING.get(col, col) for col in df_processed.columns}
+        {col: GENERATION_MAPPING[col] for col in df_processed.columns}
     )
     df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum(
         numeric_only=True,
