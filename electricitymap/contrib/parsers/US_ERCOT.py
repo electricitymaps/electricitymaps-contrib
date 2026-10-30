@@ -2,13 +2,16 @@
 
 import gzip
 import json
+import re
 import time
 import zipfile
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from enum import Enum
+from functools import lru_cache
 from io import BytesIO
 from logging import Logger, getLogger
 from typing import Any
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -28,6 +31,7 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.parsers.lib.validation import validate_exchange
 from electricitymap.contrib.types import ZoneKey
@@ -52,11 +56,25 @@ AUTH_URL_ERCOT = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_P
 DAYAHEAD_LMP_URL = f"{US_PROXY}/api/public-reports/np4-190-cd/dam_stlmnt_pnt_prices"
 REALTIME_LMP_URL = f"{US_PROXY}/api/public-reports/np6-788-cd/lmp_node_zone_hub"
 
-# These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
-# HISTORICAL_GENERATION_URL = {
-#     "2025": f"{US_PROXY}/files/docs/2025/02/08/IntGenbyFuel2025.xlsx?{HOST_PARAMETER}",
-#     "all_previous": f"{US_PROXY}/files/docs/2021/03/10/FuelMixReport_PreviousYears.zip?{HOST_PARAMETER}",
-# }
+# Lists the yearly Fuel Mix Reports, whose links change every year
+GENERATION_PAGE_URL = f"{US_PROXY}/gridinfo/generation?{HOST_PARAMETER}"
+# The Fuel Mix Report has no storage category: battery discharge is reported in
+# "Other" (no fuel type), and charging as "WSL" (Wholesale Storage Load) since 2022.
+# Non-battery "Other" (petroleum coke, distillate oil) is ~3 MW on average, see #8935.
+# Before 2022, "WSL" was netted into "Other", so it can't be told apart from oil.
+BATTERY_IN_OTHER_SINCE = datetime(2022, 1, 1, tzinfo=TX_TZ)
+FUEL_MIX_REPORT_FUELS = {
+    "Biomass",
+    "Coal",
+    "Gas",
+    "Gas-CC",
+    "Hydro",
+    "Nuclear",
+    "Other",
+    "Solar",
+    "WSL",
+    "Wind",
+}
 GENERATION_MAPPING = {
     "Coal and Lignite": "coal",
     "Hydro": "hydro",
@@ -211,7 +229,7 @@ def fetch_live_production(
         # Add breakdown for each timestamp
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
-            datetime=timestamp,
+            datetime=timestamp.to_pydatetime(),
             source=SOURCE,
             production=production,
             storage=storage,
@@ -220,89 +238,156 @@ def fetch_live_production(
     return production_breakdowns
 
 
-# def get_sheet_from_date(year: int, month: str, session: Session | None = None):
-#     """Unit is MWh and not MW"""
-#     if not session:
-#         session = Session()
-
-#     if year > 2024:
-#         url = HISTORICAL_GENERATION_URL[str(year)]
-#         return pd.read_excel(url, engine="openpyxl", sheet_name=month)
-#     else:
-#         url = HISTORICAL_GENERATION_URL["all_previous"]
-#         response = session.get(url)
-
-#         if response.content.startswith(b"PK"):
-#             zip_data = BytesIO(response.content)
-#         else:
-#             try:
-#                 decompressed = gzip.decompress(response.content)
-#                 zip_data = BytesIO(decompressed)
-#             except gzip.BadGzipFile as err:
-#                 raise ValueError("File is neither a ZIP nor a gzipped file") from err
-
-#         year_file = f"IntGenbyFuel{year}.xlsx"
-
-#         with zipfile.ZipFile(zip_data) as zf:
-#             if year_file not in zf.namelist():
-#                 raise NotImplementedError(
-#                     f"Data for year {year} not found in historical data"
-#                 )
-#             with zf.open(year_file) as excel_file:
-#                 return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
+def _get_ercot_file(url: str, session: Session) -> bytes:
+    """Downloads an ercot.com page or file through the proxy, which may leave it gzipped."""
+    response = session.get(
+        f"{US_PROXY}{urlparse(url).path}?{HOST_PARAMETER}", verify=False
+    )
+    response.raise_for_status()
+    content = response.content
+    return gzip.decompress(content) if content[:2] == b"\x1f\x8b" else content
 
 
-# def fetch_historical_production(
-#     zone_key: ZoneKey,
-#     session: Session,
-#     target_datetime: datetime,
-#     logger: Logger = getLogger(__name__),
-# ) -> ProductionBreakdownList:
-#     if target_datetime.tzinfo is None:
-#         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+# ponytail: the multi-year archive is ~50 MB and only changes once a year, so keep
+# the last one in memory for the duration of a refetch. Yearly reports aren't cached,
+# as ERCOT updates them in place every month.
+@lru_cache(maxsize=1)
+def _get_fuel_mix_archive(url: str) -> bytes:
+    content = _get_ercot_file(url, Session())
+    # Raising keeps a bad download out of the cache
+    if not zipfile.is_zipfile(BytesIO(content)):
+        raise ParserException(
+            "US_ERCOT.py",
+            f"{url} is not a zip ({len(content)} bytes starting with {content[:20]!r})",
+        )
+    return content
 
-#     year = target_datetime.year
-#     month = target_datetime.strftime("%b")
 
-#     production_breakdowns = ProductionBreakdownList(logger)
+def _get_fuel_mix_workbook(year: int, session: Session) -> pd.ExcelFile:
+    """Finds the Fuel Mix Report covering `year`: a workbook for recent years, a
+    zip of workbooks for older ones."""
+    page = _get_ercot_file(GENERATION_PAGE_URL, session).decode("utf-8", "replace")
+    for href, text in re.findall(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', page, re.S):
+        title = re.search(
+            r"Fuel Mix Report:\s*(\d{4})(?:\s*-\s*(\d{4}))?",
+            re.sub("<[^>]+>", "", text),
+        )
+        if not title or not int(title[1]) <= year <= int(title[2] or title[1]):
+            continue
+        if not title[2]:
+            return pd.ExcelFile(BytesIO(_get_ercot_file(href, session)))
+        with zipfile.ZipFile(BytesIO(_get_fuel_mix_archive(href))) as archive:
+            for name in archive.namelist():
+                if name.lower().startswith(f"intgenbyfuel{year}."):
+                    return pd.ExcelFile(BytesIO(archive.read(name)))
+    raise ParserException(
+        "US_ERCOT.py", f"No Fuel Mix Report found for {year} on {GENERATION_PAGE_URL}"
+    )
 
-#     df = get_sheet_from_date(year, month, session)
-#     df_standardized = transform_historical_production(df)
 
-#     # Process the standardized DataFrame to create ProductionBreakdown objects
-#     if df_standardized.empty:
-#         logger.warning(f"No production data found for {year}-{month}")
-#         return production_breakdowns
+def _interval_start(day: datetime, label: str) -> datetime:
+    """Columns are local interval-ending times, "0:15" to "0:00". On the fall-back
+    day, the repeated hour comes as extra "01:15 (DST)" to "02:00 (DST)" columns."""
+    repeated_hour = label.endswith("(DST)")
+    hours, minutes = map(int, label.removesuffix("(DST)").strip().split(":"))
+    end_minutes = hours * 60 + minutes or 24 * 60
+    start = datetime.combine(day.date(), datetime.min.time()) + timedelta(
+        minutes=end_minutes - 15
+    )
+    return start.replace(tzinfo=TX_TZ, fold=int(repeated_hour)).astimezone(timezone.utc)
 
-#     for i, timestamp in enumerate(df_standardized.index):
-#         production = ProductionMix()
-#         storage = StorageMix()
 
-#         # Get row data using iloc (faster than iterrows)
-#         row_data = df_standardized.iloc[i]
+def parse_fuel_mix_sheet(df: pd.DataFrame) -> pd.DataFrame:
+    """Turns a monthly sheet of the Fuel Mix Report (MWh per 15 minutes, one row
+    per day and fuel) into MW per fuel, indexed by interval start in UTC."""
+    df = df.rename(columns=lambda col: str(col).strip())
+    fuel_column = "Fuel" if "Fuel" in df.columns else "Fuel Type"
+    slots = [
+        col
+        for col in df.columns
+        if col not in ("Date", fuel_column, "Settlement Type", "Total")
+    ]
+    values = df.dropna(subset=["Date"]).melt(
+        id_vars=["Date", fuel_column], value_vars=slots, var_name="slot"
+    )
+    # Slots that don't exist (spring-forward hour, regular days' DST columns) are empty
+    values = values.dropna(subset=["value"])
+    values["datetime"] = [
+        _interval_start(pd.Timestamp(day), slot)
+        for day, slot in zip(values["Date"], values["slot"], strict=True)
+    ]
+    values["value"] = values["value"].astype(float) * 4  # MWh per 15 min to MW
+    return values.pivot_table(
+        index="datetime", columns=fuel_column, values="value", aggfunc="sum"
+    )
 
-#         # Add production values efficiently
-#         for col in df_standardized.columns:
-#             production.add_value(
-#                 col,
-#                 row_data[col],
-#                 correct_negative_with_zero=True,
-#             )
 
-#         # Add storage data if available
-#         if "battery" in df_standardized.columns:
-#             storage.add_value("battery", row_data["battery"])
+def fetch_historical_production(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger = getLogger(__name__),
+) -> ProductionBreakdownList:
+    """Reads the 28 days up to `target_datetime` from the Fuel Mix Report, which
+    ERCOT publishes monthly, a few weeks after the end of each month."""
+    start = target_datetime - timedelta(days=28)
+    months = pd.period_range(
+        start.astimezone(TX_TZ).replace(tzinfo=None),
+        target_datetime.astimezone(TX_TZ).replace(tzinfo=None),
+        freq="M",
+    )
+    workbooks = {}
+    sheets = []
+    for month in months:
+        if month.year not in workbooks:
+            workbooks[month.year] = _get_fuel_mix_workbook(month.year, session)
+        sheets.append(
+            parse_fuel_mix_sheet(workbooks[month.year].parse(month.strftime("%b")))
+        )
+    df = pd.concat(sheets)
+    df = df[(df.index >= start) & (df.index <= target_datetime)]
 
-#         # Add breakdown for each timestamp
-#         production_breakdowns.append(
-#             zoneKey=ZoneKey(zone_key),
-#             datetime=timestamp,
-#             source=SOURCE,
-#             production=production,
-#             storage=storage,
-#         )
+    if df.empty or df.index.max() < target_datetime - timedelta(days=1):
+        published = "no data" if df.empty else f"data only until {df.index.max()}"
+        raise ParserException(
+            "US_ERCOT.py",
+            f"The Fuel Mix Report has {published} for {start} to {target_datetime}: "
+            "ERCOT publishes each month a few weeks after it ends",
+            zone_key,
+        )
+    unknown_fuels = set(df.columns) - FUEL_MIX_REPORT_FUELS
+    if unknown_fuels:
+        # A new category (e.g. for storage) could change what "Other" contains
+        raise ParserException(
+            "US_ERCOT.py",
+            f"Unknown fuels in the Fuel Mix Report: {sorted(unknown_fuels)}",
+            zone_key,
+        )
 
-#     return production_breakdowns
+    production_breakdowns = ProductionBreakdownList(logger)
+    for dt, row in df.iterrows():
+        dt = dt.to_pydatetime()
+        row = row.dropna()
+        production = ProductionMix()
+        storage = StorageMix()
+        battery_in_other = dt >= BATTERY_IN_OTHER_SINCE
+        if battery_in_other:
+            # Storage is positive when charging
+            storage.add_value("battery", -(row.get("Other", 0) + row.get("WSL", 0)))
+        for fuel, value in row.items():
+            if fuel == "WSL" or (fuel == "Other" and battery_in_other):
+                continue
+            production.add_value(
+                GENERATION_MAPPING[fuel], value, correct_negative_with_zero=True
+            )
+        production_breakdowns.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=dt,
+            source=SOURCE,
+            production=production,
+            storage=storage,
+        )
+    return production_breakdowns
 
 
 def fetch_live_exchange(
@@ -347,12 +432,23 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates.")
+    if target_datetime is not None and target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    production = fetch_live_production(
-        zone_key=zone_key, session=session, logger=logger
-    )
+    # The live feed only covers today and yesterday
+    if target_datetime is None or target_datetime > datetime.now(
+        timezone.utc
+    ) - timedelta(days=1):
+        production = fetch_live_production(
+            zone_key=zone_key, session=session, logger=logger
+        )
+    else:
+        production = fetch_historical_production(
+            zone_key=zone_key,
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
     return production.to_list()
 
 
@@ -688,45 +784,6 @@ def process_generation_dataframe(df):
     return df_generation_standardized[
         [col for col in df_generation_standardized.columns if col != "battery"]
     ]
-
-
-def transform_historical_production(df):
-    """
-    Transform the historical production data to a standardized format.
-    The input is unstandardized MWH per 15min and the output is standardized MW per 15min.
-    """
-    # Identify time columns (all except 'Date', 'Fuel', 'Settlement Type', 'Total')
-    time_columns = [
-        col
-        for col in df.columns
-        if col not in ["Date", "Fuel", "Settlement Type", "Total"]
-    ]
-    records = []
-    for _, row in df.iterrows():
-        fuel = row["Fuel"]
-        date_str = row["Date"].strftime("%Y-%m-%d")
-        for time_col in time_columns:
-            dt_str = f"{date_str} {time_col}"
-            dt = pd.to_datetime(dt_str, format="%Y-%m-%d %H:%M").tz_localize(TX_TZ)
-            value = row[time_col]
-            records.append({"datetime": dt, "fuel": fuel, "value": value})
-    df_records = pd.DataFrame(records)
-    df_pivot = df_records.pivot(index="datetime", columns="fuel", values="value")
-    column_mapping = pd.Series(
-        {col: GENERATION_MAPPING.get(col, col) for col in df_pivot.columns}
-    )
-    df_pivot_standardized = df_pivot.groupby(column_mapping, axis=1).sum(
-        numeric_only=True,
-    )
-    # From MWH to MW. The step are 15min steps
-    df_result = (
-        df_pivot_standardized[
-            [col for col in df_pivot_standardized.columns if col != "battery"]
-        ]
-        * 60
-        / 15
-    )
-    return df_result
 
 
 def get_id_token():
