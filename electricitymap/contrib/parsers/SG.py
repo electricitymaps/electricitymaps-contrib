@@ -74,6 +74,10 @@ def get_solar(session: Session, logger: Logger) -> float | None:
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
     solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
 
+    if solar_dt is None:
+        # No timestamp could be read, so the data cannot be checked for age.
+        return None
+
     singapore_dt = datetime.now(tz=TIMEZONE)
     diff = singapore_dt - solar_dt
 
@@ -285,7 +289,13 @@ def __detect_datetime_from_solar_image(solar_image, logger: Logger):
         logger.warning(msg, extra={"key": "SG"})
         return None
 
-    solar_dt = datetime.fromisoformat(time_string).replace(tzinfo=TIMEZONE)
+    try:
+        solar_dt = datetime.fromisoformat(time_string).replace(tzinfo=TIMEZONE)
+    except ValueError:
+        msg = f"Unable to read a date from the SG solar OCR text: {time_string}"
+        logger.warning(msg, extra={"key": "SG"})
+        return None
+
     return solar_dt
 
 
