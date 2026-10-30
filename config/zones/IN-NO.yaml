@@ -3,33 +3,54 @@ bounding_box:
     - 23.036329174212554
   - - 84.59904599045993
     - 35.495336317947775
-center_point:
-  - 76.8475901001024
-  - 29.293433593829924
-centroid:
-  - 77.41178232491549
-  - 27.448364557060167
 capacity:
   biomass:
     - datetime: '2023-12-01'
       source: mnre.gov.in
       value: 3377.9
+    - datetime: '2026-09-30'
+      source: mnre.gov.in
+      value: 3727.64
   coal:
     - datetime: '2023-12-01'
       source: cea.nic.in
       value: 44285.0
+    - datetime: '2024-01-01'
+      source: cea.nic.in
+      value: 57210.95
+    - datetime: '2025-01-01'
+      source: cea.nic.in
+      value: 60217.95
+    - datetime: '2026-01-01'
+      source: cea.nic.in
+      value: 63373.95
+    - datetime: '2026-08-01'
+      source: cea.nic.in
+      value: 63151.04
   gas:
     - datetime: '2023-12-01'
       source: cea.nic.in
       value: 5994.96
+    - datetime: '2026-01-01'
+      source: cea.nic.in
+      value: 5711.96
+    - datetime: '2026-08-01'
+      source: cea.nic.in
+      value: 5618.96
   hydro:
     - datetime: '2023-12-01'
       source: cea.nic.in, mnre.gov.in
       value: 21469.8
+    - datetime: '2026-08-01'
+      source: cea.nic.in, mnre.gov.in
+      value: 24766.72
   nuclear:
     - datetime: '2023-12-01'
       source: cea.nic.in
       value: 1620.0
+    - datetime: '2026-01-01'
+      source: cea.nic.in
+      value: 2220.0
   oil:
     - datetime: '2023-12-01'
       source: cea.nic.in
@@ -41,10 +62,22 @@ capacity:
     - datetime: '2025-06-30'
       source: mnre.gov.in
       value: 40245.36
+    - datetime: '2026-09-30'
+      source: mnre.gov.in
+      value: 58621.82
   wind:
     - datetime: '2023-12-01'
       source: mnre.gov.in
       value: 5193.4
+    - datetime: '2026-09-30'
+      source: mnre.gov.in
+      value: 5815.29
+center_point:
+  - 76.8475901001024
+  - 29.293433593829924
+centroid:
+  - 77.41178232491549
+  - 27.448364557060167
 contributors:
   - corradio
   - gopikrishna1793
@@ -172,8 +205,8 @@ fallbackZoneMixes:
         solar: 0.10640189695651557
         unknown: 0.006269657448041951
         wind: 0.0008745467698962447
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     value: 0.92
@@ -185,10 +218,10 @@ parsers:
   production: IN.fetch_production
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
-timezone: Asia/Kolkata
-zone_name: Northern India
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Asia/Kolkata
+zone_name: Northern India

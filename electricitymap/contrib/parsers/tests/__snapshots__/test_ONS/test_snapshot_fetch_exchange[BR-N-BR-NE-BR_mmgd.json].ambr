@@ -1,0 +1,13 @@
+# serializer version: 1
+# name: test_snapshot_fetch_exchange[BR-N-BR-NE-BR_mmgd.json]
+  list([
+    dict({
+      'datetime': datetime.datetime(2026, 9, 25, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'end_datetime': None,
+      'netFlow': -3308.00952,
+      'sortedZoneKeys': 'BR-N->BR-NE',
+      'source': 'ons.org.br',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
