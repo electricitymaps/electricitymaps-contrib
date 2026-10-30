@@ -10,26 +10,111 @@ centroid:
   - 16.123992166533107
   - 40.847621163058946
 capacity:
+  battery storage:
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 8.8
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 8.8
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 8.8
   biomass:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 665
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 443.2
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 442.7
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 443.6
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 444.1
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 446.1
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 446.7
   coal:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 1815
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 2446.8
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 1835.1
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 1835.1
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 1835.1
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 1835.1
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 1835.1
   gas:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 8551.7
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 5214.6
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 5243.8
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 5237.4
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 5402.8
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 5375.1
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 5368.6
   hydro:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 1100
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 222.5
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 223.7
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 224.2
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 224.7
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 225.3
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 227.0
   oil:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 100
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
       source: dati.terna.it
@@ -42,20 +127,29 @@ capacity:
       value: 4000
     - datetime: '2021-01-01'
       source: dati.terna.it
-      value: 4100
+      value: 3456.4
     - datetime: '2022-01-01'
       source: dati.terna.it
-      value: 4250
+      value: 3517.3
     - datetime: '2023-01-01'
       source: dati.terna.it
-      value: 4750
+      value: 3648.7
     - datetime: '2024-01-01'
       source: dati.terna.it
-      value: 5300
+      value: 4022.3
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 4467.4
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 5053.9
   unknown:
     - datetime: '2017-01-01'
       source: dati.terna.it
       value: 1000
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 0.0
   wind:
     - datetime: '2017-01-01'
       source: dati.terna.it
@@ -68,16 +162,22 @@ capacity:
       value: 5400
     - datetime: '2021-01-01'
       source: dati.terna.it
-      value: 5700
+      value: 4292.3
     - datetime: '2022-01-01'
       source: dati.terna.it
-      value: 6000
+      value: 4542.3
     - datetime: '2023-01-01'
       source: dati.terna.it
-      value: 6200
+      value: 4852.0
     - datetime: '2024-01-01'
       source: dati.terna.it
-      value: 6400
+      value: 4992.2
+    - datetime: '2025-01-01'
+      source: dati.terna.it
+      value: 5131.0
+    - datetime: '2026-01-01'
+      source: dati.terna.it
+      value: 5662.7
 contributors:
   - corradio
   - nessie2013
