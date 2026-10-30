@@ -11,7 +11,7 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 12.6
-    - datetime: '2025-02-01'
+    - datetime: '2024-12-01'
       source: EIA.gov
       value: 27.6
     - datetime: '2025-03-01'
@@ -40,7 +40,7 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 486.0
-    - datetime: '2025-02-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2025-03-01'
@@ -74,6 +74,9 @@ capacity:
     - datetime: '2023-04-01'
       source: EIA.gov
       value: 6324.9
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 6804.8
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 6219.7
@@ -186,7 +189,7 @@ capacity:
     - datetime: '2019-12-01'
       source: EIA.gov
       value: 325.3
-    - datetime: '2025-01-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 317.8
   wind:
