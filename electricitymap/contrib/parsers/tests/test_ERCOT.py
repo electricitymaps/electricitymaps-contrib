@@ -14,6 +14,13 @@ def test_fetch_production():
     with open("electricitymap/contrib/parsers/tests/mocks/ERCOT_generation.json") as f:
         fake_generation_data = json.load(f)
 
+    # Since Oct 2026, ERCOT also splits the net "Power Storage" into charging/discharging
+    for day in fake_generation_data["data"].values():
+        for row in day.values():
+            net = row["Power Storage"]["gen"]
+            row["Power Storage Charging"] = {"gen": min(net, 0)}
+            row["Power Storage Discharging"] = {"gen": max(net, 0)}
+
     with open("electricitymap/contrib/parsers/tests/mocks/ERCOT_storage.json") as f:
         fake_storage_data = json.load(f)
 

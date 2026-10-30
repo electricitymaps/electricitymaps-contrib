@@ -64,6 +64,11 @@ GENERATION_MAPPING = {
     "Nuclear": "nuclear",
     "Other": "unknown",
     "Power Storage": "battery",
+    # Since Oct 2026, the live fuel mix also splits "Power Storage" (net) into
+    # these two keys. They are dropped in process_generation_dataframe: the net
+    # value already covers them. Map them once we model charge/discharge modes.
+    # "Power Storage Charging": ...,
+    # "Power Storage Discharging": ...,
     "Solar": "solar",
     "Wind": "wind",
     "WSL": "battery",
@@ -656,6 +661,12 @@ def process_generation_dataframe(df):
         df_processed.index = pd.to_datetime(df_processed.index)
 
     df_processed.index = df_processed.index.floor("5min")
+
+    # Split of "Power Storage", see GENERATION_MAPPING
+    df_processed = df_processed.drop(
+        columns=["Power Storage Charging", "Power Storage Discharging"],
+        errors="ignore",
+    )
 
     # Extract 'gen' values from dictionaries
     df_processed = df_processed.apply(
