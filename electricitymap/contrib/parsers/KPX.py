@@ -247,7 +247,11 @@ def get_historical_prod_data(
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     session = session or Session()
-    target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
+    # The site is queried by Korean calendar day, so the date has to be taken
+    # after converting; a UTC target close to midnight is a different day here.
+    target_datetime_formatted_daily = target_datetime.astimezone(TIMEZONE).strftime(
+        "%Y-%m-%d"
+    )
 
     # CSRF token is needed to access the production data
     logger.debug(
