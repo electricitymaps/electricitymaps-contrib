@@ -170,7 +170,8 @@ def fetch_live_production(
 
     # Process generation data
     df_generation = process_generation_dataframe(
-        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json])
+        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json]),
+        logger,
     )
     if not df_storage.empty:
         df_generation_storage = df_generation.merge(
@@ -646,7 +647,7 @@ def fetch_realtime_locational_marginal_price(
     return prices.to_list()
 
 
-def process_generation_dataframe(df):
+def process_generation_dataframe(df, logger: Logger):
     """
     Process generation DataFrame by:
     1. Flooring timestamps to nearest 5 minutes
@@ -662,11 +663,13 @@ def process_generation_dataframe(df):
 
     df_processed.index = df_processed.index.floor("5min")
 
-    # Split of "Power Storage", see GENERATION_MAPPING
-    df_processed = df_processed.drop(
-        columns=["Power Storage Charging", "Power Storage Discharging"],
-        errors="ignore",
-    )
+    # Unmapped keys would crash ProductionMix: drop them, and warn on new ones so they
+    # get mapped. The "Power Storage" split is known and covered, see GENERATION_MAPPING
+    unmapped = [col for col in df_processed.columns if col not in GENERATION_MAPPING]
+    unknown = set(unmapped) - {"Power Storage Charging", "Power Storage Discharging"}
+    if unknown:
+        logger.warning(f"Ignoring unknown ERCOT generation keys: {sorted(unknown)}")
+    df_processed = df_processed.drop(columns=unmapped)
 
     # Extract 'gen' values from dictionaries
     df_processed = df_processed.apply(
@@ -680,7 +683,7 @@ def process_generation_dataframe(df):
 
     # Then group columns by their target names and sum (for columns that map to same target)
     column_mapping = pd.Series(
-        {col: GENERATION_MAPPING.get(col, col) for col in df_processed.columns}
+        {col: GENERATION_MAPPING[col] for col in df_processed.columns}
     )
     df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum(
         numeric_only=True,
