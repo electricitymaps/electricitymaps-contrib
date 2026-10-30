@@ -60,7 +60,7 @@ REALTIME_LMP_URL = f"{US_PROXY}/api/public-reports/np6-788-cd/lmp_node_zone_hub"
 GENERATION_PAGE_URL = f"{US_PROXY}/gridinfo/generation?{HOST_PARAMETER}"
 # The Fuel Mix Report has no storage category: battery discharge is reported in
 # "Other" (no fuel type), and charging as "WSL" (Wholesale Storage Load) since 2022.
-# Non-battery "Other" (petroleum coke, distillate oil) is ~3 MW on average, see #PRNUM.
+# Non-battery "Other" (petroleum coke, distillate oil) is ~3 MW on average, see #8935.
 # Before 2022, "WSL" was netted into "Other", so it can't be told apart from oil.
 BATTERY_IN_OTHER_SINCE = datetime(2022, 1, 1, tzinfo=TX_TZ)
 FUEL_MIX_REPORT_FUELS = {
