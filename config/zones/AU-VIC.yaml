@@ -120,6 +120,27 @@ emissionFactors:
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
         value: 379.71
+    coal:
+      - _comment: Scope 1 over total generation of Loy Yang A (with mine), Loy
+          Yang B and Yallourn. NGER year July-June, dated at its midpoint.
+        datetime: '2020-01-01'
+        source: CER NGER 2019-20
+        value: 1171.68
+      - datetime: '2021-01-01'
+        source: CER NGER 2020-21
+        value: 1170.26
+      - datetime: '2022-01-01'
+        source: CER NGER 2021-22
+        value: 1183.06
+      - datetime: '2023-01-01'
+        source: CER NGER 2022-23
+        value: 1189.14
+      - datetime: '2024-01-01'
+        source: CER NGER 2023-24
+        value: 1197.23
+      - datetime: '2025-01-01'
+        source: CER NGER 2024-25
+        value: 1216.56
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -154,6 +175,26 @@ emissionFactors:
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
         value: 412.71
+    coal:
+      - _comment: Direct value plus the IPCC 2014 coal upstream share (820 - 760).
+        datetime: '2020-01-01'
+        source: CER NGER 2019-20; IPCC 2014
+        value: 1231.68
+      - datetime: '2021-01-01'
+        source: CER NGER 2020-21; IPCC 2014
+        value: 1230.26
+      - datetime: '2022-01-01'
+        source: CER NGER 2021-22; IPCC 2014
+        value: 1243.06
+      - datetime: '2023-01-01'
+        source: CER NGER 2022-23; IPCC 2014
+        value: 1249.14
+      - datetime: '2024-01-01'
+        source: CER NGER 2023-24; IPCC 2014
+        value: 1257.23
+      - datetime: '2025-01-01'
+        source: CER NGER 2024-25; IPCC 2014
+        value: 1276.56
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -352,6 +393,18 @@ parsers:
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 sources:
+  CER NGER 2019-20:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2019-20
+  CER NGER 2020-21:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2020-21
+  CER NGER 2021-22:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2021-22
+  CER NGER 2022-23:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2022-23
+  CER NGER 2023-24:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2023-24
+  CER NGER 2024-25:
+    link: https://cer.gov.au/markets/reports-and-data/nger-reporting-data-and-registers/electricity-sector-emissions-and-generation-data-2024-25
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
