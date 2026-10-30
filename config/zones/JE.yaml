@@ -9,9 +9,43 @@ center_point:
 centroid:
   - -2.1492769624498447
   - 49.204571809876356
+capacity:
+  biomass:
+    - _comment: Energy from Waste plant at La Collette, up to 8 MW of which is supplied
+        to Jersey Electricity.
+      datetime: '2025-01-01'
+      source: jec.co.uk
+      value: 8.0
+  oil:
+    - _comment: Three Rolls-Royce gas turbines (76 MW in total) plus four 11.5 MW Sulzer
+        diesels; the redundant 45 MW steam turbine, now being demolished, is excluded.
+      datetime: '2025-01-01'
+      source: jec.co.uk
+      value: 122.0
+  solar:
+    - _comment: On-island solar PV. The 4+ MWp Moulin a Vent farm, commissioned in April
+        2025, is stated by Jersey Electricity to double the island's solar generating
+        capacity; the target is 25 MWp by 2028.
+      datetime: '2025-04-30'
+      source: jec.co.uk
+      value: 8.0
+contributors:
+  - Jaylouisw
 country: JE
 country_name: Jersey
 currency: GBP
+disclaimer: Real-time consumption and generation mix data is not available and is fully
+  estimated.
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: https://www.jec.co.uk/media/bhtpjcjx/annual-report-2025.pdf
+      datetime: '2025-01-01'
+      value:
+        biomass: 0.053
+        hydro: 0.312
+        nuclear: 0.624
+        oil: 0.002
+        solar: 0.009
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 region: Europe
