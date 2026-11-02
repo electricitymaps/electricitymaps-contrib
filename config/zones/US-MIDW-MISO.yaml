@@ -86,6 +86,12 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1041.9
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 1140.9
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 1163.9
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1173.9
@@ -198,9 +204,21 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 2172.3
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 2171.6
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 2144.4
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 2141.0
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 2108.7
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 2138.0
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -325,9 +343,15 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 46964.8
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 45612.2
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 47014.8
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 46533.6
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -545,9 +569,21 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 82565.6
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 82812.3
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 84211.7
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 82856.7
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 83310.7
+    - datetime: '2026-07-01'
+      source: EIA.gov
+      value: 83314.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -607,9 +643,15 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 2447.2
-    - datetime: '2026-05-01'
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 2448.2
+    - datetime: '2026-03-01'
       source: EIA.gov
       value: 2445.3
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 2449.7
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -745,6 +787,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 3679.1
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 3697.1
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 3737.1
@@ -1073,9 +1118,24 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 21090.1
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 21678.2
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 21894.0
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 22726.5
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 23097.5
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 24131.1
+    - datetime: '2026-07-01'
+      source: EIA.gov
+      value: 24168.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1107,6 +1167,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 495.7
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 490.4
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1276,7 +1339,10 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 33477.7
-    - datetime: '2026-05-01'
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 33476.2
+    - datetime: '2026-03-01'
       source: EIA.gov
       value: 33676.2
 center_point:
