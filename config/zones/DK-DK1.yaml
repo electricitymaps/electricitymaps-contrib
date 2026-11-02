@@ -70,6 +70,10 @@ capacity:
     - datetime: '2026-01-01'
       source: entsoe.eu
       value: 1173.34
+  geothermal:
+    - datetime: '2017-01-01'
+      source: Electricity Maps
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -86,6 +90,14 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4.2
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: Electricity Maps
+      value: 0.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: Electricity Maps
+      value: 0.0
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
