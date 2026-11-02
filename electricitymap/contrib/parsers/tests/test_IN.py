@@ -1,10 +1,12 @@
 from datetime import datetime
 from json import dumps
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 from pandas.testing import assert_series_equal
 
+from electricitymap.contrib.parsers import IN
 from electricitymap.contrib.parsers.IN import (
     compute_zone_key_share_per_mode_out_of_total,
     parse_15m_production_grid_india_report,
@@ -13,6 +15,7 @@ from electricitymap.contrib.parsers.IN import (
     parse_total_production_15min_grid_india_report,
     scale_15min_production,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 file_path = Path(__file__).parent / "mocks" / "IN" / "08.04.25_NLDC_PSP.xls"
 content = file_path.read_bytes()
@@ -67,3 +70,18 @@ def test_parse_daily_production_grid_india_report(snapshot):
         content, "IN-EA", datetime(2025, 4, 8, 0, 0)
     )
     assert snapshot == result
+
+
+def test_parse_production_from_cea_npp_without_conventional_production_returns_no_data():
+    with (
+        patch.object(IN, "fetch_cea_production", return_value={}),
+        patch.object(
+            IN, "fetch_npp_production", side_effect=ParserException("IN.py", "no data")
+        ),
+    ):
+        assert (
+            IN.parse_production_from_cea_npp(
+                zone_key="IN-NO", target_datetime=datetime(2024, 1, 1)
+            )
+            == []
+        )

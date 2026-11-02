@@ -48,6 +48,26 @@ def test_allow_remote_clock_to_be_slightly_ahead(session):
     assert SG.get_solar(session, logger=logging.getLogger("test")) == 0
 
 
+def test_ignore_solar_when_the_timestamp_is_unreadable(session, monkeypatch):
+    """A solar image whose timestamp OCR cannot read must skip solar, not fail."""
+
+    def no_ocr_result(*args, **kwargs):
+        return "no readable text"
+
+    monkeypatch.setattr(SG, "image_to_string", no_ocr_result)
+    assert SG.get_solar(session, logger=logging.getLogger("test")) is None
+
+
+def test_ignore_solar_when_the_date_is_unreadable(session, monkeypatch):
+    """OCR digits that are not a real date must skip solar, not fail either."""
+
+    def no_ocr_result(*args, **kwargs):
+        return "Est. PV Output: 12MWac 2-12-2021 14:01"
+
+    monkeypatch.setattr(SG, "image_to_string", no_ocr_result)
+    assert SG.get_solar(session, logger=logging.getLogger("test")) is None
+
+
 def test_production_multi_source_has_no_space_after_comma():
     """Multi-source strings are split on "," without trim in the app (#8779).
 
