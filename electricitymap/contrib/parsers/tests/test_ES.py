@@ -1,4 +1,5 @@
 from datetime import datetime
+from json import loads
 
 import pytest
 from requests_mock import GET
@@ -58,6 +59,33 @@ def test_fetch_production(requests_mock, session, snapshot, zone_key, target_dat
     assert snapshot(
         extension_class=SingleFileAmberSnapshotExtension
     ) == ES.fetch_production(zone_key, session, datetime.fromisoformat(target_date))
+
+
+@pytest.mark.parametrize(
+    "mock_filename,target_date",
+    [
+        # Before 2022-01-24 REE only publishes the net "hid"; "turb"/"conb" are zero.
+        ("demandaGeneracionCanariasElHierro2018.json", "2018-07-15"),
+        # Since then "hid" == "turb" + "conb".
+        ("demandaGeneracionCanariasElHierro2022.json", "2022-04-15"),
+    ],
+)
+def test_fetch_production_el_hierro_hydro_storage(
+    requests_mock, session, mock_filename, target_date
+):
+    zone_key = ZoneKey("ES-CN-HI")
+    with open(f"{MOCKS_DIR}/{mock_filename}", "rb") as data:
+        payload = data.read()
+    requests_mock.register_uri(GET, ES.get_url(zone_key, target_date), content=payload)
+    raw = loads(payload.decode()[5:-1])["valoresHorariosGeneracion"]
+
+    events = ES.fetch_production(zone_key, session, datetime.fromisoformat(target_date))
+
+    assert len(events) == len(raw)
+    assert any(row["hid"] != 0 for row in raw)
+    for event, row in zip(events, raw, strict=True):
+        assert event["storage"]["hydro"] == pytest.approx(-row["hid"])
+        assert event["production"].get("hydro") is None
 
 
 @pytest.mark.parametrize(
