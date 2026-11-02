@@ -80,6 +80,12 @@ capacity:
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 4591.6
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4589.4
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 4574.9
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 4575.9
@@ -118,7 +124,7 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 270.0
-    - datetime: '2025-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 287.6
     - datetime: '2026-05-01'
@@ -131,7 +137,7 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 1084.0
-    - datetime: '2025-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 1626.0
   nuclear:
@@ -214,8 +220,8 @@ capacity:
       value: 1004.4
     - datetime: '2024-11-01'
       source: EIA.gov
-      value: 1204.4
-    - datetime: '2025-04-01'
+      value: 1314.0
+    - datetime: '2024-12-01'
       source: EIA.gov
       value: 1316.5
     - datetime: '2025-07-01'
