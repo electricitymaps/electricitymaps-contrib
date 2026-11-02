@@ -9,11 +9,79 @@ center_point:
 centroid:
   - -2.1492769624498447
   - 49.204571809876356
+capacity:
+  biomass:
+    - datetime: '2025-01-01'
+      source: JCRA Electricity Market Study (M-008), EY 2025
+      value: 8.0
+  oil:
+    - datetime: '2025-01-01'
+      source: jec.co.uk (La Collette Power Station and energy division)
+      value: 127.5
+  solar:
+    - datetime: '2025-02-01'
+      source: Jersey Electricity Annual Report and Accounts 2025
+      value: 4.3
+contributors:
+  - Jaylouisw
 country: JE
 country_name: Jersey
 currency: GBP
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+disclaimer: Data for real-time consumption and generation mix is estimated from Jersey
+  Electricity's audited annual fuel mix. Jersey Electricity publishes no sub-hourly
+  generation, demand or import data, and the French-side interconnector feed published by
+  RTE does not cover the Channel Islands.
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Jersey Electricity Annual Report and Accounts 2025
+      datetime: '2021-01-01'
+      value:
+        biomass: 0.044
+        hydro: 0.324
+        nuclear: 0.628
+        oil: 0.002
+        solar: 0.002
+    - _source: Jersey Electricity Annual Report and Accounts 2025
+      datetime: '2022-01-01'
+      value:
+        biomass: 0.044
+        hydro: 0.324
+        nuclear: 0.629
+        oil: 0.001
+        solar: 0.002
+    - _source: Jersey Electricity Annual Report and Accounts 2025
+      datetime: '2023-01-01'
+      value:
+        biomass: 0.051
+        hydro: 0.321
+        nuclear: 0.624
+        oil: 0.002
+        solar: 0.002
+    - _source: Jersey Electricity Annual Report and Accounts 2025
+      datetime: '2024-01-01'
+      value:
+        biomass: 0.050
+        hydro: 0.321
+        nuclear: 0.624
+        oil: 0.002
+        solar: 0.003
+    - _source: Jersey Electricity Annual Report and Accounts 2025
+      datetime: '2025-01-01'
+      value:
+        biomass: 0.053
+        hydro: 0.319
+        nuclear: 0.618
+        oil: 0.003
+        solar: 0.007
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 region: Europe
+sources:
+  Jersey Electricity Annual Report and Accounts 2025:
+    link: https://www.jec.co.uk/media/bhtpjcjx/annual-report-2025.pdf
+  JCRA Electricity Market Study (M-008), EY 2025:
+    link: https://www.jcra.je/media/2xtnk1yi/2025-01-16-electricity-market-study-ey-final-report-non-confidential-for-publication-final.pdf
+  jec.co.uk (La Collette Power Station and energy division):
+    link: https://www.jec.co.uk/the-energy-blog/la-collette-power-station/
 timezone: Europe/Jersey
 zone_name: Jersey
