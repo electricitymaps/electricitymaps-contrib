@@ -65,7 +65,7 @@ GENERATION_PAGE_URL = f"{US_PROXY}/gridinfo/generation?{HOST_PARAMETER}"
 BATTERY_IN_OTHER_SINCE = datetime(2022, 1, 1, tzinfo=TX_TZ)
 # The live feeds come every 5 minutes, the Fuel Mix Report every 15. Averaging the
 # live data to 15 minutes keeps both on the same timestamps, so a refetch replaces
-# live rows instead of leaving the 5-minute ones in between, see #PRNUM.
+# live rows instead of leaving the 5-minute ones in between, see #8938.
 LIVE_RESOLUTION = "15min"
 FUEL_MIX_REPORT_MAPPING = {
     "Biomass": "biomass",
@@ -81,7 +81,7 @@ FUEL_MIX_REPORT_MAPPING = {
 }
 # The live fuel mix has its own categories: its "Other" is biomass (ERCOT's
 # dashboard: biomass and settlement-only generators), and tracks the Fuel Mix
-# Report's "Biomass" with a correlation of 0.997 over Jan-Sep 2026, see #PRNUM.
+# Report's "Biomass" with a correlation of 0.997 over Jan-Sep 2026, see #8938.
 GENERATION_MAPPING = {
     "Coal and Lignite": "coal",
     "Hydro": "hydro",
