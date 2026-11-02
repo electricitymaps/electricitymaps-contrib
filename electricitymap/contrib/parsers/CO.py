@@ -158,6 +158,7 @@ def fetch_production(
         target_date_range = [target_datetime.date()]
 
     api_client = pydataxm.ReadDB()
+    df_prod = None
     for date in target_date_range:
         # get power production resources, where we are interested in a mapping
         # between a resource id (Values_Code column) to power production type
@@ -172,7 +173,7 @@ def fetch_production(
             continue
 
         break
-    if df_prod.empty:
+    if df_prod is None or df_prod.empty:
         raise ParserException(
             parser="CO",
             message=f"{target_datetime}: no production data available",
