@@ -40,12 +40,6 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 486.0
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 0.0
-    - datetime: '2026-06-01'
-      source: EIA.gov
-      value: 486.0
     - datetime: '2026-07-01'
       source: EIA.gov
       value: 0.0
