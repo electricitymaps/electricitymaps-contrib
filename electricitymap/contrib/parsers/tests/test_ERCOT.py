@@ -69,6 +69,19 @@ def test_fetch_production():
         sum(samples) / len(samples), abs=0.01
     )
 
+    # Battery is the mean net output of the quarter, positive when charging
+    net_outputs = [
+        row["netOutput"]
+        for day in ("previousDay", "currentDay")
+        for row in fake_storage_data[day]["data"]
+        if first <= pd.Timestamp(row["timestamp"]) < first + timedelta(minutes=15)
+    ]
+    assert net_outputs and sum(net_outputs) < 0  # The mock starts while charging
+    assert data[0]["storage"]["battery"] == pytest.approx(
+        -sum(net_outputs) / len(net_outputs), abs=0.01
+    )
+    assert data[0]["storage"]["battery"] > 0
+
     # The live "Other" is biomass
     assert all(item["production"].get("biomass") is not None for item in data)
     assert all(item["production"].get("unknown") is None for item in data)
