@@ -252,13 +252,16 @@ capacity:
     - datetime: '2017-02-01'
       source: EIA.gov
       value: 1051.2
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 1055.2
     - datetime: '2017-06-01'
       source: EIA.gov
       value: 1059.2
     - datetime: '2017-08-01'
       source: EIA.gov
       value: 1058.7
-    - datetime: '2017-10-01'
+    - datetime: '2017-09-01'
       source: EIA.gov
       value: 1057.4
     - datetime: '2018-01-01'
@@ -653,12 +656,18 @@ capacity:
     - datetime: '2017-04-01'
       source: EIA.gov
       value: 10432.8
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 10438.9
     - datetime: '2017-06-01'
       source: EIA.gov
       value: 10510.1
     - datetime: '2017-07-01'
       source: EIA.gov
       value: 10540.8
+    - datetime: '2017-09-01'
+      source: EIA.gov
+      value: 10556.8
     - datetime: '2017-10-01'
       source: EIA.gov
       value: 10563.8
@@ -955,7 +964,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 5543.9
-    - datetime: '2017-10-01'
+    - datetime: '2017-09-01'
       source: EIA.gov
       value: 5545.8
     - datetime: '2017-11-01'
