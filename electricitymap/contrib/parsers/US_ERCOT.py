@@ -63,24 +63,31 @@ GENERATION_PAGE_URL = f"{US_PROXY}/gridinfo/generation?{HOST_PARAMETER}"
 # Non-battery "Other" (petroleum coke, distillate oil) is ~3 MW on average, see #8935.
 # Before 2022, "WSL" was netted into "Other", so it can't be told apart from oil.
 BATTERY_IN_OTHER_SINCE = datetime(2022, 1, 1, tzinfo=TX_TZ)
-FUEL_MIX_REPORT_FUELS = {
-    "Biomass",
-    "Coal",
-    "Gas",
-    "Gas-CC",
-    "Hydro",
-    "Nuclear",
-    "Other",
-    "Solar",
-    "WSL",
-    "Wind",
+# The live feeds come every 5 minutes, the Fuel Mix Report every 15. Averaging the
+# live data to 15 minutes keeps both on the same timestamps, so a refetch replaces
+# live rows instead of leaving the 5-minute ones in between, see #8938.
+LIVE_RESOLUTION = "15min"
+FUEL_MIX_REPORT_MAPPING = {
+    "Biomass": "biomass",
+    "Coal": "coal",
+    "Gas": "gas",
+    "Gas-CC": "gas",
+    "Hydro": "hydro",
+    "Nuclear": "nuclear",
+    "Other": "unknown",  # Battery discharge since 2022, see BATTERY_IN_OTHER_SINCE
+    "Solar": "solar",
+    "WSL": "battery",
+    "Wind": "wind",
 }
+# The live fuel mix has its own categories: its "Other" is biomass (ERCOT's
+# dashboard: biomass and settlement-only generators), and tracks the Fuel Mix
+# Report's "Biomass" with a correlation of 0.997 over Jan-Sep 2026, see #8938.
 GENERATION_MAPPING = {
     "Coal and Lignite": "coal",
     "Hydro": "hydro",
     "Natural Gas": "gas",
     "Nuclear": "nuclear",
-    "Other": "unknown",
+    "Other": "biomass",
     "Power Storage": "battery",
     # Since Oct 2026, the live fuel mix also splits "Power Storage" (net) into
     # these two keys. They are dropped in process_generation_dataframe: the net
@@ -89,11 +96,6 @@ GENERATION_MAPPING = {
     # "Power Storage Discharging": ...,
     "Solar": "solar",
     "Wind": "wind",
-    "WSL": "battery",
-    "Biomass": "biomass",
-    "Gas": "gas",
-    "Coal": "coal",
-    "Gas-CC": "gas",
 }
 EXCHANGE_MAPPING = {"US-CENT-SWPP": ["dcE", "dcN"], "MX-NE": ["dcL"], "MX-NO": ["dcR"]}
 
@@ -128,7 +130,7 @@ def get_data(
 
 def parse_storage_data_live(session: Session) -> pd.DataFrame:
     """
-    Parse the storage data from the ERCOT API. The data is returned in 5 minute intervals.
+    Parse the storage data from the ERCOT API, averaged to LIVE_RESOLUTION.
     """
     storage_data_json = get_data(url=RT_STORAGE_URL, session=session)
     df = pd.concat(
@@ -137,7 +139,7 @@ def parse_storage_data_live(session: Session) -> pd.DataFrame:
             pd.DataFrame(storage_data_json["currentDay"]["data"]),
         ]
     )
-    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor("5min")
+    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor(LIVE_RESOLUTION)
     df.rename(columns={"netOutput": "battery_storage"}, inplace=True)
     df["battery_storage"] = -df["battery_storage"].astype(
         float
@@ -176,14 +178,13 @@ def fetch_live_production(
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     """
-    Fetch the live production data from the ERCOT API at a 5 minute interval.
-    The data is returned in 5 minute intervals.
+    Fetch the live production data from the ERCOT API, averaged to LIVE_RESOLUTION.
     """
     session = session or Session()
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     production_breakdowns = ProductionBreakdownList(logger)
 
-    # Process storage data first - keep at 15-minute intervals
+    # Process storage data first
     df_storage = parse_storage_data_live(session)
 
     # Process generation data
@@ -355,7 +356,7 @@ def fetch_historical_production(
             "ERCOT publishes each month a few weeks after it ends",
             zone_key,
         )
-    unknown_fuels = set(df.columns) - FUEL_MIX_REPORT_FUELS
+    unknown_fuels = set(df.columns) - set(FUEL_MIX_REPORT_MAPPING)
     if unknown_fuels:
         # A new category (e.g. for storage) could change what "Other" contains
         raise ParserException(
@@ -378,7 +379,7 @@ def fetch_historical_production(
             if fuel == "WSL" or (fuel == "Other" and battery_in_other):
                 continue
             production.add_value(
-                GENERATION_MAPPING[fuel], value, correct_negative_with_zero=True
+                FUEL_MIX_REPORT_MAPPING[fuel], value, correct_negative_with_zero=True
             )
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
@@ -745,7 +746,7 @@ def fetch_realtime_locational_marginal_price(
 def process_generation_dataframe(df):
     """
     Process generation DataFrame by:
-    1. Flooring timestamps to nearest 5 minutes
+    1. Flooring timestamps to LIVE_RESOLUTION
     2. Extracting 'gen' values from dictionary format
     3. Grouping by datetime index and taking mean (temporal aggregation)
     4. Standardizing columns using GENERATION_MAPPING (column aggregation)
@@ -756,7 +757,7 @@ def process_generation_dataframe(df):
     if not isinstance(df_processed.index, pd.DatetimeIndex):
         df_processed.index = pd.to_datetime(df_processed.index)
 
-    df_processed.index = df_processed.index.floor("5min")
+    df_processed.index = df_processed.index.floor(LIVE_RESOLUTION)
 
     # Unmapped keys (e.g. the "Power Storage" split, see GENERATION_MAPPING) would crash ProductionMix
     df_processed = df_processed[
@@ -770,7 +771,7 @@ def process_generation_dataframe(df):
         )
     )
 
-    # First group by datetime index to aggregate multiple rows with same 5-minute timestamp
+    # First group by datetime index to average the rows within each interval
     df_processed = df_processed.groupby(df_processed.index).mean()
 
     # Then group columns by their target names and sum (for columns that map to same target)
