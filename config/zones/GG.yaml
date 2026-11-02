@@ -11,19 +11,25 @@ centroid:
   - 49.43914509312574
 capacity:
   oil:
-    - _comment: Vale Power Station dispatchable thermal capacity. The 2021 base year is
-        given as 149 MW, with the strategy modelling 138 MW from 2025; GEL restored 11 MW
-        of standby capacity in September 2025.
+    - _comment: >-
+        Vale Power Station dispatchable thermal capacity. The 2021 base year is given as 149 MW,
+        with the strategy modelling 138 MW from 2025; GEL restored 11 MW of standby capacity in
+        September 2025. Installed nominal capacity, not expected output.
+        https://www.gov.gg/CHttpHandler.ashx?id=168030&p=0 (Electricity Strategy for Guernsey,
+        P.2023/55, Table 1)
       datetime: '2021-01-01'
       source: gov.gg (Electricity Strategy for Guernsey, P.2023/55, Table 1)
       value: 149.0
   solar:
-    - datetime: '2021-01-01'
+    - _comment: >-
+        2.2 MWp of installed island solar PV in the 2021 base year.
+        https://www.gov.gg/CHttpHandler.ashx?id=168030&p=0 (P.2023/55, Table 1)
+      datetime: '2021-01-01'
       source: gov.gg (Electricity Strategy for Guernsey, P.2023/55)
       value: 2.2
-    - _comment: Island-wide installed solar PV (Guernsey Electricity reports "over 4MW
-        of solar PV already installed"; the States target was 5 MW by 2025 and 10 MW by
-        2028).
+    - _comment: >-
+        Island-wide installed solar PV (GEL reports "over 4 MW"); the States target is 5 MW by 2025
+        and 10 MW by 2028. https://www.electricity.gg/media/0vnltnkt/annual-report-2025.pdf
       datetime: '2025-01-01'
       source: Guernsey Electricity Annual Report 2025
       value: 4.0
@@ -32,44 +38,114 @@ contributors:
 country: GG
 country_name: Guernsey
 currency: GBP
-disclaimer: Real-time consumption and generation mix data is not available and is fully
-  estimated.
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+    - _comment: >-
+        Physical basis. 93% of distributed electricity was imported in calendar 2021
+        (GEL carbon reporting, which splits imports by cancelled certificates); that
+        share is blended at the French generation mix because GJ1 delivers French
+        grid power via Jersey, so the import origin is the exporting zone's mix. The
+        remaining 7% is on-island generation, split between Vale Power Station
+        (26,860 MWh) and community PV (390 MWh).
+      _source: GEL carbon reporting blended with the French generation mix (Ember)
+      _url:
+        - https://www.electricity.gg/about/our-company/carbon-reporting/
+        - https://ember-energy.org/data/yearly-electricity-data/
       datetime: '2021-01-01'
       value:
-        hydro: 0.928
-        oil: 0.07
-        solar: 0.001
-        wind: 0.001
-    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+        biomass: 0.0172
+        coal: 0.0092
+        gas: 0.0563
+        hydro: 0.1006
+        nuclear: 0.6411
+        oil: 0.0861
+        solar: 0.0268
+        wind: 0.0627
+    - _comment: >-
+        Physical basis. 92% of distributed electricity was imported in calendar 2022
+        (GEL carbon reporting, which splits imports by cancelled certificates); that
+        share is blended at the French generation mix because GJ1 delivers French
+        grid power via Jersey, so the import origin is the exporting zone's mix. The
+        remaining 8% is on-island generation, split between Vale Power Station
+        (28,855 MWh) and community PV (367 MWh).
+      _source: GEL carbon reporting blended with the French generation mix (Ember)
+      _url:
+        - https://www.electricity.gg/about/our-company/carbon-reporting/
+        - https://ember-energy.org/data/yearly-electricity-data/
       datetime: '2022-01-01'
       value:
-        hydro: 0.694
-        oil: 0.079
-        solar: 0.017
-        wind: 0.21
-    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+        biomass: 0.0202
+        coal: 0.0082
+        gas: 0.0898
+        hydro: 0.0895
+        nuclear: 0.5788
+        oil: 0.0995
+        solar: 0.039
+        wind: 0.075
+    - _comment: >-
+        Physical basis. 91% of distributed electricity was imported in calendar 2023
+        (GEL carbon reporting, which splits imports by cancelled certificates); that
+        share is blended at the French generation mix because GJ1 delivers French
+        grid power via Jersey, so the import origin is the exporting zone's mix. The
+        remaining 9% is on-island generation, split between Vale Power Station
+        (33,153 MWh) and community PV (443 MWh).
+      _source: GEL carbon reporting blended with the French generation mix (Ember)
+      _url:
+        - https://www.electricity.gg/about/our-company/carbon-reporting/
+        - https://ember-energy.org/data/yearly-electricity-data/
       datetime: '2023-01-01'
       value:
-        hydro: 0.71
-        oil: 0.091
-        solar: 0.095
-        wind: 0.104
-    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+        biomass: 0.0185
+        coal: 0.0028
+        gas: 0.0527
+        hydro: 0.0981
+        nuclear: 0.5931
+        oil: 0.1054
+        solar: 0.0408
+        wind: 0.0886
+    - _comment: >-
+        Physical basis. 92% of distributed electricity was imported in calendar 2024
+        (GEL carbon reporting, which splits imports by cancelled certificates); that
+        share is blended at the French generation mix because GJ1 delivers French
+        grid power via Jersey, so the import origin is the exporting zone's mix. The
+        remaining 8% is on-island generation, split between Vale Power Station
+        (27,381 MWh) and community PV (450 MWh).
+      _source: GEL carbon reporting blended with the French generation mix (Ember)
+      _url:
+        - https://www.electricity.gg/about/our-company/carbon-reporting/
+        - https://ember-energy.org/data/yearly-electricity-data/
       datetime: '2024-01-01'
       value:
-        hydro: 0.924
-        oil: 0.075
-        solar: 0.001
-    - _source: https://www.electricity.gg/about/our-company/carbon-reporting/
+        biomass: 0.0184
+        coal: 0.0017
+        gas: 0.0296
+        hydro: 0.1165
+        nuclear: 0.6231
+        oil: 0.0943
+        solar: 0.042
+        wind: 0.0744
+    - _comment: >-
+        Physical basis. 92% of distributed electricity was imported in calendar 2025
+        (GEL carbon reporting, which splits imports by cancelled certificates); that
+        share is blended at the French generation mix because GJ1 delivers French
+        grid power via Jersey, so the import origin is the exporting zone's mix. The
+        remaining 8% is on-island generation, split between Vale Power Station
+        (29,285 MWh) and community PV (396 MWh).
+      _source: GEL carbon reporting blended with the French generation mix (Ember)
+      _url:
+        - https://www.electricity.gg/about/our-company/carbon-reporting/
+        - https://ember-energy.org/data/yearly-electricity-data/
       datetime: '2025-01-01'
       value:
-        hydro: 0.695
-        oil: 0.08
-        solar: 0.035
-        wind: 0.19
+        biomass: 0.0175
+        coal: 0.0028
+        gas: 0.0278
+        hydro: 0.0959
+        nuclear: 0.6329
+        oil: 0.0957
+        solar: 0.0524
+        wind: 0.075
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 region: Europe
