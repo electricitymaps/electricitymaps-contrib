@@ -1,7 +1,7 @@
 import json
 import logging
 import zipfile
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from io import BytesIO
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
@@ -54,6 +54,24 @@ def test_fetch_production():
     assert len(dates) == 2, (
         f"Expected data from exactly 2 days, but got {len(dates)} days: {dates}"
     )
+
+    # 5-minute data is averaged to the Fuel Mix Report's 15-minute intervals
+    assert all(item["datetime"].minute % 15 == 0 for item in data)
+    first = data[0]["datetime"]
+    samples = [
+        row["Coal and Lignite"]["gen"]
+        for day in fake_generation_data["data"].values()
+        for ts, row in day.items()
+        if first <= pd.Timestamp(ts) < first + timedelta(minutes=15)
+    ]
+    assert len(samples) > 1
+    assert data[0]["production"]["coal"] == pytest.approx(
+        sum(samples) / len(samples), abs=0.01
+    )
+
+    # The live "Other" is biomass
+    assert all(item["production"].get("biomass") is not None for item in data)
+    assert all(item["production"].get("unknown") is None for item in data)
 
 
 def test_fetch_consumption():
