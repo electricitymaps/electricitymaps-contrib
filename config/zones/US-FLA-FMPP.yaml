@@ -73,7 +73,7 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 220.3
-    - datetime: '2026-05-01'
+    - datetime: '2026-02-01'
       source: EIA.gov
       value: 214.3
   solar:

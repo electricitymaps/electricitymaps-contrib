@@ -29,9 +29,15 @@ capacity:
     - datetime: '2024-10-01'
       source: EIA.gov
       value: 148.7
-    - datetime: '2026-05-01'
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 276.7
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 326.2
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 336.2
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -96,9 +102,18 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1762.3
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 1768.9
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 1760.4
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1755.4
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 1672.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -259,7 +274,7 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 1349.9
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 1346.1
   solar:
@@ -455,9 +470,18 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 5904.9
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 5905.9
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 5904.9
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 6064.9
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 6067.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -471,7 +495,7 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 8.5
   wind:
