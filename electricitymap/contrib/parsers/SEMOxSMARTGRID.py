@@ -35,7 +35,7 @@ from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
-SOURCE = "sem-o.com, eirgridgroup.com"
+SOURCE = "eirgridgroup.com,sem-o.com"
 # Modes sourced from SmartGridDashboard; everything else comes from SEMO.
 SMARTGRID_MODES = ("wind", "solar")
 
