@@ -210,8 +210,6 @@ def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
                 "StartTime": f">={date_from}<={date_to}",
                 "sort_by": "StartTime",
                 "order_by": "ASC",
-                "ParticipantName": "",
-                "ResourceName": "",
                 "page": page,
                 "page_size": PAGE_SIZE,
             },
