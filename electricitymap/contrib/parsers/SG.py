@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
-from collections import defaultdict
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -15,11 +14,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import (
-    EventSourceType,
-    ProductionMix,
-    StorageMix,
-)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
@@ -35,7 +30,6 @@ MAX_DOWNLOAD_DAYS = 30  # the site's limit on a download's date range
 # Backend of the charts on https://www.home.emcsg.com/. Given a `fromDate`, each
 # dataset covers the 7 days before it. History goes back to 2024.
 DATASYNC_URL = "https://www.home.emcsg.com/api/DataSync/Get"
-DAILY_GENERATION_SHARE = 9  # daily share (%) of each facility type
 HALF_HOURLY_PRICE_DEMAND = 14  # half-hourly USEP ($/MWh) and demand (MW)
 
 SOURCE = "emcsg.com"
@@ -71,11 +65,8 @@ For Electricity Map, we map CCGT and GT to gas, ST and OTHERS to "unknown", IGS 
 (energy storage systems) to battery. IMPORT is left out: imports are not production, and the
 interconnection to Malaysia is implemented in MY_WM.py.
 
-Metered generation comes about 2 weeks late. The days after the last metered one are estimated:
-the half-hourly demand from EMC's charts split by the daily share of each facility type (without IGS
-and OTHERS), plus the average metered solar at that time of day over the last metered week. EMC's
-charts have a solar forecast too, but only for the past week, so it can't cover the gap. Estimates
-get replaced by the metered values once those are published.
+Metered generation comes about 2 weeks late, and EMC publishes nothing more recent that is both
+half-hourly and complete: its charts only have daily shares per facility type, without solar.
 """
 
 FACILITY_TYPE_MAPPINGS = {
@@ -86,8 +77,6 @@ FACILITY_TYPE_MAPPINGS = {
     "OTHERS": "unknown",
 }
 STORAGE_FACILITY_TYPES = {"ESS", "BATTERY"}
-
-Mixes = dict[datetime, tuple[ProductionMix, StorageMix]]
 
 
 def _fetch_metered_generation(session: Session, end: date) -> list[dict[str, str]]:
@@ -105,7 +94,12 @@ def _fetch_metered_generation(session: Session, end: date) -> list[dict[str, str
         headers={"User-Agent": "Mozilla/5.0"},
     )
     response.raise_for_status()
-    # 204 when nothing is published yet for the range
+    if response.status_code == 204:
+        raise ParserException(
+            "SG.py",
+            f"No metered generation published between {start} and {end}",
+            ZoneKey("SG"),
+        )
     return list(csv.DictReader(StringIO(response.text)))
 
 
@@ -129,13 +123,12 @@ def _fetch_datasets(
 
 
 def _parse_label(label: str, end: date) -> datetime:
-    """Turns labels like "03 Nov" or "03 Nov 00:00-00:30" into the (period start) datetime.
+    """Turns labels like "03 Nov 00:00-00:30" into the (period start) datetime.
 
     Labels have no year, so we take the one that puts the label on or before `end`.
     """
-    day, month, *period = label.split(" ")
-    start = period[0].split("-")[0] if period else "00:00"
-    dt = datetime.strptime(f"{day} {month} {end.year} {start}", "%d %b %Y %H:%M")
+    period_start = label.split("-")[0]
+    dt = datetime.strptime(f"{end.year} {period_start}", "%Y %d %b %H:%M")
     if dt.date() > end:
         dt = dt.replace(year=end.year - 1)
     return dt.replace(tzinfo=TIMEZONE)
@@ -148,80 +141,6 @@ def _end_date(target_datetime: datetime | None) -> date:
     return target_datetime.astimezone(TIMEZONE).date()
 
 
-def _add(
-    mix: ProductionMix, storage: StorageMix, facility_type: str, mw: float
-) -> None:
-    if facility_type in STORAGE_FACILITY_TYPES:
-        # Injection is discharge, storage is positive when charging.
-        storage.add_value("battery", -mw)
-    elif facility_type != "IMPORT":
-        # Idle units draw a little power, which shows as a small negative injection.
-        mix.add_value(
-            FACILITY_TYPE_MAPPINGS.get(facility_type, "unknown"),
-            mw,
-            correct_negative_with_zero=True,
-        )
-
-
-def _metered_production(session: Session, end: date, logger: Logger) -> Mixes:
-    rows = _fetch_metered_generation(session, end)
-    known_types = {*FACILITY_TYPE_MAPPINGS, *STORAGE_FACILITY_TYPES, "IMPORT"}
-    for facility_type in {row["FACILITY TYPE"] for row in rows} - known_types:
-        logger.warning(f'Singapore has unrecognized facility type "{facility_type}"')
-
-    mixes: Mixes = {}
-    for row in rows:
-        dt = datetime.strptime(row["DATE"], "%d-%b-%Y").replace(
-            tzinfo=TIMEZONE
-        ) + timedelta(minutes=30 * (int(row["PERIOD"]) - 1))
-        mix, storage = mixes.setdefault(dt, (ProductionMix(), StorageMix()))
-        # Energy over a half-hour period, in MWh. Gross is before the facility's own consumption.
-        _add(
-            mix, storage, row["FACILITY TYPE"], 2 * float(row["GROSS INJECTION (MWh)"])
-        )
-    return mixes
-
-
-def _solar_profile(metered: Mixes) -> dict[time, float]:
-    """Average metered solar per time of day over the last metered week."""
-    if not metered:
-        return {}
-    since = max(metered) - timedelta(days=7)
-    values = defaultdict(list)
-    for dt, (mix, _) in metered.items():
-        if dt > since and mix.solar is not None:
-            values[dt.time()].append(mix.solar)
-    return {t: sum(v) / len(v) for t, v in values.items()}
-
-
-def _estimated_production(
-    session: Session, start: date, end: date, solar_profile: dict[time, float]
-) -> Mixes:
-    """Estimates the production from `start` to `end` included, a week at a time."""
-    mixes: Mixes = {}
-    while end >= start:
-        share_days, shares = _fetch_datasets(session, DAILY_GENERATION_SHARE, end)
-        shares_by_day = {
-            _parse_label(day, end).date(): {
-                facility_type: float(values[i]) / 100
-                for facility_type, values in shares.items()
-            }
-            for i, day in enumerate(share_days)
-        }
-        periods, datasets = _fetch_datasets(session, HALF_HOURLY_PRICE_DEMAND, end)
-        for period, demand in zip(periods, datasets["Demand"], strict=True):
-            dt = _parse_label(period, end)
-            day_shares = shares_by_day.get(dt.date())
-            if dt.date() < start or day_shares is None or demand is None:
-                continue
-            mix, storage = mixes[dt] = (ProductionMix(), StorageMix())
-            for facility_type, share in day_shares.items():
-                _add(mix, storage, facility_type, share * float(demand))
-            mix.add_value("solar", solar_profile.get(dt.time()))
-        end -= timedelta(days=7)
-    return mixes
-
-
 @refetch_frequency(timedelta(days=MAX_DOWNLOAD_DAYS))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("SG"),
@@ -229,43 +148,44 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests the half-hourly production mix (in MW) of Singapore over 30 days.
+    """Requests the half-hourly metered production mix (in MW) of Singapore over 30 days.
 
-    Metered where published (up to ~2 weeks ago), estimated after that.
+    Live, that is the last ~2 weeks published, as metering data comes about 2 weeks late.
     """
-    session = session or Session()
-    end = _end_date(target_datetime)
+    rows = _fetch_metered_generation(session or Session(), _end_date(target_datetime))
+    known_types = {*FACILITY_TYPE_MAPPINGS, *STORAGE_FACILITY_TYPES, "IMPORT"}
+    for facility_type in {row["FACILITY TYPE"] for row in rows} - known_types:
+        logger.warning(f'Singapore has unrecognized facility type "{facility_type}"')
 
-    metered = _metered_production(session, end, logger)
-    first_unmetered_day = (
-        max(metered).date() + timedelta(days=1)
-        if metered
-        else end - timedelta(days=MAX_DOWNLOAD_DAYS - 1)
-    )
-    estimated: Mixes = {}
-    if first_unmetered_day <= end:
-        try:
-            estimated = _estimated_production(
-                session, first_unmetered_day, end, _solar_profile(metered)
+    mixes: dict[datetime, tuple[ProductionMix, StorageMix]] = {}
+    for row in rows:
+        dt = datetime.strptime(row["DATE"], "%d-%b-%Y").replace(
+            tzinfo=TIMEZONE
+        ) + timedelta(minutes=30 * (int(row["PERIOD"]) - 1))
+        mix, storage = mixes.setdefault(dt, (ProductionMix(), StorageMix()))
+        facility_type = row["FACILITY TYPE"]
+        # Energy over a half-hour period, in MWh. Gross is before the facility's own consumption.
+        mw = 2 * float(row["GROSS INJECTION (MWh)"])
+        if facility_type in STORAGE_FACILITY_TYPES:
+            # Injection is discharge, storage is positive when charging.
+            storage.add_value("battery", -mw)
+        elif facility_type != "IMPORT":
+            # Idle units draw a little power, which shows as a small negative injection.
+            mix.add_value(
+                FACILITY_TYPE_MAPPINGS.get(facility_type, "unknown"),
+                mw,
+                correct_negative_with_zero=True,
             )
-        except ParserException as e:
-            # Don't lose the metered data over it.
-            logger.warning(f"Could not estimate SG production: {e}")
 
     production_breakdowns = ProductionBreakdownList(logger)
-    for mixes, source_type in (
-        (metered, EventSourceType.measured),
-        (estimated, EventSourceType.estimated),
-    ):
-        for dt, (mix, storage) in sorted(mixes.items()):
-            production_breakdowns.append(
-                datetime=dt,
-                zoneKey=zone_key,
-                production=mix,
-                storage=storage,
-                source=SOURCE,
-                sourceType=source_type,
-            )
+    for dt, (mix, storage) in sorted(mixes.items()):
+        production_breakdowns.append(
+            datetime=dt,
+            zoneKey=zone_key,
+            production=mix,
+            storage=storage,
+            source=SOURCE,
+        )
     return production_breakdowns.to_list()
 
 
