@@ -4,50 +4,6 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': datetime.datetime(2026, 11, 7, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
-      'end_datetime': None,
-      'production': dict({
-        'biomass': 1.8,
-        'coal': 52.48,
-        'gas': 37.52,
-        'geothermal': 7.78,
-        'hydro': 469.47,
-        'oil': 0.0,
-        'solar': 0.0,
-        'wind': 130.63,
-      }),
-      'source': 'coordinador.cl',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': 0.6,
-      }),
-      'zoneKey': 'CL-SEN',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
-      'datetime': datetime.datetime(2026, 11, 7, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
-      'end_datetime': None,
-      'production': dict({
-        'biomass': 1.979118,
-        'coal': 51.46,
-        'gas': 28.39,
-        'geothermal': 7.51,
-        'hydro': 357.17,
-        'oil': 0.0,
-        'solar': 2.538103,
-        'wind': 0.0,
-      }),
-      'source': 'coordinador.cl',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': 0.45,
-      }),
-      'zoneKey': 'CL-SEN',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
       'datetime': datetime.datetime(2026, 11, 8, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
       'end_datetime': None,
       'production': dict({
