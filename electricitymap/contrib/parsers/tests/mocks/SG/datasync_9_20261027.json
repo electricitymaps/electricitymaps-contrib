@@ -1,0 +1,166 @@
+{
+  "success": true,
+  "data": {
+    "message": "get Generation values processed successfully.",
+    "data": [
+      {
+        "labels": [
+          "20 Oct",
+          "21 Oct",
+          "22 Oct",
+          "23 Oct",
+          "24 Oct",
+          "25 Oct",
+          "26 Oct"
+        ],
+        "datasets": [
+          {
+            "label": "CCGT/COGEN/TRIGEN",
+            "backgroundColor": "#0038A8DB",
+            "borderColor": null,
+            "data": [
+              "97.92",
+              "98.09",
+              "98.11",
+              "97.59",
+              "97.89",
+              "98.02",
+              "98.05"
+            ],
+            "fill": null,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": null
+          },
+          {
+            "label": "ST",
+            "backgroundColor": "#00A8E170",
+            "borderColor": null,
+            "data": [
+              "1.99",
+              "2.01",
+              "1.90",
+              "1.91",
+              "2.02",
+              "2.16",
+              "2.03"
+            ],
+            "fill": null,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": null
+          },
+          {
+            "label": "GT",
+            "backgroundColor": "#004E7170",
+            "borderColor": null,
+            "data": [
+              "0.10",
+              "0.00",
+              "0.00",
+              "0.54",
+              "0.07",
+              "0.00",
+              "0.00"
+            ],
+            "fill": null,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": null
+          },
+          {
+            "label": "IMPORT",
+            "backgroundColor": "#8D9DBD70",
+            "borderColor": null,
+            "data": [
+              "0.00",
+              "0.00",
+              "0.00",
+              "0.00",
+              "0.00",
+              "0.00",
+              "0.00"
+            ],
+            "fill": null,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": null
+          },
+          {
+            "label": "ESS",
+            "backgroundColor": "#EE374170",
+            "borderColor": null,
+            "data": [
+              "-0.01",
+              "-0.10",
+              "-0.01",
+              "-0.04",
+              "0.02",
+              "-0.18",
+              "-0.08"
+            ],
+            "fill": null,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": null
+          }
+        ],
+        "current": [
+          {
+            "label": "CCGT/COGEN/TRIGEN",
+            "value": "97.95",
+            "denom": "(%)",
+            "tooltip": "this is CCGT/COGEN/TRIGEN tooltip.",
+            "symbol": "",
+            "textcolor": "color-ccgt"
+          },
+          {
+            "label": "ST",
+            "value": "2.00",
+            "denom": "(%)",
+            "tooltip": "this is ST tooltip.",
+            "symbol": "",
+            "textcolor": "color-st"
+          },
+          {
+            "label": "GT",
+            "value": "0.10",
+            "denom": "(%)",
+            "tooltip": "this is GT tooltip.",
+            "symbol": "",
+            "textcolor": "color-gt"
+          },
+          {
+            "label": "IMPORT",
+            "value": "0.00",
+            "denom": "(%)",
+            "tooltip": "this is IMPORT tooltip.",
+            "symbol": "",
+            "textcolor": "color-import"
+          },
+          {
+            "label": "ESS",
+            "value": "-0.06",
+            "denom": "(%)",
+            "tooltip": "this is ESS tooltip.",
+            "symbol": "",
+            "textcolor": "color-ess"
+          }
+        ],
+        "forecast": null,
+        "lastupdate": "26 Oct 2026 00:00",
+        "currentdate": null,
+        "maxprice": 200,
+        "maxdemand": 100,
+        "minprice": -100.18,
+        "mindemand": -100.18,
+        "labelcolors": "#004E7170,#00A8E170,#eff6b3,#8D9DBD70"
+      }
+    ]
+  }
+}

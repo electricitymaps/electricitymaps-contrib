@@ -12,36 +12,18 @@
     }),
     dict({
       'currency': 'SGD',
-      'datetime': datetime.datetime(2026, 11, 3, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'datetime': datetime.datetime(2026, 11, 3, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
       'end_datetime': None,
-      'price': 220.14,
+      'price': 209.09,
       'source': 'emcsg.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'SG',
     }),
     dict({
       'currency': 'SGD',
-      'datetime': datetime.datetime(2026, 11, 3, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'datetime': datetime.datetime(2026, 11, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
       'end_datetime': None,
-      'price': 306.68,
-      'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'SG',
-    }),
-    dict({
-      'currency': 'SGD',
-      'datetime': datetime.datetime(2026, 11, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
-      'end_datetime': None,
-      'price': 300.12,
-      'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'SG',
-    }),
-    dict({
-      'currency': 'SGD',
-      'datetime': datetime.datetime(2026, 11, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
-      'end_datetime': None,
-      'price': 199.42,
+      'price': 233.03,
       'source': 'emcsg.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'SG',
@@ -61,6 +43,145 @@
   list([
     dict({
       'correctedModes': list([
+        'gas',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2026, 10, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6685.098,
+        'solar': 0,
+        'unknown': 147.508,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.328,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+        'gas',
+      ]),
+      'datetime': datetime.datetime(2026, 10, 25, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 5796.038,
+        'solar': 985.926,
+        'unknown': 151.922,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 92.504,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 10, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6626.219,
+        'solar': 985.926,
+        'unknown': 137.1874,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 5.4064,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 10, 26, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6725.2495,
+        'solar': None,
+        'unknown': 139.2377,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 5.4872,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 10, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6459.8025,
+        'solar': 0.0,
+        'unknown': 133.8785,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': -1.319,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 10, 27, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6388.299,
+        'solar': 985.926,
+        'unknown': 132.3966,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': -1.3044,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 11, 2, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6888.4368,
+        'solar': 985.926,
+        'unknown': 137.6704,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 2.1072,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 11, 2, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 6774.6756,
+        'solar': None,
+        'unknown': 135.3968,
+      }),
+      'source': 'emcsg.com',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 2.0724,
+      }),
+      'zoneKey': 'SG',
+    }),
+    dict({
+      'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 11, 3, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
       'end_datetime': None,
@@ -70,7 +191,7 @@
         'unknown': 113.543,
       }),
       'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
       'storage': dict({
         'battery': -0.0,
       }),
@@ -79,15 +200,15 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': datetime.datetime(2026, 11, 3, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'datetime': datetime.datetime(2026, 11, 3, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
       'end_datetime': None,
       'production': dict({
-        'gas': 6441.599,
-        'solar': 0.0,
-        'unknown': 111.401,
+        'gas': 6925.235,
+        'solar': 985.926,
+        'unknown': 119.765,
       }),
       'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
       'storage': dict({
         'battery': -0.0,
       }),
@@ -96,51 +217,17 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': datetime.datetime(2026, 11, 3, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
+      'datetime': datetime.datetime(2026, 11, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
       'end_datetime': None,
       'production': dict({
-        'gas': 6867.238,
-        'solar': 0.0,
-        'unknown': 118.762,
+        'gas': 6432.9275,
+        'solar': 985.926,
+        'unknown': 147.4144,
       }),
       'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
       'storage': dict({
-        'battery': -0.0,
-      }),
-      'zoneKey': 'SG',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
-      'datetime': datetime.datetime(2026, 11, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
-      'end_datetime': None,
-      'production': dict({
-        'gas': 6694.4948,
-        'solar': 0.0,
-        'unknown': 144.2396,
-      }),
-      'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': 2.7344,
-      }),
-      'zoneKey': 'SG',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
-      'datetime': datetime.datetime(2026, 11, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Singapore')),
-      'end_datetime': None,
-      'production': dict({
-        'gas': 6607.9,
-        'solar': 0.0,
-        'unknown': 151.424,
-      }),
-      'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': -0.676,
+        'battery': -0.6581,
       }),
       'zoneKey': 'SG',
     }),
@@ -151,11 +238,11 @@
       'end_datetime': None,
       'production': dict({
         'gas': 6550.2275,
-        'solar': 0.0,
+        'solar': None,
         'unknown': 150.1024,
       }),
       'source': 'emcsg.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
       'storage': dict({
         'battery': -0.6701,
       }),
