@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import re
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-from PIL import Image, ImageOps
-from pytesseract import image_to_string
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -15,15 +12,19 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("Asia/Singapore")
 
-TICKER_URL = "https://www.emcsg.com/ChartServer/blue/ticker"
+# Backend of the charts on https://www.home.emcsg.com/. Given a `fromDate`, each
+# dataset covers the 7 days before it. History goes back to 2024.
+DATASYNC_URL = "https://www.home.emcsg.com/api/DataSync/Get"
+DAILY_GENERATION_SHARE = 9  # daily share (%) of each generator type
+HALF_HOURLY_PRICE_DEMAND = 14  # half-hourly USEP ($/MWh) and demand (MW)
 
-SOLAR_URL = (
-    "https://www.ema.gov.sg//content/dam/corporate/solar-irradiance-map/plot.png"
-)
+SOURCE = "emcsg.com"
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -46,175 +47,124 @@ made up 0.7% of the fuel mix. Other energy products (e.g. municipal waste, coal 
 accounted for 2.9% while the remaining 1.2% was from coal", and that steam turbines in Singapore
 "typically run on fuel oil and diesel'
 
-The real-time information on EMCSG website includes data for three categories: "CCGT/COGEN/TRIGEN", "GT", and "ST".
-I take these to mean combined-cycle gas turbines/co-generation/tri-generation,
+EMC publishes generation shares for "CCGT/COGEN/TRIGEN", "GT", "ST", "IMPORT" and "ESS".
+I take the first three to mean combined-cycle gas turbines/co-generation/tri-generation,
 single-cycle gas turbines (following the Energy Statistics 2016 pg 24), and steam turbines respectively.
-There is no real-time information on fuel for steam turbines.
+There is no information on fuel for steam turbines.
 
-For Electricity Map, we map CCGT and GT to gas, and ST to "unknown".
+For Electricity Map, we map CCGT and GT to gas, ST to "unknown" and ESS (energy storage systems) to battery.
+IMPORT is left out: imports are not production, and the interconnection to Malaysia is implemented in MY_WM.py.
 
-The Energy Market Authority estimates current solar production and publishes it at
-https://www.ema.gov.sg/solarmap.aspx
-
-There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
+Shares are only published per day, so the half-hourly production is the half-hourly demand
+split by the share of that day. Solar is mostly embedded (behind the meter), so it isn't part of
+that demand and is added on top, from EMC's estimate.
 """
 
 TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session: Session, logger: Logger) -> float | None:
+def _fetch_datasets(
+    session: Session, value: int, end: date
+) -> tuple[list[str], dict[str, list[str]]]:
+    """Returns the labels and datasets (label -> values) of the 7 days up to `end` included."""
+    from_date = (end + timedelta(days=1)).isoformat()
+    response = session.get(
+        DATASYNC_URL,
+        params={"value": value, "fromDate": from_date, "toDate": from_date},
+        headers={"User-Agent": "Mozilla/5.0"},
+    )
+    response.raise_for_status()
+    blocks = response.json()["data"]["data"]
+    if not blocks:
+        raise ParserException("SG.py", f"No data from EMC up to {end}", ZoneKey("SG"))
+    return blocks[0]["labels"], {
+        dataset["label"]: dataset["data"] for dataset in blocks[0]["datasets"]
+    }
+
+
+def _parse_label(label: str, end: date) -> datetime:
+    """Turns labels like "03 Nov" or "03 Nov 00:00-00:30" into the (period start) datetime.
+
+    Labels have no year, so we take the one that puts the label on or before `end`.
     """
-    Fetches a graphic showing estimated solar production data.
-    Uses OCR (tesseract) to extract MW value.
-    """
-    requests_obj = session or Session()
-    requests_obj.headers.update({"User-Agent": "Mozilla/5.0"})
-    solar_image = Image.open(session.get(SOLAR_URL, stream=True).raw)
-
-    solar_mw = __detect_output_from_solar_image(solar_image, logger)
-    solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
-
-    singapore_dt = datetime.now(tz=TIMEZONE)
-    diff = singapore_dt - solar_dt
-
-    # Need to be sure we don't get old data if image stops updating.
-    if diff.total_seconds() > 3600:
-        msg = f"Singapore solar data is too old to use, parsed data timestamp was {solar_dt}."
-        logger.warning(msg, extra={"key": "SG"})
-        return None
-
-    return solar_mw
+    day, month, *period = label.split(" ")
+    start = period[0].split("-")[0] if period else "00:00"
+    dt = datetime.strptime(f"{day} {month} {end.year} {start}", "%d %b %Y %H:%M")
+    if dt.date() > end:
+        dt = dt.replace(year=end.year - 1)
+    return dt.replace(tzinfo=TIMEZONE)
 
 
-def parse_megawatt_value(val) -> int:
-    """Turns values like "5,156MW" and "26MW" into 5156 and 26 respectively."""
-    return int(val.replace(",", "").replace("MW", ""))
+def _end_date(target_datetime: datetime | None) -> date:
+    """The last day to fetch: the target day, or yesterday as today isn't published yet."""
+    if target_datetime is None:
+        return datetime.now(tz=TIMEZONE).date() - timedelta(days=1)
+    return target_datetime.astimezone(TIMEZONE).date()
 
 
-def parse_percent(val) -> float:
-    """Turns values like "97.92%" into 0.9792."""
-    return float(val.replace("%", "")) / 100
-
-
-def parse_price(price_str) -> float:
-    """Turns values like "$70.57/MWh" into 70.57"""
-
-    return float(price_str.replace("$", "").replace("/MWh", ""))
-
-
-def find_first_list_item_by_key_value(
-    section_list: list, filter_key, filter_value, sought_key
-):
-    """
-    Parses a common pattern in Singapore JSON response format. Examples:
-
-    [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
-        => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
-
-    [section['SectionData'] for section in sections if section['Name'] == 'Energy'][0]
-        => find_first_list_item_by_key_value(sections, 'Name', 'Energy', 'SectionData')
-
-    [d['Value'] for d in energy_section if d['Label'] == 'USEP'][0]
-        => find_first_list_item_by_key_value(energy_section, 'Label', 'USEP', 'Value')
-    """
-
-    return [
-        list_item[sought_key]
-        for list_item in section_list
-        if list_item[filter_key] == filter_value
-    ][0]
-
-
-def sg_period_to_hour(period_str) -> float:
-    """
-    Singapore electricity markets are split into 48 periods.
-    Period 1 starts at 00:00 Singapore time, Period 9 starts at 04:00.
-    Returns hours since midnight, possibly with 0.5 to indicate 30 minutes.
-    """
-    return (float(period_str) - 1) / 2.0
-
-
-def sg_data_to_datetime(data):
-    data_date = data["Date"]
-    data_time = sg_period_to_hour(data["Period"])
-    data_datetime = datetime.strptime(data_date, "%d %b %Y").replace(
-        tzinfo=TIMEZONE
-    ) + timedelta(hours=data_time)
-    return data_datetime
-
-
+@refetch_frequency(timedelta(days=7))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("SG"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests the last known production mix (in MW) of Singapore."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+    """Requests the half-hourly production mix (in MW) of Singapore for the past week."""
+    session = session or Session()
+    end = _end_date(target_datetime)
 
-    requests_obj = session or Session()
-    # TODO: restore verification when source fixes configuration or we manually install their chain
-    requests_obj.verify = False
-
-    response = requests_obj.get(TICKER_URL)
-    data = response.json()
-
-    sections = data["Sections"]
-
-    energy_section = find_first_list_item_by_key_value(
-        sections, "Name", "Energy", "SectionData"
-    )
-
-    demand_str = find_first_list_item_by_key_value(
-        energy_section, "Label", "Demand", "Value"
-    )
-    demand = parse_megawatt_value(demand_str)
-    system_loss_str = find_first_list_item_by_key_value(
-        energy_section, "Label", "System Loss", "Value"
-    )
-    system_loss = parse_megawatt_value(system_loss_str)
-
-    generation = demand + system_loss
-
-    mix_section = find_first_list_item_by_key_value(
-        sections, "Name", "Generator Type Share", "SectionData"
-    )
-
-    gen_types = {
-        gen_type["Label"]: parse_percent(gen_type["Value"]) for gen_type in mix_section
+    share_days, shares = _fetch_datasets(session, DAILY_GENERATION_SHARE, end)
+    shares_by_day = {
+        _parse_label(day, end).date(): {
+            gen_type: float(values[i]) / 100 for gen_type, values in shares.items()
+        }
+        for i, day in enumerate(share_days)
     }
+    periods, datasets = _fetch_datasets(session, HALF_HOURLY_PRICE_DEMAND, end)
+    # "Solar" is stacked on top of demand on EMC's chart: it is demand plus the estimated
+    # (embedded) solar output. It is empty in older data.
+    demand_with_solar = datasets.get("Solar") or [None] * len(periods)
 
     production_breakdowns = ProductionBreakdownList(logger)
-    mix = ProductionMix()
-    for gen_type, gen_percent in gen_types.items():
-        gen_mw = gen_percent * generation
-        mapped_type = TYPE_MAPPINGS.get(gen_type)
+    for period, demand, with_solar in zip(
+        periods, datasets["Demand"], demand_with_solar, strict=True
+    ):
+        dt = _parse_label(period, end)
+        day_shares = shares_by_day.get(dt.date())
+        if day_shares is None or demand is None:
+            continue
+        demand_mw = float(demand)
 
-        if mapped_type:
-            mix.add_value(TYPE_MAPPINGS[gen_type], gen_mw)
+        mix = ProductionMix()
+        storage = StorageMix()
+        for gen_type, share in day_shares.items():
+            if gen_type == "IMPORT":
+                continue
+            if gen_type == "ESS":
+                # Discharge is a positive share, storage is positive when charging.
+                storage.add_value("battery", -share * demand_mw)
+            elif gen_type in TYPE_MAPPINGS:
+                mix.add_value(TYPE_MAPPINGS[gen_type], share * demand_mw)
+            else:
+                logger.warning(
+                    f'Singapore has unrecognized generation type "{gen_type}" '
+                    f"with production share {share:.2%}"
+                )
+                mix.add_value("unknown", share * demand_mw)
+        if with_solar is not None:
+            mix.add_value("solar", float(with_solar) - demand_mw)
 
-        else:
-            # unrecognized - log it, then add into unknown
-            msg = (
-                f'Singapore has unrecognized generation type "{gen_type}" '
-                f"with production share {gen_percent}%"
-            )
-            logger.warning(msg)
-            mix.add_value("unknown", gen_mw)
-
-    mix.add_value("solar", get_solar(requests_obj, logger))
-
-    production_breakdowns.append(
-        datetime=sg_data_to_datetime(data),
-        zoneKey=zone_key,
-        production=mix,
-        storage=None,
-        source="emcsg.com,ema.gov.sg",
-    )
+        production_breakdowns.append(
+            datetime=dt,
+            zoneKey=zone_key,
+            production=mix,
+            storage=storage,
+            source=SOURCE,
+        )
     return production_breakdowns.to_list()
 
 
+@refetch_frequency(timedelta(days=7))
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("SG"),
     session: Session | None = None,
@@ -222,124 +172,30 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """
-    Requests the most recent known power prices in Singapore (USEP).
+    Requests the half-hourly power prices in Singapore (USEP) for the past week.
 
-    See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
+    See https://www.nems.emcsg.com/Guide-To-Prices for details of what different prices in the data source mean.
     We use USEP here: "The Uniform Singapore Energy Price (USEP) is the uniform price of energy
     that applies for settlement purposes for all energy injections or withdrawals that are deemed to occur
     at the Singapore hub. It is the weighted-average of the nodal prices at all off-take nodes in each half hour."
-
-    There are also price forecasts for future prices at https://www.emcsg.com/marketdata/priceinformation
-    that appears to extend to end of day in Singapore, so up to 24 hours into the future,
-    however we don't currently use this.
     """
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    requests_obj = session or Session()
-    # TODO: restore verification when source fixes configuration or we manually install their chain
-    requests_obj.verify = False
-    response = requests_obj.get(TICKER_URL)
-    data = response.json()
-
-    sections = data["Sections"]
-
-    energy_section = find_first_list_item_by_key_value(
-        sections, "Name", "Energy", "SectionData"
+    end = _end_date(target_datetime)
+    periods, datasets = _fetch_datasets(
+        session or Session(), HALF_HOURLY_PRICE_DEMAND, end
     )
 
-    price_str = find_first_list_item_by_key_value(
-        energy_section, "Label", "USEP", "Value"
-    )
-    price = parse_price(price_str)
     price_list = PriceList(logger)
-    price_list.append(
-        zoneKey=zone_key,
-        datetime=sg_data_to_datetime(data),
-        currency="SGD",
-        price=price,
-        source="emcsg.com",
-    )
+    for period, price in zip(periods, datasets["USEP"], strict=True):
+        if price is None:
+            continue
+        price_list.append(
+            zoneKey=zone_key,
+            datetime=_parse_label(period, end),
+            currency="SGD",
+            price=float(price),
+            source=SOURCE,
+        )
     return price_list.to_list()
-
-
-def __detect_datetime_from_solar_image(solar_image, logger: Logger):
-    w, h = solar_image.size
-    crop_left = int(w * 0.64)
-    crop_top = int(h * 0.80)
-    crop_right = int(w * 0.87)
-    crop_bottom = int(h * 0.86)
-    time_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
-    processed_img = __preprocess_image_for_ocr(time_img)
-    text = image_to_string(
-        processed_img,
-        lang="eng",
-        config='--psm 7 -c tessedit_char_whitelist="0123456789:- "',
-    )
-
-    try:
-        time_pattern = r"\d+-\d+-\d+\s+\d+:\d+"
-        time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
-    except AttributeError:
-        msg = f"Unable to get values for SG solar from OCR text: {text}"
-        logger.warning(msg, extra={"key": "SG"})
-        return None
-
-    solar_dt = datetime.fromisoformat(time_string).replace(tzinfo=TIMEZONE)
-    return solar_dt
-
-
-def __detect_output_from_solar_image(solar_image, logger: Logger):
-    w, h = solar_image.size
-    crop_left = int(w * 0.55)
-    crop_top = int(h * 0.70)
-    crop_right = int(w * 0.87)
-    crop_bottom = int(h * 0.75)
-    output_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
-    processed_img = __preprocess_image_for_ocr(output_img)
-    text = image_to_string(processed_img, lang="eng", config="--psm 7")
-
-    try:
-        pattern = r"Est. PV Output: (.*)MWac"
-        val = re.search(pattern, text, re.MULTILINE).group(1)
-    except AttributeError:
-        msg = f"Unable to get values for SG solar from OCR text: {text}"
-        logger.warning(msg, extra={"key": "SG"})
-        return None
-
-    # At night format changes from 0.00 to 0
-    # tesseract cannot distinguish singular 0 and O in font provided by image.
-    # This try/except will make sure no invalid data is returned.
-    try:
-        solar_mw = float(val)
-    except ValueError:
-        if val == "O":
-            solar_mw = 0.0
-        else:
-            msg = f"Singapore solar data is unreadable - got {val}."
-            logger.warning(msg, extra={"key": "SG"})
-            return None
-
-    return solar_mw
-
-
-def __preprocess_image_for_ocr(img):
-    """
-    Perform a number of image pre-processing recommendations to improve success of character recognition.
-
-    :param img: the image to be processed
-    :return: pre-processed image, optimized for optical character recognition (OCR)
-    """
-    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
-    inverted_img = ImageOps.invert(
-        img.convert("RGB")  # Mode P not supported yet, so we convert to RGB
-    )  # assumes black background of Singapore solar output image
-    gray_text_on_light_bg = ImageOps.grayscale(inverted_img)
-    black_text_on_light_bg = ImageOps.autocontrast(gray_text_on_light_bg)
-
-    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#missing-borders
-    img_with_border = ImageOps.expand(black_text_on_light_bg, border=2)
-    return img_with_border
 
 
 if __name__ == "__main__":

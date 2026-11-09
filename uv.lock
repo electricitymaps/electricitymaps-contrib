@@ -436,7 +436,6 @@ parsers = [
     { name = "pdfplumber" },
     { name = "pycountry" },
     { name = "pydataxm" },
-    { name = "pytesseract" },
     { name = "requests" },
     { name = "signalr-client-threads" },
     { name = "xlrd" },
@@ -470,7 +469,6 @@ requires-dist = [
     { name = "pycountry", marker = "extra == 'parsers'", specifier = ">=22.3.5,<23" },
     { name = "pydantic", specifier = ">=1.10.17,<2" },
     { name = "pydataxm", marker = "extra == 'parsers'", specifier = ">=0.3.2,<0.4" },
-    { name = "pytesseract", marker = "extra == 'parsers'", specifier = "==0.2.0" },
     { name = "pyyaml", specifier = ">=6.0,<7" },
     { name = "requests", marker = "extra == 'parsers'", specifier = "~=2.33.0" },
     { name = "ruamel-yaml", specifier = ">=0.17.24,<0.18" },
@@ -1326,15 +1324,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/00/dc/ca7874924c9cfd701ad53f89529968523790e70473e0b71e834668316148/pypdfium2-5.14.0-py3-none-win_amd64.whl", hash = "sha256:149fd5c6397b8df8bf7911a93506eff0be874f877afe7ac936cf5d37d21a6a06", size = 3947280, upload-time = "2026-10-04T15:19:16.302Z" },
     { url = "https://files.pythonhosted.org/packages/46/ab/35f2276deeeebb781925e2647dd88a39f8ea1a910104a0dbb28218473502/pypdfium2-5.14.0-py3-none-win_arm64.whl", hash = "sha256:eb8aeca157808f323e39ea298cc6d6c8e080c192ea2efb1ca81daa0f0ff4d095", size = 3745021, upload-time = "2026-10-04T15:19:18.276Z" },
 ]
-
-[[package]]
-name = "pytesseract"
-version = "0.2.0"
-source = { registry = "https://pypi.org/simple/" }
-dependencies = [
-    { name = "pillow" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/7c/19/93a003a1f514dd0584eba13afc1e7093c135964766c56998bc3a2efc331f/pytesseract-0.2.0.tar.gz", hash = "sha256:35035b0a69a789224d1e981d95453d644c95f8bf869372787f2164b9872d597f", size = 154904, upload-time = "2018-01-31T01:16:59.985Z" }
 
 [[package]]
 name = "pytest"

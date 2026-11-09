@@ -1,0 +1,134 @@
+{
+  "success": true,
+  "data": {
+    "message": "get 7-day Energy Prices and Demand processed successfully.",
+    "data": [
+      {
+        "labels": [
+          "03 Nov 00:00-00:30",
+          "03 Nov 00:30-01:00",
+          "03 Nov 23:30-00:00",
+          "04 Nov 00:00-00:30",
+          "09 Nov 23:00-23:30",
+          "09 Nov 23:30-00:00"
+        ],
+        "datasets": [
+          {
+            "label": "USEP",
+            "backgroundColor": "#004E7170",
+            "borderColor": "#004E71",
+            "data": [
+              "220.17",
+              "220.14",
+              "306.68",
+              "300.12",
+              "199.42",
+              "199.84"
+            ],
+            "fill": true,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": 20
+          },
+          {
+            "label": "Demand",
+            "backgroundColor": "#00A8E170",
+            "borderColor": "#00A8E1",
+            "data": [
+              "6679",
+              "6553",
+              "6986",
+              "6836",
+              "6760",
+              "6701"
+            ],
+            "fill": true,
+            "yAxisID": "y1",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": 20
+          },
+          {
+            "label": "Solar",
+            "backgroundColor": "#eff6b3",
+            "borderColor": "#eff6b3",
+            "data": [
+              "6679",
+              "6553",
+              "6986",
+              "6836",
+              "6760",
+              "6701"
+            ],
+            "fill": true,
+            "yAxisID": "y1",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": 20
+          },
+          {
+            "label": "VCP",
+            "backgroundColor": "#8D9DBD70",
+            "borderColor": "#8D9DBD",
+            "data": [
+              "225.90",
+              "225.90",
+              "225.90",
+              "225.90",
+              "225.90",
+              "225.90"
+            ],
+            "fill": false,
+            "yAxisID": "y",
+            "columns": null,
+            "tag": null,
+            "pointHitRadius": 20
+          }
+        ],
+        "current": [
+          {
+            "label": "7-day Average USEP",
+            "value": "247.13",
+            "denom": "($/MWh)",
+            "tooltip": null,
+            "symbol": "$",
+            "textcolor": "color-usep"
+          },
+          {
+            "label": "7-day Average Demand",
+            "value": "6,922",
+            "denom": "(MW)",
+            "tooltip": null,
+            "symbol": "",
+            "textcolor": "color-demand"
+          },
+          {
+            "label": "7-day Average Demand",
+            "value": "605",
+            "denom": "(MW)",
+            "tooltip": null,
+            "symbol": "",
+            "textcolor": "color-solar"
+          },
+          {
+            "label": "7-day Average USEP",
+            "value": "225.90",
+            "denom": "($/MWh)",
+            "tooltip": null,
+            "symbol": "$",
+            "textcolor": "color-bvp"
+          }
+        ],
+        "forecast": null,
+        "lastupdate": "09 Nov 2026 23:30",
+        "currentdate": null,
+        "maxprice": 900,
+        "maxdemand": 9000,
+        "minprice": 152.27,
+        "mindemand": 5973,
+        "labelcolors": "#004E7170,#00A8E170,#eff6b3,#8D9DBD70"
+      }
+    ]
+  }
+}

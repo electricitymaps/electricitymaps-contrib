@@ -5,7 +5,6 @@
 
 FROM astral/uv:0.13-python3.10-trixie-slim
 WORKDIR /workspace
-RUN apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng
 COPY . .
 RUN uv sync --frozen --group dev --extra parsers --compile-bytecode
 ENTRYPOINT ["uv", "run", "test_parser"]
