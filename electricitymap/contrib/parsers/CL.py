@@ -2,7 +2,7 @@
 
 """Parser for the electricity grid of Chile"""
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -20,16 +20,16 @@ from electricitymap.contrib.parsers.lib.session import mount_retry
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 # Hourly generation per plant from the SIP (Sistema de Información Pública) API, see
-# https://portal.api.coordinador.cl/documentacion?service=sipubv2. A day is published during
-# the next one, then small (PMGD) plants keep coming in for ~6 days, worth <1% of the energy.
-# History back to at least 2018. Hours are in local time and every day has 24 of them,
+# https://portal.api.coordinador.cl/documentacion?service=sipubv2. Hours come in a few hours
+# late, large plants first, and are filled in during the next day. Small (PMGD) plants keep
+# coming in for ~6 days after that, but they are <1% of the energy. History back to at least 2018. Hours are in local time and every day has 24 of them,
 # even when the clocks change. Days are queried one at a time: a range only covers its last
 # day's first hour.
 API_URL = "https://sipub.api.coordinador.cl/generacion-real/v3/findByDate"
 PAGE_SIZE = 10_000  # ~33k rows per day, 50k pages time out
-# A day's row count must be at least this share of the previous day's, to skip half-published
-# days. Normal day-to-day changes stayed within 3% over Oct-Nov 2026.
-MIN_ROWS_VS_PREVIOUS_DAY = 0.95
+# A day is complete when it has its 24 hours, and its emptiest hour has at least this share of
+# the plants of its busiest hour: 98-100% for complete days, 40% for a day being published.
+MIN_PLANTS_VS_BUSIEST_HOUR = 0.95
 # The API answers 429 under load, which clears within ~15 s.
 RETRY = Retry(
     total=6,
@@ -81,11 +81,6 @@ def _query(
     return response.json()
 
 
-def _count_rows(session: Session, day: date, user_key: str) -> int:
-    # With one row per page, the number of pages is the number of rows.
-    return _query(session, day, user_key, page=1, page_size=1)["totalPages"]
-
-
 def _fetch_day(session: Session, day: date, user_key: str) -> list[dict[str, Any]]:
     """Returns the rows (one per plant and hour) of `day`."""
     rows, page, pages = [], 1, 1
@@ -97,6 +92,13 @@ def _fetch_day(session: Session, day: date, user_key: str) -> list[dict[str, Any
     return rows
 
 
+def _is_complete(rows: list[dict[str, Any]]) -> bool:
+    plants_per_hour = Counter(row["fecha_hora"] for row in rows)
+    return len(plants_per_hour) == 24 and min(
+        plants_per_hour.values()
+    ) >= MIN_PLANTS_VS_BUSIEST_HOUR * max(plants_per_hour.values())
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CL-SEN"),
@@ -105,22 +107,24 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     session = mount_retry(session or Session(), RETRY)
-    # Today is published during the day, a few plants at a time, so it is never used.
+    # Today is never complete. Yesterday is completed during the day, so live runs fall back
+    # to the day before until it is.
     yesterday = datetime.now(tz=TIMEZONE).date() - timedelta(days=1)
-    day = (
-        min(target_datetime.astimezone(TIMEZONE).date(), yesterday)
+    days = (
+        [min(target_datetime.astimezone(TIMEZONE).date(), yesterday)]
         if target_datetime
-        else yesterday
+        else [yesterday, yesterday - timedelta(days=1)]
     )
     user_key = get_token("CL_SEN_SIP_API_KEY")
 
-    rows = _fetch_day(session, day, user_key)
-    previous_day_rows = _count_rows(session, day - timedelta(days=1), user_key)
-    if len(rows) < MIN_ROWS_VS_PREVIOUS_DAY * previous_day_rows:
+    for day in days:
+        rows = _fetch_day(session, day, user_key)
+        if _is_complete(rows):
+            break
+        logger.info(f"CL-SEN data for {day} is not completely published yet")
+    else:
         raise ParserException(
-            "CL.py",
-            f"{day} looks incomplete: {len(rows)} rows, against {previous_day_rows} the day before",
-            zone_key,
+            "CL.py", f"No completely published day among {days}", zone_key
         )
 
     production: defaultdict[str, defaultdict[str, float]] = defaultdict(
