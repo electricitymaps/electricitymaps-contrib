@@ -25,7 +25,7 @@ capacity:
     - datetime: '2020-06-01'
       source: EIA.gov
       value: 5807.2
-    - datetime: '2024-03-01'
+    - datetime: '2024-12-01'
       source: EIA.gov
       value: 5451.7
   gas:
@@ -41,7 +41,7 @@ capacity:
     - datetime: '2021-04-01'
       source: EIA.gov
       value: 3977.6
-    - datetime: '2025-01-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 3353.6
   geothermal:
@@ -67,7 +67,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 11.5
-    - datetime: '2025-01-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 10.6
   solar:
