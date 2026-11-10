@@ -1,61 +1,65 @@
-import logging
+from datetime import datetime
 from importlib import resources
+from json import loads
 
 import pytest
-from freezegun import freeze_time
 from requests_mock import GET
-from testfixtures import LogCapture
 
 from electricitymap.contrib.parsers import SG
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
+
+MOCKS = resources.files("electricitymap.contrib.parsers.tests.mocks.SG")
+TARGET_DATETIME = datetime(2026, 11, 9, 12, tzinfo=SG.TIMEZONE)
+METERED_URL = (
+    f"{SG.DATA_DOWNLOAD_URL}?value={SG.METERED_GENERATION}"
+    "&fromDate=2026-10-11&toDate=2026-11-09"
+)
 
 
 @pytest.fixture(autouse=True)
 def mock_response(requests_mock):
     requests_mock.register_uri(
         GET,
-        SG.SOLAR_URL,
-        content=resources.files("electricitymap.contrib.parsers.tests.mocks")
-        .joinpath("SG_ema_gov_sg_solar_map.png")
-        .read_bytes(),
+        METERED_URL,
+        text=MOCKS.joinpath("metered_generation_20261011_20261109.csv").read_text(),
     )
-
-
-@freeze_time("2021-12-23 03:21:00")
-def test_works_when_nonzero(requests_mock, session):
     requests_mock.register_uri(
         GET,
-        SG.SOLAR_URL,
-        content=resources.files("electricitymap.contrib.parsers.tests.mocks")
-        .joinpath("SG_ema_gov_sg_solar_map_nonzero.png")
-        .read_bytes(),
+        f"{SG.DATASYNC_URL}?value={SG.HALF_HOURLY_PRICE_DEMAND}"
+        "&fromDate=2026-11-10&toDate=2026-11-10",
+        json=loads(MOCKS.joinpath("datasync_14_20261110.json").read_text()),
     )
-    assert SG.get_solar(session, logger=logging.getLogger("test")) == 350.55
 
 
-@freeze_time("2021-12-23 15:12:00")
-def test_works_when_zero(session):
-    assert SG.get_solar(session, logger=logging.getLogger("test")) == 0.0
+def test_fetch_production(session, snapshot):
+    assert snapshot == SG.fetch_production(
+        ZoneKey("SG"), session=session, target_datetime=TARGET_DATETIME
+    )
 
 
-@freeze_time("2024-08-06 15:12:00")
-def test_ignore_data_older_than_one_hour(session):
-    with LogCapture():
-        assert SG.get_solar(session, logger=logging.getLogger("test")) is None
+def test_fetch_production_raises_when_nothing_is_published(session, requests_mock):
+    requests_mock.register_uri(GET, METERED_URL, status_code=204, text="")
+    with pytest.raises(ParserException):
+        SG.fetch_production(
+            ZoneKey("SG"), session=session, target_datetime=TARGET_DATETIME
+        )
 
 
-@freeze_time("2021-12-23 15:06:00")
-def test_allow_remote_clock_to_be_slightly_ahead(session):
-    assert SG.get_solar(session, logger=logging.getLogger("test")) == 0
+def test_fetch_price(session, snapshot):
+    assert snapshot == SG.fetch_price(
+        ZoneKey("SG"), session=session, target_datetime=TARGET_DATETIME
+    )
 
 
-def test_production_multi_source_has_no_space_after_comma():
-    """Multi-source strings are split on "," without trim in the app (#8779).
-
-    Tokens must not have leading spaces or the zone page builds
-    ``https://%20…`` hrefs (same class of bug as GB Elexon / #8800).
-    """
-    import inspect
-
-    src = inspect.getsource(SG.fetch_production)
-    assert 'source="emcsg.com,ema.gov.sg"' in src
-    assert 'source="emcsg.com, ema.gov.sg"' not in src
+@pytest.mark.parametrize(
+    "label, end, expected",
+    [
+        ("03 Nov 00:30-01:00", "2026-11-09", datetime(2026, 11, 3, 0, 30)),
+        ("31 Dec 23:30-00:00", "2027-01-04", datetime(2026, 12, 31, 23, 30)),
+    ],
+)
+def test_parse_label_infers_year(label, end, expected):
+    assert SG._parse_label(
+        label, datetime.fromisoformat(end).date()
+    ) == expected.replace(tzinfo=SG.TIMEZONE)

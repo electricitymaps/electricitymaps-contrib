@@ -75,10 +75,10 @@ jobs:
           enable-cache: true
           cache-suffix: 'tests'
           python-version: ${{ matrix.python-version }}
-      - name: Install libxml2-dev and tesseract-ocr
+      - name: Install libxml2-dev
         run: |
           sudo apt-get update
-          sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
+          sudo apt-get install libxml2-dev
       - name: Install Dependencies
         run: |
           uv sync --group dev --extra parsers
