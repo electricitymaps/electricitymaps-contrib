@@ -157,34 +157,37 @@ capacity:
       value: 8052.5
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 7607.8
+      value: 8323.7
     - datetime: '2025-02-01'
       source: EIA.gov
-      value: 7847.7
+      value: 8533.6
     - datetime: '2025-03-01'
       source: EIA.gov
-      value: 8122.6
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 8482.2
+      value: 8667.5
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 8845.7
+      value: 9074.2
     - datetime: '2025-06-01'
       source: EIA.gov
-      value: 9265.3
+      value: 9905.8
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 9925.1
+      value: 10565.6
     - datetime: '2025-08-01'
       source: EIA.gov
-      value: 10205.1
+      value: 10845.6
+    - datetime: '2025-09-01'
+      source: EIA.gov
+      value: 11637.6
+    - datetime: '2025-10-01'
+      source: EIA.gov
+      value: 12217.6
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 12680.9
+      value: 12700.8
     - datetime: '2025-12-01'
       source: EIA.gov
-      value: 13779.4
+      value: 13709.3
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 13984.2
@@ -238,7 +241,7 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 14329.7
-    - datetime: '2025-11-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 13321.7
   gas:
@@ -415,16 +418,13 @@ capacity:
       value: 67159.2
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 67065.0
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 67159.2
+      value: 66357.8
     - datetime: '2025-08-01'
       source: EIA.gov
-      value: 67339.2
-    - datetime: '2025-11-01'
+      value: 66537.8
+    - datetime: '2025-12-01'
       source: EIA.gov
-      value: 67359.2
+      value: 66544.2
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 67319.8
@@ -454,7 +454,7 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 550.4
-    - datetime: '2025-11-01'
+    - datetime: '2025-07-01'
       source: EIA.gov
       value: 549.1
   hydro storage:
@@ -484,6 +484,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 853.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 845.7
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 855.6
@@ -664,34 +667,40 @@ capacity:
       value: 22179.5
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 22814.5
+      value: 22836.5
     - datetime: '2025-02-01'
       source: EIA.gov
-      value: 23210.4
+      value: 23232.4
     - datetime: '2025-03-01'
       source: EIA.gov
-      value: 23610.4
+      value: 23632.4
     - datetime: '2025-04-01'
       source: EIA.gov
-      value: 24355.4
+      value: 24377.4
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 24655.4
+      value: 24677.4
     - datetime: '2025-06-01'
       source: EIA.gov
-      value: 25399.8
+      value: 25901.8
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 25496.8
+      value: 25998.8
     - datetime: '2025-08-01'
       source: EIA.gov
-      value: 26011.8
+      value: 26693.8
+    - datetime: '2025-09-01'
+      source: EIA.gov
+      value: 27548.8
+    - datetime: '2025-10-01'
+      source: EIA.gov
+      value: 28043.8
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 28979.1
+      value: 29163.3
     - datetime: '2025-12-01'
       source: EIA.gov
-      value: 29771.7
+      value: 30016.3
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 30341.7
@@ -705,9 +714,12 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 229.7
-    - datetime: '2025-11-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
-      value: 275.7
+      value: 172.2
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 237.4
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 229.8
@@ -885,22 +897,22 @@ capacity:
       value: 38317.7
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 38969.6
-    - datetime: '2025-03-01'
+      value: 39070.2
+    - datetime: '2025-04-01'
       source: EIA.gov
-      value: 38821.2
+      value: 39313.2
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 39227.4
+      value: 39476.4
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 39393.8
-    - datetime: '2025-11-01'
+      value: 39642.8
+    - datetime: '2025-10-01'
       source: EIA.gov
-      value: 39834.8
+      value: 40083.8
     - datetime: '2025-12-01'
       source: EIA.gov
-      value: 39984.8
+      value: 40233.8
 center_point:
   - -99.6234521418142
   - 31.05836020574414

@@ -83,16 +83,13 @@ capacity:
       value: 1878.0
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 1872.7
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 1881.2
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 1878.0
+      value: 1876.1
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 1776.8
+      value: 1774.9
+    - datetime: '2025-09-01'
+      source: EIA.gov
+      value: 1677.6
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1762.3
@@ -178,15 +175,6 @@ capacity:
       value: 36251.2
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 36251.2
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 38992.5
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 36251.2
-    - datetime: '2025-11-01'
-      source: EIA.gov
       value: 36233.7
   geothermal:
     - datetime: '2017-01-01'
@@ -250,15 +238,6 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1346.1
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 1387.9
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 1346.1
-    - datetime: '2025-07-01'
-      source: EIA.gov
-      value: 1349.9
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1346.1
@@ -433,18 +412,6 @@ capacity:
       value: 5484.9
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 5746.9
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 5970.4
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 5746.9
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 5745.9
-    - datetime: '2025-05-01'
-      source: EIA.gov
       value: 5744.9
     - datetime: '2025-12-01'
       source: EIA.gov
@@ -468,7 +435,7 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2026-05-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 8.5
   wind:

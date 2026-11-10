@@ -46,6 +46,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1640.0
+    - datetime: '2025-10-01'
+      source: EIA.gov
+      value: 820.0
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 0.0
@@ -88,22 +91,22 @@ capacity:
       value: 4574.9
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 4575.9
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 4574.9
+      value: 4516.4
     - datetime: '2025-03-01'
       source: EIA.gov
-      value: 4591.3
+      value: 4518.3
     - datetime: '2025-06-01'
       source: EIA.gov
-      value: 4561.3
+      value: 4488.3
+    - datetime: '2025-10-01'
+      source: EIA.gov
+      value: 5051.3
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 5012.8
+      value: 4998.3
     - datetime: '2025-12-01'
       source: EIA.gov
-      value: 5559.4
+      value: 5544.9
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 5544.9
@@ -127,7 +130,7 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 287.6
-    - datetime: '2026-05-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 291.2
   hydro storage:
@@ -224,13 +227,13 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 1316.5
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 1319.0
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 1517.3
-    - datetime: '2025-11-01'
-      source: EIA.gov
-      value: 1517.2
-    - datetime: '2026-05-01'
+      value: 1627.7
+    - datetime: '2025-12-01'
       source: EIA.gov
       value: 1632.5
   unknown:
