@@ -40,3 +40,14 @@ def test_fetch_production_realtime(session, snapshot, mock_response_as_realtime)
 def test_production_historical(session, snapshot, mock_response_as_historical):
     dt = datetime(2023, 9, 1, 0, 0, 0, tzinfo=timezone.utc)
     assert snapshot == fetch_production(ZoneKey("KR"), session, dt)
+
+
+def test_production_historical_asks_for_the_korean_day(
+    session, mock_response_as_historical, requests_mock
+):
+    # 23:00 UTC is already the next morning in Korea, and the site is queried
+    # by Korean calendar day.
+    dt = datetime(2023, 8, 31, 23, 0, 0, tzinfo=timezone.utc)
+    fetch_production(ZoneKey("KR"), session, dt)
+    assert "view_sdate=2023-09-01" in requests_mock.last_request.text
+    assert "view_edate=2023-09-01" in requests_mock.last_request.text
