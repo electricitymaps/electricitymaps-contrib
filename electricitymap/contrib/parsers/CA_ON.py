@@ -337,6 +337,11 @@ def fetch_consumption_forecast(
         # Extract Adequacy report
         date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
 
+        # Reports older than three months are gone from the server.
+        if xml is None:
+            current_date += timedelta(days=1)
+            continue
+
         # Define the namespace (if applicable)
         NAMESPACE = "{http://www.ieso.ca/schema}"
         ns = {"ns0": "http://www.ieso.ca/schema"}
@@ -392,16 +397,6 @@ def read_adequacy_report(root, logger):
                     timestamp = date_object
                     energy_mw = value.findtext(NAMESPACE + "EnergyMW")
 
-                    # Create production mix
-                    mix: defaultdict[datetime, ProductionMix] = defaultdict(
-                        ProductionMix
-                    )
-                    mix[date_object].add_value(
-                        mode.lower(),
-                        None if energy_mw is None else float(energy_mw),
-                        correct_negative_with_zero=True,
-                    )
-
                     # Get or create ProductionMix for this timestamp
                     if timestamp not in mixes:
                         mixes[timestamp] = ProductionMix()
@@ -413,20 +408,15 @@ def read_adequacy_report(root, logger):
                         correct_negative_with_zero=True,
                     )
 
-                    # Check if this datetime already exists in the production_list
-                    datetime_exists = any(
-                        item["datetime"] == date_object for item in production_list
-                    )
-
-                    # Only append if the datetime doesn't exist yet
-                    if not datetime_exists:
-                        production_list.append(
-                            zoneKey=ZONE_KEY,
-                            datetime=date_object,
-                            production=mix[date_object],
-                            source=SOURCE,
-                            sourceType=EventSourceType.forecasted,
-                        )
+    # Append all combined ProductionMix objects to production_list
+    for timestamp, mix in mixes.items():
+        production_list.append(
+            zoneKey=ZONE_KEY,
+            datetime=timestamp,
+            production=mix,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
 
     return production_list
 
@@ -530,6 +520,9 @@ def fetch_wind_solar_forecasts(
         else:
             # When VG Forecast is not available, use Adequacy report instead
             date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
+            if xml is None:
+                current_date += timedelta(days=1)
+                continue
             production_list_1 = read_adequacy_report(xml, logger)
 
         production_list = ProductionBreakdownList.merge_production_breakdowns(
