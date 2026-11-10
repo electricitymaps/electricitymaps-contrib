@@ -2,7 +2,7 @@
   "GraficoTipoCombustible": {
     "Series": [
       {
-        "Name": "BAGAZO",
+        "Name": "SOLAR",
         "Data": [
           {
             "Nombre": "2025/09/10 00:30:00",
@@ -3498,7 +3498,7 @@
         ]
       },
       {
-        "Name": "SOLAR",
+        "Name": "BAGAZO",
         "Data": [
           {
             "Nombre": "2025/09/10 00:30:00",
