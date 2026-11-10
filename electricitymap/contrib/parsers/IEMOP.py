@@ -630,7 +630,7 @@ def filter_valid_values(df: pd.DataFrame, logger: Logger) -> pd.DataFrame:
 def match_resources_to_modes(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     # Remove 0 padding in resource name
-    df["resource_name"] = df["resource_name"].apply(lambda x: x.strip("0"))
+    df["resource_name"] = df["resource_name"].apply(lambda x: x.lstrip("0"))
     # Match resource name to mode
     df["mode"] = df["resource_name"].apply(
         lambda x: RESOURCE_NAME_TO_MODE.get(x, "unknown")

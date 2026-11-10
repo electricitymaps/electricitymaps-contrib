@@ -101,3 +101,13 @@ def test_fetch_dayahead_locational_marginal_price(requests_mock, session, snapsh
     )
 
     assert snapshot == dayahead_LMP
+
+
+def test_fetch_exchange_with_past_target_reads_historical_data():
+    with patch.object(US_SPP, "fetch_historical_exchange", return_value=["historical"]):
+        result = US_SPP.fetch_exchange(
+            ZoneKey("US-CENT-SWPP"),
+            ZoneKey("US-SW-PNM"),
+            target_datetime=datetime(2024, 1, 1, tzinfo=timezone.utc),
+        )
+    assert result == ["historical"]

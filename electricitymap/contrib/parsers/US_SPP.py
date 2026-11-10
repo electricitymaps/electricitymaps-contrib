@@ -66,7 +66,7 @@ TIE_MAPPING = {"US-MISO->US-SPP": ["AMRN", "DPC", "GRE", "MDU", "MEC", "NSP", "O
 EXCHANGE_MAPPING = {
     "AECI": "US-MIDW-AECI",
     "AMRN": "US-MIDW-MISO",
-    "BLKW": "US-NW-PNM",
+    "BLKW": "US-SW-PNM",
     "CLEC": "US-MIDW-MISO",
     "EDDY": "US-SW-EPE",
     "EES": "US-MIDW-MISO",
@@ -429,7 +429,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     now = datetime.now(tz=timezone.utc)
-    if target_datetime is None or target_datetime > now.date():
+    if target_datetime is None or target_datetime > now:
         target_datetime = now
         exchanges = fetch_live_exchange(
             zone_key1, zone_key2, session, target_datetime, logger

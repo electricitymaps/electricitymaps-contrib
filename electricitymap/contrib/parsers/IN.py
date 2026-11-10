@@ -133,7 +133,7 @@ STATES_MAPPING = {
         "uttar-pradesh",
         "uttarakhand",
     ],
-    "IN-WE": ["gujarat", "madya-pradesh", "maharashtra", "goa", "chhattisgarh"],
+    "IN-WE": ["gujarat", "madhya-pradesh", "maharashtra", "goa", "chhattisgarh"],
     "IN-EA": ["bihar", "west-bengal", "odisha", "sikkim"],
     "IN-NE": [
         "arunachal-pradesh",
@@ -962,7 +962,8 @@ def parse_production_from_cea_npp(
             zone_key=zone_key,
             logger=logger,
         )
-    return hourly_production_data.to_list()
+        return hourly_production_data.to_list()
+    return []
 
 
 def daily_to_hourly_production_data(
