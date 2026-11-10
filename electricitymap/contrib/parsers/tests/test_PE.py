@@ -112,3 +112,22 @@ def test_fetch_production_data_structure(requests_mock, session):
     for _, value in production.items():
         assert isinstance(value, int | float)
         assert value >= 0  # Production values should be non-negative
+
+
+def test_unknown_energy_source_is_skipped_with_a_warning(
+    requests_mock, session, caplog
+):
+    with open(MOCK_DATA_DIR / "response_20250910.json", encoding="utf-8") as f:
+        response = json.load(f)
+    series = response["GraficoTipoCombustible"]["Series"]
+    series.append({**series[0], "Name": "HIDRÓGENO"})
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    assert len(result) > 0
+    assert "Unknown PE energy source 'HIDRÓGENO', skipped" in caplog.text

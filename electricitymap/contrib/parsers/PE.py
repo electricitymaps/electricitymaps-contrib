@@ -27,6 +27,7 @@ MAP_GENERATION = {
     "BAGAZO": "biomass",
     "SOLAR": "solar",
     "EÓLICA": "wind",
+    "NAFTA & GAS REFINERÍA": "oil",
 }
 SOURCE = "coes.org.pe"
 
@@ -56,6 +57,12 @@ def fetch_production(
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
     df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
     df = df.set_index("datetime")
+    # COES returns every fuel it has ever had for every date (with zeros before a
+    # fuel existed), so a new fuel name would otherwise break old dates too.
+    for energy_source in df.columns.difference(list(MAP_GENERATION)):
+        logger.warning(f"Unknown PE energy source {energy_source!r}, skipped")
+    df = df[df.columns.intersection(list(MAP_GENERATION))]
+
     # Create production breakdown list
     production_breakdown_list = ProductionBreakdownList(logger)
 
@@ -64,11 +71,8 @@ def fetch_production(
 
         # Add each energy source to the production mix
         for energy_source, value in row.items():
-            if energy_source in MAP_GENERATION:
-                production_mode = MAP_GENERATION[energy_source]
-                productionMix.add_value(production_mode, round(float(value), 3))
-            else:
-                raise ValueError(f"Unknown energy source: {energy_source}")
+            production_mode = MAP_GENERATION[energy_source]
+            productionMix.add_value(production_mode, round(float(value), 3))
 
         # Add production breakdown to the list
         # Convert pandas Timestamp to native datetime object
