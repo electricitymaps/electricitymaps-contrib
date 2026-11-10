@@ -1,15 +1,54 @@
+import html
 import json
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 import pytest
-from requests_mock import POST
+from requests_mock import GET, POST
 
-from electricitymap.contrib.parsers.PE import API_ENDPOINT, fetch_production
+from electricitymap.contrib.parsers.PE import (
+    API_ENDPOINT,
+    IEOD_BROWSER,
+    IEOD_ROOT,
+    TIMEZONE,
+    fetch_production,
+)
 from electricitymap.contrib.types import ZoneKey
 
 # Base path for mock data files
 MOCK_DATA_DIR = Path(__file__).parent / "mocks" / "PE"
+
+
+def mock_ieod(requests_mock, files: dict[str, str]):
+    """Serves IEOD folders listing `files` (path under IEOD_ROOT -> mock file)."""
+    paths = [IEOD_ROOT + path for path in files]
+
+    def listing(request, context):
+        folder = parse_qs(request.text)["url"][0]
+        children = {
+            folder
+            + path[len(folder) :].split("/")[0]
+            + ("/" if "/" in path[len(folder) :] else "")
+            for path in paths
+            if path.startswith(folder)
+        }
+        # Like COES's file browser: HTML-escaped paths in id attributes.
+        return "".join(
+            f'<a id="{html.escape(child)}"></a>' for child in sorted(children)
+        )
+
+    def download(request, context):
+        path = parse_qs(urlparse(request.url).query)["url"][0]
+        return (MOCK_DATA_DIR / files[path[len(IEOD_ROOT) :]]).read_bytes()
+
+    requests_mock.register_uri(POST, IEOD_BROWSER + "vistadatos", text=listing)
+    requests_mock.register_uri(GET, IEOD_BROWSER + "download", content=download)
+
+
+@pytest.fixture(autouse=True)
+def no_ieod_published(requests_mock):
+    mock_ieod(requests_mock, {})
 
 
 def test_fetch_production_with_target_datetime(requests_mock, session, snapshot):
@@ -178,3 +217,71 @@ def test_bagasse_is_not_taken_for_solar_before_peru_had_solar(requests_mock, ses
 
     assert all(event["production"]["solar"] == 0 for event in result)
     assert all(event["production"]["biomass"] > 0 for event in result)
+
+
+def test_refetch_uses_the_ieod(requests_mock, session, snapshot):
+    mock_ieod(
+        requests_mock,
+        {
+            "2026/11_Noviembre/07/AnexoA_0711.xlsx": "ieod_tipo_recurso_20261108.xlsx",
+            "2026/11_Noviembre/08/AnexoA_0811.xlsx": "ieod_tipo_recurso_20261108.xlsx",
+        },
+    )
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2026, 11, 8, 12, tzinfo=TIMEZONE),
+    )
+
+    assert not any(
+        r.method == "POST" and r.url == API_ENDPOINT
+        for r in requests_mock.request_history
+    )
+    assert snapshot == result
+
+
+def test_refetch_reads_the_older_ieod_layout(requests_mock, session):
+    # 2018: "Día 14" and "Dìa 15" folders, Anexo1_Resumen, HORA as Excel times and
+    # 24:00 as 1900-01-01.
+    mock_ieod(
+        requests_mock,
+        {
+            f"2018/07_JULIO/{folder}/Anexo1_Resumen_{folder[-2:]}07.xlsx": "ieod_tipo_recurso_20180715.xlsx"
+            for folder in ("Día 14", "Dìa 15")
+        },
+    )
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2018, 7, 15, 12, tzinfo=TIMEZONE),
+    )
+
+    assert len(result) == 96
+    assert result[0]["datetime"] == datetime(2018, 7, 14, 0, 30, tzinfo=TIMEZONE)
+    assert result[-1]["datetime"] == datetime(2018, 7, 16, 0, 0, tzinfo=TIMEZONE)
+    # H. DE PASADA + H.REGULACION at 00:30.
+    assert result[0]["production"]["hydro"] == pytest.approx(
+        775.334 + 2030.871, abs=0.01
+    )
+    assert result[0]["production"]["solar"] == 0
+
+
+def test_refetch_falls_back_to_the_portal_when_the_ieod_is_not_published(
+    requests_mock, session
+):
+    requests_mock.register_uri(
+        POST,
+        API_ENDPOINT,
+        json=json.loads((MOCK_DATA_DIR / "response_20250910.json").read_text()),
+    )
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, tzinfo=TIMEZONE),
+    )
+
+    assert len(result) > 0
+    assert any(r.url == API_ENDPOINT for r in requests_mock.request_history)
