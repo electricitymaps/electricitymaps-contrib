@@ -19,7 +19,13 @@ TIMEZONE = ZoneInfo("America/Lima")
 
 MAP_GENERATION = {
     "DIESEL": "oil",
-    "RESIDUAL": "biomass",
+    # Residual fuel oil (Residual 6 and Residual 500), not biomass residues: COES
+    # reports its consumption in m³ next to Diésel 2, and biomass has its own
+    # series (BAGAZO, BIOGÁS). It was mapped to biomass from 2017 to 2026,
+    # without a stated reason. Sources:
+    # https://datawrapper.dwcdn.net/XDGJt/1 (fuel consumption from COES data)
+    # https://gestion.pe/economia/aumenta-consumo-electrico-pero-tambien-costos-de-generacion-seguiran-subiendo-tarifas-noticia/
+    "RESIDUAL": "oil",
     "CARBÓN": "coal",
     "GAS": "gas",
     "HÍDRICO": "hydro",
