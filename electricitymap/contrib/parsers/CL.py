@@ -31,13 +31,21 @@ from electricitymap.contrib.parsers.lib.utils import get_token
 API_URL = "https://sipub.api.coordinador.cl/generacion-real/v3/findByDate"
 # ~33k rows per day. The server takes ~1 s per 1k rows, and 15k-row pages fail with a 502.
 PAGE_SIZE = 10_000
-# The API answers 429 under load, which clears within ~15 s.
+# The API's gateway lets ~1 request through every 3-4 s and answers 429 to the others, also
+# when requests are sequential. Retry patiently, with jitter so that competing requests
+# (parallel refetch chunks) spread out instead of colliding again: up to ~7 minutes per request.
 RETRY = Retry(
-    total=6,
-    backoff_factor=5,
+    total=10,
+    backoff_factor=2,
+    backoff_max=60,
+    backoff_jitter=5,
     status_forcelist=[429, 500, 502, 503, 504],
     allowed_methods=["GET"],
 )
+# Refetches run all their chunks in parallel, so chunks of a week fetched one day after the
+# other keep the requests from piling up on that rate limit (2 chunks for a 10-day refetch,
+# instead of 11 with daily chunks). A day takes ~30 s.
+REFETCH_DAYS = 7
 
 TIMEZONE = ZoneInfo("Chile/Continental")
 
@@ -93,7 +101,7 @@ def _fetch_day(session: Session, day: date, user_key: str) -> list[dict[str, Any
     return rows
 
 
-@refetch_frequency(timedelta(days=1))
+@refetch_frequency(timedelta(days=REFETCH_DAYS))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CL-SEN"),
     session: Session | None = None,
@@ -102,7 +110,8 @@ def fetch_production(
 ) -> list[dict[str, Any]]:
     session = mount_retry(session or Session(), RETRY)
     if target_datetime:
-        days = [target_datetime.astimezone(TIMEZONE).date()]
+        last_day = target_datetime.astimezone(TIMEZONE).date()
+        days = [last_day - timedelta(days=n) for n in reversed(range(REFETCH_DAYS))]
     else:
         # Yesterday is still being filled in, so live runs fetch it with today.
         today = datetime.now(tz=TIMEZONE).date()
