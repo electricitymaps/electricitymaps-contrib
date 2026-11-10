@@ -19,7 +19,10 @@ TIMEZONE = ZoneInfo("America/Lima")
 
 MAP_GENERATION = {
     "DIESEL": "oil",
-    "RESIDUAL": "biomass",
+    # Residual fuel oil, not biomass residues: COES's official daily report (IEOD)
+    # splits this series into "RESIDUAL R500" and "RESIDUAL R6", two fuel oil
+    # grades, and biomass has its own series (BAGAZO, BIOGÁS).
+    "RESIDUAL": "oil",
     "CARBÓN": "coal",
     "GAS": "gas",
     "HÍDRICO": "hydro",
@@ -27,6 +30,7 @@ MAP_GENERATION = {
     "BAGAZO": "biomass",
     "SOLAR": "solar",
     "EÓLICA": "wind",
+    "NAFTA & GAS REFINERÍA": "oil",
 }
 SOURCE = "coes.org.pe"
 
@@ -56,6 +60,25 @@ def fetch_production(
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
     df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
     df = df.set_index("datetime")
+
+    # Since ~2026-03 this endpoint labels the solar series BAGAZO and the bagasse
+    # series SOLAR, for every date (COES's official daily report, the IEOD, has the
+    # same values under the right labels). Rather than hard-code the swap, which
+    # would silently invert both if COES fixes it, tell them apart by shape: solar
+    # is the one lower at night (also before Peru had solar, when it is 0 all day),
+    # or if both are equal at night, the one that swings most during the day.
+    if {"BAGAZO", "SOLAR"} <= set(df.columns):
+        night, spread = df[df.index.hour < 5].mean(), df.max() - df.min()
+        if (night["BAGAZO"], -spread["BAGAZO"]) < (night["SOLAR"], -spread["SOLAR"]):
+            df = df.rename(columns={"BAGAZO": "SOLAR", "SOLAR": "BAGAZO"})
+
+    # COES returns every fuel it has ever had for every date (with zeros before a
+    # fuel existed), so a new fuel name would otherwise break old dates too.
+    unknown_sources = set(df.columns) - MAP_GENERATION.keys()
+    for energy_source in sorted(unknown_sources):
+        logger.warning(f"Unknown PE energy source {energy_source!r}, skipped")
+    df = df.drop(columns=list(unknown_sources))
+
     # Create production breakdown list
     production_breakdown_list = ProductionBreakdownList(logger)
 
@@ -64,11 +87,8 @@ def fetch_production(
 
         # Add each energy source to the production mix
         for energy_source, value in row.items():
-            if energy_source in MAP_GENERATION:
-                production_mode = MAP_GENERATION[energy_source]
-                productionMix.add_value(production_mode, round(float(value), 3))
-            else:
-                raise ValueError(f"Unknown energy source: {energy_source}")
+            production_mode = MAP_GENERATION[energy_source]
+            productionMix.add_value(production_mode, round(float(value), 3))
 
         # Add production breakdown to the list
         # Convert pandas Timestamp to native datetime object
