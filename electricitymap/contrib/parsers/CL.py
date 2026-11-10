@@ -2,7 +2,7 @@
 
 """Parser for the electricity grid of Chile"""
 
-from collections import Counter, defaultdict
+from collections import defaultdict
 from datetime import date, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -15,21 +15,22 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.session import mount_retry
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 # Hourly generation per plant from the SIP (Sistema de Información Pública) API, see
-# https://portal.api.coordinador.cl/documentacion?service=sipubv2. Hours come in a few hours
-# late, large plants first, and are filled in during the next day. Small (PMGD) plants keep
-# coming in for ~6 days after that, but they are <1% of the energy. History back to at least 2018. Hours are in local time and every day has 24 of them,
-# even when the clocks change. Days are queried one at a time: a range only covers its last
-# day's first hour.
+# https://portal.api.coordinador.cl/documentacion?service=sipubv2. History back to at least 2018.
+# Hours are in local time and every day has 24 of them, even when the clocks change.
+#
+# Hours come in a few hours late, large plants first, and are filled in during the next day.
+# Small (PMGD) plants keep coming in for ~6 days after that, but they are <1% of the energy.
+# Whatever is there is returned: the recent hours are low at first, and get corrected by the
+# next fetches and refetches.
+#
+# Days are queried one at a time: a range only covers its last day's first hour.
 API_URL = "https://sipub.api.coordinador.cl/generacion-real/v3/findByDate"
-PAGE_SIZE = 10_000  # ~33k rows per day, 50k pages time out
-# A day is complete when it has its 24 hours, and its emptiest hour has at least this share of
-# the plants of its busiest hour: 98-100% for complete days, 40% for a day being published.
-MIN_PLANTS_VS_BUSIEST_HOUR = 0.95
+# ~33k rows per day. The server takes ~1 s per 1k rows, and 15k-row pages fail with a 502.
+PAGE_SIZE = 10_000
 # The API answers 429 under load, which clears within ~15 s.
 RETRY = Retry(
     total=6,
@@ -92,13 +93,6 @@ def _fetch_day(session: Session, day: date, user_key: str) -> list[dict[str, Any
     return rows
 
 
-def _is_complete(rows: list[dict[str, Any]]) -> bool:
-    plants_per_hour = Counter(row["fecha_hora"] for row in rows)
-    return len(plants_per_hour) == 24 and min(
-        plants_per_hour.values()
-    ) >= MIN_PLANTS_VS_BUSIEST_HOUR * max(plants_per_hour.values())
-
-
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CL-SEN"),
@@ -107,25 +101,14 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     session = mount_retry(session or Session(), RETRY)
-    # Today is never complete. Yesterday is completed during the day, so live runs fall back
-    # to the day before until it is.
-    yesterday = datetime.now(tz=TIMEZONE).date() - timedelta(days=1)
-    days = (
-        [min(target_datetime.astimezone(TIMEZONE).date(), yesterday)]
-        if target_datetime
-        else [yesterday, yesterday - timedelta(days=1)]
-    )
-    user_key = get_token("CL_SEN_SIP_API_KEY")
-
-    for day in days:
-        rows = _fetch_day(session, day, user_key)
-        if _is_complete(rows):
-            break
-        logger.info(f"CL-SEN data for {day} is not completely published yet")
+    if target_datetime:
+        days = [target_datetime.astimezone(TIMEZONE).date()]
     else:
-        raise ParserException(
-            "CL.py", f"No completely published day among {days}", zone_key
-        )
+        # Yesterday is still being filled in, so live runs fetch it with today.
+        today = datetime.now(tz=TIMEZONE).date()
+        days = [today - timedelta(days=1), today]
+    user_key = get_token("CL_SEN_SIP_API_KEY")
+    rows = [row for day in days for row in _fetch_day(session, day, user_key)]
 
     production: defaultdict[str, defaultdict[str, float]] = defaultdict(
         lambda: defaultdict(float)

@@ -1,3 +1,4 @@
+from collections import Counter
 from datetime import datetime, timezone
 from importlib import resources
 from json import loads
@@ -8,7 +9,6 @@ from requests import Session
 from requests_mock import GET
 
 from electricitymap.contrib.parsers import CL
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
 MOCKS = resources.files("electricitymap.contrib.parsers.tests.mocks.CL")
@@ -39,22 +39,26 @@ def test_snapshot_historical_data(session, snapshot):
     )
 
 
-@freeze_time("2026-11-10 12:00:00")
-def test_live_falls_back_to_the_day_before_when_yesterday_is_incomplete(session):
+@freeze_time("2026-11-09 12:00:00")
+def test_live_fetches_yesterday_and_today(session):
     production = CL.fetch_production(ZoneKey("CL-SEN"), session=session)
 
-    assert {event["datetime"].date().isoformat() for event in production} == {
-        "2026-11-08"
-    }
+    hours_per_day = Counter(
+        event["datetime"].date().isoformat() for event in production
+    )
+    assert hours_per_day == {"2026-11-08": 24, "2026-11-09": 23}
 
 
-def test_raises_when_the_target_day_is_incomplete(session):
-    with pytest.raises(ParserException, match="No completely published day"):
-        CL.fetch_production(
-            ZoneKey("CL-SEN"),
-            session=session,
-            target_datetime=datetime(2026, 11, 9, 12, tzinfo=timezone.utc),
-        )
+def test_returns_a_partially_published_day_as_it_is(session):
+    production = CL.fetch_production(
+        ZoneKey("CL-SEN"),
+        session=session,
+        target_datetime=datetime(2026, 11, 9, 12, tzinfo=timezone.utc),
+    )
+
+    # 23:00 is not published yet, so it is missing rather than zero.
+    assert len(production) == 23
+    assert max(event["datetime"] for event in production).hour == 22
 
 
 def test_retries_on_429():
