@@ -74,9 +74,11 @@ IEOD_MAP_GENERATION = {
     # Naphtha and gas from the Talara refinery's own power plant.
     "GAS REFINRI + NAFTA": "oil",
     "NAFTA+GAS DE REFINERIA": "oil",
+    "GAS DE REFINERIA+NAFTA": "oil",
     "NAFTA & GAS REFINERIA": "oil",
     "FLEXIGAS+GAS DE REFINERIA": "oil",
     "FLEXIGAS & GAS REFINERIA": "oil",
+    "NAFTA & GAS REFINERIA & FLEXIGAS": "oil",
     "BAGAZO": "biomass",
     # The Maple Etanol sugarcane plant, which burns bagasse.
     "ETANOL": "biomass",
@@ -214,15 +216,15 @@ def _list_ieod_folder(session: Session, folder: str) -> list[str]:
 
 def _fetch_ieod_day(session: Session, day: date, logger: Logger) -> pd.DataFrame | None:
     """Production modes of `day` from the IEOD, or None if it has no TIPO_RECURSO."""
-    # Folder names vary over the years (07_JULIO/Día 01/, 07_Julio/01/), so they are
-    # looked up rather than built.
+    # Folder names vary over the years (07_JULIO/Día 01/, 12_DICIEMBRE/Dìa 15/,
+    # 07 Julio/01/, 07_Julio/01/), so they are looked up rather than built.
     months = _list_ieod_folder(session, f"{IEOD_ROOT}{day.year}/")
     month = next((m for m in months if re.search(rf"/{day:%m}\D[^/]*/$", m)), None)
     if month is None:
         return None
     days = _list_ieod_folder(session, month)
     day_folder = next(
-        (d for d in days if re.search(rf"/(D[IÍ]A )?{day:%d}/$", d, re.IGNORECASE)),
+        (d for d in days if re.search(rf"/\D*{day:%d}/$", d)),
         None,
     )
     if day_folder is None:

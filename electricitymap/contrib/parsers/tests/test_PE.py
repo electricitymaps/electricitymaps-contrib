@@ -242,12 +242,13 @@ def test_refetch_uses_the_ieod(requests_mock, session, snapshot):
 
 
 def test_refetch_reads_the_older_ieod_layout(requests_mock, session):
-    # 2018: "Día 15" folders, Anexo1_Resumen, HORA as Excel times and 24:00 as 1900-01-01.
+    # 2018: "Día 14" and "Dìa 15" folders, Anexo1_Resumen, HORA as Excel times and
+    # 24:00 as 1900-01-01.
     mock_ieod(
         requests_mock,
         {
-            f"2018/07_JULIO/Día {day}/Anexo1_Resumen_{day}07.xlsx": "ieod_tipo_recurso_20180715.xlsx"
-            for day in ("14", "15")
+            f"2018/07_JULIO/{folder}/Anexo1_Resumen_{folder[-2:]}07.xlsx": "ieod_tipo_recurso_20180715.xlsx"
+            for folder in ("Día 14", "Dìa 15")
         },
     )
 
