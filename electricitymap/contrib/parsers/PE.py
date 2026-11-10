@@ -19,12 +19,9 @@ TIMEZONE = ZoneInfo("America/Lima")
 
 MAP_GENERATION = {
     "DIESEL": "oil",
-    # Residual fuel oil (Residual 6 and Residual 500), not biomass residues: COES
-    # reports its consumption in m³ next to Diésel 2, and biomass has its own
-    # series (BAGAZO, BIOGÁS). It was mapped to biomass from 2017 to 2026,
-    # without a stated reason. Sources:
-    # https://datawrapper.dwcdn.net/XDGJt/1 (fuel consumption from COES data)
-    # https://gestion.pe/economia/aumenta-consumo-electrico-pero-tambien-costos-de-generacion-seguiran-subiendo-tarifas-noticia/
+    # Residual fuel oil, not biomass residues: COES's official daily report (IEOD)
+    # splits this series into "RESIDUAL R500" and "RESIDUAL R6", two fuel oil
+    # grades, and biomass has its own series (BAGAZO, BIOGÁS).
     "RESIDUAL": "oil",
     "CARBÓN": "coal",
     "GAS": "gas",
@@ -76,9 +73,10 @@ def fetch_production(
 
     # COES returns every fuel it has ever had for every date (with zeros before a
     # fuel existed), so a new fuel name would otherwise break old dates too.
-    for energy_source in df.columns.difference(list(MAP_GENERATION)):
+    unknown_sources = set(df.columns) - MAP_GENERATION.keys()
+    for energy_source in sorted(unknown_sources):
         logger.warning(f"Unknown PE energy source {energy_source!r}, skipped")
-    df = df[df.columns.intersection(list(MAP_GENERATION))]
+    df = df.drop(columns=list(unknown_sources))
 
     # Create production breakdown list
     production_breakdown_list = ProductionBreakdownList(logger)
