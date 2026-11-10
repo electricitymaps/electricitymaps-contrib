@@ -65,10 +65,11 @@ def fetch_production(
     # series SOLAR, for every date (COES's official daily report, the IEOD, has the
     # same values under the right labels). Rather than hard-code the swap, which
     # would silently invert both if COES fixes it, tell them apart by shape: solar
-    # swings between ~0 at night and its noon peak, bagasse runs flat.
+    # is the one lower at night (also before Peru had solar, when it is 0 all day),
+    # or if both are equal at night, the one that swings most during the day.
     if {"BAGAZO", "SOLAR"} <= set(df.columns):
-        spread = df.max() - df.min()
-        if spread["BAGAZO"] > spread["SOLAR"]:
+        night, spread = df[df.index.hour < 5].mean(), df.max() - df.min()
+        if (night["BAGAZO"], -spread["BAGAZO"]) < (night["SOLAR"], -spread["SOLAR"]):
             df = df.rename(columns={"BAGAZO": "SOLAR", "SOLAR": "BAGAZO"})
 
     # COES returns every fuel it has ever had for every date (with zeros before a

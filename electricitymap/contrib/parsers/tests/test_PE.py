@@ -158,3 +158,23 @@ def test_solar_and_bagasse_are_told_apart_by_shape(
     assert by_hour[2]["solar"] == 0
     assert by_hour[12]["solar"] > 500
     assert 0 < by_hour[12]["biomass"] < 200
+
+
+def test_bagasse_is_not_taken_for_solar_before_peru_had_solar(requests_mock, session):
+    # Before ~2012-10 the solar series (labelled BAGAZO) is 0 all day.
+    with open(MOCK_DATA_DIR / "response_20250910.json", encoding="utf-8") as f:
+        response = json.load(f)
+    for series in response["GraficoTipoCombustible"]["Series"]:
+        if series["Name"] == "BAGAZO":
+            for point in series["Data"]:
+                point["Valor"] = 0
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    assert all(event["production"]["solar"] == 0 for event in result)
+    assert all(event["production"]["biomass"] > 0 for event in result)
