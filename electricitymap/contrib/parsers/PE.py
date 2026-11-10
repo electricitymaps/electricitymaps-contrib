@@ -63,6 +63,17 @@ def fetch_production(
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
     df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
     df = df.set_index("datetime")
+
+    # Since ~2026-03 this endpoint labels the solar series BAGAZO and the bagasse
+    # series SOLAR, for every date (COES's official daily report, the IEOD, has the
+    # same values under the right labels). Rather than hard-code the swap, which
+    # would silently invert both if COES fixes it, tell them apart by shape: solar
+    # swings between ~0 at night and its noon peak, bagasse runs flat.
+    if {"BAGAZO", "SOLAR"} <= set(df.columns):
+        spread = df.max() - df.min()
+        if spread["BAGAZO"] > spread["SOLAR"]:
+            df = df.rename(columns={"BAGAZO": "SOLAR", "SOLAR": "BAGAZO"})
+
     # COES returns every fuel it has ever had for every date (with zeros before a
     # fuel existed), so a new fuel name would otherwise break old dates too.
     for energy_source in df.columns.difference(list(MAP_GENERATION)):
