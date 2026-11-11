@@ -26,7 +26,6 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
@@ -205,11 +204,10 @@ def get_unit_fuel_mapping(
         ) from error
 
 
-def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
-    """Fetches all BM-086 rows in a window around ``target_datetime``.
-
-    A window reaching two days back covers the report's publication lag when
-    fetching live data.
+def _fetch_bm086(
+    session: Session, start_datetime: datetime, end_datetime: datetime
+) -> list[dict]:
+    """Fetches all BM-086 rows with a StartTime in ``[start, end]``.
 
     BM-086 returns one row per settlement run for each unit/half-hour (early
     runs often report 0, later runs the actual metered value, with occasional
@@ -218,8 +216,8 @@ def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
     StartTime)`` so each unit is counted once at its most recent value, rather
     than summing the duplicates.
     """
-    date_from = (target_datetime - timedelta(days=2)).strftime("%Y-%m-%dT00:00:00")
-    date_to = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%dT23:59:59")
+    date_from = start_datetime.strftime("%Y-%m-%dT%H:%M:%S")
+    date_to = end_datetime.strftime("%Y-%m-%dT%H:%M:%S")
 
     latest_by_unit: dict[tuple[str, str], dict] = {}
     page = 1
@@ -244,19 +242,23 @@ def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
     return list(latest_by_unit.values())
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_production(
+def fetch_production_range(
     zone_key: ZoneKey,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
+    session: Session,
+    start_datetime: datetime,
+    end_datetime: datetime,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """Fetches a per-fuel production breakdown for IE or GB-NIR from SEM-O."""
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=SEMO_TZ)
+    """Per-fuel production breakdown for IE or GB-NIR, for every half-hour whose
+    StartTime is within ``[start_datetime, end_datetime]``.
 
+    SEM-O is only consumed by the SEMOxSMARTGRID parser, which owns the query
+    window and passes it here (and to SmartGridDashboard) so the two sources
+    always cover the same range. The range is explicit rather than derived from
+    a target datetime so the window lives in one place and cannot drift.
+    """
     unit_fuel = get_unit_fuel_mapping(session=session, logger=logger)
-    rows = _fetch_bm086(session, target_datetime)
+    rows = _fetch_bm086(session, start_datetime, end_datetime)
 
     production_mixes: dict[datetime, ProductionMix] = {}
     storage_mixes: dict[datetime, StorageMix] = {}
@@ -320,8 +322,11 @@ def fetch_production(
 
 def main():
     """Fetches and prints the latest production breakdown for IE and GB-NIR."""
+    now = datetime.now(tz=SEMO_TZ)
+    start = (now - timedelta(days=2)).replace(hour=0, minute=0, second=0, microsecond=0)
+    end = now
     for zone in (ZoneKey("IE"), ZoneKey("GB-NIR")):
-        production = fetch_production(zone)
+        production = fetch_production_range(zone, Session(), start, end)
         print(f"{zone}: {production[-1] if production else 'No data'}")
 
 

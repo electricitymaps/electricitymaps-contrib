@@ -13,12 +13,15 @@ from electricitymap.contrib.parsers.SEMO import (
     API_URL,
     REGISTERED_UNITS_PAGE_URL,
     _select_latest_mapping_url,
-    fetch_production,
+    fetch_production_range,
     get_unit_fuel_mapping,
 )
 from electricitymap.contrib.types import ZoneKey
 
 DUBLIN = ZoneInfo("Europe/Dublin")
+# A window covering the BM-086 fixture (events at 2026-09-20 00:00 and 00:30 UTC).
+START = datetime(2026, 9, 18, tzinfo=DUBLIN)
+END = datetime(2026, 9, 21, 23, 59, 59, tzinfo=DUBLIN)
 
 # Fuel types for the units referenced by the BM-086 fixture. GU_999999 is left
 # out on purpose so it exercises the "unit missing from the list" path.
@@ -93,23 +96,46 @@ def _register_mapping(requests_mock, units=FIXTURE_UNITS):
     requests_mock.register_uri(GET, XLSX_URL, content=_units_xlsx(units))
 
 
+def test_fetch_production_range_queries_the_given_window(requests_mock, session):
+    # The window passed in is honoured verbatim in the BM-086 StartTime filter,
+    # so the caller (SEMOxSMARTGRID) controls the range for both sources.
+    _register_mapping(requests_mock, {"GU_400020": "WIND"})
+    requests_mock.register_uri(
+        GET, API_URL, json=_bm086_rows([("GU_400020", "2026-09-20T00:00:00", 10.0)])
+    )
+    fetch_production_range(
+        ZoneKey("IE"),
+        session,
+        datetime(2026, 9, 18, tzinfo=timezone.utc),
+        datetime(2026, 9, 21, 23, 59, 59, tzinfo=timezone.utc),
+    )
+    bm086_request = next(
+        r for r in reversed(requests_mock.request_history) if "BM-086" in r.url
+    )
+    start_time_filter = bm086_request.qs["starttime"][0]
+    assert "2026-09-18t00:00:00" in start_time_filter
+    assert "2026-09-21t23:59:59" in start_time_filter
+
+
 def test_fetch_production_ie(requests_mock, session, snapshot):
     _register_mapping(requests_mock)
     requests_mock.register_uri(GET, API_URL, json=_bm086())
-    assert snapshot == fetch_production(
+    assert snapshot == fetch_production_range(
         zone_key=ZoneKey("IE"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+        start_datetime=START,
+        end_datetime=END,
     )
 
 
 def test_fetch_production_gb_nir(requests_mock, session, snapshot):
     _register_mapping(requests_mock)
     requests_mock.register_uri(GET, API_URL, json=_bm086())
-    assert snapshot == fetch_production(
+    assert snapshot == fetch_production_range(
         zone_key=ZoneKey("GB-NIR"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+        start_datetime=START,
+        end_datetime=END,
     )
 
 
@@ -117,10 +143,11 @@ def test_start_time_is_interpreted_as_utc(requests_mock, session):
     # BM-086 StartTime "2026-09-20T00:00:00" is UTC, not Dublin local time.
     _register_mapping(requests_mock)
     requests_mock.register_uri(GET, API_URL, json=_bm086())
-    events = fetch_production(
+    events = fetch_production_range(
         zone_key=ZoneKey("IE"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+        start_datetime=START,
+        end_datetime=END,
     )
     assert events[0]["datetime"] == datetime(2026, 9, 20, 0, 0, tzinfo=timezone.utc)
 
@@ -165,10 +192,11 @@ def test_fetch_production_deduplicates_settlement_runs(requests_mock, session):
             ]
         ),
     )
-    events = fetch_production(
+    events = fetch_production_range(
         zone_key=ZoneKey("IE"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+        start_datetime=START,
+        end_datetime=END,
     )
     production = events[0]["production"]
     assert production["wind"] == 100  # not 200
@@ -185,10 +213,11 @@ def test_coal_peat_units_overridden_by_resource_name(requests_mock, session):
         API_URL,
         json=_bm086_rows([("GU_400270", st, 250.0), ("GU_401860", st, 60.0)]),
     )
-    events = fetch_production(
+    events = fetch_production_range(
         zone_key=ZoneKey("IE"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+        start_datetime=START,
+        end_datetime=END,
     )
     production = events[0]["production"]
     assert production["oil"] == 250  # Moneypoint COAL -> oil

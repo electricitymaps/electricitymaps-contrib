@@ -60,16 +60,19 @@ def _half_hour_label(dt: datetime) -> datetime:
 
 
 def _smartgrid_wind_solar(
-    zone_key: ZoneKey, session: Session, target_datetime: datetime
+    zone_key: ZoneKey,
+    session: Session,
+    start_datetime: datetime,
+    end_datetime: datetime,
 ) -> dict[datetime, dict[str, float]]:
-    """Returns ``{utc_30min: {"wind": MW, "solar": MW}}`` from SmartGridDashboard.
+    """Returns ``{utc_30min: {"wind": MW, "solar": MW}}`` from SmartGridDashboard
+    for the ``[start_datetime, end_datetime]`` window.
 
     The dashboard API serves historical data when given the ``dateRange`` +
     camel-case ``dateFrom``/``dateTo`` (``dd-MMM-yyyy``) parameters; the
     lower-case ``datefrom``/``dateto`` used elsewhere are silently ignored and
-    only ever return the current day. A weekly window starting two days before
-    the target covers the days around ``target_datetime``. The 15-minute
-    readings are averaged into the 30-minute value ending each window.
+    only ever return the current day. The 15-minute readings are averaged into
+    the 30-minute value ending each window.
     """
     region = SMARTGRIDDASHBOARD.REGION_MAPPING[zone_key]
 
@@ -81,8 +84,8 @@ def _smartgrid_wind_solar(
                 "chartType": "default",
                 "region": region,
                 "dateRange": "week",
-                "dateFrom": (target_datetime - timedelta(days=2)).strftime("%d-%b-%Y"),
-                "dateTo": (target_datetime + timedelta(days=1)).strftime("%d-%b-%Y"),
+                "dateFrom": start_datetime.strftime("%d-%b-%Y"),
+                "dateTo": end_datetime.strftime("%d-%b-%Y"),
             },
         )
         response.raise_for_status()
@@ -176,9 +179,11 @@ def fetch_production(
     elif target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    # SmartGridDashboard ignores the requested dates and always returns data up
-    # to now, so restrict the output to the days around target_datetime (the
-    # same window SEMO queries) instead of stretching it up to the present.
+    # This window is the single source of truth: it is passed to both SEMO and
+    # SmartGridDashboard so the two sources always cover the same range. It
+    # reaches two days back to cover SEMO's publication lag; the upper bound
+    # keeps SmartGridDashboard (which can return data up to now) from stretching
+    # the output to the present.
     window_start = (target_datetime - timedelta(days=2)).replace(
         hour=0, minute=0, second=0, microsecond=0
     )
@@ -190,7 +195,9 @@ def fetch_production(
     # back to a wind/solar-only result that would overwrite a stored full
     # breakdown on refetch.
     try:
-        semo_events = SEMO.fetch_production(zone_key, session, target_datetime, logger)
+        semo_events = SEMO.fetch_production_range(
+            zone_key, session, window_start, window_end, logger
+        )
     except Exception as error:
         raise ParserException(
             parser="SEMOxSMARTGRID.py",
@@ -210,7 +217,9 @@ def fetch_production(
         return []
 
     try:
-        wind_solar = _smartgrid_wind_solar(zone_key, session, target_datetime)
+        wind_solar = _smartgrid_wind_solar(
+            zone_key, session, window_start, window_end
+        )
         wind_solar = {
             dt: value
             for dt, value in wind_solar.items()
