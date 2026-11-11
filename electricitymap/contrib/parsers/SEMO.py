@@ -49,15 +49,28 @@ FUEL_TO_MODE = {
     "SOLAR": "solar",
     "HYDRO": "hydro",
     "GAS": "gas",
-    # Coal and peat units are mapped to unknown rather than coal.
-    "COAL": "unknown",
-    "PEAT": "unknown",
+    "COAL": "coal",
+    "PEAT": "coal",
     "OIL": "oil",
     "DISTILLATE": "oil",
     "BIOMASS": "biomass",
     # Multi-fuel units in SEM are overwhelmingly gas-fired CCGTs (distillate is
     # only a backup fuel), so they are counted as gas rather than unknown.
     "MULTI_FUEL": "gas",
+}
+# Per-unit fuel overrides for units whose registered fuel type no longer matches
+# what they actually burn. Applied by ResourceName before the fuel -> mode step,
+# which keeps FUEL_TO_MODE generic: COAL and PEAT should never be hit anymore, so
+# if a unit ever does report as coal/peat it surfaces as coal (worth a look)
+# rather than being hidden. Checked against the registered-units "Unit Name".
+UNIT_FUEL_OVERRIDES = {
+    # Moneypoint (Ireland's last coal station) ended coal generation and now runs
+    # as an oil-fired strategic reserve.
+    "GU_400270": "OIL",  # Moneypoint 1
+    "GU_400271": "OIL",  # Moneypoint 2
+    "GU_400272": "OIL",  # Moneypoint 3
+    # Edenderry converted from peat to biomass.
+    "GU_401860": "BIOMASS",
 }
 # SEM-O fuel type -> Electricity Maps storage mode.
 FUEL_TO_STORAGE = {"BATTERY": "battery", "PUMP_STORAGE": "hydro"}
@@ -260,7 +273,7 @@ def fetch_production(
             continue
 
         resource = item.get("ResourceName")
-        fuel = unit_fuel.get(resource)
+        fuel = UNIT_FUEL_OVERRIDES.get(resource) or unit_fuel.get(resource)
         if fuel is None:
             # Unit not (yet) in the registered-units list: keep it in the
             # totals as unknown rather than dropping it.

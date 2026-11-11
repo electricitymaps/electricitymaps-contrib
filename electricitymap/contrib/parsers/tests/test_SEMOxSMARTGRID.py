@@ -72,10 +72,11 @@ def test_merge_uses_smartgrid_wind_solar_and_semo_rest(requests_mock, session):
     assert p["solar"] == 10
     # everything else comes from SEMO.
     assert p["gas"] == 240
-    assert p["oil"] == 15
-    # SEMO coal (80) is mapped to unknown, joining the unmatched-unit 12.
+    # oil = 15 plus Moneypoint (fixture's GU_400270, a COAL unit overridden to
+    # oil) at 80.
+    assert p["oil"] == 95
     assert p.get("coal") is None
-    assert p["unknown"] == 92
+    assert p["unknown"] == 12  # just the unmatched unit (GU_999999)
     assert first["storage"] == {"battery": 20.0, "hydro": -25.0}
 
 

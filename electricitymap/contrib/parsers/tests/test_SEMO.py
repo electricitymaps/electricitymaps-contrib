@@ -175,6 +175,28 @@ def test_fetch_production_deduplicates_settlement_runs(requests_mock, session):
     assert production["gas"] == 249  # 200 + 49 (last of each), not 349
 
 
+def test_coal_peat_units_overridden_by_resource_name(requests_mock, session):
+    # Moneypoint (registered COAL) now runs on oil, and Edenderry (registered
+    # PEAT) on biomass. Per-unit overrides correct these by ResourceName.
+    _register_mapping(requests_mock, {"GU_400270": "COAL", "GU_401860": "PEAT"})
+    st = "2026-09-20T00:00:00"
+    requests_mock.register_uri(
+        GET,
+        API_URL,
+        json=_bm086_rows([("GU_400270", st, 250.0), ("GU_401860", st, 60.0)]),
+    )
+    events = fetch_production(
+        zone_key=ZoneKey("IE"),
+        session=session,
+        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+    )
+    production = events[0]["production"]
+    assert production["oil"] == 250  # Moneypoint COAL -> oil
+    assert production["biomass"] == 60  # Edenderry PEAT -> biomass
+    assert production.get("coal") is None
+    assert production.get("unknown") is None
+
+
 def test_mapping_raises_when_unavailable(requests_mock, session):
     # The registered-units page is not registered, so discovery must raise
     # rather than silently producing an unlabelled breakdown.
