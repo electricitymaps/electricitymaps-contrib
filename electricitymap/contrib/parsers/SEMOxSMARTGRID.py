@@ -217,9 +217,7 @@ def fetch_production(
         return []
 
     try:
-        wind_solar = _smartgrid_wind_solar(
-            zone_key, session, window_start, window_end
-        )
+        wind_solar = _smartgrid_wind_solar(zone_key, session, window_start, window_end)
         wind_solar = {
             dt: value
             for dt, value in wind_solar.items()
