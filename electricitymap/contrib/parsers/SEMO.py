@@ -197,11 +197,18 @@ def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
 
     A window reaching two days back covers the report's publication lag when
     fetching live data.
+
+    BM-086 returns one row per settlement run for each unit/half-hour (early
+    runs often report 0, later runs the actual metered value, with occasional
+    small corrections), in chronological order with the latest run last and no
+    field distinguishing them. We keep the last row per ``(ResourceName,
+    StartTime)`` so each unit is counted once at its most recent value, rather
+    than summing the duplicates.
     """
     date_from = (target_datetime - timedelta(days=2)).strftime("%Y-%m-%dT00:00:00")
     date_to = (target_datetime + timedelta(days=1)).strftime("%Y-%m-%dT23:59:59")
 
-    items: list[dict] = []
+    latest_by_unit: dict[tuple[str, str], dict] = {}
     page = 1
     while True:
         response = session.get(
@@ -216,11 +223,12 @@ def _fetch_bm086(session: Session, target_datetime: datetime) -> list[dict]:
         )
         response.raise_for_status()
         batch = response.json().get("items", [])
-        items.extend(batch)
+        for item in batch:
+            latest_by_unit[item["ResourceName"], item["StartTime"]] = item
         if len(batch) < PAGE_SIZE:
             break
         page += 1
-    return items
+    return list(latest_by_unit.values())
 
 
 @refetch_frequency(timedelta(days=1))

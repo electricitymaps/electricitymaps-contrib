@@ -125,6 +125,56 @@ def test_start_time_is_interpreted_as_utc(requests_mock, session):
     assert events[0]["datetime"] == datetime(2026, 9, 20, 0, 0, tzinfo=timezone.utc)
 
 
+def _bm086_rows(rows):
+    """Builds a BM-086 response from ``(resource, start_time, metered_mw)`` tuples."""
+    items = [
+        {
+            "TradeDate": "2026-09-20",
+            "ParticipantName": "PT",
+            "ResourceName": rn,
+            "ResourceType": "GEN",
+            "StartTime": st,
+            "EndTime": st,
+            "Jurisdiction": "ROI",
+            "MeteredMW": mw,
+        }
+        for rn, st, mw in rows
+    ]
+    return {"pagination": {"totalItems": len(items)}, "items": items}
+
+
+def test_fetch_production_deduplicates_settlement_runs(requests_mock, session):
+    # BM-086 returns one row per settlement run for a unit/half-hour, latest last.
+    # They must be deduplicated (keep last), not summed.
+    _register_mapping(
+        requests_mock, {"GU_400020": "WIND", "GU_405850": "GAS", "GU_400180": "GAS"}
+    )
+    st = "2026-09-20T00:00:00"
+    requests_mock.register_uri(
+        GET,
+        API_URL,
+        json=_bm086_rows(
+            [
+                ("GU_400020", st, 100.0),
+                ("GU_400020", st, 100.0),  # identical copy
+                ("GU_405850", st, 0.0),
+                ("GU_405850", st, 200.0),  # early run 0, settled value last
+                ("GU_400180", st, 50.0),
+                ("GU_400180", st, 50.0),
+                ("GU_400180", st, 49.0),  # small correction, latest run last
+            ]
+        ),
+    )
+    events = fetch_production(
+        zone_key=ZoneKey("IE"),
+        session=session,
+        target_datetime=datetime(2026, 9, 20, tzinfo=DUBLIN),
+    )
+    production = events[0]["production"]
+    assert production["wind"] == 100  # not 200
+    assert production["gas"] == 249  # 200 + 49 (last of each), not 349
+
+
 def test_mapping_raises_when_unavailable(requests_mock, session):
     # The registered-units page is not registered, so discovery must raise
     # rather than silently producing an unlabelled breakdown.
