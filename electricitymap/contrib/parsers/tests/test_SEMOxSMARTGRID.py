@@ -6,7 +6,7 @@ from requests_mock import GET
 
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.SEMO import API_URL as SEMO_API_URL
-from electricitymap.contrib.parsers.SEMOxSMARTGRID import fetch_production
+from electricitymap.contrib.parsers.SEMOxSMARTGRID import _merge, fetch_production
 from electricitymap.contrib.parsers.SMARTGRIDDASHBOARD import URL as SMARTGRID_URL
 from electricitymap.contrib.parsers.tests.test_SEMO import _bm086, _register_mapping
 from electricitymap.contrib.types import ZoneKey
@@ -195,3 +195,35 @@ def test_returns_nothing_when_semo_beyond_retention(requests_mock, session, capl
 def test_raises_when_both_sources_unavailable(requests_mock, session):
     with pytest.raises(ParserException):
         _ie(requests_mock, session)
+
+
+def test_smartgrid_only_timestamps_before_semo_are_dropped():
+    # If the window straddles SEMO's retention boundary, SmartGrid still returns
+    # wind/solar for the aged-out (older) part. Those timestamps must be dropped,
+    # not emitted as incomplete wind/solar-only events. Only forward-lag
+    # timestamps (newer than SEMO's latest) are kept.
+    aged_out = datetime(2026, 8, 11, 9, 30, tzinfo=timezone.utc)  # before SEMO
+    t1 = datetime(2026, 8, 11, 10, 0, tzinfo=timezone.utc)
+    t2 = datetime(2026, 8, 11, 10, 30, tzinfo=timezone.utc)
+    forward_lag = datetime(2026, 8, 11, 11, 0, tzinfo=timezone.utc)  # after SEMO
+
+    semo_events = [
+        {"datetime": t1, "production": {"gas": 100.0}, "storage": {}},
+        {"datetime": t2, "production": {"gas": 120.0}, "storage": {}},
+    ]
+    wind_solar = {
+        aged_out: {"wind": 50.0, "solar": 5.0},
+        t1: {"wind": 60.0, "solar": 6.0},
+        t2: {"wind": 70.0, "solar": 7.0},
+        forward_lag: {"wind": 80.0, "solar": 8.0},
+    }
+
+    events = _merge(ZoneKey("IE"), semo_events, wind_solar, logging.getLogger())
+    times = [e["datetime"] for e in events]
+
+    assert aged_out not in times  # aged-out SmartGrid-only dropped
+    assert forward_lag in times  # forward-lag kept
+    # No incomplete (gas-less) event is emitted within SEMO's covered range.
+    assert all(
+        e["production"].get("gas") is not None for e in events if e["datetime"] <= t2
+    )
