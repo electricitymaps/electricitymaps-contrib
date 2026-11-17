@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from json import loads
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -180,10 +180,20 @@ EXCHANGE_MAPPING = {
         "codes": ["emm"],
         "coef": -1,
     },
+    # REE has published the Spain -> Andorra flow under both keys, with opposite
+    # signs: positive "impAnd" (2024-09-20 to 2025-01, and again since
+    # 2026-05-22) and negative "expAnd" (2025-02 to 2026-04). Both describe the
+    # same direction: the daily totals track FEDA's reported imports from Spain
+    # (typically within 1 %) in every period. Andorra's exports to Spain are
+    # negligible (FEDA: at most ~6 MWh per day over 2024-2026), so the magnitude
+    # is always booked as Spain -> Andorra.
     ZoneKey("AD->ES"): {
         "zone_ref": ZoneKey("ES"),
         "codes": ["expAnd", "impAnd"],
-        "coef": 1,
+        "coef": -1,
+        "magnitude_only": True,
+        # REE only publishes zeros before this date, and garbage on 2024-09-18/19.
+        "start": date(2024, 9, 20),
     },
     ZoneKey("ES->MA"): {
         "zone_ref": ZoneKey("ES"),
@@ -426,31 +436,56 @@ def fetch_exchange(
 ) -> list[dict]:
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     check_valid_parameters(sorted_zone_keys, session, target_datetime)
-    ses = session or Session()
+    mapping = EXCHANGE_MAPPING[sorted_zone_keys]
 
+    # Compare on the same calendar date that get_ree_data requests.
+    start = mapping.get("start")
+    if (
+        start is not None
+        and target_datetime is not None
+        and target_datetime.date() < start
+    ):
+        raise ParserException(
+            "ES.py",
+            f"No data available for {sorted_zone_keys} before {start.isoformat()}",
+            sorted_zone_keys,
+        )
+
+    ses = session or Session()
     data = fetch_and_preprocess_data(
-        EXCHANGE_MAPPING[sorted_zone_keys]["zone_ref"],
+        mapping["zone_ref"],
         ses,
         logger,
         target_datetime,
     )
 
     exchangeList = ExchangeList(logger)
+    skipped = 0
     for event in data:
-        net_flow = None
-        for key in event:
-            if key in EXCHANGE_MAPPING[sorted_zone_keys]["codes"]:
-                net_flow = (0 if net_flow is None else net_flow) + EXCHANGE_MAPPING[
-                    sorted_zone_keys
-                ]["coef"] * event[key]
+        values = [event[key] for key in mapping["codes"] if key in event]
+        if not values:
+            continue
 
-        if net_flow is not None:
-            exchangeList.append(
-                zoneKey=sorted_zone_keys,
-                datetime=event["ts"],
-                netFlow=net_flow,
-                source="demanda.ree.es",
-            )
+        if mapping.get("magnitude_only"):
+            # The sign of each key can't be trusted, only its magnitude. If more
+            # than one key is non-zero the point is a glitch (e.g. +x and -x).
+            if sum(1 for value in values if value) > 1:
+                skipped += 1
+                continue
+            values = [abs(value) for value in values]
+
+        exchangeList.append(
+            zoneKey=sorted_zone_keys,
+            datetime=event["ts"],
+            netFlow=sum(mapping["coef"] * value for value in values),
+            source="demanda.ree.es",
+        )
+
+    if skipped:
+        logger.warning(
+            f"Skipped {skipped} {sorted_zone_keys} points where more than one of "
+            f"{mapping['codes']} was non-zero"
+        )
 
     return exchangeList.to_list()
 

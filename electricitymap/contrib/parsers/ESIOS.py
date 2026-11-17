@@ -20,7 +20,7 @@ TIMEZONE = ZoneInfo("Europe/Madrid")
 
 # Map each exchange to the ID used in the API
 EXCHANGE_ID_MAP = {
-    "AD->ES": "10278",  # Switch to 10210 when it has data
+    "AD->ES": "10278",  # Not used by AD_ES.yaml, which uses the measured REE flow in ES.py
     "ES->MA": "10209",
 }
 

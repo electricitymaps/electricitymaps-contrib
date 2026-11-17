@@ -5,5 +5,5 @@ lonlat:
   - 1.45
   - 42.3
 parsers:
-  exchange: ESIOS.fetch_exchange
+  exchange: ES.fetch_exchange
 rotation: 200
