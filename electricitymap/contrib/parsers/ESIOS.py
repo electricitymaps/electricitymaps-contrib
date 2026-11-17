@@ -29,6 +29,11 @@ EXCHANGE_ID_MAP = {
 # Convert to UTC for comparison: 2022-05-24T10:00:00+02:00 = 2022-05-24T08:00:00+00:00
 ES_MA_FACTOR_THRESHOLD = datetime(2022, 5, 24, 8, 0, 0, tzinfo=ZoneInfo("UTC"))
 
+# Threshold date for AD->ES: the indicator moved from hourly to 15 min values
+# (MWh per quarter-hour) when the day-ahead market switched to a 15 min MTU on
+# 2025-10-01T00:00:00+02:00 = 2025-09-30T22:00:00+00:00.
+AD_ES_FACTOR_THRESHOLD = datetime(2025, 9, 30, 22, 0, 0, tzinfo=ZoneInfo("UTC"))
+
 
 def get_exchange_multiplication_factor(
     zone_key: ZoneKey, exchange_datetime: datetime
@@ -46,7 +51,12 @@ def get_exchange_multiplication_factor(
         else:
             return 1
     elif zone_key == "AD->ES":
-        return 1
+        # From 2025-10-01T00:00:00+02:00 onwards, use factor 4 (15 min intervals)
+        # Before this date, use factor 1 (hourly intervals)
+        if exchange_datetime >= AD_ES_FACTOR_THRESHOLD:
+            return 4
+        else:
+            return 1
     else:
         raise ParserException(
             "ESIOS.py",
