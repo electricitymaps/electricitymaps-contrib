@@ -1,6 +1,6 @@
 import copy
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -86,7 +86,7 @@ def _stub_session(payload):
 
     nordpool_mod.CURRENT_TOKEN = nordpool_mod.NordpoolToken(
         token="fake",
-        expiration=datetime(2099, 1, 1, tzinfo=timezone.utc),
+        expiration=datetime(2099, 1, 1, tzinfo=UTC),
     )
     return session
 
@@ -107,11 +107,11 @@ def test_fetch_intraday_contract_statistics_happy_path(real_payload) -> None:
     with patch.object(nordpool_mod, "_query_nordpool", return_value=mock_response):
         nordpool_mod.CURRENT_TOKEN = nordpool_mod.NordpoolToken(
             token="fake",
-            expiration=datetime(2099, 1, 1, tzinfo=timezone.utc),
+            expiration=datetime(2099, 1, 1, tzinfo=UTC),
         )
         result = nordpool_mod.fetch_intraday_contract_statistics(
             zone_key=ZoneKey("DE"),
-            target_datetime=datetime(2026, 5, 9, 12, 0, tzinfo=timezone.utc),
+            target_datetime=datetime(2026, 5, 9, 12, 0, tzinfo=UTC),
         )
 
     assert isinstance(result, list)
@@ -151,12 +151,12 @@ def test_fetch_intraday_contract_statistics_drift(real_payload) -> None:
     with patch.object(nordpool_mod, "_query_nordpool", return_value=mock_response):
         nordpool_mod.CURRENT_TOKEN = nordpool_mod.NordpoolToken(
             token="fake",
-            expiration=datetime(2099, 1, 1, tzinfo=timezone.utc),
+            expiration=datetime(2099, 1, 1, tzinfo=UTC),
         )
         with pytest.raises(ValidationError) as excinfo:
             nordpool_mod.fetch_intraday_contract_statistics(
                 zone_key=ZoneKey("DE"),
-                target_datetime=datetime(2026, 5, 9, 12, 0, tzinfo=timezone.utc),
+                target_datetime=datetime(2026, 5, 9, 12, 0, tzinfo=UTC),
             )
 
     assert any("_drift_field_" in str(e) for e in excinfo.value.errors())

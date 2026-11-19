@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from io import BytesIO
 from logging import getLogger
 from typing import Any
@@ -307,6 +307,6 @@ def fetch_production_capacity(
 if __name__ == "__main__":
     print(
         fetch_production_capacity_for_all_zones(
-            datetime(2026, 8, 1, tzinfo=timezone.utc), Session()
+            datetime(2026, 8, 1, tzinfo=UTC), Session()
         )
     )

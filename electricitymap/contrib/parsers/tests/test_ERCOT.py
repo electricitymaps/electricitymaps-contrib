@@ -1,7 +1,7 @@
 import json
 import logging
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from io import BytesIO
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
@@ -157,19 +157,19 @@ def test_fetch_production_maps_other_and_wsl_to_battery_from_2022():
         lambda year, session: FakeWorkbook(year, mwh_by_fuel),
     ):
         data = US_ERCOT.fetch_production(
-            target_datetime=datetime(2022, 1, 3, 6, tzinfo=timezone.utc),
+            target_datetime=datetime(2022, 1, 3, 6, tzinfo=UTC),
             logger=logging.getLogger("test"),
         )
     by_dt = {item["datetime"]: item for item in data}
 
     # Before 2022, "Other" nets battery and oil: kept as unknown
-    before = by_dt[datetime(2021, 12, 31, 18, tzinfo=timezone.utc)]
+    before = by_dt[datetime(2021, 12, 31, 18, tzinfo=UTC)]
     assert before["production"]["gas"] == 600
     assert before["production"]["unknown"] == 120
     assert before["storage"] == {}
 
     # From 2022, "Other" is battery discharge and "WSL" battery charging
-    after = by_dt[datetime(2022, 1, 2, 18, tzinfo=timezone.utc)]
+    after = by_dt[datetime(2022, 1, 2, 18, tzinfo=UTC)]
     assert after["production"]["gas"] == 600
     assert after["production"].get("unknown") is None
     assert after["storage"]["battery"] == -80  # -(120 - 40), positive is charging
@@ -192,7 +192,7 @@ def test_fetch_production_raises_on_unusable_fuel_mix_report(mwh_by_fuel, error)
         pytest.raises(ParserException, match=error),
     ):
         US_ERCOT.fetch_production(
-            target_datetime=datetime(2026, 10, 29, 5, tzinfo=timezone.utc),
+            target_datetime=datetime(2026, 10, 29, 5, tzinfo=UTC),
             logger=logging.getLogger("test"),
         )
 

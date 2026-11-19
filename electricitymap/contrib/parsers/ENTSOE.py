@@ -17,7 +17,7 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 
 from collections.abc import Generator, Iterable
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from functools import cache, lru_cache
 from itertools import chain, groupby, pairwise
@@ -371,7 +371,7 @@ def query_ENTSOE(
     Returns a request object.
     """
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(UTC)
 
     if not isinstance(target_datetime, datetime):
         raise ParserException(

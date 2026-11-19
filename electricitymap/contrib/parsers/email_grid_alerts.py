@@ -30,12 +30,12 @@ def fetch_grid_alerts_emails(
     domain_name = "alerts.electricitymaps.com"
     # REQUEST BODY: only implemented for the last 5 hours
     nowminus5hours = (
-        datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+        datetime.datetime.now(datetime.UTC).replace(microsecond=0)
         - datetime.timedelta(hours=5)
     ).strftime("%a, %d %b %Y %H:%M:%S -0000")
 
     now = (
-        datetime.datetime.now(datetime.timezone.utc)
+        datetime.datetime.now(datetime.UTC)
         .replace(microsecond=0)
         .strftime("%a, %d %b %Y %H:%M:%S -0000")
     )

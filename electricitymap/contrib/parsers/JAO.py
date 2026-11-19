@@ -29,7 +29,7 @@ Currently wired (all day-ahead horizon):
 - fetch_nordic_max_bflow_day_ahead          → Nordic maxBorderFlow (per-border, 15-min)
 """
 
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from enum import Enum
 from logging import Logger, getLogger
 
@@ -195,7 +195,7 @@ def _resolve_border_fields(
 
 def _format_utc(dt: datetime) -> str:
     """Format a tz-aware datetime as the ISO-8601 string JAO expects."""
-    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    return dt.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
 
 def _parse_utc(value: str) -> datetime:
@@ -212,13 +212,13 @@ def _target_window(
     the public fetcher is decorated with so refetches are gapless.
     """
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
     day_start = datetime.combine(
-        target_datetime.astimezone(timezone.utc).date(),
+        target_datetime.astimezone(UTC).date(),
         time.min,
-        tzinfo=timezone.utc,
+        tzinfo=UTC,
     )
     return day_start, day_start + timedelta(days=days)
 

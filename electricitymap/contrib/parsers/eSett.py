@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 
 from requests import Session
@@ -35,9 +35,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    target_datetime = (target_datetime or datetime.now(timezone.utc)).astimezone(
-        timezone.utc
-    )
+    target_datetime = (target_datetime or datetime.now(UTC)).astimezone(UTC)
 
     start_time = target_datetime - timedelta(days=3)
 

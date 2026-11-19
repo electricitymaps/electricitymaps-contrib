@@ -9,7 +9,7 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 
@@ -531,12 +531,8 @@ def fetch_production_mix(
         # Even though the plant is operated by US-SW-AZPS, the reporting is consistently done by US-SW-SRP on the time period below but also after.
         # So keep US-SW-SRP nuclear production and set US-SW-AZPS nuclear production to 0.0.
         if zone_key == "US-SW-AZPS" and production_mode == "nuclear":
-            first_appearance = datetime(
-                year=2018, month=7, day=1, hour=7, tzinfo=timezone.utc
-            )
-            last_apperance = datetime(
-                year=2019, month=12, day=4, hour=6, tzinfo=timezone.utc
-            )
+            first_appearance = datetime(year=2018, month=7, day=1, hour=7, tzinfo=UTC)
+            last_apperance = datetime(year=2019, month=12, day=4, hour=6, tzinfo=UTC)
             for event in production_and_storage_values:
                 if (
                     event["datetime"] >= first_appearance
@@ -549,12 +545,8 @@ def fetch_production_mix(
         # we set unknown to 0.0 and keep geothermal as is
         # see GMM-555 for details
         if zone_key == "US-CAL-IID" and production_mode == "unknown":
-            first_appearance = datetime(
-                year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc
-            )
-            last_apperance = datetime(
-                year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc
-            )
+            first_appearance = datetime(year=2025, month=1, day=1, hour=8, tzinfo=UTC)
+            last_apperance = datetime(year=2025, month=2, day=12, hour=7, tzinfo=UTC)
             for event in production_and_storage_values:
                 if (
                     event["datetime"] >= first_appearance
@@ -729,12 +721,12 @@ def _fetch_historical(
 ) -> list[dict[str, Any]]:
     start, end = None, None
     if target_datetime:
-        end = target_datetime.astimezone(timezone.utc) + timedelta(hours=1)
+        end = target_datetime.astimezone(UTC) + timedelta(hours=1)
         start = end - timedelta(days=1)
     else:
-        end = datetime.now(timezone.utc).replace(
-            minute=0, second=0, microsecond=0
-        ) + timedelta(hours=1)
+        end = datetime.now(UTC).replace(minute=0, second=0, microsecond=0) + timedelta(
+            hours=1
+        )
         start = end - timedelta(hours=72)
 
     return _fetch_any(zone_key, url_prefix, start, end, session, logger)
@@ -751,12 +743,12 @@ def _fetch_forecast(
 
     start, end = None, None
     if target_datetime:
-        start = target_datetime.astimezone(timezone.utc).replace(
+        start = target_datetime.astimezone(UTC).replace(
             minute=0, second=0, microsecond=0
         )
         end = start + LOOKAHEAD
     else:
-        start = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+        start = datetime.now(UTC).replace(minute=0, second=0, microsecond=0)
         end = start + LOOKAHEAD
 
     return _fetch_any(zone_key, url_prefix, start, end, session, logger)
@@ -767,9 +759,9 @@ def _parse_hourly_interval(period: str):
 
     # NB: the EIA API can respond with time intervals relative to either UTC
     # or local-time.  We request UTC times using the 'frequency=hourly'
-    # parameter, meaning that we can attach timezone.utc without performing
+    # parameter, meaning that we can attach UTC without performing
     # any timezone conversion.
-    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+    interval_end = interval_end_naive.replace(tzinfo=UTC)
 
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,

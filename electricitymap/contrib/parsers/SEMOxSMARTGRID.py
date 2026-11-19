@@ -23,7 +23,7 @@ failure is raised.
 """
 
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 
 from requests import Session
@@ -93,7 +93,7 @@ def _smartgrid_wind_solar(
         for row in response.json().get("Rows", []):
             if row.get("EffectiveTime") and row.get("Value") is not None:
                 dt = SMARTGRIDDASHBOARD.parse_datetime(row["EffectiveTime"]).astimezone(
-                    timezone.utc
+                    UTC
                 )
                 values[dt] = row["Value"]
         return values
@@ -175,9 +175,9 @@ def fetch_production(
 ) -> list:
     """Wind/solar from SmartGridDashboard, all other modes from SEMO."""
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
 
     # This window is the single source of truth: it is passed to both SEMO and
     # SmartGridDashboard so the two sources always cover the same range. It

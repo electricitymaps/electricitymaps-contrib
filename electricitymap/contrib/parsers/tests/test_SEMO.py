@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 from io import BytesIO
 from zoneinfo import ZoneInfo
@@ -106,8 +106,8 @@ def test_fetch_production_range_queries_the_given_window(requests_mock, session)
     fetch_production_range(
         ZoneKey("IE"),
         session,
-        datetime(2026, 9, 18, tzinfo=timezone.utc),
-        datetime(2026, 9, 21, 23, 59, 59, tzinfo=timezone.utc),
+        datetime(2026, 9, 18, tzinfo=UTC),
+        datetime(2026, 9, 21, 23, 59, 59, tzinfo=UTC),
     )
     bm086_request = next(
         r for r in reversed(requests_mock.request_history) if "BM-086" in r.url
@@ -149,7 +149,7 @@ def test_start_time_is_interpreted_as_utc(requests_mock, session):
         start_datetime=START,
         end_datetime=END,
     )
-    assert events[0]["datetime"] == datetime(2026, 9, 20, 0, 0, tzinfo=timezone.utc)
+    assert events[0]["datetime"] == datetime(2026, 9, 20, 0, 0, tzinfo=UTC)
 
 
 def _bm086_rows(rows):
