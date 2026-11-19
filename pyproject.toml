@@ -28,6 +28,10 @@ members = [".", "libs/types"]
 
 [tool.uv]
 required-version = ">=0.13.4"
+# Supply-chain cooldown: ignore package versions published in the last 3 days,
+# so a compromised or broken release has time to be caught and yanked before
+# it can land in the lockfile.
+exclude-newer = "3 days"
 # The electricitymaps index is for consumers of the published package.
 # For local development, workspace sources take precedence.
 index = [
