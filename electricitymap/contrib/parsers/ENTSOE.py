@@ -18,7 +18,7 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
-from enum import Enum
+from enum import StrEnum
 from functools import cache, lru_cache
 from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
@@ -77,8 +77,7 @@ STRAINER_TIMESERIES = SoupStrainer("timeseries")
 STRAINER_TEXT = SoupStrainer("text")
 
 
-# TODO: Switch this to a string enum when we migrate to Python 3.11
-class EntsoeTypeEnum(str, Enum):
+class EntsoeTypeEnum(StrEnum):
     DAY_AHEAD = "A01"
     WEEK_AHEAD = "A02"
     MONTH_AHEAD = "A03"
@@ -87,11 +86,8 @@ class EntsoeTypeEnum(str, Enum):
     INTRADAY = "A40"
     CURRENT = "A18"
 
-    def __str__(self) -> str:
-        return self.value
 
-
-class EntsoeDocumentTypeEnum(str, Enum):
+class EntsoeDocumentTypeEnum(StrEnum):
     ESTIMATED_NET_TRANSFER_CAPACITY = "A61"
 
 

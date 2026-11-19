@@ -4,7 +4,7 @@ import math
 from abc import ABC, abstractmethod
 from collections.abc import Set
 from datetime import datetime, timedelta
-from enum import Enum
+from enum import StrEnum
 from logging import Logger
 from typing import Any
 
@@ -288,7 +288,7 @@ class StorageMix(Mix):
         return storage_mix
 
 
-class EventSourceType(str, Enum):
+class EventSourceType(StrEnum):
     measured = "measured"
     forecasted = "forecasted"
     estimated = "estimated"
@@ -1214,7 +1214,7 @@ class DayAheadPrice(Price):
         }
 
 
-class GridAlertType(str, Enum):
+class GridAlertType(StrEnum):
     informational = "informational"
     action = "action"
     undefined = "undefined"

@@ -34,7 +34,7 @@ Currently wired (day-ahead horizon):
 """
 
 from datetime import UTC, datetime, time, timedelta
-from enum import Enum
+from enum import StrEnum
 from logging import Logger, getLogger
 
 from requests import Session
@@ -62,14 +62,11 @@ NO_DATA_MESSAGE = "no data found"
 BASE_URL = "https://api.jao.eu/OWSMP"
 
 
-class JaoHorizon(str, Enum):
+class JaoHorizon(StrEnum):
     """Auction horizons served by the API (`GET /OWSMP/gethorizons`)."""
 
     DAY_AHEAD = "Daily"
     INTRADAY = "Intraday"
-
-    def __str__(self) -> str:
-        return self.value
 
 
 # EM exchange zone key → the corridor prefixes making up that border. A single

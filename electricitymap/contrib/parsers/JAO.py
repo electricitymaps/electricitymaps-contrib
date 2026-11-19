@@ -30,7 +30,7 @@ Currently wired (all day-ahead horizon):
 """
 
 from datetime import UTC, datetime, time, timedelta
-from enum import Enum
+from enum import StrEnum
 from logging import Logger, getLogger
 
 from requests import Session
@@ -56,17 +56,14 @@ REQUEST_TIMEOUT_SECONDS = 30
 JAO_MAX_FETCH_DAYS = 2
 
 
-class JaoRegion(str, Enum):
+class JaoRegion(StrEnum):
     """JAO Publication Tool region — each has its own base URL and dataset catalog."""
 
     CORE = "core"
     NORDIC = "nordic"
 
-    def __str__(self) -> str:
-        return self.value
 
-
-class JaoDataset(str, Enum):
+class JaoDataset(StrEnum):
     """Canonical JAO Publication Tool dataset slugs.
 
     Each dataset is published by exactly one region's Publication Tool. The
@@ -81,9 +78,6 @@ class JaoDataset(str, Enum):
     MAX_BEX = "maxExchanges"  # Core + Nordic
     SCHEDULED_EXCHANGES = "scheduledExchanges"  # Core only
     MAX_BFLOW = "maxBorderFlow"  # Nordic only
-
-    def __str__(self) -> str:
-        return self.value
 
 
 # Mapping from EM zone keys to the zone codes JAO uses in `border_XX_YY`
