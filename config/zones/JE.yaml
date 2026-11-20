@@ -9,9 +9,63 @@ center_point:
 centroid:
   - -2.1492769624498447
   - 49.204571809876356
+capacity:
+  biomass:
+    - _comment: >-
+        Energy from Waste plant at La Collette, up to 8 MW of which is supplied to Jersey
+        Electricity. JE holds a 25-year power purchase agreement signed in 2008; the plant supplied
+        5.3% of units in FY25.
+      datetime: '2025-01-01'
+      source: jec.co.uk
+      value: 8.0
+  oil:
+    - _comment: >-
+        Three Rolls-Royce gas turbines at Queen's Road (76 MW in total), four 11.5 MW Sulzer
+        diesels at La Collette (46 MW) and the 5.5 MW "Diesel 5" Sulzer black-start set commissioned
+        in 2017, which brings the installed total to 127.5 MW. The redundant 45 MW steam turbine,
+        now being demolished, is excluded.
+      datetime: '2025-01-01'
+      source: jec.co.uk
+      value: 127.5
+  solar:
+    - _comment: >-
+        On-island solar PV. The 4.3 MWp Moulin a Vent farm in St Clement was commissioned in
+        February 2025 and is stated by Jersey Electricity to have doubled the island's solar
+        generating capacity, giving roughly 8.6 MWp; the target is 25 MWp by 2028.
+      datetime: '2025-02-01'
+      source: jec.co.uk
+      value: 8.6
+contributors:
+  - Jaylouisw
 country: JE
 country_name: Jersey
 currency: GBP
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _comment: >-
+        Physical basis. JEC reports 94% of the Island's requirements imported from
+        France in FY25, 1% from on-island solar (Moulin a Vent) and the balance of
+        5% from the Energy from Waste plant. The imported share is blended at the
+        French generation mix, because the Normandie 1/2 link delivers French grid
+        power, so the import origin is the exporting zone's mix rather than the
+        guarantees of origin behind JEC's published fuel mix disclosure (nuclear
+        62.4%, hydro 31.2%). FY25 is October 2024 to September 2025, against
+        calendar-year French generation.
+      _source: JEC Annual Report 2025 blended with the French generation mix (Ember)
+      _url:
+        - https://www.jec.co.uk/media/bhtpjcjx/annual-report-2025.pdf
+        - https://ember-energy.org/data/yearly-electricity-data/
+      datetime: '2025-01-01'
+      value:
+        biomass: 0.0679
+        coal: 0.0029
+        gas: 0.0284
+        hydro: 0.098
+        nuclear: 0.6465
+        oil: 0.0171
+        solar: 0.0625
+        wind: 0.0767
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 region: Europe
