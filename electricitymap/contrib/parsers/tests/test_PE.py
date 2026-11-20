@@ -1,3 +1,4 @@
+import copy
 import json
 from datetime import datetime
 from pathlib import Path
@@ -112,3 +113,51 @@ def test_fetch_production_data_structure(requests_mock, session):
     for _, value in production.items():
         assert isinstance(value, int | float)
         assert value >= 0  # Production values should be non-negative
+
+
+def _load_mock(name: str) -> dict:
+    with open(MOCK_DATA_DIR / name, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def test_fetch_production_solar_follows_daylight(requests_mock, session):
+    requests_mock.register_uri(
+        POST, API_ENDPOINT, json=_load_mock("response_20250910.json")
+    )
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    by_hour = {
+        item["datetime"].strftime("%H:%M"): item["production"] for item in result
+    }
+    assert by_hour["00:00"]["solar"] == 0
+    assert by_hour["12:00"]["solar"] > 500
+    assert by_hour["12:00"]["biomass"] < 240
+
+
+def test_fetch_production_maps_refinery_series_to_oil(requests_mock, session):
+    target_datetime = datetime(2025, 9, 10, 12, 0, 0)
+    response = _load_mock("response_20250910.json")
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+    baseline = fetch_production(
+        zone_key=ZoneKey("PE"), session=session, target_datetime=target_datetime
+    )
+
+    series = response["GraficoTipoCombustible"]["Series"]
+    refinery = copy.deepcopy(next(s for s in series if s["Name"] == "DIESEL"))
+    refinery["Name"] = "NAFTA & GAS REFINERÍA"
+    for point in refinery["Data"]:
+        point["Valor"] = 42.0
+    series.append(refinery)
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+    result = fetch_production(
+        zone_key=ZoneKey("PE"), session=session, target_datetime=target_datetime
+    )
+
+    assert [item["production"]["oil"] for item in result] == [
+        item["production"]["oil"] + 42.0 for item in baseline
+    ]
