@@ -63,6 +63,9 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 273.7
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 256.1
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -164,9 +167,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 223.7
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 387.7
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 467.7
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

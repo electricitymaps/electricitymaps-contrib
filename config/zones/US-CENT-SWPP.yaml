@@ -41,9 +41,12 @@ capacity:
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 450.5
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 486.5
+    - datetime: '2026-07-01'
+      source: EIA.gov
+      value: 489.5
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -248,9 +251,21 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 36770.9
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 36774.6
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 36893.7
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 36851.9
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 36912.8
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 36954.6
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -385,9 +400,24 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 2225.3
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 2221.6
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 2211.3
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 2253.1
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 2256.4
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 2220.2
+    - datetime: '2026-07-01'
+      source: EIA.gov
+      value: 2223.2
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -545,9 +575,18 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1441.8
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 1651.0
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 2026.4
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 2158.1
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 2078.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
