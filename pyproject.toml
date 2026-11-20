@@ -1,6 +1,6 @@
 [project]
 name = "electricitymap-contrib"
-version = "2.14.7"
+version = "3.0.0"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.11, < 3.14"
