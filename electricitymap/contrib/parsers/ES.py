@@ -384,14 +384,20 @@ def fetch_production(
         data_mapping["gas"] = "oil"
         data_mapping["cc"] = "oil"
 
-    if zone_key == "ES-IB-ME" or zone_key == "ES-IB-FO":
+    # These systems have no natural-gas supply, so their gas turbines burn oil
+    if zone_key in ("ES-IB-ME", "ES-IB-FO", "ES-CE", "ES-ML"):
         data_mapping["gas"] = "oil"
     if zone_key == "ES-IB-IZ":
         data_mapping["die"] = "gas"
 
-    # Remove the key "gnhd" for the zone ES-CN-HI because it is already included in storage
+    # ES-CN-HI's only hydro is the Gorona del Viento pumped-storage plant. REE has
+    # published its net flow as "hid" since 2014, but only split it into "turb" and
+    # "conb" from 2022-01-24 ("gnhd" mirrors "hid" since then). Use "hid" so the
+    # history before the split isn't read as zero storage.
     if zone_key == ZoneKey("ES-CN-HI"):
-        del data_mapping["gnhd"]
+        for key in ("turb", "conb", "gnhd"):
+            del data_mapping[key]
+        data_mapping["hid"] = "hydro_storage"
 
     data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     productionEventList = ProductionBreakdownList(logger)

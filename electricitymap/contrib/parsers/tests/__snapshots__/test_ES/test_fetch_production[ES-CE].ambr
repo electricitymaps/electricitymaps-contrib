@@ -8,8 +8,7 @@
       'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
-        'gas': 0.07,
-        'oil': 25.15,
+        'oil': 25.22,
       }),
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -25,8 +24,7 @@
       'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
-        'gas': 0.07,
-        'oil': 26.8,
+        'oil': 26.87,
       }),
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -42,8 +40,7 @@
       'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
-        'gas': 0.07,
-        'oil': 28.37,
+        'oil': 28.44,
       }),
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,

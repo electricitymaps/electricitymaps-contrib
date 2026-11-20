@@ -29,6 +29,11 @@ MODE_MAPPING = {
     "Turbina de gas": "gas",
     "Turbina de vapor": "gas",
 }
+# Ceuta and Melilla have no natural-gas supply, so their gas turbines burn oil
+ZONE_MODE_MAPPING_OVERRIDES = {
+    "ES-CE": {"Turbina de gas": "oil"},
+    "ES-ML": {"Turbina de gas": "oil"},
+}
 
 GENERATION_URL = (
     "https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion"
@@ -79,6 +84,7 @@ def fetch_production_capacity(
         "tecno_select": "all",
     }
 
+    mode_mapping = MODE_MAPPING | ZONE_MODE_MAPPING_OVERRIDES.get(zone_key, {})
     capacity: dict[str, dict[str, Any]] = {}
     # Storage modes (pumped + battery) live on a separate REE endpoint since
     # the generation widget was renamed; query both and merge.
@@ -90,10 +96,10 @@ def fetch_production_capacity(
             )
             continue
         for item in r.json().get("included", []):
-            if item["type"] not in MODE_MAPPING:
+            if item["type"] not in mode_mapping:
                 continue
             value: float = round(item["attributes"]["values"][0]["value"], 0)
-            mode = MODE_MAPPING[item["type"]]
+            mode = mode_mapping[item["type"]]
             if mode in capacity:
                 capacity[mode]["value"] += value
             else:
