@@ -3,7 +3,7 @@
 import gzip
 import json
 import re
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
 from operator import itemgetter
@@ -140,7 +140,7 @@ def fetch_consumption_forecast(
         utc_datetime = elem["forecast_datetime_beginning_utc"]
         consumption_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(utc_datetime).replace(tzinfo=timezone.utc),
+            datetime=datetime.fromisoformat(utc_datetime).replace(tzinfo=UTC),
             source=SOURCE,
             consumption=elem["forecast_load_mw"],
             sourceType=EventSourceType.forecasted,
@@ -160,9 +160,9 @@ def fetch_production(
     We assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)
     """
     target_datetime = (
-        datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
     session = session or Session()
@@ -186,7 +186,7 @@ def fetch_production(
 
     production_breakdown_list = ProductionBreakdownList(logger)
     for key, group in groupby(items, itemgetter("datetime_beginning_utc")):
-        dt = datetime.fromisoformat(key).replace(tzinfo=timezone.utc)
+        dt = datetime.fromisoformat(key).replace(tzinfo=UTC)
         production = ProductionMix()
         storage = StorageMix()
         for data in group:
@@ -219,9 +219,9 @@ def fetch_wind_solar_forecasts(
 
     # Datetime
     target_datetime = (
-        datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
     # Config for url
@@ -268,7 +268,7 @@ def fetch_wind_solar_forecasts(
 
         production_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(datetime_utc).replace(tzinfo=timezone.utc),
+            datetime=datetime.fromisoformat(datetime_utc).replace(tzinfo=UTC),
             production=production_mix,
             source=SOURCE,
             sourceType=EventSourceType.forecasted,

@@ -11,7 +11,7 @@
 # Annual reports from moldelectrica can be found at:
 # https://moldelectrica.md/ro/network/annual_report
 
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from logging import Logger, getLogger
 from operator import attrgetter
 from typing import NamedTuple
@@ -45,25 +45,25 @@ SOURCE = "moldelectrica.md"
 # Moldoelectrica electricity tariffs as defined by government-agency decisions.
 _MOLDOELECTRICA_NEW_POWER_PRICE_IN_MDL_PER_MW = {
     # https://www.legis.md/cautare/getResults?doc_id=78826&lang=ro
-    datetime(2000, 4, 1, tzinfo=timezone.utc): 18.8,
+    datetime(2000, 4, 1, tzinfo=UTC): 18.8,
     # https://www.legis.md/cautare/getResults?doc_id=103953&lang=ro
-    datetime(2001, 10, 1, tzinfo=timezone.utc): 28.0,
+    datetime(2001, 10, 1, tzinfo=UTC): 28.0,
     # https://www.legis.md/cautare/getResults?doc_id=40249&lang=ro
-    datetime(2002, 9, 1, tzinfo=timezone.utc): 35.2,
+    datetime(2002, 9, 1, tzinfo=UTC): 35.2,
     # https://www.legis.md/cautare/getResults?doc_id=42701&lang=ro
-    datetime(2005, 9, 1, tzinfo=timezone.utc): 39.3,
+    datetime(2005, 9, 1, tzinfo=UTC): 39.3,
     # https://www.legis.md/cautare/getResults?doc_id=10948&lang=ro
-    datetime(2007, 8, 3, tzinfo=timezone.utc): 51.8,
+    datetime(2007, 8, 3, tzinfo=UTC): 51.8,
     # https://www.legis.md/cautare/getResults?doc_id=40130&lang=ro
-    datetime(2010, 1, 19, tzinfo=timezone.utc): 63.2,
+    datetime(2010, 1, 19, tzinfo=UTC): 63.2,
     # https://www.legis.md/cautare/getResults?doc_id=40589&lang=ro
-    datetime(2012, 5, 11, tzinfo=timezone.utc): 80.2,
+    datetime(2012, 5, 11, tzinfo=UTC): 80.2,
     # https://www.legis.md/cautare/getResults?doc_id=84436&lang=ro
-    datetime(2015, 7, 31, tzinfo=timezone.utc): 145.0,
+    datetime(2015, 7, 31, tzinfo=UTC): 145.0,
     # https://www.legis.md/cautare/getResults?doc_id=134854&lang=ro
-    datetime(2023, 12, 31, tzinfo=timezone.utc): 201.0,
+    datetime(2023, 12, 31, tzinfo=UTC): 201.0,
     # https://www.legis.md/cautare/getResults?doc_id=142391&lang=ro
-    datetime(2024, 3, 21, tzinfo=timezone.utc): 185.0,
+    datetime(2024, 3, 21, tzinfo=UTC): 185.0,
     # TODO(amv213): update as new tariffs get rolled out...
 }
 
@@ -93,12 +93,12 @@ def _get_archive_data(
     """Returns archive data in 15 mn buckets for the UTC day of interest and (optionally) previous ones."""
 
     target_utc_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
-    target_utc_day = datetime.combine(target_utc_datetime, time(), tzinfo=timezone.utc)
+    target_utc_day = datetime.combine(target_utc_datetime, time(), tzinfo=UTC)
     target_utc_timestamp_from, target_utc_timestamp_to = (
         target_utc_day - timedelta(days=num_backlog_days),
         target_utc_day + timedelta(days=1) - timedelta(seconds=1),
@@ -125,7 +125,7 @@ def _get_archive_data(
             dt_utc = (
                 datetime.strptime(entry[0], "%Y-%m-%d %H:%M")
                 .replace(tzinfo=TZ)
-                .astimezone(timezone.utc)
+                .astimezone(UTC)
             )
 
             # filter out results outside of UTC target range
@@ -163,9 +163,9 @@ def fetch_price(
         https://moldelectrica.md/ro/activity/tariff
     """
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
     # find price band for given target datetime

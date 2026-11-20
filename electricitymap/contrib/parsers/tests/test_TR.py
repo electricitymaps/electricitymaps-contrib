@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -90,15 +90,15 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
     rows = TR.fetch_price_day_ahead(
         ZoneKey("TR"),
         session,
-        target_datetime=datetime(2026, 10, 1, 12, tzinfo=timezone.utc),
+        target_datetime=datetime(2026, 10, 1, 12, tzinfo=UTC),
     )
 
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == rows
     # Today and tomorrow in TR time.
     assert len(rows) == 48
     # 2026-10-01T00:00:00+03:00 is emitted as 2026-09-30T21:00Z.
-    assert rows[0]["datetime"] == datetime(2026, 9, 30, 21, tzinfo=timezone.utc)
-    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 21, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2026, 9, 30, 21, tzinfo=UTC)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 21, tzinfo=UTC)
     for row in rows:
         assert row["end_datetime"] - row["datetime"] == timedelta(hours=1)
         assert row["datetime"].utcoffset() == timedelta(0)
@@ -122,7 +122,7 @@ def test_fetch_price_day_ahead_live_requests_tomorrow(requests_mock, session):
 @pytest.mark.parametrize(
     "target_datetime",
     [
-        datetime(2026, 9, 30, 22, 30, tzinfo=timezone.utc),
+        datetime(2026, 9, 30, 22, 30, tzinfo=UTC),
         datetime(2026, 9, 30, 22, 30),  # Naive targets are UTC.
     ],
 )
@@ -152,5 +152,5 @@ def test_fetch_price_day_ahead_rejects_unexpected_resolution(requests_mock, sess
         TR.fetch_price_day_ahead(
             ZoneKey("TR"),
             session,
-            target_datetime=datetime(2026, 10, 1, 12, tzinfo=timezone.utc),
+            target_datetime=datetime(2026, 10, 1, 12, tzinfo=UTC),
         )

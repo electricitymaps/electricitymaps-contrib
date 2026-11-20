@@ -48,7 +48,7 @@ jobs:
         with:
           enable-cache: true
           cache-suffix: 'formatting'
-          python-version: '3.10'
+          python-version: '3.11'
       - name: Install Dependencies
         run: |
           uv sync --extra parsers
@@ -65,7 +65,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
+        python-version: ['3.11', '3.12']
     steps:
       - name: Checkout
         uses: actions/checkout@v7

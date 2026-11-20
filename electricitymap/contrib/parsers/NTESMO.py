@@ -10,7 +10,7 @@ import logging
 import math
 import re
 from collections.abc import Iterable, Iterator
-from datetime import date, datetime, time, timedelta, timezone
+from datetime import UTC, date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Any, TypedDict
 from zoneinfo import ZoneInfo
@@ -276,9 +276,9 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,
@@ -303,9 +303,9 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,
@@ -330,9 +330,9 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,
@@ -398,10 +398,10 @@ if __name__ == "__main__":
         # now
         None,
         # this year, but old enough that the api data is not in the first page of results
-        datetime(2024, 4, 2, tzinfo=timezone.utc),
+        datetime(2024, 4, 2, tzinfo=UTC),
         # historical data (previous years)
-        datetime(2023, 2, 15, tzinfo=timezone.utc),
-        datetime(2022, 3, 11, tzinfo=timezone.utc),
+        datetime(2023, 2, 15, tzinfo=UTC),
+        datetime(2022, 3, 11, tzinfo=UTC),
     ]:
         print(f"fetch_consumption(target_datetime={dt}) ->")
         print(fetch_consumption(target_datetime=dt))

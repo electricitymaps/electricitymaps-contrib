@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from io import BytesIO
 from logging import getLogger
 from typing import Any
@@ -92,7 +92,7 @@ def fetch_production_capacity_for_all_zones(
     df["end"] = end.apply(lambda x: x.replace(day=31, month=12) if pd.notna(x) else x)
 
     if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
     df = filter_data_by_date(df, target_datetime)
     df["datetime"] = target_datetime
     df["mode"] = df["mode"].map(MODE_MAPPING)
@@ -131,7 +131,5 @@ def fetch_production_capacity(
 
 if __name__ == "__main__":
     print(
-        fetch_production_capacity(
-            "BR-N", datetime(2021, 1, 1, tzinfo=timezone.utc), Session()
-        )
+        fetch_production_capacity("BR-N", datetime(2021, 1, 1, tzinfo=UTC), Session())
     )

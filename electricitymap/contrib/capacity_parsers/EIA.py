@@ -1,4 +1,5 @@
 import calendar
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from logging import getLogger
 from typing import Any
@@ -10,12 +11,17 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.parsers.EIA import REGIONS
+from electricitymap.contrib.parsers.lib.session import mount_retry
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
 SOURCE = "EIA.gov"
+PAGE_SIZE = 5000
+TIMEOUT_SECONDS = 120
+# Responses take tens of seconds each, so zones are fetched concurrently.
+MAX_WORKERS = 8
 US_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EIA"]
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
@@ -74,6 +80,27 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     return capacity_dict
 
 
+def _fetch_all_pages(url: str, session: Session) -> list[dict[str, Any]]:
+    """Fetch every page of an EIA v2 query.
+
+    Raises on HTTP errors and on error payloads, so that a failed request is
+    not mistaken for a month without data.
+    """
+    rows: list[dict[str, Any]] = []
+    while True:
+        r: Response = session.get(
+            f"{url}&offset={len(rows)}&length={PAGE_SIZE}", timeout=TIMEOUT_SECONDS
+        )
+        r.raise_for_status()
+        json_data = r.json()
+        if "response" not in json_data:
+            raise ValueError(f"Unexpected EIA response: {json_data}")
+        page = json_data["response"].get("data", [])
+        rows.extend(page)
+        if not page or len(rows) >= int(json_data["response"].get("total", 0)):
+            return rows
+
+
 def fetch_production_capacity(
     zone_key: ZoneKey,
     target_datetime: datetime,
@@ -85,12 +112,11 @@ def fetch_production_capacity(
     end_date = target_datetime.replace(
         day=calendar.monthrange(target_datetime.year, target_datetime.month)[1]
     ).strftime("%Y-%m-%d")
-    url = f"{url_prefix}&api_key={API_KEY}&start={start_date}&end={end_date}&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000"
-    r: Response = session.get(url)
-    json_data = r.json()
+    url = f"{url_prefix}&api_key={API_KEY}&start={start_date}&end={end_date}&sort[0][column]=period&sort[0][direction]=desc"
+    rows = _fetch_all_pages(url, session)
 
-    if json_data.get("response", {}).get("data", []) != []:
-        data = pd.DataFrame(json_data["response"]["data"])
+    if rows:
+        data = pd.DataFrame(rows)
         capacity_dict = format_capacity(data, target_datetime)
         logger.info(
             f"Fetched capacity data for {zone_key} at {target_datetime.strftime('%Y-%m')}: \n{capacity_dict}"
@@ -98,23 +124,27 @@ def fetch_production_capacity(
         return capacity_dict
     else:
         logger.warning(
-            f"Failed to fetch capacity data for {zone_key} at {target_datetime.strftime('%Y-%m')}"
+            f"No capacity data for {zone_key} at {target_datetime.strftime('%Y-%m')}"
         )
 
 
 def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ) -> dict[str, Any]:
-    eia_capacity = {}
-    if session is None:
-        session = Session()
-    for zone in US_ZONES:
+    session = mount_retry(session or Session())
+
+    def _fetch_zone(zone: ZoneKey) -> dict[str, Any] | None:
         try:
-            zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-            if zone_capacity:
-                eia_capacity[zone] = zone_capacity
+            return fetch_production_capacity(zone, target_datetime, session)
         except Exception as e:
             logger.error(
                 f"Error fetching production capacity for {zone} at {target_datetime.strftime('%Y-%m')}: {e}"
             )
-    return eia_capacity
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        zone_capacities = executor.map(_fetch_zone, US_ZONES)
+    return {
+        zone: zone_capacity
+        for zone, zone_capacity in zip(US_ZONES, zone_capacities, strict=True)
+        if zone_capacity
+    }

@@ -1,6 +1,6 @@
 import logging
 import math
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
@@ -31,18 +31,18 @@ from electricitymap.contrib.types import DayAheadAuction, MarketAgreementType, Z
 def test_create_exchange():
     exchange = Exchange(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         netFlow=1,
         source="trust.me",
     )
     assert exchange.zoneKey == ZoneKey("AT->DE")
-    assert exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert exchange.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert exchange.netFlow == 1
     assert exchange.source == "trust.me"
 
     exchange = Exchange(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         netFlow=-1,
         source="trust.me",
     )
@@ -54,7 +54,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=None,
             source="trust.me",
         )
@@ -63,7 +63,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=math.nan,
             source="trust.me",
         )
@@ -72,7 +72,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=np.nan,
             source="trust.me",
         )
@@ -90,7 +90,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=1,
             source="trust.me",
         )
@@ -98,7 +98,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("AT-DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=1,
             source="trust.me",
         )
@@ -106,7 +106,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("UNKNOWN->UNKNOWN"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=1,
             source="trust.me",
         )
@@ -114,7 +114,7 @@ def test_raises_if_invalid_exchange():
     with pytest.raises(ValueError):
         Exchange(
             zoneKey=ZoneKey("DE->AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             netFlow=1,
             source="trust.me",
         )
@@ -126,7 +126,7 @@ def test_exchange_static_create_logs_error():
         Exchange.create(
             logger=logger,
             zoneKey=ZoneKey("DER->FR"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             netFlow=-1,
             source="trust.me",
@@ -137,13 +137,13 @@ def test_exchange_static_create_logs_error():
 def test_update_exchange():
     exchange = Exchange(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         netFlow=1,
         source="trust.me",
     )
     new_exchange = Exchange(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         netFlow=2,
         source="trust.me",
     )
@@ -151,7 +151,7 @@ def test_update_exchange():
     assert final_exchange is not None
     assert final_exchange.netFlow == 2
     assert final_exchange.zoneKey == ZoneKey("AT->DE")
-    assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert final_exchange.source == "trust.me"
 
 
@@ -161,7 +161,7 @@ def test_create_scheduled_exchange_derives_net_flow():
     exchange = ScheduledExchange.create(
         logger=logging.getLogger(),
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         end_datetime=None,
         source="trust.me",
         scheduledExport=250.0,
@@ -185,8 +185,8 @@ def test_scheduled_exchange_preserves_both_directions_when_hourly_aggregated():
     exchange = ScheduledExchange.create(
         logger=logging.getLogger(),
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        end_datetime=datetime(2023, 1, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
+        end_datetime=datetime(2023, 1, 1, 1, tzinfo=UTC),
         source="trust.me",
         scheduledExport=100.0,
         scheduledImport=80.0,
@@ -213,7 +213,7 @@ def test_scheduled_exchange_static_create_logs_error():
         exchange = ScheduledExchange.create(
             logger=logger,
             zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             source="trust.me",
             scheduledExport=None,
@@ -227,13 +227,13 @@ def test_scheduled_exchange_static_create_logs_error():
 def test_update_total_production():
     production = TotalProduction(
         zoneKey=ZoneKey("IT-SO"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         value=100,
         source="entsoe",
     )
     new_production = TotalProduction(
         zoneKey=ZoneKey("IT-SO"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         value=150,
         source="entsoe",
     )
@@ -248,13 +248,13 @@ def test_update_total_production():
 def test_update_total_consumption_raises_on_mismatched_zone():
     consumption = TotalConsumption(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         consumption=100,
         source="entsoe",
     )
     new_consumption = TotalConsumption(
         zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         consumption=120,
         source="entsoe",
     )
@@ -266,12 +266,12 @@ def test_update_total_consumption_raises_on_mismatched_zone():
 def test_create_consumption():
     consumption = TotalConsumption(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         consumption=1,
         source="trust.me",
     )
     assert consumption.zoneKey == ZoneKey("DE")
-    assert consumption.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert consumption.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert consumption.consumption == 1
     assert consumption.source == "trust.me"
 
@@ -281,7 +281,7 @@ def test_raises_if_invalid_consumption():
     with pytest.raises(ValueError):
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             consumption=None,
             source="trust.me",
         )
@@ -290,7 +290,7 @@ def test_raises_if_invalid_consumption():
     with pytest.raises(ValueError):
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             consumption=math.nan,
             source="trust.me",
         )
@@ -299,7 +299,7 @@ def test_raises_if_invalid_consumption():
     with pytest.raises(ValueError):
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             consumption=math.nan,
             source="trust.me",
         )
@@ -307,7 +307,7 @@ def test_raises_if_invalid_consumption():
     with pytest.raises(ValueError):
         TotalConsumption(
             zoneKey=ZoneKey("ATT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             consumption=1,
             source="trust.me",
         )
@@ -321,7 +321,7 @@ def test_raises_if_invalid_consumption():
     with pytest.raises(ValueError):
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             consumption=-1,
             source="trust.me",
         )
@@ -333,7 +333,7 @@ def test_static_create_logs_error():
         TotalConsumption.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             consumption=-1,
             source="trust.me",
@@ -344,13 +344,13 @@ def test_static_create_logs_error():
 def test_create_price():
     price = Price(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         price=1,
         source="trust.me",
         currency="EUR",
     )
     assert price.zoneKey == ZoneKey("DE")
-    assert price.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert price.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert price.price == 1
     assert price.source == "trust.me"
     assert price.currency == "EUR"
@@ -361,7 +361,7 @@ def test_invalid_price_raises():
     with pytest.raises(ValueError):
         Price(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             price=None,
             source="trust.me",
             currency="EUR",
@@ -371,7 +371,7 @@ def test_invalid_price_raises():
     with pytest.raises(ValueError):
         Price(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             price=math.nan,
             source="trust.me",
             currency="EUR",
@@ -381,7 +381,7 @@ def test_invalid_price_raises():
     with pytest.raises(ValueError):
         Price(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             price=math.nan,
             source="trust.me",
             currency="EUR",
@@ -390,7 +390,7 @@ def test_invalid_price_raises():
     with pytest.raises(ValueError):
         Price(
             zoneKey=ZoneKey("ATT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             price=1,
             source="trust.me",
             currency="EUR",
@@ -406,7 +406,7 @@ def test_invalid_price_raises():
     with pytest.raises(ValueError):
         Price(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             price=1,
             source="trust.me",
             currency="EURO",
@@ -417,7 +417,7 @@ def test_invalid_price_raises():
 def test_prices_can_be_in_future():
     Price(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 2, tzinfo=UTC),
         price=1,
         source="trust.me",
         currency="EUR",
@@ -427,8 +427,8 @@ def test_prices_can_be_in_future():
 def _day_ahead_price(**overrides) -> DayAheadPrice:
     fields = {
         "zoneKey": ZoneKey("DE"),
-        "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
-        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        "datetime": datetime(2026, 10, 1, tzinfo=UTC),
+        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=UTC),
         "price": 1,
         "source": "trust.me",
         "currency": "EUR",
@@ -440,8 +440,8 @@ def _day_ahead_price(**overrides) -> DayAheadPrice:
 def test_create_day_ahead_price():
     price = _day_ahead_price()
     assert price.to_dict() == {
-        "datetime": datetime(2026, 10, 1, tzinfo=timezone.utc),
-        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=timezone.utc),
+        "datetime": datetime(2026, 10, 1, tzinfo=UTC),
+        "end_datetime": datetime(2026, 10, 1, 1, tzinfo=UTC),
         "zoneKey": ZoneKey("DE"),
         "auction": DayAheadAuction.SDAC,
         "currency": "EUR",
@@ -468,7 +468,7 @@ def test_day_ahead_price_requires_auction():
     with pytest.raises(ValueError):
         DayAheadPrice(
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            datetime=datetime(2026, 10, 1, tzinfo=UTC),
             price=1,
             source="trust.me",
             currency="EUR",
@@ -478,8 +478,8 @@ def test_day_ahead_price_requires_auction():
 @freezegun.freeze_time("2026-10-01")
 def test_day_ahead_price_can_be_in_future():
     _day_ahead_price(
-        datetime=datetime(2026, 10, 5, tzinfo=timezone.utc),
-        end_datetime=datetime(2026, 10, 5, 1, tzinfo=timezone.utc),
+        datetime=datetime(2026, 10, 5, tzinfo=UTC),
+        end_datetime=datetime(2026, 10, 5, 1, tzinfo=UTC),
     )
 
 
@@ -489,10 +489,10 @@ def test_day_ahead_price_timestamps_are_converted_to_utc():
         datetime=datetime(2026, 10, 1, 9, tzinfo=tokyo),
         end_datetime=datetime(2026, 10, 1, 9, 30, tzinfo=tokyo),
     )
-    assert price.datetime == datetime(2026, 10, 1, 0, tzinfo=timezone.utc)
-    assert price.end_datetime == datetime(2026, 10, 1, 0, 30, tzinfo=timezone.utc)
+    assert price.datetime == datetime(2026, 10, 1, 0, tzinfo=UTC)
+    assert price.end_datetime == datetime(2026, 10, 1, 0, 30, tzinfo=UTC)
     for value in (price.datetime, price.end_datetime):
-        assert value.tzinfo == timezone.utc
+        assert value.tzinfo == UTC
 
 
 def test_create_day_ahead_price_logs_error():
@@ -501,7 +501,7 @@ def test_create_day_ahead_price_logs_error():
         price = DayAheadPrice.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            datetime=datetime(2026, 10, 1, tzinfo=UTC),
             end_datetime=None,
             source="trust.me",
             price=None,
@@ -515,14 +515,14 @@ def test_create_day_ahead_price_logs_error():
 def test_create_locational_marginal_price():
     lmp = LocationalMarginalPrice(
         zoneKey=ZoneKey("US-CENT-SWPP"),
-        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        datetime=datetime(2025, 3, 1, tzinfo=UTC),
         price=1,
         source="trust.me",
         currency="USD",
         node="SPPNORTH_HUB",
     )
     assert lmp.zoneKey == ZoneKey("US-CENT-SWPP")
-    assert lmp.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert lmp.datetime == datetime(2025, 3, 1, tzinfo=UTC)
     assert lmp.price == 1
     assert lmp.source == "trust.me"
     assert lmp.currency == "USD"
@@ -548,7 +548,7 @@ def test_invalid_locational_marginal_price_node_raises(node):
     with pytest.raises(ValueError):
         LocationalMarginalPrice(
             zoneKey=ZoneKey("US-CENT-SWPP"),
-            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            datetime=datetime(2025, 3, 1, tzinfo=UTC),
             price=1,
             source="trust.me",
             currency="USD",
@@ -564,7 +564,7 @@ def test_create_grid_alerts():
         source="trust.me",
         alertType=GridAlertType.action,
         message="This is a test message",
-        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        issuedTime=datetime(2025, 3, 1, tzinfo=UTC),
         startTime=None,
         endTime=None,
     )
@@ -574,7 +574,7 @@ def test_create_grid_alerts():
     assert grid_alert.source == "trust.me"
     assert grid_alert.alertType == GridAlertType.action
     assert grid_alert.message == "This is a test message"
-    assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=UTC)
     assert grid_alert.startTime == grid_alert.issuedTime  # because of the default
     assert grid_alert.endTime is None
 
@@ -589,7 +589,7 @@ def test_invalid_message_raises():
             source="trust.me",
             alertType=GridAlertType.action,
             message="",
-            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            issuedTime=datetime(2025, 3, 1, tzinfo=UTC),
             startTime=None,
             endTime=None,
         )
@@ -599,12 +599,12 @@ def test_create_production_breakdown():
     mix = ProductionMix(wind=10)
     breakdown = ProductionBreakdown(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         production=mix,
         source="trust.me",
     )
     assert breakdown.zoneKey == ZoneKey("DE")
-    assert breakdown.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert breakdown.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert breakdown.production is not None
     assert breakdown.production.wind == 10
     assert breakdown.source == "trust.me"
@@ -620,7 +620,7 @@ def test_create_production_breakdown_with_storage():
     )
     breakdown = ProductionBreakdown(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         production=mix,
         storage=storage,
         source="trust.me",
@@ -643,7 +643,7 @@ def test_invalid_breakdown_raises():
     with pytest.raises(ValueError):
         ProductionBreakdown(
             zoneKey=ZoneKey("ATT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             production=mix,
             source="trust.me",
         )
@@ -657,7 +657,7 @@ def test_invalid_breakdown_raises():
     with pytest.raises(ValueError):
         ProductionBreakdown(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             production=ProductionMix(wind=None),
             storage=storage,
             source="trust.me",
@@ -674,7 +674,7 @@ def test_negative_production_gets_corrected():
         breakdown = ProductionBreakdown.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             production=mix,
             source="trust.me",
@@ -701,7 +701,7 @@ def test_self_report_negative_value():
         breakdown = ProductionBreakdown.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             production=mix,
             source="trust.me",
@@ -731,13 +731,13 @@ def test_forecasted_points():
     mix = ProductionMix(wind=10)
     breakdown = ProductionBreakdown(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 2, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 2, 1, tzinfo=UTC),
         production=mix,
         source="trust.me",
         sourceType=EventSourceType.forecasted,
     )
     assert breakdown.zoneKey == ZoneKey("DE")
-    assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=timezone.utc)
+    assert breakdown.datetime == datetime(2023, 2, 1, tzinfo=UTC)
     assert breakdown.production is not None
     assert breakdown.production.wind == 10
     assert breakdown.source == "trust.me"
@@ -750,7 +750,7 @@ def test_non_forecasted_points_in_future():
     with pytest.raises(ValueError):
         _breakdown = ProductionBreakdown(
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 3, 1, tzinfo=UTC),
             production=mix,
             source="trust.me",
         )
@@ -770,17 +770,17 @@ def test_non_forecasted_point_with_timezone_forward():
 
 
 def test_end_datetime_must_be_after_datetime():
-    start = datetime(2023, 1, 1, 12, 0, tzinfo=timezone.utc)
+    start = datetime(2023, 1, 1, 12, 0, tzinfo=UTC)
 
     # Strictly after start is accepted and truncated to whole minutes.
     exchange = Exchange(
         zoneKey=ZoneKey("DK-DK1->DK-DK2"),
         datetime=start,
-        end_datetime=datetime(2023, 1, 1, 13, 0, 45, tzinfo=timezone.utc),
+        end_datetime=datetime(2023, 1, 1, 13, 0, 45, tzinfo=UTC),
         netFlow=1,
         source="trust.me",
     )
-    assert exchange.end_datetime == datetime(2023, 1, 1, 13, 0, tzinfo=timezone.utc)
+    assert exchange.end_datetime == datetime(2023, 1, 1, 13, 0, tzinfo=UTC)
 
     # None is allowed.
     assert (
@@ -808,7 +808,7 @@ def test_end_datetime_must_be_after_datetime():
         Exchange(
             zoneKey=ZoneKey("DK-DK1->DK-DK2"),
             datetime=start,
-            end_datetime=datetime(2023, 1, 1, 11, 0, tzinfo=timezone.utc),
+            end_datetime=datetime(2023, 1, 1, 11, 0, tzinfo=UTC),
             netFlow=1,
             source="trust.me",
         )
@@ -827,7 +827,7 @@ def test_end_datetime_must_be_after_datetime():
 def test_aggregate_takes_earliest_known_end_datetime():
     # Sub-zones can report at different resolutions or without an end_datetime;
     # aggregation keeps the earliest known end instead of failing.
-    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, tzinfo=UTC)
 
     def breakdown(source: str, end_datetime: datetime | None) -> ProductionBreakdown:
         return ProductionBreakdown(
@@ -854,7 +854,7 @@ def test_aggregate_takes_earliest_known_end_datetime():
 def test_aggregate_storage_only_breakdowns():
     # A breakdown may carry storage without production, so an aggregate of
     # such breakdowns has storage and no production mix.
-    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, tzinfo=UTC)
     events = [
         ProductionBreakdown(
             zoneKey=ZoneKey("DE"),
@@ -878,7 +878,7 @@ def test_static_create_logs_error_with_none():
         ProductionBreakdown.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             production=ProductionMix(wind=None),
             source="trust.me",
@@ -892,7 +892,7 @@ def test_static_create_logs_with_nan():
         ProductionBreakdown.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             production=ProductionMix(wind=math.nan),
             source="trust.me",
@@ -906,7 +906,7 @@ def test_static_create_logs_with_nan_using_numpy():
         ProductionBreakdown.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             production=ProductionMix(wind=np.nan),
             source="trust.me",
@@ -917,7 +917,7 @@ def test_static_create_logs_with_nan_using_numpy():
 def test_set_breakdown_all_present():
     breakdown = ProductionBreakdown(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         production=ProductionMix(wind=10, solar=None),
         source="trust.me",
     )
@@ -932,7 +932,7 @@ def test_set_modes_all_present_add_mode():
     mix.add_value("solar", None)
     breakdown = ProductionBreakdown(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         production=mix,
         source="trust.me",
     )
@@ -945,12 +945,12 @@ def test_set_modes_all_present_add_mode():
 def test_create_generation():
     generation = TotalProduction(
         zoneKey=ZoneKey("DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         source="trust.me",
         value=1,
     )
     assert generation.zoneKey == ZoneKey("DE")
-    assert generation.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert generation.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert generation.source == "trust.me"
     assert generation.value == 1
 
@@ -961,7 +961,7 @@ def test_total_production_static_create_logs_error():
         TotalProduction.create(
             logger=logger,
             zoneKey=ZoneKey("DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             value=-1,
             source="trust.me",
@@ -974,7 +974,7 @@ def test_raises_if_invalid_generation():
     with pytest.raises(ValueError):
         TotalProduction(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             value=None,
             source="trust.me",
         )
@@ -983,7 +983,7 @@ def test_raises_if_invalid_generation():
     with pytest.raises(ValueError):
         TotalProduction(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             value=math.nan,
             source="trust.me",
         )
@@ -992,7 +992,7 @@ def test_raises_if_invalid_generation():
     with pytest.raises(ValueError):
         TotalProduction(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             value=np.nan,
             source="trust.me",
         )
@@ -1010,7 +1010,7 @@ def test_raises_if_invalid_generation():
     with pytest.raises(ValueError):
         TotalProduction(
             zoneKey=ZoneKey("ATT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             value=1,
             source="trust.me",
         )
@@ -1019,7 +1019,7 @@ def test_raises_if_invalid_generation():
     with pytest.raises(ValueError):
         TotalProduction(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             value=-1,
             source="trust.me",
         )
@@ -1371,13 +1371,13 @@ def test_update_storage_with_empty_and_new_empty():
 def test_create_exchange_capacity_forecast():
     forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         source="trust.me",
         capacityExport=1000.0,
         capacityImport=900.0,
     )
     assert forecast.zoneKey == ZoneKey("AT->DE")
-    assert forecast.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert forecast.datetime == datetime(2023, 1, 1, tzinfo=UTC)
     assert forecast.source == "trust.me"
     assert forecast.capacityExport == 1000.0
     assert forecast.capacityImport == 900.0
@@ -1389,7 +1389,7 @@ def test_exchange_capacity_forecast_create_defaults_to_published():
     forecast = ExchangeCapacity.create(
         logger=logger,
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         end_datetime=None,
         source="trust.me",
         capacityExport=1000.0,
@@ -1403,7 +1403,7 @@ def test_exchange_capacity_forecast_allows_one_none_capacity():
     # One direction may be None as long as the other is set
     forward_only = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         source="trust.me",
         capacityExport=1000.0,
         capacityImport=None,
@@ -1413,7 +1413,7 @@ def test_exchange_capacity_forecast_allows_one_none_capacity():
 
     reverse_only = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 1, 1, tzinfo=UTC),
         source="trust.me",
         capacityExport=None,
         capacityImport=900.0,
@@ -1437,7 +1437,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
     with pytest.raises(ValueError):
         ExchangeCapacity(
             zoneKey=ZoneKey("DE->AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             source="trust.me",
             capacityExport=1000.0,
             capacityImport=900.0,
@@ -1447,7 +1447,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
     with pytest.raises(ValueError):
         ExchangeCapacity(
             zoneKey=ZoneKey("AT"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             source="trust.me",
             capacityExport=1000.0,
             capacityImport=900.0,
@@ -1457,7 +1457,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
     with pytest.raises(ValueError):
         ExchangeCapacity(
             zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             source="trust.me",
             capacityExport=None,
             capacityImport=None,
@@ -1467,7 +1467,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
     with pytest.raises(ValueError):
         ExchangeCapacity(
             zoneKey=ZoneKey("UNKNOWN->ZONE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             source="trust.me",
             capacityExport=1000.0,
             capacityImport=900.0,
@@ -1480,7 +1480,7 @@ def test_exchange_capacity_forecast_static_create_logs_error():
         ExchangeCapacity.create(
             logger=logger,
             zoneKey=ZoneKey("DE->AT"),  # unsorted
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime=datetime(2023, 1, 1, tzinfo=UTC),
             end_datetime=None,
             source="trust.me",
             capacityExport=1000.0,
@@ -1494,17 +1494,17 @@ def test_exchange_capacity_forecast_allows_future_datetime():
     # Forecasted events can be in the future
     forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
+        datetime=datetime(2023, 3, 1, tzinfo=UTC),
         source="trust.me",
         capacityExport=1000.0,
         capacityImport=900.0,
         sourceType=EventSourceType.forecasted,
     )
-    assert forecast.datetime == datetime(2023, 3, 1, tzinfo=timezone.utc)
+    assert forecast.datetime == datetime(2023, 3, 1, tzinfo=UTC)
 
 
 def test_exchange_capacity_forecast_to_dict():
-    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, tzinfo=UTC)
     forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=dt,

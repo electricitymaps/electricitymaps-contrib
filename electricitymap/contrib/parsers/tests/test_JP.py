@@ -1,7 +1,7 @@
 """Test for JP parsers"""
 
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -287,7 +287,7 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
     rows = fetch_price_day_ahead(
         ZoneKey("JP-TK"),
         session,
-        target_datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+        target_datetime=datetime(2026, 10, 1, tzinfo=UTC),
     )
 
     assert snapshot == rows
@@ -295,12 +295,10 @@ def test_fetch_price_day_ahead(requests_mock, session, snapshot):
     assert len(rows) == 96
     # JST 2026-10-01 Period 1 starts at 00:00 JST.
     first_of_target_day = rows[48]
-    assert first_of_target_day["datetime"] == datetime(
-        2026, 9, 30, 15, tzinfo=timezone.utc
-    )
+    assert first_of_target_day["datetime"] == datetime(2026, 9, 30, 15, tzinfo=UTC)
     assert first_of_target_day["price"] == 24010  # 24.01 JPY/kWh.
-    assert rows[0]["datetime"] == datetime(2026, 9, 29, 15, tzinfo=timezone.utc)
-    assert rows[-1]["end_datetime"] == datetime(2026, 10, 1, 15, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2026, 9, 29, 15, tzinfo=UTC)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 1, 15, tzinfo=UTC)
     for row in rows:
         assert row["end_datetime"] - row["datetime"] == timedelta(minutes=30)
         assert row["datetime"].utcoffset() == timedelta(0)
@@ -316,8 +314,8 @@ def test_fetch_price_day_ahead_live_includes_tomorrow(requests_mock, session):
     rows = fetch_price_day_ahead(ZoneKey("JP-KY"), session)
 
     # Today and tomorrow in JST.
-    assert rows[0]["datetime"] == datetime(2026, 9, 30, 15, tzinfo=timezone.utc)
-    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 15, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2026, 9, 30, 15, tzinfo=UTC)
+    assert rows[-1]["end_datetime"] == datetime(2026, 10, 2, 15, tzinfo=UTC)
     assert len(rows) == 96
 
 
@@ -327,7 +325,7 @@ def test_fetch_price_day_ahead_spans_fiscal_years(requests_mock, session):
     rows = fetch_price_day_ahead(
         ZoneKey("JP-HKD"),
         session,
-        target_datetime=datetime(2026, 4, 1, tzinfo=timezone.utc),
+        target_datetime=datetime(2026, 4, 1, tzinfo=UTC),
     )
 
     assert [request.url for request in requests_mock.request_history] == [
@@ -336,8 +334,8 @@ def test_fetch_price_day_ahead_spans_fiscal_years(requests_mock, session):
     ]
     # JST 2026-03-31 from FY2025 and 2026-04-01 from FY2026.
     assert len(rows) == 96
-    assert rows[0]["datetime"] == datetime(2026, 3, 30, 15, tzinfo=timezone.utc)
-    assert rows[-1]["end_datetime"] == datetime(2026, 4, 1, 15, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2026, 3, 30, 15, tzinfo=UTC)
+    assert rows[-1]["end_datetime"] == datetime(2026, 4, 1, 15, tzinfo=UTC)
 
 
 def test_fetch_price_day_ahead_jp_on_raises(session):
@@ -362,5 +360,5 @@ def test_fetch_price_day_ahead_rejects_unexpected_periods(requests_mock, session
         fetch_price_day_ahead(
             ZoneKey("JP-TK"),
             session,
-            target_datetime=datetime(2026, 10, 1, tzinfo=timezone.utc),
+            target_datetime=datetime(2026, 10, 1, tzinfo=UTC),
         )

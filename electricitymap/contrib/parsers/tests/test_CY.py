@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from requests_mock import GET
@@ -13,7 +13,7 @@ from electricitymap.contrib.types import ZoneKey
 
 @pytest.fixture(autouse=True)
 def target_datetime():
-    yield datetime(2024, 3, 18, 0, 0, 0, tzinfo=timezone.utc)
+    yield datetime(2024, 3, 18, 0, 0, 0, tzinfo=UTC)
 
 
 @pytest.fixture(autouse=True)

@@ -2,7 +2,7 @@
 Poor mans parser timeboxing for Sweden subzones.
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 
 from requests import Session
@@ -30,11 +30,9 @@ def fetch_production(
         ZoneKey("SE-SE3"),
         ZoneKey("SE-SE4"),
     }, f"Zone {zone_key} is not supported by the SE parser."
-    target_datetime = (target_datetime or datetime.now(timezone.utc)).astimezone(
-        timezone.utc
-    )
+    target_datetime = (target_datetime or datetime.now(UTC)).astimezone(UTC)
 
-    if target_datetime < datetime(2022, 1, 1, tzinfo=timezone.utc):
+    if target_datetime < datetime(2022, 1, 1, tzinfo=UTC):
         return fetch_production_esett(zone_key, session, target_datetime, logger)
     else:
         return fetch_production_enstoe(zone_key, session, target_datetime, logger)

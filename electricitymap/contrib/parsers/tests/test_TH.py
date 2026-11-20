@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 from zoneinfo import ZoneInfo
 
@@ -48,7 +48,7 @@ def test_as_localtime_none_returns_bangkok_now():
 
 def test_as_localtime_tz_aware_converts_to_bangkok():
     """A tz-aware UTC datetime is converted to the equivalent Bangkok time."""
-    utc_dt = datetime(2024, 4, 15, 5, 0, tzinfo=timezone.utc)
+    utc_dt = datetime(2024, 4, 15, 5, 0, tzinfo=UTC)
 
     result = _as_localtime(utc_dt)
 
@@ -60,7 +60,7 @@ def test_as_localtime_tz_aware_converts_to_bangkok():
 def test_as_localtime_preserves_instant_across_zones():
     """Same instant expressed in two different tz-aware inputs yields the
     same Bangkok datetime — guards against accidental host-TZ leakage."""
-    utc_dt = datetime(2024, 4, 15, 5, 0, tzinfo=timezone.utc)
+    utc_dt = datetime(2024, 4, 15, 5, 0, tzinfo=UTC)
     cest_dt = datetime(2024, 4, 15, 7, 0, tzinfo=ZoneInfo("Europe/Stockholm"))
 
     assert _as_localtime(utc_dt) == _as_localtime(cest_dt)
