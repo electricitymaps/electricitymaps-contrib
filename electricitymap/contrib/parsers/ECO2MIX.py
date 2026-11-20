@@ -130,7 +130,14 @@ def parse_production_to_df(text):
     df["datetime"] = pd.to_datetime(df["date"]) + pd.to_timedelta(
         df["periode"].astype("int") * 15, unit="minute"
     )
-    df.datetime = df.datetime.dt.tz_localize("Europe/Paris")
+    # The clock changes leave slots which cannot be placed on the timeline:
+    # in spring 02:00-02:45 does not exist, in autumn it happens twice. RTE
+    # still reports values for them, so those rows are dropped rather than
+    # guessed at.
+    df.datetime = df.datetime.dt.tz_localize(
+        "Europe/Paris", ambiguous="NaT", nonexistent="NaT"
+    )
+    df = df[df.datetime.notna()]
     # Set index
     df = df.set_index("datetime").drop(["date", "periode"], axis=1)
     # Remove invalid granularities
@@ -223,7 +230,14 @@ def parse_exchange_to_df(text):
     df["datetime"] = pd.to_datetime(df["date"]) + pd.to_timedelta(
         df["periode"].astype("int") * 15, unit="minute"
     )
-    df.datetime = df.datetime.dt.tz_localize("Europe/Paris")
+    # The clock changes leave slots which cannot be placed on the timeline:
+    # in spring 02:00-02:45 does not exist, in autumn it happens twice. RTE
+    # still reports values for them, so those rows are dropped rather than
+    # guessed at.
+    df.datetime = df.datetime.dt.tz_localize(
+        "Europe/Paris", ambiguous="NaT", nonexistent="NaT"
+    )
+    df = df[df.datetime.notna()]
     # Set index
     df = df.set_index("datetime").drop(["date", "periode"], axis=1)
     # Remove invalid granularities
