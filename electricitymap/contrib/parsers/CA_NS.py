@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any
@@ -35,6 +36,15 @@ def _parse_timestamp(timestamp: str) -> datetime:
     that the three trailing zeros are cut out as well).
     """
     return datetime.fromtimestamp(int(timestamp[6:-5]), tz=timezone.utc)
+
+
+def _find_value(soup: BeautifulSoup, label: str) -> float:
+    """Returns the value (in MW) of the table row with the given label."""
+    return float(
+        soup.find(string=re.compile(rf"^\s*{re.escape(label)}\s*$"))
+        .find_next("td")
+        .string
+    )
 
 
 def fetch_production(
@@ -131,13 +141,20 @@ def fetch_exchange(
         raise ParserException(PARSER, "Unimplemented exchange pair", sorted_zone_keys)
 
     session = session or Session()
-    soup = BeautifulSoup(session.get(EXCHANGE_URL).text, "html.parser")
+    response = session.get(EXCHANGE_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching exchange error code: {response.status_code}",
+            sorted_zone_keys,
+        )
+    soup = BeautifulSoup(response.text, "html.parser")
 
-    # Extract the timestamp from the table header.
+    # Extract the timestamp from the "Last Updated" line below the section header.
     try:
         timestamp = datetime.strptime(
-            soup.find(string="Current System Conditions").find_next("td").em.i.string,
-            "%d-%b-%y %H:%M:%S",
+            soup.find(string="Current System Conditions").find_next("i").string,
+            "%d-%b-%y %H:%M",
         ).replace(tzinfo=ZoneInfo("America/Halifax"))
     except (AttributeError, TypeError, ValueError) as error:
         raise ParserException(
@@ -147,11 +164,11 @@ def fetch_exchange(
     # Choose the appropriate exchange figure for the requested zone pair.
     try:
         exchange = (
-            -float(soup.find(string="NS Export ").find_next("td").string)
+            -_find_value(soup, "NS Export")
             if sorted_zone_keys == ZoneKey("CA-NB->CA-NS")
-            else float(soup.find(string="Maritime Link Import ").find_next("td").string)
+            else _find_value(soup, "Maritime Link Import")
         )
-    except (AttributeError, TypeError) as error:
+    except (AttributeError, TypeError, ValueError) as error:
         raise ParserException(
             PARSER, "unable to extract exchange data", sorted_zone_keys
         ) from error
@@ -174,5 +191,5 @@ if __name__ == "__main__":
     pprint(fetch_production())
     print('fetch_exchange("CA-NS", "CA-NB") ->')
     pprint(fetch_exchange(ZoneKey("CA-NS"), ZoneKey("CA-NB")))
-    print('fetch_exchange("CA-NL-NF", "CA-NS") ->')
-    pprint(fetch_exchange(ZoneKey("CA-NL-NF"), ZoneKey("CA-NS")))
+    print('fetch_exchange("CA-NL", "CA-NS") ->')
+    pprint(fetch_exchange(ZoneKey("CA-NL"), ZoneKey("CA-NS")))
