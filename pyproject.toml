@@ -60,6 +60,7 @@ parsers = [
     "pycountry>=22.3.5,<23",
     "odfpy>=1.4.1,<2",
     "pdfplumber>=0.11,<0.12",
+    "pillow>=13.0.0,<14",
 ]
 
 [dependency-groups]
