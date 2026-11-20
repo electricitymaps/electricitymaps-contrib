@@ -33,8 +33,8 @@ Currently wired (day-ahead horizon):
 - fetch_auction_atc_day_ahead  →  summed ATC across corridors for a border
 """
 
-from datetime import datetime, time, timedelta, timezone
-from enum import Enum
+from datetime import UTC, datetime, time, timedelta
+from enum import StrEnum
 from logging import Logger, getLogger
 
 from requests import Session
@@ -62,14 +62,11 @@ NO_DATA_MESSAGE = "no data found"
 BASE_URL = "https://api.jao.eu/OWSMP"
 
 
-class JaoHorizon(str, Enum):
+class JaoHorizon(StrEnum):
     """Auction horizons served by the API (`GET /OWSMP/gethorizons`)."""
 
     DAY_AHEAD = "Daily"
     INTRADAY = "Intraday"
-
-    def __str__(self) -> str:
-        return self.value
 
 
 # EM exchange zone key → the corridor prefixes making up that border. A single
@@ -142,7 +139,7 @@ def _em_zone_to_jao_prefix(em_exchange_zone: str) -> list[str]:
 
 def _format_utc(dt: datetime) -> str:
     """Format a tz-aware datetime as the `yyyy-MM-dd-HH:mm:ss` string JAO expects."""
-    return dt.astimezone(timezone.utc).strftime("%Y-%m-%d-%H:%M:%S")
+    return dt.astimezone(UTC).strftime("%Y-%m-%d-%H:%M:%S")
 
 
 def _parse_JAO_datetime(value: str) -> datetime:
@@ -162,13 +159,13 @@ def _target_window(
     the total span within the API's 31-day limit.
     """
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
     day_start = datetime.combine(
-        target_datetime.astimezone(timezone.utc).date(),
+        target_datetime.astimezone(UTC).date(),
         time.min,
-        tzinfo=timezone.utc,
+        tzinfo=UTC,
     )
     return day_start - timedelta(days=1), day_start + timedelta(days=days)
 

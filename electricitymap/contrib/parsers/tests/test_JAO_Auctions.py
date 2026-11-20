@@ -3,7 +3,7 @@ import logging
 import os
 import re
 from collections import Counter
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -184,8 +184,8 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
     assert corridors == ["vkl-d1-gb", "vkl-gb-d1"]
     assert result == [
         {
-            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=timezone.utc),
-            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=UTC),
+            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=UTC),
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": 2500.0,
             "capacityImport": 2200.0,
@@ -293,8 +293,8 @@ def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
     assert corridors == ["ch-de", "de-ch"]
     assert result == [
         {
-            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=timezone.utc),
-            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=UTC),
+            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=UTC),
             "sortedZoneKeys": "CH->DE",
             "capacityExport": 3620.0,
             "capacityImport": None,
@@ -340,8 +340,8 @@ def test_fetch_auction_atc_day_ahead_import_only_and_zone_key_ordering(
 
     assert result == [
         {
-            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=timezone.utc),
-            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2026, 7, 27, 22, 0, tzinfo=UTC),
+            "end_datetime": datetime(2026, 7, 27, 23, 0, tzinfo=UTC),
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": None,
             "capacityImport": 1800.0,
@@ -374,7 +374,7 @@ def test_market_period_is_cet_not_border_local_time(requests_mock, session):
         session=session,
         target_datetime=datetime.fromisoformat("2025-10-26T00:00:00+00:00"),
     )
-    assert result[0]["datetime"] == datetime(2025, 10, 25, 22, tzinfo=timezone.utc)
+    assert result[0]["datetime"] == datetime(2025, 10, 25, 22, tzinfo=UTC)
 
     # March capture: CET midnight = 23:00 UTC the previous day. A GB border stamped
     # like this starts at 23:00 the previous evening in London — the clearest sign
@@ -391,7 +391,7 @@ def test_market_period_is_cet_not_border_local_time(requests_mock, session):
         session=session,
         target_datetime=datetime.fromisoformat("2026-03-29T00:00:00+00:00"),
     )
-    assert result[0]["datetime"] == datetime(2026, 3, 28, 23, tzinfo=timezone.utc)
+    assert result[0]["datetime"] == datetime(2026, 3, 28, 23, tzinfo=UTC)
 
 
 def test_fetch_auction_atc_day_ahead_long_dst_day(requests_mock, session):
@@ -416,15 +416,15 @@ def test_fetch_auction_atc_day_ahead_long_dst_day(requests_mock, session):
     assert datetimes == sorted(datetimes)
     assert max(Counter(datetimes).values()) == 1
     # The market day runs 22:00Z 10-25 → 23:00Z 10-26, contiguous throughout.
-    assert datetimes[0] == datetime(2025, 10, 25, 22, tzinfo=timezone.utc)
-    assert datetimes[-1] == datetime(2025, 10, 26, 22, tzinfo=timezone.utc)
-    assert result[-1]["end_datetime"] == datetime(2025, 10, 26, 23, tzinfo=timezone.utc)
+    assert datetimes[0] == datetime(2025, 10, 25, 22, tzinfo=UTC)
+    assert datetimes[-1] == datetime(2025, 10, 26, 22, tzinfo=UTC)
+    assert result[-1]["end_datetime"] == datetime(2025, 10, 26, 23, tzinfo=UTC)
     # The corridor offered a flat 556 MW all day, so any collision between
     # "02:00-03:00" and "02:00-03:00*" would show up as a doubled 1112 MW. The
     # repeated hour lands at 01:00Z, right after its twin at 00:00Z.
     assert {event["capacityExport"] for event in result} == {556.0}
-    assert datetime(2025, 10, 26, 0, tzinfo=timezone.utc) in datetimes
-    assert datetime(2025, 10, 26, 1, tzinfo=timezone.utc) in datetimes
+    assert datetime(2025, 10, 26, 0, tzinfo=UTC) in datetimes
+    assert datetime(2025, 10, 26, 1, tzinfo=UTC) in datetimes
 
 
 def test_fetch_auction_atc_day_ahead_short_dst_day(requests_mock, session):

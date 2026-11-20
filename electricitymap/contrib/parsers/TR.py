@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import urllib.parse
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from itertools import pairwise
 from logging import Logger, getLogger
 from operator import itemgetter
@@ -254,9 +254,7 @@ def fetch_price_day_ahead(
 
     data = fetch_data(target_datetime=target, kind="price", session=session)
     starts = [
-        datetime.fromisoformat(item["date"])
-        .replace(tzinfo=TR_TZ)
-        .astimezone(timezone.utc)
+        datetime.fromisoformat(item["date"]).replace(tzinfo=TR_TZ).astimezone(UTC)
         for item in data
     ]
     # The response has no end or resolution, so check the spacing of the starts

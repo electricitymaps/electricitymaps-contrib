@@ -15,7 +15,7 @@ raises rather than producing an unlabelled breakdown.
 """
 
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from io import BytesIO
 from logging import Logger, getLogger
 from urllib.parse import urljoin
@@ -32,7 +32,7 @@ from electricitymap.contrib.types import ZoneKey
 # BM-086 StartTime/EndTime are expressed in UTC (confirmed by aligning against
 # EirGrid's SmartGridDashboard: SEM-O timestamps sit exactly UTC behind Dublin
 # local time during Irish Summer Time).
-SEMO_TZ = timezone.utc
+SEMO_TZ = UTC
 SOURCE = "sem-o.com"
 
 API_URL = "https://reports.sem-o.com/api/v1/dynamic/BM-086"

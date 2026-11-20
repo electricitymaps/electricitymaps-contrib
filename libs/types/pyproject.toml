@@ -31,3 +31,9 @@ exclude = [
     "**/test_*.py",
 ]
 packages = ["src/electricitymap"]
+
+[tool.ruff]
+extend = "../../pyproject.toml"
+# This package is published separately and still supports Python 3.10
+# (see requires-python), so keep it off 3.11-only syntax like StrEnum.
+target-version = "py310"

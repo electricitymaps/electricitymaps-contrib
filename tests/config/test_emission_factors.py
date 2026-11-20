@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 
@@ -35,7 +35,7 @@ def test_all_emission_factors(snapshot):
 def test_get_zone_specific_co2eq_parameter_identical_return():
     zone_key = "AT"
     year = 2024
-    dt = datetime(year=year, month=1, day=1, tzinfo=timezone.utc)
+    dt = datetime(year=year, month=1, day=1, tzinfo=UTC)
     mode = "coal"
 
     res1 = get_zone_specific_co2eq_parameter(

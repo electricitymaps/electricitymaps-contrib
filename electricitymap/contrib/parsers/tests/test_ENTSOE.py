@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -149,7 +149,7 @@ def _assert_sdac_hours_only(rows: list) -> None:
     assert all(
         row["end_datetime"] - row["datetime"] == timedelta(hours=1) for row in rows
     )
-    assert rows[0]["datetime"] == datetime(2024, 1, 5, 23, tzinfo=timezone.utc)
+    assert rows[0]["datetime"] == datetime(2024, 1, 5, 23, tzinfo=UTC)
     assert (rows[0]["price"], rows[-1]["price"]) == (82.25, 79.87)
 
 
@@ -280,8 +280,8 @@ def test_fetch_exchange_with_aggregated_exchanges(requests_mock, session, snapsh
     )
 
 
-_LAST_HOUR_BEFORE_CALABRIA = datetime(2020, 12, 31, 22, 59, tzinfo=timezone.utc)
-_FIRST_HOUR_OF_CALABRIA = datetime(2020, 12, 31, 23, tzinfo=timezone.utc)
+_LAST_HOUR_BEFORE_CALABRIA = datetime(2020, 12, 31, 22, 59, tzinfo=UTC)
+_FIRST_HOUR_OF_CALABRIA = datetime(2020, 12, 31, 23, tzinfo=UTC)
 
 
 @pytest.mark.parametrize(
@@ -749,7 +749,7 @@ def test_parse_forecast_transfer_capacity_week_ahead_export_direction():
     )
     events = result.events
     assert len(events) == 40
-    dt0 = datetime(2026, 2, 16, 23, 0, tzinfo=timezone.utc)
+    dt0 = datetime(2026, 2, 16, 23, 0, tzinfo=UTC)
     assert events[0].datetime == dt0
     assert events[0].capacityExport == 600.0
     assert events[0].capacityImport is None
@@ -794,7 +794,7 @@ def test_parse_forecast_transfer_capacity_day_ahead_export_direction():
     )
     events = result.events
     assert len(events) == 41
-    dt0 = datetime(2026, 3, 19, 6, 0, tzinfo=timezone.utc)
+    dt0 = datetime(2026, 3, 19, 6, 0, tzinfo=UTC)
     assert events[0].datetime == dt0
     assert events[0].capacityExport == 3006.0
     assert events[0].capacityImport is None
@@ -819,7 +819,7 @@ def test_parse_forecast_transfer_capacity_month_ahead_import_direction():
     )
     events = result.events
     assert len(events) == 62
-    dt0 = datetime(2026, 3, 16, 23, 0, tzinfo=timezone.utc)
+    dt0 = datetime(2026, 3, 16, 23, 0, tzinfo=UTC)
     assert events[0].datetime == dt0
     assert events[0].capacityExport is None
     assert events[0].capacityImport == 2150.0
@@ -907,7 +907,7 @@ def _make_capacity_list(
 def test_merge_forecast_transfer_capacities_carries_market_agreement_type():
     """The contract type travels onto every merged event, not just the inputs."""
     logger = logging.getLogger("test")
-    dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
     zone = ZoneKey("AT->DE")
     forward = _make_capacity_list(
         zone, [dt], [100.0], [None], MarketAgreementType.MONTH_AHEAD
@@ -929,8 +929,8 @@ def test_merge_forecast_transfer_capacities_carries_market_agreement_type():
 def test_merge_forecast_transfer_capacities_both_directions():
     """Both directions present for same datetimes → merged event has both capacities."""
     logger = logging.getLogger("test")
-    dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
-    dt2 = datetime(2023, 1, 1, 1, 0, tzinfo=timezone.utc)
+    dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
+    dt2 = datetime(2023, 1, 1, 1, 0, tzinfo=UTC)
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt1, dt2], [600.0, 500.0], [None, None])
@@ -1079,7 +1079,7 @@ def test_fetch_forecast_transfer_capacity_resolves_zones_absent_from_mappings(
 def test_merge_forecast_transfer_capacities_only_forward():
     """Only forward data → merged events have capacityImport=None."""
     logger = logging.getLogger("test")
-    dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])
@@ -1098,7 +1098,7 @@ def test_merge_forecast_transfer_capacities_only_forward():
 def test_merge_forecast_transfer_capacities_only_reverse():
     """Only reverse data → merged events have capacityExport=None."""
     logger = logging.getLogger("test")
-    dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
     zone_key = ZoneKey("AT->DE")
 
     forward = ForecastTransferCapacityList(logger)
@@ -1117,8 +1117,8 @@ def test_merge_forecast_transfer_capacities_only_reverse():
 def test_merge_forecast_transfer_capacities_non_overlapping_datetimes():
     """Non-overlapping datetime sets → all datetimes present in merged result."""
     logger = logging.getLogger("test")
-    dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
-    dt2 = datetime(2023, 1, 1, 1, 0, tzinfo=timezone.utc)
+    dt1 = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
+    dt2 = datetime(2023, 1, 1, 1, 0, tzinfo=UTC)
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt1], [600.0], [None])
@@ -1141,7 +1141,7 @@ def test_merge_forecast_transfer_capacities_non_overlapping_datetimes():
 def test_merge_forecast_transfer_capacities_prefers_forward_zone_key():
     """When both directions exist, zone key and source are taken from the forward event."""
     logger = logging.getLogger("test")
-    dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    dt = datetime(2023, 1, 1, 0, 0, tzinfo=UTC)
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])

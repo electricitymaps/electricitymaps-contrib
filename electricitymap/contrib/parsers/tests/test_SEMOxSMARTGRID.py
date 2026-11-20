@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from requests_mock import GET
@@ -52,7 +52,7 @@ def _ie(requests_mock, session):
     return fetch_production(
         zone_key=ZoneKey("IE"),
         session=session,
-        target_datetime=datetime(2026, 9, 20, tzinfo=timezone.utc),
+        target_datetime=datetime(2026, 9, 20, tzinfo=UTC),
     )
 
 
@@ -63,7 +63,7 @@ def test_merge_uses_smartgrid_wind_solar_and_semo_rest(requests_mock, session):
 
     events = _ie(requests_mock, session)
     first = next(
-        e for e in events if e["datetime"] == datetime(2026, 9, 20, tzinfo=timezone.utc)
+        e for e in events if e["datetime"] == datetime(2026, 9, 20, tzinfo=UTC)
     )
     p = first["production"]
     # wind/solar come from SmartGrid (resampled), not SEMO's 100/50.
@@ -94,9 +94,7 @@ def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(
 
     events = _ie(requests_mock, session)
     at_0030 = next(
-        e
-        for e in events
-        if e["datetime"] == datetime(2026, 9, 20, 0, 30, tzinfo=timezone.utc)
+        e for e in events if e["datetime"] == datetime(2026, 9, 20, 0, 30, tzinfo=UTC)
     )
     p = at_0030["production"]
     # No SmartGrid data at this timestamp -> wind/solar unset (no SEMO fallback).
@@ -120,9 +118,7 @@ def test_merge_includes_smartgrid_only_timestamps(requests_mock, session):
 
     events = _ie(requests_mock, session)
     at_0200 = next(
-        e
-        for e in events
-        if e["datetime"] == datetime(2026, 9, 20, 2, 0, tzinfo=timezone.utc)
+        e for e in events if e["datetime"] == datetime(2026, 9, 20, 2, 0, tzinfo=UTC)
     )
     p = at_0200["production"]
     # Newest SmartGrid wind/solar are kept even though SEMO has no data here.
@@ -147,9 +143,7 @@ def test_smartgrid_outside_target_window_is_excluded(requests_mock, session):
 
     events = _ie(requests_mock, session)
     assert events
-    assert all(
-        e["datetime"] < datetime(2026, 10, 1, tzinfo=timezone.utc) for e in events
-    )
+    assert all(e["datetime"] < datetime(2026, 10, 1, tzinfo=UTC) for e in events)
 
 
 def test_semo_breakdown_without_wind_solar_when_smartgrid_unavailable(
@@ -203,10 +197,10 @@ def test_smartgrid_only_timestamps_before_semo_are_dropped():
     # wind/solar for the aged-out (older) part. Those timestamps must be dropped,
     # not emitted as incomplete wind/solar-only events. Only forward-lag
     # timestamps (newer than SEMO's latest) are kept.
-    aged_out = datetime(2026, 8, 11, 9, 30, tzinfo=timezone.utc)  # before SEMO
-    t1 = datetime(2026, 8, 11, 10, 0, tzinfo=timezone.utc)
-    t2 = datetime(2026, 8, 11, 10, 30, tzinfo=timezone.utc)
-    forward_lag = datetime(2026, 8, 11, 11, 0, tzinfo=timezone.utc)  # after SEMO
+    aged_out = datetime(2026, 8, 11, 9, 30, tzinfo=UTC)  # before SEMO
+    t1 = datetime(2026, 8, 11, 10, 0, tzinfo=UTC)
+    t2 = datetime(2026, 8, 11, 10, 30, tzinfo=UTC)
+    forward_lag = datetime(2026, 8, 11, 11, 0, tzinfo=UTC)  # after SEMO
 
     semo_events = [
         {"datetime": t1, "production": {"gas": 100.0}, "storage": {}},

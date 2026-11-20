@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from enum import Enum
 
 # Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
@@ -426,7 +426,7 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
             return v
 
         if isinstance(v, str):
-            v = datetime.fromisoformat(v).replace(tzinfo=timezone.utc)
+            v = datetime.fromisoformat(v).replace(tzinfo=UTC)
 
         if v.tzinfo is None or v.tzinfo.utcoffset(v) is None:
             raise ValueError("Datetime must be timezone-aware")

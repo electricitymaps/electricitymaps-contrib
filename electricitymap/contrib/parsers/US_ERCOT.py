@@ -5,7 +5,7 @@ import json
 import re
 import time
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from functools import lru_cache
 from io import BytesIO
@@ -295,7 +295,7 @@ def _interval_start(day: datetime, label: str) -> datetime:
     start = datetime.combine(day.date(), datetime.min.time()) + timedelta(
         minutes=end_minutes - 15
     )
-    return start.replace(tzinfo=TX_TZ, fold=int(repeated_hour)).astimezone(timezone.utc)
+    return start.replace(tzinfo=TX_TZ, fold=int(repeated_hour)).astimezone(UTC)
 
 
 def parse_fuel_mix_sheet(df: pd.DataFrame) -> pd.DataFrame:
@@ -434,12 +434,12 @@ def fetch_production(
 ) -> list:
     session = session or Session()
     if target_datetime is not None and target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
 
     # The live feed only covers today and yesterday
-    if target_datetime is None or target_datetime > datetime.now(
-        timezone.utc
-    ) - timedelta(days=1):
+    if target_datetime is None or target_datetime > datetime.now(UTC) - timedelta(
+        days=1
+    ):
         production = fetch_live_production(
             zone_key=zone_key, session=session, logger=logger
         )
