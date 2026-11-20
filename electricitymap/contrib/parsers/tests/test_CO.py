@@ -4,6 +4,7 @@ from json import loads
 from unittest.mock import patch
 
 import pandas as pd
+import pytest
 from requests_mock import ANY
 
 from electricitymap.contrib.parsers.CO import (
@@ -12,6 +13,7 @@ from electricitymap.contrib.parsers.CO import (
     fetch_price,
     fetch_production,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 mock_files = resources.files("electricitymap.contrib.parsers.tests.mocks.CO")
 
@@ -54,6 +56,17 @@ def test_fetch_production_dt(mock_readdb, snapshot):
     ]
     dt = datetime.fromisoformat("2025-01-01T00:00:00-05:00")
     assert snapshot == fetch_production(target_datetime=dt)
+
+
+@patch("pydataxm.pydataxm.ReadDB")
+def test_fetch_production_without_resources_reports_missing_data(mock_readdb):
+    # The resource list is read first; when the archive has none of it there is
+    # nothing to join the production figures to.
+    readdb = mock_readdb.return_value
+    readdb.request_data.return_value = pd.DataFrame()
+    dt = datetime.fromisoformat("2025-01-01T00:00:00-05:00")
+    with pytest.raises(ParserException, match="no production data available"):
+        fetch_production(target_datetime=dt)
 
 
 @patch("pydataxm.pydataxm.ReadDB")

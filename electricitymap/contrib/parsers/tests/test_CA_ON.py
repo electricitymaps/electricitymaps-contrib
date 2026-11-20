@@ -105,3 +105,73 @@ def test_fetch_production(requests_mock, session, snapshot):
         session=session,
         target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
     )
+
+
+def test_wind_solar_forecasts_fall_back_to_adequacy_report(requests_mock, session):
+    # The VG Forecast Summary report is only archived for three months, so an
+    # older request 404s and the Adequacy report is read instead. It holds one
+    # wind and one solar row per hour, so every hour must come back with both.
+    requests_mock.register_uri(
+        GET,
+        re.compile(
+            r"https://reports-public\.ieso\.ca/public/VGForecastSummary/PUB_VGForecastSummary_\d{8}\.xml"
+        ),
+        status_code=404,
+    )
+    adequacy_report = Path(base_path_to_mock, "adequacy_report_20250228.xml")
+    requests_mock.register_uri(
+        GET,
+        re.compile(
+            r"https://reports-public\.ieso\.ca/public/Adequacy2/PUB_Adequacy2_\d{8}\.xml"
+        ),
+        text=adequacy_report.read_text(),
+    )
+
+    forecasts = fetch_wind_solar_forecasts(
+        zone_key=ZoneKey("CA-ON"),
+        session=session,
+        target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
+    )
+
+    assert len(forecasts) == 24
+    assert {f["datetime"].hour for f in forecasts} == set(range(24))
+    assert all(
+        f["production"]["solar"] is not None and f["production"]["wind"] is not None
+        for f in forecasts
+    )
+
+
+def test_forecasts_skip_days_without_a_report(requests_mock, session):
+    # Both reports are missing for the requested days: the parser must report
+    # nothing instead of failing, and must still walk on to the next day.
+    requests_mock.register_uri(
+        GET,
+        re.compile(
+            r"https://reports-public\.ieso\.ca/public/VGForecastSummary/PUB_VGForecastSummary_\d{8}\.xml"
+        ),
+        status_code=404,
+    )
+    requests_mock.register_uri(
+        GET,
+        re.compile(
+            r"https://reports-public\.ieso\.ca/public/Adequacy2/PUB_Adequacy2_\d{8}\.xml"
+        ),
+        status_code=404,
+    )
+
+    assert (
+        fetch_wind_solar_forecasts(
+            zone_key=ZoneKey("CA-ON"),
+            session=session,
+            target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
+        )
+        == []
+    )
+    assert (
+        fetch_consumption_forecast(
+            zone_key=ZoneKey("CA-ON"),
+            session=session,
+            target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
+        )
+        == []
+    )
