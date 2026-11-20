@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+import pytest
 from requests_mock import POST
 
 from electricitymap.contrib.parsers.PE import API_ENDPOINT, fetch_production
@@ -112,3 +113,68 @@ def test_fetch_production_data_structure(requests_mock, session):
     for _, value in production.items():
         assert isinstance(value, int | float)
         assert value >= 0  # Production values should be non-negative
+
+
+def test_unknown_energy_source_is_skipped_with_a_warning(
+    requests_mock, session, caplog
+):
+    with open(MOCK_DATA_DIR / "response_20250910.json", encoding="utf-8") as f:
+        response = json.load(f)
+    series = response["GraficoTipoCombustible"]["Series"]
+    series.append({**series[0], "Name": "HIDRÓGENO"})
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    assert len(result) > 0
+    assert "Unknown PE energy source 'HIDRÓGENO', skipped" in caplog.text
+
+
+@pytest.mark.parametrize("swapped_labels", [True, False])
+def test_solar_and_bagasse_are_told_apart_by_shape(
+    requests_mock, session, swapped_labels
+):
+    # The fixtures have COES's current labels: solar under BAGAZO, bagasse under SOLAR.
+    with open(MOCK_DATA_DIR / "response_20250910.json", encoding="utf-8") as f:
+        response = json.load(f)
+    if not swapped_labels:
+        for series in response["GraficoTipoCombustible"]["Series"]:
+            series["Name"] = {"BAGAZO": "SOLAR", "SOLAR": "BAGAZO"}.get(
+                series["Name"], series["Name"]
+            )
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    by_hour = {event["datetime"].hour: event["production"] for event in result}
+    assert by_hour[2]["solar"] == 0
+    assert by_hour[12]["solar"] > 500
+    assert 0 < by_hour[12]["biomass"] < 200
+
+
+def test_bagasse_is_not_taken_for_solar_before_peru_had_solar(requests_mock, session):
+    # Before ~2012-10 the solar series (labelled BAGAZO) is 0 all day.
+    with open(MOCK_DATA_DIR / "response_20250910.json", encoding="utf-8") as f:
+        response = json.load(f)
+    for series in response["GraficoTipoCombustible"]["Series"]:
+        if series["Name"] == "BAGAZO":
+            for point in series["Data"]:
+                point["Valor"] = 0
+    requests_mock.register_uri(POST, API_ENDPOINT, json=response)
+
+    result = fetch_production(
+        zone_key=ZoneKey("PE"),
+        session=session,
+        target_datetime=datetime(2025, 9, 10, 12, 0, 0),
+    )
+
+    assert all(event["production"]["solar"] == 0 for event in result)
+    assert all(event["production"]["biomass"] > 0 for event in result)
