@@ -3,115 +3,149 @@
 """Parser for the electricity grid of Chile"""
 
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from logging import Logger, getLogger
-from operator import itemgetter
 from typing import Any
 from zoneinfo import ZoneInfo
 
 from requests import Session
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.session import mount_retry
+from electricitymap.contrib.parsers.lib.utils import get_token
 
-# Historical API
-API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?"
+# Hourly generation per plant from the SIP (Sistema de Información Pública) API, see
+# https://portal.api.coordinador.cl/documentacion?service=sipubv2. History back to at least 2018.
+# Hours are in local time and every day has 24 of them, even when the clocks change.
+#
+# Hours come in a few hours late, large plants first, and are filled in during the next day.
+# Small (PMGD) plants keep coming in for ~6 days after that, but they are <1% of the energy.
+# Whatever is there is returned: the recent hours are low at first, and get corrected by the
+# next fetches and refetches.
+#
+# Days are queried one at a time: a range only covers its last day's first hour.
+API_URL = "https://sipub.api.coordinador.cl/generacion-real/v3/findByDate"
+# ~33k rows per day. The server takes ~1 s per 1k rows, and 15k-row pages fail with a 502.
+PAGE_SIZE = 10_000
+# The API's gateway lets ~1 request through every 3-4 s and answers 429 to the others, also
+# when requests are sequential. Retry patiently, with jitter so that competing requests
+# (parallel refetch chunks) spread out instead of colliding again: up to ~7 minutes per request.
+RETRY = Retry(
+    total=10,
+    backoff_factor=2,
+    backoff_max=60,
+    backoff_jitter=5,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET"],
+)
+# Refetches run all their chunks in parallel, so chunks of a week fetched one day after the
+# other keep the requests from piling up on that rate limit (2 chunks for a 10-day refetch,
+# instead of 11 with daily chunks). A day takes ~30 s.
+REFETCH_DAYS = 7
 
 TIMEZONE = ZoneInfo("Chile/Continental")
 
+# (tipo_tecnologia, subtipo_tecnologia) -> mode
 TYPE_MAPPING = {
-    "hidraulica": "hydro",
-    "termica": "unknown",
-    "eolica": "wind",
-    "solar": "solar",
-    "geotermica": "geothermal",
+    ("Solar", None): "solar",
+    ("Eólica", None): "wind",
+    ("Geotérmica", None): "geothermal",
+    ("Hidráulica", "Pasada"): "hydro",
+    ("Hidráulica", "Embalse"): "hydro",
+    ("Térmica", "Carbón"): "coal",
+    ("Térmica", "PetCoke"): "coal",
+    ("Térmica", "Gas Natural"): "gas",
+    ("Térmica", "Cogeneración"): "gas",
+    ("Térmica", "Diésel"): "oil",
+    ("Térmica", "Fuel Oil"): "oil",
+    ("Térmica", "GLP"): "oil",
+    ("Térmica", "Biomasa"): "biomass",
+    ("Térmica", "BioGas"): "biomass",
+    ("Térmica", "Termosolar"): "solar",
 }
+# Battery rows are either charging ("Retiro") or discharging ("Inyección"), both positive.
+BATTERY_SIGN = {"Retiro": 1, "Inyección": -1}
+
+SOURCE = "coordinador.cl"
 
 
-def production_processor_historical(raw_data):
-    """Takes raw json data and groups by datetime while mapping generation to type.
-    Returns a list of dictionaries.
-    """
-
-    clean_datapoints = []
-    for datapoint in raw_data:
-        clean_datapoint = {}
-        date, hour = datapoint["fecha"], datapoint["hora"]
-        hour -= 1  # `hora` starts at 1
-        parsed_datetime = datetime.fromisoformat(date).replace(
-            tzinfo=TIMEZONE
-        ) + timedelta(hours=hour)
-        clean_datapoint["datetime"] = parsed_datetime
-
-        gen_type_es = datapoint["tipo_central"]
-        mapped_gen_type = TYPE_MAPPING[gen_type_es]
-        value_mw = float(datapoint["generacion_sum"])
-
-        clean_datapoint[mapped_gen_type] = value_mw
-
-        clean_datapoints.append(clean_datapoint)
-
-    combined = defaultdict(dict)
-    for elem in clean_datapoints:
-        combined[elem["datetime"]].update(elem)
-
-    ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
-
-    return ordered_data
+def _query(
+    session: Session, day: date, user_key: str, page: int, page_size: int
+) -> dict[str, Any]:
+    response = session.get(
+        API_URL,
+        params={
+            "startDate": day.isoformat(),
+            "endDate": day.isoformat(),
+            "pageSize": page_size,
+            "page": page,
+            "user_key": user_key,
+        },
+    )
+    response.raise_for_status()
+    return response.json()
 
 
-@refetch_frequency(timedelta(days=1))
+def _fetch_day(session: Session, day: date, user_key: str) -> list[dict[str, Any]]:
+    """Returns the rows (one per plant and hour) of `day`."""
+    rows, page, pages = [], 1, 1
+    while page <= pages:
+        body = _query(session, day, user_key, page, PAGE_SIZE)
+        pages = body["totalPages"]
+        rows += body["data"]
+        page += 1
+    return rows
+
+
+@refetch_frequency(timedelta(days=REFETCH_DAYS))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CL-SEN"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = mount_retry(session or Session(), RETRY)
     if target_datetime:
-        target_datetime_aware = target_datetime.replace(tzinfo=TIMEZONE)
+        last_day = target_datetime.astimezone(TIMEZONE).date()
+        days = [last_day - timedelta(days=n) for n in reversed(range(REFETCH_DAYS))]
     else:
-        target_datetime_aware = datetime.now(tz=TIMEZONE)
-    start = (target_datetime_aware + timedelta(days=-1)).date().isoformat()
-    end = target_datetime_aware.date().isoformat()
+        # Yesterday is still being filled in, so live runs fetch it with today.
+        today = datetime.now(tz=TIMEZONE).date()
+        days = [today - timedelta(days=1), today]
+    user_key = get_token("CL_SEN_SIP_API_KEY")
+    rows = [row for day in days for row in _fetch_day(session, day, user_key)]
 
-    date_component = f"fecha__gte={start}&fecha__lte={end}"
+    production: defaultdict[str, defaultdict[str, float]] = defaultdict(
+        lambda: defaultdict(float)
+    )
+    battery: defaultdict[str, float] = defaultdict(float)
+    unknown_types = set()
+    for row in rows:
+        hour, value = row["fecha_hora"], row["gen_real_mw"] or 0
+        kind = (row["tipo_tecnologia"], row["subtipo_tecnologia"])
+        if kind[0] == "BESS" and kind[1] in BATTERY_SIGN:
+            battery[hour] += BATTERY_SIGN[kind[1]] * value
+        else:
+            if kind not in TYPE_MAPPING:
+                unknown_types.add(kind)
+            production[hour][TYPE_MAPPING.get(kind, "unknown")] += value
 
-    # required for access
-    headers = {
-        "Referer": "https://www.coordinador.cl/operacion/graficos/operacion-real/generacion-real-del-sistema/",
-        "Origin": "https://www.coordinador.cl",
-    }
-
-    s = session or Session()
-    url = API_BASE_URL + date_component
-
-    req = s.get(url, headers=headers)
-    req.raise_for_status()
-    raw_data = req.json()["aggs"]
-    historical_data = production_processor_historical(raw_data)
-
-    """The last 9 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
-    del historical_data[-9:]
+    for kind in unknown_types:
+        logger.warning(f"Unknown CL-SEN technology {kind}, mapped to unknown")
 
     production_list = ProductionBreakdownList(logger)
-
-    for event in historical_data:
-        dt = event.pop("datetime")
-
-        production_mix = ProductionMix()
-        for key, value in event.items():
-            production_mix.add_value(key, value)
-
+    for hour, modes in sorted(production.items()):
         production_list.append(
             zoneKey=zone_key,
-            datetime=dt,
-            production=production_mix,
-            storage=None,
-            source="coordinador.cl",
+            datetime=datetime.fromisoformat(hour).replace(tzinfo=TIMEZONE),
+            production=ProductionMix(**modes),
+            storage=StorageMix(battery=battery.get(hour)),
+            source=SOURCE,
         )
-
     return production_list.to_list()
 
 
@@ -119,5 +153,3 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print("fetch_production() ->")
     print(fetch_production())
-    # For fetching historical data instead, try:
-    print(fetch_production(target_datetime=datetime.strptime("20200220", "%Y%m%d")))
