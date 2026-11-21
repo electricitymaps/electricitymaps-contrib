@@ -15,7 +15,7 @@ def mock_response(requests_mock):
         ANY,
         json=json.loads(
             resources.files("electricitymap.contrib.parsers.tests.mocks.CEB")
-            .joinpath("response.text")
+            .joinpath("response.json")
             .read_text()
         ),
     )

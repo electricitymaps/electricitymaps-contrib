@@ -2,10 +2,9 @@
 
 """Quarter-hourly data parser for Sri Lanka
 Fetches data for the previous day in 15-minute increments
-Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gensum/details
+Data is from the backend for the load curve graph on https://edlcare.edl.lk/gensum/details
 """
 
-import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -14,14 +13,14 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
 TIMEZONE = ZoneInfo("Asia/Colombo")
-GENERATION_BREAKDOWN_URL = "https://cebcare.ceb.lk/GenSum/GetLoadCurveData"
-SOURCE_NAME = "ceb.lk"
+GENERATION_BREAKDOWN_URL = "https://edlcare.edl.lk/api/gensum/load-curve"
+SOURCE_NAME = "edl.lk"
 
 PRODUCTION_MAPPING = {
     "SPP Biomass": "biomass",
@@ -61,18 +60,20 @@ def fetch_production(
             zone_key,
         )
 
-    source_data = json.loads(
-        response.json()
-    )  # Response is double encoded; a JSON array encoded as a JSON string
+    source_data = response.json()
 
     production_data = ProductionBreakdownList(logger)
 
     for quarter_hourly_source_data in source_data:
         production = ProductionMix()
+        storage = StorageMix()
 
         for generation_type, outputInMW in quarter_hourly_source_data.items():
             if generation_type == "DateTime":
                 continue
+            elif generation_type == "BESS":
+                # The source reports discharge as positive, we use positive for charging
+                storage.add_value("battery", -outputInMW)
             elif generation_type in PRODUCTION_MAPPING:
                 production.add_value(PRODUCTION_MAPPING[generation_type], outputInMW)
             else:
@@ -87,6 +88,7 @@ def fetch_production(
                 quarter_hourly_source_data["DateTime"]
             ).replace(tzinfo=TIMEZONE),
             production=production,
+            storage=storage,
             source=SOURCE_NAME,
         )
 

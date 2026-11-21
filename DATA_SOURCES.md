@@ -127,7 +127,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Spain (Melilla): [REE](https://demanda.ree.es/visiona/sistema/melilla5m/)
 - Sweden: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
-- Sri Lanka: [Ceylon Electricity Board](https://cebcare.ceb.lk/gensum/details)
+- Sri Lanka: [National System Operator](https://edlcare.edl.lk/gensum/details)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Thailand: [EGAT](https://www.sothailand.com/sysgen/egat/)
