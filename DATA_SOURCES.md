@@ -415,7 +415,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Sri Lanka
   - Battery storage: [BESS News](https://bessnews.com/projects/2026/09/28/storex-anuradhapura-sri-lanka-bess-10mw-40mwh-national-grid-2026)
   - Biomass, Coal, Hydro, Solar, Wind: [PUCSL](https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf)
-  - Oil: [Ember](https://ember-energy.org/data/yearly-electricity-data/) (before 2026), [PUCSL](https://www.pucsl.gov.lk/wp-content/uploads/2026/08/Renewable-Generation-Report-2026-1st-Quarter.pdf), [PUCSL](https://www.pucsl.gov.lk/wp-content/uploads/2026/08/LTPSDP-Interim-Report-2027_2029-V2.pdf)
+  - Oil: [Ember](https://ember-energy.org/data/yearly-electricity-data/) (before 2026), [PUCSL Renewable Generation Report](https://www.pucsl.gov.lk/wp-content/uploads/2026/08/Renewable-Generation-Report-2026-1st-Quarter.pdf), [PUCSL LTPSDP](https://www.pucsl.gov.lk/wp-content/uploads/2026/08/LTPSDP-Interim-Report-2027_2029-V2.pdf)
 - Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf)
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
