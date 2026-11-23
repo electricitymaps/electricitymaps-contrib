@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from logging import Logger, getLogger
 from typing import Any
 
@@ -91,9 +91,7 @@ def fetch_production(
     production.append(
         zoneKey=zone_key,
         # Using the current utc time because the page returns the current time.
-        datetime=datetime.now(tz=timezone.utc).replace(
-            minute=0, second=0, microsecond=0
-        ),
+        datetime=datetime.now(tz=UTC).replace(minute=0, second=0, microsecond=0),
         source=SOURCE,
         production=ProductionMix(
             unknown=generated,
@@ -128,9 +126,7 @@ def fetch_exchange(
     exchanges = ExchangeList(logger)
     exchanges.append(
         zoneKey=sorted_zone_keys,
-        datetime=datetime.now(tz=timezone.utc).replace(
-            minute=0, second=0, microsecond=0
-        ),
+        datetime=datetime.now(tz=UTC).replace(minute=0, second=0, microsecond=0),
         source=SOURCE,
         netFlow=sum([flows[flow] for flow in EXCHANGE_TO_FLOWS[sorted_zone_keys]]),
     )

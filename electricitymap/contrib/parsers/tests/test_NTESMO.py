@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from json import loads
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -58,7 +58,7 @@ def fixture_session_mock(requests_mock, session) -> tuple[requests.Session, obje
 def test_fetch_production(fixture_session_mock):
     session, requests_mock = fixture_session_mock
 
-    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
+    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=UTC)
     data_list = fetch_production(session=session, target_datetime=historical_datetime)
     assert data_list is not None
 
@@ -85,7 +85,7 @@ def test_fetch_production(fixture_session_mock):
 def test_fetch_price(fixture_session_mock):
     session, requests_mock = fixture_session_mock
 
-    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
+    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=UTC)
     data_list = fetch_price(session=session, target_datetime=historical_datetime)
 
     assert data_list is not None
@@ -116,7 +116,7 @@ def test_fetch_price(fixture_session_mock):
 def test_fetch_consumption(fixture_session_mock):
     session, requests_mock = fixture_session_mock
 
-    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
+    historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=UTC)
     data_list = fetch_consumption(session=session, target_datetime=historical_datetime)
 
     assert data_list is not None

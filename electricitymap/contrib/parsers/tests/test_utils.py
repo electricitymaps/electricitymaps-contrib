@@ -1,5 +1,5 @@
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from unittest import mock
 from zoneinfo import ZoneInfo
 
@@ -39,18 +39,18 @@ def test_get_token():
 
 @freeze_time("2026-10-01 12:34:56")
 def test_to_utc_none_is_now_in_utc():
-    assert tested.to_utc(None) == datetime(2026, 10, 1, 12, 34, 56, tzinfo=timezone.utc)
+    assert tested.to_utc(None) == datetime(2026, 10, 1, 12, 34, 56, tzinfo=UTC)
     assert tested.to_utc(None).utcoffset() == timedelta(0)
 
 
 def test_to_utc_naive_is_assumed_utc():
     assert tested.to_utc(datetime(2026, 9, 30, 22, 30)) == datetime(
-        2026, 9, 30, 22, 30, tzinfo=timezone.utc
+        2026, 9, 30, 22, 30, tzinfo=UTC
     )
-    assert tested.to_utc(datetime(2026, 9, 30, 22, 30)).tzinfo == timezone.utc
+    assert tested.to_utc(datetime(2026, 9, 30, 22, 30)).tzinfo == UTC
 
 
 def test_to_utc_converts_aware_values():
     converted = tested.to_utc(datetime(2026, 10, 1, 0, 30, tzinfo=ZoneInfo("CET")))
-    assert converted == datetime(2026, 9, 30, 22, 30, tzinfo=timezone.utc)
-    assert converted.tzinfo == timezone.utc
+    assert converted == datetime(2026, 9, 30, 22, 30, tzinfo=UTC)
+    assert converted.tzinfo == UTC

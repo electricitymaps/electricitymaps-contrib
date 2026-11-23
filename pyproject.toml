@@ -1,9 +1,9 @@
 [project]
 name = "electricitymap-contrib"
-version = "2.14.2"
+version = "3.0.0"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
-requires-python = ">= 3.10, < 3.14"
+requires-python = ">= 3.11, < 3.14"
 license = "AGPL-3.0-or-later"
 dependencies = [
     "electricitymap-contrib-types",
@@ -28,6 +28,10 @@ members = [".", "libs/types"]
 
 [tool.uv]
 required-version = ">=0.13.4"
+# Supply-chain cooldown: ignore package versions published in the last 3 days,
+# so a compromised or broken release has time to be caught and yanked before
+# it can land in the lockfile.
+exclude-newer = "3 days"
 # The electricitymaps index is for consumers of the published package.
 # For local development, workspace sources take precedence.
 index = [
@@ -56,6 +60,7 @@ parsers = [
     "pycountry>=22.3.5,<23",
     "odfpy>=1.4.1,<2",
     "pdfplumber>=0.11,<0.12",
+    "pillow>=13.0.0,<14",
 ]
 
 [dependency-groups]
@@ -143,7 +148,7 @@ exclude = [
 line-length = 88
 indent-width = 4
 
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.

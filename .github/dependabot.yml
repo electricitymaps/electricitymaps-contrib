@@ -21,6 +21,10 @@ updates:
     allow:
       - dependency-name: 'ruff'
       - dependency-name: 'tzdata'
+    # Match `exclude-newer` in pyproject.toml, or the relock fails to
+    # resolve a release that is less than 3 days old.
+    cooldown:
+      default-days: 3
     reviewers:
       - 'VIKTORVAV99'
 

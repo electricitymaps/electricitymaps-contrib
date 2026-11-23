@@ -1,5 +1,5 @@
 VERSION 0.8
-FROM astral/uv:0.13-python3.10-trixie-slim
+FROM astral/uv:0.13-python3.11-trixie-slim
 WORKDIR /contrib
 
 linting-files:

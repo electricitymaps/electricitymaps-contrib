@@ -1,6 +1,6 @@
 import time
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -43,7 +43,7 @@ class NordpoolToken:
     @property
     def is_expired(self) -> bool:
         # Renew 5 minutes early so the token cannot expire before it is used.
-        return datetime.now(tz=timezone.utc) > self.expiration - timedelta(minutes=5)
+        return datetime.now(tz=UTC) > self.expiration - timedelta(minutes=5)
 
 
 CURRENT_TOKEN: NordpoolToken | None = None
@@ -171,8 +171,7 @@ def _generate_new_nordpool_token(session: Session) -> NordpoolToken:
     token_data = response.json()
     token = NordpoolToken(
         token=token_data["access_token"],
-        expiration=datetime.now(tz=timezone.utc)
-        + timedelta(seconds=token_data["expires_in"]),
+        expiration=datetime.now(tz=UTC) + timedelta(seconds=token_data["expires_in"]),
     )
 
     return token
@@ -438,7 +437,7 @@ def fetch_intraday_contract_statistics(
     cet = ZoneInfo("Europe/Berlin")
 
     if target_datetime is None:
-        now_utc = datetime.now(tz=timezone.utc)
+        now_utc = datetime.now(tz=UTC)
         delivery_dates = [
             (now_utc + timedelta(days=offset)).astimezone(cet).date()
             for offset in range(-1, 3)
@@ -617,6 +616,6 @@ if __name__ == "__main__":
     print(
         fetch_intraday_contract_statistics(
             zone_key=ZoneKey("DE"),
-            target_datetime=datetime.now(tz=timezone.utc),
+            target_datetime=datetime.now(tz=UTC),
         )
     )

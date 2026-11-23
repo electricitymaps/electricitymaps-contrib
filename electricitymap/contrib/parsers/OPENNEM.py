@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from re import fullmatch
 from typing import Any
@@ -177,7 +177,7 @@ def process_production_datasets(
     Process production datasets from v4 API endpoint and return a production breakdown list.
     v4 API format: data[].results[] with columns.fueltech and time series data as [timestamp, value] pairs.
     """
-    now = datetime.now(tz=timezone.utc)
+    now = datetime.now(tz=UTC)
     unmerged_production_breakdown_lists = []
 
     # v4 API format: data[].results[] with columns.fueltech
@@ -357,7 +357,7 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+    target_datetime = target_datetime or datetime.now(tz=UTC)
 
     datasets = _fetch_network_datasets(
         zone_key=zone_key,
@@ -386,7 +386,7 @@ def fetch_consumption(
     forecasted demand; this parser covers observed load only.
     """
     session = session or Session()
-    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+    target_datetime = target_datetime or datetime.now(tz=UTC)
 
     datasets = _fetch_network_datasets(
         zone_key=zone_key,
@@ -695,7 +695,7 @@ def _fetch_network_datasets(
         path=dataset_type,
         network_code=network_code,
         metrics=metrics,
-        target_datetime=target_datetime or datetime.now(tz=timezone.utc),
+        target_datetime=target_datetime or datetime.now(tz=UTC),
         network_region=network_region,
         secondary_grouping=secondary_grouping,
     )
@@ -736,7 +736,7 @@ def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
 def _build_consumption_list(
     datasets, zone_key: ZoneKey, logger: Logger
 ) -> TotalConsumptionList:
-    now = datetime.now(tz=timezone.utc)
+    now = datetime.now(tz=UTC)
     consumption_list = TotalConsumptionList(logger=logger)
     for dataset in datasets:
         if dataset.get("metric") != "demand":

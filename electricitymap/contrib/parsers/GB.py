@@ -10,7 +10,7 @@ PRINT_DETAILS=battery_storage uv run test_parser GB   -> which prints the batter
 
 import os
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from io import BytesIO
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -92,9 +92,9 @@ def fetch_price(
     return prices from day-ahead market data.
     """
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     target_datetime = (
-        now if target_datetime is None else target_datetime.astimezone(timezone.utc)
+        now if target_datetime is None else target_datetime.astimezone(UTC)
     )
     is_today = target_datetime.date() == now.date()
 
@@ -129,7 +129,7 @@ def fetch_price(
                 "Exception when parsing price API response: missing 'date' for daily market data.",
                 zone_key,
             )
-        day = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        day = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=UTC)
 
         for daily_zone_data in daily_market_data:
             zone_code = daily_zone_data.get("perimetre")
@@ -191,7 +191,7 @@ def fetch_wind_forecasts_day_ahead(
     if target_datetime is None:
         sql_query = f"""SELECT * FROM "{NESO_WIND_DAY_AHEAD_FORECAST_DATASET_ID}" ORDER BY "Datetime_GMT" ASC"""
     else:
-        target_datetime = target_datetime.astimezone(timezone.utc)
+        target_datetime = target_datetime.astimezone(UTC)
         start_datetime = target_datetime - timedelta(days=1)
         end_datetime = target_datetime + timedelta(days=1)
         sql_query = f"""SELECT * FROM "{NESO_WIND_DAY_AHEAD_FORECAST_HISTORY_DATASET_ID}" WHERE "Datetime_GMT" >= '{start_datetime.strftime("%Y-%m-%d")}' AND "Datetime_GMT" <= '{end_datetime.strftime("%Y-%m-%d")}' ORDER BY "Datetime_GMT" ASC"""
@@ -214,7 +214,7 @@ def fetch_wind_forecasts_day_ahead(
 
     production_list = ProductionBreakdownList(logger=logger)
     for row in records:
-        dt = datetime.fromisoformat(row["Datetime_GMT"]).replace(tzinfo=timezone.utc)
+        dt = datetime.fromisoformat(row["Datetime_GMT"]).replace(tzinfo=UTC)
 
         production_mix = ProductionMix()
         production_mix.add_value("wind", float(row["Incentive_forecast"]))
@@ -275,7 +275,7 @@ def fetch_consumption_forecast(
     consumption_list = TotalConsumptionList(logger)
     for row in records:
         if target_datetime is None:
-            dt = datetime.fromisoformat(row["GDATETIME"]).replace(tzinfo=timezone.utc)
+            dt = datetime.fromisoformat(row["GDATETIME"]).replace(tzinfo=UTC)
             value = row["NATIONALDEMAND"]
         else:
             dt = datetime.fromisoformat(row["Datetime"]).replace(tzinfo=TIMEZONE)
@@ -306,8 +306,8 @@ def fetch_production(
         end_datetime = datetime.now(tz=ZoneInfo("UTC"))
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
-    elif target_datetime.astimezone(timezone.utc) > datetime(
-        year=2009, month=1, day=1, tzinfo=timezone.utc
+    elif target_datetime.astimezone(UTC) > datetime(
+        year=2009, month=1, day=1, tzinfo=UTC
     ):
         target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
         start_datetime = target_datetime - timedelta(hours=48)
@@ -839,6 +839,6 @@ if __name__ == "__main__":
         print(f"fetch_price({zone_key}) ->")
         print(fetch_price(ZoneKey(zone_key)))
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=UTC)
     print(f"fetch_price(target_datetime={historical_datetime.isoformat()}) ->")
     print(fetch_price(target_datetime=historical_datetime))

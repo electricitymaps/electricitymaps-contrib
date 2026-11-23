@@ -1,6 +1,6 @@
 import os
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from json import loads
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -170,7 +170,7 @@ def test_price_day_ahead_gb(requests_mock, session, snapshot):
     rows = NORDPOOL.fetch_price_day_ahead(
         zone_key=ZoneKey("GB"),
         session=session,
-        target_datetime=datetime(2026, 10, 1, 12, tzinfo=timezone.utc),
+        target_datetime=datetime(2026, 10, 1, 12, tzinfo=UTC),
     )
 
     assert snapshot == rows
@@ -203,7 +203,7 @@ def _register_gb_any(requests_mock):
 @pytest.mark.parametrize(
     "target_datetime",
     [
-        datetime(2026, 9, 30, 22, 30, tzinfo=timezone.utc),
+        datetime(2026, 9, 30, 22, 30, tzinfo=UTC),
         # Naive targets are UTC, not host-local time.
         datetime(2026, 9, 30, 22, 30),
     ],
@@ -260,7 +260,7 @@ def test_cached_token_is_refreshed_once_expired(
         NORDPOOL,
         "CURRENT_TOKEN",
         NORDPOOL.NordpoolToken(
-            token="cached", expiration=datetime.now(timezone.utc) + expires_in
+            token="cached", expiration=datetime.now(UTC) + expires_in
         ),
     )
     _register_gb_any(requests_mock)

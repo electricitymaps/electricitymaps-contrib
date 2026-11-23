@@ -91,18 +91,12 @@ capacity:
       source: bmreports.com
       value: 1687
   hydro storage:
-    - datetime: '2022-01-01'
-      source: bmreports.com
-      value: 1928
-    - datetime: '2023-01-01'
-      source: bmreports.com
-      value: 5603
-    - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 5891
-    - datetime: '2025-01-01'
-      source: bmreports.com
-      value: 11080
+    - _comment: Installed capacity, unchanged 2011-2025. Elexon IGCA overstates
+        pumped storage, so do not overwrite this with capacity_update.
+      _url: https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes
+      datetime: '2022-01-01'
+      source: DUKES 2026, table 5.12
+      value: 2900
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

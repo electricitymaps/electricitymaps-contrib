@@ -1,7 +1,7 @@
 import json
 import os
 import urllib.parse
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import pytest
@@ -102,7 +102,7 @@ def test_padding_completes_boundary_bucket(requests_mock, session):
         json=_make_query_aware_callback(records),
     )
 
-    target_datetime = datetime(2023, 9, 21, 23, 0, tzinfo=timezone.utc)
+    target_datetime = datetime(2023, 9, 21, 23, 0, tzinfo=UTC)
     boundary_dt = datetime(2023, 9, 22, 1, 0, tzinfo=TZ)  # Paris window end
 
     # Read the raw fuel values straight from the mock so the expectation is faithful.
@@ -166,8 +166,7 @@ def test_no_churn_across_shifting_window_edges(requests_mock, session):
 
     # UTC = Paris - 2h (CEST), so Paris 2023-09-22 01:00 == 2023-09-21 23:00Z.
     edges = [
-        datetime(2023, 9, 21, 23, minute, tzinfo=timezone.utc)
-        for minute in (0, 7, 15, 22, 29)
+        datetime(2023, 9, 21, 23, minute, tzinfo=UTC) for minute in (0, 7, 15, 22, 29)
     ]
     per_edge = [
         {
@@ -223,7 +222,7 @@ def test_window_advances_in_15min_steps_without_churn(requests_mock, session, sn
     )
 
     # Paris 01:00 == 23:00Z (CEST = UTC+2); each step advances the window end 15 min.
-    base_end = datetime(2023, 9, 21, 23, 0, tzinfo=timezone.utc)
+    base_end = datetime(2023, 9, 21, 23, 0, tzinfo=UTC)
 
     def fetch_by_dt(step_minutes: int) -> dict:
         return {

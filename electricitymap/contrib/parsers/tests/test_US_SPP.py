@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
@@ -28,7 +28,7 @@ def test_fetch_production():
 
     # Unknown keys must be assigned and summed.
     assert round(datapoint["production"]["unknown"], 2) == 33.1
-    assert datapoint["datetime"] == datetime(2018, 7, 27, 11, 45, tzinfo=timezone.utc)
+    assert datapoint["datetime"] == datetime(2018, 7, 27, 11, 45, tzinfo=UTC)
     assert datapoint["source"] == "spp.org"
     assert datapoint["zoneKey"] == "US-SW-AZPS"
     assert isinstance(datapoint["storage"], dict)

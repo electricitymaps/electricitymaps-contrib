@@ -32,6 +32,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 1135.0
+    - datetime: '2026-07-01'
+      source: EIA.gov
+      value: 1535.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -49,12 +52,6 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
-    - datetime: '2025-12-01'
-      source: EIA.gov
-      value: 531.8
-    - datetime: '2026-05-01'
-      source: EIA.gov
-      value: 242.0
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -62,10 +59,10 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
-    - datetime: '2025-12-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 8339.0
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 8628.8
   geothermal:
@@ -122,17 +119,17 @@ capacity:
       value: 860.7
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 889.3
+      value: 850.1
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 829.5
     - datetime: '2024-06-01'
       source: EIA.gov
-      value: 918.5
+      value: 858.7
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 863.9
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 853.9
-    - datetime: '2025-05-01'
+      value: 839.8
+    - datetime: '2026-01-01'
       source: EIA.gov
       value: 858.7
     - datetime: '2026-05-01'
@@ -262,11 +259,11 @@ capacity:
       value: 4180.9
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 4186.7
+      value: 4187.7
     - datetime: '2025-06-01'
       source: EIA.gov
-      value: 4259.7
-    - datetime: '2025-11-01'
+      value: 4260.7
+    - datetime: '2025-09-01'
       source: EIA.gov
       value: 4375.7
   unknown:

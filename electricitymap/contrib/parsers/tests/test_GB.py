@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -50,7 +50,7 @@ def test_fetch_price_historical(requests_mock, session, snapshot):
         .read_text(),
     )
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=UTC)
     assert snapshot == fetch_price(target_datetime=historical_datetime, session=session)
 
 
@@ -117,7 +117,7 @@ def test_fetch_wind_forecasts_day_ahead_historical(requests_mock, session, snaps
         ),
     )
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=UTC)
     assert snapshot == fetch_wind_forecasts_day_ahead(
         zone_key=ZoneKey("GB"),
         session=session,
@@ -150,7 +150,7 @@ def test_fetch_consumption_forecast_historical(requests_mock, session, snapshot)
         ),
     )
 
-    historical_datetime = datetime(2026, 7, 17, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2026, 7, 17, 12, tzinfo=UTC)
     assert snapshot == fetch_consumption_forecast(
         zone_key=ZoneKey("GB"),
         session=session,
