@@ -103,7 +103,7 @@ def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(
     assert p["gas"] == 190  # SEMO mode still present
 
 
-def test_merge_includes_smartgrid_only_timestamps(requests_mock, session):
+def test_merge_drops_smartgrid_only_timestamps(requests_mock, session):
     _register_mapping(requests_mock)
     requests_mock.register_uri(GET, SEMO_API_URL, json=_bm086())
     # Extra SmartGrid readings at UTC 01:45 + 02:00 (02:45/03:00 Dublin) both fall
@@ -117,14 +117,14 @@ def test_merge_includes_smartgrid_only_timestamps(requests_mock, session):
     )
 
     events = _ie(requests_mock, session)
-    at_0200 = next(
-        e for e in events if e["datetime"] == datetime(2026, 9, 20, 2, 0, tzinfo=UTC)
-    )
-    p = at_0200["production"]
-    # Newest SmartGrid wind/solar are kept even though SEMO has no data here.
-    assert p["wind"] == 500
-    assert p["solar"] == 80
-    assert p.get("gas") is None
+
+    # Only SEMO's timestamps are emitted: no partial wind/solar-only breakdown,
+    # the estimation pipeline fills the SEMO publication lag.
+    assert [e["datetime"] for e in events] == [
+        datetime(2026, 9, 20, 0, 0, tzinfo=UTC),
+        datetime(2026, 9, 20, 0, 30, tzinfo=UTC),
+    ]
+    assert all(e["production"].get("gas") is not None for e in events)
 
 
 def test_smartgrid_outside_target_window_is_excluded(requests_mock, session):
@@ -192,11 +192,10 @@ def test_raises_when_both_sources_unavailable(requests_mock, session):
         _ie(requests_mock, session)
 
 
-def test_smartgrid_only_timestamps_before_semo_are_dropped():
-    # If the window straddles SEMO's retention boundary, SmartGrid still returns
-    # wind/solar for the aged-out (older) part. Those timestamps must be dropped,
-    # not emitted as incomplete wind/solar-only events. Only forward-lag
-    # timestamps (newer than SEMO's latest) are kept.
+def test_merge_emits_only_semo_timestamps():
+    # SmartGrid timestamps outside SEMO's coverage (aged out of BM-086's
+    # retention, or newer than SEM-O's latest publication) are dropped, never
+    # emitted as incomplete wind/solar-only events.
     aged_out = datetime(2026, 8, 11, 9, 30, tzinfo=UTC)  # before SEMO
     t1 = datetime(2026, 8, 11, 10, 0, tzinfo=UTC)
     t2 = datetime(2026, 8, 11, 10, 30, tzinfo=UTC)
@@ -214,11 +213,6 @@ def test_smartgrid_only_timestamps_before_semo_are_dropped():
     }
 
     events = _merge(ZoneKey("IE"), semo_events, wind_solar, logging.getLogger())
-    times = [e["datetime"] for e in events]
 
-    assert aged_out not in times  # aged-out SmartGrid-only dropped
-    assert forward_lag in times  # forward-lag kept
-    # No incomplete (gas-less) event is emitted within SEMO's covered range.
-    assert all(
-        e["production"].get("gas") is not None for e in events if e["datetime"] <= t2
-    )
+    assert [e["datetime"] for e in events] == [t1, t2]
+    assert events[1]["production"] == {"gas": 120.0, "wind": 70.0, "solar": 7.0}

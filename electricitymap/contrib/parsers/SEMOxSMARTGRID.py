@@ -6,20 +6,17 @@ distribution-connected generation. The two agree on the total. This parser
 therefore takes **wind and solar from SmartGridDashboard** and **every other
 mode (and storage) from SEMO**.
 
-SEMO publishes on a 30-minute grid with a ~2-day lag, while SmartGridDashboard
-is 15-minute and near-real-time. SmartGridDashboard's wind/solar are fetched
-over a wider (weekly) window and averaged onto 30-minute timestamps. The output
-covers the union of both grids: where SEMO has caught up the event carries the
-full breakdown, and the most recent timestamps (SEMO not yet published) carry
-SmartGridDashboard wind/solar only.
+SEMO publishes on a 30-minute grid with a lag of ~1.5 days on weekdays and more
+over weekends (no publication on Saturday and Sunday). SmartGridDashboard is
+15-minute and near-real-time; its wind/solar are averaged onto 30-minute
+timestamps. **Only timestamps SEMO covers are emitted**, so every event is a
+full breakdown. The most recent timestamps (SEMO not yet published) are left
+empty and filled downstream by the estimation pipeline, which uses the wind and
+solar forecasts; the daily refetch completes them once SEM-O publishes.
 
 Wind and solar always come from SmartGridDashboard and are never taken from
-SEMO. SEMO defines the breakdown and is required: BM-086 only retains ~3 months,
-so for an older target SEMO returns nothing and the parser returns no data
-(rather than SmartGridDashboard wind/solar on their own) to avoid a refetch
-overwriting a previously stored full breakdown. If SmartGridDashboard is
-unavailable the output carries SEMO's breakdown without wind/solar; a SEMO
-failure is raised.
+SEMO. If SmartGridDashboard is unavailable the output carries SEMO's breakdown
+without wind/solar; a SEMO failure is raised.
 """
 
 from collections import defaultdict
@@ -122,31 +119,18 @@ def _merge(
     wind_solar: dict[datetime, dict[str, float]],
     logger: Logger,
 ) -> list:
-    """Builds events over the union of both grids: SmartGrid wind/solar plus
-    SEMO everything else.
-
-    Timestamps newer than SEMO's latest (the publication lag) still appear,
-    carrying SmartGridDashboard wind/solar only. SmartGrid-only timestamps that
-    are not newer than SEMO's data are dropped so the parser never emits a
-    wind/solar-only event for a period SEMO should (or did) cover.
-    """
-    semo_by_datetime = {event["datetime"]: event for event in semo_events}
-    latest_semo = max(semo_by_datetime) if semo_by_datetime else None
+    """Builds one event per SEMO timestamp: SEMO's breakdown with wind and solar
+    from SmartGridDashboard. SmartGrid timestamps SEMO does not cover are
+    dropped, so the parser never emits a partial (wind/solar-only) breakdown."""
     breakdowns = ProductionBreakdownList(logger=logger)
 
-    for dt in sorted(set(semo_by_datetime) | set(wind_solar)):
-        event = semo_by_datetime.get(dt)
-        if event is None and (latest_semo is None or dt <= latest_semo):
-            continue
-
+    for event in sorted(semo_events, key=lambda e: e["datetime"]):
+        dt = event["datetime"]
         mix = ProductionMix()
-        storage = None
-
-        if event is not None:
-            for mode, value in event["production"].items():
-                if mode not in SMARTGRID_MODES and value is not None:
-                    mix.add_value(mode, value, correct_negative_with_zero=True)
-            storage = StorageMix(**event["storage"]) if event.get("storage") else None
+        for mode, value in event["production"].items():
+            if mode not in SMARTGRID_MODES and value is not None:
+                mix.add_value(mode, value, correct_negative_with_zero=True)
+        storage = StorageMix(**event["storage"]) if event.get("storage") else None
 
         # Wind/solar come only from SmartGridDashboard; a missing value is left
         # unset rather than falling back to SEMO's (lower) metered value.
@@ -205,14 +189,12 @@ def fetch_production(
             zone_key=zone_key,
         ) from error
 
-    # BM-086 only retains ~3 months, so older refetches return nothing. Stop here
-    # instead of emitting SmartGridDashboard wind/solar on their own, which would
-    # overwrite the previously stored SEMO + SmartGridDashboard breakdown.
+    # Nothing to emit without SEMO: SEM-O has not published the window yet (live,
+    # over weekends) or it is beyond BM-086's ~3-month retention (refetch).
     if not semo_events:
         logger.warning(
-            f"SEMOxSMARTGRID: no SEM-O data around "
-            f"{target_datetime:%Y-%m-%d %H:%M} (beyond SEM-O's ~3-month BM-086 "
-            "retention); returning no data to avoid overwriting stored values"
+            f"SEMOxSMARTGRID: no SEM-O data around {target_datetime:%Y-%m-%d %H:%M}"
+            " (not published yet, or beyond BM-086's ~3-month retention)"
         )
         return []
 
