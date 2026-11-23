@@ -14,7 +14,10 @@ Window rules, found by probing the API:
 - It returns only the Paris-local days that fall entirely inside [start_date, end_date].
 - `end_date` can be at most the coming Paris midnight (`PHYSIFLOW_PHFLO_F04` beyond).
 - A window holding no whole day is refused (`PHYSIFLOW_PHFLO_F05`).
-The parser therefore asks for the Paris days before and containing the target.
+The parser therefore asks for the Paris days that hold the 24 hours up to the target
+(the feeder expects `[target - refetch frequency, target]`) and the feeder drops the rest.
+The API serves data back to 2015: hourly until spring 2023, 15-minute since. A window
+longer than about a year is refused (`PHYSIFLOW_PHFLO_F03`).
 """
 
 from datetime import UTC, date, datetime, time, timedelta
@@ -42,6 +45,7 @@ REQUEST_TIMEOUT = 60
 TOKEN_EXPIRY_MARGIN = timedelta(minutes=5)
 
 PARIS = ZoneInfo("Europe/Paris")
+REFETCH_FREQUENCY = timedelta(days=1)
 
 # ASCII EIC codes: the dashes in the API's Swagger enum are mangled.
 FR_EIC = "10YFR-RTE------C"
@@ -90,13 +94,13 @@ def _paris_midnight(day: date) -> datetime:
 
 
 def _query_window(target_datetime: datetime | None) -> tuple[datetime, datetime]:
-    """Paris midnight before the target's day to the Paris midnight after it."""
+    """The Paris days holding the 24 hours up to the target, as the feeder expects."""
     now = datetime.now(PARIS)
-    target_day = (target_datetime or now).astimezone(PARIS).date()
-    start = _paris_midnight(target_day - timedelta(days=1))
+    target = (target_datetime or now).astimezone(PARIS)
+    start = _paris_midnight((target - REFETCH_FREQUENCY).date())
     # The API refuses an end_date beyond the coming midnight.
     end = min(
-        _paris_midnight(target_day + timedelta(days=1)),
+        _paris_midnight(target.date() + timedelta(days=1)),
         _paris_midnight(now.date() + timedelta(days=1)),
     )
     return start, end
@@ -154,7 +158,7 @@ def _net_flows(
     return net_flows
 
 
-@refetch_frequency(timedelta(days=1))
+@refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
