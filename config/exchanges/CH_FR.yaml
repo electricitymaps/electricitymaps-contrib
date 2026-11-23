@@ -2,7 +2,7 @@ lonlat:
   - 6.5
   - 46.7
 parsers:
-  exchange: ENTSOE.fetch_exchange
+  exchange: RTE_PHYSICAL_FLOW.fetch_exchange
   exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
   exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
   exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
