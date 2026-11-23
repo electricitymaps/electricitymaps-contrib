@@ -8,6 +8,7 @@ import openpyxl
 import pytest
 from requests_mock import GET
 
+from electricitymap.contrib.parsers import SEMO
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.SEMO import (
     API_URL,
@@ -85,6 +86,7 @@ def _units_xlsx(units: dict[str, str]) -> bytes:
 
 def _register_mapping(requests_mock, units=FIXTURE_UNITS):
     """Mocks the registered-units page and the xlsx it links to."""
+    SEMO._mapping_cache.clear()
     requests_mock.register_uri(
         GET,
         REGISTERED_UNITS_PAGE_URL,
@@ -237,6 +239,14 @@ def test_mapping_normalises_casing_and_typo(requests_mock, session):
     _register_mapping(requests_mock, {"GU_A": "Wind", "GU_B": "DISTIILLATE"})
     mapping = get_unit_fuel_mapping(session=session)
     assert mapping == {"GU_A": "WIND", "GU_B": "DISTILLATE"}
+
+
+def test_mapping_xlsx_is_parsed_once_per_file(requests_mock, session):
+    _register_mapping(requests_mock, {"GU_A": "GAS"})
+    for _ in range(3):
+        assert get_unit_fuel_mapping(session=session) == {"GU_A": "GAS"}
+    xlsx_calls = [r for r in requests_mock.request_history if r.url == XLSX_URL]
+    assert len(xlsx_calls) == 1
 
 
 def test_mapping_uses_latest_live_xlsx(requests_mock, session):
