@@ -4,6 +4,14 @@ bounding_box:
   - - 81.88101881018812
     - 9.818848129009424
 capacity:
+  battery storage:
+    - _comment:
+        Programme of 13 x 10 MW/40 MWh BESS; the first (Anuradhapura) was connected on this date and the others
+        within the following months
+      _url: https://bessnews.com/projects/2026/09/28/storex-anuradhapura-sri-lanka-bess-10mw-40mwh-national-grid-2026
+      datetime: '2026-09-18'
+      source: BESS News, 2026-09-28
+      value: 130.0
   biomass:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -11,14 +19,20 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 40.0
+    - _comment: Biomass (54 MW) and MSW (10 MW)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 64.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 900.0
-  gas:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 300.0
+    - _comment: Lakvijaya, net capacity
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 810.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -41,6 +55,33 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 1970.0
+    - _comment: Major hydro (1531 MW) and IPP mini hydro (437 MW)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 1968.0
+  oil:
+    - _comment: Ember's other fossil capacity. All non-coal thermal plants in Sri Lanka burn oil products
+      datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 490.0
+    - _comment:
+        Ember's other fossil (490 MW) and gas (300 MW) capacity. Sri Lanka has no LNG import terminal, so the
+        gas-capable plants run on furnace oil or diesel (LTPSDP interim report, table 5)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/08/LTPSDP-Interim-Report-2027_2029-V2.pdf
+      datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 790.0
+    - _comment: Thermal oil, including the Yugadanavi and Sobadhanavi combined cycle plants
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 1296.0
+    - _comment: Thermal oil after the retirement of the 115 MW GT7 unit (LTPSDP interim report, table 6 note)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/08/Renewable-Generation-Report-2026-1st-Quarter.pdf
+      datetime: '2026-04-01'
+      source: PUCSL, Renewable Generation Report Q1 2026
+      value: 1150.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -69,10 +110,11 @@ capacity:
     - datetime: '2025-01-01'
       source: Ember, Yearly electricity data
       value: 2510.0
-  unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 490.0
+    - _comment: IPP solar (253 MW), CEB rooftop (2120 MW) and LECO rooftop (352 MW)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 2725.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -86,6 +128,11 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 270.0
+    - _comment: IPP wind (163 MW) and CEB wind (100 MW)
+      _url: https://www.pucsl.gov.lk/wp-content/uploads/2026/04/Renewable-Generation-Report-Q4-2025.pdf
+      datetime: '2026-01-01'
+      source: PUCSL, Renewable Generation Report Q4 2025
+      value: 263.0
 center_point:
   - 80.81466458315062
   - 7.7135449000821765
