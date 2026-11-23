@@ -30,7 +30,7 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.contrib.parsers.lib.session import mount_retry
+from electricitymap.contrib.parsers.lib.session import DEFAULT_RETRY, mount_retry
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 PARSER = "RTE_PHYSICAL_FLOW.py"
@@ -43,6 +43,9 @@ PHYSICAL_FLOW_URL = (
 REQUEST_TIMEOUT = 60
 # The token lasts an hour. Renew it this long before it expires.
 TOKEN_EXPIRY_MARGIN = timedelta(minutes=5)
+
+# Also retry the OAuth token POST on transient errors.
+RETRY = DEFAULT_RETRY.new(allowed_methods=["GET", "POST"])
 
 PARIS = ZoneInfo("Europe/Paris")
 REFETCH_FREQUENCY = timedelta(days=1)
@@ -96,8 +99,12 @@ def _paris_midnight(day: date) -> datetime:
 def _query_window(target_datetime: datetime | None) -> tuple[datetime, datetime]:
     """The Paris days holding the 24 hours up to the target, as the feeder expects."""
     now = datetime.now(PARIS)
-    target = (target_datetime or now).astimezone(PARIS)
-    start = _paris_midnight((target - REFETCH_FREQUENCY).date())
+    # The API has nothing past now, and refuses a window without a whole day in it.
+    target = min((target_datetime or now).astimezone(PARIS), now)
+    # Subtract in UTC: wall-clock arithmetic in Paris loses an hour across DST.
+    start = _paris_midnight(
+        (target.astimezone(UTC) - REFETCH_FREQUENCY).astimezone(PARIS).date()
+    )
     # The API refuses an end_date beyond the coming midnight.
     end = min(
         _paris_midnight(target.date() + timedelta(days=1)),
@@ -109,16 +116,23 @@ def _query_window(target_datetime: datetime | None) -> tuple[datetime, datetime]
 def _query_physical_flows(
     session: Session, border_eic: str, start: datetime, end: datetime
 ) -> list[dict]:
-    response = session.get(
-        PHYSICAL_FLOW_URL,
-        params={
-            "start_date": start.isoformat(),
-            "end_date": end.isoformat(),
-            "country_eic_code": border_eic,
-        },
-        headers={"Authorization": f"Bearer {_get_access_token(session)}"},
-        timeout=REQUEST_TIMEOUT,
-    )
+    def get():
+        return session.get(
+            PHYSICAL_FLOW_URL,
+            params={
+                "start_date": start.isoformat(),
+                "end_date": end.isoformat(),
+                "country_eic_code": border_eic,
+            },
+            headers={"Authorization": f"Bearer {_get_access_token(session)}"},
+            timeout=REQUEST_TIMEOUT,
+        )
+
+    response = get()
+    if response.status_code == 401:
+        # The cached token was revoked or expired early: get a new one, once.
+        _token_cache.clear()
+        response = get()
     if not response.ok:
         # RTE explains refusals in the body, e.g. PHYSIFLOW_PHFLO_F04.
         raise ParserException(
@@ -126,6 +140,8 @@ def _query_physical_flows(
             f"Physical flow request failed with HTTP {response.status_code}: "
             f"{response.text[:500]}",
         )
+    if response.status_code == 204 or not response.content:
+        return []
     return response.json().get("physical_flows", [])
 
 
@@ -141,7 +157,10 @@ def _net_flows(
             continue
         for point in flow["values"]:
             start = datetime.fromisoformat(point["start_date"]).astimezone(UTC)
-            sent.setdefault(start, {})[sender] = point["value"]
+            sent.setdefault(start, {})
+            # A null value leaves the direction missing, and the interval skipped.
+            if point.get("value") is not None:
+                sent[start][sender] = point["value"]
 
     net_flows: dict[datetime, float] = {}
     for start, by_sender in sorted(sent.items()):
@@ -179,7 +198,7 @@ def fetch_exchange(
     (other,) = others
     first, second = sorted_zone_keys.split("->")
 
-    session = mount_retry(session or Session())
+    session = mount_retry(session or Session(), RETRY)
     start, end = _query_window(target_datetime)
     net_flows = _net_flows(
         _query_physical_flows(session, BORDER_EICS[other], start, end),

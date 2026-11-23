@@ -1,5 +1,4 @@
 import json
-import os
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -17,9 +16,6 @@ from electricitymap.contrib.parsers.RTE_PHYSICAL_FLOW import (
     fetch_exchange,
 )
 
-os.environ["RTE_PHYSICAL_FLOW_CLIENT_ID"] = "dummy-id"
-os.environ["RTE_PHYSICAL_FLOW_CLIENT_SECRET"] = "dummy-secret"
-
 BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/RTE_PHYSICAL_FLOW")
 
 # Real captures of the API for the Paris day of 2026-11-11, trimmed to 07:30-08:15 and
@@ -34,6 +30,12 @@ BORDERS = [
     ("ES", "FR", "ES"),
     ("FR", "IT-NO", "IT-NO"),
 ]
+
+
+@pytest.fixture(autouse=True)
+def rte_credentials(monkeypatch):
+    monkeypatch.setenv("RTE_PHYSICAL_FLOW_CLIENT_ID", "dummy-id")
+    monkeypatch.setenv("RTE_PHYSICAL_FLOW_CLIENT_SECRET", "dummy-secret")
 
 
 @pytest.fixture(autouse=True)
