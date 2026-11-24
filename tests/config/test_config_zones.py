@@ -77,6 +77,22 @@ class TestConfigZones(unittest.TestCase):
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(zone_neighbours, {"DE": ["SE-SE4"], "SE-SE4": ["DE"]})
 
+    def test_generate_zone_neighbours_one_country_with_subzones(self):
+        # An exchange with an aggregate zone (one that has subzones) is left
+        # out of the flow-tracing graph, even when the other zone has none.
+        exchanges = {
+            "DE->SE": {"parsers": {"exchange": "source"}},
+        }
+        zones: dict[ZoneKey, Any] = {
+            ZoneKey("DE"): {},
+            ZoneKey("SE"): {
+                "subZoneNames": ["SE-SE4"],
+            },
+            ZoneKey("SE-SE4"): {},
+        }
+        zone_neighbours = generate_zone_neighbours(zones, exchanges)
+        self.assertDictEqual(zone_neighbours, {})
+
     def test_generate_zone_neighbours_two_subzones(self):
         exchanges = {
             "NO-NO1->SE-SE3": {"parsers": {"exchange": "source"}},
