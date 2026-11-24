@@ -14,7 +14,9 @@ updates:
         update-types: ['version-update:semver-patch']
 
   # Ensure ruff and tzdata is updated.
-  - package-ecosystem: 'pip'
+  # Use the uv ecosystem so uv.lock is relocked alongside pyproject.toml;
+  # the pip ecosystem only edits pyproject.toml.
+  - package-ecosystem: 'uv'
     directory: '/'
     schedule:
       interval: 'monthly'
