@@ -91,9 +91,9 @@ class JaoDataset(StrEnum):
 # where LU is a party (BE_LU, DE_LU, FR_LU) should NOT be wired to this
 # parser to avoid double-counting.
 #
-# These codes are specific to the Publication Tool. The Auction API
-# (JAO_Auctions.py) uses different ones for the same zones — DK-DK1 is "DK1" here
-# but "D1" there. Both are correct for their API; don't unify them.
+# These codes are specific to the Publication Tool. The Auction API, which
+# Electricity Maps' internal feeder now uses for daily explicit auction ATC,
+# has its own codes (DK-DK1 is "DK1" here but "D1" there); don't unify them.
 EM_TO_JAO_ZONE: dict[str, str] = {
     # Italy: JAO publishes a single "IT" code for Core-external borders,
     # which physically corresponds to the Italy North bidding zone.
