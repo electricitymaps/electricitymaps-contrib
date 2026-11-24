@@ -19,6 +19,7 @@ import re
 from datetime import UTC, datetime, timedelta
 from io import BytesIO
 from logging import Logger, getLogger
+from threading import Lock
 from urllib.parse import urljoin
 
 import openpyxl
@@ -175,8 +176,23 @@ def _get_latest_mapping_url(session: Session) -> str:
     return urljoin(REGISTERED_UNITS_PAGE_URL, href)
 
 
+# Parsed registered-units lists by file URL. The xlsx costs ~240 MB to parse
+# and the feeder's refetch runs one call per (zone, day) in parallel threads, so
+# parsing it once per process instead of once per call keeps the refetch job
+# within its memory limit. SEM-O publishes a new file (new URL) roughly monthly.
+_mapping_cache: dict[str, dict[str, str]] = {}
+_mapping_lock = Lock()
+
+
 def _fetch_live_mapping(session: Session) -> dict[str, str]:
     url = _get_latest_mapping_url(session)
+    with _mapping_lock:
+        if url not in _mapping_cache:
+            _mapping_cache[url] = _parse_mapping_xlsx(session, url)
+        return _mapping_cache[url]
+
+
+def _parse_mapping_xlsx(session: Session, url: str) -> dict[str, str]:
     response = session.get(url)
     response.raise_for_status()
     workbook = openpyxl.load_workbook(
