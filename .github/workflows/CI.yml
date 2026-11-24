@@ -51,7 +51,7 @@ jobs:
           python-version: '3.11'
       - name: Install Dependencies
         run: |
-          uv sync --extra parsers
+          uv sync --locked --extra parsers
       - name: Check formatting
         run: |
           uv run ruff format . --check
@@ -81,7 +81,7 @@ jobs:
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Dependencies
         run: |
-          uv sync --group dev --extra parsers
+          uv sync --locked --group dev --extra parsers
       - name: Run tests
         run: |
           uv run test
