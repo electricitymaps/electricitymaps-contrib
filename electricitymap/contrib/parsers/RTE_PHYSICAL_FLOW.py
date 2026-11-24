@@ -47,8 +47,9 @@ REQUEST_TIMEOUT = 60
 # The token lasts an hour. Renew it this long before it expires.
 TOKEN_EXPIRY_MARGIN = timedelta(minutes=5)
 
-# Also retry the OAuth token POST on transient errors.
-RETRY = DEFAULT_RETRY.new(allowed_methods=["GET", "POST"])
+# Also retry the OAuth token POST on transient errors. Once retries run out, hand back
+# the last response so its body (RTE's explanation) reaches the ParserException.
+RETRY = DEFAULT_RETRY.new(allowed_methods=["GET", "POST"], raise_on_status=False)
 
 PARIS = ZoneInfo("Europe/Paris")
 REFETCH_FREQUENCY = timedelta(days=1)
@@ -90,6 +91,8 @@ def _get_access_token(session: Session) -> str:
             f"{response.text[:500]}",
         )
     payload = response.json()
+    if not isinstance(payload, dict) or not payload.get("access_token"):
+        raise ParserException(PARSER, "Token response holds no access_token")
     lifetime = timedelta(seconds=int(payload.get("expires_in", 3600)))
     _token_cache["access_token"] = payload["access_token"]
     _token_cache["expires_at"] = datetime.now(UTC) + lifetime - TOKEN_EXPIRY_MARGIN
@@ -146,7 +149,7 @@ def _query_physical_flows(
         )
     if response.status_code == 204 or not response.content:
         return []
-    return response.json().get("physical_flows", [])
+    return response.json().get("physical_flows") or []
 
 
 def _direction_exchanges(
@@ -154,13 +157,19 @@ def _direction_exchanges(
 ) -> ExchangeList:
     """One direction's points as signed net flows along sorted_zone_keys.
 
-    Each point ends one step after its start, the step being the smallest spacing
-    between the direction's starts (RTE's own `end_date` reads an hour later).
+    Each point ends one step after its start, the step being the smaller spacing to
+    its neighbouring starts (RTE's own `end_date` reads an hour later). Taking it per
+    point keeps hourly points an hour long in a window that also holds 15-minute data
+    (spring 2023), while the point just before a hole keeps its 15 minutes.
     """
     starts = sorted(
         {datetime.fromisoformat(v["start_date"]).astimezone(UTC) for v in values}
     )
-    step = min((b - a for a, b in pairwise(starts)), default=None)
+    gaps = [b - a for a, b in pairwise(starts)]
+    steps = {
+        start: min(gaps[max(i - 1, 0) : i + 1], default=None)
+        for i, start in enumerate(starts)
+    }
 
     exchanges = ExchangeList(logger)
     for value in values:
@@ -170,6 +179,7 @@ def _direction_exchanges(
             continue
         start = datetime.fromisoformat(value["start_date"]).astimezone(UTC)
         end = datetime.fromisoformat(value["end_date"]).astimezone(UTC)
+        step = steps[start]
         exchanges.append(
             zoneKey=sorted_zone_keys,
             datetime=start,

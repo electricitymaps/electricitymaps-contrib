@@ -198,3 +198,27 @@ def test_fetch_exchange_api_error_surfaces_rte_body(requests_mock, session):
 
     assert "dummy-secret" not in str(error.value)
     assert "dummy-token" not in str(error.value)
+
+
+def test_hourly_points_keep_their_hour_next_to_quarter_hour_data():
+    """A window across the spring 2023 switch holds hourly then 15-minute data:
+    each point lasts its own step, not the smallest one in the window."""
+    values = [
+        {"start_date": start, "end_date": end, "value": 100}
+        for start, end in [
+            ("2023-04-01T22:00:00+02:00", "2023-04-01T23:00:00+02:00"),
+            ("2023-04-01T23:00:00+02:00", "2023-04-02T00:00:00+02:00"),
+            ("2023-04-02T00:00:00+02:00", "2023-04-02T01:00:00+02:00"),
+            ("2023-04-02T00:15:00+02:00", "2023-04-02T01:15:00+02:00"),
+        ]
+    ]
+    result = RTE_PHYSICAL_FLOW._direction_exchanges(
+        values, 1, ZoneKey("BE->FR"), RTE_PHYSICAL_FLOW.getLogger()
+    ).to_list()
+
+    assert [e["end_datetime"] - e["datetime"] for e in result] == [
+        timedelta(hours=1),
+        timedelta(hours=1),
+        timedelta(minutes=15),
+        timedelta(minutes=15),
+    ]
