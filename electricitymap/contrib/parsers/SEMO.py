@@ -2,8 +2,9 @@
 Northern Ireland (GB-NIR).
 
 Production is derived from SEM-O's BM-086 "Aggregated Data Report" which
-publishes metered generation (MW) per registered unit for every half-hour
-settlement period, tagged with a ``Jurisdiction`` (``ROI`` -> IE, ``NI`` ->
+publishes metered generation per registered unit for every half-hour
+settlement period (``MeteredMW`` is the period's energy in MWh despite its
+name, so it is divided by the period's length to get the average MW), tagged with a ``Jurisdiction`` (``ROI`` -> IE, ``NI`` ->
 GB-NIR). BM-086 does not carry a fuel type, so each ``ResourceName`` is joined
 to SEM-O's "List of Registered Units" spreadsheet to obtain its fuel type,
 which is then mapped to an Electricity Maps production mode.
@@ -37,6 +38,7 @@ SEMO_TZ = UTC
 SOURCE = "sem-o.com"
 
 API_URL = "https://reports.sem-o.com/api/v1/dynamic/BM-086"
+BM086_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 # Page that links the current "List of Registered Units" spreadsheet.
 REGISTERED_UNITS_PAGE_URL = "https://www.sem-o.com/markets/balancing-market-overview/joining-the-balancing-market"
 PAGE_SIZE = 5000
@@ -286,9 +288,21 @@ def fetch_production_range(
             continue
         if JURISDICTION_TO_ZONE.get(item.get("Jurisdiction")) != zone_key:
             continue
-        value = item.get("MeteredMW")
-        if value is None:
+        metered_mwh = item.get("MeteredMW")
+        if metered_mwh is None:
             continue
+        # MeteredMW is the energy over the settlement period (MWh), not the
+        # average power: with 30-min periods, big units peak at half their
+        # capacity and BM-086 wind is ~half of SmartGridDashboard's. Divide by
+        # the period's length, so a move to 15-min periods stays correct.
+        start = datetime.strptime(item["StartTime"], BM086_TIME_FORMAT)
+        end = datetime.strptime(item["EndTime"], BM086_TIME_FORMAT)
+        # EndTime is either inclusive (...:29:59) or exclusive (...:30:00).
+        period_minutes = round((end - start).total_seconds() / 60)
+        if period_minutes <= 0:
+            logger.warning(f"SEMO: skipping {item} with an empty settlement period")
+            continue
+        value = metered_mwh * 60 / period_minutes
 
         resource = item.get("ResourceName")
         fuel = UNIT_FUEL_OVERRIDES.get(resource) or unit_fuel.get(resource)
@@ -302,13 +316,11 @@ def fetch_production_range(
         elif fuel in SKIPPED_FUELS:
             continue
 
-        dt = datetime.strptime(item["StartTime"], "%Y-%m-%dT%H:%M:%S").replace(
-            tzinfo=SEMO_TZ
-        )
+        dt = start.replace(tzinfo=SEMO_TZ)
 
         if fuel in FUEL_TO_STORAGE:
             storage = storage_mixes.setdefault(dt, StorageMix())
-            # BM-086 MeteredMW is positive when generating (discharging) and
+            # BM-086 values are positive when generating (discharging) and
             # negative when charging; StorageMix uses the opposite sign.
             storage.add_value(FUEL_TO_STORAGE[fuel], -value)
         else:
