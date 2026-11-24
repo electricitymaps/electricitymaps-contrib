@@ -1,4 +1,5 @@
 import json
+import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -139,17 +140,24 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == results
 
 
-def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session):
+def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session, monkeypatch):
     """A naive target is UTC, whatever the machine's timezone: it asks for the same
-    Paris days as the aware target."""
+    Paris days as the aware target. At UTC+14, reading it as local time would put
+    the target on the previous Paris day."""
     _mock_api(requests_mock)
 
-    fetch_exchange(
-        ZoneKey("DE"),
-        ZoneKey("FR"),
-        session=session,
-        target_datetime=TARGET_DATETIME.replace(tzinfo=None),
-    )
+    try:
+        with monkeypatch.context() as patched:
+            patched.setenv("TZ", "Pacific/Kiritimati")
+            time.tzset()
+            fetch_exchange(
+                ZoneKey("DE"),
+                ZoneKey("FR"),
+                session=session,
+                target_datetime=TARGET_DATETIME.replace(tzinfo=None),
+            )
+    finally:
+        time.tzset()
 
     (query,) = [r.qs for r in requests_mock.request_history if r.method == "GET"]
     assert query["start_date"] == ["2026-11-10t00:00:00+01:00"]
