@@ -110,6 +110,11 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
         steps = {b - a for a, b in zip(datetimes, datetimes[1:], strict=False)}
         assert steps == {timedelta(minutes=15), GAP_END - datetimes[3]}
         assert not [d for d in datetimes if GAP_START <= d < GAP_END]
+        # Each point lasts one 15-minute step, not the hour RTE's end_date claims,
+        # including the one before the hole and the last one.
+        assert all(
+            e["end_datetime"] == e["datetime"] + timedelta(minutes=15) for e in result
+        )
 
     # DE->FR and BE->FR are negative (France imports), FR->IT-NO and ES->FR positive.
     assert results["DE->FR"][0]["netFlow"] == -2570
@@ -132,6 +137,23 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
     )
 
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == results
+
+
+def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session):
+    """A naive target is UTC, whatever the machine's timezone: it asks for the same
+    Paris days as the aware target."""
+    _mock_api(requests_mock)
+
+    fetch_exchange(
+        ZoneKey("DE"),
+        ZoneKey("FR"),
+        session=session,
+        target_datetime=TARGET_DATETIME.replace(tzinfo=None),
+    )
+
+    (query,) = [r.qs for r in requests_mock.request_history if r.method == "GET"]
+    assert query["start_date"] == ["2026-11-10t00:00:00+01:00"]
+    assert query["end_date"] == ["2026-11-12t00:00:00+01:00"]
 
 
 def test_fetch_exchange_unsupported_border_raises(requests_mock, session):

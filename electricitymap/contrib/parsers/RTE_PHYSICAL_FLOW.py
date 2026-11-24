@@ -5,10 +5,12 @@ It needs an application on data.rte-france.com: set `RTE_PHYSICAL_FLOW_CLIENT_ID
 `RTE_PHYSICAL_FLOW_CLIENT_SECRET` to its client ID and secret.
 
 The API publishes one value per direction every 15 minutes, stamped with the interval
-start (its `end_date` reads one hour later, but averaging four consecutive values gives
-the hourly ENTSO-E figure). Each interval carries both directions of a border, one of
-them 0. Points are stored exactly as published: no averaging, no resampling, no filling
-of the intervals RTE skips (the API has a recurring gap, at times a couple of hours).
+start. Its `end_date` reads one hour later, but averaging four consecutive values gives
+the hourly ENTSO-E figure, so each point is stored as lasting one step (15 minutes, or
+an hour for the older hourly data). Each interval carries both directions of a border,
+one of them 0; an interval missing a direction is dropped. Values are stored exactly
+as published: no averaging, no resampling, no filling of the intervals RTE skips (the
+API has a recurring gap, at times a couple of hours).
 
 Window rules, found by probing the API:
 - It returns only the Paris-local days that fall entirely inside [start_date, end_date].
@@ -21,6 +23,7 @@ longer than about a year is refused (`PHYSIFLOW_PHFLO_F03`).
 """
 
 from datetime import UTC, date, datetime, time, timedelta
+from itertools import pairwise
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -31,7 +34,7 @@ from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.session import DEFAULT_RETRY, mount_retry
-from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.parsers.lib.utils import get_token, to_utc
 
 PARSER = "RTE_PHYSICAL_FLOW.py"
 SOURCE = "rte-france.com"
@@ -100,7 +103,7 @@ def _query_window(target_datetime: datetime | None) -> tuple[datetime, datetime]
     """The Paris days holding the 24 hours up to the target, as the feeder expects."""
     now = datetime.now(PARIS)
     # The API has nothing past now, and refuses a window without a whole day in it.
-    target = min((target_datetime or now).astimezone(PARIS), now)
+    target = min(to_utc(target_datetime).astimezone(PARIS), now)
     # Subtract in UTC: wall-clock arithmetic in Paris loses an hour across DST.
     start = _paris_midnight(
         (target.astimezone(UTC) - REFETCH_FREQUENCY).astimezone(PARIS).date()
@@ -145,36 +148,62 @@ def _query_physical_flows(
     return response.json().get("physical_flows", [])
 
 
+def _direction_exchanges(
+    values: list[dict], net_sign: int, sorted_zone_keys: ZoneKey, logger: Logger
+) -> ExchangeList:
+    """One direction's points as signed net flows along sorted_zone_keys.
+
+    Each point ends one step after its start, the step being the smallest spacing
+    between the direction's starts (RTE's own `end_date` reads an hour later).
+    """
+    starts = sorted(
+        {datetime.fromisoformat(v["start_date"]).astimezone(UTC) for v in values}
+    )
+    step = min((b - a for a, b in pairwise(starts)), default=None)
+
+    exchanges = ExchangeList(logger)
+    for value in values:
+        # A null value leaves this direction without the interval, and the merge
+        # then drops it.
+        if value.get("value") is None:
+            continue
+        start = datetime.fromisoformat(value["start_date"]).astimezone(UTC)
+        end = datetime.fromisoformat(value["end_date"]).astimezone(UTC)
+        exchanges.append(
+            zoneKey=sorted_zone_keys,
+            datetime=start,
+            end_datetime=end if step is None else min(start + step, end),
+            netFlow=net_sign * value["value"],
+            source=SOURCE,
+        )
+    return exchanges
+
+
 def _net_flows(
-    physical_flows: list[dict], zone_key1: str, zone_key2: str, logger: Logger
-) -> dict[datetime, float]:
-    """Net flow zone_key1 -> zone_key2 per interval start (UTC), in MW."""
-    sent: dict[datetime, dict[str, float]] = {}
+    physical_flows: list[dict], sorted_zone_keys: ZoneKey, logger: Logger
+) -> ExchangeList:
+    """Net flow along sorted_zone_keys: the first zone's sending minus the second's.
+
+    An interval only one direction covers is dropped, with a single warning.
+    """
+    first, second = sorted_zone_keys.split("->")
+    values_by_sender: dict[str, list[dict]] = {first: [], second: []}
     for flow in physical_flows:
         sender = EIC_TO_ZONE.get(flow["sender_country_eic_code"])
         receiver = EIC_TO_ZONE.get(flow["receiver_country_eic_code"])
-        if {sender, receiver} != {zone_key1, zone_key2}:
-            continue
-        for point in flow["values"]:
-            start = datetime.fromisoformat(point["start_date"]).astimezone(UTC)
-            sent.setdefault(start, {})
-            # A null value leaves the direction missing, and the interval skipped.
-            if point.get("value") is not None:
-                sent[start][sender] = point["value"]
+        if {sender, receiver} == {first, second}:
+            values_by_sender[sender].extend(flow["values"])
 
-    net_flows: dict[datetime, float] = {}
-    for start, by_sender in sorted(sent.items()):
-        if len(by_sender) != 2:
-            logger.warning(
-                {
-                    "message": "RTE physical flow interval lacks one direction, skipped",
-                    "zone_key": f"{zone_key1}->{zone_key2}",
-                    "datetime": start.isoformat(),
-                }
-            )
-            continue
-        net_flows[start] = by_sender[zone_key1] - by_sender[zone_key2]
-    return net_flows
+    return ExchangeList.merge_exchanges(
+        [
+            _direction_exchanges(values_by_sender[first], 1, sorted_zone_keys, logger),
+            _direction_exchanges(
+                values_by_sender[second], -1, sorted_zone_keys, logger
+            ),
+        ],
+        logger,
+        drop_non_matching_datetimes=True,
+    )
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -196,17 +225,15 @@ def fetch_exchange(
             sorted_zone_keys,
         )
     (other,) = others
-    first, second = sorted_zone_keys.split("->")
 
     session = mount_retry(session or Session(), RETRY)
     start, end = _query_window(target_datetime)
     net_flows = _net_flows(
         _query_physical_flows(session, BORDER_EICS[other], start, end),
-        first,
-        second,
+        sorted_zone_keys,
         logger,
     )
-    if not net_flows:
+    if len(net_flows) == 0:
         logger.warning(
             {
                 "message": "RTE physical flow returned no data",
@@ -215,16 +242,7 @@ def fetch_exchange(
                 "end": end.isoformat(),
             }
         )
-
-    exchanges = ExchangeList(logger)
-    for datetime_utc, net_flow in net_flows.items():
-        exchanges.append(
-            zoneKey=sorted_zone_keys,
-            datetime=datetime_utc,
-            netFlow=net_flow,
-            source=SOURCE,
-        )
-    return exchanges.to_list()
+    return net_flows.to_list()
 
 
 if __name__ == "__main__":
