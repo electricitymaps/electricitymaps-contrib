@@ -1,5 +1,5 @@
 import json
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from importlib import resources
 from io import BytesIO
 from zoneinfo import ZoneInfo
@@ -152,8 +152,9 @@ def test_start_time_is_interpreted_as_utc(requests_mock, session):
     assert events[0]["datetime"] == datetime(2026, 9, 20, 0, 0, tzinfo=UTC)
 
 
-def _bm086_rows(rows):
-    """Builds a BM-086 response from ``(resource, start_time, metered_mw)`` tuples."""
+def _bm086_rows(rows, period=timedelta(minutes=30)):
+    """Builds a BM-086 response from ``(resource, start_time, metered_mwh)``
+    tuples. EndTime is inclusive (``...:29:59``), as BM-086 mostly reports it."""
     items = [
         {
             "TradeDate": "2026-09-20",
@@ -161,7 +162,9 @@ def _bm086_rows(rows):
             "ResourceName": rn,
             "ResourceType": "GEN",
             "StartTime": st,
-            "EndTime": st,
+            "EndTime": (
+                datetime.fromisoformat(st) + period - timedelta(seconds=1)
+            ).isoformat(),
             "Jurisdiction": "ROI",
             "MeteredMW": mw,
         }
@@ -199,8 +202,8 @@ def test_fetch_production_deduplicates_settlement_runs(requests_mock, session):
         end_datetime=END,
     )
     production = events[0]["production"]
-    assert production["wind"] == 100  # not 200
-    assert production["gas"] == 249  # 200 + 49 (last of each), not 349
+    assert production["wind"] == 200  # 100 MWh x 2, not summed (400)
+    assert production["gas"] == 498  # (200 + 49) x 2 (last of each), not 698
 
 
 def test_coal_peat_units_overridden_by_resource_name(requests_mock, session):
@@ -220,10 +223,47 @@ def test_coal_peat_units_overridden_by_resource_name(requests_mock, session):
         end_datetime=END,
     )
     production = events[0]["production"]
-    assert production["oil"] == 250  # Moneypoint COAL -> oil
-    assert production["biomass"] == 60  # Edenderry PEAT -> biomass
+    assert production["oil"] == 500  # Moneypoint COAL -> oil
+    assert production["biomass"] == 120  # Edenderry PEAT -> biomass
     assert production.get("coal") is None
     assert production.get("unknown") is None
+
+
+def test_metered_mwh_per_half_hour_is_converted_to_mw(requests_mock, session):
+    # MeteredMW is the energy over the 30-min settlement period (MWh): a unit
+    # running flat out at 400 MW reports 200.
+    _register_mapping(requests_mock, {"GU_A": "GAS", "GU_B": "BATTERY"})
+    st = "2026-09-20T00:00:00"
+    requests_mock.register_uri(
+        GET, API_URL, json=_bm086_rows([("GU_A", st, 200.0), ("GU_B", st, -10.0)])
+    )
+    event = fetch_production_range(
+        zone_key=ZoneKey("IE"),
+        session=session,
+        start_datetime=START,
+        end_datetime=END,
+    )[0]
+    assert event["production"]["gas"] == 400
+    assert event["storage"]["battery"] == 20  # charging 20 MW
+
+
+def test_metered_mwh_is_divided_by_the_settlement_period(requests_mock, session):
+    # Robust to a move to 15-min settlement periods: 100 MWh in 15 min = 400 MW.
+    _register_mapping(requests_mock, {"GU_A": "GAS"})
+    requests_mock.register_uri(
+        GET,
+        API_URL,
+        json=_bm086_rows(
+            [("GU_A", "2026-09-20T00:00:00", 100.0)], period=timedelta(minutes=15)
+        ),
+    )
+    event = fetch_production_range(
+        zone_key=ZoneKey("IE"),
+        session=session,
+        start_datetime=START,
+        end_datetime=END,
+    )[0]
+    assert event["production"]["gas"] == 400
 
 
 def test_mapping_raises_when_unavailable(requests_mock, session):
