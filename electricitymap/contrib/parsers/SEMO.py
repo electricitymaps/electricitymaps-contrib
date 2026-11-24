@@ -2,8 +2,9 @@
 Northern Ireland (GB-NIR).
 
 Production is derived from SEM-O's BM-086 "Aggregated Data Report" which
-publishes metered generation (MW) per registered unit for every half-hour
-settlement period, tagged with a ``Jurisdiction`` (``ROI`` -> IE, ``NI`` ->
+publishes metered generation per registered unit for every half-hour
+settlement period (``MeteredMW`` is the period's energy in MWh despite its
+name, so it is doubled to get the average MW), tagged with a ``Jurisdiction`` (``ROI`` -> IE, ``NI`` ->
 GB-NIR). BM-086 does not carry a fuel type, so each ``ResourceName`` is joined
 to SEM-O's "List of Registered Units" spreadsheet to obtain its fuel type,
 which is then mapped to an Electricity Maps production mode.
@@ -270,9 +271,13 @@ def fetch_production_range(
             continue
         if JURISDICTION_TO_ZONE.get(item.get("Jurisdiction")) != zone_key:
             continue
-        value = item.get("MeteredMW")
-        if value is None:
+        metered_mwh = item.get("MeteredMW")
+        if metered_mwh is None:
             continue
+        # MeteredMW is the energy over the 30-min settlement period (MWh), not
+        # the average power: big units peak at half their capacity, and BM-086
+        # wind is ~half of SmartGridDashboard's. MW = MWh / 0.5 h.
+        value = metered_mwh * 2
 
         resource = item.get("ResourceName")
         fuel = UNIT_FUEL_OVERRIDES.get(resource) or unit_fuel.get(resource)
@@ -292,7 +297,7 @@ def fetch_production_range(
 
         if fuel in FUEL_TO_STORAGE:
             storage = storage_mixes.setdefault(dt, StorageMix())
-            # BM-086 MeteredMW is positive when generating (discharging) and
+            # BM-086 values are positive when generating (discharging) and
             # negative when charging; StorageMix uses the opposite sign.
             storage.add_value(FUEL_TO_STORAGE[fuel], -value)
         else:

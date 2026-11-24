@@ -71,13 +71,13 @@ def test_merge_uses_smartgrid_wind_solar_and_semo_rest(requests_mock, session):
     assert p["wind"] == 300
     assert p["solar"] == 10
     # everything else comes from SEMO.
-    assert p["gas"] == 240
-    # oil = 15 plus Moneypoint (fixture's GU_400270, a COAL unit overridden to
-    # oil) at 80.
-    assert p["oil"] == 95
+    assert p["gas"] == 480
+    # everything SEMO is MWh per half-hour, doubled to MW. oil = (15 plus
+    # Moneypoint, fixture's GU_400270, a COAL unit overridden to oil, at 80) x 2.
+    assert p["oil"] == 190
     assert p.get("coal") is None
-    assert p["unknown"] == 12  # just the unmatched unit (GU_999999)
-    assert first["storage"] == {"battery": 20.0, "hydro": -25.0}
+    assert p["unknown"] == 24  # just the unmatched unit (GU_999999)
+    assert first["storage"] == {"battery": 40.0, "hydro": -50.0}
 
 
 def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(
@@ -100,7 +100,7 @@ def test_merge_omits_wind_solar_when_smartgrid_timestamp_missing(
     # No SmartGrid data at this timestamp -> wind/solar unset (no SEMO fallback).
     assert p.get("wind") is None
     assert p.get("solar") is None
-    assert p["gas"] == 190  # SEMO mode still present
+    assert p["gas"] == 380  # SEMO mode still present
 
 
 def test_merge_drops_smartgrid_only_timestamps(requests_mock, session):
@@ -158,7 +158,7 @@ def test_semo_breakdown_without_wind_solar_when_smartgrid_unavailable(
     # Wind/solar are never taken from SEMO, so they are unset here.
     assert first["production"].get("wind") is None
     assert first["production"].get("solar") is None
-    assert first["production"]["gas"] == 240  # SEMO breakdown still present
+    assert first["production"]["gas"] == 480  # SEMO breakdown still present
     assert any("SmartGridDashboard" in r.message for r in caplog.records)
 
 
