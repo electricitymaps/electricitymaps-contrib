@@ -55,8 +55,9 @@ REFETCH_FREQUENCY = timedelta(days=1)
 
 # ASCII EIC codes: the dashes in the API's Swagger enum are mangled.
 FR_EIC = "10YFR-RTE------C"
+# No DE: RTE's only German code (10YCB-GERMANY--8) reads about 16% below the flows the
+# German TSOs report to ENTSO-E, in both directions, so DE->FR stays on ENTSO-E.
 BORDER_EICS: dict[str, str] = {
-    "DE": "10YCB-GERMANY--8",
     "BE": "10YBE----------2",
     "CH": "10YCH-SWISSGRIDZ",
     "ES": "10YES-REE------0",
@@ -246,6 +247,6 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    for key in ("BE", "CH", "DE", "ES", "IT-NO"):
+    for key in ("BE", "CH", "ES", "IT-NO"):
         pair = sorted(["FR", key])
         print(fetch_exchange(ZoneKey(pair[0]), ZoneKey(pair[1]))[-2:])

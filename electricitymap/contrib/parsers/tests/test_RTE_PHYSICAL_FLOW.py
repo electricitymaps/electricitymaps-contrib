@@ -26,7 +26,6 @@ GAP_START = datetime(2026, 11, 11, 7, 30, tzinfo=UTC)
 GAP_END = datetime(2026, 11, 11, 9, 15, tzinfo=UTC)
 
 BORDERS = [
-    ("DE", "FR", "DE"),
     ("BE", "FR", "BE"),
     ("ES", "FR", "ES"),
     ("FR", "IT-NO", "IT-NO"),
@@ -51,9 +50,7 @@ def _capture(name: str) -> dict:
 
 
 def _mock_api(requests_mock) -> None:
-    captures = {
-        BORDER_EICS[name]: _capture(name) for name in ("DE", "BE", "ES", "IT-NO")
-    }
+    captures = {BORDER_EICS[name]: _capture(name) for name in ("BE", "ES", "IT-NO")}
     requests_mock.register_uri(
         POST, TOKEN_URL, json={"access_token": "dummy-token", "expires_in": 3600}
     )
@@ -80,8 +77,8 @@ def _raw_values(name: str) -> dict[str, dict[datetime, int]]:
 def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
     requests_mock, session, snapshot
 ):
-    """Four borders, each in a different direction. The points are RTE's raw values,
-    one per 15 minutes, and the hole RTE leaves is not filled."""
+    """Three borders, in both directions. The points are RTE's raw values, one per
+    15 minutes, and the hole RTE leaves is not filled."""
     _mock_api(requests_mock)
 
     results = {}
@@ -117,13 +114,12 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
             e["end_datetime"] == e["datetime"] + timedelta(minutes=15) for e in result
         )
 
-    # DE->FR and BE->FR are negative (France imports), FR->IT-NO and ES->FR positive.
-    assert results["DE->FR"][0]["netFlow"] == -2570
+    # France exports to BE (negative BE->FR) and IT-NO, and imports from ES.
     assert results["BE->FR"][0]["netFlow"] == -2103
     assert results["ES->FR"][0]["netFlow"] == 546
     assert results["FR->IT-NO"][0]["netFlow"] == 3921
 
-    # One token serves all four borders, and the window runs from the Paris midnight
+    # One token serves all three borders, and the window runs from the Paris midnight
     # before the target to the Paris midnight after it (the API only returns whole days).
     assert [r.method for r in requests_mock.request_history].count("POST") == 1
     queries = [r.qs for r in requests_mock.request_history if r.method == "GET"]
@@ -151,7 +147,7 @@ def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session, monkey
             patched.setenv("TZ", "Pacific/Kiritimati")
             time.tzset()
             fetch_exchange(
-                ZoneKey("DE"),
+                ZoneKey("BE"),
                 ZoneKey("FR"),
                 session=session,
                 target_datetime=TARGET_DATETIME.replace(tzinfo=None),
@@ -165,11 +161,17 @@ def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session, monkey
 
 
 def test_fetch_exchange_unsupported_border_raises(requests_mock, session):
-    """FR->GB (Elexon), FR->LU and other pairs are not served by this API: refuse them
-    rather than return another border's flow."""
+    """FR->GB (Elexon), FR->LU, DE->FR (RTE's German series is off) and other pairs
+    are not served by this parser: refuse them rather than return another border's flow."""
     _mock_api(requests_mock)
 
-    for pair in [("FR", "GB"), ("FR", "LU"), ("BE", "DE"), ("FR-COR", "IT-SAR")]:
+    for pair in [
+        ("DE", "FR"),
+        ("FR", "GB"),
+        ("FR", "LU"),
+        ("BE", "DE"),
+        ("FR-COR", "IT-SAR"),
+    ]:
         with pytest.raises(ParserException, match="not a supported border"):
             fetch_exchange(ZoneKey(pair[0]), ZoneKey(pair[1]), session=session)
 
@@ -192,7 +194,7 @@ def test_fetch_exchange_api_error_surfaces_rte_body(requests_mock, session):
     )
 
     with pytest.raises(ParserException, match="PHYSIFLOW_PHFLO_F04") as error:
-        fetch_exchange(ZoneKey("DE"), ZoneKey("FR"), session=session)
+        fetch_exchange(ZoneKey("BE"), ZoneKey("FR"), session=session)
 
     assert "dummy-secret" not in str(error.value)
     assert "dummy-token" not in str(error.value)
