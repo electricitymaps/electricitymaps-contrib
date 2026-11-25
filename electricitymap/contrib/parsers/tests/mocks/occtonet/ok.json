@@ -1,0 +1,34 @@
+{
+ "root": {
+  "actionResult": {
+   "commitData": "",
+   "errorState": "0"
+  },
+  "bizRoot": {
+   "header": {
+    "downloadKey": {
+     "err": false,
+     "extention": null,
+     "label": null,
+     "name": "downloadKey",
+     "option": null,
+     "protect": false,
+     "value": "20261126040237_CA01S070C"
+    },
+    "requestToken": {
+     "name": "requestToken",
+     "value": "ff337c7675e95b172f44291b2383e831f7e140e95561a048"
+    }
+   }
+  },
+  "confirmationMessage": null,
+  "errFields": null,
+  "errMessage": null,
+  "interceptorErr": null,
+  "protectFields": null,
+  "protectFieldsExcld": null,
+  "returnCode": "0",
+  "srvTimeMessage": null
+ },
+ "ajaxToken": ""
+}

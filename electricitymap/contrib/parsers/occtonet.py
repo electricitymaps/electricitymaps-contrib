@@ -7,6 +7,10 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 from requests import Session, cookies
 
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.types import ZoneKey
+
 from .lib.exceptions import ParserException
 
 # Abbreviations:
@@ -45,93 +49,101 @@ EXCHANGE_MAPPING = {
 FLOWS_TO_REVERT = ["JP-CB->JP-TK", "JP-CG->JP-KN", "JP-CG->JP-SK"]
 
 SOURCE_URL = "occtonet.occto.or.jp"
-EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
+# Columns of the OCCTO interconnection CSV
+DATE_COLUMN = "対象日付"  # target date
+TIME_COLUMN = "対象時刻"  # target time
+MEASURED_FLOW_COLUMN = "潮流実績"  # measured flow
+PLANNED_FLOW_COLUMN = "計画潮流(順方向)"  # planned (scheduled) flow, signed
 
 ZONE_INFO = ZoneInfo("Asia/Tokyo")
 
 
 def _fetch_exchange(
-    session: Session, datetime: datetime, sorted_zone_keys: str
-) -> list[dict]:
-    exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
-
+    session: Session,
+    query_date: str,
+    sorted_zone_keys: ZoneKey,
+    flow_column: str,
+    source_type: EventSourceType,
+    logger: Logger,
+) -> ExchangeList:
     # This authorises subsequent calls
-    _cookies = get_cookies(session)
+    get_cookies(session)
 
-    df = pd.DataFrame()
-    for i in range(len(exch_id)):
-        form_data = get_form_data(session, exch_id[i], datetime)
-        _df = get_exchange(session, form_data)
-        if df.empty:
-            df = _df
-        else:
-            df += _df
-            df.reset_index()
+    # Some exchanges are made of several interconnection lines: their flows are summed.
+    flows: pd.Series | None = None
+    for exchange_id in EXCHANGE_MAPPING[sorted_zone_keys]:
+        form_data = get_form_data(session, exchange_id, query_date)
+        line_flows = _get_exchange(session, form_data, flow_column)
+        if line_flows.empty:
+            # A line can publish nothing for a whole day (e.g. line 05 of JP-CB->JP-HR):
+            # skip it instead of discarding the other lines.
+            continue
+        # Keep only the timestamps reported by every line, never a partial sum.
+        flows = line_flows if flows is None else flows.add(line_flows).dropna()
 
-    if sorted_zone_keys in FLOWS_TO_REVERT:
-        df["netFlow"] = -1 * df["netFlow"]
+    exchanges = ExchangeList(logger)
+    if flows is None:
+        return exchanges
+    direction = -1 if sorted_zone_keys in FLOWS_TO_REVERT else 1
+    for timestamp, net_flow in flows.items():
+        exchanges.append(
+            zoneKey=sorted_zone_keys,
+            datetime=timestamp.to_pydatetime(),
+            netFlow=direction * float(net_flow),
+            source=SOURCE_URL,
+            sourceType=source_type,
+        )
+    return exchanges
 
-    df["source"] = SOURCE_URL
 
-    df["sortedZoneKeys"] = sorted_zone_keys
-    df = df[EXCHANGE_COLUMNS]
-    df = df.reset_index()
-
-    results = df.to_dict("records")
-    # For some reason, to_dict converts datetimes to Timestamps
-    # See https://stackoverflow.com/questions/64171427/pandas-to-dict-converts-datetime-to-timestamp
-    for result in results:
-        result["datetime"] = result["datetime"].to_pydatetime()
-    return results
+def _query_date(target_datetime: datetime | None) -> str:
+    if target_datetime is None:
+        return datetime.now(ZONE_INFO).strftime("%Y/%m/%d")
+    return target_datetime.astimezone(ZONE_INFO).strftime("%Y/%m/%d")
 
 
 def fetch_exchange(
-    zone_key1: str = "JP-TH",
-    zone_key2: str = "JP-TK",
+    zone_key1: ZoneKey = ZoneKey("JP-TH"),
+    zone_key2: ZoneKey = ZoneKey("JP-TK"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
-    if not session:
-        session = Session()
-    now = datetime.now(ZONE_INFO)
-    if target_datetime is None:
-        target_datetime = now
-    else:
-        target_datetime = target_datetime.astimezone(ZONE_INFO)
-
-    query_datetime = target_datetime.strftime("%Y/%m/%d")
-
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    return _fetch_exchange(session, query_datetime, sorted_zone_keys)
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    return _fetch_exchange(
+        session or Session(),
+        _query_date(target_datetime),
+        sorted_zone_keys,
+        MEASURED_FLOW_COLUMN,
+        EventSourceType.measured,
+        logger,
+    ).to_list()
 
 
 def fetch_exchange_forecast(
-    zone_key1: str = "JP-TH",
-    zone_key2: str = "JP-TK",
+    zone_key1: ZoneKey = ZoneKey("JP-TH"),
+    zone_key2: ZoneKey = ZoneKey("JP-TK"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Gets exchange forecast between two specified zones."""
-    if not session:
-        session = Session()
-    now = datetime.now(ZONE_INFO)
-    if target_datetime is None:
-        target_datetime = now
-    else:
-        target_datetime = target_datetime.astimezone(ZONE_INFO)
-
-    query_datetime = target_datetime.strftime("%Y/%m/%d")
-
-    if query_datetime > now.strftime("%Y/%m/%d"):
+    """Gets the planned power exchange (in MW) between two zones for the target day."""
+    query_date = _query_date(target_datetime)
+    if query_date > _query_date(None):
         raise NotImplementedError(
             "Future dates(local time) not implemented for selected exchange"
         )
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
-    return _fetch_exchange(session, query_datetime, sorted_zone_keys)
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    return _fetch_exchange(
+        session or Session(),
+        query_date,
+        sorted_zone_keys,
+        PLANNED_FLOW_COLUMN,
+        EventSourceType.forecasted,
+        logger,
+    ).to_list()
 
 
 def get_cookies(session: Session | None = None) -> cookies.RequestsCookieJar:
@@ -217,20 +229,22 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> dict[str
     return form_data
 
 
-def _get_exchange(session: Session, form_data: dict[str, str], columns: list[str]):
-    def parse_dt(str_dt: str) -> datetime:
-        """
-        Expects arguments like "2024/12/23 00:05", including the edge case 24:00
-        which is the same as 00:00 of the subsequent date.
-        """
-        dt = None
-        if "24:00" in str_dt:
-            str_dt = str_dt.replace("24:00", "00:00")
-            dt = datetime.strptime(str_dt, "%Y/%m/%d %H:%M") + timedelta(days=1)
-        else:
-            dt = datetime.strptime(str_dt, "%Y/%m/%d %H:%M")
-        return dt.replace(tzinfo=ZONE_INFO)
+def _parse_datetime(date: str, time: str) -> datetime:
+    """
+    Expects arguments like "2024/12/23" and "00:05", including the edge case 24:00
+    which is the same as 00:00 of the subsequent date.
+    """
+    if time == "24:00":
+        dt = datetime.strptime(f"{date} 00:00", "%Y/%m/%d %H:%M") + timedelta(days=1)
+    else:
+        dt = datetime.strptime(f"{date} {time}", "%Y/%m/%d %H:%M")
+    return dt.replace(tzinfo=ZONE_INFO)
 
+
+def _get_exchange(
+    session: Session, form_data: dict[str, str], flow_column: str
+) -> pd.Series:
+    """Downloads the CSV of one interconnection line: a flow (MW) per datetime."""
     form_data["fwExtention.actionSubType"] = "download"
     r = session.post(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
@@ -238,23 +252,15 @@ def _get_exchange(session: Session, form_data: dict[str, str], columns: list[str
     )
     r.encoding = "shift-jis"
     df = pd.read_csv(StringIO(r.text), delimiter=",")
-    df = df[columns]
-    df.columns = ["date", "time", "netFlow"]
-    df.loc[:, "datetime"] = (df.date + " " + df.time).apply(lambda x: parse_dt(x))
-    df = df.set_index("datetime")
-    df = df.drop(columns=["date", "time"])
-    df = df.dropna()
-    return df
-
-
-def get_exchange(session: Session, form_data):
-    return _get_exchange(session, form_data, ["対象日付", "対象時刻", "潮流実績"])
-
-
-def get_exchange_fcst(session: Session, form_data):
-    return _get_exchange(
-        session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"]
+    df = df[[DATE_COLUMN, TIME_COLUMN, flow_column]].dropna()
+    index = pd.Index(
+        [
+            _parse_datetime(date, time)
+            for date, time in zip(df[DATE_COLUMN], df[TIME_COLUMN], strict=True)
+        ],
+        name="datetime",
     )
+    return pd.Series(df[flow_column].astype(float).to_numpy(), index=index)
 
 
 if __name__ == "__main__":
