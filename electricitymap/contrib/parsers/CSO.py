@@ -10,19 +10,40 @@ own consumption is not included. The table has not been updated since
 February 2024.
 
 - Release: https://www.cso.ie/en/statistics/energy/meteredelectricitygeneration/
-- Background notes: https://www.cso.ie/en/releasesandpublications/ep/p-meg/meteredelectricitygenerationdecember2023/backgroundnotes/
+- Background notes (source, method): https://www.cso.ie/en/releasesandpublications/ep/p-meg/meteredelectricitygenerationdecember2023/backgroundnotes/
+- Data (PxStat API, JSON-stat, no key): ``MEG01_URL`` below
 - Licence: CC BY 4.0 (https://www.cso.ie/en/aboutus/whoweare/copyrightpolicy/)
 
-The CSO does not document the time convention of the bands. The data shows it:
+Time convention
+---------------
+Each band is labelled ``"HH:MM  <  HH:MM"`` on a calendar day; datetimes are
+emitted at the band start, in UTC. The CSO does not document whether the bands
+are UTC or local time, and it changes over the table. The data shows it:
 
-- 2020-2022: bands are in UTC. On spring clock-change days the DSO part is
-  missing from the 01:00-02:00 bands, so those two bands are incomplete and are
-  dropped.
-- 2023: bands are in Irish local time. The spring 01:00-02:00 bands are empty,
-  and the autumn ones hold both occurrences of the repeated hour, so each is
-  split evenly across its two UTC half-hours.
+- 2020-2022, normal days: **UTC**. Wind matches EirGrid's half-hourly wind with
+  no shift, in summer as well as in winter.
+- 2020-2022, spring clock-change days (2020-03-29, 2021-03-28, 2022-03-27): the
+  01:00-02:00 bands are **incomplete** and are dropped. Only the DSO fuels (wind,
+  waste, other renewables, small hydro) drop there, e.g. on 2021-03-28 wind falls
+  from 1,338 to 562 MWh and waste to 0 while gas is flat: the DSO file was in
+  local time, where that hour does not exist.
+- 2020-2022, autumn clock-change days: nothing unusual, kept as UTC.
+- 2023, normal days: **Irish local time** (Europe/Dublin). In summer, wind
+  matches EirGrid's at a 1-hour shift.
+- 2023 spring clock-change day (2023-03-26): the 01:00-02:00 bands are empty
+  (that local hour does not exist) and are dropped.
+- 2023 autumn clock-change day (2023-10-29): the 01:00-02:00 bands hold **both**
+  occurrences of the repeated hour (net generation ~1,970 MWh vs ~1,150 MWh in
+  the neighbouring bands). Each is split evenly across its two UTC half-hours.
 
-Storage is discharge only: the table has no pumping or charging consumption.
+Storage
+-------
+MEG01 reports pumped-storage hydro (Turlough Hill) and battery output as
+generation only: no pumping or charging consumption. They are emitted as storage
+discharge (negative storage) and there is never a charging value. Before this
+parser, the stored EirGrid data (SmartGridDashboard) for these years had only
+wind and a total for everything else (``unknown``): no solar and no storage
+fields at all, so charging was not reported there either.
 """
 
 from datetime import UTC, datetime, timedelta
