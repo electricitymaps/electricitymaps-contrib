@@ -14,12 +14,12 @@ full breakdown. The most recent timestamps (SEMO not yet published) are left
 empty and filled downstream by the estimation pipeline, which uses the wind and
 solar forecasts; the daily refetch completes them once SEM-O publishes.
 
-For IE before 2024, the parser returns CSO's metered generation (``CSO.py``)
-instead, as SEM-O no longer has those dates.
-
 Wind and solar always come from SmartGridDashboard and are never taken from
 SEMO. If SmartGridDashboard is unavailable the output carries SEMO's breakdown
 without wind/solar; a SEMO failure is raised.
+
+IE is configured through ``IE.py``, which calls this parser from the SEM-O
+cut-over and other sources for earlier dates (SEM-O only keeps ~2 months).
 """
 
 from collections import defaultdict
@@ -30,7 +30,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.parsers import CSO, SEMO, SMARTGRIDDASHBOARD
+from electricitymap.contrib.parsers import SEMO, SMARTGRIDDASHBOARD
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -153,6 +153,26 @@ def _merge(
     return breakdowns.to_list()
 
 
+def window(target_datetime: datetime) -> tuple[datetime, datetime]:
+    """The ``[start, end]`` window a call for ``target_datetime`` covers.
+
+    This window is the single source of truth: it is passed to both SEMO and
+    SmartGridDashboard so the two sources always cover the same range (and IE.py
+    routes on it). It reaches two days back to cover SEMO's publication lag; the
+    upper bound keeps SmartGridDashboard (which can return data up to now) from
+    stretching the output to the present.
+    """
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=UTC)
+    start = (target_datetime - timedelta(days=2)).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
+    end = (target_datetime + timedelta(days=1)).replace(
+        hour=23, minute=59, second=59, microsecond=0
+    )
+    return start, end
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
@@ -163,27 +183,7 @@ def fetch_production(
     """Wind/solar from SmartGridDashboard, all other modes from SEMO."""
     if target_datetime is None:
         target_datetime = datetime.now(tz=UTC)
-    elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=UTC)
-
-    # This window is the single source of truth: it is passed to both SEMO and
-    # SmartGridDashboard so the two sources always cover the same range. It
-    # reaches two days back to cover SEMO's publication lag; the upper bound
-    # keeps SmartGridDashboard (which can return data up to now) from stretching
-    # the output to the present.
-    window_start = (target_datetime - timedelta(days=2)).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
-    window_end = (target_datetime + timedelta(days=1)).replace(
-        hour=23, minute=59, second=59, microsecond=0
-    )
-
-    # SEM-O's BM-086 only keeps ~3 months. For the years the CSO covers, IE is
-    # served from CSO's metered generation instead (see CSO.py).
-    if zone_key == "IE" and window_start < CSO.MEG01_END:
-        return CSO.fetch_production_range(
-            zone_key, session, window_start, window_end, logger
-        )
+    window_start, window_end = window(target_datetime)
 
     # SEMO defines the breakdown. A SEMO failure is surfaced rather than falling
     # back to a wind/solar-only result that would overwrite a stored full

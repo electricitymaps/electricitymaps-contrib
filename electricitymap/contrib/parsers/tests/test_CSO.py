@@ -5,7 +5,6 @@ from requests_mock import GET
 
 from electricitymap.contrib.parsers import CSO
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.contrib.parsers.SEMOxSMARTGRID import fetch_production
 from electricitymap.contrib.types import ZoneKey
 
 BANDS = [
@@ -112,17 +111,3 @@ def test_only_ie_is_covered(session):
         CSO.fetch_production_range(
             ZoneKey("GB-NIR"), session, CSO.MEG01_START, CSO.MEG01_END
         )
-
-
-def test_ie_before_2024_is_served_from_cso(requests_mock, session):
-    requests_mock.register_uri(
-        GET, CSO.MEG01_URL, json=_meg01({"2022 May 10": {(0, "Gas"): 100.0}})
-    )
-    events = fetch_production(
-        ZoneKey("IE"), session, target_datetime=datetime(2022, 5, 11, tzinfo=UTC)
-    )
-    assert [(e["datetime"], e["source"]) for e in events] == [
-        (datetime(2022, 5, 10, tzinfo=UTC), "cso.ie")
-    ]
-    # Only CSO was called, not SEM-O or SmartGridDashboard.
-    assert [r.url for r in requests_mock.request_history] == [CSO.MEG01_URL]
