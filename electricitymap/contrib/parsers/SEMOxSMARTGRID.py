@@ -14,6 +14,9 @@ full breakdown. The most recent timestamps (SEMO not yet published) are left
 empty and filled downstream by the estimation pipeline, which uses the wind and
 solar forecasts; the daily refetch completes them once SEM-O publishes.
 
+For IE before 2024, the parser returns CSO's metered generation (``CSO.py``)
+instead, as SEM-O no longer has those dates.
+
 Wind and solar always come from SmartGridDashboard and are never taken from
 SEMO. If SmartGridDashboard is unavailable the output carries SEMO's breakdown
 without wind/solar; a SEMO failure is raised.
@@ -27,7 +30,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.parsers import SEMO, SMARTGRIDDASHBOARD
+from electricitymap.contrib.parsers import CSO, SEMO, SMARTGRIDDASHBOARD
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -174,6 +177,13 @@ def fetch_production(
     window_end = (target_datetime + timedelta(days=1)).replace(
         hour=23, minute=59, second=59, microsecond=0
     )
+
+    # SEM-O's BM-086 only keeps ~3 months. For the years the CSO covers, IE is
+    # served from CSO's metered generation instead (see CSO.py).
+    if zone_key == "IE" and window_start < CSO.MEG01_END:
+        return CSO.fetch_production_range(
+            zone_key, session, window_start, window_end, logger
+        )
 
     # SEMO defines the breakdown. A SEMO failure is surfaced rather than falling
     # back to a wind/solar-only result that would overwrite a stored full
