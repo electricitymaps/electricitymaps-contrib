@@ -16,8 +16,9 @@ Window rules, found by probing the API:
 - It returns only the Paris-local days that fall entirely inside [start_date, end_date].
 - `end_date` can be at most the coming Paris midnight (`PHYSIFLOW_PHFLO_F04` beyond).
 - A window holding no whole day is refused (`PHYSIFLOW_PHFLO_F05`).
-The parser therefore asks for the Paris days that hold the 24 hours up to the target
-(the feeder expects `[target - refetch frequency, target]`) and the feeder drops the rest.
+The parser therefore asks for the Paris days that hold the refetch frequency (a week)
+up to the target (the feeder expects `[target - refetch frequency, target]`) and the
+feeder drops the rest. The live fetch, which has no target, asks for the last 24 hours.
 The API serves data back to 2015: hourly until spring 2023, 15-minute since. A window
 longer than about a year is refused (`PHYSIFLOW_PHFLO_F03`).
 """
@@ -52,7 +53,10 @@ TOKEN_EXPIRY_MARGIN = timedelta(minutes=5)
 RETRY = DEFAULT_RETRY.new(allowed_methods=["GET", "POST"], raise_on_status=False)
 
 PARIS = ZoneInfo("Europe/Paris")
-REFETCH_FREQUENCY = timedelta(days=1)
+# A refetch asks for a week per call. With a day per call, a one-year backfill of four
+# borders took 1,460 calls, and RTE started refusing connections.
+REFETCH_FREQUENCY = timedelta(days=7)
+LIVE_LOOKBACK = timedelta(days=1)
 
 # ASCII EIC codes: the dashes in the API's Swagger enum are mangled.
 FR_EIC = "10YFR-RTE------C"
@@ -104,13 +108,15 @@ def _paris_midnight(day: date) -> datetime:
 
 
 def _query_window(target_datetime: datetime | None) -> tuple[datetime, datetime]:
-    """The Paris days holding the 24 hours up to the target, as the feeder expects."""
+    """The Paris days holding the refetch frequency up to the target, as the feeder
+    expects, or the last 24 hours when there is no target (the live fetch)."""
     now = datetime.now(PARIS)
+    lookback = LIVE_LOOKBACK if target_datetime is None else REFETCH_FREQUENCY
     # The API has nothing past now, and refuses a window without a whole day in it.
     target = min(to_utc(target_datetime).astimezone(PARIS), now)
     # Subtract in UTC: wall-clock arithmetic in Paris loses an hour across DST.
     start = _paris_midnight(
-        (target.astimezone(UTC) - REFETCH_FREQUENCY).astimezone(PARIS).date()
+        (target.astimezone(UTC) - lookback).astimezone(PARIS).date()
     )
     # The API refuses an end_date beyond the coming midnight.
     end = min(
