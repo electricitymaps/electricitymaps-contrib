@@ -24,8 +24,10 @@ MAP_GENERATION = {
     "GAS": "gas",
     "HÍDRICO": "hydro",
     "BIOGÁS": "biomass",
-    "BAGAZO": "biomass",
-    "SOLAR": "solar",
+    # COES labels the solar series as BAGAZO and the bagasse series as SOLAR.
+    "BAGAZO": "solar",
+    "SOLAR": "biomass",
+    "NAFTA & GAS REFINERÍA": "oil",
     "EÓLICA": "wind",
 }
 SOURCE = "coes.org.pe"
