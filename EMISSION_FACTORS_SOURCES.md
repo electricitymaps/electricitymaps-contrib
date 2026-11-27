@@ -8,3 +8,9 @@ For certain areas and zones (all of Europe and US, along with a few other countr
 The actual numbers used (as well as a link to the source) can be found in the [config/zones YAML file](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) for each specific zone.
 
 For Europe, the methodology for calculating emission factors is detailed in our [wiki page for EU emission factors](https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors). The same applies for [US emission factors](https://github.com/electricitymaps/electricitymaps-contrib/wiki/US-emission-factors).
+
+For Australia, a [reproducible NGER calculation](notebooks/au_emission_factors/README.md)
+provides regional fossil-fuel direct emission factors for 2024–25. These use gross
+generation and require reconciliation with the production data's generation basis
+before deployment. The notebook documents the input data and remaining lifecycle
+accounting requirements.
