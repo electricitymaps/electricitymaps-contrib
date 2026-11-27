@@ -200,6 +200,7 @@ isRenewable:
     - datetime: '2019-01-01'
       value: 0.2451
 parsers:
+  consumption: JP.fetch_consumption
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
   price: JP.fetch_price

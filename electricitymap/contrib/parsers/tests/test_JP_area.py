@@ -13,7 +13,7 @@ Covers all 10 zones with real fixture data:
   10 JP-ON  (Okinawa)   — 22-col, Shift-JIS
 """
 
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 from io import BytesIO
 from logging import getLogger
 from pathlib import Path
@@ -26,27 +26,32 @@ from freezegun import freeze_time
 from requests_mock import GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.JP import (
     _ARCHIVE_CACHE,
     _AREA_COLUMN_MAP,
     _AREA_CSV_CONFIGS,
+    _CONSUMPTION,
     _LEGACY_AREA_CONFIGS,
+    _PRODUCTION,
+    _area_df_to_events,
     _build_legacy_datetime,
-    _df_to_production_breakdown_list,
     _fetch_area_csv_content,
-    _fetch_production_isep,
-    _fetch_production_legacy_area_csv,
+    _fetch_isep,
+    _fetch_legacy_area_csv,
     _fiscal_quarter,
     _fiscal_year,
     _hr_legacy_url,
-    _legacy_df_to_breakdown,
+    _legacy_df_to_events,
     _parse_area_datetime,
     _parse_value,
     _read_area_csv,
     _read_legacy_area_csv,
     _read_legacy_area_xlsx,
+    fetch_consumption,
     fetch_production,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("Asia/Tokyo")
 MOCKS_DIR = Path(__file__).parent / "mocks" / "JP_area"
@@ -324,7 +329,8 @@ def _assert_production(zone_num: str):
     """Generic assertion: parse fixture for a zone and verify first-row values."""
     zone_key, df, target = _read_fixture(zone_num)
     source = f"test-{zone_key}"
-    result = _df_to_production_breakdown_list(
+    result = _area_df_to_events(
+        _PRODUCTION,
         df,
         zone_key,
         source,
@@ -449,7 +455,7 @@ def test_production_zone_07_cg():
 def test_production_zone_08_sk():
     """JP-SK (08): NaN cells for geothermal and battery (empty in CSV)."""
     zone_key, df, target = _read_fixture("08")
-    result = _df_to_production_breakdown_list(df, zone_key, "test", target, LOGGER)
+    result = _area_df_to_events(_PRODUCTION, df, zone_key, "test", target, LOGGER)
     assert len(result) == ZONE_FIXTURES["08"][5]  # 48 rows for April 1
     first = result[0]
     # Nuclear is active in Shikoku (Ikata)
@@ -490,7 +496,8 @@ def test_event_datetimes_are_native_datetime():
     column to datetime64, and row access then yields Timestamps unless the
     parser converts back (test_parser's strict type check rejects them)."""
     zone_key, df, target = _read_fixture("09")
-    result = _df_to_production_breakdown_list(
+    result = _area_df_to_events(
+        _PRODUCTION,
         df,
         zone_key,
         "test",
@@ -510,11 +517,11 @@ def test_live_fetch_falls_back_to_latest_available_day():
     after_fixture = datetime(2026, 4, 20, tzinfo=TIMEZONE)
     # Without the flag (historical backfill): an absent day returns nothing.
     assert (
-        _df_to_production_breakdown_list(df, "JP-HKD", "test", after_fixture, LOGGER)
+        _area_df_to_events(_PRODUCTION, df, "JP-HKD", "test", after_fixture, LOGGER)
         == []
     )
-    result = _df_to_production_breakdown_list(
-        df, "JP-HKD", "test", after_fixture, LOGGER, latest_available=True
+    result = _area_df_to_events(
+        _PRODUCTION, df, "JP-HKD", "test", after_fixture, LOGGER, latest_available=True
     )
     assert result
     latest_day = max(e["datetime"] for e in result).date()
@@ -536,8 +543,8 @@ def test_live_fetch_skips_valueless_padded_target_day():
     )
     df = _read_area_csv(padded.encode("shift_jis"))
     live_today = datetime(2026, 6, 10, tzinfo=TIMEZONE)
-    result = _df_to_production_breakdown_list(
-        df, "JP-HKD", "test", live_today, LOGGER, latest_available=True
+    result = _area_df_to_events(
+        _PRODUCTION, df, "JP-HKD", "test", live_today, LOGGER, latest_available=True
     )
     assert len(result) == 2
     assert all(e["datetime"].date() == datetime(2026, 6, 7).date() for e in result)
@@ -548,7 +555,7 @@ def test_production_filters_to_target_date():
     _, df, _ = _read_fixture("01")
     # Use a date not in the fixture
     wrong_date = datetime(2026, 4, 15, tzinfo=TIMEZONE)
-    result = _df_to_production_breakdown_list(df, "JP-HKD", "test", wrong_date, LOGGER)
+    result = _area_df_to_events(_PRODUCTION, df, "JP-HKD", "test", wrong_date, LOGGER)
     assert len(result) == 0
 
 
@@ -558,8 +565,8 @@ def test_production_filters_to_target_date():
 def _patch_fetchers():
     """Patch the per-source fetchers; routing runs against the real configs."""
     return (
-        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv"),
-        patch("electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"),
+        patch("electricitymap.contrib.parsers.JP._fetch_area_csv"),
+        patch("electricitymap.contrib.parsers.JP._fetch_legacy_area_csv"),
     )
 
 
@@ -603,11 +610,9 @@ def test_routing_jp_ky_isep_before_fy2019():
     """JP-KY pre-FY2019 routes to ISEP (Kyuden removed its own archive);
     FY2019+ keeps using the Kyuden legacy archive (real tables)."""
     with (
-        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv") as area,
-        patch(
-            "electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"
-        ) as legacy,
-        patch("electricitymap.contrib.parsers.JP._fetch_production_isep") as isep,
+        patch("electricitymap.contrib.parsers.JP._fetch_area_csv") as area,
+        patch("electricitymap.contrib.parsers.JP._fetch_legacy_area_csv") as legacy,
+        patch("electricitymap.contrib.parsers.JP._fetch_isep") as isep,
     ):
         fetch_production("JP-KY", target_datetime=datetime(2018, 6, 1, tzinfo=TIMEZONE))
         isep.assert_called_once()
@@ -628,10 +633,8 @@ def test_routing_jp_sk_uses_xlsx_legacy_archive():
     """JP-SK pre-2024-03 routes to the legacy path (Yonden's jukyu{fy}.xlsx);
     only pre-FY2016 dates raise (real tables)."""
     with (
-        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv") as area,
-        patch(
-            "electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"
-        ) as legacy,
+        patch("electricitymap.contrib.parsers.JP._fetch_area_csv") as area,
+        patch("electricitymap.contrib.parsers.JP._fetch_legacy_area_csv") as legacy,
     ):
         legacy.return_value = [{"test": "legacy"}]
         fetch_production("JP-SK", target_datetime=datetime(2022, 1, 1, tzinfo=TIMEZONE))
@@ -779,8 +782,8 @@ def test_production_skips_padding_and_junk_rows():
     """Blank DATE/TIME rows and all-empty rows are skipped (not a crash, not a
     validation error); a single non-numeric cell only drops that mode."""
     df = _read_area_csv(_AREA_WITH_PADDING.encode("shift_jis"))
-    result = _df_to_production_breakdown_list(
-        df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
+    result = _area_df_to_events(
+        _PRODUCTION, df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
     )
     assert len(result) == 2  # the two populated rows only
     assert result[0]["production"]["gas"] == 200
@@ -795,8 +798,13 @@ def test_production_raises_on_malformed_time():
     bad = _AREA_WITH_PADDING.replace("2026/4/1,0:30,", "2026/4/1,0時30分,")
     df = _read_area_csv(bad.encode("shift_jis"))
     with pytest.raises(ValueError, match="Cannot parse area CSV datetime"):
-        _df_to_production_breakdown_list(
-            df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
+        _area_df_to_events(
+            _PRODUCTION,
+            df,
+            "JP-TK",
+            "test",
+            datetime(2026, 4, 1, tzinfo=TIMEZONE),
+            LOGGER,
         )
 
 
@@ -806,8 +814,8 @@ def test_production_raises_on_malformed_time():
 def _legacy_breakdown(zone_key: str, text: str, target: datetime) -> list:
     """Parse a legacy fixture (Shift-JIS) with the zone's real config."""
     df = _read_legacy_area_csv(text.encode("shift_jis"))
-    return _legacy_df_to_breakdown(
-        df, _LEGACY_AREA_CONFIGS[zone_key], zone_key, target, LOGGER
+    return _legacy_df_to_events(
+        _PRODUCTION, df, _LEGACY_AREA_CONFIGS[zone_key], zone_key, target, LOGGER
     )
 
 
@@ -1115,7 +1123,8 @@ def test_legacy_sk_xlsx_roundtrip():
     wb.save(buffer)
 
     df = _read_legacy_area_xlsx(buffer.getvalue())
-    result = _legacy_df_to_breakdown(
+    result = _legacy_df_to_events(
+        _PRODUCTION,
         df,
         _LEGACY_AREA_CONFIGS["JP-SK"],
         "JP-SK",
@@ -1214,8 +1223,8 @@ def test_isep_parsing_values_signs_and_filters():
             return _Resp()
 
     s = _Session()
-    result = _fetch_production_isep(
-        "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), s, LOGGER
+    result = _fetch_isep(
+        _PRODUCTION, "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), s, LOGGER
     )
     assert "region=kyushu" in s.url and "period_year=2018" in s.url
     # flagged row and previous-day row are dropped
@@ -1240,10 +1249,14 @@ def test_legacy_404_falls_back_to_isep():
     """A missing archive file (e.g. HEPCO never published FY2018 Q2, the
     Hokkaido-blackout quarter) falls back to ISEP instead of raising."""
     session = _FakeSession(lambda url: _FakeResponse(404))
-    with patch("electricitymap.contrib.parsers.JP._fetch_production_isep") as isep:
+    with patch("electricitymap.contrib.parsers.JP._fetch_isep") as isep:
         isep.return_value = [{"test": "isep"}]
-        result = _fetch_production_legacy_area_csv(
-            "JP-HKD", datetime(2018, 7, 15, tzinfo=TIMEZONE), session, LOGGER
+        result = _fetch_legacy_area_csv(
+            _PRODUCTION,
+            "JP-HKD",
+            datetime(2018, 7, 15, tzinfo=TIMEZONE),
+            session,
+            LOGGER,
         )
     isep.assert_called_once()
     assert result == [{"test": "isep"}]
@@ -1262,8 +1275,12 @@ def test_isep_raises_when_page_format_changes():
             return _Resp()
 
     with pytest.raises(ValueError, match="no embedded data"):
-        _fetch_production_isep(
-            "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), _Session(), LOGGER
+        _fetch_isep(
+            _PRODUCTION,
+            "JP-KY",
+            datetime(2018, 8, 1, tzinfo=TIMEZONE),
+            _Session(),
+            LOGGER,
         )
 
 
@@ -1299,8 +1316,8 @@ class _HeaderRecordingSession:
 def test_legacy_fetch_sends_referer_for_kansai():
     """JP-KN requires a Referer header; the fetch must send it (and the URL)."""
     session = _HeaderRecordingSession(_LEGACY_KN.encode("shift_jis"))
-    result = _fetch_production_legacy_area_csv(
-        "JP-KN", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
+    result = _fetch_legacy_area_csv(
+        _PRODUCTION, "JP-KN", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
     )
     assert session.url.endswith("area_jyukyu_jisseki_2016.csv")
     assert session.headers["Referer"] == (
@@ -1313,8 +1330,8 @@ def test_legacy_fetch_sends_referer_for_kansai():
 def test_legacy_fetch_omits_referer_when_not_configured():
     """Zones without a referer (e.g. JP-HKD) send only a User-Agent."""
     session = _HeaderRecordingSession(_LEGACY_HKD.encode("shift_jis"))
-    _fetch_production_legacy_area_csv(
-        "JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
+    _fetch_legacy_area_csv(
+        _PRODUCTION, "JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
     )
     assert session.url.endswith("sup_dem_results_2016_1q.csv")
     assert "Referer" not in session.headers
@@ -1325,11 +1342,11 @@ def test_legacy_fetch_caches_archive_across_days():
     """Consecutive days in the same quarterly/annual archive reuse the cached
     download instead of re-fetching the file once per day of backfill."""
     session = _HeaderRecordingSession(_LEGACY_HKD.encode("shift_jis"))
-    day_one = _fetch_production_legacy_area_csv(
-        "JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
+    day_one = _fetch_legacy_area_csv(
+        _PRODUCTION, "JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
     )
-    day_two = _fetch_production_legacy_area_csv(
-        "JP-HKD", datetime(2016, 4, 2, tzinfo=TIMEZONE), session, LOGGER
+    day_two = _fetch_legacy_area_csv(
+        _PRODUCTION, "JP-HKD", datetime(2016, 4, 2, tzinfo=TIMEZONE), session, LOGGER
     )
     assert session.calls == 1  # same FY2016 Q1 file, fetched once
     assert len(day_one) == 2
@@ -1420,4 +1437,200 @@ def test_snapshot_fetch_production_legacy(requests_mock, session, snapshot, zone
     result = fetch_production(
         zone_key=zone_key, session=session, target_datetime=target
     )
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+# ─── Consumption: area demand (エリア需要) from the same sources ─────────────
+# fetch_consumption reads the same files as fetch_production through the same
+# fetchers; only the columns read and the events built differ (_CONSUMPTION).
+
+# Zone number → area demand (MW) in the first target-day row of its fixture.
+EXPECTED_FIRST_DEMAND = {
+    "01": 2930,  # JP-HKD
+    "02": 7224,  # JP-TH (realtime file)
+    "03": 23907,  # JP-TK
+    "04": 10846,  # JP-CB
+    "05": 2533,  # JP-HR
+    "06": 11575,  # JP-KN
+    "07": 5201,  # JP-CG
+    "08": 2102,  # JP-SK
+    "09": 7838,  # JP-KY (end-labelled 0:30 row, shifted to 0:00)
+    "10": 714,  # JP-ON
+}
+
+
+@pytest.mark.parametrize("zone_num", sorted(ZONE_FIXTURES))
+def test_consumption_area_csv(zone_num):
+    """Every zone's area CSV yields one 30-min demand event per production row."""
+    zone_key, df, target = _read_fixture(zone_num)
+    offset = _AREA_CSV_CONFIGS[zone_key].datetime_offset
+    consumption = _area_df_to_events(
+        _CONSUMPTION, df, zone_key, "test", target, LOGGER, datetime_offset=offset
+    )
+    production = _area_df_to_events(
+        _PRODUCTION, df, zone_key, "test", target, LOGGER, datetime_offset=offset
+    )
+    assert len(consumption) == ZONE_FIXTURES[zone_num][5]
+    assert [e["datetime"] for e in consumption] == [e["datetime"] for e in production]
+    first = consumption[0]
+    assert first["zoneKey"] == zone_key
+    assert first["datetime"] == datetime.combine(target.date(), time(), TIMEZONE)
+    assert first["end_datetime"] - first["datetime"] == timedelta(minutes=30)
+    assert first["consumption"] == EXPECTED_FIRST_DEMAND[zone_num]
+    assert first["sourceType"] == EventSourceType.measured
+    assert "production" not in first
+
+
+def test_consumption_skips_rows_without_demand():
+    """Padded rows (blank DATE/TIME or blank demand) are skipped, not logged as
+    invalid zero/None consumption events."""
+    df = _read_area_csv(_AREA_WITH_PADDING.encode("shift_jis"))
+    result = _area_df_to_events(
+        _CONSUMPTION, df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
+    )
+    assert [e["consumption"] for e in result] == [1000, 1000]
+
+
+def test_consumption_live_falls_back_to_latest_day_with_demand():
+    """Live fetches serve the latest day whose demand is filled in, like
+    production does for its columns (HEPCO publishes ~3 days late)."""
+    _, df, _ = _read_fixture("01")
+    result = _area_df_to_events(
+        _CONSUMPTION,
+        df,
+        "JP-HKD",
+        "test",
+        datetime(2026, 4, 20, tzinfo=TIMEZONE),
+        LOGGER,
+        latest_available=True,
+    )
+    assert result
+    assert len({e["datetime"].date() for e in result}) == 1
+    assert result[0]["datetime"].date() < datetime(2026, 4, 20).date()
+
+
+def test_consumption_raises_when_demand_column_is_renamed():
+    """A header without エリア需要 means the TSO changed its format: fail loud
+    instead of silently returning an empty day."""
+    renamed = _AREA_WITH_PADDING.replace("エリア需要", "需要実績")
+    df = _read_area_csv(renamed.encode("shift_jis"))
+    with pytest.raises(ParserException, match="エリア需要"):
+        _area_df_to_events(
+            _CONSUMPTION,
+            df,
+            "JP-TK",
+            "test",
+            datetime(2026, 4, 1, tzinfo=TIMEZONE),
+            LOGGER,
+        )
+
+
+def test_legacy_demand_column_follows_datetime_columns():
+    """Demand sits right after the date/time column(s) in every legacy layout."""
+    for zone_key, config in _LEGACY_AREA_CONFIGS.items():
+        expected = 1 if config.datetime_combined else 2
+        assert config.demand_column == expected, zone_key
+
+
+def _legacy_consumption(zone_key: str, text: str, target: datetime) -> list:
+    df = _read_legacy_area_csv(text.encode("shift_jis"))
+    return _legacy_df_to_events(
+        _CONSUMPTION, df, _LEGACY_AREA_CONFIGS[zone_key], zone_key, target, LOGGER
+    )
+
+
+@pytest.mark.parametrize(
+    ("zone_key", "text", "expected"),
+    [
+        ("JP-HKD", _LEGACY_HKD, [3166, 3282]),  # split, kanji hours, date ffill
+        ("JP-TK", _LEGACY_TK, [25550]),  # "2,555" 万kWh × 10
+        ("JP-KN", _LEGACY_KN, [12918]),  # combined DATE_TIME
+        ("JP-ON", _LEGACY_ON, [647]),  # reduced schema, multi-line header
+    ],
+    ids=["JP-HKD", "JP-TK", "JP-KN", "JP-ON"],
+)
+def test_consumption_legacy_layouts(zone_key, text, expected):
+    result = _legacy_consumption(zone_key, text, datetime(2016, 4, 1, tzinfo=TIMEZONE))
+    assert [e["consumption"] for e in result] == expected
+    assert result[0]["datetime"] == datetime(2016, 4, 1, tzinfo=TIMEZONE)
+    assert result[0]["end_datetime"] - result[0]["datetime"] == timedelta(hours=1)
+    assert result[0]["source"] == _LEGACY_AREA_CONFIGS[zone_key].source
+
+
+def test_consumption_isep():
+    """ISEP's `demand` key; flagged and previous-day records are dropped."""
+
+    class _Resp:
+        status_code = 200
+        text = _isep_html(_ISEP_RECORDS)
+
+        def raise_for_status(self):
+            pass
+
+    class _Session:
+        def get(self, url, headers=None):
+            return _Resp()
+
+    result = _fetch_isep(
+        _CONSUMPTION, "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), _Session(), LOGGER
+    )
+    assert [e["consumption"] for e in result] == [8000, 14000]
+    assert result[0]["source"] == "isep-energychart.com"
+
+
+def test_consumption_routing_matches_production():
+    """fetch_consumption routes through the same per-source fetchers as
+    fetch_production, asking them for the consumption signal."""
+    with (
+        patch("electricitymap.contrib.parsers.JP._fetch_area_csv") as area,
+        patch("electricitymap.contrib.parsers.JP._fetch_legacy_area_csv") as legacy,
+        patch("electricitymap.contrib.parsers.JP._fetch_isep") as isep,
+    ):
+        fetch_consumption(
+            "JP-HKD", target_datetime=datetime(2025, 1, 1, tzinfo=TIMEZONE)
+        )
+        fetch_consumption(
+            "JP-HKD", target_datetime=datetime(2020, 1, 1, tzinfo=TIMEZONE)
+        )
+        fetch_consumption(
+            "JP-KY", target_datetime=datetime(2018, 6, 1, tzinfo=TIMEZONE)
+        )
+    for fetcher in (area, legacy, isep):
+        fetcher.assert_called_once()
+        assert fetcher.call_args.args[0] is _CONSUMPTION
+    with pytest.raises(NotImplementedError):
+        fetch_consumption(
+            "JP-HKD", target_datetime=datetime(2015, 1, 1, tzinfo=TIMEZONE)
+        )
+
+
+@pytest.mark.parametrize(
+    ("zone_key", "target"),
+    [
+        ("JP-TH", None),  # live: realtime file, latest available day
+        ("JP-KN", datetime(2026, 4, 1, tzinfo=TIMEZONE)),  # standard area CSV
+        ("JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE)),  # legacy archive
+    ],
+    ids=["live-JP-TH", "standard-JP-KN", "legacy-JP-HKD"],
+)
+def test_snapshot_fetch_consumption(requests_mock, session, snapshot, zone_key, target):
+    """End to end through fetch_consumption, one zone per source path."""
+    if target is not None and target.year < 2024:
+        config = _LEGACY_AREA_CONFIGS[zone_key]
+        content = (MOCKS_DIR / _LEGACY_FILE_FIXTURES[zone_key]).read_bytes()
+        requests_mock.register_uri(GET, config.url_builder(target), content=content)
+        result = fetch_consumption(
+            zone_key=zone_key, session=session, target_datetime=target
+        )
+    elif target is None:
+        now = datetime(2026, 4, 15, 12, tzinfo=TIMEZONE)
+        _register_area_csv(requests_mock, zone_key, now)
+        with freeze_time(now):
+            result = fetch_consumption(zone_key=zone_key, session=session)
+    else:
+        _register_area_csv(requests_mock, zone_key, target)
+        result = fetch_consumption(
+            zone_key=zone_key, session=session, target_datetime=target
+        )
+    assert result
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
