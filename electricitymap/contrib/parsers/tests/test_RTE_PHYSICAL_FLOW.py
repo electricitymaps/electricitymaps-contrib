@@ -4,6 +4,7 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
+from freezegun import freeze_time
 from requests_mock import GET, POST
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
@@ -120,10 +121,11 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
     assert results["FR->IT-NO"][0]["netFlow"] == 3921
 
     # One token serves all three borders, and the window runs from the Paris midnight
-    # before the target to the Paris midnight after it (the API only returns whole days).
+    # a week before the target to the Paris midnight after it (the API only returns
+    # whole days).
     assert [r.method for r in requests_mock.request_history].count("POST") == 1
     queries = [r.qs for r in requests_mock.request_history if r.method == "GET"]
-    assert {q["start_date"][0] for q in queries} == {"2026-11-10t00:00:00+01:00"}
+    assert {q["start_date"][0] for q in queries} == {"2026-11-04t00:00:00+01:00"}
     assert {q["end_date"][0] for q in queries} == {"2026-11-12t00:00:00+01:00"}
     assert [q["country_eic_code"][0].upper() for q in queries] == [
         BORDER_EICS[other] for *_, other in BORDERS
@@ -136,10 +138,13 @@ def test_fetch_exchange_publishes_every_quarter_hour_as_rte_gives_it(
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == results
 
 
-def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session, monkeypatch):
+def test_fetch_exchange_window_for_naive_target_and_live_fetch(
+    requests_mock, session, monkeypatch
+):
     """A naive target is UTC, whatever the machine's timezone: it asks for the same
     Paris days as the aware target. At UTC+14, reading it as local time would put
-    the target on the previous Paris day."""
+    the target on the previous Paris day. The live fetch, with no target, keeps a
+    one-day lookback instead of the refetch's week."""
     _mock_api(requests_mock)
 
     try:
@@ -155,9 +160,14 @@ def test_fetch_exchange_reads_naive_target_as_utc(requests_mock, session, monkey
     finally:
         time.tzset()
 
-    (query,) = [r.qs for r in requests_mock.request_history if r.method == "GET"]
-    assert query["start_date"] == ["2026-11-10t00:00:00+01:00"]
-    assert query["end_date"] == ["2026-11-12t00:00:00+01:00"]
+    with freeze_time(TARGET_DATETIME):
+        fetch_exchange(ZoneKey("BE"), ZoneKey("FR"), session=session)
+
+    refetch, live = [r.qs for r in requests_mock.request_history if r.method == "GET"]
+    assert refetch["start_date"] == ["2026-11-04t00:00:00+01:00"]
+    assert refetch["end_date"] == ["2026-11-12t00:00:00+01:00"]
+    assert live["start_date"] == ["2026-11-10t00:00:00+01:00"]
+    assert live["end_date"] == ["2026-11-12t00:00:00+01:00"]
 
 
 def test_fetch_exchange_unsupported_border_raises(requests_mock, session):
