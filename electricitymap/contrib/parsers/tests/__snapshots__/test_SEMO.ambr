@@ -1,0 +1,63 @@
+# serializer version: 1
+# name: test_fetch_production_gb_nir
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 9, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 600.0,
+        'solar': 16.0,
+        'wind': 160.0,
+      }),
+      'source': 'sem-o.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB-NIR',
+    }),
+  ])
+# ---
+# name: test_fetch_production_ie
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 9, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 30.0,
+        'gas': 480.0,
+        'hydro': 60.0,
+        'oil': 190.0,
+        'solar': 100.0,
+        'unknown': 24.0,
+        'wind': 200.0,
+      }),
+      'source': 'sem-o.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 40.0,
+        'hydro': -50.0,
+      }),
+      'zoneKey': 'IE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 9, 20, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'gas': 380.0,
+        'solar': 90.0,
+        'wind': 220.0,
+      }),
+      'source': 'sem-o.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IE',
+    }),
+  ])
+# ---

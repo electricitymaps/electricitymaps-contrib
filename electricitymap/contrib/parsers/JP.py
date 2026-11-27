@@ -5,7 +5,7 @@ import re
 import unicodedata
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -1093,7 +1093,7 @@ def fetch_price_day_ahead(
             start = (
                 datetime.combine(row.Date, time(), tzinfo=ZONE_INFO)
                 + (row.Period - 1) * _JEPX_RESOLUTION
-            ).astimezone(timezone.utc)
+            ).astimezone(UTC)
             prices.append(
                 zoneKey=zone_key,
                 datetime=start,

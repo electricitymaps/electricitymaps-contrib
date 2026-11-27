@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -25,9 +25,9 @@ def test_parse_hourly_interval():
     interval; ElectricityMaps stores intervals using start hour instead.
     """
     fixtures = [
-        ("2022-02-28T23", datetime(2022, 2, 28, 22, 0, 0, tzinfo=timezone.utc)),
-        ("2022-03-01T00", datetime(2022, 2, 28, 23, 0, 0, tzinfo=timezone.utc)),
-        ("2022-03-01T01", datetime(2022, 3, 1, 0, 0, 0, tzinfo=timezone.utc)),
+        ("2022-02-28T23", datetime(2022, 2, 28, 22, 0, 0, tzinfo=UTC)),
+        ("2022-03-01T00", datetime(2022, 2, 28, 23, 0, 0, tzinfo=UTC)),
+        ("2022-03-01T01", datetime(2022, 3, 1, 0, 0, 0, tzinfo=UTC)),
     ]
 
     for period, expected in fixtures:
@@ -461,9 +461,7 @@ def test_fetch_production_mix_discards_null(requests_mock, session, snapshot):
 
     assert data_list == snapshot
 
-    assert (
-        datetime(2022, 10, 31, 11, 0, tzinfo=timezone.utc) == data_list[0]["datetime"]
-    )
+    assert datetime(2022, 10, 31, 11, 0, tzinfo=UTC) == data_list[0]["datetime"]
 
 
 def test_fetch_exchange(requests_mock, session):
@@ -482,19 +480,19 @@ def test_fetch_exchange(requests_mock, session):
     expected = [
         {
             "source": "eia.gov",
-            "datetime": datetime(2022, 2, 28, 22, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2022, 2, 28, 22, 0, tzinfo=UTC),
             "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
             "netFlow": -12,
         },
         {
             "source": "eia.gov",
-            "datetime": datetime(2022, 2, 28, 23, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2022, 2, 28, 23, 0, tzinfo=UTC),
             "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
             "netFlow": -11,
         },
         {
             "source": "eia.gov",
-            "datetime": datetime(2022, 3, 1, 0, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2022, 3, 1, 0, 0, tzinfo=UTC),
             "sortedZoneKeys": "US-NW-BPAT->US-NW-NWMT",
             "netFlow": -2,
         },
@@ -521,12 +519,12 @@ def test_fetch_consumption(requests_mock, session):
     expected = [
         {
             "source": "eia.gov",
-            "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=UTC),
             "consumption": 4792,
         },
         {
             "source": "eia.gov",
-            "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=UTC),
             "consumption": 6215,
         },
     ]
@@ -551,12 +549,12 @@ def test_fetch_forecasted_consumption(requests_mock, session):
     expected = [
         {
             "source": "eia.gov",
-            "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2023, 5, 1, 9, 0, tzinfo=UTC),
             "consumption": 4792,
         },
         {
             "source": "eia.gov",
-            "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=timezone.utc),
+            "datetime": datetime(2023, 5, 1, 10, 0, tzinfo=UTC),
             "consumption": 6215,
         },
     ]

@@ -29,9 +29,15 @@ capacity:
     - datetime: '2024-10-01'
       source: EIA.gov
       value: 148.7
-    - datetime: '2026-05-01'
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 276.7
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 326.2
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 336.2
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -80,25 +86,31 @@ capacity:
       value: 1878.8
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 1882.7
+      value: 1878.0
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 1872.7
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 1881.2
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 1878.0
+      value: 1876.1
     - datetime: '2025-07-01'
       source: EIA.gov
-      value: 1776.8
+      value: 1774.9
+    - datetime: '2025-09-01'
+      source: EIA.gov
+      value: 1677.6
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 1762.3
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 1768.9
+    - datetime: '2026-04-01'
+      source: EIA.gov
+      value: 1760.4
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 1755.4
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 1672.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -175,17 +187,8 @@ capacity:
       value: 39113.5
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 36372.2
+      value: 36251.2
     - datetime: '2025-01-01'
-      source: EIA.gov
-      value: 36251.2
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 38992.5
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 36251.2
-    - datetime: '2025-11-01'
       source: EIA.gov
       value: 36233.7
   geothermal:
@@ -250,16 +253,10 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1346.1
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 1387.9
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 1346.1
-    - datetime: '2025-07-01'
+    - datetime: '2026-01-01'
       source: EIA.gov
       value: 1349.9
-    - datetime: '2026-05-01'
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 1346.1
   solar:
@@ -412,41 +409,26 @@ capacity:
       value: 4893.6
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 4670.1
+      value: 4689.9
     - datetime: '2024-04-01'
       source: EIA.gov
-      value: 4828.6
+      value: 4848.4
     - datetime: '2024-05-01'
       source: EIA.gov
-      value: 4908.6
+      value: 4928.4
     - datetime: '2024-07-01'
       source: EIA.gov
-      value: 4918.6
-    - datetime: '2024-08-01'
-      source: EIA.gov
-      value: 4923.5
+      value: 4938.4
     - datetime: '2024-09-01'
       source: EIA.gov
-      value: 5073.5
+      value: 5088.4
     - datetime: '2024-11-01'
       source: EIA.gov
-      value: 5352.0
+      value: 5366.9
     - datetime: '2024-12-01'
       source: EIA.gov
-      value: 5470.0
+      value: 5484.9
     - datetime: '2025-01-01'
-      source: EIA.gov
-      value: 5746.9
-    - datetime: '2025-02-01'
-      source: EIA.gov
-      value: 5970.4
-    - datetime: '2025-03-01'
-      source: EIA.gov
-      value: 5746.9
-    - datetime: '2025-04-01'
-      source: EIA.gov
-      value: 5745.9
-    - datetime: '2025-05-01'
       source: EIA.gov
       value: 5744.9
     - datetime: '2025-12-01'
@@ -455,9 +437,18 @@ capacity:
     - datetime: '2026-01-01'
       source: EIA.gov
       value: 5904.9
+    - datetime: '2026-02-01'
+      source: EIA.gov
+      value: 5905.9
+    - datetime: '2026-03-01'
+      source: EIA.gov
+      value: 5904.9
     - datetime: '2026-05-01'
       source: EIA.gov
       value: 6064.9
+    - datetime: '2026-06-01'
+      source: EIA.gov
+      value: 6067.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -468,10 +459,16 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 45.0
-    - datetime: '2025-01-01'
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2026-05-01'
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 8.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2026-04-01'
       source: EIA.gov
       value: 8.5
   wind:

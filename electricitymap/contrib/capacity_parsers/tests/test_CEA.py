@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
@@ -13,7 +13,7 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 base_path_to_mock = Path("electricitymap/contrib/capacity_parsers/tests/mocks/CEA")
 CEA_REPORT_URL = "https://cea.nic.in/api/dashboardReports/download-pdf/en/5a762fd0-c972-42f1-9167-a1eb64e804db"
-TARGET_DATETIME = datetime(2026, 8, 1, tzinfo=timezone.utc)
+TARGET_DATETIME = datetime(2026, 8, 1, tzinfo=UTC)
 MNRE_REPORT_URL = "https://cdnbbsr.s3waas.gov.in/s3716e1b8c6cd17b771da77391355749f3/uploads/2026/10/20261008207003538.pdf"
 
 
@@ -77,7 +77,7 @@ def test_mnre_does_not_use_target_datetime(session, cea_mocks, caplog):
 def test_missing_cea_month_raises(session, cea_mocks):
     with pytest.raises(ParserException, match="2026-09"):
         fetch_production_capacity_for_all_zones(
-            datetime(2026, 9, 1, tzinfo=timezone.utc), session
+            datetime(2026, 9, 1, tzinfo=UTC), session
         )
 
 
@@ -93,7 +93,7 @@ def test_hydro_skipped_when_mnre_is_far_from_target(
         .replace('data-date="2026-08"', 'data-date="2026-06"'),
     )
     capacity = fetch_production_capacity_for_all_zones(
-        datetime(2026, 6, 1, tzinfo=timezone.utc), session
+        datetime(2026, 6, 1, tzinfo=UTC), session
     )
     assert "hydro" not in capacity["IN-SO"]
     assert "solar" in capacity["IN-SO"]
@@ -111,6 +111,6 @@ def test_hydro_included_when_mnre_is_close_to_target(session, cea_mocks, adapter
         .replace('data-date="2026-08"', 'data-date="2026-07"'),
     )
     capacity = fetch_production_capacity_for_all_zones(
-        datetime(2026, 7, 1, tzinfo=timezone.utc), session
+        datetime(2026, 7, 1, tzinfo=UTC), session
     )
     assert capacity["IN-SO"]["hydro"]["datetime"] == "2026-07-01"

@@ -11,7 +11,7 @@ https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide
 """
 
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 
@@ -40,7 +40,7 @@ ELEXON_URLS = {
     ),  # B0610 - Actual Total Load https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/ATL
 }
 ELEXON_START_DATE = datetime(
-    2019, 1, 1, tzinfo=timezone.utc
+    2019, 1, 1, tzinfo=UTC
 )  # ELEXON API only has data from 2019-01-01
 ELEXON_SOURCE = "elexon.co.uk"
 ESO_NATIONAL_GRID_ENDPOINT = "https://api.neso.energy/api/3/action/datastore_search_sql"
@@ -140,7 +140,7 @@ def parse_datetime(
         )
     parsed_datetime = datetime.strptime(settlementDate, "%Y-%m-%d")
     parsed_datetime += timedelta(hours=(settlementPeriod - 1) / 2)
-    return parsed_datetime.replace(tzinfo=timezone.utc)
+    return parsed_datetime.replace(tzinfo=UTC)
 
 
 def query_IM_exchange(
@@ -262,7 +262,7 @@ def query_additional_eso_data(
     """Fetches embedded wind and solar and hydro storage data from the ESO API."""
     begin = (target_datetime - timedelta(days=2)).strftime("%Y-%m-%d")
     end = (target_datetime).strftime("%Y-%m-%d")
-    if target_datetime > (datetime.now(tz=timezone.utc) - timedelta(days=30)):
+    if target_datetime > (datetime.now(tz=UTC) - timedelta(days=30)):
         report_id = ESO_DEMAND_DATA_UPDATE_ID
     else:
         index = _create_eso_historical_demand_index(session)
@@ -461,9 +461,9 @@ def fetch_consumption(
 ) -> list[dict]:
     session = session or Session()
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     else:
-        target_datetime = target_datetime.astimezone(timezone.utc)
+        target_datetime = target_datetime.astimezone(UTC)
 
     if target_datetime < ELEXON_START_DATE:
         raise ParserException(
@@ -490,10 +490,10 @@ def fetch_exchange(
 ):
     session = session or Session()
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
 
     if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
 
     exchangeKey = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if target_datetime < ELEXON_START_DATE:
@@ -519,9 +519,9 @@ def fetch_production(
 ) -> list[dict]:
     session = session or Session()
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     else:
-        target_datetime = target_datetime.astimezone(timezone.utc)
+        target_datetime = target_datetime.astimezone(UTC)
 
     if target_datetime < ELEXON_START_DATE:
         raise ParserException(

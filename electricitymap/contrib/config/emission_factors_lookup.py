@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from operator import itemgetter
 from typing import Any
 
@@ -87,11 +87,9 @@ def _get_zone_specific_co2eq_parameter_no_metadata(
             )
 
         res.sort(key=itemgetter("datetime"))
-        dt = dt.replace(tzinfo=timezone.utc)
+        dt = dt.replace(tzinfo=UTC)
         for co2eq in reversed(res):
-            co2eq_dt = datetime.fromisoformat(co2eq["datetime"]).replace(
-                tzinfo=timezone.utc
-            )
+            co2eq_dt = datetime.fromisoformat(co2eq["datetime"]).replace(tzinfo=UTC)
             if co2eq_dt <= dt:
                 return co2eq  # type: ignore[no-any-return]
         return res[0]  # type: ignore[no-any-return]
@@ -146,11 +144,9 @@ def _get_zone_specific_co2eq_parameter_with_metadata(
             )
 
         res.sort(key=itemgetter("datetime"))
-        dt = dt.replace(tzinfo=timezone.utc)
+        dt = dt.replace(tzinfo=UTC)
         for i, co2eq in enumerate(reversed(res)):
-            co2eq_dt = datetime.fromisoformat(co2eq["datetime"]).replace(
-                tzinfo=timezone.utc
-            )
+            co2eq_dt = datetime.fromisoformat(co2eq["datetime"]).replace(tzinfo=UTC)
             if co2eq_dt <= dt:
                 ret = co2eq
 
@@ -199,9 +195,7 @@ def _get_zone_specific_co2eq_parameter_with_metadata(
             else:
                 variant = EmissionFactorVariant.GLOBAL_EXACT_TIMELESS
         else:
-            ret_dt_year = (
-                datetime.fromisoformat(ret_dt).replace(tzinfo=timezone.utc).year
-            )
+            ret_dt_year = datetime.fromisoformat(ret_dt).replace(tzinfo=UTC).year
             dt_year = dt.year
             if ret_dt_year == dt_year:
                 if zone_override:
@@ -257,13 +251,13 @@ def get_emission_factors_with_metadata_all_years(
     end: int | None = None,
 ) -> tuple[list[YearZoneModeEmissionFactor], list[ValidationError]]:
     start = 2015 if start is None else start
-    end = datetime.now(tz=timezone.utc).year if end is None else end
+    end = datetime.now(tz=UTC).year if end is None else end
 
     efs = []
     errors = []
     for zone_key in ZONES_CONFIG:
         for i in range(start, end + 1):
-            dt = datetime(year=i, month=1, day=1, tzinfo=timezone.utc)
+            dt = datetime(year=i, month=1, day=1, tzinfo=UTC)
             for mode in ENERGIES:
                 try:
                     model_obj = _get_emission_factor_lifecycle_and_direct(

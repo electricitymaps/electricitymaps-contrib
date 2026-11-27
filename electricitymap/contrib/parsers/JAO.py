@@ -29,8 +29,8 @@ Currently wired (all day-ahead horizon):
 - fetch_nordic_max_bflow_day_ahead          → Nordic maxBorderFlow (per-border, 15-min)
 """
 
-from datetime import datetime, time, timedelta, timezone
-from enum import Enum
+from datetime import UTC, datetime, time, timedelta
+from enum import StrEnum
 from logging import Logger, getLogger
 
 from requests import Session
@@ -56,17 +56,14 @@ REQUEST_TIMEOUT_SECONDS = 30
 JAO_MAX_FETCH_DAYS = 2
 
 
-class JaoRegion(str, Enum):
+class JaoRegion(StrEnum):
     """JAO Publication Tool region — each has its own base URL and dataset catalog."""
 
     CORE = "core"
     NORDIC = "nordic"
 
-    def __str__(self) -> str:
-        return self.value
 
-
-class JaoDataset(str, Enum):
+class JaoDataset(StrEnum):
     """Canonical JAO Publication Tool dataset slugs.
 
     Each dataset is published by exactly one region's Publication Tool. The
@@ -82,9 +79,6 @@ class JaoDataset(str, Enum):
     SCHEDULED_EXCHANGES = "scheduledExchanges"  # Core only
     MAX_BFLOW = "maxBorderFlow"  # Nordic only
 
-    def __str__(self) -> str:
-        return self.value
-
 
 # Mapping from EM zone keys to the zone codes JAO uses in `border_XX_YY`
 # fields. Only zones where the two differ need an entry; everything else
@@ -97,9 +91,9 @@ class JaoDataset(str, Enum):
 # where LU is a party (BE_LU, DE_LU, FR_LU) should NOT be wired to this
 # parser to avoid double-counting.
 #
-# These codes are specific to the Publication Tool. The Auction API
-# (JAO_Auctions.py) uses different ones for the same zones — DK-DK1 is "DK1" here
-# but "D1" there. Both are correct for their API; don't unify them.
+# These codes are specific to the Publication Tool. The Auction API, which
+# Electricity Maps' internal feeder now uses for daily explicit auction ATC,
+# has its own codes (DK-DK1 is "DK1" here but "D1" there); don't unify them.
 EM_TO_JAO_ZONE: dict[str, str] = {
     # Italy: JAO publishes a single "IT" code for Core-external borders,
     # which physically corresponds to the Italy North bidding zone.
@@ -195,7 +189,7 @@ def _resolve_border_fields(
 
 def _format_utc(dt: datetime) -> str:
     """Format a tz-aware datetime as the ISO-8601 string JAO expects."""
-    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    return dt.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
 
 def _parse_utc(value: str) -> datetime:
@@ -212,13 +206,13 @@ def _target_window(
     the public fetcher is decorated with so refetches are gapless.
     """
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
     day_start = datetime.combine(
-        target_datetime.astimezone(timezone.utc).date(),
+        target_datetime.astimezone(UTC).date(),
         time.min,
-        tzinfo=timezone.utc,
+        tzinfo=UTC,
     )
     return day_start, day_start + timedelta(days=days)
 

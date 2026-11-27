@@ -3,7 +3,7 @@ import os
 from collections.abc import ItemsView, KeysView, ValuesView
 from copy import deepcopy
 from datetime import timedelta
-from enum import Enum
+from enum import StrEnum, auto
 from inspect import signature
 from logging import getLogger
 from typing import TypeVar
@@ -15,12 +15,8 @@ from requests.adapters import HTTPAdapter, Retry
 ModeEnumType = TypeVar("ModeEnumType", bound="BaseModeEnum")
 
 
-# TODO: Switch this to StringEnum when we migrate to Python 3.11
-class BaseModeEnum(str, Enum):
+class BaseModeEnum(StrEnum):
     """Base class for Mode enums."""
-
-    def __str__(self) -> str:
-        return self.value
 
     @classmethod
     def values(cls: type[ModeEnumType]) -> ValuesView[ModeEnumType]:
@@ -41,25 +37,23 @@ class BaseModeEnum(str, Enum):
 class ProductionModes(BaseModeEnum):
     """Energy production modes/sources used throughout the parsers."""
 
-    # TODO: When we migrate to StringEnum, we should use the `auto()` method
-    BIOMASS = "biomass"
-    COAL = "coal"
-    GAS = "gas"
-    GEOTHERMAL = "geothermal"
-    HYDRO = "hydro"
-    NUCLEAR = "nuclear"
-    OIL = "oil"
-    SOLAR = "solar"
-    WIND = "wind"
-    UNKNOWN = "unknown"
+    BIOMASS = auto()
+    COAL = auto()
+    GAS = auto()
+    GEOTHERMAL = auto()
+    HYDRO = auto()
+    NUCLEAR = auto()
+    OIL = auto()
+    SOLAR = auto()
+    WIND = auto()
+    UNKNOWN = auto()
 
 
 class StorageModes(BaseModeEnum):
     """Energy storage modes/sources used throughout the parsers."""
 
-    # TODO: When we migrate to StringEnum, we should use the `auto()` method
-    BATTERY = "battery"
-    HYDRO = "hydro"
+    BATTERY = auto()
+    HYDRO = auto()
 
 
 def refetch_frequency(frequency: timedelta):

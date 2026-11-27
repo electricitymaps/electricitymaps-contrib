@@ -4,7 +4,7 @@ import io
 import logging
 import re
 import zipfile
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -391,7 +391,7 @@ def test_wem_backfill_reads_the_daily_dispatch_files(requests_mock, session):
     _wem_mock(requests_mock, daily="2026-01-01")
 
     events = fetch_consumption(
-        "AU-WA", session, target_datetime=datetime(2026, 1, 2, tzinfo=timezone.utc)
+        "AU-WA", session, target_datetime=datetime(2026, 1, 2, tzinfo=UTC)
     )
 
     # the fixture holds the six intervals from 08:00 AWST, which is 00:00 UTC
@@ -409,7 +409,7 @@ def test_wem_backfill_reads_the_balancing_summary_before_wemde(requests_mock, se
     _wem_mock(requests_mock, summary="2023")
 
     events = fetch_consumption(
-        "AU-WA", session, target_datetime=datetime(2023, 9, 26, 12, tzinfo=timezone.utc)
+        "AU-WA", session, target_datetime=datetime(2023, 9, 26, 12, tzinfo=UTC)
     )
 
     # the fixture runs to 09:30 AWST on the 26th, but dispatch covers everything
@@ -427,7 +427,7 @@ def test_wem_reads_each_feed_only_over_the_range_it_covers(requests_mock, sessio
     _wem_mock(requests_mock, daily="2023-09-26", summary="2023")
 
     events = fetch_consumption(
-        "AU-WA", session, target_datetime=datetime(2023, 9, 26, 12, tzinfo=timezone.utc)
+        "AU-WA", session, target_datetime=datetime(2023, 9, 26, 12, tzinfo=UTC)
     )
 
     datetimes = [event["datetime"] for event in events]
@@ -444,7 +444,7 @@ def test_wem_window_before_the_series_starts_raises(requests_mock, session):
 
     with pytest.raises(ParserException, match="no WEM demand"):
         fetch_consumption(
-            "AU-WA", session, target_datetime=datetime(2011, 6, 15, tzinfo=timezone.utc)
+            "AU-WA", session, target_datetime=datetime(2011, 6, 15, tzinfo=UTC)
         )
 
 
@@ -458,7 +458,7 @@ def test_wem_unpublished_recent_days_are_not_reported_as_missing(
 
     with caplog.at_level(logging.WARNING):
         fetch_consumption(
-            "AU-WA", session, target_datetime=datetime(2026, 1, 8, tzinfo=timezone.utc)
+            "AU-WA", session, target_datetime=datetime(2026, 1, 8, tzinfo=UTC)
         )
 
     missing = sorted(

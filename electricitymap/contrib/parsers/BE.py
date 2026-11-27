@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -99,7 +99,7 @@ def fetch_elia(
                 event.get("generatedpower"),
             )
 
-        dt = datetime.fromisoformat(dt_key).astimezone(timezone.utc)
+        dt = datetime.fromisoformat(dt_key).astimezone(UTC)
         # Carry Elia's native resolution as the interval end so each 15-min
         # point spans exactly its own slot.
         resolution = _elia_resolution_to_timedelta(events[0].get("resolutioncode"))
@@ -172,7 +172,7 @@ def fetch_production(
     entsoe_data = fetch_entsoe(zone_key, session, target_datetime, logger)
 
     # Fetch Elia over the same window as ENTSOE, in 2-hour chunks (API limit).
-    reference_datetime = target_datetime or datetime.now(timezone.utc)
+    reference_datetime = target_datetime or datetime.now(UTC)
     range_end = reference_datetime + ENTSOE_SPAN[1]
     chunk_start = reference_datetime + ENTSOE_SPAN[0]
     elia_data = ProductionBreakdownList(logger)

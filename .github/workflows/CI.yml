@@ -48,10 +48,10 @@ jobs:
         with:
           enable-cache: true
           cache-suffix: 'formatting'
-          python-version: '3.10'
+          python-version: '3.11'
       - name: Install Dependencies
         run: |
-          uv sync --extra parsers
+          uv sync --locked --extra parsers
       - name: Check formatting
         run: |
           uv run ruff format . --check
@@ -65,7 +65,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
+        python-version: ['3.11', '3.12']
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -81,7 +81,7 @@ jobs:
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Dependencies
         run: |
-          uv sync --group dev --extra parsers
+          uv sync --locked --group dev --extra parsers
       - name: Run tests
         run: |
           uv run test

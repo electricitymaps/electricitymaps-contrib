@@ -4,7 +4,7 @@ import json
 import re
 import zipfile
 from collections.abc import Iterable, Iterator
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any, NamedTuple
 from zoneinfo import ZoneInfo
@@ -346,7 +346,7 @@ WEM_BALANCING_SUMMARY_URL = (
 )
 # WEMDE dispatched its first interval on 2023-10-01 and ran in parallel from
 # this instant, which is where the balancing summary before it hands over.
-WEM_DISPATCH_START = datetime(2023, 9, 26, tzinfo=timezone.utc)
+WEM_DISPATCH_START = datetime(2023, 9, 26, tzinfo=UTC)
 BALANCING_SUMMARY_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
@@ -361,9 +361,9 @@ class DemandInterval(NamedTuple):
 def _utc_days(start: datetime, end: datetime) -> list[date]:
     """The UTC days a half-open window touches, oldest first."""
     days = []
-    day = start.astimezone(timezone.utc).date()
+    day = start.astimezone(UTC).date()
     # end is exclusive, so a window ending at midnight stops the day before
-    last = (end - timedelta(minutes=1)).astimezone(timezone.utc).date()
+    last = (end - timedelta(minutes=1)).astimezone(UTC).date()
     while day <= last:
         days.append(day)
         day += timedelta(days=1)
@@ -450,11 +450,11 @@ def _wem_demand_intervals(
         yield from _wem_live_interval(session)
         return
 
-    end = target_datetime.astimezone(timezone.utc)
+    end = target_datetime.astimezone(UTC)
     window = (end - REFETCH_FREQUENCY, end)
     summary_days = _utc_days(window[0], min(window[1], WEM_DISPATCH_START))
     dispatch_days = _utc_days(max(window[0], WEM_DISPATCH_START), window[1])
-    published_by = datetime.now(tz=timezone.utc).date() - WEM_PUBLICATION_LAG
+    published_by = datetime.now(tz=UTC).date() - WEM_PUBLICATION_LAG
 
     published = 0
     for year in sorted({day.year for day in summary_days}):

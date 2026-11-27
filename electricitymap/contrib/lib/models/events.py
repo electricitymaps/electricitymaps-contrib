@@ -3,8 +3,8 @@ import datetime as dt
 import math
 from abc import ABC, abstractmethod
 from collections.abc import Set
-from datetime import datetime, timedelta, timezone
-from enum import Enum
+from datetime import datetime, timedelta
+from enum import StrEnum
 from logging import Logger
 from typing import Any
 
@@ -25,7 +25,7 @@ from electricitymap.contrib.types import (
     ZoneKey,
 )
 
-LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
+LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=dt.UTC)
 
 
 def _is_naive(t: dt.datetime) -> bool:
@@ -288,7 +288,7 @@ class StorageMix(Mix):
         return storage_mix
 
 
-class EventSourceType(str, Enum):
+class EventSourceType(StrEnum):
     measured = "measured"
     forecasted = "forecasted"
     estimated = "estimated"
@@ -333,8 +333,8 @@ class Event(BaseModel, ABC):
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         source_type = values.get("sourceType", EventSourceType.measured)
         future_ok = {EventSourceType.forecasted, EventSourceType.published}
-        if source_type not in future_ok and v.astimezone(timezone.utc) > datetime.now(
-            timezone.utc
+        if source_type not in future_ok and v.astimezone(dt.UTC) > datetime.now(
+            dt.UTC
         ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted or published point: {v}"
@@ -1165,7 +1165,7 @@ class DayAheadPrice(Price):
     def _to_utc(cls, v: datetime | None) -> datetime | None:
         # Runs after the inherited validators, which reject naive values, so every
         # row leaves the parser in UTC regardless of the source's local timezone.
-        return v.astimezone(timezone.utc) if v is not None else v
+        return v.astimezone(dt.UTC) if v is not None else v
 
     @staticmethod
     def create(
@@ -1214,7 +1214,7 @@ class DayAheadPrice(Price):
         }
 
 
-class GridAlertType(str, Enum):
+class GridAlertType(StrEnum):
     informational = "informational"
     action = "action"
     undefined = "undefined"
