@@ -17,6 +17,9 @@ solar forecasts; the daily refetch completes them once SEM-O publishes.
 Wind and solar always come from SmartGridDashboard and are never taken from
 SEMO. If SmartGridDashboard is unavailable the output carries SEMO's breakdown
 without wind/solar; a SEMO failure is raised.
+
+IE is configured through ``IE.py``, which calls this parser from the SEM-O
+cut-over and other sources for earlier dates (SEM-O only keeps ~2 months).
 """
 
 from collections import defaultdict
@@ -150,6 +153,26 @@ def _merge(
     return breakdowns.to_list()
 
 
+def window(target_datetime: datetime) -> tuple[datetime, datetime]:
+    """The ``[start, end]`` window a call for ``target_datetime`` covers.
+
+    This window is the single source of truth: it is passed to both SEMO and
+    SmartGridDashboard so the two sources always cover the same range (and IE.py
+    routes on it). It reaches two days back to cover SEMO's publication lag; the
+    upper bound keeps SmartGridDashboard (which can return data up to now) from
+    stretching the output to the present.
+    """
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=UTC)
+    start = (target_datetime - timedelta(days=2)).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
+    end = (target_datetime + timedelta(days=1)).replace(
+        hour=23, minute=59, second=59, microsecond=0
+    )
+    return start, end
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey,
@@ -160,20 +183,7 @@ def fetch_production(
     """Wind/solar from SmartGridDashboard, all other modes from SEMO."""
     if target_datetime is None:
         target_datetime = datetime.now(tz=UTC)
-    elif target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=UTC)
-
-    # This window is the single source of truth: it is passed to both SEMO and
-    # SmartGridDashboard so the two sources always cover the same range. It
-    # reaches two days back to cover SEMO's publication lag; the upper bound
-    # keeps SmartGridDashboard (which can return data up to now) from stretching
-    # the output to the present.
-    window_start = (target_datetime - timedelta(days=2)).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
-    window_end = (target_datetime + timedelta(days=1)).replace(
-        hour=23, minute=59, second=59, microsecond=0
-    )
+    window_start, window_end = window(target_datetime)
 
     # SEMO defines the breakdown. A SEMO failure is surfaced rather than falling
     # back to a wind/solar-only result that would overwrite a stored full
