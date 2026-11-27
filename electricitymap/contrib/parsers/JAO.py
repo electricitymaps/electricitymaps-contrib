@@ -88,7 +88,7 @@ class JaoDataset(StrEnum):
 # under the code "DE" (no "LU" zone is ever published). Core-external ATC on
 # borders involving LU is therefore fully accounted for under the DE-side
 # exchange (e.g. BE-LU capacity is rolled into `border_BE_DE`). EM exchanges
-# where LU is a party (BE_LU, DE_LU, FR_LU) should NOT be wired to this
+# where LU is a party (BE_LU, DE_LU) should NOT be wired to this
 # parser to avoid double-counting.
 #
 # These codes are specific to the Publication Tool. The Auction API, which
