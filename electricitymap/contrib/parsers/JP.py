@@ -56,12 +56,16 @@ _REQUEST_HEADERS = {"User-Agent": "Mozilla/5.0"}
 _AREA_RESOLUTION = timedelta(minutes=30)
 _LEGACY_RESOLUTION = timedelta(hours=1)
 
-# Production data comes from three sources, tried in order by fetch_production:
+# Area supply-demand data comes from three sources, tried in order:
 #   1. the new 30-min eria_jukyu area CSVs (full fuel breakdown incl. battery),
 #   2. the TSOs' legacy hourly archives (~FY2016+, combined thermal, no battery),
 #   3. ISEP energychart (JP-KY only — Kyuden removed its pre-FY2019 archive).
 # Each config carries its own `start`: the first date the source has usable
 # data, verified against the actual files (not just their existence).
+# Every source publishes the production mix and the area demand (エリア需要) in
+# the same row, so fetch_production and fetch_consumption share the downloads,
+# the routing and the row filtering, and differ only in the columns they read
+# (see _AreaSignal).
 
 
 @dataclass(frozen=True)
@@ -207,6 +211,8 @@ _AREA_CSV_CONFIGS: dict[str, _AreaCsvConfig] = {
 # names, we map by COLUMN INDEX (stable per TSO across years, verified) and find
 # the first data row dynamically. column_map: {col_index: (mode, "production"|"storage")}.
 # Combined thermal (火力 / 火力等) maps to "unknown" — it cannot be split.
+# demand_column: index of the area demand (エリア需要), the column right after
+# the date/time column(s): 1 in the combined DATE_TIME layout, 2 in the split one.
 
 
 @dataclass(frozen=True)
@@ -217,6 +223,7 @@ class _LegacyAreaConfig:
     url_builder: Callable[[datetime], str]
     source: str
     column_map: dict[int, tuple[str, str]]
+    demand_column: int
     datetime_combined: bool = False  # True: one "YYYY/M/D H:MM" column at index 0
     kanji_time: bool = False  # True: TIME column is "N時" (JP-HKD)
     unit_multiplier: float = 1.0  # JP-TK is in 万kWh (×10 → MWh ≈ MW at 1h)
@@ -236,7 +243,7 @@ def _hr_legacy_url(dt: datetime) -> str:
     return f"{base}{dt.year}{q_start:02d}_{q_start + 2:02d}.csv"
 
 
-# Split DATE/TIME layout shared by HKD, TK, CB, HR, CG (demand at 2, fuels 3-13).
+# Split DATE/TIME layout shared by HKD, TK, CB, HR, CG, SK (demand at 2, fuels 3-13).
 _LEGACY_MAP_SPLIT_STANDARD: dict[int, tuple[str, str]] = {
     3: ("nuclear", "production"),
     4: ("unknown", "production"),  # 火力 (combined thermal)
@@ -257,6 +264,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         ),
         source="hepco.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
         kanji_time=True,
     ),
     "JP-TH": _LegacyAreaConfig(
@@ -277,6 +285,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
             10: ("biomass", "production"),
             11: ("hydro", "storage"),
         },
+        demand_column=1,
         datetime_combined=True,
     ),
     "JP-TK": _LegacyAreaConfig(
@@ -286,6 +295,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         ),
         source="tepco.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
         unit_multiplier=10.0,  # 万kWh → MWh
     ),
     "JP-CB": _LegacyAreaConfig(
@@ -296,12 +306,14 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         ),
         source="powergrid.chuden.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
     ),
     "JP-HR": _LegacyAreaConfig(
         start=datetime(2016, 4, 1, tzinfo=ZONE_INFO),
         url_builder=_hr_legacy_url,
         source="rikuden.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
     ),
     "JP-KN": _LegacyAreaConfig(
         start=datetime(2016, 4, 1, tzinfo=ZONE_INFO),
@@ -321,6 +333,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
             9: ("wind", "production"),
             11: ("hydro", "storage"),
         },
+        demand_column=1,
         datetime_combined=True,
         referer="https://www.kansai-td.co.jp/denkiyoho/area-performance/past.html",
     ),
@@ -332,6 +345,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         ),
         source="energia.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
     ),
     "JP-SK": _LegacyAreaConfig(
         start=datetime(2016, 4, 1, tzinfo=ZONE_INFO),
@@ -342,6 +356,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         # Standard split layout, but as a fiscal-year Excel workbook with
         # native datetime/time cells and 万kW units.
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        demand_column=2,
         unit_multiplier=10.0,  # 万kW → MW
         xlsx=True,
     ),
@@ -363,6 +378,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
             9: ("wind", "production"),
             11: ("hydro", "storage"),
         },
+        demand_column=1,
         datetime_combined=True,
     ),
     "JP-ON": _LegacyAreaConfig(
@@ -381,6 +397,7 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
             7: ("solar", "production"),
             9: ("wind", "production"),
         },
+        demand_column=2,
     ),
 }
 
@@ -402,6 +419,12 @@ _AREA_COLUMN_MAP: dict[str, tuple[str, str]] = {
     "揚水": ("hydro", "storage"),
     "蓄電池": ("battery", "storage"),
 }
+
+# The area demand column, read by fetch_consumption. It is the load served in
+# the area (equal to 合計, total supply incl. net imports), excluding pumping.
+_AREA_DEMAND_COLUMN = "エリア需要"
+# Target that the demand column of every source maps to.
+_DEMAND = ("demand", "consumption")
 
 
 # ─── Shared value/event helpers ──────────────────────────────────────────────
@@ -470,6 +493,49 @@ def _append_breakdown(
     )
 
 
+def _append_consumption(
+    consumption_list: TotalConsumptionList,
+    zone_key: str,
+    dt: datetime,
+    source: str,
+    entries: Iterable[tuple[tuple[str, str], float | None]],
+    resolution: timedelta,
+) -> None:
+    """Append the area demand entry as one total consumption event.
+
+    Same interval convention as `_append_breakdown`. A row without a demand
+    value (current-month padding, dash filler) is skipped rather than appended
+    as an invalid event.
+    """
+    values = [value for _, value in entries if value is not None]
+    if not values:
+        return
+    consumption_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=dt,
+        end_datetime=dt + resolution,
+        source=source,
+        consumption=sum(values),
+    )
+
+
+@dataclass(frozen=True)
+class _AreaSignal:
+    """What to read from the area supply-demand sources, and how to emit it.
+
+    Each source lays the same row out differently, so the signal carries one
+    column mapping per source (name, position or JSON key → target), plus the
+    event list to fill and the function that turns a row's entries into an
+    event. Instances: `_PRODUCTION` and `_CONSUMPTION`, next to the fetchers.
+    """
+
+    area_columns: dict[str, tuple[str, str]]
+    legacy_columns: Callable[[_LegacyAreaConfig], dict[int, tuple[str, str]]]
+    isep_columns: dict[str, tuple[str, str]]
+    new_events: Callable[[Logger], ProductionBreakdownList | TotalConsumptionList]
+    append_event: Callable[..., None]
+
+
 # ─── Area CSV helper functions ───────────────────────────────────────────────
 
 
@@ -522,7 +588,8 @@ def _parse_area_datetime(date_val: Any, time_val: Any) -> datetime:
     raise ValueError(f"Cannot parse area CSV datetime: {combined!r}")
 
 
-def _df_to_production_breakdown_list(
+def _area_df_to_events(
+    signal: _AreaSignal,
     df: pd.DataFrame,
     zone_key: str,
     source: str,
@@ -531,8 +598,8 @@ def _df_to_production_breakdown_list(
     datetime_offset: timedelta = timedelta(),
     latest_available: bool = False,
 ) -> list:
-    """Convert area CSV DataFrame rows for target_date into production events."""
-    production_list = ProductionBreakdownList(logger)
+    """Convert area CSV DataFrame rows for target_date into `signal` events."""
+    events = signal.new_events(logger)
 
     def _safe_datetime(row) -> datetime | None:
         # The current month's file pads future slots with blank DATE/TIME
@@ -547,10 +614,20 @@ def _df_to_production_breakdown_list(
     df["_datetime"] = df.apply(_safe_datetime, axis=1)
     df = df[df["_datetime"].notna()]
 
-    # Which CSV columns map to which (mode, category)
+    # Which CSV columns map to which target, e.g. (mode, category)
     col_targets = [
-        (col, _AREA_COLUMN_MAP[col]) for col in df.columns if col in _AREA_COLUMN_MAP
+        (col, signal.area_columns[col])
+        for col in df.columns
+        if col in signal.area_columns
     ]
+    if not col_targets and not df.empty:
+        # Every TSO file carries these columns; none of them means the TSO
+        # renamed its header — fail loud rather than return an empty day.
+        raise ParserException(
+            parser="JP.py",
+            message=f"Area CSV has none of the columns {list(signal.area_columns)}",
+            zone_key=zone_key,
+        )
 
     # Filter to the target date. On live fetches, some TSOs publish with a lag
     # (HEPCO ~3 days), and the current day is either absent or padded with
@@ -563,12 +640,12 @@ def _df_to_production_breakdown_list(
         has_values = df[value_cols].notna().any(axis=1)
         if not (has_values & (days == target_day)).any():
             if not has_values.any():
-                return production_list.to_list()
+                return events.to_list()
             target_day = days[has_values].max()
     df = df[days == target_day]
 
     if df.empty:
-        return production_list.to_list()
+        return events.to_list()
 
     for _, row in df.iterrows():
         # pandas coerces the _datetime column to datetime64 when no rows were
@@ -578,8 +655,8 @@ def _df_to_production_breakdown_list(
         if hasattr(event_datetime, "to_pydatetime"):
             event_datetime = event_datetime.to_pydatetime()
 
-        _append_breakdown(
-            production_list,
+        signal.append_event(
+            events,
             zone_key,
             event_datetime,
             source,
@@ -587,7 +664,7 @@ def _df_to_production_breakdown_list(
             _AREA_RESOLUTION,
         )
 
-    return production_list.to_list()
+    return events.to_list()
 
 
 def _fetch_area_csv_content(
@@ -620,7 +697,8 @@ def _fetch_area_csv_content(
     return response.content
 
 
-def _fetch_production_area_csv(
+def _fetch_area_csv(
+    signal: _AreaSignal,
     zone_key: str,
     target_datetime: datetime,
     session: Session | None,
@@ -632,7 +710,8 @@ def _fetch_production_area_csv(
     session = session or Session()
     content = _fetch_area_csv_content(config, target_datetime, session)
     df = _read_area_csv(content)
-    return _df_to_production_breakdown_list(
+    return _area_df_to_events(
+        signal,
         df,
         zone_key,
         config.source,
@@ -710,7 +789,8 @@ def _build_legacy_datetime(date_str: str, time_str: str, kanji_time: bool) -> da
     return day.replace(hour=hour, minute=minute, tzinfo=ZONE_INFO)
 
 
-def _legacy_df_to_breakdown(
+def _legacy_df_to_events(
+    signal: _AreaSignal,
     df: pd.DataFrame,
     config: _LegacyAreaConfig,
     zone_key: str,
@@ -718,7 +798,8 @@ def _legacy_df_to_breakdown(
     logger: Logger,
 ) -> list:
     """Convert a legacy archive DataFrame's rows for target_datetime's day."""
-    production_list = ProductionBreakdownList(logger)
+    events = signal.new_events(logger)
+    columns = signal.legacy_columns(config)
     target_day = target_datetime.date()
     rows = df.values.tolist()
 
@@ -732,7 +813,7 @@ def _legacy_df_to_breakdown(
         None,
     )
     if start is None:
-        return production_list.to_list()
+        return events.to_list()
 
     last_date: str | None = None
     for row in rows[start:]:
@@ -758,8 +839,8 @@ def _legacy_df_to_breakdown(
         if dt.date() != target_day:
             continue
 
-        _append_breakdown(
-            production_list,
+        signal.append_event(
+            events,
             zone_key,
             dt,
             config.source,
@@ -770,11 +851,11 @@ def _legacy_df_to_breakdown(
                     if (value := _parse_value(row[idx])) is not None
                     else None,
                 )
-                for idx, target in config.column_map.items()
+                for idx, target in columns.items()
             ),
             _LEGACY_RESOLUTION,
         )
-    return production_list.to_list()
+    return events.to_list()
 
 
 # Legacy archives are immutable historical files that cover a quarter or a
@@ -784,7 +865,8 @@ _ARCHIVE_CACHE: dict[str, bytes] = {}
 _ARCHIVE_CACHE_MAX = 4
 
 
-def _fetch_production_legacy_area_csv(
+def _fetch_legacy_area_csv(
+    signal: _AreaSignal,
     zone_key: str,
     target_datetime: datetime,
     session: Session | None,
@@ -810,7 +892,7 @@ def _fetch_production_legacy_area_csv(
             # Some archive files simply don't exist (e.g. HEPCO never published
             # FY2018 Q2, the Hokkaido-blackout quarter) — fill from ISEP.
             logger.info(f"{zone_key}: {url} does not exist, falling back to ISEP")
-            return _fetch_production_isep(zone_key, target_datetime, session, logger)
+            return _fetch_isep(signal, zone_key, target_datetime, session, logger)
         response.raise_for_status()
         content = response.content
         while len(_ARCHIVE_CACHE) >= _ARCHIVE_CACHE_MAX:
@@ -821,7 +903,7 @@ def _fetch_production_legacy_area_csv(
         if config.xlsx
         else _read_legacy_area_csv(content)
     )
-    return _legacy_df_to_breakdown(df, config, zone_key, target_datetime, logger)
+    return _legacy_df_to_events(signal, df, config, zone_key, target_datetime, logger)
 
 
 # ─── ISEP energychart fallback ────────────────────────────────────────────────
@@ -862,7 +944,9 @@ _ISEP_URL = (
     "&period_length=1day&display_format=residual_demand"
 )
 _ISEP_JSONVAL_RE = re.compile(r"var jsonval = JSON\.parse\('(.*?)'\)", re.S)
-# JSON key → (mode, category); suppression/interconnection/demand are skipped.
+# JSON key → (mode, category) for production; suppression/interconnection are
+# skipped. `demand` is the area demand, read by fetch_consumption.
+_ISEP_DEMAND_KEY = "demand"
 _ISEP_COLUMN_MAP: dict[str, tuple[str, str]] = {
     "nuclear": ("nuclear", "production"),
     "thermal": ("unknown", "production"),  # combined thermal, like the legacy CSVs
@@ -875,14 +959,15 @@ _ISEP_COLUMN_MAP: dict[str, tuple[str, str]] = {
 }
 
 
-def _fetch_production_isep(
+def _fetch_isep(
+    signal: _AreaSignal,
     zone_key: str,
     target_datetime: datetime,
     session: Session | None,
     logger: Logger,
     live: bool = False,  # unused: live fetches always route to the area CSV
 ) -> list:
-    """Fetch one day of hourly production from ISEP energychart."""
+    """Fetch one day of hourly area data from ISEP energychart."""
     config = _ISEP_CONFIGS[zone_key]
     session = session or Session()
     url = _ISEP_URL.format(
@@ -897,7 +982,7 @@ def _fetch_production_isep(
     if not matches:
         raise ValueError(f"ISEP energychart page has no embedded data: {url}")
 
-    production_list = ProductionBreakdownList(logger)
+    events = signal.new_events(logger)
     target_day = target_datetime.date()
     for record in json.loads(matches[0]):
         if str(record.get("disable_flg", "")).strip() in ("1", "true", "True"):
@@ -907,28 +992,44 @@ def _fetch_production_isep(
         )
         if dt.date() != target_day:
             continue
-        _append_breakdown(
-            production_list,
+        signal.append_event(
+            events,
             zone_key,
             dt,
             "isep-energychart.com",
             (
                 (target, _parse_value(record.get(key)))
-                for key, target in _ISEP_COLUMN_MAP.items()
+                for key, target in signal.isep_columns.items()
             ),
             _LEGACY_RESOLUTION,
         )
-    return production_list.to_list()
+    return events.to_list()
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_production(
-    zone_key: str = "JP-TK",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
+_PRODUCTION = _AreaSignal(
+    area_columns=_AREA_COLUMN_MAP,
+    legacy_columns=lambda config: config.column_map,
+    isep_columns=_ISEP_COLUMN_MAP,
+    new_events=ProductionBreakdownList,
+    append_event=_append_breakdown,
+)
+_CONSUMPTION = _AreaSignal(
+    area_columns={_AREA_DEMAND_COLUMN: _DEMAND},
+    legacy_columns=lambda config: {config.demand_column: _DEMAND},
+    isep_columns={_ISEP_DEMAND_KEY: _DEMAND},
+    new_events=TotalConsumptionList,
+    append_event=_append_consumption,
+)
+
+
+def _fetch_area_events(
+    signal: _AreaSignal,
+    zone_key: str,
+    session: Session | None,
+    target_datetime: datetime | None,
+    logger: Logger,
 ) -> list:
-    """Fetch the production mix from the TSO area supply-demand data.
+    """Fetch one day of `signal` events from the TSO area supply-demand data.
 
     Sources are tried newest-first; each config's `start` is the first date it
     has usable data:
@@ -946,18 +1047,44 @@ def fetch_production(
     )
 
     sources = (
-        (_AREA_CSV_CONFIGS, _fetch_production_area_csv),
-        (_LEGACY_AREA_CONFIGS, _fetch_production_legacy_area_csv),
-        (_ISEP_CONFIGS, _fetch_production_isep),
+        (_AREA_CSV_CONFIGS, _fetch_area_csv),
+        (_LEGACY_AREA_CONFIGS, _fetch_legacy_area_csv),
+        (_ISEP_CONFIGS, _fetch_isep),
     )
     for configs, fetcher in sources:
         config = configs.get(zone_key)
         if config is not None and dt >= config.start:
-            return fetcher(zone_key, dt, session, logger, live=live)
+            return fetcher(signal, zone_key, dt, session, logger, live=live)
 
     raise NotImplementedError(
         f"No area supply-demand data available for {zone_key} at {dt.date()}"
     )
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_production(
+    zone_key: str = "JP-TK",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Fetch the production mix from the TSO area supply-demand data."""
+    return _fetch_area_events(_PRODUCTION, zone_key, session, target_datetime, logger)
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_consumption(
+    zone_key: str = "JP-TK",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Fetch the area demand (エリア需要) from the TSO area supply-demand data.
+
+    Reads the same files as `fetch_production`, so it shares its sources,
+    resolution (30 min from the area CSVs, hourly before) and live lag.
+    """
+    return _fetch_area_events(_CONSUMPTION, zone_key, session, target_datetime, logger)
 
 
 @refetch_frequency(timedelta(days=1))
